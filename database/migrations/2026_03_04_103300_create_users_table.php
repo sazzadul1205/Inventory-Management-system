@@ -1,4 +1,5 @@
 <?php
+// database/migrations/0001_01_01_000000_create_users_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,12 +14,23 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('username', 50)->unique();
+            $table->string('email', 100)->unique();
+            $table->string('password_hash', 255); // Changed from 'password' to 'password_hash'
+            $table->string('first_name', 50)->nullable();
+            $table->string('last_name', 50)->nullable();
+            $table->foreignId('role_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('department_id')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
+            $table->rememberToken(); // Keep this for Laravel's "remember me" functionality
+
+            // Add indexes for frequently queried columns
+            $table->index('role_id');
+            $table->index('department_id');
+            $table->index('is_active');
+            $table->index('last_login');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -42,8 +54,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };
