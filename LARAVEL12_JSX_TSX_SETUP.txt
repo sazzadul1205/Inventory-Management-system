@@ -1,0 +1,92 @@
+Laravel 12 + Inertia React: Use JSX and TSX Together
+===============================================
+
+Goal
+----
+Allow Inertia pages to be either `.tsx` or `.jsx` in the same Laravel 12 project.
+
+1) Vite config
+--------------
+File: vite.config.ts
+
+Use only your real app entry file in `input`.
+
+Example:
+
+input: [
+  'resources/css/app.css',
+  'resources/js/app.tsx',
+],
+ssr: 'resources/js/ssr.tsx',
+
+Important:
+- Do NOT keep `resources/js/app.jsx` in input unless that file actually exists.
+
+2) Blade entry
+--------------
+File: resources/views/app.blade.php
+
+Use:
+
+@vite(['resources/js/app.tsx'])
+
+Important:
+- Do NOT force page extension in Blade like:
+  "resources/js/pages/{$page['component']}.tsx"
+  This causes 404 when the page is `.jsx`.
+
+3) Client resolver (Inertia)
+----------------------------
+File: resources/js/app.tsx
+
+Use one glob for both extensions:
+
+const pageFiles = import.meta.glob('./pages/**/*.{tsx,jsx}');
+
+Resolve by checking which file exists before calling `resolvePageComponent`:
+- Try `./pages/${name}.tsx`
+- Else try `./pages/${name}.jsx`
+- Throw error if neither exists
+
+Why:
+- `resolvePageComponent(tsx) || resolvePageComponent(jsx)` is wrong,
+  because the first call throws immediately when missing.
+
+4) SSR resolver
+---------------
+File: resources/js/ssr.tsx
+
+Apply the same logic as client resolver:
+- same glob (`./pages/**/*.{tsx,jsx}`)
+- same extension check/fallback
+
+5) Controller render path
+-------------------------
+File example: app/Http/Controllers/frontend/HomeController.php
+
+Keep Inertia render path extensionless:
+
+return Inertia::render('frontend/Home/Home');
+
+Inertia will map it to `.tsx` or `.jsx` via resolver.
+
+6) Route path case-sensitivity
+------------------------------
+File: routes/web.php
+
+If route is `/home`, request `/home` (not `/Home`).
+
+7) After changes
+----------------
+- Restart Vite dev server.
+- Hard refresh browser (Ctrl+Shift+R).
+- Optional: run lint.
+
+Quick checklist
+---------------
+[ ] `@vite(['resources/js/app.tsx'])` only
+[ ] No forced page `.tsx` include in Blade
+[ ] `import.meta.glob('./pages/**/*.{tsx,jsx}')` in app.tsx
+[ ] Same mixed resolver logic in ssr.tsx
+[ ] Vite input has existing files only
+[ ] Routes used with correct case
