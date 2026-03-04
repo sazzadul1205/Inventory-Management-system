@@ -1,7 +1,11 @@
 <?php
+// database/factories/UserFactory.php
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -11,49 +15,102 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    protected static ?string $password = null;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'username' => $this->faker->unique()->userName(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'password_hash' => static::$password ??= Hash::make('password'),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'role_id' => Role::factory(),
+            'department_id' => null,
+            'is_active' => $this->faker->boolean(90),
+            'last_login' => $this->faker->optional(0.7)->dateTimeBetween('-1 month', 'now'),
             'remember_token' => Str::random(10),
-            'two_factor_secret' => null,
-            'two_factor_recovery_codes' => null,
-            'two_factor_confirmed_at' => null,
+            'created_at' => $this->faker->dateTimeBetween('-6 months', 'now'),
+            'updated_at' => function (array $attributes) {
+                return $this->faker->dateTimeBetween($attributes['created_at'] ?? '-6 months', 'now');
+            },
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
+    // -------- Inventory-specific roles --------
+
+    public function superAdmin(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+        return $this->withRole('super_admin');
+    }
+
+    public function admin(): static
+    {
+        return $this->withRole('admin');
+    }
+
+    public function inventoryManager(): static
+    {
+        return $this->withRole('inventory_manager');
+    }
+
+    public function storeKeeper(): static
+    {
+        return $this->withRole('store_keeper');
+    }
+
+    public function salesStaff(): static
+    {
+        return $this->withRole('sales_staff');
+    }
+
+    public function auditor(): static
+    {
+        return $this->withRole('auditor');
+    }
+
+    // -------- Generic role assignment helper --------
+
+    public function withRole(string $roleName): static
+    {
+        return $this->state(function () use ($roleName) {
+            $role = Role::firstOrCreate(
+                ['name' => $roleName],
+                ['description' => ucfirst(str_replace('_', ' ', $roleName))]
+            );
+
+            return ['role_id' => $role->id];
+        });
+    }
+
+    // -------- Department assignment --------
+
+    public function inDepartment(Department $department): static
+    {
+        return $this->state(fn() => [
+            'department_id' => $department->id,
         ]);
     }
 
-    /**
-     * Indicate that the model has two-factor authentication configured.
-     */
-    public function withTwoFactor(): static
+    // -------- User status --------
+
+    public function active(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'two_factor_secret' => encrypt('secret'),
-            'two_factor_recovery_codes' => encrypt(json_encode(['recovery-code-1'])),
-            'two_factor_confirmed_at' => now(),
+        return $this->state(fn() => ['is_active' => true]);
+    }
+
+    public function inactive(): static
+    {
+        return $this->state(fn() => ['is_active' => false]);
+    }
+
+    // -------- Name helper --------
+
+    public function named(string $firstName, string $lastName): static
+    {
+        return $this->state(fn() => [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
         ]);
     }
 }

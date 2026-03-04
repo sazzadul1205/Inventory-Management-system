@@ -1,4 +1,5 @@
 <?php
+// app/Models/User.php
 
 namespace App\Models;
 
@@ -7,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -19,9 +22,15 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
-        'password',
+        'password_hash',
+        'first_name',
+        'last_name',
+        'role_id',
+        'department_id',
+        'is_active',
+        'last_login',
     ];
 
     /**
@@ -30,7 +39,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',
+        'password_hash',
         'two_factor_secret',
         'two_factor_recovery_codes',
         'remember_token',
@@ -45,8 +54,129 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'last_login' => 'datetime',
+            'is_active' => 'boolean',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Get the password for authentication.
+     * This allows Laravel's auth to work with password_hash column
+     */
+    public function getAuthPassword()
+    {
+        return $this->password_hash;
+    }
+
+    /**
+     * Get the role that owns the user.
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get the department that the user belongs to.
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * Get the department managed by this user.
+     */
+    public function managedDepartment(): HasOne
+    {
+        return $this->hasOne(Department::class, 'manager_id');
+    }
+
+    /**
+     * Check if user has a specific role.
+     */
+    public function hasRole(string $roleName): bool
+    {
+        return $this->role && $this->role->name === $roleName;
+    }
+
+    /**
+     * Check if user has any of the given roles.
+     */
+    public function hasAnyRole(array $roleNames): bool
+    {
+        return $this->role && in_array($this->role->name, $roleNames);
+    }
+
+    /**
+     * Check if user has permission.
+     */
+    public function hasPermission(string $permission): bool
+    {
+        if (!$this->role || !$this->role->permissions) {
+            return false;
+        }
+
+        $permissions = $this->role->permissions;
+
+        // Check for wildcard or specific permission
+        return isset($permissions['all']) && $permissions['all'] === true
+            || isset($permissions[$permission]) && $permissions[$permission] === true;
+    }
+
+    /**
+     * Get user's full name.
+     */
+    public function getFullNameAttribute(): string
+    {
+        return trim($this->first_name . ' ' . $this->last_name);
+    }
+
+    /**
+     * Scope a query to only include active users.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to only include users by role.
+     */
+    public function scopeByRole($query, string $roleName)
+    {
+        return $query->whereHas('role', function ($q) use ($roleName) {
+            $q->where('name', $roleName);
+        });
+    }
+
+    /**
+     * Scope a query to only include users by department.
+     */
+    public function scopeByDepartment($query, int $departmentId)
+    {
+        return $query->where('department_id', $departmentId);
+    }
+
+    /**
+     * Get the name attribute for backward compatibility.
+     * This helps if any existing code uses $user->name
+     */
+    public function getNameAttribute(): string
+    {
+        return $this->getFullNameAttribute();
+    }
+
+    /**
+     * Set the name attribute for backward compatibility.
+     * This helps if any existing code tries to set $user->name
+     */
+    public function setNameAttribute($value)
+    {
+        // Split name into first and last name if possible
+        $nameParts = explode(' ', $value, 2);
+        $this->first_name = $nameParts[0];
+        $this->last_name = $nameParts[1] ?? '';
     }
 }
