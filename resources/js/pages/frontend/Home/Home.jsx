@@ -1,10 +1,10 @@
 // resources/js/pages/frontend/Home/Home.jsx
-import React from 'react';
+import Navbar from '../../../shared/navbar';
 
 const Home = () => {
   return (
     <div className='bg-white text-black min-h-screen ' >
-      <p className='text-center text-2xl' >text</p>
+      <Navbar />
     </div>
   );
 };

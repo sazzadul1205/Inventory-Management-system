@@ -10,7 +10,8 @@ use Laravel\Fortify\Features;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::middleware(['auth', 'verified'])->group(function () {    
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
