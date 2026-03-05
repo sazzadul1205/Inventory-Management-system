@@ -28,9 +28,25 @@ import { FiLogIn } from 'react-icons/fi';
 
 // Logo Image Import - Update path based on your logo location
 import Icon from '../../../../public/Icon.png'; // Adjust path as needed
+import DarkIcon from '../../../../public/DarkIcon.png';
 
 // Import ThemeToggle component
 import ThemeToggle from '@/components/ThemeToggle'; // Adjust path as needed
+
+const getIsDarkTheme = () => {
+  if (typeof window === 'undefined') return false;
+
+  if (document.documentElement.classList.contains('dark')) {
+    return true;
+  }
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    return savedTheme === 'dark';
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
 
 /**
  * Login Component
@@ -40,6 +56,8 @@ import ThemeToggle from '@/components/ThemeToggle'; // Adjust path as needed
  * @param {boolean} props.canRegister - Whether new registration is allowed
  */
 const Login = ({ status, canResetPassword = true, canRegister = true }) => {
+  const [darkMode, setDarkMode] = useState(getIsDarkTheme);
+
   // State for toggling password visibility
   const [showPassword, setShowPassword] = useState(false);
 
@@ -87,6 +105,24 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
       setClientErrors({});
     }
   }, [wasSuccessful]);
+
+  useEffect(() => {
+    const syncTheme = () => setDarkMode(getIsDarkTheme());
+    const root = document.documentElement;
+    const observer = new MutationObserver(syncTheme);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+    window.addEventListener('storage', syncTheme);
+    mediaQuery.addEventListener('change', syncTheme);
+    syncTheme();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('storage', syncTheme);
+      mediaQuery.removeEventListener('change', syncTheme);
+    };
+  }, []);
 
   /**
    * Handle form submission
@@ -284,11 +320,11 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
           {/* Logo Container - Centered with shadow effect */}
           <div className="flex justify-center">
             {/* Company Logo - Replace with your actual logo */}
-            <img
-              src={Icon}
-              alt="Sazzadul Inventory and Logistics"
-              className="w-48 h-auto object-contain mb-4 hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
-            />
+                <img
+                  src={darkMode ? DarkIcon : Icon}
+                  alt="Sazzadul Inventory and Logistics"
+                  className="w-56 h-auto object-contain mb-4 hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
+                />
           </div>
 
           {/* Welcome Text */}

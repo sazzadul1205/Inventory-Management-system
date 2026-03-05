@@ -29,9 +29,25 @@ import { FiUserPlus } from 'react-icons/fi';
 
 // Logo Image Import
 import Icon from '../../../../public/Icon.png';
+import DarkIcon from '../../../../public/DarkIcon.png';
 
 // Import ThemeToggle component
 import ThemeToggle from '@/components/ThemeToggle';
+
+const getIsDarkTheme = () => {
+    if (typeof window === 'undefined') return false;
+
+    if (document.documentElement.classList.contains('dark')) {
+        return true;
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme === 'dark';
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
 
 /**
  * Register Component
@@ -39,6 +55,8 @@ import ThemeToggle from '@/components/ThemeToggle';
  * @param {string} props.status - Optional status message
  */
 const Register = ({ status }) => {
+    const [darkMode, setDarkMode] = useState(getIsDarkTheme);
+
     // State for toggling password visibility
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -81,6 +99,24 @@ const Register = ({ status }) => {
             setClientErrors({});
         }
     }, [wasSuccessful]);
+
+    useEffect(() => {
+        const syncTheme = () => setDarkMode(getIsDarkTheme());
+        const root = document.documentElement;
+        const observer = new MutationObserver(syncTheme);
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+        window.addEventListener('storage', syncTheme);
+        mediaQuery.addEventListener('change', syncTheme);
+        syncTheme();
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('storage', syncTheme);
+            mediaQuery.removeEventListener('change', syncTheme);
+        };
+    }, []);
 
     /**
      * Effect to check password strength when password changes
@@ -342,9 +378,9 @@ const Register = ({ status }) => {
                     {/* Logo Container */}
                     <div className="flex justify-center">
                         <img
-                            src={Icon}
+                            src={darkMode ? DarkIcon : Icon}
                             alt="Sazzadul Inventory and Logistics"
-                            className="w-48 h-auto object-contain mb-4 hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
+                            className="w-56 h-auto object-contain mb-4 hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
                         />
                     </div>
 

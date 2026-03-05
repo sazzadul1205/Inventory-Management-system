@@ -2,36 +2,51 @@
 
 /**
  * ThemeToggle Component
- * Floating button that toggles between light and dark mode
- * Saves preference to localStorage and detects system preference
+ *
+ * Features:
+ * - Toggles between Light Mode and Dark Mode
+ * - Saves user preference in localStorage
+ * - Detects system theme preference on first load
+ * - Supports two display modes:
+ *    1. Floating Mode (fixed position on screen)
+ *    2. Inline Mode (normal component inside layouts like navbar/sidebar)
  */
 
 import React, { useState, useEffect } from 'react';
 import { HiSun, HiMoon } from 'react-icons/hi';
 
-const ThemeToggle = () => {
-  // Initialize dark mode state from localStorage or system preference
+const ThemeToggle = ({ floating = true }) => {
+
+  /**
+   * Initialize dark mode state
+   *
+   * Priority order:
+   * 1. Saved theme from localStorage
+   * 2. System preference (prefers-color-scheme)
+   * 3. Default: Light Mode
+   */
   const [darkMode, setDarkMode] = useState(() => {
-    // Check if window is defined (for SSR/Next.js compatibility)
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
 
-      // If theme exists in localStorage, use that
       if (savedTheme) {
         return savedTheme === 'dark';
       }
 
-      // Otherwise, check system preference
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
-    // Default to light mode if window is not defined (SSR)
     return false;
   });
 
   /**
-   * Effect to apply dark mode class to HTML element
-   * and save preference to localStorage
+   * Apply theme to the root HTML element
+   *
+   * Tailwind's dark mode works by adding the "dark" class
+   * to the <html> element.
+   *
+   * Also saves the selected theme in localStorage
+   * so it persists after page reload.
    */
   useEffect(() => {
     const root = document.documentElement;
@@ -46,19 +61,27 @@ const ThemeToggle = () => {
   }, [darkMode]);
 
   /**
-   * Toggle between light and dark mode
+   * Toggle theme between light and dark
    */
   const toggleTheme = () => {
     setDarkMode(!darkMode);
   };
 
+  // Base styles shared by both modes
+  const baseClasses =
+    "cursor-pointer p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-500";
+
+  // Additional styles only for floating mode
+  const floatingClasses = "fixed top-4 right-4 z-50";
+
   return (
     <button
       onClick={toggleTheme}
-      className="cursor-pointer fixed top-4 right-4 z-50 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      className={`${baseClasses} ${floating ? floatingClasses : ""}`}
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
       title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
+      {/* Icon changes depending on active theme */}
       {darkMode ? (
         <HiSun className="h-5 w-5 text-yellow-500" />
       ) : (

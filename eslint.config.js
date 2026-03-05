@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier/flat';
 import importPlugin from 'eslint-plugin-import';
+import unusedImports from 'eslint-plugin-unused-imports';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
@@ -13,7 +14,7 @@ export default [
     ...typescript.configs.recommended,
     {
         ...react.configs.flat.recommended,
-        ...react.configs.flat['jsx-runtime'], // Required for React 17+
+        ...react.configs.flat['jsx-runtime'],
         languageOptions: {
             globals: {
                 ...globals.browser,
@@ -33,6 +34,7 @@ export default [
     {
         plugins: {
             import: importPlugin,
+            'unused-imports': unusedImports,
         },
         settings: {
             'import/resolver': {
@@ -45,6 +47,7 @@ export default [
         },
         rules: {
             '@typescript-eslint/no-explicit-any': 'off',
+
             '@typescript-eslint/consistent-type-imports': [
                 'error',
                 {
@@ -52,19 +55,50 @@ export default [
                     fixStyle: 'separate-type-imports',
                 },
             ],
+
             'import/order': [
                 'error',
                 {
-                    groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+                    groups: [
+                        'builtin',
+                        'external',
+                        'internal',
+                        'parent',
+                        'sibling',
+                        'index',
+                    ],
                     alphabetize: {
                         order: 'asc',
                         caseInsensitive: true,
                     },
                 },
             ],
+
             'import/consistent-type-specifier-style': [
                 'error',
                 'prefer-top-level',
+            ],
+
+            // 🔴 Detect unused imports
+            'unused-imports/no-unused-imports': 'error',
+
+            // 🔴 Detect unused variables
+            'unused-imports/no-unused-vars': [
+                'warn',
+                {
+                    vars: 'all',
+                    varsIgnorePattern: '^_',
+                    args: 'after-used',
+                    argsIgnorePattern: '^_',
+                },
+            ],
+
+            // 🔴 Detect unused exported modules (unused components/files)
+            'import/no-unused-modules': [
+                'warn',
+                {
+                    unusedExports: true,
+                },
             ],
         },
     },
@@ -81,5 +115,5 @@ export default [
             'resources/js/routes/**',
         ],
     },
-    prettier, // Turn off all rules that might conflict with Prettier
+    prettier,
 ];
