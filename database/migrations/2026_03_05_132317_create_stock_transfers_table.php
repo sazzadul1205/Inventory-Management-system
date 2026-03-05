@@ -9,6 +9,10 @@ return new class extends Migration
 {
     public function up(): void
     {
+        if (Schema::hasTable('stock_transfers')) {
+            return;
+        }
+
         Schema::create('stock_transfers', function (Blueprint $table) {
             $table->id();
             $table->string('transfer_number', 50)->unique();
@@ -40,9 +44,7 @@ return new class extends Migration
             $table->index(['status', 'request_date']);
             $table->index(['from_warehouse_id', 'to_warehouse_id']);
 
-            // Add check constraint to prevent same warehouse transfer
-            // This will be handled at application level but we add a database constraint
-            $table->index(['from_warehouse_id', 'to_warehouse_id']);
+            // Same-warehouse prevention is handled at the application/validation layer.
         });
     }
 

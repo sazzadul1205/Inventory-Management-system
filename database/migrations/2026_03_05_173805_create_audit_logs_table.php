@@ -42,8 +42,7 @@ return new class extends Migration
             $table->index(['action', 'created_at']);
             $table->index(['table_name', 'action']);
 
-            // Index for searching within JSON (MySQL 5.7+)
-            $table->index($table->raw('(JSON_EXTRACT(changes, "$.*"))'), 'changes_index');
+            // JSON-path expression indexes are engine/version-specific; keep base indexes portable.
         });
     }
 
