@@ -5,10 +5,11 @@
  * Handles user authentication with email/password
  * Features: form validation, password visibility toggle, remember me, and demo credentials
  * Dark mode support with ThemeToggle component
+ * Comprehensive error handling for all scenarios
  */
 
 // React Core Imports
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 // React Icons for better UI visualization
@@ -19,6 +20,9 @@ import {
   HiEyeOff,
   HiOutlineExclamationCircle,
   HiOutlineCheckCircle,
+  HiOutlineShieldExclamation,
+  HiOutlineServer,
+  HiOutlineRefresh,
 } from 'react-icons/hi';
 import { FiLogIn } from 'react-icons/fi';
 
@@ -39,15 +43,50 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
   // State for toggling password visibility
   const [showPassword, setShowPassword] = useState(false);
 
+  // State for network error handling
+  const [networkError, setNetworkError] = useState(null);
+
+  // State for rate limiting
+  const [rateLimit, setRateLimit] = useState({
+    attempts: 0,
+    lockedUntil: null,
+  });
+
+  // State for field-level validation errors (client-side)
+  const [clientErrors, setClientErrors] = useState({});
+
   /**
    * Inertia's useForm hook for form handling
    * Provides form state, validation errors, and submission methods
    */
-  const { data, setData, post, processing, errors, reset } = useForm({
+  const { data, setData, post, processing, errors, reset, wasSuccessful } = useForm({
     email: '',      // User's email address
     password: '',   // User's password
     remember: false, // Remember me checkbox state
   });
+
+  /**
+   * Effect to handle rate limiting
+   */
+  useEffect(() => {
+    if (rateLimit.lockedUntil && rateLimit.lockedUntil > Date.now()) {
+      const timer = setTimeout(() => {
+        setRateLimit({ attempts: 0, lockedUntil: null });
+      }, rateLimit.lockedUntil - Date.now());
+
+      return () => clearTimeout(timer);
+    }
+  }, [rateLimit.lockedUntil]);
+
+  /**
+   * Effect to clear network error after successful submission
+   */
+  useEffect(() => {
+    if (wasSuccessful) {
+      setNetworkError(null);
+      setClientErrors({});
+    }
+  }, [wasSuccessful]);
 
   /**
    * Handle form submission
@@ -55,17 +94,177 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
    */
   const submit = (e) => {
     e.preventDefault();
+
+    // Clear previous errors
+    setNetworkError(null);
+    setClientErrors({});
+
+    // Client-side validation
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setClientErrors(validationErrors);
+      return;
+    }
+
+    // Check rate limiting
+    if (rateLimit.lockedUntil && rateLimit.lockedUntil > Date.now()) {
+      const waitTime = Math.ceil((rateLimit.lockedUntil - Date.now()) / 1000);
+      setNetworkError({
+        type: 'rate_limit',
+        message: `Too many login attempts. Please wait ${waitTime} seconds.`
+      });
+      return;
+    }
+
+    // Attempt login
     post('/login', {
-      onSuccess: () => reset('password'), // Clear password field on successful login
+      onSuccess: () => {
+        reset('password');
+        setRateLimit({ attempts: 0, lockedUntil: null });
+      },
+      onError: (errors) => {
+        // Increment failed attempts for rate limiting
+        const newAttempts = rateLimit.attempts + 1;
+        const maxAttempts = 5;
+        const lockoutTime = 60 * 1000; // 1 minute
+
+        if (newAttempts >= maxAttempts) {
+          setRateLimit({
+            attempts: newAttempts,
+            lockedUntil: Date.now() + lockoutTime,
+          });
+          setNetworkError({
+            type: 'rate_limit',
+            message: 'Too many failed attempts. Please wait 1 minute before trying again.'
+          });
+        } else {
+          setRateLimit({
+            ...rateLimit,
+            attempts: newAttempts,
+          });
+        }
+
+        // Handle specific error types
+        if (errors.email && errors.email.includes('not found')) {
+          setNetworkError({
+            type: 'not_found',
+            message: 'No account found with this email address.'
+          });
+        } else if (errors.password && errors.password.includes('incorrect')) {
+          setNetworkError({
+            type: 'invalid_password',
+            message: 'Incorrect password. Please try again.'
+          });
+        } else if (errors.account && errors.account.includes('inactive')) {
+          setNetworkError({
+            type: 'inactive',
+            message: 'Your account is inactive. Please contact support.'
+          });
+        } else {
+          setNetworkError({
+            type: 'general',
+            message: 'Login failed. Please check your credentials and try again.'
+          });
+        }
+      },
+      onFinish: () => {
+        // Any cleanup after submission (success or error)
+      },
     });
   };
 
   /**
+   * Client-side form validation
+   * @returns {Object} Validation errors
+   */
+  const validateForm = () => {
+    const errors = {};
+
+    // Email validation
+    if (!data.email) {
+      errors.email = 'Email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      errors.email = 'Please enter a valid email address';
+    } else if (data.email.length > 100) {
+      errors.email = 'Email address must not exceed 100 characters';
+    }
+
+    // Password validation
+    if (!data.password) {
+      errors.password = 'Password is required';
+    } else if (data.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
+    } else if (data.password.length > 50) {
+      errors.password = 'Password must not exceed 50 characters';
+    }
+
+    return errors;
+  };
+
+  /**
+   * Handle input change with validation
+   * @param {string} field - Field name
+   * @param {any} value - Field value
+   */
+  const handleInputChange = (field, value) => {
+    setData(field, value);
+
+    // Clear field-specific error when user starts typing
+    if (clientErrors[field]) {
+      setClientErrors({
+        ...clientErrors,
+        [field]: null,
+      });
+    }
+
+    // Clear network error when user starts typing
+    if (networkError) {
+      setNetworkError(null);
+    }
+  };
+
+  /**
    * Toggle password visibility
-   * Switches between text and password input types
    */
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  /**
+   * Retry login after error
+   */
+  const handleRetry = () => {
+    setNetworkError(null);
+    setClientErrors({});
+    submit(new Event('submit'));
+  };
+
+  /**
+   * Get error message to display
+   */
+  const getErrorMessage = () => {
+    if (networkError) {
+      return networkError.message;
+    }
+    return null;
+  };
+
+  /**
+   * Get error icon based on error type
+   */
+  const getErrorIcon = () => {
+    if (!networkError) return null;
+
+    switch (networkError.type) {
+      case 'rate_limit':
+        return <HiOutlineShieldExclamation className="h-5 w-5 mr-2" />;
+      case 'inactive':
+        return <HiOutlineShieldExclamation className="h-5 w-5 mr-2" />;
+      case 'server_error':
+        return <HiOutlineServer className="h-5 w-5 mr-2" />;
+      default:
+        return <HiOutlineExclamationCircle className="h-5 w-5 mr-2" />;
+    }
   };
 
   return (
@@ -105,6 +304,40 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white dark:bg-gray-800 py-8 px-4 shadow-xl shadow-indigo-100/50 dark:shadow-gray-900/50 sm:rounded-xl sm:px-10 border border-gray-100 dark:border-gray-700 transition-colors duration-300">
 
+            {/* Network/Server Error Message - Display at top of form */}
+            {networkError && (
+              <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <div className="flex items-start">
+                  <div className="shrink-0">
+                    {getErrorIcon()}
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <p className="text-sm font-medium text-red-800 dark:text-red-300">
+                      {getErrorMessage()}
+                    </p>
+                    {networkError.type === 'server_error' && (
+                      <button
+                        onClick={handleRetry}
+                        className="mt-2 flex items-center text-sm text-red-600 dark:text-red-400 hover:text-red-500 dark:hover:text-red-300 transition duration-150"
+                      >
+                        <HiOutlineRefresh className="h-4 w-4 mr-1" />
+                        Try again
+                      </button>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => setNetworkError(null)}
+                    className="ml-auto text-red-400 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
+                  >
+                    <span className="sr-only">Dismiss</span>
+                    <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Login Form - Handles authentication */}
             <form onSubmit={submit} className="space-y-6">
 
@@ -116,7 +349,10 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                 <div className="relative">
                   {/* Email Icon - Left side of input */}
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <HiMail className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                    <HiMail className={`h-5 w-5 ${errors.email || clientErrors.email
+                        ? 'text-red-400 dark:text-red-500'
+                        : 'text-gray-400 dark:text-gray-500'
+                      }`} />
                   </div>
                   <input
                     id="email"
@@ -124,19 +360,31 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                     type="email"
                     autoComplete="email"
                     required
-                    autoFocus // Automatically focus this field on page load
+                    autoFocus
                     value={data.email}
-                    onChange={(e) => setData('email', e.target.value)} // Update form state
-                    className={`cursor-auto pl-10 appearance-none block w-full px-3 py-2.5 border ${errors.email ? 'border-red-300 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
-                      } rounded-lg shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 bg-white dark:bg-gray-700 text-gray-900 dark:text-white`}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    onBlur={() => {
+                      const validationErrors = validateForm();
+                      if (validationErrors.email) {
+                        setClientErrors({
+                          ...clientErrors,
+                          email: validationErrors.email,
+                        });
+                      }
+                    }}
+                    className={`pl-10 appearance-none block w-full px-3 py-2.5 border ${errors.email || clientErrors.email
+                        ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/10'
+                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                      } rounded-lg shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 text-gray-900 dark:text-white`}
                     placeholder="you@example.com"
+                    disabled={rateLimit.lockedUntil > Date.now()}
                   />
                 </div>
                 {/* Email Validation Error Message */}
-                {errors.email && (
+                {(errors.email || clientErrors.email) && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
-                    <HiOutlineExclamationCircle className="h-4 w-4 mr-1" />
-                    {errors.email}
+                    <HiOutlineExclamationCircle className="h-4 w-4 mr-1 shrink-0" />
+                    {errors.email || clientErrors.email}
                   </p>
                 )}
               </div>
@@ -160,26 +408,42 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                 <div className="relative">
                   {/* Lock Icon - Left side */}
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <HiLockClosed className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                    <HiLockClosed className={`h-5 w-5 ${errors.password || clientErrors.password
+                        ? 'text-red-400 dark:text-red-500'
+                        : 'text-gray-400 dark:text-gray-500'
+                      }`} />
                   </div>
                   <input
                     id="password"
                     name="password"
-                    type={showPassword ? 'text' : 'password'} // Toggle between text/password
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
                     required
                     value={data.password}
-                    onChange={(e) => setData('password', e.target.value)}
-                    className={`cursor-auto pl-10 pr-10 appearance-none block w-full px-3 py-2.5 border ${errors.password ? 'border-red-300 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
-                      } rounded-lg shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 bg-white dark:bg-gray-700 text-gray-900 dark:text-white`}
+                    onChange={(e) => handleInputChange('password', e.target.value)}
+                    onBlur={() => {
+                      const validationErrors = validateForm();
+                      if (validationErrors.password) {
+                        setClientErrors({
+                          ...clientErrors,
+                          password: validationErrors.password,
+                        });
+                      }
+                    }}
+                    className={`pl-10 pr-10 appearance-none block w-full px-3 py-2.5 border ${errors.password || clientErrors.password
+                        ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/10'
+                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                      } rounded-lg shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 text-gray-900 dark:text-white`}
                     placeholder="••••••••"
+                    disabled={rateLimit.lockedUntil > Date.now()}
                   />
                   {/* Password Visibility Toggle Button */}
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="cursor-pointer absolute inset-y-0 right-0 pr-3 flex items-center focus:outline-none"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center focus:outline-none"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    disabled={rateLimit.lockedUntil > Date.now()}
                   >
                     {showPassword ? (
                       <HiEyeOff className="h-5 w-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition duration-150" />
@@ -189,10 +453,10 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                   </button>
                 </div>
                 {/* Password Validation Error Message */}
-                {errors.password && (
+                {(errors.password || clientErrors.password) && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
-                    <HiOutlineExclamationCircle className="h-4 w-4 mr-1" />
-                    {errors.password}
+                    <HiOutlineExclamationCircle className="h-4 w-4 mr-1 shrink-0" />
+                    {errors.password || clientErrors.password}
                   </p>
                 )}
               </div>
@@ -206,17 +470,28 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                   checked={data.remember}
                   onChange={(e) => setData('remember', e.target.checked)}
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded transition duration-150 dark:bg-gray-700 dark:border-gray-600"
+                  disabled={rateLimit.lockedUntil > Date.now()}
                 />
                 <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                   Remember me for 30 days
                 </label>
               </div>
 
+              {/* Rate Limit Warning */}
+              {rateLimit.lockedUntil > Date.now() && (
+                <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+                  <p className="text-sm text-yellow-800 dark:text-yellow-300 flex items-center">
+                    <HiOutlineShieldExclamation className="h-5 w-5 mr-2" />
+                    Account temporarily locked. Please wait before trying again.
+                  </p>
+                </div>
+              )}
+
               {/* Submit Button */}
               <div>
                 <button
                   type="submit"
-                  disabled={processing} // Disable while processing
+                  disabled={processing || rateLimit.lockedUntil > Date.now()}
                   className="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150 transform hover:scale-[1.02] active:scale-[0.98] dark:focus:ring-offset-gray-800"
                 >
                   {processing ? (
@@ -227,6 +502,12 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                       Signing in...
+                    </>
+                  ) : rateLimit.lockedUntil > Date.now() ? (
+                    // Locked State
+                    <>
+                      <HiOutlineShieldExclamation className="mr-2 h-5 w-5" />
+                      Account locked
                     </>
                   ) : (
                     // Normal Button State
