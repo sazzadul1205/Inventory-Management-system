@@ -8,15 +8,49 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Log;
 
+/**
+ * Audit Log Model
+ * 
+ * Handles comprehensive system activity logging with detailed tracking of user actions,
+ * data changes, and system events. Provides extensive querying capabilities and
+ * statistical analysis for monitoring and compliance purposes.
+ * 
+ * @package App\Models
+ * @property int $id
+ * @property int|null $user_id
+ * @property string $action
+ * @property string|null $table_name
+ * @property int|null $record_id
+ * @property array|null $old_values
+ * @property array|null $new_values
+ * @property array|null $changes
+ * @property string|null $ip_address
+ * @property string|null $user_agent
+ * @property string|null $session_id
+ * @property string|null $request_method
+ * @property string|null $request_url
+ * @property string|null $description
+ * @property \DateTime $created_at
+ */
 class AuditLog extends Model
 {
     use HasFactory;
 
+    /**
+     * --------------------------------------------------------------------------
+     * Configuration Constants
+     * --------------------------------------------------------------------------
+     */
+
+    /** @var string Database table name */
     protected $table = 'audit_logs';
 
+    /** @var bool Disable Laravel's default timestamps */
     public $timestamps = false;
 
+    /** @var array<string> Mass assignable attributes */
     protected $fillable = [
         'user_id',
         'action',
@@ -33,6 +67,7 @@ class AuditLog extends Model
         'description'
     ];
 
+    /** @var array<string, string> Attribute casting definitions */
     protected $casts = [
         'old_values' => 'array',
         'new_values' => 'array',
@@ -40,36 +75,58 @@ class AuditLog extends Model
         'created_at' => 'datetime'
     ];
 
-    // Action constants
+    /**
+     * --------------------------------------------------------------------------
+     * Action Constants
+     * --------------------------------------------------------------------------
+     */
+
+    /** @var string CRUD operations */
     const ACTION_CREATE = 'create';
     const ACTION_UPDATE = 'update';
     const ACTION_DELETE = 'delete';
     const ACTION_VIEW = 'view';
+    const ACTION_RESTORE = 'restore';
+
+    /** @var string Authentication events */
     const ACTION_LOGIN = 'login';
     const ACTION_LOGOUT = 'logout';
+    const ACTION_PASSWORD_CHANGE = 'password_change';
+    const ACTION_PROFILE_UPDATE = 'profile_update';
+
+    /** @var string Data operations */
     const ACTION_EXPORT = 'export';
     const ACTION_IMPORT = 'import';
     const ACTION_DOWNLOAD = 'download';
     const ACTION_PRINT = 'print';
+
+    /** @var string Workflow actions */
     const ACTION_APPROVE = 'approve';
     const ACTION_REJECT = 'reject';
     const ACTION_CANCEL = 'cancel';
     const ACTION_COMPLETE = 'complete';
-    const ACTION_RESTORE = 'restore';
+
+    /** @var string System operations */
     const ACTION_BACKUP = 'backup';
     const ACTION_RESTORE_BACKUP = 'restore_backup';
     const ACTION_SETTING_CHANGE = 'setting_change';
     const ACTION_PERMISSION_CHANGE = 'permission_change';
-    const ACTION_PASSWORD_CHANGE = 'password_change';
-    const ACTION_PROFILE_UPDATE = 'profile_update';
 
+    /**
+     * Human-readable action labels
+     * 
+     * @var array<string, string>
+     */
     public static $actions = [
         self::ACTION_CREATE => 'Create',
         self::ACTION_UPDATE => 'Update',
         self::ACTION_DELETE => 'Delete',
         self::ACTION_VIEW => 'View',
+        self::ACTION_RESTORE => 'Restore',
         self::ACTION_LOGIN => 'Login',
         self::ACTION_LOGOUT => 'Logout',
+        self::ACTION_PASSWORD_CHANGE => 'Password Change',
+        self::ACTION_PROFILE_UPDATE => 'Profile Update',
         self::ACTION_EXPORT => 'Export',
         self::ACTION_IMPORT => 'Import',
         self::ACTION_DOWNLOAD => 'Download',
@@ -78,80 +135,200 @@ class AuditLog extends Model
         self::ACTION_REJECT => 'Reject',
         self::ACTION_CANCEL => 'Cancel',
         self::ACTION_COMPLETE => 'Complete',
-        self::ACTION_RESTORE => 'Restore',
         self::ACTION_BACKUP => 'Backup',
         self::ACTION_RESTORE_BACKUP => 'Restore Backup',
         self::ACTION_SETTING_CHANGE => 'Setting Change',
         self::ACTION_PERMISSION_CHANGE => 'Permission Change',
-        self::ACTION_PASSWORD_CHANGE => 'Password Change',
-        self::ACTION_PROFILE_UPDATE => 'Profile Update'
     ];
 
-    // Relationships
+    /**
+     * --------------------------------------------------------------------------
+     * Relationships
+     * --------------------------------------------------------------------------
+     */
+
+    /**
+     * Get the user who performed the action
+     * 
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    // Scopes
-    public function scopeByUser($query, $userId)
+    /**
+     * Get the parent auditable model (polymorphic relationship)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function auditable()
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * --------------------------------------------------------------------------
+     * Query Scopes
+     * --------------------------------------------------------------------------
+     */
+
+    /**
+     * Filter logs by user
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $userId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByUser($query, int $userId)
     {
         return $query->where('user_id', $userId);
     }
 
-    public function scopeByAction($query, $action)
+    /**
+     * Filter logs by action type
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $action
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByAction($query, string $action)
     {
         return $query->where('action', $action);
     }
 
-    public function scopeByTable($query, $tableName)
+    /**
+     * Filter logs by table name
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $tableName
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByTable($query, string $tableName)
     {
         return $query->where('table_name', $tableName);
     }
 
-    public function scopeByRecord($query, $tableName, $recordId)
+    /**
+     * Filter logs by specific record
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $tableName
+     * @param int $recordId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByRecord($query, string $tableName, int $recordId)
     {
         return $query->where('table_name', $tableName)
             ->where('record_id', $recordId);
     }
 
-    public function scopeByDateRange($query, $startDate, $endDate)
+    /**
+     * Filter logs by date range
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $startDate
+     * @param string $endDate
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByDateRange($query, string $startDate, string $endDate)
     {
         return $query->whereBetween('created_at', [$startDate, $endDate]);
     }
 
-    public function scopeByIpAddress($query, $ipAddress)
+    /**
+     * Filter logs by IP address
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $ipAddress
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByIpAddress($query, string $ipAddress)
     {
         return $query->where('ip_address', $ipAddress);
     }
 
+    /**
+     * Get today's logs
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeToday($query)
     {
         return $query->whereDate('created_at', now()->toDateString());
     }
 
+    /**
+     * Get this week's logs
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeThisWeek($query)
     {
-        return $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+        return $query->whereBetween('created_at', [
+            now()->startOfWeek(),
+            now()->endOfWeek()
+        ]);
     }
 
+    /**
+     * Get this month's logs
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeThisMonth($query)
     {
         return $query->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year);
     }
 
+    /**
+     * Get logs with changes
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeWithChanges($query)
     {
         return $query->whereNotNull('changes');
     }
 
-    // Accessors
-    public function getActionLabelAttribute(): string
+    /**
+     * Delete old logs (for cleanup jobs)
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $days
+     * @return mixed
+     */
+    public function scopeCleanup($query, int $days = 90)
     {
-        return self::$actions[$this->action] ?? $this->action;
+        return $query->where('created_at', '<', now()->subDays($days))->delete();
     }
 
+    /**
+     * --------------------------------------------------------------------------
+     * Accessors & Mutators
+     * --------------------------------------------------------------------------
+     */
+
+    /**
+     * Get human-readable action label
+     * 
+     * @return string
+     */
+    public function getActionLabelAttribute(): string
+    {
+        return self::$actions[$this->action] ?? ucfirst($this->action);
+    }
+
+    /**
+     * Get summarized changes as array
+     * 
+     * @return array<int, array{field: string, old: mixed, new: mixed}>
+     */
     public function getChangesSummaryAttribute(): array
     {
         if (!$this->changes) {
@@ -170,6 +347,11 @@ class AuditLog extends Model
         return $summary;
     }
 
+    /**
+     * Get formatted changes as readable string
+     * 
+     * @return string
+     */
     public function getFormattedChangesAttribute(): string
     {
         if (!$this->changes) {
@@ -178,58 +360,98 @@ class AuditLog extends Model
 
         $lines = [];
         foreach ($this->changes as $field => $change) {
-            $old = is_array($change['old'] ?? null) ? json_encode($change['old']) : ($change['old'] ?? 'null');
-            $new = is_array($change['new'] ?? null) ? json_encode($change['new']) : ($change['new'] ?? 'null');
+            $old = $this->formatChangeValue($change['old'] ?? null);
+            $new = $this->formatChangeValue($change['new'] ?? null);
             $lines[] = "{$field}: {$old} → {$new}";
         }
 
         return implode("\n", $lines);
     }
 
+    /**
+     * Get human-readable table name
+     * 
+     * @return string
+     */
     public function getTableLabelAttribute(): string
     {
-        return ucwords(str_replace('_', ' ', $this->table_name ?? ''));
+        return $this->table_name
+            ? ucwords(str_replace('_', ' ', $this->table_name))
+            : '';
     }
 
-    // Methods
+    /**
+     * --------------------------------------------------------------------------
+     * Logging Methods
+     * --------------------------------------------------------------------------
+     */
+
+    /**
+     * Main logging method - creates a new audit log entry
+     * 
+     * @param string $action The action being performed
+     * @param mixed $model The model instance or null for non-model actions
+     * @param mixed|null $oldValues Previous values (for updates)
+     * @param mixed|null $newValues New values (for updates)
+     * @param array<string, mixed> $extra Additional data (description, table, record_id)
+     * @return self
+     */
     public static function log(
         string $action,
-        $model,
+        $model = null,
         $oldValues = null,
         $newValues = null,
         array $extra = []
     ): self {
-        $tableName = $model instanceof Model ? $model->getTable() : ($extra['table'] ?? null);
-        $recordId = $model instanceof Model ? $model->id : ($extra['record_id'] ?? null);
+        try {
+            $tableName = $model instanceof Model
+                ? $model->getTable()
+                : ($extra['table'] ?? null);
 
-        // Calculate changes for update actions
-        $changes = null;
-        if ($action === self::ACTION_UPDATE && $oldValues && $newValues) {
-            $changes = self::calculateChanges($oldValues, $newValues);
+            $recordId = $model instanceof Model
+                ? $model->id
+                : ($extra['record_id'] ?? null);
+
+            $changes = null;
+            if ($action === self::ACTION_UPDATE && $oldValues && $newValues) {
+                $changes = self::calculateChanges($oldValues, $newValues);
+            }
+
+            $log = new self([
+                'user_id' => Auth::id(),
+                'action' => $action,
+                'table_name' => $tableName,
+                'record_id' => $recordId,
+                'old_values' => $oldValues ? (array) $oldValues : null,
+                'new_values' => $newValues ? (array) $newValues : null,
+                'changes' => $changes,
+                'ip_address' => Request::ip(),
+                'user_agent' => Request::userAgent(),
+                'session_id' => session()->getId(),
+                'request_method' => Request::method(),
+                'request_url' => Request::fullUrl(),
+                'description' => $extra['description'] ?? null,
+                'created_at' => now()
+            ]);
+
+            $log->save();
+            return $log;
+        } catch (\Exception $e) {
+            Log::error('Failed to create audit log: ' . $e->getMessage());
+            // Return a new instance to prevent fatal errors in production
+            return new self();
         }
-
-        $log = new self([
-            'user_id' => Auth::id(),
-            'action' => $action,
-            'table_name' => $tableName,
-            'record_id' => $recordId,
-            'old_values' => $oldValues ? (array) $oldValues : null,
-            'new_values' => $newValues ? (array) $newValues : null,
-            'changes' => $changes,
-            'ip_address' => Request::ip(),
-            'user_agent' => Request::userAgent(),
-            'session_id' => session()->getId(),
-            'request_method' => Request::method(),
-            'request_url' => Request::fullUrl(),
-            'description' => $extra['description'] ?? null,
-            'created_at' => now()
-        ]);
-
-        $log->save();
-
-        return $log;
     }
 
+    /**
+     * Log a simple action without model data
+     * 
+     * @param string $action
+     * @param string $description
+     * @param string|null $tableName
+     * @param int|null $recordId
+     * @return self
+     */
     public static function logAction(
         string $action,
         string $description,
@@ -243,17 +465,30 @@ class AuditLog extends Model
         ]);
     }
 
-    public static function logLogin($userId, bool $success = true): self
+    /**
+     * Log login attempt
+     * 
+     * @param int $userId
+     * @param bool $success
+     * @return self
+     */
+    public static function logLogin(int $userId, bool $success = true): self
     {
         return self::logAction(
             $success ? self::ACTION_LOGIN : 'login_failed',
-            $success ? 'User logged in' : 'Failed login attempt',
+            $success ? 'User logged in successfully' : 'Failed login attempt',
             'users',
             $userId
         );
     }
 
-    public static function logLogout($userId): self
+    /**
+     * Log logout event
+     * 
+     * @param int $userId
+     * @return self
+     */
+    public static function logLogout(int $userId): self
     {
         return self::logAction(
             self::ACTION_LOGOUT,
@@ -263,15 +498,34 @@ class AuditLog extends Model
         );
     }
 
+    /**
+     * Log data export
+     * 
+     * @param string $tableName
+     * @param array<string, mixed> $criteria
+     * @return self
+     */
     public static function logExport(string $tableName, array $criteria = []): self
     {
+        $description = 'Exported data from ' . $tableName;
+        if (!empty($criteria)) {
+            $description .= ' with filters: ' . json_encode($criteria);
+        }
+
         return self::logAction(
             self::ACTION_EXPORT,
-            'Exported data from ' . $tableName . ($criteria ? ' with filters' : ''),
+            $description,
             $tableName
         );
     }
 
+    /**
+     * Log data import
+     * 
+     * @param string $tableName
+     * @param int $recordCount
+     * @return self
+     */
     public static function logImport(string $tableName, int $recordCount): self
     {
         return self::logAction(
@@ -281,59 +535,60 @@ class AuditLog extends Model
         );
     }
 
-    protected static function calculateChanges($oldValues, $newValues): array
-    {
-        $oldValues = (array) $oldValues;
-        $newValues = (array) $newValues;
+    /**
+     * --------------------------------------------------------------------------
+     * Statistics Methods
+     * --------------------------------------------------------------------------
+     */
 
-        $changes = [];
-        $allKeys = array_unique(array_merge(array_keys($oldValues), array_keys($newValues)));
-
-        foreach ($allKeys as $key) {
-            $old = $oldValues[$key] ?? null;
-            $new = $newValues[$key] ?? null;
-
-            // Skip timestamps and internal fields
-            if (in_array($key, ['created_at', 'updated_at', 'deleted_at'])) {
-                continue;
-            }
-
-            // Compare values
-            if ($old !== $new) {
-                // Handle JSON/array comparison
-                if (is_array($old) && is_array($new)) {
-                    if (json_encode($old) !== json_encode($new)) {
-                        $changes[$key] = ['old' => $old, 'new' => $new];
-                    }
-                } elseif ($old != $new) {
-                    $changes[$key] = ['old' => $old, 'new' => $new];
-                }
-            }
-        }
-
-        return $changes;
-    }
-
-    // Statistics methods
-    public static function getUserActivityStats(int $userId, $days = 30): array
+    /**
+     * Get user activity statistics
+     * 
+     * @param int $userId
+     * @param int $days
+     * @return array{
+     *     total_actions: int,
+     *     by_action: \Illuminate\Support\Collection,
+     *     by_date: \Illuminate\Support\Collection,
+     *     most_common_action: string|null,
+     *     last_login: \DateTime|null,
+     *     last_action: \DateTime|null
+     * }
+     */
+    public static function getUserActivityStats(int $userId, int $days = 30): array
     {
         $logs = self::byUser($userId)
             ->where('created_at', '>=', now()->subDays($days))
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return [
             'total_actions' => $logs->count(),
             'by_action' => $logs->groupBy('action')->map->count(),
-            'by_date' => $logs->groupBy(function ($log) {
-                return $log->created_at->toDateString();
-            })->map->count(),
+            'by_date' => $logs->groupBy(fn($log) => $log->created_at->toDateString())->map->count(),
             'most_common_action' => $logs->groupBy('action')->sortDesc()->keys()->first(),
-            'last_login' => $logs->where('action', self::ACTION_LOGIN)->last()?->created_at,
+            'last_login' => $logs->where('action', self::ACTION_LOGIN)->first()?->created_at,
             'last_action' => $logs->first()?->created_at
         ];
     }
 
-    public static function getTableActivityStats(string $tableName, $days = 30): array
+    /**
+     * Get table activity statistics
+     * 
+     * @param string $tableName
+     * @param int $days
+     * @return array{
+     *     total_actions: int,
+     *     creates: int,
+     *     updates: int,
+     *     deletes: int,
+     *     views: int,
+     *     exports: int,
+     *     unique_users: int,
+     *     by_user: \Illuminate\Support\Collection
+     * }
+     */
+    public static function getTableActivityStats(string $tableName, int $days = 30): array
     {
         $logs = self::byTable($tableName)
             ->where('created_at', '>=', now()->subDays($days))
@@ -351,7 +606,21 @@ class AuditLog extends Model
         ];
     }
 
-    public static function getSystemActivitySummary($days = 7): array
+    /**
+     * Get system activity summary
+     * 
+     * @param int $days
+     * @return array{
+     *     total_actions: int,
+     *     unique_users: int,
+     *     by_action: \Illuminate\Support\Collection,
+     *     by_table: \Illuminate\Support\Collection,
+     *     peak_hours: \Illuminate\Support\Collection,
+     *     most_active_user: int|null,
+     *     most_active_table: string|null
+     * }
+     */
+    public static function getSystemActivitySummary(int $days = 7): array
     {
         $logs = self::where('created_at', '>=', now()->subDays($days))->get();
 
@@ -360,25 +629,94 @@ class AuditLog extends Model
             'unique_users' => $logs->pluck('user_id')->unique()->count(),
             'by_action' => $logs->groupBy('action')->map->count(),
             'by_table' => $logs->groupBy('table_name')->map->count(),
-            'peak_hours' => $logs->groupBy(function ($log) {
-                return $log->created_at->format('H');
-            })->map->count(),
+            'peak_hours' => $logs->groupBy(fn($log) => $log->created_at->format('H'))->map->count(),
             'most_active_user' => $logs->groupBy('user_id')->map->count()->sortDesc()->keys()->first(),
             'most_active_table' => $logs->groupBy('table_name')->map->count()->sortDesc()->keys()->first()
         ];
     }
 
     /**
-     * Get the parent auditable model
+     * --------------------------------------------------------------------------
+     * Protected Helper Methods
+     * --------------------------------------------------------------------------
      */
-    public function auditable()
+
+    /**
+     * Calculate changes between old and new values
+     * 
+     * @param mixed $oldValues
+     * @param mixed $newValues
+     * @return array<string, array{old: mixed, new: mixed}>
+     */
+    protected static function calculateChanges($oldValues, $newValues): array
     {
-        return $this->morphTo();
+        $oldValues = (array) $oldValues;
+        $newValues = (array) $newValues;
+
+        $changes = [];
+        $allKeys = array_unique(array_merge(array_keys($oldValues), array_keys($newValues)));
+
+        $ignoredFields = ['created_at', 'updated_at', 'deleted_at'];
+
+        foreach ($allKeys as $key) {
+            if (in_array($key, $ignoredFields)) {
+                continue;
+            }
+
+            $old = $oldValues[$key] ?? null;
+            $new = $newValues[$key] ?? null;
+
+            if (self::valuesHaveChanged($old, $new)) {
+                $changes[$key] = ['old' => $old, 'new' => $new];
+            }
+        }
+
+        return $changes;
     }
 
-    // Add this method to help with cleanup
-    public function scopeCleanup($query, $days = 90)
+    /**
+     * Check if values have changed
+     * 
+     * @param mixed $old
+     * @param mixed $new
+     * @return bool
+     */
+    protected static function valuesHaveChanged($old, $new): bool
     {
-        return $query->where('created_at', '<', now()->subDays($days))->delete();
+        // Handle arrays/JSON
+        if (is_array($old) && is_array($new)) {
+            return json_encode($old) !== json_encode($new);
+        }
+
+        // Handle objects
+        if (is_object($old) && is_object($new)) {
+            return serialize($old) !== serialize($new);
+        }
+
+        // Handle scalar values
+        return $old !== $new;
+    }
+
+    /**
+     * Format a change value for display
+     * 
+     * @param mixed $value
+     * @return string
+     */
+    protected function formatChangeValue($value): string
+    {
+        if (is_null($value)) {
+            return 'null';
+        }
+
+        if (is_array($value) || is_object($value)) {
+            return json_encode($value);
+        }
+
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+
+        return (string) $value;
     }
 }
