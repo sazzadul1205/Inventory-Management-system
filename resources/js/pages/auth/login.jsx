@@ -27,12 +27,16 @@ import {
 import { FiLogIn } from 'react-icons/fi';
 
 // Logo Image Import - Update path based on your logo location
-import Icon from '../../../../public/Icon.png'; // Adjust path as needed
+import Icon from '../../../../public/Icon.png';
 import DarkIcon from '../../../../public/DarkIcon.png';
 
 // Import ThemeToggle component
-import ThemeToggle from '@/components/ThemeToggle'; // Adjust path as needed
+import ThemeToggle from '@/components/ThemeToggle';
 
+/**
+ * Helper function to check if the user is in dark mode
+ * @returns {boolean} True if the user is in dark mode, false otherwise
+ */
 const getIsDarkTheme = () => {
   if (typeof window === 'undefined') return false;
 
@@ -320,11 +324,11 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
           {/* Logo Container - Centered with shadow effect */}
           <div className="flex justify-center">
             {/* Company Logo - Replace with your actual logo */}
-                <img
-                  src={darkMode ? DarkIcon : Icon}
-                  alt="Sazzadul Inventory and Logistics"
-                  className="w-56 h-auto object-contain mb-4 hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
-                />
+            <img
+              src={darkMode ? DarkIcon : Icon}
+              alt="Sazzadul Inventory and Logistics"
+              className="w-56 h-auto object-contain mb-4 hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
+            />
           </div>
 
           {/* Welcome Text */}
@@ -386,8 +390,8 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                   {/* Email Icon - Left side of input */}
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <HiMail className={`h-5 w-5 ${errors.email || clientErrors.email
-                        ? 'text-red-400 dark:text-red-500'
-                        : 'text-gray-400 dark:text-gray-500'
+                      ? 'text-red-400 dark:text-red-500'
+                      : 'text-gray-400 dark:text-gray-500'
                       }`} />
                   </div>
                   <input
@@ -409,8 +413,8 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                       }
                     }}
                     className={`pl-10 appearance-none block w-full px-3 py-2.5 border ${errors.email || clientErrors.email
-                        ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/10'
-                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                      ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/10'
+                      : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                       } rounded-lg shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 text-gray-900 dark:text-white`}
                     placeholder="you@example.com"
                     disabled={rateLimit.lockedUntil > Date.now()}
@@ -445,8 +449,8 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                   {/* Lock Icon - Left side */}
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <HiLockClosed className={`h-5 w-5 ${errors.password || clientErrors.password
-                        ? 'text-red-400 dark:text-red-500'
-                        : 'text-gray-400 dark:text-gray-500'
+                      ? 'text-red-400 dark:text-red-500'
+                      : 'text-gray-400 dark:text-gray-500'
                       }`} />
                   </div>
                   <input
@@ -467,8 +471,8 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                       }
                     }}
                     className={`pl-10 pr-10 appearance-none block w-full px-3 py-2.5 border ${errors.password || clientErrors.password
-                        ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/10'
-                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                      ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/10'
+                      : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                       } rounded-lg shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 text-gray-900 dark:text-white`}
                     placeholder="••••••••"
                     disabled={rateLimit.lockedUntil > Date.now()}
@@ -593,12 +597,12 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
                 <div className="flex items-center">
                   <HiMail className="h-3 w-3 mr-1 text-gray-400 dark:text-gray-500" />
                   <span className="font-medium text-gray-700 dark:text-gray-300 mr-1">Email:</span>
-                  <span className="dark:text-gray-400">demo@example.com</span>
+                  <span className="dark:text-gray-400">pritom1205@gmail.com</span>
                 </div>
                 <div className="flex items-center">
                   <HiLockClosed className="h-3 w-3 mr-1 text-gray-400 dark:text-gray-500" />
                   <span className="font-medium text-gray-700 dark:text-gray-300 mr-1">Password:</span>
-                  <span className="dark:text-gray-400">password</span>
+                  <span className="dark:text-gray-400">@Pritom1205</span>
                 </div>
               </div>
             </div>

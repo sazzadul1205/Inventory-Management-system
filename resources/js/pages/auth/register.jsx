@@ -100,6 +100,10 @@ const Register = ({ status }) => {
         }
     }, [wasSuccessful]);
 
+    /**
+    * Helper function to check if the user is in dark mode
+    * @returns {boolean} True if the user is in dark mode, false otherwise
+    */
     useEffect(() => {
         const syncTheme = () => setDarkMode(getIsDarkTheme());
         const root = document.documentElement;
