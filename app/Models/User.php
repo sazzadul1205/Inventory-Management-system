@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
@@ -178,5 +179,117 @@ class User extends Authenticatable
         $nameParts = explode(' ', $value, 2);
         $this->first_name = $nameParts[0];
         $this->last_name = $nameParts[1] ?? '';
+    }
+
+    /**
+     * Purchase orders created by this user
+     */
+    public function createdPurchaseOrders(): HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class, 'created_by');
+    }
+
+    /**
+     * Purchase orders approved by this user
+     */
+    public function approvedPurchaseOrders(): HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class, 'approved_by');
+    }
+
+    /**
+     * Sales orders created by this user
+     */
+    public function createdSalesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class, 'created_by');
+    }
+
+    /**
+     * Sales orders approved by this user
+     */
+    public function approvedSalesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class, 'approved_by');
+    }
+
+    /**
+     * Stock transfers requested by this user
+     */
+    public function requestedStockTransfers(): HasMany
+    {
+        return $this->hasMany(StockTransfer::class, 'requested_by');
+    }
+
+    /**
+     * Stock transfers approved by this user
+     */
+    public function approvedStockTransfers(): HasMany
+    {
+        return $this->hasMany(StockTransfer::class, 'approved_by');
+    }
+
+    /**
+     * Stock counts created by this user
+     */
+    public function createdStockCounts(): HasMany
+    {
+        return $this->hasMany(StockCount::class, 'created_by');
+    }
+
+    /**
+     * Stock counts verified by this user
+     */
+    public function verifiedStockCounts(): HasMany
+    {
+        return $this->hasMany(StockCount::class, 'verified_by');
+    }
+
+    /**
+     * Stock count items counted by this user
+     */
+    public function countedStockItems(): HasMany
+    {
+        return $this->hasMany(StockCountItem::class, 'counted_by');
+    }
+
+    /**
+     * Stock count items approved by this user
+     */
+    public function approvedStockItems(): HasMany
+    {
+        return $this->hasMany(StockCountItem::class, 'approved_by');
+    }
+
+    /**
+     * Shipments created by this user
+     */
+    public function createdShipments(): HasMany
+    {
+        return $this->hasMany(Shipment::class, 'shipped_by');
+    }
+
+    /**
+     * Purchase receipts created by this user
+     */
+    public function createdPurchaseReceipts(): HasMany
+    {
+        return $this->hasMany(PurchaseReceipt::class, 'received_by');
+    }
+
+    /**
+     * Audit logs for this user
+     */
+    public function auditLogs(): HasMany
+    {
+        return $this->hasMany(AuditLog::class, 'user_id');
+    }
+
+    /**
+     * Inventory movements created by this user
+     */
+    public function inventoryMovements(): HasMany
+    {
+        return $this->hasMany(InventoryMovement::class, 'created_by');
     }
 }

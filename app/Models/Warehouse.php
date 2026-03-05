@@ -140,4 +140,69 @@ class Warehouse extends Model
     {
         return $this->utilization_percentage < 100;
     }
+
+
+    /**
+     * Get the inventory records for this warehouse
+     */
+    public function inventory(): HasMany
+    {
+        return $this->hasMany(Inventory::class);
+    }
+
+    /**
+     * Get the purchase orders for this warehouse
+     */
+    public function purchaseOrders(): HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class);
+    }
+
+    /**
+     * Get the sales orders for this warehouse
+     */
+    public function salesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class);
+    }
+
+    /**
+     * Get the shipments from this warehouse
+     */
+    public function shipments(): HasMany
+    {
+        return $this->hasMany(Shipment::class);
+    }
+
+    /**
+     * Get the stock transfers from this warehouse
+     */
+    public function fromStockTransfers(): HasMany
+    {
+        return $this->hasMany(StockTransfer::class, 'from_warehouse_id');
+    }
+
+    /**
+     * Get the stock transfers to this warehouse
+     */
+    public function toStockTransfers(): HasMany
+    {
+        return $this->hasMany(StockTransfer::class, 'to_warehouse_id');
+    }
+
+    /**
+     * Get the stock counts for this warehouse
+     */
+    public function stockCounts(): HasMany
+    {
+        return $this->hasMany(StockCount::class);
+    }
+
+    /**
+     * Get the purchase receipts for this warehouse
+     */
+    public function purchaseReceipts(): HasMany
+    {
+        return $this->hasMany(PurchaseReceipt::class);
+    }
 }

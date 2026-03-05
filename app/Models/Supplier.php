@@ -96,4 +96,12 @@ class Supplier extends Model
 
         return implode(' | ', $info);
     }
+
+    /**
+     * Get the purchase orders for this supplier
+     */
+    public function purchaseOrders(): HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class);
+    }
 }

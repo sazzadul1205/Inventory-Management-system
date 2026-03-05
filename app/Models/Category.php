@@ -60,4 +60,28 @@ class Category extends Model
         }
         return $this->name;
     }
+
+    /**
+     * Get all descendants of this category
+     */
+    public function descendants(): HasMany
+    {
+        return $this->hasMany(Category::class, 'parent_id')->with('descendants');
+    }
+
+    /**
+     * Get all ancestors of this category
+     */
+    public function ancestors()
+    {
+        $ancestors = collect();
+        $parent = $this->parent;
+
+        while ($parent) {
+            $ancestors->push($parent);
+            $parent = $parent->parent;
+        }
+
+        return $ancestors;
+    }
 }

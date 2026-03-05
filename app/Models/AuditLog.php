@@ -367,4 +367,18 @@ class AuditLog extends Model
             'most_active_table' => $logs->groupBy('table_name')->map->count()->sortDesc()->keys()->first()
         ];
     }
+
+    /**
+     * Get the parent auditable model
+     */
+    public function auditable()
+    {
+        return $this->morphTo();
+    }
+
+    // Add this method to help with cleanup
+    public function scopeCleanup($query, $days = 90)
+    {
+        return $query->where('created_at', '<', now()->subDays($days))->delete();
+    }
 }

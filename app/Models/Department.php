@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Department extends Model
@@ -53,5 +54,29 @@ class Department extends Model
     public function getHasManagerAttribute(): bool
     {
         return !is_null($this->manager_id);
+    }
+
+    /**
+     * Get the stock counts for this department
+     */
+    public function stockCounts(): HasMany
+    {
+        return $this->hasMany(StockCount::class, 'created_by');
+    }
+
+    /**
+     * Get the purchase orders created by this department's users
+     */
+    public function purchaseOrders(): HasManyThrough
+    {
+        return $this->hasManyThrough(PurchaseOrder::class, User::class);
+    }
+
+    /**
+     * Get the sales orders created by this department's users
+     */
+    public function salesOrders(): HasManyThrough
+    {
+        return $this->hasManyThrough(SalesOrder::class, User::class);
     }
 }

@@ -327,4 +327,32 @@ class Setting extends Model
             return self::TYPE_STRING;
         }
     }
+
+    /**
+     * Get setting value with type casting
+     */
+    public function getValueAttribute()
+    {
+        return $this->typed_value;
+    }
+
+    /**
+     * Clear cached settings
+     */
+    public static function clearCache(): void
+    {
+        cache()->forget('system_settings');
+    }
+
+    /**
+     * Get all settings as cached collection
+     */
+    public static function getCached(): array
+    {
+        return cache()->remember('system_settings', 3600, function () {
+            return self::all()->mapWithKeys(function ($setting) {
+                return [$setting->setting_key => $setting->typed_value];
+            })->toArray();
+        });
+    }
 }

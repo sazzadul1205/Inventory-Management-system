@@ -142,4 +142,61 @@ class Product extends Model
         return $this->productSuppliers()
             ->min('unit_cost');
     }
+
+
+    /**
+     * Get the inventory records for this product
+     */
+    public function inventory(): HasMany
+    {
+        return $this->hasMany(Inventory::class);
+    }
+
+    /**
+     * Get the purchase order items for this product
+     */
+    public function purchaseOrderItems(): HasMany
+    {
+        return $this->hasMany(PurchaseOrderItem::class);
+    }
+
+    /**
+     * Get the sales order items for this product
+     */
+    public function salesOrderItems(): HasMany
+    {
+        return $this->hasMany(SalesOrderItem::class);
+    }
+
+    /**
+     * Get the stock transfer items for this product
+     */
+    public function stockTransferItems(): HasMany
+    {
+        return $this->hasMany(StockTransferItem::class);
+    }
+
+    /**
+     * Get the stock count items for this product
+     */
+    public function stockCountItems(): HasMany
+    {
+        return $this->hasMany(StockCountItem::class);
+    }
+
+    /**
+     * Get the shipment items for this product
+     */
+    public function shipmentItems(): HasMany
+    {
+        return $this->hasMany(ShipmentItem::class);
+    }
+
+    /**
+     * Get the purchase receipt items for this product
+     */
+    public function purchaseReceiptItems(): HasMany
+    {
+        return $this->hasMany(PurchaseReceiptItem::class);
+    }
 }

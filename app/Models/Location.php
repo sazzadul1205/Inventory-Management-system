@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Location extends Model
 {
@@ -180,5 +181,53 @@ class Location extends Model
             $bin
         ]);
         return implode('-', $parts);
+    }
+
+    /**
+     * Get the inventory at this location
+     */
+    public function inventory(): HasMany
+    {
+        return $this->hasMany(Inventory::class);
+    }
+
+    /**
+     * Get the stock transfer items from this location
+     */
+    public function fromStockTransferItems(): HasMany
+    {
+        return $this->hasMany(StockTransferItem::class, 'from_location_id');
+    }
+
+    /**
+     * Get the stock transfer items to this location
+     */
+    public function toStockTransferItems(): HasMany
+    {
+        return $this->hasMany(StockTransferItem::class, 'to_location_id');
+    }
+
+    /**
+     * Get the stock count items at this location
+     */
+    public function stockCountItems(): HasMany
+    {
+        return $this->hasMany(StockCountItem::class);
+    }
+
+    /**
+     * Get the purchase receipt items at this location
+     */
+    public function purchaseReceiptItems(): HasMany
+    {
+        return $this->hasMany(PurchaseReceiptItem::class);
+    }
+
+    /**
+     * Get the shipment items from this location
+     */
+    public function shipmentItems(): HasMany
+    {
+        return $this->hasMany(ShipmentItem::class);
     }
 }
