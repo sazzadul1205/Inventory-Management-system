@@ -5,6 +5,7 @@ namespace Database\Seeders;
 
 use App\Models\SalesOrder;
 use App\Models\Customer;
+use App\Models\Shipment;
 use App\Models\Warehouse;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -215,8 +216,8 @@ class SalesOrderSeeder extends Seeder
             // Create 2-3 partial shipments
             $shipmentCount = rand(2, 3);
             for ($j = 0; $j < $shipmentCount; $j++) {
-                if (class_exists('\App\Models\Shipment')) {
-                    \App\Models\Shipment::factory()
+                if (class_exists('Shipment')) {
+                    Shipment::factory()
                         ->forSalesOrder($so->id)
                         ->create();
                 }

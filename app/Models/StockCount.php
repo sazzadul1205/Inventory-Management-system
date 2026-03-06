@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\DB;
  * @property string $status
  * @property string|null $notes
  * @property int|null $created_by
- * @property int|null $verified_by
+ * @property int|null $verified_by\
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
