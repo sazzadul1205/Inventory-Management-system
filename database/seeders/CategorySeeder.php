@@ -4,6 +4,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -412,8 +413,8 @@ class CategorySeeder extends Seeder
                 // Create 5-15 products for each category
                 $productCount = rand(5, 15);
 
-                if (class_exists('\App\Models\Product')) {
-                    \App\Models\Product::factory()
+                if (class_exists('Product')) {
+                    Product::factory()
                         ->count($productCount)
                         ->forCategory($category->id)
                         ->create();

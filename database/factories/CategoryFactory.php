@@ -4,10 +4,11 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Category>
  */
 class CategoryFactory extends Factory
 {
@@ -314,8 +315,8 @@ class CategoryFactory extends Factory
     public function withInventoryItems(int $count = 5): static
     {
         return $this->afterCreating(function (Category $category) use ($count) {
-            if (class_exists('\App\Models\Product')) {
-                \App\Models\Product::factory()
+            if (class_exists('Product')) {
+                Product::factory()
                     ->count($count)
                     ->forCategory($category->id)
                     ->create();

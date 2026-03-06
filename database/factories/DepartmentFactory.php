@@ -4,12 +4,15 @@
 namespace Database\Factories;
 
 use App\Models\Department;
+use App\Models\PurchaseOrder;
+use App\Models\SalesOrder;
+use App\Models\StockCount;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Department>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Department>
  */
 class DepartmentFactory extends Factory
 {
@@ -345,7 +348,7 @@ class DepartmentFactory extends Factory
     public function withPurchaseOrders(int $count = 5): static
     {
         return $this->afterCreating(function (Department $department) use ($count) {
-            if (!class_exists('\App\Models\PurchaseOrder')) {
+            if (!class_exists('PurchaseOrder')) {
                 return;
             }
 
@@ -360,7 +363,7 @@ class DepartmentFactory extends Factory
             $users = $department->users;
 
             for ($i = 0; $i < $count; $i++) {
-                \App\Models\PurchaseOrder::factory()
+                PurchaseOrder::factory()
                     ->forUser($users->random()->id)
                     ->create();
             }
@@ -373,7 +376,7 @@ class DepartmentFactory extends Factory
     public function withSalesOrders(int $count = 5): static
     {
         return $this->afterCreating(function (Department $department) use ($count) {
-            if (!class_exists('\App\Models\SalesOrder')) {
+            if (!class_exists('SalesOrder')) {
                 return;
             }
 
@@ -388,7 +391,7 @@ class DepartmentFactory extends Factory
             $users = $department->users;
 
             for ($i = 0; $i < $count; $i++) {
-                \App\Models\SalesOrder::factory()
+                SalesOrder::factory()
                     ->forUser($users->random()->id)
                     ->create();
             }
@@ -401,7 +404,7 @@ class DepartmentFactory extends Factory
     public function withStockCounts(int $count = 3): static
     {
         return $this->afterCreating(function (Department $department) use ($count) {
-            if (!class_exists('\App\Models\StockCount')) {
+            if (!class_exists('StockCount')) {
                 return;
             }
 
@@ -416,7 +419,7 @@ class DepartmentFactory extends Factory
             $users = $department->users;
 
             for ($i = 0; $i < $count; $i++) {
-                \App\Models\StockCount::factory()
+                StockCount::factory()
                     ->forUser($users->random()->id)
                     ->create();
             }
@@ -444,22 +447,22 @@ class DepartmentFactory extends Factory
             $manager->save();
 
             // Create various orders
-            if (class_exists('\App\Models\PurchaseOrder')) {
-                \App\Models\PurchaseOrder::factory()
+            if (class_exists('PurchaseOrder')) {
+                PurchaseOrder::factory()
                     ->count(rand(3, 8))
                     ->forUser($department->users->random()->id)
                     ->create();
             }
 
-            if (class_exists('\App\Models\SalesOrder')) {
-                \App\Models\SalesOrder::factory()
+            if (class_exists('SalesOrder')) {
+                SalesOrder::factory()
                     ->count(rand(5, 12))
                     ->forUser($department->users->random()->id)
                     ->create();
             }
 
-            if (class_exists('\App\Models\StockCount')) {
-                \App\Models\StockCount::factory()
+            if (class_exists('StockCount')) {
+                StockCount::factory()
                     ->count(rand(2, 5))
                     ->forUser($department->users->random()->id)
                     ->create();

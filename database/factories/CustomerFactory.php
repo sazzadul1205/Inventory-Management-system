@@ -4,11 +4,12 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
+use App\Models\SalesOrder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Customer>
  */
 class CustomerFactory extends Factory
 {
@@ -307,8 +308,8 @@ class CustomerFactory extends Factory
     public function withSalesOrders(int $count = 3): static
     {
         return $this->afterCreating(function (Customer $customer) use ($count) {
-            if (class_exists('\App\Models\SalesOrder')) {
-                \App\Models\SalesOrder::factory()
+            if (class_exists('SalesOrder')) {
+                SalesOrder::factory()
                     ->count($count)
                     ->forCustomer($customer->id)
                     ->create();
@@ -322,26 +323,26 @@ class CustomerFactory extends Factory
     public function withMixedOrders(): static
     {
         return $this->afterCreating(function (Customer $customer) {
-            if (!class_exists('\App\Models\SalesOrder')) {
+            if (!class_exists('SalesOrder')) {
                 return;
             }
 
             // Create some pending orders
-            \App\Models\SalesOrder::factory()
+            SalesOrder::factory()
                 ->pending()
                 ->count(2)
                 ->forCustomer($customer->id)
                 ->create();
 
             // Create some approved orders
-            \App\Models\SalesOrder::factory()
+            SalesOrder::factory()
                 ->approved()
                 ->count(3)
                 ->forCustomer($customer->id)
                 ->create();
 
             // Create some completed orders
-            \App\Models\SalesOrder::factory()
+            SalesOrder::factory()
                 ->completed()
                 ->count(5)
                 ->forCustomer($customer->id)
@@ -355,14 +356,14 @@ class CustomerFactory extends Factory
     public function highCreditUtilization(float $percentage = 90): static
     {
         return $this->afterCreating(function (Customer $customer) use ($percentage) {
-            if (!class_exists('\App\Models\SalesOrder') || !$customer->credit_limit) {
+            if (!class_exists('SalesOrder') || !$customer->credit_limit) {
                 return;
             }
 
             $targetUtilization = $customer->credit_limit * ($percentage / 100);
 
             // Create orders to reach target utilization
-            \App\Models\SalesOrder::factory()
+            SalesOrder::factory()
                 ->approved()
                 ->count(3)
                 ->forCustomer($customer->id)

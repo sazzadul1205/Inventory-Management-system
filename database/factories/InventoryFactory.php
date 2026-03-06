@@ -4,6 +4,7 @@
 namespace Database\Factories;
 
 use App\Models\Inventory;
+use App\Models\InventoryMovement;
 use App\Models\Product;
 use App\Models\Warehouse;
 use App\Models\Location;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Inventory>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Inventory>
  */
 class InventoryFactory extends Factory
 {
@@ -355,8 +356,8 @@ class InventoryFactory extends Factory
     public function withMovements(int $count = 5): static
     {
         return $this->afterCreating(function (Inventory $inventory) use ($count) {
-            if (class_exists('\App\Models\InventoryMovement')) {
-                \App\Models\InventoryMovement::factory()
+            if (class_exists('InventoryMovement')) {
+                InventoryMovement::factory()
                     ->count($count)
                     ->forInventory($inventory)
                     ->create();

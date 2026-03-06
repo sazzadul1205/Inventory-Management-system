@@ -5,11 +5,13 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Inventory;
+use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Product>
  */
 class ProductFactory extends Factory
 {
@@ -554,11 +556,11 @@ class ProductFactory extends Factory
     public function withSuppliers(int $count = 2): static
     {
         return $this->afterCreating(function (Product $product) use ($count) {
-            if (class_exists('\App\Models\Supplier')) {
-                $suppliers = \App\Models\Supplier::inRandomOrder()->limit($count)->get();
+            if (class_exists('Supplier')) {
+                $suppliers = Supplier::inRandomOrder()->limit($count)->get();
 
                 if ($suppliers->isEmpty()) {
-                    $suppliers = \App\Models\Supplier::factory()->count($count)->create();
+                    $suppliers = Supplier::factory()->count($count)->create();
                 }
 
                 foreach ($suppliers as $index => $supplier) {
@@ -580,8 +582,8 @@ class ProductFactory extends Factory
     public function withInventory(int $locations = 3): static
     {
         return $this->afterCreating(function (Product $product) use ($locations) {
-            if (class_exists('\App\Models\Inventory')) {
-                \App\Models\Inventory::factory()
+            if (class_exists('Inventory')) {
+                Inventory::factory()
                     ->count($locations)
                     ->forProduct($product->id)
                     ->create();
@@ -596,8 +598,8 @@ class ProductFactory extends Factory
     {
         return $this->afterCreating(function (Product $product) {
             // Add suppliers
-            if (class_exists('\App\Models\Supplier')) {
-                $suppliers = \App\Models\Supplier::inRandomOrder()->limit(rand(1, 3))->get();
+            if (class_exists('Supplier')) {
+                $suppliers = Supplier::inRandomOrder()->limit(rand(1, 3))->get();
                 foreach ($suppliers as $index => $supplier) {
                     $product->suppliers()->attach($supplier->id, [
                         'supplier_sku' => $this->faker->optional(0.7)->bothify('SUP-####-??'),
@@ -610,8 +612,8 @@ class ProductFactory extends Factory
             }
 
             // Add inventory
-            if (class_exists('\App\Models\Inventory')) {
-                \App\Models\Inventory::factory()
+            if (class_exists('Inventory')) {
+                Inventory::factory()
                     ->count(rand(2, 5))
                     ->forProduct($product->id)
                     ->create();

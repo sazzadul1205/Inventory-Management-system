@@ -3,13 +3,15 @@
 
 namespace Database\Factories;
 
+use App\Models\Inventory;
 use App\Models\Location;
+use App\Models\Product;
 use App\Models\Warehouse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Location>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Location>
  */
 class LocationFactory extends Factory
 {
@@ -504,11 +506,11 @@ class LocationFactory extends Factory
     public function withInventory(int $count = 3): static
     {
         return $this->afterCreating(function (Location $location) use ($count) {
-            if (class_exists('\App\Models\Inventory')) {
+            if (class_exists('Inventory')) {
                 $totalQuantity = 0;
 
                 for ($i = 0; $i < $count; $i++) {
-                    $product = \App\Models\Product::inRandomOrder()->first() ?? \App\Models\Product::factory()->create();
+                    $product = Product::inRandomOrder()->first() ?? Product::factory()->create();
                     $quantity = $this->faker->numberBetween(1, 20);
                     $totalQuantity += $quantity;
 
@@ -517,7 +519,7 @@ class LocationFactory extends Factory
                         break;
                     }
 
-                    \App\Models\Inventory::factory()
+                    Inventory::factory()
                         ->forProduct($product->id)
                         ->state([
                             'warehouse_id' => $location->warehouse_id,
