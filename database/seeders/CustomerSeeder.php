@@ -6,27 +6,24 @@ namespace Database\Seeders;
 use App\Models\Customer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class CustomerSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Customer::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating customers...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create different types of customers
         $this->createEnterpriseCustomers();
         $this->createWholesaleCustomers();
         $this->createRetailCustomers();
@@ -37,18 +34,7 @@ class CustomerSeeder extends Seeder
 
         $this->command->getOutput()->progressFinish();
 
-        // Show statistics
-        $this->command->info('Customers created successfully!');
-        $this->command->table(
-            ['Metric', 'Count'],
-            [
-                ['Total Customers', Customer::count()],
-                ['Active Customers', Customer::active()->count()],
-                ['With Credit Limit', Customer::withCreditLimit()->count()],
-                ['International', Customer::where('country', '!=', 'USA')->count()],
-                ['Average Credit Limit', '$' . number_format(Customer::avg('credit_limit') ?? 0, 2)],
-            ]
-        );
+        $this->command->info('Customers created: ' . Customer::count());
     }
 
     /**

@@ -9,9 +9,12 @@ use App\Models\Warehouse;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class InventoryMovementSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Number of movements to create
      */
@@ -22,22 +25,22 @@ class InventoryMovementSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Product::class => 'No products found',
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         InventoryMovement::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating inventory movements...');
         $this->command->getOutput()->progressStart(self::MOVEMENT_COUNT);
 
-        // Create movements in batches
         $batchSize = 100;
         $batches = ceil(self::MOVEMENT_COUNT / $batchSize);
 
@@ -47,11 +50,7 @@ class InventoryMovementSeeder extends Seeder
         }
 
         $this->command->getOutput()->progressFinish();
-
-        // Create specialized movement patterns
         $this->createSpecializedMovements();
-
-        // Show statistics
         $this->displayStatistics();
     }
 

@@ -9,38 +9,36 @@ use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class ProductSupplierSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Product::class => 'No products found',
+            Supplier::class => 'No suppliers found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         ProductSupplier::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating product-supplier relationships...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create relationships for all products
         $this->createProductSupplierRelationships();
-
-        // Create specialized sourcing scenarios
         $this->createSpecializedSourcing();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

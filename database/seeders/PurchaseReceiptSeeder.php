@@ -12,9 +12,12 @@ use App\Models\Warehouse;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class PurchaseReceiptSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Number of receipts to create
      */
@@ -25,30 +28,26 @@ class PurchaseReceiptSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            PurchaseOrder::class => 'No purchase orders found',
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         PurchaseReceipt::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating purchase receipts...');
         $this->command->getOutput()->progressStart(self::RECEIPT_COUNT);
 
-        // Create receipts for POs with received status
         $this->createReceiptsForReceivedPOs();
-
-        // Create specialized receipt scenarios
         $this->createSpecializedReceipts();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

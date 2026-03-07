@@ -9,10 +9,12 @@ use App\Models\Department;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class UserSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     protected Faker $faker;
 
     /**
@@ -27,33 +29,24 @@ class UserSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // Disable foreign key checks temporarily
+        if (!$this->checkDependencies([
+            Role::class => 'No roles found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         User::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Ensure roles exist
-        $this->ensureRoles();
 
         $this->command->info('Creating users...');
         $this->command->getOutput()->progressStart(self::USER_COUNT);
 
-        // Create specific system users first
         $this->createSystemUsers();
-
-        // Create users by role distribution
         $this->createUsersByRole();
-
-        // Create specialized users
         $this->createSpecializedUsers();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

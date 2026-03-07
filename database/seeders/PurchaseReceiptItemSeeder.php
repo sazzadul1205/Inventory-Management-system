@@ -10,38 +10,37 @@ use App\Models\Product;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class PurchaseReceiptItemSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            PurchaseReceipt::class => 'No purchase receipts found',
+            PurchaseOrderItem::class => 'No purchase order items found',
+            Location::class => 'No locations found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         PurchaseReceiptItem::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating purchase receipt items...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create items for existing receipts
         $this->createItemsForExistingReceipts();
-
-        // Create specialized receipt items
         $this->createSpecializedReceiptItems();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

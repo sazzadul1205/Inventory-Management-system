@@ -7,27 +7,25 @@ use App\Models\Department;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class DepartmentSeeder extends Seeder
 {
+
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Department::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating organizational departments...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create main department structure
         $this->createCoreDepartments();
         $this->createWarehouseDepartments();
         $this->createSpecializedDepartments();
@@ -36,9 +34,6 @@ class DepartmentSeeder extends Seeder
         $this->createAdministrativeDepartments();
 
         $this->command->getOutput()->progressFinish();
-
-        // Show statistics
-        $this->command->info('Departments created successfully!');
 
         $averageTeamSize = round(
             Department::withCount('users')->get()->avg('users_count') ?? 0,
@@ -56,8 +51,6 @@ class DepartmentSeeder extends Seeder
             ]
         );
 
-        // Show department details
-        $this->command->info("\nDepartment Details:");
         $this->displayDepartmentHierarchy();
     }
 

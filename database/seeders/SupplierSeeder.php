@@ -8,10 +8,13 @@ use App\Models\Supplier;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class SupplierSeeder extends Seeder
 {
     protected Faker $faker;
+
+    use ChecksDependencies;
 
     /**
      * Number of suppliers to create
@@ -24,20 +27,14 @@ class SupplierSeeder extends Seeder
     public function run(): void
     {
         $this->faker = fake();
-
-        // Disable foreign key checks temporarily
+        
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Supplier::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating suppliers...');
         $this->command->getOutput()->progressStart(self::SUPPLIER_COUNT);
 
-        // Create suppliers by category
         $this->createDomesticSuppliers();
         $this->createInternationalSuppliers();
         $this->createPreferredSuppliers();
@@ -45,8 +42,6 @@ class SupplierSeeder extends Seeder
         $this->createInactiveSuppliers();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

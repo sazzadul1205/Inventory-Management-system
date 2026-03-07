@@ -10,10 +10,13 @@ use App\Models\Location;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class StockTransferItemSeeder extends Seeder
 {
     protected Faker $faker;
+
+    use ChecksDependencies;
 
     /**
      * Run the database seeds.
@@ -22,30 +25,25 @@ class StockTransferItemSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // Disable foreign key checks temporarily
+        if (!$this->checkDependencies([
+            StockTransfer::class => 'No stock transfers found',
+            Product::class => 'No products found',
+            Location::class => 'No locations found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         StockTransferItem::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating stock transfer items...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create items for existing stock transfers
         $this->createItemsForExistingTransfers();
-
-        // Create specialized transfer items
         $this->createSpecializedTransferItems();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

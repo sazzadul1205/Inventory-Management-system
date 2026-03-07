@@ -94,7 +94,7 @@ class Department extends Model
      */
     public function users(): HasMany
     {
-        return $this->hasMany(User::class)->orderBy('name');
+        return $this->hasMany(User::class)->orderBy('first_name')->orderBy('last_name');
     }
 
     /**

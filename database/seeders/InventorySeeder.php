@@ -9,38 +9,33 @@ use App\Models\Warehouse;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class InventorySeeder extends Seeder
 {
+
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Product::class => 'No products found',
+            Warehouse::class => 'No warehouses found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Inventory::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating inventory records...');
         $this->command->getOutput()->progressStart(100);
 
-        // Ensure we have products and warehouses
-        if (Product::count() == 0) {
-            $this->command->warn('No products found. Running ProductSeeder first...');
-            $this->call(ProductSeeder::class);
-        }
-
-        if (Warehouse::count() == 0) {
-            $this->command->warn('No warehouses found. Running WarehouseSeeder first...');
-            $this->call(WarehouseSeeder::class);
-        }
-
-        // Create different types of inventory
         $this->createNormalStockInventory();
         $this->createLowStockInventory();
         $this->createReservedInventory();
@@ -54,9 +49,6 @@ class InventorySeeder extends Seeder
 
         $this->command->getOutput()->progressFinish();
 
-        // Show statistics
-        $this->command->info('Inventory records created successfully!');
-
         $summary = Inventory::getValuationSummary();
         $statusSummary = Inventory::getStockStatusSummary();
 
@@ -67,7 +59,6 @@ class InventorySeeder extends Seeder
                 ['Total Products with Stock', Product::has('inventory')->count()],
                 ['Total Units in Stock', number_format(Inventory::sum('quantity_on_hand'))],
                 ['Total Inventory Value', '$' . number_format($summary['total_value'], 2)],
-                ['Average Unit Value', '$' . number_format($summary['average_unit_value'], 2)],
                 ['Available Items', $statusSummary['available']],
                 ['Reserved Items', $statusSummary['reserved']],
                 ['Damaged Items', $statusSummary['damaged']],
@@ -75,7 +66,6 @@ class InventorySeeder extends Seeder
             ]
         );
 
-        // Show low stock alert
         $this->showLowStockAlert();
     }
 

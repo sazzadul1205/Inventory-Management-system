@@ -10,9 +10,12 @@ use App\Models\Warehouse;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class SalesOrderSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Number of sales orders to create
      */
@@ -23,30 +26,26 @@ class SalesOrderSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Customer::class => 'No customers found',
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         SalesOrder::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating sales orders...');
         $this->command->getOutput()->progressStart(self::SO_COUNT);
 
-        // Create SOs by status distribution
         $this->createSalesOrdersByStatus();
-
-        // Create specialized SO scenarios
         $this->createSpecializedSalesOrders();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

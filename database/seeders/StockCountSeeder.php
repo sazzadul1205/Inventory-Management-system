@@ -13,10 +13,13 @@ use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class StockCountSeeder extends Seeder
 {
     protected Faker $faker;
+
+    use ChecksDependencies;
 
     /**
      * Number of stock counts to create
@@ -30,30 +33,24 @@ class StockCountSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // Disable foreign key checks temporarily
+        if (!$this->checkDependencies([
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         StockCount::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating stock counts...');
         $this->command->getOutput()->progressStart(self::STOCK_COUNT_COUNT);
 
-        // Create counts by type
         $this->createCountsByType();
-
-        // Create specialized count scenarios
         $this->createSpecializedCounts();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

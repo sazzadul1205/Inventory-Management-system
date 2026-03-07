@@ -7,56 +7,48 @@ use App\Models\AuditLog;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies; 
 
 class AuditLogSeeder extends Seeder
 {
+
+    use ChecksDependencies; 
+
     /**
      * Number of logs to create
      */
     protected const LOG_COUNT = 20;
+
 
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+        // ← ADD THIS DEPENDENCY CHECK BLOCK
+        if (!$this->checkDependencies([
+            User::class => 'No users found'
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         AuditLog::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        // Get all users for assigning logs
         $users = User::all();
-
-        if ($users->isEmpty()) {
-            $this->command->warn('No users found. Creating sample users first...');
-            User::factory(10)->create();
-            $users = User::all();
-        }
 
         $this->command->info('Creating audit logs...');
         $this->command->getOutput()->progressStart(self::LOG_COUNT);
 
-        // Create logs with different patterns
         for ($i = 0; $i < self::LOG_COUNT; $i++) {
             $this->createAuditLog($users);
-
-            if ($i % 100 === 0) {
-                $this->command->getOutput()->progressAdvance(100);
-            }
         }
 
         $this->command->getOutput()->progressFinish();
-
-        // Create specialized logs
         $this->createSpecializedLogs($users);
 
-        $this->command->info('Audit logs created successfully!');
-        $this->command->warn('Total logs created: ' . AuditLog::count());
+        $this->command->info('Audit logs created: ' . AuditLog::count());
     }
 
     /**

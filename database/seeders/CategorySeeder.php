@@ -7,36 +7,29 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class CategorySeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Category::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating inventory category hierarchy...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create main inventory category structure
         $this->createInventoryCategories();
-
-        // Create sample categories with products
         $this->createSampleCategoriesWithProducts();
 
         $this->command->getOutput()->progressFinish();
 
-        // Show statistics
-        $this->command->info('Inventory categories created successfully!');
         $this->command->table(
             ['Metric', 'Count'],
             [

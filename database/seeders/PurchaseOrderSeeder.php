@@ -11,9 +11,12 @@ use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class PurchaseOrderSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Number of purchase orders to create
      */
@@ -24,30 +27,26 @@ class PurchaseOrderSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Supplier::class => 'No suppliers found',
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         PurchaseOrder::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating purchase orders...');
         $this->command->getOutput()->progressStart(self::PO_COUNT);
 
-        // Create POs by status distribution
         $this->createPurchaseOrdersByStatus();
-
-        // Create specialized PO scenarios
         $this->createSpecializedPurchaseOrders();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

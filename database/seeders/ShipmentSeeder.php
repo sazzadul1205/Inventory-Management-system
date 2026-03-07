@@ -11,9 +11,13 @@ use App\Models\Warehouse;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
+
 
 class ShipmentSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Number of shipments to create
      */
@@ -24,30 +28,26 @@ class ShipmentSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            SalesOrder::class => 'No sales orders found',
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Shipment::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating shipments...');
         $this->command->getOutput()->progressStart(self::SHIPMENT_COUNT);
 
-        // Create shipments by status distribution
         $this->createShipmentsByStatus();
-
-        // Create specialized shipment scenarios
         $this->createSpecializedShipments();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

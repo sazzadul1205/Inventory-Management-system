@@ -14,33 +14,20 @@ class SettingSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Setting::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Initializing system settings...');
         $this->command->getOutput()->progressStart(100);
 
-        // Initialize all default settings
         $this->initializeDefaultSettings();
-
-        // Create additional custom settings
         $this->createCustomSettings();
-
-        // Create user preferences
         $this->createUserPreferences();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
 
-        // Clear settings cache
         Setting::clearSettingsCache();
     }
 

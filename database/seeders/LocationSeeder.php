@@ -7,52 +7,43 @@ use App\Models\Location;
 use App\Models\Warehouse;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class LocationSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Warehouse::class => 'No warehouses found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Location::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating warehouse locations...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create locations for each warehouse
         $warehouses = Warehouse::all();
 
         foreach ($warehouses as $warehouse) {
             $this->command->info("\nCreating locations for {$warehouse->name}...");
 
-            // Create different types of locations based on warehouse size
-            $locationCount = match ($warehouse->size ?? 'medium') {
-                'small' => 100,
-                'large' => 1000,
-                default => 500,
-            };
-
+            $locationCount = 100;
             $this->createWarehouseLocations($warehouse, $locationCount);
         }
 
-        // Create specialized location zones
         $this->createSpecializedZones();
-
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
-        $this->displayStatistics();
+    $this->displayStatistics();
     }
 
     /**

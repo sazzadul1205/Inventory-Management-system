@@ -11,10 +11,13 @@ use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class StockTransferSeeder extends Seeder
 {
     protected Faker $faker;
+
+    use ChecksDependencies;
 
     /**
      * Number of stock transfers to create
@@ -28,30 +31,29 @@ class StockTransferSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // Disable foreign key checks temporarily
+        if (!$this->checkDependencies([
+            Warehouse::class => 'No warehouses found',
+            User::class => 'No users found',
+        ])) {
+            return;
+        }
+
+        if (Warehouse::count() < 2) {
+            $this->command->error('❌ Need at least 2 warehouses to create stock transfers');
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         StockTransfer::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating stock transfers...');
         $this->command->getOutput()->progressStart(self::TRANSFER_COUNT);
 
-        // Create transfers by status distribution
         $this->createTransfersByStatus();
-
-        // Create specialized transfer scenarios
         $this->createSpecializedTransfers();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

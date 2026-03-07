@@ -9,38 +9,36 @@ use App\Models\Product;
 use App\Models\ShipmentItem;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class SalesOrderItemSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            SalesOrder::class => 'No sales orders found',
+            Product::class => 'No products found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         SalesOrderItem::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating sales order items...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create items for existing SOs
         $this->createItemsForExistingSOs();
-
-        // Create specialized item scenarios
         $this->createSpecializedItems();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

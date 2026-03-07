@@ -8,14 +8,16 @@ use App\Models\StockCountItem;
 use App\Models\StockCount;
 use App\Models\Product;
 use App\Models\Location;
-use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class StockCountItemSeeder extends Seeder
 {
     protected Faker $faker;
+
+    use ChecksDependencies;
 
     /**
      * Run the database seeds.
@@ -24,30 +26,25 @@ class StockCountItemSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // Disable foreign key checks temporarily
+        if (!$this->checkDependencies([
+            StockCount::class => 'No stock counts found',
+            Product::class => 'No products found',
+            Location::class => 'No locations found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         StockCountItem::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating stock count items...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create items for existing stock counts
         $this->createItemsForExistingCounts();
-
-        // Create specialized variance scenarios
         $this->createSpecializedVarianceItems();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

@@ -14,29 +14,20 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Role::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating roles...');
         $this->command->getOutput()->progressStart(100);
 
-        // Create all predefined roles
         $this->createAllRoles();
-
-        // Create additional custom roles
         $this->createCustomRoles();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
+
 
     /**
      * Create all roles with appropriate permissions.

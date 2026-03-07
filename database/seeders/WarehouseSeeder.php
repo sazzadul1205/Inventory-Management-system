@@ -8,10 +8,13 @@ use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class WarehouseSeeder extends Seeder
 {
     protected Faker $faker;
+
+    use ChecksDependencies;
 
     /**
      * Number of warehouses to create
@@ -25,39 +28,26 @@ class WarehouseSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // Disable foreign key checks temporarily
+        if (!$this->checkDependencies([
+            User::class => 'No users found for warehouse managers',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Warehouse::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating warehouses...');
         $this->command->getOutput()->progressStart(self::WAREHOUSE_COUNT);
 
-        // Create main warehouses first
         $this->createMainWarehouses();
-
-        // Create distribution centers
         $this->createDistributionCenters();
-
-        // Create storage facilities
         $this->createStorageFacilities();
-
-        // Create transit hubs
         $this->createTransitHubs();
-
-        // Create international warehouses
         $this->createInternationalWarehouses();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 

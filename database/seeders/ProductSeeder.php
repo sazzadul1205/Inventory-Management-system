@@ -7,9 +7,12 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\Traits\ChecksDependencies;
 
 class ProductSeeder extends Seeder
 {
+    use ChecksDependencies;
+
     /**
      * Number of products to create
      */
@@ -19,30 +22,24 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks temporarily
+       
+        if (!$this->checkDependencies([
+            Category::class => 'No categories found',
+        ])) {
+            return;
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Truncate the table
         Product::truncate();
-
-        // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        // Check prerequisites
-        $this->checkPrerequisites();
 
         $this->command->info('Creating products...');
         $this->command->getOutput()->progressStart(self::PRODUCT_COUNT);
 
-        // Create products by category
         $this->createProductsByCategory();
-
-        // Create specialized product types
         $this->createSpecializedProducts();
 
         $this->command->getOutput()->progressFinish();
-
-        // Display statistics
         $this->displayStatistics();
     }
 
