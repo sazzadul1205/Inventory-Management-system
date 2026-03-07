@@ -35,9 +35,9 @@ class SalesOrderSeeder extends Seeder
             return;
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         SalesOrder::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating sales orders...');
         $this->command->getOutput()->progressStart(self::SO_COUNT);

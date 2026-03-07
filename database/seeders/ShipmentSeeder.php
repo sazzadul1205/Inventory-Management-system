@@ -37,9 +37,9 @@ class ShipmentSeeder extends Seeder
             return;
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Shipment::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating shipments...');
         $this->command->getOutput()->progressStart(self::SHIPMENT_COUNT);

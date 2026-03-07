@@ -43,9 +43,9 @@ class StockTransferSeeder extends Seeder
             return;
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         StockTransfer::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating stock transfers...');
         $this->command->getOutput()->progressStart(self::TRANSFER_COUNT);

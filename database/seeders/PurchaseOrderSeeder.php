@@ -37,9 +37,9 @@ class PurchaseOrderSeeder extends Seeder
             return;
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         PurchaseOrder::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating purchase orders...');
         $this->command->getOutput()->progressStart(self::PO_COUNT);
@@ -406,6 +406,83 @@ class PurchaseOrderSeeder extends Seeder
     /**
      * Display statistics after seeding.
      */
+    // protected function displayStatistics(): void
+    // {
+    //     $this->command->info("\nPurchase Order Statistics:");
+
+    //     $stats = PurchaseOrder::getStatistics(365);
+
+    //     $this->command->table(
+    //         ['Metric', 'Value'],
+    //         [
+    //             ['Total Orders', $stats['total_orders']],
+    //             ['Total Value', '$' . number_format($stats['total_value'], 2)],
+    //             ['Average Order Value', '$' . number_format($stats['average_value'], 2)],
+    //             ['Received Orders', $stats['received_orders']],
+    //             ['Cancelled Orders', $stats['cancelled_orders']],
+    //             ['Overdue Orders', $stats['overdue_count']],
+    //             ['Completion Rate', $stats['completion_rate'] . '%'],
+    //         ]
+    //     );
+
+    //     // Show status breakdown
+    //     $this->command->info("\nOrders by Status:");
+    //     $byStatus = PurchaseOrder::select('status', DB::raw('count(*) as count'))
+    //         ->groupBy('status')
+    //         ->get()
+    //         ->mapWithKeys(function ($item) {
+    //             return [$item->status => $item->count];
+    //         });
+
+    //     $statusData = [];
+    //     foreach (PurchaseOrder::$statuses as $status => $label) {
+    //         $statusData[] = [$label, $byStatus[$status] ?? 0];
+    //     }
+
+    //     $this->command->table(['Status', 'Count'], $statusData);
+
+    //     // Show monthly summary
+    //     $this->command->info("\nMonthly Order Summary:");
+    //     $monthly = PurchaseOrder::getMonthlySummary(6);
+
+    //     $this->command->table(
+    //         ['Year-Month', 'Orders', 'Total Value', 'Avg Value'],
+    //         $monthly->map(function ($item) {
+    //             return [
+    //                 $item->year . '-' . str_pad($item->month, 2, '0', STR_PAD_LEFT),
+    //                 $item->order_count,
+    //                 '$' . number_format($item->total_value, 2),
+    //                 '$' . number_format($item->average_value, 2),
+    //             ];
+    //         })->toArray()
+    //     );
+
+    //     // Show overdue alert
+    //     if ($stats['overdue_count'] > 0) {
+    //         $this->command->warn("\n⚠️  There are {$stats['overdue_count']} overdue purchase orders!");
+
+    //         $overduePOs = PurchaseOrder::overdue()
+    //             ->with('supplier')
+    //             ->limit(5)
+    //             ->get();
+
+    //         $this->command->table(
+    //             ['PO Number', 'Supplier', 'Expected Date', 'Days Overdue'],
+    //             $overduePOs->map(function ($po) {
+    //                 return [
+    //                     $po->po_number,
+    //                     $po->supplier->name,
+    //                     $po->expected_delivery_date->format('Y-m-d'),
+    //                     $po->days_overdue,
+    //                 ];
+    //             })->toArray()
+    //         );
+    //     }
+    // }
+
+    /**
+     * Display statistics after seeding.
+     */
     protected function displayStatistics(): void
     {
         $this->command->info("\nPurchase Order Statistics:");
@@ -425,13 +502,14 @@ class PurchaseOrderSeeder extends Seeder
             ]
         );
 
-        // Show status breakdown
+        // Show status breakdown - SQLite compatible
         $this->command->info("\nOrders by Status:");
         $byStatus = PurchaseOrder::select('status', DB::raw('count(*) as count'))
             ->groupBy('status')
             ->get()
-            ->mapWithKeys(function ($item) {
-                return [$item->status => $item->count];
+            ->keyBy('status')
+            ->map(function ($item) {
+                return $item->count;
             });
 
         $statusData = [];
@@ -441,42 +519,65 @@ class PurchaseOrderSeeder extends Seeder
 
         $this->command->table(['Status', 'Count'], $statusData);
 
-        // Show monthly summary
+        // Show monthly summary - SQLite compatible
         $this->command->info("\nMonthly Order Summary:");
-        $monthly = PurchaseOrder::getMonthlySummary(6);
 
-        $this->command->table(
-            ['Year-Month', 'Orders', 'Total Value', 'Avg Value'],
-            $monthly->map(function ($item) {
-                return [
-                    $item->year . '-' . str_pad($item->month, 2, '0', STR_PAD_LEFT),
-                    $item->order_count,
-                    '$' . number_format($item->total_value, 2),
-                    '$' . number_format($item->average_value, 2),
-                ];
-            })->toArray()
-        );
+        // Get monthly summary using raw SQL that works with SQLite
+        $monthly = PurchaseOrder::select(
+            DB::raw("strftime('%Y', order_date) as year"),
+            DB::raw("strftime('%m', order_date) as month"),
+            DB::raw('count(*) as order_count'),
+            DB::raw('SUM(total_amount) as total_value'),
+            DB::raw('AVG(total_amount) as average_value')
+        )
+            ->where('order_date', '>=', now()->subMonths(6))
+            ->groupBy(DB::raw("strftime('%Y', order_date)"), DB::raw("strftime('%m', order_date)"))
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
 
-        // Show overdue alert
-        if ($stats['overdue_count'] > 0) {
-            $this->command->warn("\n⚠️  There are {$stats['overdue_count']} overdue purchase orders!");
-
-            $overduePOs = PurchaseOrder::overdue()
-                ->with('supplier')
-                ->limit(5)
-                ->get();
-
+        if ($monthly->isNotEmpty()) {
             $this->command->table(
-                ['PO Number', 'Supplier', 'Expected Date', 'Days Overdue'],
-                $overduePOs->map(function ($po) {
+                ['Year-Month', 'Orders', 'Total Value', 'Avg Value'],
+                $monthly->map(function ($item) {
                     return [
-                        $po->po_number,
-                        $po->supplier->name,
-                        $po->expected_delivery_date->format('Y-m-d'),
-                        $po->days_overdue,
+                        $item->year . '-' . str_pad($item->month, 2, '0', STR_PAD_LEFT),
+                        $item->order_count,
+                        '$' . number_format($item->total_value ?? 0, 2),
+                        '$' . number_format($item->average_value ?? 0, 2),
                     ];
                 })->toArray()
             );
+        } else {
+            $this->command->info("No monthly data available.");
+        }
+
+        // Show overdue alert - SQLite compatible
+        if ($stats['overdue_count'] > 0) {
+            $this->command->warn("\n⚠️  There are {$stats['overdue_count']} overdue purchase orders!");
+
+            // Get overdue POs with supplier info - using collection filtering for SQLite compatibility
+            $allPOs = PurchaseOrder::with('supplier')
+                ->get()
+                ->filter(function ($po) {
+                    return $po->isOverdue();
+                })
+                ->sortByDesc('days_overdue')
+                ->take(5);
+
+            if ($allPOs->isNotEmpty()) {
+                $this->command->table(
+                    ['PO Number', 'Supplier', 'Expected Date', 'Days Overdue'],
+                    $allPOs->map(function ($po) {
+                        return [
+                            $po->po_number,
+                            $po->supplier->name ?? 'Unknown',
+                            $po->expected_delivery_date ? $po->expected_delivery_date->format('Y-m-d') : 'N/A',
+                            $po->days_overdue ?? 0,
+                        ];
+                    })->toArray()
+                );
+            }
         }
     }
 }

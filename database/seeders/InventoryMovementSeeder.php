@@ -34,9 +34,9 @@ class InventoryMovementSeeder extends Seeder
             return;
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         InventoryMovement::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating inventory movements...');
         $this->command->getOutput()->progressStart(self::MOVEMENT_COUNT);

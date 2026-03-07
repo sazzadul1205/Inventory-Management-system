@@ -20,7 +20,7 @@ class ProductSupplierSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             Product::class => 'No products found',
             Supplier::class => 'No suppliers found',
@@ -28,9 +28,9 @@ class ProductSupplierSeeder extends Seeder
             return;
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         ProductSupplier::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating product-supplier relationships...');
         $this->command->getOutput()->progressStart(100);
@@ -458,6 +458,86 @@ class ProductSupplierSeeder extends Seeder
     /**
      * Display statistics after seeding.
      */
+    // protected function displayStatistics(): void
+    // {
+    //     $this->command->info("\nProduct-Supplier Statistics:");
+
+    //     $totalRelationships = ProductSupplier::count();
+    //     $uniqueProducts = ProductSupplier::distinct('product_id')->count('product_id');
+    //     $uniqueSuppliers = ProductSupplier::distinct('supplier_id')->count('supplier_id');
+    //     $preferredCount = ProductSupplier::preferred()->count();
+
+    //     $avgPrice = ProductSupplier::avg('unit_cost');
+    //     $minPrice = ProductSupplier::min('unit_cost');
+    //     $maxPrice = ProductSupplier::max('unit_cost');
+    //     $avgLeadTime = ProductSupplier::avg('lead_time_days');
+
+    //     $this->command->table(
+    //         ['Metric', 'Value'],
+    //         [
+    //             ['Total Relationships', $totalRelationships],
+    //             ['Unique Products', $uniqueProducts],
+    //             ['Unique Suppliers', $uniqueSuppliers],
+    //             ['Avg Suppliers per Product', round($totalRelationships / max($uniqueProducts, 1), 1)],
+    //             ['Preferred Relationships', $preferredCount],
+    //             ['Average Unit Cost', '$' . number_format($avgPrice, 2)],
+    //             ['Price Range', '$' . number_format($minPrice, 2) . ' - $' . number_format($maxPrice, 2)],
+    //             ['Average Lead Time', round($avgLeadTime, 1) . ' days'],
+    //         ]
+    //     );
+
+    //     // Show products with most suppliers
+    //     $this->command->info("\nTop 5 Products by Supplier Count:");
+    //     $topProducts = ProductSupplier::select('product_id', DB::raw('count(*) as supplier_count'))
+    //         ->with('product')
+    //         ->groupBy('product_id')
+    //         ->orderBy('supplier_count', 'desc')
+    //         ->limit(5)
+    //         ->get();
+
+    //     $this->command->table(
+    //         ['Product', 'Supplier Count', 'Preferred Supplier'],
+    //         $topProducts->map(function ($item) {
+    //             $preferred = ProductSupplier::byProduct($item->product_id)
+    //                 ->preferred()
+    //                 ->with('supplier')
+    //                 ->first();
+
+    //             return [
+    //                 $item->product?->name ?? 'Unknown',
+    //                 $item->supplier_count,
+    //                 $preferred?->supplier?->company_name ?? 'None',
+    //             ];
+    //         })->toArray()
+    //     );
+
+    //     // Show price comparison for a sample product
+    //     $this->command->info("\nSample Price Comparison:");
+    //     $sampleProduct = ProductSupplier::with(['product', 'supplier'])
+    //         ->whereHas('product')
+    //         ->inRandomOrder()
+    //         ->first();
+
+    //     if ($sampleProduct) {
+    //         $comparison = ProductSupplier::getPriceStatistics($sampleProduct->product_id);
+
+    //         $this->command->table(
+    //             ['Metric', 'Value'],
+    //             [
+    //                 ['Product', $sampleProduct->product->name],
+    //                 ['Min Price', '$' . number_format($comparison['min_price'], 2)],
+    //                 ['Max Price', '$' . number_format($comparison['max_price'], 2)],
+    //                 ['Avg Price', '$' . number_format($comparison['avg_price'], 2)],
+    //                 ['Supplier Count', $comparison['supplier_count']],
+    //                 ['Preferred Supplier', $comparison['preferred_supplier']['name'] ?? 'None'],
+    //             ]
+    //         );
+    //     }
+    // }
+
+    /**
+     * Display statistics after seeding. - sqLite
+     */
     protected function displayStatistics(): void
     {
         $this->command->info("\nProduct-Supplier Statistics:");
@@ -488,6 +568,8 @@ class ProductSupplierSeeder extends Seeder
 
         // Show products with most suppliers
         $this->command->info("\nTop 5 Products by Supplier Count:");
+
+        // SQLite-compatible version
         $topProducts = ProductSupplier::select('product_id', DB::raw('count(*) as supplier_count'))
             ->with('product')
             ->groupBy('product_id')
@@ -495,41 +577,60 @@ class ProductSupplierSeeder extends Seeder
             ->limit(5)
             ->get();
 
+        $productData = [];
+        foreach ($topProducts as $item) {
+            // Get preferred supplier for this product
+            $preferred = ProductSupplier::byProduct($item->product_id)
+                ->preferred()
+                ->with('supplier')
+                ->first();
+
+            $productData[] = [
+                $item->product?->name ?? 'Unknown',
+                $item->supplier_count,
+                $preferred?->supplier?->company_name ?? 'None',
+            ];
+        }
+
         $this->command->table(
             ['Product', 'Supplier Count', 'Preferred Supplier'],
-            $topProducts->map(function ($item) {
-                $preferred = ProductSupplier::byProduct($item->product_id)
-                    ->preferred()
-                    ->with('supplier')
-                    ->first();
-
-                return [
-                    $item->product?->name ?? 'Unknown',
-                    $item->supplier_count,
-                    $preferred?->supplier?->company_name ?? 'None',
-                ];
-            })->toArray()
+            $productData
         );
 
         // Show price comparison for a sample product
         $this->command->info("\nSample Price Comparison:");
+
+        // SQLite-compatible random product
         $sampleProduct = ProductSupplier::with(['product', 'supplier'])
             ->whereHas('product')
-            ->inRandomOrder()
-            ->first();
+            ->get()
+            ->random() ?? null;
 
         if ($sampleProduct) {
-            $comparison = ProductSupplier::getPriceStatistics($sampleProduct->product_id);
+            // Get price statistics
+            $stats = ProductSupplier::where('product_id', $sampleProduct->product_id)
+                ->select(
+                    DB::raw('MIN(unit_cost) as min_price'),
+                    DB::raw('MAX(unit_cost) as max_price'),
+                    DB::raw('AVG(unit_cost) as avg_price'),
+                    DB::raw('COUNT(*) as supplier_count')
+                )
+                ->first();
+
+            $preferredSupplier = ProductSupplier::where('product_id', $sampleProduct->product_id)
+                ->preferred()
+                ->with('supplier')
+                ->first();
 
             $this->command->table(
                 ['Metric', 'Value'],
                 [
                     ['Product', $sampleProduct->product->name],
-                    ['Min Price', '$' . number_format($comparison['min_price'], 2)],
-                    ['Max Price', '$' . number_format($comparison['max_price'], 2)],
-                    ['Avg Price', '$' . number_format($comparison['avg_price'], 2)],
-                    ['Supplier Count', $comparison['supplier_count']],
-                    ['Preferred Supplier', $comparison['preferred_supplier']['name'] ?? 'None'],
+                    ['Min Price', '$' . number_format($stats->min_price ?? 0, 2)],
+                    ['Max Price', '$' . number_format($stats->max_price ?? 0, 2)],
+                    ['Avg Price', '$' . number_format($stats->avg_price ?? 0, 2)],
+                    ['Supplier Count', $stats->supplier_count ?? 0],
+                    ['Preferred Supplier', $preferredSupplier?->supplier?->company_name ?? 'None'],
                 ]
             );
         }
