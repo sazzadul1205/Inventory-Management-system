@@ -26,7 +26,7 @@ class SalesOrderSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             Customer::class => 'No customers found',
             Warehouse::class => 'No warehouses found',
@@ -76,32 +76,46 @@ class SalesOrderSeeder extends Seeder
     protected function createSalesOrdersByStatus(): void
     {
         $statusDistribution = [
-            SalesOrder::STATUS_DRAFT => 40,
-            SalesOrder::STATUS_PENDING => 50,
-            SalesOrder::STATUS_APPROVED => 60,
-            SalesOrder::STATUS_PROCESSING => 55,
+            SalesOrder::STATUS_DRAFT => 30,
+            SalesOrder::STATUS_PENDING => 40,
+            SalesOrder::STATUS_APPROVED => 40,
+            SalesOrder::STATUS_PROCESSING => 40,
             SalesOrder::STATUS_PARTIALLY_SHIPPED => 40,
             SalesOrder::STATUS_SHIPPED => 50,
-            SalesOrder::STATUS_DELIVERED => 70,
-            SalesOrder::STATUS_CANCELLED => 15,
+            SalesOrder::STATUS_DELIVERED => 40,
+            SalesOrder::STATUS_CANCELLED => 20,
         ];
 
         foreach ($statusDistribution as $status => $count) {
             $this->command->info("\nCreating {$count} {$status} sales orders...");
 
+            // Map the status constants to factory method names
+            $factoryMethod = match ($status) {
+                SalesOrder::STATUS_DRAFT => 'draft',
+                SalesOrder::STATUS_PENDING => 'pending',
+                SalesOrder::STATUS_APPROVED => 'approved',
+                SalesOrder::STATUS_PROCESSING => 'processing',
+                SalesOrder::STATUS_PARTIALLY_SHIPPED => 'partiallyShipped',
+                SalesOrder::STATUS_SHIPPED => 'shipped',
+                SalesOrder::STATUS_DELIVERED => 'delivered',
+                SalesOrder::STATUS_CANCELLED => 'cancelled',
+                default => 'draft'
+            };
+
             for ($i = 0; $i < $count; $i++) {
-                SalesOrder::factory()
-                    ->{$status}()
-                    ->withItems(rand(1, 5))
-                    ->when(
-                        in_array($status, [
-                            SalesOrder::STATUS_PARTIALLY_SHIPPED,
-                            SalesOrder::STATUS_SHIPPED,
-                            SalesOrder::STATUS_DELIVERED
-                        ]),
-                        fn($factory) => $factory->withShipments(rand(1, 2))
-                    )
-                    ->create();
+                $factory = SalesOrder::factory()->{$factoryMethod}();
+
+                $factory->withItems(rand(2, 6));
+
+                if (in_array($status, [
+                    SalesOrder::STATUS_PARTIALLY_SHIPPED,
+                    SalesOrder::STATUS_SHIPPED,
+                    SalesOrder::STATUS_DELIVERED
+                ])) {
+                    $factory->withShipments(rand(1, 2));
+                }
+
+                $factory->create();
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -254,7 +268,7 @@ class SalesOrderSeeder extends Seeder
                     ->withItems(rand(5, 10))
                     ->state([
                         'total_amount' => fake()->randomFloat(2, 20000, 100000),
-                        'shipping_method' => 'Freight - FTL',
+                        'notes' => 'Bulk order - Freight shipping', // Add note instead of shipping_method
                     ])
                     ->create();
 
@@ -365,8 +379,8 @@ class SalesOrderSeeder extends Seeder
                 ->shipped()
                 ->withItems(rand(3, 6))
                 ->state([
-                    'shipping_method' => fake()->randomElement(['Ocean Freight', 'Air Freight']),
                     'shipping_cost' => fake()->randomFloat(2, 500, 2000),
+                    'notes' => fake()->randomElement(['Ocean Freight', 'Air Freight']) . ' - International shipping',
                 ])
                 ->create();
 

@@ -20,7 +20,7 @@ class SalesOrderItemSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             SalesOrder::class => 'No sales orders found',
             Product::class => 'No products found',
@@ -69,8 +69,22 @@ class SalesOrderItemSeeder extends Seeder
             // Number of items per SO based on order type
             $itemCount = $this->getItemCountForSO($so);
 
+            // Track used products for this sales order to avoid duplicates
+            $usedProductIds = [];
+
             for ($i = 0; $i < $itemCount; $i++) {
-                $product = Product::inRandomOrder()->first();
+                // Get a product that hasn't been used in this order yet
+                $product = Product::whereNotIn('id', $usedProductIds)
+                    ->inRandomOrder()
+                    ->first();
+
+                // If no more unique products available, break the loop
+                if (!$product) {
+                    break;
+                }
+
+                // Add to used products
+                $usedProductIds[] = $product->id;
 
                 // Determine item status based on SO status
                 $itemStatus = $this->getItemStatusForSO($so->status);
@@ -107,9 +121,9 @@ class SalesOrderItemSeeder extends Seeder
             SalesOrder::STATUS_DRAFT,
             SalesOrder::STATUS_PENDING => 'pending',
 
-            SalesOrder::STATUS_APPROVED => fake()->randomElement(['pending', 'allocated']),
+            SalesOrder::STATUS_APPROVED => fake()->randomElement(['pending']),
 
-            SalesOrder::STATUS_PROCESSING => fake()->randomElement(['allocated', 'partiallyShipped']),
+            SalesOrder::STATUS_PROCESSING => fake()->randomElement(['pending', 'partiallyShipped']),
 
             SalesOrder::STATUS_PARTIALLY_SHIPPED => 'partiallyShipped',
 
@@ -170,16 +184,42 @@ class SalesOrderItemSeeder extends Seeder
         $sos = SalesOrder::where('total_amount', '>', 10000)->get();
 
         foreach ($sos->take(8) as $so) {
-            SalesOrderItem::factory()
-                ->forSalesOrder($so->id)
-                ->highValue()
-                ->count(rand(1, 2))
-                ->create();
+            // Get ALL products already used in this sales order (from previous seeding)
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(1);
+            $itemsToCreate = rand(1, 2);
+            $createdCount = 0;
+
+            for ($i = 0; $i < $itemsToCreate; $i++) {
+                // Get a product that hasn't been used in this order yet
+                $product = Product::whereNotIn('id', $existingProductIds)
+                    ->inRandomOrder()
+                    ->first();
+
+                if (!$product) {
+                    break;
+                }
+
+                // Add to existing products list
+                $existingProductIds[] = $product->id;
+
+                SalesOrderItem::factory()
+                    ->forSalesOrder($so->id)
+                    ->forProduct($product->id)
+                    ->highValue()
+                    ->create();
+
+                $createdCount++;
+                $this->command->getOutput()->progressAdvance(1);
+            }
+
+            if ($createdCount === 0) {
+                $this->command->warn("    No unique products available for SO #{$so->id}");
+            }
         }
     }
-
     /**
      * Create bulk items.
      */
@@ -199,7 +239,19 @@ class SalesOrderItemSeeder extends Seeder
         $sos = SalesOrder::where('total_amount', '>', 5000)->get();
 
         foreach ($sos->take(6) as $so) {
-            foreach ($bulkProducts->random(2) as $product) {
+            // Get products already used in this order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Filter bulk products to only those not used
+            $availableProducts = $bulkProducts->whereNotIn('id', $existingProductIds);
+
+            if ($availableProducts->count() < 2) {
+                continue;
+            }
+
+            foreach ($availableProducts->random(2) as $product) {
                 SalesOrderItem::factory()
                     ->forSalesOrder($so->id)
                     ->forProduct($product->id)
@@ -227,7 +279,19 @@ class SalesOrderItemSeeder extends Seeder
         $shippedSOs = SalesOrder::shipped()->get();
 
         foreach ($shippedSOs->take(8) as $so) {
-            foreach ($batchProducts->random(2) as $product) {
+            // Get products already used in this order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Filter batch products to only those not used
+            $availableProducts = $batchProducts->whereNotIn('id', $existingProductIds);
+
+            if ($availableProducts->count() < 2) {
+                continue;
+            }
+
+            foreach ($availableProducts->random(2) as $product) {
                 $item = SalesOrderItem::factory()
                     ->forSalesOrder($so->id)
                     ->forProduct($product->id)
@@ -267,7 +331,19 @@ class SalesOrderItemSeeder extends Seeder
         $shippedSOs = SalesOrder::shipped()->get();
 
         foreach ($shippedSOs->take(6) as $so) {
-            foreach ($serialProducts->random(2) as $product) {
+            // Get products already used in this order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Filter serial products to only those not used
+            $availableProducts = $serialProducts->whereNotIn('id', $existingProductIds);
+
+            if ($availableProducts->count() < 2) {
+                continue;
+            }
+
+            foreach ($availableProducts->random(2) as $product) {
                 $quantity = rand(2, 4);
 
                 $item = SalesOrderItem::factory()
@@ -291,6 +367,7 @@ class SalesOrderItemSeeder extends Seeder
         }
     }
 
+
     /**
      * Create discounted items.
      */
@@ -305,15 +382,37 @@ class SalesOrderItemSeeder extends Seeder
             ->take(10);
 
         foreach ($sos as $so) {
-            SalesOrderItem::factory()
-                ->forSalesOrder($so->id)
-                ->discounted(rand(5, 20))
-                ->count(rand(1, 2))
-                ->create();
+            // Get ALL products already used in this sales order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(1);
+            $itemsToCreate = rand(1, 2);
+            $createdCount = 0;
+
+            for ($i = 0; $i < $itemsToCreate; $i++) {
+                $product = Product::whereNotIn('id', $existingProductIds)
+                    ->inRandomOrder()
+                    ->first();
+
+                if (!$product) {
+                    break;
+                }
+
+                $existingProductIds[] = $product->id;
+
+                SalesOrderItem::factory()
+                    ->forSalesOrder($so->id)
+                    ->forProduct($product->id)
+                    ->discounted(rand(5, 20))
+                    ->create();
+
+                $createdCount++;
+                $this->command->getOutput()->progressAdvance(1);
+            }
         }
     }
+
 
     /**
      * Create tax-exempt items.
@@ -325,8 +424,23 @@ class SalesOrderItemSeeder extends Seeder
         $sos = SalesOrder::inRandomOrder()->take(8)->get();
 
         foreach ($sos as $so) {
+            // Get products already used in this order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Get a product not already used in this order
+            $product = Product::whereNotIn('id', $existingProductIds)
+                ->inRandomOrder()
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
             SalesOrderItem::factory()
                 ->forSalesOrder($so->id)
+                ->forProduct($product->id)
                 ->taxExempt()
                 ->create();
 
@@ -346,12 +460,16 @@ class SalesOrderItemSeeder extends Seeder
                 ->partiallyShipped()
                 ->create();
 
+            // Get a product not already used in this order (new order, so no products yet)
+            $product = Product::inRandomOrder()->first();
+
             $ordered = rand(50, 200);
             $firstShipment = rand(20, 60);
             $secondShipment = rand(10, min(40, $ordered - $firstShipment));
 
             $item = SalesOrderItem::factory()
                 ->forSalesOrder($so->id)
+                ->forProduct($product->id)
                 ->withQuantity($ordered, rand(10, 50), 0, $firstShipment)
                 ->create();
 
@@ -386,18 +504,40 @@ class SalesOrderItemSeeder extends Seeder
         for ($i = 0; $i < 6; $i++) {
             $so = SalesOrder::factory()->approved()->create();
 
-            SalesOrderItem::factory()
-                ->forSalesOrder($so->id)
-                ->pending()
-                ->state([
-                    'notes' => 'Backordered - awaiting stock',
-                ])
-                ->count(rand(1, 2))
-                ->create();
+            // Get products already used in this order (should be empty for new orders)
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(1);
+            $itemsToCreate = rand(1, 2);
+            $createdCount = 0;
+
+            for ($j = 0; $j < $itemsToCreate; $j++) {
+                $product = Product::whereNotIn('id', $existingProductIds)
+                    ->inRandomOrder()
+                    ->first();
+
+                if (!$product) {
+                    break;
+                }
+
+                $existingProductIds[] = $product->id;
+
+                SalesOrderItem::factory()
+                    ->forSalesOrder($so->id)
+                    ->forProduct($product->id)
+                    ->pending()
+                    ->state([
+                        'notes' => 'Backordered - awaiting stock',
+                    ])
+                    ->create();
+
+                $createdCount++;
+                $this->command->getOutput()->progressAdvance(1);
+            }
         }
     }
+
 
     /**
      * Create rush/expedited items.
@@ -416,18 +556,40 @@ class SalesOrderItemSeeder extends Seeder
         }
 
         foreach ($sos as $so) {
-            SalesOrderItem::factory()
-                ->forSalesOrder($so->id)
-                ->allocated()
-                ->count(rand(1, 3))
-                ->state([
-                    'notes' => 'Rush order - priority processing',
-                ])
-                ->create();
+            // Get ALL products already used in this sales order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(1);
+            $itemsToCreate = rand(1, 3);
+            $createdCount = 0;
+
+            for ($i = 0; $i < $itemsToCreate; $i++) {
+                $product = Product::whereNotIn('id', $existingProductIds)
+                    ->inRandomOrder()
+                    ->first();
+
+                if (!$product) {
+                    break;
+                }
+
+                $existingProductIds[] = $product->id;
+
+                SalesOrderItem::factory()
+                    ->forSalesOrder($so->id)
+                    ->forProduct($product->id)
+                    ->pending()
+                    ->state([
+                        'notes' => 'Rush order - priority processing',
+                    ])
+                    ->create();
+
+                $createdCount++;
+                $this->command->getOutput()->progressAdvance(1);
+            }
         }
     }
+
 
     /**
      * Create gift items (zero cost).
@@ -439,8 +601,23 @@ class SalesOrderItemSeeder extends Seeder
         $sos = SalesOrder::inRandomOrder()->take(4)->get();
 
         foreach ($sos as $so) {
+            // Get products already used in this order
+            $existingProductIds = SalesOrderItem::where('sales_order_id', $so->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Get a product not already used in this order
+            $product = Product::whereNotIn('id', $existingProductIds)
+                ->inRandomOrder()
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
             SalesOrderItem::factory()
                 ->forSalesOrder($so->id)
+                ->forProduct($product->id)
                 ->withQuantity(rand(1, 3), 0, 0, rand(0, 1))
                 ->state([
                     'notes' => 'Complimentary gift item',
@@ -460,14 +637,12 @@ class SalesOrderItemSeeder extends Seeder
 
         $totalItems = SalesOrderItem::count();
         $pendingItems = SalesOrderItem::pending()->count();
-        $allocatedItems = SalesOrderItem::allocated()->count();
         $partialItems = SalesOrderItem::partiallyShipped()->count();
         $shippedItems = SalesOrderItem::shipped()->count();
         $cancelledItems = SalesOrderItem::where('status', SalesOrderItem::STATUS_CANCELLED)->count();
 
         $totalOrdered = SalesOrderItem::sum('quantity_ordered');
         $totalShipped = SalesOrderItem::sum('quantity_shipped');
-        $totalReserved = SalesOrderItem::sum('quantity_reserved');
         $totalValue = SalesOrderItem::sum('line_total');
 
         $this->command->table(
@@ -475,13 +650,11 @@ class SalesOrderItemSeeder extends Seeder
             [
                 ['Total Items', $totalItems],
                 ['Pending Items', $pendingItems],
-                ['Allocated Items', $allocatedItems],
                 ['Partially Shipped', $partialItems],
                 ['Fully Shipped', $shippedItems],
                 ['Cancelled', $cancelledItems],
                 ['Total Ordered Qty', number_format($totalOrdered)],
                 ['Total Shipped Qty', number_format($totalShipped)],
-                ['Total Reserved Qty', number_format($totalReserved)],
                 ['Total Value', '$' . number_format($totalValue, 2)],
                 ['Shipment Rate', $totalOrdered > 0 ? round(($totalShipped / $totalOrdered) * 100, 2) . '%' : '0%'],
             ]

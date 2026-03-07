@@ -10,6 +10,7 @@ use App\Models\SalesOrderItem;
 use App\Models\Shipment;
 use App\Models\Warehouse;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -94,6 +95,16 @@ class SalesOrderFactory extends Factory
 
         $paymentStatus = $this->getPaymentStatusForOrder($status, $totalAmount);
 
+        // Safely generate updated_at
+        $createdAt = Carbon::instance($orderDate);
+        $now = now();
+
+        try {
+            $updatedAt = $this->faker->dateTimeBetween($createdAt, $now);
+        } catch (\InvalidArgumentException $e) {
+            $updatedAt = $this->faker->dateTimeBetween($now->copy()->subDays(1), $now);
+        }
+
         return [
             'so_number' => $this->generateSONumber(),
             'customer_id' => $customer->id,
@@ -114,12 +125,15 @@ class SalesOrderFactory extends Factory
             'notes' => $this->faker->optional(0.3)->sentence(),
             'created_by' => $user->id,
             'approved_by' => $this->getApprovedByForStatus($status, $user),
-            'created_at' => $orderDate,
-            'updated_at' => function (array $attributes) {
-                return $this->faker->dateTimeBetween($attributes['created_at'], 'now');
-            },
+            'created_at' => $createdAt,
+            'updated_at' => $updatedAt,
         ];
     }
+
+    /**
+     * Track used order numbers to avoid duplicates
+     */
+    protected static $usedOrderNumbers = [];
 
     /**
      * Generate a unique SO number.
@@ -129,11 +143,32 @@ class SalesOrderFactory extends Factory
         $prefix = 'SO';
         $year = now()->format('Y');
         $month = now()->format('m');
-        $random = $this->faker->unique()->numberBetween(1000, 9999);
+        $maxAttempts = 100;
+        $attempt = 0;
 
-        return "{$prefix}-{$year}{$month}-{$random}";
+        do {
+            $random = rand(1000, 9999);
+            $number = "{$prefix}-{$year}{$month}-{$random}";
+            $attempt++;
+
+            // Check if we've generated this number in this factory instance
+            if (in_array($number, self::$usedOrderNumbers)) {
+                continue;
+            }
+
+            // Check if it exists in the database
+            $exists = SalesOrder::where('so_number', $number)->exists();
+
+            if (!$exists) {
+                self::$usedOrderNumbers[] = $number;
+                return $number;
+            }
+        } while ($attempt < $maxAttempts);
+
+        // Fallback: use timestamp + random to ensure uniqueness
+        return "SO-" . now()->format('YmdHis') . "-" . rand(100, 999);
     }
-
+    
     /**
      * Get random status with realistic distribution.
      */
@@ -426,13 +461,13 @@ class SalesOrderFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'shipping_method' => $this->faker->randomElement(['Next Day Air', '2-Day Air', 'Expedited']),
+                // Remove shipping_method as it doesn't exist in the table
                 'required_date' => now()->addDays($this->faker->numberBetween(1, 3)),
                 'shipping_cost' => $this->faker->randomFloat(2, 50, 200),
+                'notes' => 'Urgent order - expedited shipping required',
             ];
         });
     }
-
     /**
      * Set for specific customer.
      */

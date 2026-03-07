@@ -35,7 +35,6 @@ class SalesOrderItemFactory extends Factory
         $quantityOrdered = $this->getQuantityForProduct($product);
         $unitPrice = $this->getUnitPriceForProduct($product);
         $quantityShipped = $this->getQuantityShipped($salesOrder->status, $quantityOrdered);
-        $quantityReserved = $this->getQuantityReserved($salesOrder->status, $quantityOrdered, $quantityShipped);
 
         $discountPercent = $this->faker->optional(0.3)->randomFloat(2, 0, 15) ?? 0;
         $taxPercent = $this->faker->optional(0.8)->randomFloat(2, 5, 12) ?? 0;
@@ -45,11 +44,10 @@ class SalesOrderItemFactory extends Factory
             'product_id' => $product->id,
             'quantity_ordered' => $quantityOrdered,
             'quantity_shipped' => $quantityShipped,
-            'quantity_reserved' => $quantityReserved,
             'unit_price' => $unitPrice,
             'discount_percent' => $discountPercent,
             'tax_percent' => $taxPercent,
-            'status' => $this->determineStatus($quantityOrdered, $quantityShipped, $quantityReserved),
+            'status' => $this->determineStatus($quantityOrdered, $quantityShipped),
             'notes' => $this->faker->optional(0.2)->sentence(),
             'created_at' => $salesOrder->order_date,
             'updated_at' => $this->faker->dateTimeBetween($salesOrder->order_date, 'now'),
@@ -135,31 +133,11 @@ class SalesOrderItemFactory extends Factory
     }
 
     /**
-     * Get quantity reserved based on status.
-     */
-    protected function getQuantityReserved(string $soStatus, int $ordered, int $shipped): int
-    {
-        $remaining = $ordered - $shipped;
-
-        return match ($soStatus) {
-            SalesOrder::STATUS_APPROVED,
-            SalesOrder::STATUS_PROCESSING => $this->faker->numberBetween(0, $remaining),
-
-            SalesOrder::STATUS_PARTIALLY_SHIPPED => $this->faker->numberBetween(0, $remaining),
-
-            default => 0,
-        };
-    }
-
-    /**
      * Determine item status based on quantities.
      */
-    protected function determineStatus(int $ordered, int $shipped, int $reserved): string
+    protected function determineStatus(int $ordered, int $shipped): string
     {
         if ($shipped <= 0) {
-            if ($reserved > 0) {
-                return SalesOrderItem::STATUS_ALLOCATED;
-            }
             return SalesOrderItem::STATUS_PENDING;
         }
 
@@ -178,25 +156,7 @@ class SalesOrderItemFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'quantity_shipped' => 0,
-                'quantity_reserved' => 0,
                 'status' => SalesOrderItem::STATUS_PENDING,
-            ];
-        });
-    }
-
-    /**
-     * Indicate allocated item.
-     */
-    public function allocated(): static
-    {
-        return $this->state(function (array $attributes) {
-            $ordered = $attributes['quantity_ordered'];
-            $reserved = $this->faker->numberBetween(1, $ordered);
-
-            return [
-                'quantity_shipped' => 0,
-                'quantity_reserved' => $reserved,
-                'status' => SalesOrderItem::STATUS_ALLOCATED,
             ];
         });
     }
@@ -209,11 +169,9 @@ class SalesOrderItemFactory extends Factory
         return $this->state(function (array $attributes) {
             $ordered = $attributes['quantity_ordered'];
             $shipped = $this->faker->numberBetween(1, $ordered - 1);
-            $reserved = $this->faker->numberBetween(0, $ordered - $shipped);
 
             return [
                 'quantity_shipped' => $shipped,
-                'quantity_reserved' => $reserved,
                 'status' => SalesOrderItem::STATUS_PARTIALLY_SHIPPED,
             ];
         });
@@ -227,7 +185,6 @@ class SalesOrderItemFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'quantity_shipped' => $attributes['quantity_ordered'],
-                'quantity_reserved' => 0,
                 'status' => SalesOrderItem::STATUS_SHIPPED,
             ];
         });
@@ -241,7 +198,6 @@ class SalesOrderItemFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'quantity_shipped' => 0,
-                'quantity_reserved' => 0,
                 'status' => SalesOrderItem::STATUS_CANCELLED,
                 'notes' => 'Item cancelled: ' . $this->faker->sentence(),
             ];
@@ -281,10 +237,9 @@ class SalesOrderItemFactory extends Factory
             return [
                 'quantity_ordered' => $ordered,
                 'quantity_shipped' => $shipped,
-                'quantity_reserved' => $shipped > 0 ? 0 : $this->faker->optional(0.5)->numberBetween(0, $ordered),
                 'unit_price' => $unitPrice,
                 'discount_percent' => $discountPercent,
-                'status' => $this->determineStatus($ordered, $shipped, $attributes['quantity_reserved'] ?? 0),
+                'status' => $this->determineStatus($ordered, $shipped),
             ];
         });
     }

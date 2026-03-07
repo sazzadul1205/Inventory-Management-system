@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\DB;
  * @property int $product_id
  * @property int $quantity_ordered
  * @property int $quantity_shipped
- * @property int $quantity_reserved
  * @property float $unit_price
  * @property float $discount_percent
  * @property float $tax_percent
@@ -86,7 +85,6 @@ class SalesOrderItem extends Model
     protected $casts = [
         'quantity_ordered' => 'integer',
         'quantity_shipped' => 'integer',
-        'quantity_reserved' => 'integer',
         'unit_price' => 'decimal:2',
         'discount_percent' => 'decimal:2',
         'tax_percent' => 'decimal:2',
@@ -102,7 +100,6 @@ class SalesOrderItem extends Model
     protected $attributes = [
         'quantity_ordered' => 1,
         'quantity_shipped' => 0,
-        'quantity_reserved' => 0,
         'discount_percent' => 0,
         'tax_percent' => 0,
         'status' => self::STATUS_PENDING
@@ -116,9 +113,6 @@ class SalesOrderItem extends Model
 
     /** @var string Item awaiting allocation/shipment */
     const STATUS_PENDING = 'pending';
-
-    /** @var string Inventory allocated */
-    const STATUS_ALLOCATED = 'allocated';
 
     /** @var string Partially shipped */
     const STATUS_PARTIALLY_SHIPPED = 'partially_shipped';
@@ -136,7 +130,6 @@ class SalesOrderItem extends Model
      */
     public static $statuses = [
         self::STATUS_PENDING => 'Pending',
-        self::STATUS_ALLOCATED => 'Allocated',
         self::STATUS_PARTIALLY_SHIPPED => 'Partially Shipped',
         self::STATUS_SHIPPED => 'Shipped',
         self::STATUS_CANCELLED => 'Cancelled'
@@ -149,7 +142,6 @@ class SalesOrderItem extends Model
      */
     const OPEN_STATUSES = [
         self::STATUS_PENDING,
-        self::STATUS_ALLOCATED,
         self::STATUS_PARTIALLY_SHIPPED
     ];
 
@@ -214,17 +206,6 @@ class SalesOrderItem extends Model
     public function scopePending(Builder $query): Builder
     {
         return $query->where('status', self::STATUS_PENDING);
-    }
-
-    /**
-     * Scope to allocated items.
-     *
-     * @param Builder $query
-     * @return Builder
-     */
-    public function scopeAllocated(Builder $query): Builder
-    {
-        return $query->where('status', self::STATUS_ALLOCATED);
     }
 
     /**
@@ -443,22 +424,6 @@ class SalesOrderItem extends Model
     }
 
     /**
-     * Get allocation status for inventory.
-     *
-     * @return string
-     */
-    public function getAllocationStatusAttribute(): string
-    {
-        if ($this->quantity_reserved >= $this->remaining_quantity) {
-            return 'fully_allocated';
-        } elseif ($this->quantity_reserved > 0) {
-            return 'partially_allocated';
-        }
-
-        return 'not_allocated';
-    }
-
-    /**
      * --------------------------------------------------------------------------
      * Methods
      * --------------------------------------------------------------------------
@@ -487,56 +452,12 @@ class SalesOrderItem extends Model
             throw new \Exception('Cannot ship more than ordered quantity.');
         }
 
-        return DB::transaction(function () use ($quantity, $newShipped) {
+        return DB::transaction(function () use ($newShipped) {
             $this->quantity_shipped = $newShipped;
-            $this->quantity_reserved = max(0, $this->quantity_reserved - $quantity);
             $this->status = $this->determineStatus();
 
             return $this->save();
         });
-    }
-
-    /**
-     * Allocate inventory for this item.
-     *
-     * @param int $quantity
-     * @return bool
-     */
-    public function allocate(int $quantity): bool
-    {
-        if ($quantity <= 0) {
-            return false;
-        }
-
-        $remainingNeeded = $this->remaining_quantity - $this->quantity_reserved;
-
-        if ($quantity > $remainingNeeded) {
-            return false;
-        }
-
-        $this->quantity_reserved += $quantity;
-        $this->status = $this->determineStatus();
-
-        return $this->save();
-    }
-
-    /**
-     * Release allocated inventory.
-     *
-     * @param int|null $quantity
-     * @return bool
-     */
-    public function releaseAllocation(?int $quantity = null): bool
-    {
-        if ($quantity === null) {
-            $this->quantity_reserved = 0;
-        } else {
-            $this->quantity_reserved = max(0, $this->quantity_reserved - $quantity);
-        }
-
-        $this->status = $this->determineStatus();
-
-        return $this->save();
     }
 
     /**
@@ -553,7 +474,6 @@ class SalesOrderItem extends Model
             }
 
             $this->status = self::STATUS_CANCELLED;
-            $this->quantity_reserved = 0;
 
             if ($reason) {
                 $this->notes = ($this->notes ? $this->notes . "\n" : '') . "Cancelled: {$reason}";
@@ -564,16 +484,13 @@ class SalesOrderItem extends Model
     }
 
     /**
-     * Determine status based on shipment and allocation.
+     * Determine status based on shipment.
      *
      * @return string
      */
     protected function determineStatus(): string
     {
         if ($this->quantity_shipped <= 0) {
-            if ($this->quantity_reserved > 0) {
-                return self::STATUS_ALLOCATED;
-            }
             return self::STATUS_PENDING;
         }
 
@@ -649,10 +566,6 @@ class SalesOrderItem extends Model
                 return false;
             }
 
-            if ($item->quantity_reserved < 0) {
-                return false;
-            }
-
             return true;
         });
 
@@ -710,7 +623,7 @@ class SalesOrderItem extends Model
     public static function getPendingShipmentItems(): Collection
     {
         return self::with(['salesOrder.customer', 'product'])
-            ->whereIn('status', [self::STATUS_PENDING, self::STATUS_ALLOCATED])
+            ->whereIn('status', [self::STATUS_PENDING])
             ->whereRaw('quantity_shipped < quantity_ordered')
             ->orderBy('created_at')
             ->get();
@@ -740,8 +653,7 @@ class SalesOrderItem extends Model
             'unit_price' => $this->unit_price,
             'batch_tracked' => $this->product->is_batch_tracked,
             'serial_tracked' => $this->product->is_serial_tracked,
-            'expirable' => $this->product->is_expirable,
-            'allocated' => $this->quantity_reserved
+            'expirable' => $this->product->is_expirable
         ];
     }
 
@@ -758,10 +670,6 @@ class SalesOrderItem extends Model
 
         if ($this->quantity_shipped > 0) {
             return 'In Progress';
-        }
-
-        if ($this->quantity_reserved > 0) {
-            return 'Ready to Ship';
         }
 
         return 'Pending';
