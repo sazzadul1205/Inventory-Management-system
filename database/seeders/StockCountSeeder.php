@@ -76,20 +76,29 @@ class StockCountSeeder extends Seeder
     protected function createCountsByType(): void
     {
         $typeDistribution = [
-            StockCount::TYPE_CYCLE => 6, // Was 60
-            StockCount::TYPE_SPOT => 3, // Was 30
-            StockCount::TYPE_FULL => 4, // Was 40
-            StockCount::TYPE_ANNUAL => 1, // Was 10
+            StockCount::TYPE_CYCLE => 6,
+            StockCount::TYPE_SPOT => 3,
+            StockCount::TYPE_FULL => 4,
+            StockCount::TYPE_ANNUAL => 1,
         ];
 
         foreach ($typeDistribution as $type => $count) {
             $this->command->info("\nCreating {$count} {$type} counts...");
 
+            // Map type to correct factory method
+            $factoryMethod = match ($type) {
+                StockCount::TYPE_CYCLE => 'cycleCount',
+                StockCount::TYPE_SPOT => 'spotCheck',   // This is the key fix
+                StockCount::TYPE_FULL => 'fullCount',
+                StockCount::TYPE_ANNUAL => 'annualCount',
+                default => 'cycleCount',
+            };
+
             for ($i = 0; $i < $count; $i++) {
                 $statusMethod = $this->getRandomStatusMethod();
 
                 StockCount::factory()
-                    ->{$type}()
+                    ->{$factoryMethod}()
                     ->{$statusMethod}()
                     ->withItems(rand(5, 30))
                     ->create();

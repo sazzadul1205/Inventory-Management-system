@@ -327,7 +327,7 @@ class StockCountItemSeeder extends Seeder
                 ->withVarianceReason(StockCountItem::REASON_THEFT)
                 ->state([
                     'notes' => 'Potential theft - security notified',
-                    'variance_percentage' => $this->faker->randomFloat(2, 20, 100),
+                    // 'variance_percentage' => $this->faker->randomFloat(2, 20, 100), // REMOVE THIS LINE
                 ])
                 ->create();
 
@@ -505,6 +505,17 @@ class StockCountItemSeeder extends Seeder
                 $location = Location::where('warehouse_id', $count->warehouse_id)
                     ->inRandomOrder()
                     ->first();
+
+                // FIX: Check if item already exists for this count/product/location
+                $existingItem = StockCountItem::where('stock_count_id', $count->id)
+                    ->where('product_id', $product->id)
+                    ->where('location_id', $location->id)
+                    ->first();
+
+                if ($existingItem) {
+                    $this->command->warn("    Skipping duplicate item for count {$count->id}, product {$product->id}, location {$location->id}");
+                    continue;
+                }
 
                 $expectedQty = $this->faker->numberBetween(500, 5000);
                 $variance = $this->faker->numberBetween(-200, 200);

@@ -76,11 +76,12 @@ class InventoryFactory extends Factory
             'quantity_on_hand' => $quantityOnHand,
             'quantity_reserved' => $quantityReserved,
             'quantity_available' => $quantityOnHand - $quantityReserved,
-            'quantity_in_transit' => $this->faker->optional(0.3)->numberBetween(0, 100),
-            'quantity_on_order' => $this->faker->optional(0.2)->numberBetween(0, 50),
+            // FIXED: Always provide values, never null
+            'quantity_in_transit' => $this->faker->boolean(30) ? $this->faker->numberBetween(0, 100) : 0,
+            'quantity_on_order' => $this->faker->boolean(20) ? $this->faker->numberBetween(0, 50) : 0,
             'unit_cost' => $unitCost,
-            'last_count_date' => $this->faker->optional(0.7)->dateTimeBetween('-6 months', 'now'),
-            'last_movement_date' => $this->faker->optional(0.8)->dateTimeBetween('-3 months', 'now'),
+            'last_count_date' => $this->faker->boolean(70) ? $this->faker->dateTimeBetween('-6 months', 'now') : null,
+            'last_movement_date' => $this->faker->boolean(80) ? $this->faker->dateTimeBetween('-3 months', 'now') : null,
             'status' => $this->determineStatus($quantityOnHand, $quantityReserved, $hasExpiry),
             'created_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
             'updated_at' => function (array $attributes) {

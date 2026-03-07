@@ -802,18 +802,18 @@ class StockCountItem extends Model
      */
     protected static function booted(): void
     {
-        // Auto-calculate variance fields before saving
-        static::saving(function (self $item) {
-            $item->variance_quantity = $item->counted_quantity - $item->expected_quantity;
-
-            if ($item->expected_quantity > 0) {
-                $item->variance_percentage = ($item->variance_quantity / $item->expected_quantity) * 100;
-            } elseif ($item->counted_quantity > 0) {
-                $item->variance_percentage = 100.0;
-            } else {
-                $item->variance_percentage = 0.0;
-            }
-        });
+        // REMOVE or COMMENT OUT this entire saving event since these are generated columns
+        // static::saving(function (self $item) {
+        //     $item->variance_quantity = $item->counted_quantity - $item->expected_quantity;
+        //
+        //     if ($item->expected_quantity > 0) {
+        //         $item->variance_percentage = ($item->variance_quantity / $item->expected_quantity) * 100;
+        //     } elseif ($item->counted_quantity > 0) {
+        //         $item->variance_percentage = 100.0;
+        //     } else {
+        //         $item->variance_percentage = 0.0;
+        //     }
+        // });
 
         // Prevent modification of approved/rejected items
         static::updating(function (self $item) {

@@ -86,9 +86,23 @@ class StockTransferItemSeeder extends Seeder
                     ->inRandomOrder()
                     ->first();
 
+                if (!$fromLocation) {
+                    $fromLocation = Location::factory()
+                        ->forWarehouse($transfer->from_warehouse_id)
+                        ->create();
+                    $this->command->info("    Created missing from-location for warehouse {$transfer->from_warehouse_id}");
+                }
+
                 $toLocation = Location::where('warehouse_id', $transfer->to_warehouse_id)
                     ->inRandomOrder()
                     ->first();
+
+                if (!$toLocation) {
+                    $toLocation = Location::factory()
+                        ->forWarehouse($transfer->to_warehouse_id)
+                        ->create();
+                    $this->command->info("    Created missing to-location for warehouse {$transfer->to_warehouse_id}");
+                }
 
                 $quantityRequested = $this->faker->numberBetween(5, 50);
 
@@ -96,13 +110,20 @@ class StockTransferItemSeeder extends Seeder
                 $shipped = $this->getShippedForTransferStatus($transfer->status, $quantityRequested);
                 $received = $this->getReceivedForTransferStatus($transfer->status, $shipped);
 
-                StockTransferItem::factory()
-                    ->forStockTransfer($transfer->id)
-                    ->forProduct($product->id)
-                    ->fromLocation($fromLocation->id)
-                    ->toLocation($toLocation->id)
-                    ->withQuantities($quantityRequested, $shipped, $received)
-                    ->create();
+                // Create item directly without using factory states
+                StockTransferItem::create([
+                    'stock_transfer_id' => $transfer->id,
+                    'product_id' => $product->id,
+                    'from_location_id' => $fromLocation->id,
+                    'to_location_id' => $toLocation->id,
+                    'quantity_requested' => $quantityRequested,
+                    'quantity_shipped' => $shipped,
+                    'quantity_received' => $received,
+                    'unit_cost' => $product->unit_cost ?? $this->faker->randomFloat(2, 1, 500),
+                    'notes' => $this->faker->optional(0.2)->sentence(),
+                    'created_at' => $transfer->request_date,
+                    'updated_at' => $this->faker->dateTimeBetween($transfer->request_date, 'now'),
+                ]);
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -151,45 +172,55 @@ class StockTransferItemSeeder extends Seeder
     /**
      * Create specialized transfer items.
      */
+    /**
+     * Create specialized transfer items.
+     */
     protected function createSpecializedTransferItems(): void
     {
         $this->command->info("\nCreating specialized transfer items...");
 
-        // 1. Batch tracked items
-        $this->createBatchTrackedItems();
+        // First create all the specialized transfers and their items
+        // These methods create their own transfers and items together
 
-        // 2. Serial tracked items
-        $this->createSerialTrackedItems();
-
-        // 3. High-value items
-        $this->createHighValueItems();
-
-        // 4. Bulk items
-        $this->createBulkItems();
-
-        // 5. Partial receipt scenarios
-        $this->createPartialReceiptItems();
-
-        // 6. Zero cost items
-        $this->createZeroCostItems();
-
-        // 7. Damaged/notes items
-        $this->createDamagedItems();
-
-        // 8. Multi-location transfers
+        // 1. Multi-location transfers (creates its own transfer)
         $this->createMultiLocationItems();
 
-        // 9. Expedited transfers
+        // 2. Expedited transfers (creates its own transfer)
         $this->createExpeditedItems();
 
-        // 10. Transfer discrepancies
+        // 3. Discrepancy items (creates its own transfer)
         $this->createDiscrepancyItems();
 
-        // 11. Perishable items with expiry
-        $this->createPerishableItems();
-
-        // 12. Slow-moving items
+        // 4. Slow-moving items (creates its own transfer)
         $this->createSlowMovingItems();
+
+        // Now create items for ALL existing transfers (including the ones we just created)
+        // But we need to make sure we don't duplicate items
+
+        // Then create specialized items that use existing transfers
+        // 5. Batch tracked items
+        $this->createBatchTrackedItems();
+
+        // 6. Serial tracked items
+        $this->createSerialTrackedItems();
+
+        // 7. High-value items
+        $this->createHighValueItems();
+
+        // 8. Bulk items
+        $this->createBulkItems();
+
+        // 9. Partial receipt scenarios
+        $this->createPartialReceiptItems();
+
+        // 10. Zero cost items
+        $this->createZeroCostItems();
+
+        // 11. Damaged/notes items
+        $this->createDamagedItems();
+
+        // 12. Perishable items with expiry
+        $this->createPerishableItems();
     }
 
     /**
@@ -209,12 +240,20 @@ class StockTransferItemSeeder extends Seeder
 
         foreach ($transfers as $transfer) {
             foreach ($batchProducts->random(2) as $product) {
-                StockTransferItem::factory()
-                    ->forStockTransfer($transfer->id)
-                    ->forProduct($product->id)
-                    ->received()
-                    ->withBatch()
-                    ->create();
+                $quantity = $this->faker->numberBetween(5, 20);
+
+                StockTransferItem::create([
+                    'stock_transfer_id' => $transfer->id,
+                    'product_id' => $product->id,
+                    'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'quantity_requested' => $quantity,
+                    'quantity_shipped' => $quantity,
+                    'quantity_received' => $quantity,
+                    'batch_number' => 'BATCH-' . date('y') . '-' . strtoupper($this->faker->bothify('??##')) . '-' . str_pad($this->faker->numberBetween(1, 999), 3, '0', STR_PAD_LEFT),
+                    'unit_cost' => $product->unit_cost ?? $this->faker->randomFloat(2, 10, 100),
+                    'notes' => 'Batch tracked item',
+                ]);
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -240,12 +279,18 @@ class StockTransferItemSeeder extends Seeder
             foreach ($serialProducts->random(2) as $product) {
                 // Create multiple serial numbers
                 for ($i = 0; $i < 3; $i++) {
-                    StockTransferItem::factory()
-                        ->forStockTransfer($transfer->id)
-                        ->forProduct($product->id)
-                        ->shipped()
-                        ->withSerial()
-                        ->create();
+                    StockTransferItem::create([
+                        'stock_transfer_id' => $transfer->id,
+                        'product_id' => $product->id,
+                        'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                        'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                        'quantity_requested' => 1,
+                        'quantity_shipped' => 1,
+                        'quantity_received' => 0,
+                        'serial_number' => 'SN-' . strtoupper($this->faker->bothify('??##??##')) . '-' . $this->faker->numberBetween(1000, 9999),
+                        'unit_cost' => $product->unit_cost ?? $this->faker->randomFloat(2, 50, 500),
+                        'notes' => 'Serial tracked item',
+                    ]);
                 }
 
                 $this->command->getOutput()->progressAdvance(2);
@@ -272,13 +317,17 @@ class StockTransferItemSeeder extends Seeder
 
         foreach ($transfers as $transfer) {
             foreach ($highValueProducts as $product) {
-                StockTransferItem::factory()
-                    ->forStockTransfer($transfer->id)
-                    ->forProduct($product->id)
-                    ->pending()
-                    ->withUnitCost($this->faker->randomFloat(2, 500, 2000))
-                    ->withQuantities(1, 0, 0)
-                    ->create();
+                StockTransferItem::create([
+                    'stock_transfer_id' => $transfer->id,
+                    'product_id' => $product->id,
+                    'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'quantity_requested' => 1,
+                    'quantity_shipped' => 0,
+                    'quantity_received' => 0,
+                    'unit_cost' => $this->faker->randomFloat(2, 500, 2000),
+                    'notes' => 'High-value item',
+                ]);
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -305,13 +354,19 @@ class StockTransferItemSeeder extends Seeder
 
         foreach ($transfers as $transfer) {
             foreach ($bulkProducts as $product) {
-                StockTransferItem::factory()
-                    ->forStockTransfer($transfer->id)
-                    ->forProduct($product->id)
-                    ->shipped()
-                    ->withUnitCost($this->faker->randomFloat(2, 0.5, 5))
-                    ->withQuantities($this->faker->numberBetween(100, 500), 100, 0)
-                    ->create();
+                $quantity = $this->faker->numberBetween(100, 500);
+
+                StockTransferItem::create([
+                    'stock_transfer_id' => $transfer->id,
+                    'product_id' => $product->id,
+                    'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'quantity_requested' => $quantity,
+                    'quantity_shipped' => 100,
+                    'quantity_received' => 0,
+                    'unit_cost' => $this->faker->randomFloat(2, 0.5, 5),
+                    'notes' => 'Bulk item',
+                ]);
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -329,15 +384,20 @@ class StockTransferItemSeeder extends Seeder
 
         foreach ($transfers->take(5) as $transfer) {
             $product = Product::inRandomOrder()->first();
+            $quantity = $this->faker->numberBetween(20, 50);
+            $received = $this->faker->numberBetween(5, $quantity - 1);
 
-            StockTransferItem::factory()
-                ->forStockTransfer($transfer->id)
-                ->forProduct($product->id)
-                ->partiallyReceived()
-                ->state([
-                    'notes' => 'Partial receipt - remaining in transit',
-                ])
-                ->create();
+            StockTransferItem::create([
+                'stock_transfer_id' => $transfer->id,
+                'product_id' => $product->id,
+                'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'quantity_requested' => $quantity,
+                'quantity_shipped' => $quantity,
+                'quantity_received' => $received,
+                'unit_cost' => $product->unit_cost ?? $this->faker->randomFloat(2, 10, 100),
+                'notes' => 'Partial receipt - remaining in transit',
+            ]);
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -353,14 +413,17 @@ class StockTransferItemSeeder extends Seeder
         $transfers = StockTransfer::inRandomOrder()->limit(3)->get();
 
         foreach ($transfers as $transfer) {
-            StockTransferItem::factory()
-                ->forStockTransfer($transfer->id)
-                ->pending()
-                ->withUnitCost(0)
-                ->state([
-                    'notes' => 'Zero cost item - sample/gratis',
-                ])
-                ->create();
+            StockTransferItem::create([
+                'stock_transfer_id' => $transfer->id,
+                'product_id' => Product::inRandomOrder()->first()->id,
+                'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'quantity_requested' => $this->faker->numberBetween(1, 5),
+                'quantity_shipped' => 0,
+                'quantity_received' => 0,
+                'unit_cost' => 0,
+                'notes' => 'Zero cost item - sample/gratis',
+            ]);
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -376,18 +439,24 @@ class StockTransferItemSeeder extends Seeder
         $transfers = StockTransfer::received()->inRandomOrder()->limit(3)->get();
 
         foreach ($transfers as $transfer) {
-            StockTransferItem::factory()
-                ->forStockTransfer($transfer->id)
-                ->received()
-                ->state([
-                    'notes' => 'Items damaged during transfer - ' . $this->faker->randomElement([
-                        'damaged packaging',
-                        'crushed boxes',
-                        'water damage',
-                        'items broken',
-                    ]),
-                ])
-                ->create();
+            $quantity = $this->faker->numberBetween(5, 15);
+
+            StockTransferItem::create([
+                'stock_transfer_id' => $transfer->id,
+                'product_id' => Product::inRandomOrder()->first()->id,
+                'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'quantity_requested' => $quantity,
+                'quantity_shipped' => $quantity,
+                'quantity_received' => $quantity,
+                'unit_cost' => $this->faker->randomFloat(2, 10, 50),
+                'notes' => 'Items damaged during transfer - ' . $this->faker->randomElement([
+                    'damaged packaging',
+                    'crushed boxes',
+                    'water damage',
+                    'items broken',
+                ]),
+            ]);
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -420,13 +489,16 @@ class StockTransferItemSeeder extends Seeder
             $quantity = $this->faker->numberBetween(5, 15);
             $totalQuantity += $quantity;
 
-            StockTransferItem::factory()
-                ->forStockTransfer($transfer->id)
-                ->forProduct($product->id)
-                ->fromLocation($fromLocation->id)
-                ->toLocation($toLocation->id)
-                ->withQuantities($quantity, $quantity, 0)
-                ->create();
+            StockTransferItem::create([
+                'stock_transfer_id' => $transfer->id,
+                'product_id' => $product->id,
+                'from_location_id' => $fromLocation->id,
+                'to_location_id' => $toLocation->id,
+                'quantity_requested' => $quantity,
+                'quantity_shipped' => $quantity,
+                'quantity_received' => 0,
+                'unit_cost' => $product->unit_cost ?? $this->faker->randomFloat(2, 10, 50),
+            ]);
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -448,14 +520,16 @@ class StockTransferItemSeeder extends Seeder
         $products = Product::inRandomOrder()->limit(3)->get();
 
         foreach ($products as $product) {
-            StockTransferItem::factory()
-                ->forStockTransfer($transfer->id)
-                ->forProduct($product->id)
-                ->pending()
-                ->state([
-                    'notes' => 'Rush item - expedite shipping',
-                ])
-                ->create();
+            StockTransferItem::create([
+                'stock_transfer_id' => $transfer->id,
+                'product_id' => $product->id,
+                'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                'quantity_requested' => $this->faker->numberBetween(1, 10),
+                'quantity_shipped' => 0,
+                'quantity_received' => 0,
+                'notes' => 'Rush item - expedite shipping',
+            ]);
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -475,14 +549,17 @@ class StockTransferItemSeeder extends Seeder
         $product = Product::inRandomOrder()->first();
 
         // Requested 100, shipped 80, received 50
-        StockTransferItem::factory()
-            ->forStockTransfer($transfer->id)
-            ->forProduct($product->id)
-            ->withQuantities(100, 80, 50)
-            ->state([
-                'notes' => 'Transfer discrepancy - 30 units missing',
-            ])
-            ->create();
+        StockTransferItem::create([
+            'stock_transfer_id' => $transfer->id,
+            'product_id' => $product->id,
+            'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+            'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+            'quantity_requested' => 100,
+            'quantity_shipped' => 80,
+            'quantity_received' => 50,
+            'unit_cost' => $product->unit_cost ?? $this->faker->randomFloat(2, 10, 50),
+            'notes' => 'Transfer discrepancy - 30 units missing',
+        ]);
 
         $this->command->getOutput()->progressAdvance(1);
     }
@@ -504,15 +581,19 @@ class StockTransferItemSeeder extends Seeder
 
         foreach ($transfers as $transfer) {
             foreach ($expirableProducts as $product) {
-                StockTransferItem::factory()
-                    ->forStockTransfer($transfer->id)
-                    ->forProduct($product->id)
-                    ->shipped()
-                    ->withBatch()
-                    ->state([
-                        'notes' => 'Perishable - expedite handling',
-                    ])
-                    ->create();
+                $quantity = $this->faker->numberBetween(5, 15);
+
+                StockTransferItem::create([
+                    'stock_transfer_id' => $transfer->id,
+                    'product_id' => $product->id,
+                    'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+                    'quantity_requested' => $quantity,
+                    'quantity_shipped' => $quantity,
+                    'quantity_received' => 0,
+                    'batch_number' => 'BATCH-' . date('y') . '-' . strtoupper($this->faker->bothify('??##')),
+                    'notes' => 'Perishable - expedite handling',
+                ]);
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -532,15 +613,16 @@ class StockTransferItemSeeder extends Seeder
 
         $product = Product::inRandomOrder()->first();
 
-        StockTransferItem::factory()
-            ->forStockTransfer($transfer->id)
-            ->forProduct($product->id)
-            ->pending()
-            ->withQuantities(5, 0, 0)
-            ->state([
-                'notes' => 'Slow-moving item - minimal transfer quantity',
-            ])
-            ->create();
+        StockTransferItem::create([
+            'stock_transfer_id' => $transfer->id,
+            'product_id' => $product->id,
+            'from_location_id' => Location::where('warehouse_id', $transfer->from_warehouse_id)->inRandomOrder()->first()->id ?? null,
+            'to_location_id' => Location::where('warehouse_id', $transfer->to_warehouse_id)->inRandomOrder()->first()->id ?? null,
+            'quantity_requested' => 5,
+            'quantity_shipped' => 0,
+            'quantity_received' => 0,
+            'notes' => 'Slow-moving item - minimal transfer quantity',
+        ]);
 
         $this->command->getOutput()->progressAdvance(1);
     }
@@ -564,7 +646,7 @@ class StockTransferItemSeeder extends Seeder
         $totalRequested = StockTransferItem::sum('quantity_requested');
         $totalShipped = StockTransferItem::sum('quantity_shipped');
         $totalReceived = StockTransferItem::sum('quantity_received');
-        $totalValue = StockTransferItem::sum('total_cost');
+        $totalValue = StockTransferItem::sum(DB::raw('unit_cost * quantity_requested'));
 
         $this->command->table(
             ['Metric', 'Value'],

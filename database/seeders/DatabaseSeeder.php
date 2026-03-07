@@ -21,56 +21,56 @@ class DatabaseSeeder extends Seeder
         // ===========================================
         // STEP 1: Foundation Data (No Dependencies)
         // ===========================================
-        $this->command->info('📦 Seeding foundation data...');
-        $this->call(SettingSeeder::class);
-        $this->call(RoleSeeder::class);
+        // $this->command->info('📦 Seeding foundation data...');
+        // $this->call(SettingSeeder::class);
+        // $this->call(RoleSeeder::class);
 
-        // ===========================================
-        // STEP 2: Core Structure (Depends on Foundation)
-        // ===========================================
-        $this->command->info('🏗️  Seeding core structure...');
-        $this->call(UserSeeder::class);
-        $this->call(DepartmentSeeder::class);
+        // // ===========================================
+        // // STEP 2: Core Structure (Depends on Foundation)
+        // // ===========================================
+        // $this->command->info('🏗️  Seeding core structure...');
+        // $this->call(UserSeeder::class);
+        // $this->call(DepartmentSeeder::class);
 
-        // ===========================================
-        // STEP 3: Warehouse & Locations
-        // ===========================================
-        $this->command->info('🏭 Seeding warehouse structure...');
-        $this->call(WarehouseSeeder::class);
-        $this->call(LocationSeeder::class);
+        // // ===========================================
+        // // STEP 3: Warehouse & Locations
+        // // ===========================================
+        // $this->command->info('🏭 Seeding warehouse structure...');
+        // $this->call(WarehouseSeeder::class);
+        // $this->call(LocationSeeder::class);
 
-        // ===========================================
-        // STEP 4: Product Catalog
-        // ===========================================
-        $this->command->info('📦 Seeding product catalog...');
-        $this->call(CategorySeeder::class);
-        $this->call(ProductSeeder::class);
+        // // ===========================================
+        // // STEP 4: Product Catalog
+        // // ===========================================
+        // $this->command->info('📦 Seeding product catalog...');
+        // $this->call(CategorySeeder::class);
+        // $this->call(ProductSeeder::class);
 
-        // ===========================================
-        // STEP 5: Suppliers & Customers
-        // ===========================================
-        $this->command->info('🤝 Seeding suppliers and customers...');
-        $this->call(SupplierSeeder::class);
-        $this->call(CustomerSeeder::class);
+        // // ===========================================
+        // // STEP 5: Suppliers & Customers
+        // // ===========================================
+        // $this->command->info('🤝 Seeding suppliers and customers...');
+        // $this->call(SupplierSeeder::class);
+        // $this->call(CustomerSeeder::class);
 
-        // ===========================================
-        // STEP 6: Product-Supplier Relationships
-        // ===========================================
-        $this->command->info('🔗 Seeding product-supplier relationships...');
-        $this->call(ProductSupplierSeeder::class);
+        // // ===========================================
+        // // STEP 6: Product-Supplier Relationships
+        // // ===========================================
+        // $this->command->info('🔗 Seeding product-supplier relationships...');
+        // $this->call(ProductSupplierSeeder::class);
 
-        // ===========================================
-        // STEP 7: Inventory
-        // ===========================================
-        $this->command->info('📊 Seeding inventory...');
-        $this->call(InventorySeeder::class);
+        // // ===========================================
+        // // STEP 7: Inventory
+        // // ===========================================
+        // $this->command->info('📊 Seeding inventory...');
+        // $this->call(InventorySeeder::class);
 
         // ===========================================
         // STEP 8: Stock Operations
         // ===========================================
         $this->command->info('🔄 Seeding stock operations...');
-        $this->call(StockCountSeeder::class);
-        $this->call(StockCountItemSeeder::class);
+        // $this->call(StockCountSeeder::class);
+        // $this->call(StockCountItemSeeder::class);
         $this->call(StockTransferSeeder::class);
         $this->call(StockTransferItemSeeder::class);
 

@@ -766,26 +766,33 @@ class Warehouse extends Model
             ->get()
             ->keyBy('type');
 
-        $capacityStats = self::selectRaw('
-            SUM(total_capacity) as total_capacity,
-            SUM(total_utilization) as total_utilization,
-            AVG(utilization_percentage) as avg_utilization
-        )')->first();
+        // FIXED: Calculate capacity statistics using a subquery
+        $capacityStats = DB::table('warehouses as w')
+            ->leftJoin('locations as l', 'w.id', '=', 'l.warehouse_id')
+            ->select([
+                DB::raw('COALESCE(SUM(l.max_capacity), 0) as total_capacity'),
+                DB::raw('COALESCE(SUM(l.current_utilization), 0) as total_utilization'),
+                DB::raw('AVG(CASE 
+                WHEN l.max_capacity > 0 
+                THEN (l.current_utilization / l.max_capacity) * 100 
+                ELSE 0 
+            END) as avg_utilization')
+            ])
+            ->first();
 
         return [
             'total_warehouses' => $totalWarehouses,
             'active_warehouses' => $activeWarehouses,
             'inactive_warehouses' => $totalWarehouses - $activeWarehouses,
             'by_type' => $byType,
-            'total_capacity' => $capacityStats->total_capacity ?? 0,
-            'total_utilization' => $capacityStats->total_utilization ?? 0,
+            'total_capacity' => (int) ($capacityStats->total_capacity ?? 0),
+            'total_utilization' => (int) ($capacityStats->total_utilization ?? 0),
             'average_utilization' => round($capacityStats->avg_utilization ?? 0, 2),
             'activity_rate' => $totalWarehouses > 0
                 ? round(($activeWarehouses / $totalWarehouses) * 100, 2)
                 : 0
         ];
     }
-
     /**
      * --------------------------------------------------------------------------
      * Utility Methods

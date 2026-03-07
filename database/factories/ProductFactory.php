@@ -585,7 +585,7 @@ class ProductFactory extends Factory
             if (class_exists('Inventory')) {
                 Inventory::factory()
                     ->count($locations)
-                    ->forProduct($product->id)
+                    ->forProduct($product)
                     ->create();
             }
         });
@@ -615,7 +615,7 @@ class ProductFactory extends Factory
             if (class_exists('Inventory')) {
                 Inventory::factory()
                     ->count(rand(2, 5))
-                    ->forProduct($product->id)
+                    ->forProduct($product)
                     ->create();
             }
         });

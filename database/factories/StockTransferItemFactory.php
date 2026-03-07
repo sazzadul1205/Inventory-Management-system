@@ -8,7 +8,6 @@ use App\Models\StockTransfer;
 use App\Models\Product;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<StockTransferItem>
@@ -131,13 +130,12 @@ class StockTransferItemFactory extends Factory
         return $this->state(function (array $attributes) use ($serialNumber) {
             return [
                 'serial_number' => $serialNumber ?? $this->generateSerialNumber(),
-                'quantity_requested' => 1, // Serial tracked items typically have quantity 1
-                'quantity_shipped' => min(1, $attributes['quantity_shipped'] ?? 0),
-                'quantity_received' => min(1, $attributes['quantity_received'] ?? 0),
+                'quantity_requested' => 1,
+                'quantity_shipped' => isset($attributes['quantity_shipped']) ? min(1, (int)$attributes['quantity_shipped']) : 1,
+                'quantity_received' => isset($attributes['quantity_received']) ? min(1, (int)$attributes['quantity_received']) : 0,
             ];
         });
     }
-
     /**
      * Set for a specific stock transfer.
      */
@@ -235,7 +233,7 @@ class StockTransferItemFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             $requested = $attributes['quantity_requested'] ?? $this->faker->numberBetween(10, 100);
-            $received = $this->faker->numberBetween(1, $requested - 1);
+            $received = $this->faker->numberBetween(1, max(1, $requested - 1));
             return [
                 'quantity_requested' => $requested,
                 'quantity_shipped' => $requested,
@@ -250,6 +248,7 @@ class StockTransferItemFactory extends Factory
     public function received(): static
     {
         return $this->state(function (array $attributes) {
+            // Ensure we have a quantity_requested value
             $requested = $attributes['quantity_requested'] ?? $this->faker->numberBetween(1, 50);
             return [
                 'quantity_requested' => $requested,
@@ -264,18 +263,20 @@ class StockTransferItemFactory extends Factory
      */
     public function withProductTracking(Product $product): static
     {
-        $state = [];
+        return $this->state(function (array $attributes) use ($product) {
+            $state = [];
 
-        if ($product->is_batch_tracked) {
-            $state['batch_number'] = $this->generateBatchNumber();
-        }
+            if ($product->is_batch_tracked) {
+                $state['batch_number'] = $this->generateBatchNumber();
+            }
 
-        if ($product->is_serial_tracked) {
-            $state['serial_number'] = $this->generateSerialNumber();
-            $state['quantity_requested'] = 1;
-        }
+            if ($product->is_serial_tracked) {
+                $state['serial_number'] = $this->generateSerialNumber();
+                $state['quantity_requested'] = 1;
+            }
 
-        return $this->state($state);
+            return $state;
+        });
     }
 
     /**

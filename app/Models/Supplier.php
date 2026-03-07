@@ -713,28 +713,33 @@ class Supplier extends Model
     }
 
     /**
-     * Get top suppliers by performance.
+     * Get top performing suppliers based on rating and order count.
      *
      * @param int $limit
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public static function getTopPerformers(int $limit = 10): Collection
+    public static function getTopPerformers(int $limit = 10): \Illuminate\Database\Eloquent\Collection
     {
-        return self::withMinRating(4.0)
+        $suppliers = self::active()
             ->withCount('purchaseOrders')
+            ->having('purchase_orders_count', '>', 0)
+            ->whereNotNull('rating')
             ->orderBy('rating', 'desc')
             ->orderBy('purchase_orders_count', 'desc')
             ->limit($limit)
-            ->get()
-            ->map(function ($supplier) {
-                return [
-                    'id' => $supplier->id,
-                    'name' => $supplier->company_name,
-                    'rating' => $supplier->rating,
-                    'order_count' => $supplier->purchase_orders_count,
-                    'avg_lead_time' => $supplier->lead_time_days
-                ];
-            });
+            ->get();
+
+        // Add the performance data as a custom attribute
+        foreach ($suppliers as $supplier) {
+            $supplier->performance_data = [
+                'name' => $supplier->company_name,
+                'rating' => $supplier->rating,
+                'order_count' => $supplier->purchase_orders_count,
+                'avg_lead_time' => $supplier->lead_time_days
+            ];
+        }
+
+        return $suppliers; // This is still an Eloquent Collection
     }
 
     /**

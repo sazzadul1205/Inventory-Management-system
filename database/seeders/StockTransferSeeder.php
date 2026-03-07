@@ -79,13 +79,24 @@ class StockTransferSeeder extends Seeder
     protected function createTransfersByStatus(): void
     {
         $statusDistribution = [
-            StockTransfer::STATUS_DRAFT => 2, // Was 15
-            StockTransfer::STATUS_PENDING => 2, // Was 20
-            StockTransfer::STATUS_APPROVED => 2, // Was 25
-            StockTransfer::STATUS_SHIPPED => 2, // Was 25
-            StockTransfer::STATUS_PARTIALLY_RECEIVED => 2, // Was 20
-            StockTransfer::STATUS_RECEIVED => 3, // Was 30
-            StockTransfer::STATUS_CANCELLED => 1, // Was 5
+            StockTransfer::STATUS_DRAFT => 2,
+            StockTransfer::STATUS_PENDING => 2,
+            StockTransfer::STATUS_APPROVED => 2,
+            StockTransfer::STATUS_SHIPPED => 2,
+            StockTransfer::STATUS_PARTIALLY_RECEIVED => 2,
+            StockTransfer::STATUS_RECEIVED => 3,
+            StockTransfer::STATUS_CANCELLED => 1,
+        ];
+
+        // Map status constants to factory method names (camelCase)
+        $statusMethodMap = [
+            StockTransfer::STATUS_DRAFT => 'draft',
+            StockTransfer::STATUS_PENDING => 'pending',
+            StockTransfer::STATUS_APPROVED => 'approved',
+            StockTransfer::STATUS_SHIPPED => 'shipped',
+            StockTransfer::STATUS_PARTIALLY_RECEIVED => 'partiallyReceived', // Note: camelCase
+            StockTransfer::STATUS_RECEIVED => 'received',
+            StockTransfer::STATUS_CANCELLED => 'cancelled',
         ];
 
         foreach ($statusDistribution as $status => $count) {
@@ -93,7 +104,7 @@ class StockTransferSeeder extends Seeder
 
             for ($i = 0; $i < $count; $i++) {
                 StockTransfer::factory()
-                    ->{$status}()
+                    ->{$statusMethodMap[$status]}() // Use the mapped method name
                     ->withItems(rand(2, 5))
                     ->create();
 
@@ -414,28 +425,50 @@ class StockTransferSeeder extends Seeder
     /**
      * Create warehouse consolidation transfers.
      */
+    /**
+     * Create consolidation transfers.
+     */
     protected function createConsolidationTransfers(): void
     {
         $this->command->info('  - Creating consolidation transfers...');
 
-        $mainWarehouse = Warehouse::first();
-        $oldWarehouse = Warehouse::factory()->create(['name' => 'Old Warehouse (Closing)']);
+        // Get warehouses with multiple locations
+        $warehouses = Warehouse::has('locations', '>=', 3)->get();
 
-        for ($i = 0; $i < 5; $i++) {
+        if ($warehouses->count() < 2) {
+            $this->command->warn('    Not enough warehouses with multiple locations for consolidation transfers');
+            return;
+        }
+
+        // Pick two different warehouses
+        $fromWarehouse = $warehouses->random();
+        $toWarehouse = $warehouses->where('id', '!=', $fromWarehouse->id)->first();
+
+        if (!$toWarehouse) {
+            $toWarehouse = Warehouse::where('id', '!=', $fromWarehouse->id)->inRandomOrder()->first();
+        }
+
+        // Only create if we have both warehouses
+        if ($fromWarehouse && $toWarehouse) {
             StockTransfer::factory()
-                ->fromWarehouse($oldWarehouse->id)
-                ->toWarehouse($mainWarehouse->id)
-                ->received()
-                ->withItems(rand(5, 10))
-                ->state([
-                    'notes' => 'Warehouse consolidation - closing old facility',
-                ])
-                ->create();
+                ->shipped()
+                ->fromWarehouse($fromWarehouse->id)
+                ->toWarehouse($toWarehouse->id)
+                ->create([
+                    'request_date' => now()->subDays(3),
+                    'expected_delivery_date' => now()->addDays(2),
+                    'notes' => 'Consolidation transfer - moving slow movers',
+                ]);
 
             $this->command->getOutput()->progressAdvance(1);
+        } else {
+            $this->command->warn('    Could not find two distinct warehouses for consolidation transfer');
         }
     }
 
+    /**
+     * Create new warehouse setup transfers.
+     */
     /**
      * Create new warehouse setup transfers.
      */
@@ -443,23 +476,34 @@ class StockTransferSeeder extends Seeder
     {
         $this->command->info('  - Creating new warehouse setup transfers...');
 
-        $sourceWarehouse = Warehouse::first();
-        $newWarehouse = Warehouse::factory()->create(['name' => 'New Distribution Center']);
+        // Get a newly created warehouse (or any warehouse) to act as the new warehouse
+        $newWarehouse = Warehouse::latest()->first();
 
-        for ($i = 0; $i < 6; $i++) {
-            StockTransfer::factory()
-                ->fromWarehouse($sourceWarehouse->id)
-                ->toWarehouse($newWarehouse->id)
-                ->received()
-                ->withItems(rand(10, 20))
-                ->state([
-                    'notes' => 'Initial inventory for new warehouse',
-                    'request_date' => $this->faker->dateTimeBetween('-1 month', '-1 week'),
-                ])
-                ->create();
-
-            $this->command->getOutput()->progressAdvance(1);
+        if (!$newWarehouse) {
+            $this->command->warn('    No warehouses found for new warehouse setup');
+            return;
         }
+
+        // Get a different existing warehouse to transfer from
+        $existingWarehouse = Warehouse::where('id', '!=', $newWarehouse->id)->inRandomOrder()->first();
+
+        if (!$existingWarehouse) {
+            $this->command->warn('    No other warehouses found for new warehouse setup');
+            return;
+        }
+
+        // Create transfer from existing warehouse to new warehouse
+        StockTransfer::factory()
+            ->pending()
+            ->fromWarehouse($existingWarehouse->id)
+            ->toWarehouse($newWarehouse->id)
+            ->create([
+                'request_date' => now(),
+                'expected_delivery_date' => now()->addDays(7),
+                'notes' => 'Initial stock transfer to new warehouse',
+            ]);
+
+        $this->command->getOutput()->progressAdvance(1);
     }
 
     /**
@@ -499,16 +543,19 @@ class StockTransferSeeder extends Seeder
 
         $this->command->table(['Status', 'Count'], $statusData);
 
-        // Show warehouse pair statistics
+        // Show warehouse pair statistics - FIXED
         $this->command->info("\nTop Warehouse Pairs:");
+
+        // Query that joins with stock_transfer_items to get actual quantities
         $topPairs = StockTransfer::select(
-            'from_warehouse_id',
-            'to_warehouse_id',
-            DB::raw('count(*) as transfer_count'),
-            DB::raw('sum(total_quantity) as total_quantity')
+            'stock_transfers.from_warehouse_id',
+            'stock_transfers.to_warehouse_id',
+            DB::raw('COUNT(DISTINCT stock_transfers.id) as transfer_count'),
+            DB::raw('COALESCE(SUM(stock_transfer_items.quantity_requested), 0) as total_quantity')
         )
+            ->leftJoin('stock_transfer_items', 'stock_transfers.id', '=', 'stock_transfer_items.stock_transfer_id')
             ->with(['fromWarehouse', 'toWarehouse'])
-            ->groupBy('from_warehouse_id', 'to_warehouse_id')
+            ->groupBy('stock_transfers.from_warehouse_id', 'stock_transfers.to_warehouse_id')
             ->orderBy('transfer_count', 'desc')
             ->limit(5)
             ->get();
@@ -517,8 +564,8 @@ class StockTransferSeeder extends Seeder
             ['From Warehouse', 'To Warehouse', 'Transfers', 'Total Qty'],
             $topPairs->map(function ($item) {
                 return [
-                    $item->fromWarehouse->name,
-                    $item->toWarehouse->name,
+                    $item->fromWarehouse->name ?? 'Unknown',
+                    $item->toWarehouse->name ?? 'Unknown',
                     $item->transfer_count,
                     number_format($item->total_quantity),
                 ];
@@ -540,10 +587,10 @@ class StockTransferSeeder extends Seeder
                 $overdueTransfers->map(function ($transfer) {
                     return [
                         $transfer->transfer_number,
-                        $transfer->fromWarehouse->name,
-                        $transfer->toWarehouse->name,
+                        $transfer->fromWarehouse->name ?? 'Unknown',
+                        $transfer->toWarehouse->name ?? 'Unknown',
                         $transfer->expected_delivery_date?->format('Y-m-d'),
-                        now()->diffInDays($transfer->expected_delivery_date),
+                        $transfer->expected_delivery_date ? now()->diffInDays($transfer->expected_delivery_date, false) : 'N/A',
                     ];
                 })->toArray()
             );

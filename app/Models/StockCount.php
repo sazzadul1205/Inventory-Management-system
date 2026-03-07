@@ -834,40 +834,42 @@ class StockCount extends Model
      */
 
     /**
-     * Get count statistics.
+     * Get stock count statistics.
      *
      * @param int $days
-     * @return array<string, mixed>
+     * @return array
      */
     public static function getStatistics(int $days = 30): array
     {
-        $since = now()->subDays($days);
+        $query = self::where('count_date', '>=', now()->subDays($days));
 
-        $stats = self::where('count_date', '>=', $since)
-            ->selectRaw('
-                COUNT(*) as total_counts,
-                SUM(CASE WHEN status = "verified" THEN 1 ELSE 0 END) as verified_counts,
-                SUM(CASE WHEN status = "cancelled" THEN 1 ELSE 0 END) as cancelled_counts,
-                AVG(accuracy) as avg_accuracy
-            ')
-            ->first();
+        $totalCounts = $query->count();
+        $verifiedCounts = $query->where('status', self::STATUS_VERIFIED)->count();
+        $cancelledCounts = $query->where('status', self::STATUS_CANCELLED)->count();
 
-        $byType = self::where('count_date', '>=', $since)
-            ->select('count_type', DB::raw('COUNT(*) as count'))
-            ->groupBy('count_type')
-            ->get()
-            ->keyBy('count_type');
+        // Calculate average accuracy from related items, not from a non-existent column
+        $completedCounts = self::whereIn('status', [self::STATUS_COMPLETED, self::STATUS_VERIFIED])
+            ->where('count_date', '>=', now()->subDays($days))
+            ->get();
+
+        $totalAccuracy = 0;
+        $accuracyCount = 0;
+
+        foreach ($completedCounts as $count) {
+            // Assuming accuracy is an accessor that calculates from items
+            $totalAccuracy += $count->accuracy;
+            $accuracyCount++;
+        }
+
+        $avgAccuracy = $accuracyCount > 0 ? round($totalAccuracy / $accuracyCount, 2) : 0;
+        $completionRate = $totalCounts > 0 ? round(($verifiedCounts / $totalCounts) * 100, 2) : 0;
 
         return [
-            'period_days' => $days,
-            'total_counts' => $stats->total_counts ?? 0,
-            'verified_counts' => $stats->verified_counts ?? 0,
-            'cancelled_counts' => $stats->cancelled_counts ?? 0,
-            'average_accuracy' => round($stats->avg_accuracy ?? 100, 2),
-            'by_type' => $byType,
-            'completion_rate' => $stats->total_counts > 0
-                ? round(($stats->verified_counts / $stats->total_counts) * 100, 2)
-                : 0
+            'total_counts' => $totalCounts,
+            'verified_counts' => $verifiedCounts,
+            'cancelled_counts' => $cancelledCounts,
+            'average_accuracy' => $avgAccuracy,
+            'completion_rate' => $completionRate,
         ];
     }
 
