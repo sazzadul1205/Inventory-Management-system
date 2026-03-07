@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PurchaseOrder>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<PurchaseOrder>
  */
 class PurchaseOrderFactory extends Factory
 {
@@ -79,6 +79,9 @@ class PurchaseOrderFactory extends Factory
         $shippingCost = $this->faker->randomFloat(2, 20, 500);
         $totalAmount = $subtotal + $taxAmount + $shippingCost;
 
+        // Ensure created_at is a Carbon instance
+        $createdAt = Carbon::instance($orderDate)->setTimeFromTimeString($this->faker->time());
+
         return [
             'po_number' => $this->generatePONumber(),
             'supplier_id' => $supplier->id,
@@ -97,9 +100,25 @@ class PurchaseOrderFactory extends Factory
             'notes' => $this->faker->optional(0.3)->paragraph(),
             'created_by' => $user->id,
             'approved_by' => $this->getApprovedByForStatus($status, $user),
-            'created_at' => Carbon::instance($orderDate)->copy()->setTimeFromTimeString($this->faker->time()),
-            'updated_at' => function (array $attributes) {
-                return $this->faker->dateTimeBetween($attributes['created_at'], 'now');
+            'created_at' => $createdAt,
+            'updated_at' => function (array $attributes) use ($createdAt) {
+                // Ensure created_at is not greater than now
+                $now = Carbon::now();
+
+                // If created_at is in the future, use now as the start
+                $startDate = $createdAt <= $now ? $createdAt : $now;
+
+                // Make sure start date is before end date
+                if ($startDate >= $now) {
+                    return $now;
+                }
+
+                try {
+                    return $this->faker->dateTimeBetween($startDate, $now);
+                } catch (\InvalidArgumentException $e) {
+                    // Fallback to a safe date
+                    return $this->faker->dateTimeBetween($now->copy()->subDays(1), $now);
+                }
             },
         ];
     }
@@ -112,9 +131,36 @@ class PurchaseOrderFactory extends Factory
         $prefix = 'PO';
         $year = now()->format('Y');
         $month = now()->format('m');
-        $random = $this->faker->unique()->numberBetween(1000, 9999);
 
-        return "{$prefix}-{$year}{$month}-{$random}";
+        // Use a static array to track generated numbers in memory
+        static $generatedNumbers = [];
+
+        $attempts = 0;
+        $maxAttempts = 100;
+
+        do {
+            $random = $this->faker->numberBetween(1000, 9999);
+            $poNumber = "{$prefix}-{$year}{$month}-{$random}";
+            $attempts++;
+
+            // Check if already generated in this factory instance
+            $exists = in_array($poNumber, $generatedNumbers);
+
+            // Check if exists in database
+            if (!$exists) {
+                $exists = PurchaseOrder::where('po_number', $poNumber)->exists();
+            }
+
+            if ($attempts >= $maxAttempts) {
+                // Fallback: add timestamp to ensure uniqueness
+                $poNumber = "{$prefix}-{$year}{$month}-" . time() . '-' . rand(100, 999);
+                break;
+            }
+        } while ($exists);
+
+        $generatedNumbers[] = $poNumber;
+
+        return $poNumber;
     }
 
     /**
@@ -150,20 +196,42 @@ class PurchaseOrderFactory extends Factory
      */
     protected function getOrderDateForStatus(string $status): \DateTime
     {
-        return match ($status) {
-            PurchaseOrder::STATUS_RECEIVED,
-            PurchaseOrder::STATUS_CANCELLED,
-            PurchaseOrder::STATUS_PARTIALLY_RECEIVED => $this->faker->dateTimeBetween('-6 months', '-1 month'),
+        $now = Carbon::now();
 
-            PurchaseOrder::STATUS_SHIPPED,
-            PurchaseOrder::STATUS_APPROVED => $this->faker->dateTimeBetween('-3 months', '-1 week'),
+        try {
+            return match ($status) {
+                PurchaseOrder::STATUS_RECEIVED,
+                PurchaseOrder::STATUS_CANCELLED,
+                PurchaseOrder::STATUS_PARTIALLY_RECEIVED => $this->faker->dateTimeBetween(
+                    $now->copy()->subMonths(6)->startOfDay(),
+                    $now->copy()->subMonths(1)->endOfDay()
+                ),
 
-            PurchaseOrder::STATUS_PENDING => $this->faker->dateTimeBetween('-1 month', '-1 day'),
+                PurchaseOrder::STATUS_SHIPPED,
+                PurchaseOrder::STATUS_APPROVED => $this->faker->dateTimeBetween(
+                    $now->copy()->subMonths(3)->startOfDay(),
+                    $now->copy()->subWeek()->endOfDay()
+                ),
 
-            PurchaseOrder::STATUS_DRAFT => $this->faker->dateTimeBetween('-1 week', 'now'),
+                PurchaseOrder::STATUS_PENDING => $this->faker->dateTimeBetween(
+                    $now->copy()->subMonth()->startOfDay(),
+                    $now->copy()->subDay()->endOfDay()
+                ),
 
-            default => $this->faker->dateTimeBetween('-3 months', 'now'),
-        };
+                PurchaseOrder::STATUS_DRAFT => $this->faker->dateTimeBetween(
+                    $now->copy()->subWeek()->startOfDay(),
+                    $now
+                ),
+
+                default => $this->faker->dateTimeBetween(
+                    $now->copy()->subMonths(3),
+                    $now
+                ),
+            };
+        } catch (\InvalidArgumentException $e) {
+            // Fallback to a safe date if there's any issue
+            return $this->faker->dateTimeBetween($now->copy()->subDays(30), $now);
+        }
     }
 
     /**
@@ -182,15 +250,28 @@ class PurchaseOrderFactory extends Factory
      */
     protected function getActualDeliveryDate(string $status, \DateTime $expectedDate): ?\DateTime
     {
-        return match ($status) {
+        if (!in_array($status, [
             PurchaseOrder::STATUS_RECEIVED,
-            PurchaseOrder::STATUS_PARTIALLY_RECEIVED => $this->faker->dateTimeBetween(
-                Carbon::instance($expectedDate)->copy()->subDays(5),
-                Carbon::instance($expectedDate)->copy()->addDays(10)
-            ),
+            PurchaseOrder::STATUS_PARTIALLY_RECEIVED
+        ])) {
+            return null;
+        }
 
-            default => null,
-        };
+        $expectedCarbon = Carbon::instance($expectedDate);
+
+        // Ensure start date is before end date
+        $startDate = $expectedCarbon->copy()->subDays(5);
+        $endDate = $expectedCarbon->copy()->addDays(10);
+
+        // Make sure start date is not after end date
+        if ($startDate > $endDate) {
+            // Swap if they're in wrong order
+            $temp = $startDate;
+            $startDate = $endDate;
+            $endDate = $temp;
+        }
+
+        return $this->faker->dateTimeBetween($startDate, $endDate);
     }
 
     /**
@@ -272,14 +353,29 @@ class PurchaseOrderFactory extends Factory
      */
     public function received(): static
     {
-        $expectedDate = $this->faker->dateTimeBetween('-3 months', '-1 month');
+        $now = Carbon::now();
+        $orderDate = $this->faker->dateTimeBetween(
+            $now->copy()->subMonths(6),
+            $now->copy()->subMonths(3)
+        );
 
-        return $this->state(function (array $attributes) use ($expectedDate) {
+        $expectedDate = $this->faker->dateTimeBetween(
+            Carbon::instance($orderDate)->addDays(3),
+            Carbon::instance($orderDate)->addDays(21)
+        );
+
+        // Ensure actual delivery date is after expected date
+        $actualDate = $this->faker->dateTimeBetween(
+            $expectedDate,
+            $now
+        );
+
+        return $this->state(function (array $attributes) use ($orderDate, $expectedDate, $actualDate) {
             return [
                 'status' => PurchaseOrder::STATUS_RECEIVED,
-                'order_date' => $this->faker->dateTimeBetween('-6 months', '-3 months'),
+                'order_date' => $orderDate,
                 'expected_delivery_date' => $expectedDate,
-                'actual_delivery_date' => $this->faker->dateTimeBetween($expectedDate, 'now'),
+                'actual_delivery_date' => $actualDate,
             ];
         });
     }
@@ -317,11 +413,30 @@ class PurchaseOrderFactory extends Factory
      */
     public function overdue(): static
     {
-        $expectedDate = $this->faker->dateTimeBetween('-30 days', '-5 days');
+        $now = Carbon::now();
 
-        return $this->state(function (array $attributes) use ($expectedDate) {
+        try {
+            $expectedDate = $this->faker->dateTimeBetween(
+                $now->copy()->subDays(30),
+                $now->copy()->subDays(5)
+            );
+        } catch (\InvalidArgumentException $e) {
+            $expectedDate = $now->copy()->subDays(10);
+        }
+
+        try {
+            $orderDate = $this->faker->dateTimeBetween(
+                Carbon::instance($expectedDate)->subDays(21),
+                Carbon::instance($expectedDate)->subDays(7)
+            );
+        } catch (\InvalidArgumentException $e) {
+            $orderDate = Carbon::instance($expectedDate)->subDays(14);
+        }
+
+        return $this->state(function (array $attributes) use ($orderDate, $expectedDate) {
             return [
                 'status' => PurchaseOrder::STATUS_APPROVED,
+                'order_date' => $orderDate,
                 'expected_delivery_date' => $expectedDate,
                 'actual_delivery_date' => null,
                 'notes' => 'Overdue - follow up with supplier',
@@ -355,9 +470,12 @@ class PurchaseOrderFactory extends Factory
     public function urgent(): static
     {
         return $this->state(function (array $attributes) {
+            $now = Carbon::now();
+            $expectedDate = $now->copy()->addDays($this->faker->numberBetween(2, 5));
+
             return [
                 'shipping_method' => $this->faker->randomElement(['Next Day Air', '2-Day Air', 'Expedited']),
-                'expected_delivery_date' => now()->addDays($this->faker->numberBetween(2, 5)),
+                'expected_delivery_date' => $expectedDate,
                 'shipping_cost' => $this->faker->randomFloat(2, 100, 500),
             ];
         });
@@ -402,18 +520,37 @@ class PurchaseOrderFactory extends Factory
     /**
      * Create PO with items.
      */
+    /**
+     * Create PO with items.
+     */
     public function withItems(int $count = 3): static
     {
         return $this->afterCreating(function (PurchaseOrder $po) use ($count) {
-            if (class_exists('\App\Models\PurchaseOrderItem')) {
-                $products = \App\Models\Product::inRandomOrder()->limit($count)->get();
+            if (class_exists('PurchaseOrderItem')) {
+                // Get all product IDs that might already be used
+                $usedProductIds = $po->items()->pluck('product_id')->toArray();
+
+                // Get random products excluding already used ones
+                $products = Product::whereNotIn('id', $usedProductIds)
+                    ->inRandomOrder()
+                    ->limit($count)
+                    ->get();
+
+                // If we don't have enough products, get more from the pool
+                if ($products->count() < $count) {
+                    $additionalNeeded = $count - $products->count();
+                    $additionalProducts = Product::inRandomOrder()
+                        ->limit($additionalNeeded)
+                        ->get();
+                    $products = $products->concat($additionalProducts);
+                }
 
                 foreach ($products as $index => $product) {
                     $quantity = $this->faker->numberBetween(1, 100);
                     $unitPrice = $product->lowest_unit_cost ?? $this->faker->randomFloat(2, 10, 500);
                     $received = $this->calculateReceivedQuantity($po->status, $quantity);
 
-                    \App\Models\PurchaseOrderItem::factory()
+                    PurchaseOrderItem::factory()
                         ->forProduct($product->id)
                         ->forPurchaseOrder($po->id)
                         ->withQuantity($quantity, $unitPrice, $received)
@@ -444,9 +581,9 @@ class PurchaseOrderFactory extends Factory
     public function withReceipts(int $count = 1): static
     {
         return $this->afterCreating(function (PurchaseOrder $po) use ($count) {
-            if (class_exists('\App\Models\PurchaseReceipt') && $po->items()->exists()) {
+            if (class_exists('PurchaseReceipt') && $po->items()->exists()) {
                 for ($i = 0; $i < $count; $i++) {
-                    \App\Models\PurchaseReceipt::factory()
+                    PurchaseReceipt::factory()
                         ->forPurchaseOrder($po->id)
                         ->create();
                 }
@@ -460,12 +597,30 @@ class PurchaseOrderFactory extends Factory
     /**
      * Create fully loaded PO with items and receipts.
      */
+    /**
+     * Create fully loaded PO with items and receipts.
+     */
     public function fullyLoaded(): static
     {
         return $this->afterCreating(function (PurchaseOrder $po) {
             $itemCount = $this->faker->numberBetween(2, 5);
             if (class_exists('PurchaseOrderItem')) {
-                $products = Product::inRandomOrder()->limit($itemCount)->get();
+                // Get products not already in this PO
+                $usedProductIds = $po->items()->pluck('product_id')->toArray();
+
+                $products = Product::whereNotIn('id', $usedProductIds)
+                    ->inRandomOrder()
+                    ->limit($itemCount)
+                    ->get();
+
+                // If we don't have enough products, get more
+                if ($products->count() < $itemCount) {
+                    $additionalNeeded = $itemCount - $products->count();
+                    $additionalProducts = Product::inRandomOrder()
+                        ->limit($additionalNeeded)
+                        ->get();
+                    $products = $products->concat($additionalProducts);
+                }
 
                 foreach ($products as $product) {
                     $quantity = $this->faker->numberBetween(1, 100);

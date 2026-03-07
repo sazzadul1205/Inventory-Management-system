@@ -21,7 +21,7 @@ class ShipmentSeeder extends Seeder
     /**
      * Number of shipments to create
      */
-    protected const SHIPMENT_COUNT = 30; // Was 300
+    protected const SHIPMENT_COUNT = 10; // Was 300
 
     /**
      * Run the database seeds.

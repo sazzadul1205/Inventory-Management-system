@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     /**
      * Number of products to create
      */
-    protected const PRODUCT_COUNT = 50; // Was 500
+    protected const PRODUCT_COUNT = 5; // Was 500
     /**
      * Run the database seeds.
      */

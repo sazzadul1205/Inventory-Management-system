@@ -21,7 +21,7 @@ class PurchaseReceiptItemSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             PurchaseReceipt::class => 'No purchase receipts found',
             PurchaseOrderItem::class => 'No purchase order items found',
@@ -35,7 +35,7 @@ class PurchaseReceiptItemSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating purchase receipt items...');
-        $this->command->getOutput()->progressStart(100);
+        $this->command->getOutput()->progressStart(150); // Increased for more items
 
         $this->createItemsForExistingReceipts();
         $this->createSpecializedReceiptItems();
@@ -80,25 +80,41 @@ class PurchaseReceiptItemSeeder extends Seeder
             }
 
             // Determine how many items to receive (could be all or some)
-            $itemsToReceive = fake()->numberBetween(1, $poItems->count());
+            $itemsToReceive = fake()->numberBetween(1, min(3, $poItems->count()));
             $selectedPOItems = $poItems->random(min($itemsToReceive, $poItems->count()));
 
             foreach ($selectedPOItems as $poItem) {
+                // Check if this PO item has remaining quantity
+                $remainingQuantity = $poItem->quantity_ordered - $poItem->quantity_received;
+
+                if ($remainingQuantity <= 0) {
+                    continue;
+                }
+
                 $location = Location::where('warehouse_id', $receipt->warehouse_id)
                     ->inRandomOrder()
                     ->first();
 
-                $quantity = fake()->numberBetween(1, $poItem->quantity_ordered);
+                // Don't receive more than remaining
+                $quantity = fake()->numberBetween(1, min($remainingQuantity, 50));
 
                 PurchaseReceiptItem::factory()
                     ->forPurchaseReceipt($receipt->id)
                     ->forPurchaseOrderItem($poItem->id)
                     ->forProduct($poItem->product_id)
                     ->atLocation($location->id)
-                    ->withQuantity(min($quantity, $poItem->quantity_ordered))
+                    ->withQuantity($quantity)
                     ->withUnitCost($poItem->unit_price)
                     ->withProductTracking($poItem->product)
                     ->create();
+
+                // Update the PO item's received quantity
+                try {
+                    $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                    $freshPoItem->receive($quantity);
+                } catch (\Exception $e) {
+                    $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                }
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -156,33 +172,106 @@ class PurchaseReceiptItemSeeder extends Seeder
             $batchProducts = Product::factory()->batchTracked()->count(5)->create();
         }
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(10)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(8)->get();
 
         foreach ($receipts as $receipt) {
-            foreach ($batchProducts->random(2) as $product) {
+            // Track products used in this PO to avoid duplicates
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
+
+            foreach ($batchProducts->random(min(2, $batchProducts->count())) as $product) {
+                // Skip if this product is already in the PO
+                if (in_array($product->id, $usedProductIds)) {
+                    continue;
+                }
+
+                // Find or create PO item with enough remaining quantity
                 $poItem = PurchaseOrderItem::where('product_id', $product->id)
-                    ->inRandomOrder()
-                    ->first() ?? PurchaseOrderItem::factory()
-                    ->forProduct($product->id)
-                    ->create();
+                    ->where('purchase_order_id', $receipt->purchase_order_id)
+                    ->whereRaw('quantity_received < quantity_ordered')
+                    ->first();
+
+                if (!$poItem) {
+                    // Check again to avoid race conditions
+                    $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                        ->where('product_id', $product->id)
+                        ->exists();
+
+                    if ($exists) {
+                        continue;
+                    }
+
+                    // Create with enough quantity for multiple batches
+                    $poItem = PurchaseOrderItem::factory()
+                        ->forPurchaseOrder($receipt->purchase_order_id)
+                        ->forProduct($product->id)
+                        ->withQuantity(200, fake()->randomFloat(2, 5, 50), 0)
+                        ->create();
+
+                    $usedProductIds[] = $product->id;
+                }
 
                 $location = Location::where('warehouse_id', $receipt->warehouse_id)
                     ->inRandomOrder()
                     ->first();
 
+                $remainingForProduct = $poItem->quantity_ordered - $poItem->quantity_received;
+                $totalBatchQuantity = 0;
+                $batchItems = [];
+
+                // Determine how many batches we can create based on remaining quantity
+                $numBatches = min(3, floor($remainingForProduct / 10));
+
                 // Create multiple batches for the same product
-                for ($i = 0; $i < 3; $i++) {
-                    PurchaseReceiptItem::factory()
+                for ($i = 0; $i < $numBatches; $i++) {
+                    $maxForThisBatch = min(50, $remainingForProduct - $totalBatchQuantity);
+
+                    if ($maxForThisBatch <= 5) {
+                        // If remaining is too small, add it to the last batch
+                        if ($i === $numBatches - 1 && $remainingForProduct - $totalBatchQuantity > 0) {
+                            $quantity = $remainingForProduct - $totalBatchQuantity;
+                        } else {
+                            break;
+                        }
+                    } else {
+                        $quantity = fake()->numberBetween(5, $maxForThisBatch);
+                    }
+
+                    $quantity = min($quantity, $remainingForProduct - $totalBatchQuantity);
+
+                    if ($quantity <= 0) {
+                        continue;
+                    }
+
+                    $batchItem = PurchaseReceiptItem::factory()
                         ->forPurchaseReceipt($receipt->id)
                         ->forPurchaseOrderItem($poItem->id)
                         ->forProduct($product->id)
                         ->atLocation($location->id)
                         ->withBatch('BATCH-' . date('y') . '-' . str_pad($i + 1, 3, '0', STR_PAD_LEFT))
-                        ->withQuantity(fake()->numberBetween(10, 50))
+                        ->withQuantity($quantity)
                         ->withUnitCost(fake()->randomFloat(2, 5, 50))
                         ->create();
 
+                    $batchItems[] = $batchItem;
+                    $totalBatchQuantity += $quantity;
                     $this->command->getOutput()->progressAdvance(1);
+                }
+
+                // Update PO item received quantity only once with the total
+                if ($totalBatchQuantity > 0) {
+                    try {
+                        $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                        $freshPoItem->receive($totalBatchQuantity);
+                    } catch (\Exception $e) {
+                        $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+
+                        // Clean up on failure
+                        foreach ($batchItems as $item) {
+                            $item->delete();
+                        }
+                    }
                 }
             }
         }
@@ -201,24 +290,56 @@ class PurchaseReceiptItemSeeder extends Seeder
             $serialProducts = Product::factory()->serialTracked()->count(5)->create();
         }
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(8)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(6)->get();
 
         foreach ($receipts as $receipt) {
-            foreach ($serialProducts->random(2) as $product) {
+            // Track products used in this PO to avoid duplicates
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
+
+            foreach ($serialProducts->random(min(2, $serialProducts->count())) as $product) {
+                // Skip if this product is already in the PO
+                if (in_array($product->id, $usedProductIds)) {
+                    continue;
+                }
+
+                // Find or create PO item with enough remaining quantity
                 $poItem = PurchaseOrderItem::where('product_id', $product->id)
-                    ->inRandomOrder()
-                    ->first() ?? PurchaseOrderItem::factory()
-                    ->forProduct($product->id)
-                    ->withQuantity(10, 100, 0)
-                    ->create();
+                    ->where('purchase_order_id', $receipt->purchase_order_id)
+                    ->whereRaw('quantity_received < quantity_ordered')
+                    ->first();
+
+                if (!$poItem) {
+                    // Check again to avoid race conditions
+                    $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                        ->where('product_id', $product->id)
+                        ->exists();
+
+                    if ($exists) {
+                        continue;
+                    }
+
+                    $poItem = PurchaseOrderItem::factory()
+                        ->forPurchaseOrder($receipt->purchase_order_id)
+                        ->forProduct($product->id)
+                        ->withQuantity(10, fake()->randomFloat(2, 50, 200), 0)
+                        ->create();
+
+                    $usedProductIds[] = $product->id;
+                }
 
                 $location = Location::where('warehouse_id', $receipt->warehouse_id)
                     ->inRandomOrder()
                     ->first();
 
+                $remainingForProduct = $poItem->quantity_ordered - $poItem->quantity_received;
+                $serialCount = min(5, $remainingForProduct);
+                $serialItems = [];
+
                 // Create individual serial numbers
-                for ($i = 0; $i < 5; $i++) {
-                    PurchaseReceiptItem::factory()
+                for ($i = 0; $i < $serialCount; $i++) {
+                    $serialItem = PurchaseReceiptItem::factory()
                         ->forPurchaseReceipt($receipt->id)
                         ->forPurchaseOrderItem($poItem->id)
                         ->forProduct($product->id)
@@ -228,7 +349,23 @@ class PurchaseReceiptItemSeeder extends Seeder
                         ->withUnitCost(fake()->randomFloat(2, 50, 200))
                         ->create();
 
+                    $serialItems[] = $serialItem;
                     $this->command->getOutput()->progressAdvance(1);
+                }
+
+                // Update PO item with total received quantity
+                if ($serialCount > 0) {
+                    try {
+                        $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                        $freshPoItem->receive($serialCount);
+                    } catch (\Exception $e) {
+                        $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+
+                        // Clean up on failure
+                        foreach ($serialItems as $item) {
+                            $item->delete();
+                        }
+                    }
                 }
             }
         }
@@ -247,28 +384,71 @@ class PurchaseReceiptItemSeeder extends Seeder
             $expirableProducts = Product::factory()->expirable()->count(5)->create();
         }
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(6)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(5)->get();
 
         foreach ($receipts as $receipt) {
-            foreach ($expirableProducts->random(2) as $product) {
+            // Track products used in this PO to avoid duplicates
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
+
+            foreach ($expirableProducts->random(min(2, $expirableProducts->count())) as $product) {
+                // Skip if this product is already in the PO
+                if (in_array($product->id, $usedProductIds)) {
+                    continue;
+                }
+
+                // Find or create PO item with enough remaining quantity
                 $poItem = PurchaseOrderItem::where('product_id', $product->id)
-                    ->inRandomOrder()
-                    ->first() ?? PurchaseOrderItem::factory()
-                    ->forProduct($product->id)
-                    ->create();
+                    ->where('purchase_order_id', $receipt->purchase_order_id)
+                    ->whereRaw('quantity_received < quantity_ordered')
+                    ->first();
+
+                if (!$poItem) {
+                    // Check again to avoid race conditions
+                    $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                        ->where('product_id', $product->id)
+                        ->exists();
+
+                    if ($exists) {
+                        continue;
+                    }
+
+                    $poItem = PurchaseOrderItem::factory()
+                        ->forPurchaseOrder($receipt->purchase_order_id)
+                        ->forProduct($product->id)
+                        ->withQuantity(50, fake()->randomFloat(2, 10, 30), 0)
+                        ->create();
+
+                    $usedProductIds[] = $product->id;
+                }
 
                 $location = Location::where('warehouse_id', $receipt->warehouse_id)
                     ->inRandomOrder()
                     ->first();
 
-                PurchaseReceiptItem::factory()
-                    ->forPurchaseReceipt($receipt->id)
-                    ->forPurchaseOrderItem($poItem->id)
-                    ->forProduct($product->id)
-                    ->atLocation($location->id)
-                    ->withExpiry(now()->addMonths(fake()->numberBetween(1, 6))->format('Y-m-d'))
-                    ->withQuantity(fake()->numberBetween(10, 30))
-                    ->create();
+                $remainingQuantity = $poItem->quantity_ordered - $poItem->quantity_received;
+                $quantity = fake()->numberBetween(5, min(30, $remainingQuantity));
+
+                if ($quantity > 0) {
+                    $receiptItem = PurchaseReceiptItem::factory()
+                        ->forPurchaseReceipt($receipt->id)
+                        ->forPurchaseOrderItem($poItem->id)
+                        ->forProduct($product->id)
+                        ->atLocation($location->id)
+                        ->withExpiry(now()->addMonths(fake()->numberBetween(1, 6))->format('Y-m-d'))
+                        ->withQuantity($quantity)
+                        ->create();
+
+                    // Update PO item
+                    try {
+                        $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                        $freshPoItem->receive($quantity);
+                    } catch (\Exception $e) {
+                        $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                        $receiptItem->delete();
+                    }
+                }
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -285,27 +465,68 @@ class PurchaseReceiptItemSeeder extends Seeder
         $receipts = PurchaseReceipt::inRandomOrder()->limit(4)->get();
 
         foreach ($receipts as $receipt) {
-            $products = Product::inRandomOrder()->limit(2)->get();
+            // Track products used in this PO to avoid duplicates
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
+
+            $products = Product::whereNotIn('id', $usedProductIds)
+                ->inRandomOrder()
+                ->limit(2)
+                ->get();
 
             foreach ($products as $product) {
+                // Find or create PO item with enough remaining quantity
                 $poItem = PurchaseOrderItem::where('product_id', $product->id)
-                    ->inRandomOrder()
-                    ->first() ?? PurchaseOrderItem::factory()
-                    ->forProduct($product->id)
-                    ->create();
+                    ->where('purchase_order_id', $receipt->purchase_order_id)
+                    ->whereRaw('quantity_received < quantity_ordered')
+                    ->first();
+
+                if (!$poItem) {
+                    // Check again to avoid race conditions
+                    $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                        ->where('product_id', $product->id)
+                        ->exists();
+
+                    if ($exists) {
+                        continue;
+                    }
+
+                    $poItem = PurchaseOrderItem::factory()
+                        ->forPurchaseOrder($receipt->purchase_order_id)
+                        ->forProduct($product->id)
+                        ->withQuantity(30, fake()->randomFloat(2, 5, 20), 0)
+                        ->create();
+
+                    $usedProductIds[] = $product->id;
+                }
 
                 $location = Location::where('warehouse_id', $receipt->warehouse_id)
                     ->inRandomOrder()
                     ->first();
 
-                PurchaseReceiptItem::factory()
-                    ->forPurchaseReceipt($receipt->id)
-                    ->forPurchaseOrderItem($poItem->id)
-                    ->forProduct($product->id)
-                    ->atLocation($location->id)
-                    ->expired()
-                    ->withQuantity(fake()->numberBetween(5, 15))
-                    ->create();
+                $remainingQuantity = $poItem->quantity_ordered - $poItem->quantity_received;
+                $quantity = fake()->numberBetween(5, min(15, $remainingQuantity));
+
+                if ($quantity > 0) {
+                    $receiptItem = PurchaseReceiptItem::factory()
+                        ->forPurchaseReceipt($receipt->id)
+                        ->forPurchaseOrderItem($poItem->id)
+                        ->forProduct($product->id)
+                        ->atLocation($location->id)
+                        ->expired()
+                        ->withQuantity($quantity)
+                        ->create();
+
+                    // Update PO item
+                    try {
+                        $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                        $freshPoItem->receive($quantity);
+                    } catch (\Exception $e) {
+                        $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                        $receiptItem->delete();
+                    }
+                }
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -319,28 +540,81 @@ class PurchaseReceiptItemSeeder extends Seeder
     {
         $this->command->info('  - Creating multi-location items...');
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(5)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(4)->get();
 
         foreach ($receipts as $receipt) {
-            $product = Product::inRandomOrder()->first();
-            $poItem = PurchaseOrderItem::where('product_id', $product->id)
+            // Get a product not already in this PO
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
+
+            $product = Product::whereNotIn('id', $usedProductIds)
                 ->inRandomOrder()
-                ->first() ?? PurchaseOrderItem::factory()
-                ->forProduct($product->id)
-                ->withQuantity(100, 50, 0)
-                ->create();
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
+            // Get or create a PO item with enough quantity
+            $poItem = PurchaseOrderItem::where('product_id', $product->id)
+                ->where('purchase_order_id', $receipt->purchase_order_id)
+                ->whereRaw('quantity_received < quantity_ordered')
+                ->first();
+
+            if (!$poItem) {
+                // Check again to avoid race conditions
+                $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                    ->where('product_id', $product->id)
+                    ->exists();
+
+                if ($exists) {
+                    continue;
+                }
+
+                // Create a new PO item with sufficient quantity
+                $poItem = PurchaseOrderItem::factory()
+                    ->forPurchaseOrder($receipt->purchase_order_id)
+                    ->forProduct($product->id)
+                    ->withQuantity(100, 50, 0)
+                    ->create();
+            }
 
             $locations = Location::where('warehouse_id', $receipt->warehouse_id)
                 ->inRandomOrder()
                 ->limit(3)
                 ->get();
 
+            // Calculate remaining quantity that can be received
+            $remainingQuantity = $poItem->quantity_ordered - $poItem->quantity_received;
             $totalQuantity = 0;
-            foreach ($locations as $location) {
-                $quantity = fake()->numberBetween(10, 30);
-                $totalQuantity += $quantity;
+            $itemsCreated = [];
 
-                PurchaseReceiptItem::factory()
+            foreach ($locations as $index => $location) {
+                // Calculate max quantity for this location
+                $maxForThisLocation = $remainingQuantity - $totalQuantity;
+
+                if ($maxForThisLocation <= 0) {
+                    break;
+                }
+
+                // For the last location, use all remaining quantity
+                if ($index === $locations->count() - 1) {
+                    $quantity = $maxForThisLocation;
+                } else {
+                    // For other locations, take a portion
+                    $maxPortion = min(25, floor($maxForThisLocation / 2));
+                    $quantity = fake()->numberBetween(5, max(5, $maxPortion));
+                }
+
+                // Final safety check
+                $quantity = min($quantity, $maxForThisLocation);
+
+                if ($quantity <= 0) {
+                    continue;
+                }
+
+                $receiptItem = PurchaseReceiptItem::factory()
                     ->forPurchaseReceipt($receipt->id)
                     ->forPurchaseOrderItem($poItem->id)
                     ->forProduct($product->id)
@@ -349,11 +623,26 @@ class PurchaseReceiptItemSeeder extends Seeder
                     ->withUnitCost($poItem->unit_price)
                     ->create();
 
+                $itemsCreated[] = $receiptItem;
+                $totalQuantity += $quantity;
                 $this->command->getOutput()->progressAdvance(1);
             }
 
-            // Update PO item received quantity
-            $poItem->receive($totalQuantity);
+            // Update PO item received quantity only once with the total
+            if ($totalQuantity > 0) {
+                try {
+                    // Use a fresh instance to avoid stale data
+                    $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                    $freshPoItem->receive($totalQuantity);
+                } catch (\Exception $e) {
+                    $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+
+                    // If failed, delete the receipt items to maintain consistency
+                    foreach ($itemsCreated as $item) {
+                        $item->delete();
+                    }
+                }
+            }
         }
     }
 
@@ -364,19 +653,37 @@ class PurchaseReceiptItemSeeder extends Seeder
     {
         $this->command->info('  - Creating quality hold items...');
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(4)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(3)->get();
 
         foreach ($receipts as $receipt) {
-            $poItem = $receipt->purchaseOrder->items()->first();
+            // Get a PO item that has remaining quantity
+            $poItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->whereRaw('quantity_received < quantity_ordered')
+                ->inRandomOrder()
+                ->first();
 
             if ($poItem) {
-                PurchaseReceiptItem::factory()
-                    ->forPurchaseReceipt($receipt->id)
-                    ->forPurchaseOrderItem($poItem->id)
-                    ->forProduct($poItem->product_id)
-                    ->onQualityHold()
-                    ->withQuantity(fake()->numberBetween(5, 10))
-                    ->create();
+                $remainingQuantity = $poItem->quantity_ordered - $poItem->quantity_received;
+                $quantity = fake()->numberBetween(5, min(10, $remainingQuantity));
+
+                if ($quantity > 0) {
+                    $receiptItem = PurchaseReceiptItem::factory()
+                        ->forPurchaseReceipt($receipt->id)
+                        ->forPurchaseOrderItem($poItem->id)
+                        ->forProduct($poItem->product_id)
+                        ->onQualityHold()
+                        ->withQuantity($quantity)
+                        ->create();
+
+                    // Update PO item
+                    try {
+                        $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                        $freshPoItem->receive($quantity);
+                    } catch (\Exception $e) {
+                        $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                        $receiptItem->delete();
+                    }
+                }
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -393,16 +700,34 @@ class PurchaseReceiptItemSeeder extends Seeder
         $receipts = PurchaseReceipt::inRandomOrder()->limit(3)->get();
 
         foreach ($receipts as $receipt) {
-            $poItem = $receipt->purchaseOrder->items()->first();
+            // Get a PO item that has remaining quantity
+            $poItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->whereRaw('quantity_received < quantity_ordered')
+                ->inRandomOrder()
+                ->first();
 
             if ($poItem) {
-                PurchaseReceiptItem::factory()
-                    ->forPurchaseReceipt($receipt->id)
-                    ->forPurchaseOrderItem($poItem->id)
-                    ->forProduct($poItem->product_id)
-                    ->damaged()
-                    ->withQuantity(fake()->numberBetween(2, 5))
-                    ->create();
+                $remainingQuantity = $poItem->quantity_ordered - $poItem->quantity_received;
+                $quantity = fake()->numberBetween(2, min(5, $remainingQuantity));
+
+                if ($quantity > 0) {
+                    $receiptItem = PurchaseReceiptItem::factory()
+                        ->forPurchaseReceipt($receipt->id)
+                        ->forPurchaseOrderItem($poItem->id)
+                        ->forProduct($poItem->product_id)
+                        ->damaged()
+                        ->withQuantity($quantity)
+                        ->create();
+
+                    // Update PO item
+                    try {
+                        $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                        $freshPoItem->receive($quantity);
+                    } catch (\Exception $e) {
+                        $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                        $receiptItem->delete();
+                    }
+                }
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -416,17 +741,61 @@ class PurchaseReceiptItemSeeder extends Seeder
     {
         $this->command->info('  - Creating high-value items...');
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(5)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(4)->get();
 
         foreach ($receipts as $receipt) {
-            $product = Product::inRandomOrder()->first();
+            // Get a product not already in this PO
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
 
-            PurchaseReceiptItem::factory()
-                ->forPurchaseReceipt($receipt->id)
+            $product = Product::whereNotIn('id', $usedProductIds)
+                ->inRandomOrder()
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
+            // Check if product already exists in this PO
+            $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->where('product_id', $product->id)
+                ->exists();
+
+            if ($exists) {
+                continue;
+            }
+
+            // Create a new PO item specifically for this high-value item
+            $poItem = PurchaseOrderItem::factory()
+                ->forPurchaseOrder($receipt->purchase_order_id)
                 ->forProduct($product->id)
-                ->withUnitCost(fake()->randomFloat(2, 500, 5000))
-                ->withQuantity(fake()->numberBetween(1, 3))
+                ->withQuantity(5, fake()->randomFloat(2, 500, 5000), 0)
                 ->create();
+
+            $location = Location::where('warehouse_id', $receipt->warehouse_id)
+                ->inRandomOrder()
+                ->first();
+
+            $quantity = fake()->numberBetween(1, 3);
+
+            $receiptItem = PurchaseReceiptItem::factory()
+                ->forPurchaseReceipt($receipt->id)
+                ->forPurchaseOrderItem($poItem->id)
+                ->forProduct($product->id)
+                ->atLocation($location->id)
+                ->withUnitCost($poItem->unit_price)
+                ->withQuantity($quantity)
+                ->create();
+
+            // Update PO item
+            try {
+                $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                $freshPoItem->receive($quantity);
+            } catch (\Exception $e) {
+                $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                $receiptItem->delete();
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -439,17 +808,61 @@ class PurchaseReceiptItemSeeder extends Seeder
     {
         $this->command->info('  - Creating bulk items...');
 
-        $receipts = PurchaseReceipt::inRandomOrder()->limit(4)->get();
+        $receipts = PurchaseReceipt::inRandomOrder()->limit(3)->get();
 
         foreach ($receipts as $receipt) {
-            $product = Product::inRandomOrder()->first();
+            // Get a product not already in this PO
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
 
-            PurchaseReceiptItem::factory()
-                ->forPurchaseReceipt($receipt->id)
+            $product = Product::whereNotIn('id', $usedProductIds)
+                ->inRandomOrder()
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
+            // Check if product already exists in this PO
+            $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->where('product_id', $product->id)
+                ->exists();
+
+            if ($exists) {
+                continue;
+            }
+
+            // Create a new PO item specifically for this bulk item
+            $poItem = PurchaseOrderItem::factory()
+                ->forPurchaseOrder($receipt->purchase_order_id)
                 ->forProduct($product->id)
-                ->withUnitCost(fake()->randomFloat(2, 0.5, 5))
-                ->withQuantity(fake()->numberBetween(100, 1000))
+                ->withQuantity(1000, fake()->randomFloat(2, 0.5, 5), 0)
                 ->create();
+
+            $location = Location::where('warehouse_id', $receipt->warehouse_id)
+                ->inRandomOrder()
+                ->first();
+
+            $quantity = fake()->numberBetween(100, min(500, $poItem->quantity_ordered));
+
+            $receiptItem = PurchaseReceiptItem::factory()
+                ->forPurchaseReceipt($receipt->id)
+                ->forPurchaseOrderItem($poItem->id)
+                ->forProduct($product->id)
+                ->atLocation($location->id)
+                ->withUnitCost($poItem->unit_price)
+                ->withQuantity($quantity)
+                ->create();
+
+            // Update PO item
+            try {
+                $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                $freshPoItem->receive($quantity);
+            } catch (\Exception $e) {
+                $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                $receiptItem->delete();
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -469,16 +882,61 @@ class PurchaseReceiptItemSeeder extends Seeder
         }
 
         foreach ($receipts as $receipt) {
-            $product = Product::inRandomOrder()->first();
+            // Get a product not already in this PO
+            $usedProductIds = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->pluck('product_id')
+                ->toArray();
 
-            PurchaseReceiptItem::factory()
-                ->forPurchaseReceipt($receipt->id)
+            $product = Product::whereNotIn('id', $usedProductIds)
+                ->inRandomOrder()
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
+            // Check if product already exists in this PO
+            $exists = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                ->where('product_id', $product->id)
+                ->exists();
+
+            if ($exists) {
+                continue;
+            }
+
+            // Create a new PO item specifically for cross-dock
+            $poItem = PurchaseOrderItem::factory()
+                ->forPurchaseOrder($receipt->purchase_order_id)
                 ->forProduct($product->id)
-                ->withQuantity(fake()->numberBetween(20, 50))
+                ->withQuantity(100, fake()->randomFloat(2, 10, 50), 0)
+                ->create();
+
+            $location = Location::where('warehouse_id', $receipt->warehouse_id)
+                ->inRandomOrder()
+                ->first();
+
+            $quantity = fake()->numberBetween(20, 50);
+
+            $receiptItem = PurchaseReceiptItem::factory()
+                ->forPurchaseReceipt($receipt->id)
+                ->forPurchaseOrderItem($poItem->id)
+                ->forProduct($product->id)
+                ->atLocation($location->id)
+                ->withQuantity($quantity)
+                ->withUnitCost($poItem->unit_price)
                 ->state([
                     'notes' => 'Cross-dock - transferred to shipping',
                 ])
                 ->create();
+
+            // Update PO item
+            try {
+                $freshPoItem = PurchaseOrderItem::find($poItem->id);
+                $freshPoItem->receive($quantity);
+            } catch (\Exception $e) {
+                $this->command->warn("Could not receive quantity for PO item #{$poItem->id}: " . $e->getMessage());
+                $receiptItem->delete();
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -499,8 +957,11 @@ class PurchaseReceiptItemSeeder extends Seeder
         $serialCount = PurchaseReceiptItem::whereNotNull('serial_number')->count();
         $expiryCount = PurchaseReceiptItem::whereNotNull('expiry_date')->count();
 
+        // Use the correct scope names from the model
         $expiredCount = PurchaseReceiptItem::expired()->count();
-        $expiringSoon = PurchaseReceiptItem::expiringSoon(30)->count();
+
+        // For expiring soon, we need to use the getExpiringItems method instead of a scope
+        $expiringSoon = PurchaseReceiptItem::getExpiringItems(30)->count();
 
         $this->command->table(
             ['Metric', 'Value'],

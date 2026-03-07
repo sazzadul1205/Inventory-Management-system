@@ -19,7 +19,7 @@ class SalesOrderSeeder extends Seeder
     /**
      * Number of sales orders to create
      */
-    protected const SO_COUNT = 40; // Was 400
+    protected const SO_COUNT = 10; // Was 400
 
     /**
      * Run the database seeds.

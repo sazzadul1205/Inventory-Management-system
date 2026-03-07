@@ -21,14 +21,14 @@ class PurchaseReceiptSeeder extends Seeder
     /**
      * Number of receipts to create
      */
-    protected const RECEIPT_COUNT = 20; // Was 200
+    protected const RECEIPT_COUNT = 10; // Was 200
 
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             PurchaseOrder::class => 'No purchase orders found',
             Warehouse::class => 'No warehouses found',
@@ -207,15 +207,22 @@ class PurchaseReceiptSeeder extends Seeder
         $this->command->info('  - Creating batch tracked receipts...');
 
         for ($i = 0; $i < 8; $i++) {
-            $po = PurchaseOrder::factory()
-                ->approved()
-                ->create();
+            try {
+                $po = PurchaseOrder::factory()
+                    ->approved()
+                    ->create();
 
-            PurchaseReceipt::factory()
-                ->forPurchaseOrder($po->id)
-                ->completed()
-                ->withBatchItems(rand(2, 4))
-                ->create();
+                PurchaseReceipt::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->completed()
+                    ->withBatchItems(rand(2, 4))
+                    ->create();
+            } catch (\Illuminate\Database\UniqueConstraintViolationException $e) {
+                // If PO number duplicate, retry with a new one
+                $this->command->warn('Duplicate PO number encountered, retrying...');
+                $i--; // Decrement counter to retry this iteration
+                continue;
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -229,15 +236,21 @@ class PurchaseReceiptSeeder extends Seeder
         $this->command->info('  - Creating serial tracked receipts...');
 
         for ($i = 0; $i < 6; $i++) {
-            $po = PurchaseOrder::factory()
-                ->approved()
-                ->create();
+            try {
+                $po = PurchaseOrder::factory()
+                    ->approved()
+                    ->create();
 
-            PurchaseReceipt::factory()
-                ->forPurchaseOrder($po->id)
-                ->completed()
-                ->withSerialItems(rand(3, 8))
-                ->create();
+                PurchaseReceipt::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->completed()
+                    ->withSerialItems(rand(3, 8))
+                    ->create();
+            } catch (\Illuminate\Database\UniqueConstraintViolationException $e) {
+                $this->command->warn('Duplicate PO number encountered, retrying...');
+                $i--;
+                continue;
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }

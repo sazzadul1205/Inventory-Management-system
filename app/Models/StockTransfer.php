@@ -354,6 +354,17 @@ class StockTransfer extends Model
     }
 
     /**
+     * Scope to partially received transfers.
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePartiallyReceived(Builder $query): Builder
+    {
+        return $query->where('status', self::STATUS_PARTIALLY_RECEIVED);
+    }
+
+    /**
      * --------------------------------------------------------------------------
      * Accessors
      * --------------------------------------------------------------------------

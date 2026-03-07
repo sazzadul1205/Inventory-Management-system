@@ -8,7 +8,6 @@ use App\Models\PurchaseOrder;
 use App\Models\Product;
 use App\Models\PurchaseReceiptItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<PurchaseOrderItem>
@@ -36,8 +35,21 @@ class PurchaseOrderItemFactory extends Factory
         $unitPrice = $this->getUnitPriceForProduct($product);
         $quantityReceived = $this->getQuantityReceived($purchaseOrder->status, $quantityOrdered);
 
-        $discountPercent = $this->faker->optional(0.3)->randomFloat(2, 0, 15);
-        $taxPercent = $this->faker->optional(0.8)->randomFloat(2, 5, 12) ?? 0;
+        $discountPercent = $this->faker->optional(0.3, 0)->randomFloat(2, 0, 15) ?? 0;
+        $taxPercent = $this->faker->optional(0.8, 0)->randomFloat(2, 5, 12) ?? 0;
+
+        // Safely generate updated_at date
+        $createdAt = $purchaseOrder->created_at ?? now()->subDays(rand(1, 30));
+        $now = now();
+
+        // Ensure created_at is not greater than now
+        $startDate = $createdAt <= $now ? $createdAt : $now;
+
+        try {
+            $updatedAt = $this->faker->dateTimeBetween($startDate, $now);
+        } catch (\InvalidArgumentException $e) {
+            $updatedAt = $this->faker->dateTimeBetween($now->copy()->subDays(1), $now);
+        }
 
         return [
             'purchase_order_id' => $purchaseOrder->id,
@@ -51,8 +63,8 @@ class PurchaseOrderItemFactory extends Factory
             'expected_delivery_date' => $this->getExpectedDeliveryDate($purchaseOrder),
             'status' => $this->determineStatus($quantityOrdered, $quantityReceived),
             'notes' => $this->faker->optional(0.2)->sentence(),
-            'created_at' => $purchaseOrder->created_at,
-            'updated_at' => $this->faker->dateTimeBetween($purchaseOrder->created_at, 'now'),
+            'created_at' => $createdAt,
+            'updated_at' => $updatedAt,
         ];
     }
 
@@ -133,14 +145,29 @@ class PurchaseOrderItemFactory extends Factory
     /**
      * Get expected delivery date.
      */
-    protected function getExpectedDeliveryDate(PurchaseOrder $purchaseOrder): ?\DateTime
+    protected function getExpectedDeliveryDate(PurchaseOrder $purchaseOrder): mixed
     {
+        // If PO has an expected delivery date, use it
         if ($purchaseOrder->expected_delivery_date) {
             return $purchaseOrder->expected_delivery_date;
         }
 
+        // Otherwise generate a random date, but ensure it's valid
         if ($this->faker->boolean(70)) {
-            return $this->faker->dateTimeBetween('now', '+30 days');
+            try {
+                $now = now();
+                $futureDate = $this->faker->dateTimeBetween('now', '+30 days');
+
+                // Ensure the future date is actually in the future
+                if ($futureDate < $now) {
+                    return $now->copy()->addDays(rand(1, 30));
+                }
+
+                return $futureDate;
+            } catch (\InvalidArgumentException $e) {
+                // Fallback to a safe date
+                return now()->addDays(rand(5, 15));
+            }
         }
 
         return null;

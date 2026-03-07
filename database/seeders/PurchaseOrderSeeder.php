@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Database\Seeders\Traits\ChecksDependencies;
+use Illuminate\Support\Facades\Schema;
 
 class PurchaseOrderSeeder extends Seeder
 {
@@ -20,14 +21,14 @@ class PurchaseOrderSeeder extends Seeder
     /**
      * Number of purchase orders to create
      */
-    protected const PO_COUNT = 30; // Was 300
+    protected const PO_COUNT = 10; // Was 300
 
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             Supplier::class => 'No suppliers found',
             Warehouse::class => 'No warehouses found',
@@ -89,18 +90,31 @@ class PurchaseOrderSeeder extends Seeder
         foreach ($statusDistribution as $status => $count) {
             $this->command->info("\nCreating {$count} {$status} purchase orders...");
 
+            // Map the status constants to factory method names
+            $factoryMethod = match ($status) {
+                PurchaseOrder::STATUS_DRAFT => 'draft',
+                PurchaseOrder::STATUS_PENDING => 'pending',
+                PurchaseOrder::STATUS_APPROVED => 'approved',
+                PurchaseOrder::STATUS_SHIPPED => 'shipped',
+                PurchaseOrder::STATUS_PARTIALLY_RECEIVED => 'partiallyReceived',
+                PurchaseOrder::STATUS_RECEIVED => 'received',
+                PurchaseOrder::STATUS_CANCELLED => 'cancelled',
+                default => 'draft'
+            };
+
             for ($i = 0; $i < $count; $i++) {
-                PurchaseOrder::factory()
-                    ->{$status}()
-                    ->withItems(rand(2, 6))
-                    ->when(
-                        in_array($status, [
-                            PurchaseOrder::STATUS_PARTIALLY_RECEIVED,
-                            PurchaseOrder::STATUS_RECEIVED
-                        ]),
-                        fn($factory) => $factory->withReceipts(rand(1, 2))
-                    )
-                    ->create();
+                $factory = PurchaseOrder::factory()->{$factoryMethod}();
+
+                $factory->withItems(rand(2, 6));
+
+                if (in_array($status, [
+                    PurchaseOrder::STATUS_PARTIALLY_RECEIVED,
+                    PurchaseOrder::STATUS_RECEIVED
+                ])) {
+                    $factory->withReceipts(rand(1, 2));
+                }
+
+                $factory->create();
 
                 $this->command->getOutput()->progressAdvance(1);
             }
@@ -229,17 +243,52 @@ class PurchaseOrderSeeder extends Seeder
     {
         $this->command->info('  - Creating bulk orders...');
 
-        $majorSuppliers = Supplier::where('name', 'like', '%International%')
-            ->orWhere('name', 'like', '%Global%')
-            ->limit(3)
-            ->get();
+        // First, let's check what columns exist in the suppliers table
+        $supplierColumns = Schema::getColumnListing('suppliers');
+        $this->command->info('Supplier columns: ' . implode(', ', $supplierColumns));
+
+        // Determine the name column - common possibilities
+        $nameColumn = null;
+        $possibleNameColumns = ['name', 'supplier_name', 'company_name', 'business_name', 'supplier', 'company'];
+
+        foreach ($possibleNameColumns as $column) {
+            if (in_array($column, $supplierColumns)) {
+                $nameColumn = $column;
+                break;
+            }
+        }
+
+        if (!$nameColumn) {
+            $this->command->warn('Could not find a name column in suppliers table. Using first suppliers instead.');
+            $majorSuppliers = Supplier::inRandomOrder()->limit(3)->get();
+        } else {
+            // Use the actual column name in the query
+            $majorSuppliers = Supplier::where($nameColumn, 'like', '%International%')
+                ->orWhere($nameColumn, 'like', '%Global%')
+                ->limit(3)
+                ->get();
+        }
 
         /** @var Collection<int, Supplier> $majorSuppliers */
         if ($majorSuppliers->isEmpty()) {
+            $this->command->info('No major suppliers found. Creating some...');
             $majorSuppliers = Supplier::factory()->count(3)->create();
-            $majorSuppliers->each(function (Supplier $supplier): void {
-                $supplier->update(['name' => 'Major International Supplier']);
-            });
+
+            // Update the name using the correct column
+            foreach ($majorSuppliers as $supplier) {
+                if ($nameColumn) {
+                    $supplier->update([$nameColumn => 'Major International Supplier']);
+                } else {
+                    // If we couldn't find a name column, try to update the first string column
+                    foreach ($supplierColumns as $column) {
+                        $columnType = Schema::getColumnType('suppliers', $column);
+                        if ($columnType === 'string' || $columnType === 'varchar') {
+                            $supplier->update([$column => 'Major International Supplier']);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         foreach ($majorSuppliers as $supplier) {

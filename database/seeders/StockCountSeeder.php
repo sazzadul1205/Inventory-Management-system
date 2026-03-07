@@ -24,7 +24,7 @@ class StockCountSeeder extends Seeder
     /**
      * Number of stock counts to create
      */
-    protected const STOCK_COUNT_COUNT = 15; // Was 150
+    protected const STOCK_COUNT_COUNT = 5; // Was 150
 
     /**
      * Run the database seeds.

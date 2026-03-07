@@ -11,7 +11,7 @@ use App\Models\PurchaseReceiptItem;
 use App\Models\Warehouse;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<PurchaseReceipt>
@@ -24,6 +24,11 @@ class PurchaseReceiptFactory extends Factory
      * @var string
      */
     protected $model = PurchaseReceipt::class;
+
+    /**
+     * Static array to track generated receipt numbers in memory
+     */
+    protected static $generatedReceiptNumbers = [];
 
     /**
      * Define the model's default state.
@@ -39,6 +44,14 @@ class PurchaseReceiptFactory extends Factory
         $receiptDate = $this->getReceiptDateForPO($purchaseOrder);
         $status = $this->getStatusForPO($purchaseOrder);
 
+        // Safely generate updated_at
+        $now = now();
+        try {
+            $updatedAt = $this->faker->dateTimeBetween($receiptDate, $now);
+        } catch (\InvalidArgumentException $e) {
+            $updatedAt = $this->faker->dateTimeBetween($now->copy()->subDays(1), $now);
+        }
+
         return [
             'receipt_number' => $this->generateReceiptNumber(),
             'purchase_order_id' => $purchaseOrder->id,
@@ -50,7 +63,7 @@ class PurchaseReceiptFactory extends Factory
             'notes' => $this->faker->optional(0.3)->sentence(),
             'received_by' => $user->id,
             'created_at' => $receiptDate,
-            'updated_at' => $this->faker->dateTimeBetween($receiptDate, 'now'),
+            'updated_at' => $updatedAt,
         ];
     }
 
@@ -62,28 +75,82 @@ class PurchaseReceiptFactory extends Factory
         $prefix = 'RCT';
         $year = now()->format('Y');
         $month = now()->format('m');
-        $random = $this->faker->unique()->numberBetween(1000, 9999);
 
-        return "{$prefix}-{$year}{$month}-{$random}";
+        $attempts = 0;
+        $maxAttempts = 100;
+
+        do {
+            $random = $this->faker->numberBetween(1000, 9999);
+            $receiptNumber = "{$prefix}-{$year}{$month}-{$random}";
+            $attempts++;
+
+            // Check if already generated in this factory instance
+            $exists = in_array($receiptNumber, self::$generatedReceiptNumbers);
+
+            // Check if exists in database
+            if (!$exists) {
+                $exists = PurchaseReceipt::where('receipt_number', $receiptNumber)->exists();
+            }
+
+            if ($attempts >= $maxAttempts) {
+                // Fallback: add timestamp to ensure uniqueness
+                $receiptNumber = "{$prefix}-{$year}{$month}-" . time() . '-' . rand(100, 999);
+                break;
+            }
+        } while ($exists);
+
+        self::$generatedReceiptNumbers[] = $receiptNumber;
+
+        return $receiptNumber;
     }
 
     /**
-     * Get receipt date based on PO status.
+     * Get receipt date based on PO status with safety checks.
      */
-    protected function getReceiptDateForPO(PurchaseOrder $purchaseOrder): \DateTime
+    protected function getReceiptDateForPO(PurchaseOrder $purchaseOrder): Carbon
     {
-        if ($purchaseOrder->actual_delivery_date) {
-            return $purchaseOrder->actual_delivery_date;
-        }
+        $now = now();
 
-        if ($purchaseOrder->expected_delivery_date) {
-            return $this->faker->dateTimeBetween(
-                $purchaseOrder->expected_delivery_date->modify('-5 days'),
-                $purchaseOrder->expected_delivery_date->modify('+10 days')
-            );
-        }
+        try {
+            if ($purchaseOrder->actual_delivery_date) {
+                return $purchaseOrder->actual_delivery_date instanceof Carbon
+                    ? $purchaseOrder->actual_delivery_date
+                    : Carbon::parse($purchaseOrder->actual_delivery_date);
+            }
 
-        return $this->faker->dateTimeBetween('-30 days', 'now');
+            if ($purchaseOrder->expected_delivery_date) {
+                $expectedDate = $purchaseOrder->expected_delivery_date instanceof Carbon
+                    ? $purchaseOrder->expected_delivery_date
+                    : Carbon::parse($purchaseOrder->expected_delivery_date);
+
+                $startDate = $expectedDate->copy()->subDays(5);
+                $endDate = $expectedDate->copy()->addDays(10);
+
+                // Ensure start <= end
+                if ($startDate > $endDate) {
+                    [$startDate, $endDate] = [$endDate, $startDate];
+                }
+
+                // Ensure dates are within reasonable bounds
+                $minDate = $now->copy()->subMonths(6);
+                $maxDate = $now->copy()->addDays(30);
+
+                $startDate = $startDate->max($minDate)->min($maxDate);
+                $endDate = $endDate->max($minDate)->min($maxDate);
+
+                // Ensure start <= end after bounds checking
+                if ($startDate > $endDate) {
+                    $endDate = $startDate->copy()->addDays(5);
+                }
+
+                return Carbon::instance($this->faker->dateTimeBetween($startDate, $endDate));
+            }
+
+            return Carbon::instance($this->faker->dateTimeBetween('-30 days', 'now'));
+        } catch (\Exception $e) {
+            // Ultimate fallback
+            return $now;
+        }
     }
 
     /**
@@ -163,14 +230,37 @@ class PurchaseReceiptFactory extends Factory
     }
 
     /**
-     * Set receipt date.
+     * Set receipt date with safety check.
      */
     public function receivedOn(string $date): static
     {
         return $this->state(function (array $attributes) use ($date) {
-            return [
-                'receipt_date' => $date,
-            ];
+            try {
+                $receiptDate = Carbon::parse($date);
+                $now = now();
+
+                // Ensure date is not too far in the future
+                if ($receiptDate > $now->copy()->addDays(30)) {
+                    $receiptDate = $now;
+                }
+
+                // Ensure date is not too far in the past
+                if ($receiptDate < $now->copy()->subMonths(6)) {
+                    $receiptDate = $now->copy()->subMonths(6);
+                }
+
+                return [
+                    'receipt_date' => $receiptDate,
+                    'created_at' => $receiptDate,
+                    'updated_at' => $now,
+                ];
+            } catch (\Exception $e) {
+                return [
+                    'receipt_date' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
         });
     }
 
@@ -211,7 +301,7 @@ class PurchaseReceiptFactory extends Factory
     }
 
     /**
-     * Create receipt with items.
+     * Create receipt with items - with duplicate checking.
      */
     public function withItems(?int $count = null): static
     {
@@ -224,8 +314,14 @@ class PurchaseReceiptFactory extends Factory
                 }
 
                 $itemCount = $count ?? $this->faker->numberBetween(1, $poItems->count());
+                $processedItems = [];
 
                 foreach ($poItems->take($itemCount) as $poItem) {
+                    // Skip if we've already processed this PO item
+                    if (in_array($poItem->id, $processedItems)) {
+                        continue;
+                    }
+
                     $maxReceivable = $poItem->quantity_ordered - $poItem->quantity_received;
 
                     if ($maxReceivable <= 0) {
@@ -239,6 +335,8 @@ class PurchaseReceiptFactory extends Factory
                         ->forPurchaseReceipt($receipt->id)
                         ->withQuantity($quantity)
                         ->create();
+
+                    $processedItems[] = $poItem->id;
                 }
 
                 // Update receipt totals and status
@@ -255,14 +353,21 @@ class PurchaseReceiptFactory extends Factory
         return $this->afterCreating(function (PurchaseReceipt $receipt) use ($items) {
             if (class_exists('PurchaseReceiptItem')) {
                 foreach ($items as $itemData) {
-                    PurchaseReceiptItem::factory()
-                        ->forPurchaseOrderItem($itemData['po_item_id'])
-                        ->forPurchaseReceipt($receipt->id)
-                        ->withQuantity($itemData['quantity'])
-                        ->withLocation($itemData['location_id'] ?? null)
-                        ->when(isset($itemData['batch']), fn($f) => $f->withBatch($itemData['batch']))
-                        ->when(isset($itemData['serial']), fn($f) => $f->withSerial($itemData['serial']))
-                        ->create();
+                    // Check if this PO item already has a receipt item
+                    $exists = PurchaseReceiptItem::where('purchase_order_item_id', $itemData['po_item_id'])
+                        ->where('purchase_receipt_id', $receipt->id)
+                        ->exists();
+
+                    if (!$exists) {
+                        PurchaseReceiptItem::factory()
+                            ->forPurchaseOrderItem($itemData['po_item_id'])
+                            ->forPurchaseReceipt($receipt->id)
+                            ->withQuantity($itemData['quantity'])
+                            ->withLocation($itemData['location_id'] ?? null)
+                            ->when(isset($itemData['batch']), fn($f) => $f->withBatch($itemData['batch']))
+                            ->when(isset($itemData['serial']), fn($f) => $f->withSerial($itemData['serial']))
+                            ->create();
+                    }
                 }
 
                 $receipt->updateStatus();
@@ -271,7 +376,7 @@ class PurchaseReceiptFactory extends Factory
     }
 
     /**
-     * Create receipt with batch tracked items.
+     * Create receipt with batch tracked items - with duplicate checking.
      */
     public function withBatchItems(int $count = 2): static
     {
@@ -284,30 +389,43 @@ class PurchaseReceiptFactory extends Factory
                 }
 
                 foreach ($batchProducts->take($count) as $product) {
-                    $poItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                    // Check if this product already has a receipt item in this receipt
+                    $existingPoItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
                         ->where('product_id', $product->id)
                         ->first();
 
-                    if (!$poItem) {
+                    if ($existingPoItem) {
+                        $exists = PurchaseReceiptItem::where('purchase_order_item_id', $existingPoItem->id)
+                            ->where('purchase_receipt_id', $receipt->id)
+                            ->exists();
+
+                        if (!$exists) {
+                            PurchaseReceiptItem::factory()
+                                ->forPurchaseOrderItem($existingPoItem->id)
+                                ->forPurchaseReceipt($receipt->id)
+                                ->withBatch()
+                                ->create();
+                        }
+                    } else {
                         $poItem = PurchaseOrderItem::factory()
                             ->forPurchaseOrder($receipt->purchase_order_id)
                             ->forProduct($product->id)
                             ->pending()
                             ->create();
-                    }
 
-                    PurchaseReceiptItem::factory()
-                        ->forPurchaseOrderItem($poItem->id)
-                        ->forPurchaseReceipt($receipt->id)
-                        ->withBatch()
-                        ->create();
+                        PurchaseReceiptItem::factory()
+                            ->forPurchaseOrderItem($poItem->id)
+                            ->forPurchaseReceipt($receipt->id)
+                            ->withBatch()
+                            ->create();
+                    }
                 }
             }
         });
     }
 
     /**
-     * Create receipt with serial tracked items.
+     * Create receipt with serial tracked items - with duplicate checking.
      */
     public function withSerialItems(int $count = 3): static
     {
@@ -320,25 +438,41 @@ class PurchaseReceiptFactory extends Factory
                 }
 
                 foreach ($serialProducts as $product) {
-                    $poItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                    // Check if this product already has a receipt item in this receipt
+                    $existingPoItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
                         ->where('product_id', $product->id)
                         ->first();
 
-                    if (!$poItem) {
+                    if ($existingPoItem) {
+                        // Check existing serial count
+                        $existingCount = PurchaseReceiptItem::where('purchase_order_item_id', $existingPoItem->id)
+                            ->where('purchase_receipt_id', $receipt->id)
+                            ->count();
+
+                        $needed = $count - $existingCount;
+
+                        for ($i = 0; $i < max(0, $needed); $i++) {
+                            PurchaseReceiptItem::factory()
+                                ->forPurchaseOrderItem($existingPoItem->id)
+                                ->forPurchaseReceipt($receipt->id)
+                                ->withSerial()
+                                ->create();
+                        }
+                    } else {
                         $poItem = PurchaseOrderItem::factory()
                             ->forPurchaseOrder($receipt->purchase_order_id)
                             ->forProduct($product->id)
                             ->pending()
                             ->withQuantity($count, 100, 0)
                             ->create();
-                    }
 
-                    for ($i = 0; $i < $count; $i++) {
-                        PurchaseReceiptItem::factory()
-                            ->forPurchaseOrderItem($poItem->id)
-                            ->forPurchaseReceipt($receipt->id)
-                            ->withSerial()
-                            ->create();
+                        for ($i = 0; $i < $count; $i++) {
+                            PurchaseReceiptItem::factory()
+                                ->forPurchaseOrderItem($poItem->id)
+                                ->forPurchaseReceipt($receipt->id)
+                                ->withSerial()
+                                ->create();
+                        }
                     }
                 }
             }
@@ -346,7 +480,7 @@ class PurchaseReceiptFactory extends Factory
     }
 
     /**
-     * Create receipt with expiring items.
+     * Create receipt with expiring items - with duplicate checking.
      */
     public function withExpiringItems(int $count = 2): static
     {
@@ -359,30 +493,43 @@ class PurchaseReceiptFactory extends Factory
                 }
 
                 foreach ($expirableProducts->take($count) as $product) {
-                    $poItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
+                    // Check if this product already has a receipt item in this receipt
+                    $existingPoItem = PurchaseOrderItem::where('purchase_order_id', $receipt->purchase_order_id)
                         ->where('product_id', $product->id)
                         ->first();
 
-                    if (!$poItem) {
+                    if ($existingPoItem) {
+                        $exists = PurchaseReceiptItem::where('purchase_order_item_id', $existingPoItem->id)
+                            ->where('purchase_receipt_id', $receipt->id)
+                            ->exists();
+
+                        if (!$exists) {
+                            PurchaseReceiptItem::factory()
+                                ->forPurchaseOrderItem($existingPoItem->id)
+                                ->forPurchaseReceipt($receipt->id)
+                                ->withExpiry()
+                                ->create();
+                        }
+                    } else {
                         $poItem = PurchaseOrderItem::factory()
                             ->forPurchaseOrder($receipt->purchase_order_id)
                             ->forProduct($product->id)
                             ->pending()
                             ->create();
-                    }
 
-                    PurchaseReceiptItem::factory()
-                        ->forPurchaseOrderItem($poItem->id)
-                        ->forPurchaseReceipt($receipt->id)
-                        ->withExpiry()
-                        ->create();
+                        PurchaseReceiptItem::factory()
+                            ->forPurchaseOrderItem($poItem->id)
+                            ->forPurchaseReceipt($receipt->id)
+                            ->withExpiry()
+                            ->create();
+                    }
                 }
             }
         });
     }
 
     /**
-     * Create a fully loaded receipt with all item types.
+     * Create a fully loaded receipt with all item types - with duplicate checking.
      */
     public function fullyLoaded(): static
     {
@@ -391,9 +538,15 @@ class PurchaseReceiptFactory extends Factory
                 return;
             }
 
+            $processedItems = [];
+
             // Add standard items
             $poItems = $receipt->purchaseOrder->items;
             foreach ($poItems->take(3) as $poItem) {
+                if (in_array($poItem->id, $processedItems)) {
+                    continue;
+                }
+
                 $maxReceivable = $poItem->quantity_ordered - $poItem->quantity_received;
                 if ($maxReceivable <= 0) {
                     continue;
@@ -404,6 +557,8 @@ class PurchaseReceiptFactory extends Factory
                     ->forPurchaseReceipt($receipt->id)
                     ->withQuantity($this->faker->numberBetween(1, min($maxReceivable, 50)))
                     ->create();
+
+                $processedItems[] = $poItem->id;
             }
 
             // Add batch tracked items
@@ -413,12 +568,14 @@ class PurchaseReceiptFactory extends Factory
                     ->where('product_id', $batchProduct->id)
                     ->first();
 
-                if ($poItem) {
+                if ($poItem && !in_array($poItem->id, $processedItems)) {
                     PurchaseReceiptItem::factory()
                         ->forPurchaseOrderItem($poItem->id)
                         ->forPurchaseReceipt($receipt->id)
                         ->withBatch()
                         ->create();
+
+                    $processedItems[] = $poItem->id;
                 }
             }
 
@@ -429,7 +586,7 @@ class PurchaseReceiptFactory extends Factory
                     ->where('product_id', $serialProduct->id)
                     ->first();
 
-                if ($poItem) {
+                if ($poItem && !in_array($poItem->id, $processedItems)) {
                     for ($i = 0; $i < 2; $i++) {
                         PurchaseReceiptItem::factory()
                             ->forPurchaseOrderItem($poItem->id)
@@ -437,10 +594,20 @@ class PurchaseReceiptFactory extends Factory
                             ->withSerial()
                             ->create();
                     }
+
+                    $processedItems[] = $poItem->id;
                 }
             }
 
             $receipt->updateStatus();
         });
+    }
+
+    /**
+     * Reset the static generated numbers (useful for testing).
+     */
+    public static function resetGeneratedNumbers(): void
+    {
+        self::$generatedReceiptNumbers = [];
     }
 }

@@ -9,7 +9,7 @@ use App\Models\PurchaseOrderItem;
 use App\Models\Product;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PurchaseReceiptItem>
@@ -22,6 +22,11 @@ class PurchaseReceiptItemFactory extends Factory
      * @var string
      */
     protected $model = PurchaseReceiptItem::class;
+
+    /**
+     * Static array to track generated serial numbers to avoid duplicates
+     */
+    protected static $generatedSerials = [];
 
     /**
      * Define the model's default state.
@@ -45,6 +50,19 @@ class PurchaseReceiptItemFactory extends Factory
         $hasSerial = $product->is_serial_tracked ?? $this->faker->boolean(10);
         $hasExpiry = $product->is_expirable ?? $this->faker->boolean(20);
 
+        // Safely generate updated_at date
+        $receiptDate = $purchaseReceipt->receipt_date ?? now()->subDays(rand(1, 30));
+        $now = now();
+
+        // Ensure receipt date is not greater than now
+        $startDate = $receiptDate <= $now ? $receiptDate : $now;
+
+        try {
+            $updatedAt = $this->faker->dateTimeBetween($startDate, $now);
+        } catch (\InvalidArgumentException $e) {
+            $updatedAt = $this->faker->dateTimeBetween($now->copy()->subDays(1), $now);
+        }
+
         return [
             'purchase_receipt_id' => $purchaseReceipt->id,
             'purchase_order_item_id' => $purchaseOrderItem->id,
@@ -56,8 +74,8 @@ class PurchaseReceiptItemFactory extends Factory
             'expiry_date' => $hasExpiry ? $this->generateExpiryDate() : null,
             'unit_cost' => $unitCost,
             'notes' => $this->faker->optional(0.2)->sentence(),
-            'created_at' => $purchaseReceipt->receipt_date,
-            'updated_at' => $this->faker->dateTimeBetween($purchaseReceipt->receipt_date, 'now'),
+            'created_at' => $receiptDate,
+            'updated_at' => $updatedAt,
         ];
     }
 
@@ -72,24 +90,69 @@ class PurchaseReceiptItemFactory extends Factory
     }
 
     /**
-     * Generate a serial number.
+     * Generate a unique serial number.
      */
     protected function generateSerialNumber(): string
     {
-        return 'SN-' . strtoupper($this->faker->bothify('??##??##')) . '-' .
-            $this->faker->numberBetween(1000, 9999);
+        $attempts = 0;
+        $maxAttempts = 100;
+
+        do {
+            $serial = 'SN-' . strtoupper($this->faker->bothify('??##??##')) . '-' .
+                $this->faker->numberBetween(1000, 9999);
+            $attempts++;
+
+            // Check if already generated in this factory instance
+            $exists = in_array($serial, self::$generatedSerials);
+
+            // Check if exists in database
+            if (!$exists) {
+                $exists = PurchaseReceiptItem::where('serial_number', $serial)->exists();
+            }
+
+            if ($attempts >= $maxAttempts) {
+                // Fallback: add timestamp to ensure uniqueness
+                $serial = 'SN-' . time() . '-' . rand(10000, 99999);
+                break;
+            }
+        } while ($exists);
+
+        self::$generatedSerials[] = $serial;
+
+        return $serial;
     }
 
     /**
-     * Generate an expiry date.
+     * Generate an expiry date with proper bounds checking.
      */
-    protected function generateExpiryDate(): \DateTime
+    protected function generateExpiryDate(): Carbon
     {
-        // 70% future, 30% past (expired)
-        if ($this->faker->boolean(70)) {
-            return $this->faker->dateTimeBetween('+1 month', '+2 years');
-        } else {
-            return $this->faker->dateTimeBetween('-1 year', '-1 day');
+        try {
+            // 70% future, 30% past (expired)
+            if ($this->faker->boolean(70)) {
+                $startDate = now()->addMonth();
+                $endDate = now()->addYears(2);
+
+                // Ensure start is before end
+                if ($startDate > $endDate) {
+                    $endDate = $startDate->copy()->addMonths(11);
+                }
+
+                return Carbon::instance($this->faker->dateTimeBetween($startDate, $endDate));
+            } else {
+                $startDate = now()->subYear();
+                $endDate = now()->subDay();
+
+                // Ensure start is before end
+                if ($startDate > $endDate) {
+                    $endDate = $startDate->copy()->addDays(1);
+                }
+
+                return Carbon::instance($this->faker->dateTimeBetween($startDate, $endDate));
+            }
+        } catch (\InvalidArgumentException $e) {
+            // Fallback to a safe date
+            return now()->addMonths(6);
         }
     }
 
@@ -124,9 +187,16 @@ class PurchaseReceiptItemFactory extends Factory
     public function withExpiry(?string $expiryDate = null): static
     {
         return $this->state(function (array $attributes) use ($expiryDate) {
-            return [
-                'expiry_date' => $expiryDate ?? $this->generateExpiryDate(),
-            ];
+            try {
+                $date = $expiryDate ? Carbon::parse($expiryDate) : $this->generateExpiryDate();
+                return [
+                    'expiry_date' => $date,
+                ];
+            } catch (\Exception $e) {
+                return [
+                    'expiry_date' => now()->addMonths(6),
+                ];
+            }
         });
     }
 
@@ -136,9 +206,23 @@ class PurchaseReceiptItemFactory extends Factory
     public function expired(): static
     {
         return $this->state(function (array $attributes) {
-            return [
-                'expiry_date' => $this->faker->dateTimeBetween('-1 year', '-1 day'),
-            ];
+            try {
+                $startDate = now()->subYear();
+                $endDate = now()->subDay();
+
+                // Ensure start is before end
+                if ($startDate > $endDate) {
+                    $endDate = $startDate->copy()->addDays(1);
+                }
+
+                return [
+                    'expiry_date' => Carbon::instance($this->faker->dateTimeBetween($startDate, $endDate)),
+                ];
+            } catch (\InvalidArgumentException $e) {
+                return [
+                    'expiry_date' => now()->subDays(30),
+                ];
+            }
         });
     }
 
@@ -148,9 +232,23 @@ class PurchaseReceiptItemFactory extends Factory
     public function expiringSoon(int $days = 30): static
     {
         return $this->state(function (array $attributes) use ($days) {
-            return [
-                'expiry_date' => $this->faker->dateTimeBetween('now', "+{$days} days"),
-            ];
+            try {
+                $startDate = now();
+                $endDate = now()->addDays($days);
+
+                // Ensure start is before end
+                if ($startDate > $endDate) {
+                    $endDate = $startDate->copy()->addDays($days);
+                }
+
+                return [
+                    'expiry_date' => Carbon::instance($this->faker->dateTimeBetween($startDate, $endDate)),
+                ];
+            } catch (\InvalidArgumentException $e) {
+                return [
+                    'expiry_date' => now()->addDays(15),
+                ];
+            }
         });
     }
 
@@ -227,22 +325,34 @@ class PurchaseReceiptItemFactory extends Factory
     }
 
     /**
-     * Create multiple serial numbers for a product.
+     * Create multiple serial numbers for a product with duplicate checking.
      */
     public function withMultipleSerials(int $count): static
     {
         return $this->afterCreating(function (PurchaseReceiptItem $item) use ($count) {
-            // This would need to create multiple receipt items, one per serial
-            // This is a placeholder for complex serial creation logic
-            for ($i = 1; $i < $count; $i++) {
-                self::factory()
-                    ->forPurchaseReceipt($item->purchase_receipt_id)
-                    ->forPurchaseOrderItem($item->purchase_order_item_id)
-                    ->forProduct($item->product_id)
-                    ->atLocation($item->location_id)
-                    ->withSerial()
-                    ->withQuantity(1)
-                    ->create();
+            $existingCount = PurchaseReceiptItem::where('purchase_order_item_id', $item->purchase_order_item_id)
+                ->where('purchase_receipt_id', $item->purchase_receipt_id)
+                ->count();
+
+            $needed = $count - $existingCount;
+
+            for ($i = 1; $i <= $needed; $i++) {
+                // Check if this combination already exists
+                $exists = PurchaseReceiptItem::where('purchase_receipt_id', $item->purchase_receipt_id)
+                    ->where('purchase_order_item_id', $item->purchase_order_item_id)
+                    ->where('serial_number', $this->generateSerialNumber())
+                    ->exists();
+
+                if (!$exists) {
+                    self::factory()
+                        ->forPurchaseReceipt($item->purchase_receipt_id)
+                        ->forPurchaseOrderItem($item->purchase_order_item_id)
+                        ->forProduct($item->product_id)
+                        ->atLocation($item->location_id)
+                        ->withSerial()
+                        ->withQuantity(1)
+                        ->create();
+                }
             }
         });
     }
@@ -288,9 +398,21 @@ class PurchaseReceiptItemFactory extends Factory
         }
 
         if ($product->is_expirable) {
-            $state['expiry_date'] = $this->generateExpiryDate();
+            try {
+                $state['expiry_date'] = $this->generateExpiryDate();
+            } catch (\Exception $e) {
+                $state['expiry_date'] = now()->addMonths(6);
+            }
         }
 
         return $this->state($state);
+    }
+
+    /**
+     * Reset the static generated serials (useful for testing).
+     */
+    public static function resetGeneratedSerials(): void
+    {
+        self::$generatedSerials = [];
     }
 }

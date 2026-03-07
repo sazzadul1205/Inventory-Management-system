@@ -19,7 +19,7 @@ class SupplierSeeder extends Seeder
     /**
      * Number of suppliers to create
      */
-    protected const SUPPLIER_COUNT = 10; // Was 100
+    protected const SUPPLIER_COUNT = 5; // Was 100
 
     /**
      * Run the database seeds.

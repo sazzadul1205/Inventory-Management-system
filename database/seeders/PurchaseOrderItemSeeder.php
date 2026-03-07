@@ -19,7 +19,7 @@ class PurchaseOrderItemSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             PurchaseOrder::class => 'No purchase orders found',
             Product::class => 'No products found',
@@ -62,20 +62,63 @@ class PurchaseOrderItemSeeder extends Seeder
      */
     protected function createItemsForExistingPOs(): void
     {
-        $purchaseOrders = PurchaseOrder::with('supplier')->get();
+        // Get only POs that don't have any items yet
+        $purchaseOrders = PurchaseOrder::doesntHave('items')->with('supplier')->get();
+
+        if ($purchaseOrders->isEmpty()) {
+            $this->command->info('All purchase orders already have items. Skipping...');
+            return;
+        }
+
+        $this->command->info('Found ' . $purchaseOrders->count() . ' POs without items.');
 
         foreach ($purchaseOrders as $po) {
             // Number of items per PO based on PO type
-            $itemCount = $this->getItemCountForPO($po); // Modify this method to return smaller numbers
+            $itemCount = $this->getItemCountForPO($po);
+
+            // Track products used in this PO to avoid duplicates
+            $usedProductIds = [];
 
             // Get products that this supplier provides
             $supplierProducts = $po->supplier->products ?? collect();
-            $availableProducts = $supplierProducts->isNotEmpty()
-                ? $supplierProducts
-                : Product::inRandomOrder()->limit(20)->get();
 
             for ($i = 0; $i < $itemCount; $i++) {
-                $product = $availableProducts->random();
+                // Find a product not already used in this PO
+                $product = null;
+                $attempts = 0;
+                $maxAttempts = 20;
+
+                while (!$product && $attempts < $maxAttempts) {
+                    if ($supplierProducts->isNotEmpty()) {
+                        // Try to get a product from supplier's products not used yet
+                        $availableProducts = $supplierProducts->whereNotIn('id', $usedProductIds);
+
+                        if ($availableProducts->isNotEmpty()) {
+                            $product = $availableProducts->random();
+                        } else {
+                            // If no more supplier products, get random products
+                            $product = Product::whereNotIn('id', $usedProductIds)
+                                ->inRandomOrder()
+                                ->first();
+                        }
+                    } else {
+                        // No supplier products, get random products
+                        $product = Product::whereNotIn('id', $usedProductIds)
+                            ->inRandomOrder()
+                            ->first();
+                    }
+
+                    $attempts++;
+                }
+
+                // If we couldn't find a product after max attempts, break
+                if (!$product) {
+                    $this->command->warn("Could not find unique product for PO #{$po->id} after {$maxAttempts} attempts");
+                    break;
+                }
+
+                // Add to used products
+                $usedProductIds[] = $product->id;
 
                 // Get supplier-specific pricing if available
                 $productSupplier = $product->productSuppliers()
@@ -86,14 +129,16 @@ class PurchaseOrderItemSeeder extends Seeder
                     ? $productSupplier->unit_cost
                     : fake()->randomFloat(2, 10, 200);
 
+                $quantityOrdered = $this->getQuantityForPO($po);
+
                 // Determine receipt status based on PO status
-                $received = $this->getReceivedQuantityForPO($po->status);
+                $received = $this->getReceivedQuantityForPO($po->status, $quantityOrdered);
 
                 PurchaseOrderItem::factory()
                     ->forPurchaseOrder($po->id)
                     ->forProduct($product->id)
                     ->withQuantity(
-                        $this->getQuantityForPO($po),
+                        $quantityOrdered,
                         $unitPrice,
                         $received
                     )
@@ -135,11 +180,11 @@ class PurchaseOrderItemSeeder extends Seeder
     /**
      * Get received quantity based on PO status.
      */
-    protected function getReceivedQuantityForPO(string $poStatus): int
+    protected function getReceivedQuantityForPO(string $poStatus, int $ordered): int
     {
         return match ($poStatus) {
-            PurchaseOrder::STATUS_RECEIVED => 'full',
-            PurchaseOrder::STATUS_PARTIALLY_RECEIVED => 'partial',
+            PurchaseOrder::STATUS_RECEIVED => $ordered,
+            PurchaseOrder::STATUS_PARTIALLY_RECEIVED => fake()->numberBetween(1, max(1, $ordered - 1)),
             default => 0,
         };
     }
@@ -189,16 +234,34 @@ class PurchaseOrderItemSeeder extends Seeder
     {
         $this->command->info('  - Creating high value items...');
 
-        $pos = PurchaseOrder::where('total_amount', '>', 10000)->get();
+        // Get POs that don't already have high value items
+        $pos = PurchaseOrder::where('total_amount', '>', 10000)
+            ->whereDoesntHave('items', function ($q) {
+                $q->where('unit_price', '>', 500);
+            })
+            ->get();
 
         foreach ($pos as $po) {
-            PurchaseOrderItem::factory()
-                ->forPurchaseOrder($po->id)
-                ->highValue()
-                ->count(rand(1, 3))
-                ->create();
+            // Get existing products in this PO
+            $existingProducts = PurchaseOrderItem::where('purchase_order_id', $po->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(2);
+            // Get random products not already in this PO
+            $products = Product::whereNotIn('id', $existingProducts)
+                ->inRandomOrder()
+                ->limit(rand(1, 3))
+                ->get();
+
+            foreach ($products as $product) {
+                PurchaseOrderItem::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->forProduct($product->id)
+                    ->highValue()
+                    ->create();
+
+                $this->command->getOutput()->progressAdvance(1);
+            }
         }
     }
 
@@ -218,10 +281,24 @@ class PurchaseOrderItemSeeder extends Seeder
             $bulkProducts = Product::factory()->bulkItem()->count(5)->create();
         }
 
-        $pos = PurchaseOrder::where('total_amount', '>', 5000)->get();
+        // Get POs that don't already have bulk items
+        $pos = PurchaseOrder::where('total_amount', '>', 5000)
+            ->whereDoesntHave('items', function ($q) use ($bulkProducts) {
+                $q->whereIn('product_id', $bulkProducts->pluck('id'));
+            })
+            ->take(5)
+            ->get();
 
-        foreach ($pos->take(5) as $po) {
-            foreach ($bulkProducts->take(2) as $product) {
+        foreach ($pos as $po) {
+            // Get existing products in this PO
+            $existingProducts = PurchaseOrderItem::where('purchase_order_id', $po->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Get bulk products not already in this PO
+            $availableProducts = $bulkProducts->whereNotIn('id', $existingProducts)->take(2);
+
+            foreach ($availableProducts as $product) {
                 PurchaseOrderItem::factory()
                     ->forPurchaseOrder($po->id)
                     ->forProduct($product->id)
@@ -246,10 +323,24 @@ class PurchaseOrderItemSeeder extends Seeder
             $batchProducts = Product::factory()->batchTracked()->count(5)->create();
         }
 
-        $receivedPOs = PurchaseOrder::received()->get();
+        // Get received POs that don't already have batch tracked items
+        $receivedPOs = PurchaseOrder::received()
+            ->whereDoesntHave('items', function ($q) use ($batchProducts) {
+                $q->whereIn('product_id', $batchProducts->pluck('id'));
+            })
+            ->take(8)
+            ->get();
 
-        foreach ($receivedPOs->take(8) as $po) {
-            foreach ($batchProducts->take(2) as $product) {
+        foreach ($receivedPOs as $po) {
+            // Get existing products in this PO
+            $existingProducts = PurchaseOrderItem::where('purchase_order_id', $po->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Get batch products not already in this PO
+            $availableProducts = $batchProducts->whereNotIn('id', $existingProducts)->take(2);
+
+            foreach ($availableProducts as $product) {
                 PurchaseOrderItem::factory()
                     ->forPurchaseOrder($po->id)
                     ->forProduct($product->id)
@@ -275,10 +366,24 @@ class PurchaseOrderItemSeeder extends Seeder
             $serialProducts = Product::factory()->serialTracked()->count(5)->create();
         }
 
-        $receivedPOs = PurchaseOrder::received()->get();
+        // Get received POs that don't already have serial tracked items
+        $receivedPOs = PurchaseOrder::received()
+            ->whereDoesntHave('items', function ($q) use ($serialProducts) {
+                $q->whereIn('product_id', $serialProducts->pluck('id'));
+            })
+            ->take(6)
+            ->get();
 
-        foreach ($receivedPOs->take(6) as $po) {
-            foreach ($serialProducts->take(2) as $product) {
+        foreach ($receivedPOs as $po) {
+            // Get existing products in this PO
+            $existingProducts = PurchaseOrderItem::where('purchase_order_id', $po->id)
+                ->pluck('product_id')
+                ->toArray();
+
+            // Get serial products not already in this PO
+            $availableProducts = $serialProducts->whereNotIn('id', $existingProducts)->take(2);
+
+            foreach ($availableProducts as $product) {
                 $item = PurchaseOrderItem::factory()
                     ->forPurchaseOrder($po->id)
                     ->forProduct($product->id)
@@ -308,19 +413,38 @@ class PurchaseOrderItemSeeder extends Seeder
     {
         $this->command->info('  - Creating discounted items...');
 
-        $pos = PurchaseOrder::where('status', PurchaseOrder::STATUS_APPROVED)
-            ->orWhere('status', PurchaseOrder::STATUS_RECEIVED)
-            ->get()
-            ->take(10);
+        // Get POs that don't already have discounted items
+        $pos = PurchaseOrder::whereIn('status', [
+            PurchaseOrder::STATUS_APPROVED,
+            PurchaseOrder::STATUS_RECEIVED
+        ])
+            ->whereDoesntHave('items', function ($q) {
+                $q->where('discount_percent', '>', 0);
+            })
+            ->take(10)
+            ->get();
 
         foreach ($pos as $po) {
-            PurchaseOrderItem::factory()
-                ->forPurchaseOrder($po->id)
-                ->discounted(rand(5, 20))
-                ->count(rand(1, 2))
-                ->create();
+            // Get existing products in this PO
+            $existingProducts = PurchaseOrderItem::where('purchase_order_id', $po->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(1);
+            // Get random products not already in this PO
+            $products = Product::whereNotIn('id', $existingProducts)
+                ->inRandomOrder()
+                ->limit(rand(1, 2))
+                ->get();
+
+            foreach ($products as $product) {
+                PurchaseOrderItem::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->forProduct($product->id)
+                    ->discounted(rand(5, 20))
+                    ->create();
+
+                $this->command->getOutput()->progressAdvance(1);
+            }
         }
     }
 
@@ -331,17 +455,36 @@ class PurchaseOrderItemSeeder extends Seeder
     {
         $this->command->info('  - Creating tax-exempt items...');
 
-        $pos = PurchaseOrder::inRandomOrder()->take(8)->get();
+        // Get POs that don't already have tax-exempt items
+        $pos = PurchaseOrder::whereDoesntHave('items', function ($q) {
+            $q->where('tax_percent', 0);
+        })
+            ->inRandomOrder()
+            ->take(8)
+            ->get();
 
         foreach ($pos as $po) {
-            PurchaseOrderItem::factory()
-                ->forPurchaseOrder($po->id)
-                ->state([
-                    'tax_percent' => 0,
-                ])
-                ->create();
+            // Get existing products in this PO
+            $existingProducts = PurchaseOrderItem::where('purchase_order_id', $po->id)
+                ->pluck('product_id')
+                ->toArray();
 
-            $this->command->getOutput()->progressAdvance(1);
+            // Get a random product not already in this PO
+            $product = Product::whereNotIn('id', $existingProducts)
+                ->inRandomOrder()
+                ->first();
+
+            if ($product) {
+                PurchaseOrderItem::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->forProduct($product->id)
+                    ->state([
+                        'tax_percent' => 0,
+                    ])
+                    ->create();
+
+                $this->command->getOutput()->progressAdvance(1);
+            }
         }
     }
 
@@ -353,9 +496,13 @@ class PurchaseOrderItemSeeder extends Seeder
         $this->command->info('  - Creating split shipment items...');
 
         for ($i = 0; $i < 5; $i++) {
+            // Create a new PO specifically for split shipments
             $po = PurchaseOrder::factory()
                 ->partiallyReceived()
                 ->create();
+
+            // Get a random product not used in other items of this PO (which will be none since it's new)
+            $product = Product::inRandomOrder()->first();
 
             $ordered = rand(100, 500);
             $firstShipment = rand(30, 70);
@@ -363,6 +510,7 @@ class PurchaseOrderItemSeeder extends Seeder
 
             $item = PurchaseOrderItem::factory()
                 ->forPurchaseOrder($po->id)
+                ->forProduct($product->id)
                 ->withQuantity($ordered, rand(10, 50), $firstShipment)
                 ->create();
 
@@ -396,16 +544,22 @@ class PurchaseOrderItemSeeder extends Seeder
         $this->command->info('  - Creating overdue items...');
 
         for ($i = 0; $i < 8; $i++) {
+            // Create a new PO specifically for overdue items
             $po = PurchaseOrder::factory()->approved()->create();
 
-            PurchaseOrderItem::factory()
-                ->forPurchaseOrder($po->id)
-                ->pending()
-                ->state([
-                    'expected_delivery_date' => now()->subDays(rand(5, 30)),
-                ])
-                ->count(rand(2, 4))
-                ->create();
+            // Get products not already in this PO (which will be none since it's new)
+            $products = Product::inRandomOrder()->limit(rand(2, 4))->get();
+
+            foreach ($products as $product) {
+                PurchaseOrderItem::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->forProduct($product->id)
+                    ->pending()
+                    ->state([
+                        'expected_delivery_date' => now()->subDays(rand(5, 30)),
+                    ])
+                    ->create();
+            }
 
             $this->command->getOutput()->progressAdvance(2);
         }
@@ -419,17 +573,23 @@ class PurchaseOrderItemSeeder extends Seeder
         $this->command->info('  - Creating backordered items...');
 
         for ($i = 0; $i < 6; $i++) {
+            // Create a new PO specifically for backordered items
             $po = PurchaseOrder::factory()->approved()->create();
 
-            PurchaseOrderItem::factory()
-                ->forPurchaseOrder($po->id)
-                ->pending()
-                ->state([
-                    'expected_delivery_date' => now()->addDays(rand(15, 45)),
-                    'notes' => 'Backordered - awaiting supplier stock',
-                ])
-                ->count(rand(1, 3))
-                ->create();
+            // Get products not already in this PO (which will be none since it's new)
+            $products = Product::inRandomOrder()->limit(rand(1, 3))->get();
+
+            foreach ($products as $product) {
+                PurchaseOrderItem::factory()
+                    ->forPurchaseOrder($po->id)
+                    ->forProduct($product->id)
+                    ->pending()
+                    ->state([
+                        'expected_delivery_date' => now()->addDays(rand(15, 45)),
+                        'notes' => 'Backordered - awaiting supplier stock',
+                    ])
+                    ->create();
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -443,11 +603,17 @@ class PurchaseOrderItemSeeder extends Seeder
         $this->command->info('  - Creating quality hold items...');
 
         for ($i = 0; $i < 4; $i++) {
+            // Create a new PO specifically for quality hold items
             $po = PurchaseOrder::factory()->partiallyReceived()->create();
+
+            // Get a random product not already in this PO (which will be none since it's new)
+            $product = Product::inRandomOrder()->first();
+
             $received = rand(5, 20);
 
             $item = PurchaseOrderItem::factory()
                 ->forPurchaseOrder($po->id)
+                ->forProduct($product->id)
                 ->withQuantity(rand(20, 50), rand(10, 50), $received)
                 ->create();
 

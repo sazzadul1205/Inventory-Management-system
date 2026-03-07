@@ -655,23 +655,27 @@ class PurchaseReceipt extends Model
     {
         $since = now()->subDays($days);
 
+        // Get main statistics using a join with receipt items
         $stats = self::where('receipt_date', '>=', $since)
             ->selectRaw('
-                COUNT(*) as total_receipts,
-                COUNT(DISTINCT purchase_order_id) as unique_pos,
-                SUM(total_quantity) as total_items_received,
-                SUM(total_cost) as total_value_received
-            ')
+            COUNT(DISTINCT purchase_receipts.id) as total_receipts,
+            COUNT(DISTINCT purchase_order_id) as unique_pos,
+            COALESCE(SUM(purchase_receipt_items.quantity_received), 0) as total_items_received,
+            COALESCE(SUM(purchase_receipt_items.quantity_received * purchase_receipt_items.unit_cost), 0) as total_value_received
+        ')
+            ->leftJoin('purchase_receipt_items', 'purchase_receipts.id', '=', 'purchase_receipt_items.purchase_receipt_id')
             ->first();
 
+        // Get daily summary using joins
         $byDay = self::where('receipt_date', '>=', $since)
             ->select(
-                DB::raw('DATE(receipt_date) as date'),
-                DB::raw('COUNT(*) as receipt_count'),
-                DB::raw('SUM(total_quantity) as items_received'),
-                DB::raw('SUM(total_cost) as value_received')
+                DB::raw('DATE(purchase_receipts.receipt_date) as date'),
+                DB::raw('COUNT(DISTINCT purchase_receipts.id) as receipt_count'),
+                DB::raw('COALESCE(SUM(purchase_receipt_items.quantity_received), 0) as items_received'),
+                DB::raw('COALESCE(SUM(purchase_receipt_items.quantity_received * purchase_receipt_items.unit_cost), 0) as value_received')
             )
-            ->groupBy(DB::raw('DATE(receipt_date)'))
+            ->leftJoin('purchase_receipt_items', 'purchase_receipts.id', '=', 'purchase_receipt_items.purchase_receipt_id')
+            ->groupBy(DB::raw('DATE(purchase_receipts.receipt_date)'))
             ->orderBy('date', 'desc')
             ->get();
 
@@ -682,12 +686,11 @@ class PurchaseReceipt extends Model
             'total_items_received' => $stats->total_items_received ?? 0,
             'total_value_received' => $stats->total_value_received ?? 0,
             'daily_summary' => $byDay,
-            'average_per_day' => $stats->total_receipts > 0
-                ? round($stats->total_receipts / $days, 2)
+            'average_per_day' => ($stats->total_receipts ?? 0) > 0
+                ? round(($stats->total_receipts ?? 0) / $days, 2)
                 : 0
         ];
     }
-
     /**
      * Get receipts by supplier.
      *

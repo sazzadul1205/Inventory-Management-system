@@ -22,7 +22,7 @@ class StockTransferSeeder extends Seeder
     /**
      * Number of stock transfers to create
      */
-    protected const TRANSFER_COUNT = 15; // Was 150
+    protected const TRANSFER_COUNT = 5; // Was 150
 
     /**
      * Run the database seeds.

@@ -18,7 +18,7 @@ class InventoryMovementSeeder extends Seeder
     /**
      * Number of movements to create
      */
-    protected const MOVEMENT_COUNT = 50; // Was 5000
+    protected const MOVEMENT_COUNT = 10; // Was 5000
 
     /**
      * Run the database seeds.
