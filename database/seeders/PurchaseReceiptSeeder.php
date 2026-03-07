@@ -18,7 +18,7 @@ class PurchaseReceiptSeeder extends Seeder
     /**
      * Number of receipts to create
      */
-    protected const RECEIPT_COUNT = 200;
+    protected const RECEIPT_COUNT = 20; // Was 200
 
     /**
      * Run the database seeds.

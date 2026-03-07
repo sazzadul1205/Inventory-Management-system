@@ -13,7 +13,7 @@ class AuditLogSeeder extends Seeder
     /**
      * Number of logs to create
      */
-    protected const LOG_COUNT = 5000;
+    protected const LOG_COUNT = 20;
 
     /**
      * Run the database seeds.

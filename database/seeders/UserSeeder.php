@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     /**
      * Number of users to create
      */
-    protected const USER_COUNT = 100;
+    protected const USER_COUNT = 10; // Was 100
 
     /**
      * Run the database seeds.
@@ -150,13 +150,13 @@ class UserSeeder extends Seeder
         $this->command->info("\nCreating users by role...");
 
         $roleDistribution = [
-            'Receiving Clerk' => 12,
-            'Shipping Clerk' => 12,
-            'Sales Representative' => 10,
-            'Purchasing Agent' => 8,
-            'Cycle Counter' => 8,
+            'Receiving Clerk' => 2, // Was 12
+            'Shipping Clerk' => 2, // Was 12
+            'Sales Representative' => 2, // Was 10
+            'Purchasing Agent' => 1, // Was 8
+            'Cycle Counter' => 1, // Was 8
             'Warehouse Supervisor' => 3,
-            'Temporary Worker' => 8,
+            'Temporary Worker' => 2, // Was 8
             'Financial Analyst' => 3,
             'Auditor' => 2,
             'Guest' => 2,
@@ -339,9 +339,6 @@ class UserSeeder extends Seeder
                     'Financial Analyst',
                     'Purchasing Agent'
                 ]))
-                ->state([
-                    'notes' => 'Remote worker - based from home',
-                ])
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -384,9 +381,6 @@ class UserSeeder extends Seeder
             User::factory()
                 ->withRole($user['role'])
                 ->named($user['first'], $user['last'])
-                ->state([
-                    'notes' => 'Cross-trained in multiple departments',
-                ])
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -409,12 +403,20 @@ class UserSeeder extends Seeder
 
         $this->command->getOutput()->progressAdvance(1);
 
+        $teamDepartmentId = $supervisor->department_id
+            ?? $supervisor->managedDepartment?->id
+            ?? Department::inRandomOrder()->value('id');
+
         // Create team members
         for ($i = 0; $i < 5; $i++) {
-            User::factory()
-                ->withRole('Receiving Clerk')
-                ->inDepartment($supervisor->department_id)
-                ->create();
+            $factory = User::factory()
+                ->withRole('Receiving Clerk');
+
+            if ($teamDepartmentId !== null) {
+                $factory->inDepartment($teamDepartmentId);
+            }
+
+            $factory->create();
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -431,9 +433,6 @@ class UserSeeder extends Seeder
             User::factory()
                 ->withRole('Temporary Worker')
                 ->newUser()
-                ->state([
-                    'notes' => 'In training - shadowing experienced staff',
-                ])
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);

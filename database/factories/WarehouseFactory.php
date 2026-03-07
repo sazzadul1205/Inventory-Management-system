@@ -330,7 +330,7 @@ class WarehouseFactory extends Factory
     /**
      * Set a specific manager.
      */
-    public function withManager(int $userId): static
+    public function withManager(?int $userId): static
     {
         return $this->state(function (array $attributes) use ($userId) {
             return [

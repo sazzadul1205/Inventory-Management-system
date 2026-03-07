@@ -222,7 +222,7 @@ class LocationFactory extends Factory
         $bin = $this->faker->randomElement($this->bins);
 
         $locationCode = $this->generateLocationCode(
-            $warehouse->code ?? 'WH',
+            $warehouse->warehouse_code ?? 'WH',
             $zone,
             $aisle,
             $rack,

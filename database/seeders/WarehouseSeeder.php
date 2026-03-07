@@ -16,7 +16,7 @@ class WarehouseSeeder extends Seeder
     /**
      * Number of warehouses to create
      */
-    protected const WAREHOUSE_COUNT = 15;
+    protected const WAREHOUSE_COUNT = 2;
 
     /**
      * Run the database seeds.
@@ -111,11 +111,6 @@ class WarehouseSeeder extends Seeder
                 ->named($wh['name'])
                 ->inRegion($this->getRegionFromCity($wh['city']))
                 ->withManager($manager?->id)
-                ->withLocations(50)
-                ->withInventory(100)
-                ->withPurchaseOrders(10)
-                ->withSalesOrders(20)
-                ->withStockTransfers(5)
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -145,9 +140,6 @@ class WarehouseSeeder extends Seeder
                 ->named($dc['name'])
                 ->inRegion($dc['region'])
                 ->withManager($this->faker->optional(0.7)->randomElement([$manager?->id]))
-                ->withLocations(30)
-                ->withInventory(50)
-                ->withSalesOrders(15)
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -175,8 +167,6 @@ class WarehouseSeeder extends Seeder
                 ->named($sf['name'])
                 ->inRegion($sf['region'])
                 ->withoutManager()
-                ->withLocations(40)
-                ->withInventory(80)
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -203,8 +193,6 @@ class WarehouseSeeder extends Seeder
                 ->transit()
                 ->named($hub['name'])
                 ->inRegion($hub['region'])
-                ->withLocations(20)
-                ->withStockTransfers(8)
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -231,8 +219,6 @@ class WarehouseSeeder extends Seeder
                 ->distribution()
                 ->named($wh['name'])
                 ->inCountry($wh['country'])
-                ->withLocations(25)
-                ->withInventory(30)
                 ->create();
 
             $this->command->getOutput()->progressAdvance(1);
@@ -296,8 +282,8 @@ class WarehouseSeeder extends Seeder
         $this->command->info("\nWarehouse Capacity Summary:");
 
         $warehouses = Warehouse::withCount('locations')
-            ->orderBy('total_capacity', 'desc')
             ->get()
+            ->sortByDesc(fn($warehouse) => $warehouse->total_capacity)
             ->map(function ($warehouse) {
                 return [
                     $warehouse->display_name,

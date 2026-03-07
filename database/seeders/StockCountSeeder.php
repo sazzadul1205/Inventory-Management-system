@@ -21,7 +21,7 @@ class StockCountSeeder extends Seeder
     /**
      * Number of stock counts to create
      */
-    protected const STOCK_COUNT_COUNT = 150;
+    protected const STOCK_COUNT_COUNT = 15; // Was 150
 
     /**
      * Run the database seeds.
@@ -79,10 +79,10 @@ class StockCountSeeder extends Seeder
     protected function createCountsByType(): void
     {
         $typeDistribution = [
-            StockCount::TYPE_CYCLE => 60,
-            StockCount::TYPE_SPOT => 30,
-            StockCount::TYPE_FULL => 40,
-            StockCount::TYPE_ANNUAL => 10,
+            StockCount::TYPE_CYCLE => 6, // Was 60
+            StockCount::TYPE_SPOT => 3, // Was 30
+            StockCount::TYPE_FULL => 4, // Was 40
+            StockCount::TYPE_ANNUAL => 1, // Was 10
         ];
 
         foreach ($typeDistribution as $type => $count) {

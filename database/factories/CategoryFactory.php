@@ -154,7 +154,7 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $name = $this->faker->unique()->randomElement($this->categoryNames);
+        $name = $this->faker->randomElement($this->categoryNames);
 
         return [
             'name' => $name,
@@ -315,10 +315,10 @@ class CategoryFactory extends Factory
     public function withInventoryItems(int $count = 5): static
     {
         return $this->afterCreating(function (Category $category) use ($count) {
-            if (class_exists('Product')) {
+            if (class_exists(Product::class)) {
                 Product::factory()
                     ->count($count)
-                    ->forCategory($category->id)
+                    ->inCategory($category->id)
                     ->create();
             }
         });

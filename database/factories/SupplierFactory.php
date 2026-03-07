@@ -343,6 +343,14 @@ class SupplierFactory extends Factory
     }
 
     /**
+     * Alias for domestic suppliers used by seeders.
+     */
+    public function local(): static
+    {
+        return $this->domestic();
+    }
+
+    /**
      * Set international supplier.
      */
     public function international(): static
@@ -373,6 +381,24 @@ class SupplierFactory extends Factory
         return $this->state(function (array $attributes) use ($days) {
             return [
                 'lead_time_days' => $days,
+            ];
+        });
+    }
+
+    /**
+     * Set supplier as a medical/pharmaceutical specialist.
+     */
+    public function medical(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'company_name' => $this->faker->randomElement([
+                    'Precision Medical Supplies',
+                    'Advanced Clinical Equipment',
+                    'Healthcare Devices International',
+                    'Sterile Systems & Co.',
+                ]),
+                'notes' => 'Medical and healthcare equipment specialist',
             ];
         });
     }

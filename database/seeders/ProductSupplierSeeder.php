@@ -69,7 +69,7 @@ class ProductSupplierSeeder extends Seeder
         $suppliers = Supplier::all();
 
         $totalRelationships = 0;
-        $targetRelationships = 800; // Target total relationships
+        $targetRelationships = 50; // Was 800
 
         foreach ($products as $product) {
             // Determine number of suppliers per product based on category
@@ -109,15 +109,15 @@ class ProductSupplierSeeder extends Seeder
         $categoryName = $product->category?->name ?? 'Default';
 
         return match ($categoryName) {
-            'Raw Materials' => rand(3, 6),
-            'Consumables' => rand(2, 5),
-            'Office Supplies' => rand(2, 4),
-            'Electronics' => rand(2, 4),
-            'Automotive' => rand(2, 4),
-            'Tools' => rand(2, 3),
-            'Furniture' => rand(1, 3),
-            'Pharmaceuticals' => rand(1, 3),
-            'Default' => rand(1, 3),
+            'Raw Materials' => rand(1, 2), // Was rand(3,6)
+            'Consumables' => rand(1, 2), // Was rand(3,6)
+            'Office Supplies' => rand(1, 2), // Was rand(3,6)
+            'Electronics' => rand(1, 2), // Was rand(3,6)
+            'Automotive' => rand(1, 2), // Was rand(3,6)
+            'Tools' => rand(1, 2), // Was rand(3,6)
+            'Furniture' => rand(1, 2), // Was rand(3,6)
+            'Pharmaceuticals' => rand(1, 2), // Was rand(3,6)
+            default => rand(1, 2), // Was rand(3,6)
         };
     }
 
@@ -330,10 +330,9 @@ class ProductSupplierSeeder extends Seeder
             ->bulkItem()
             ->create();
 
-        $supplier = Supplier::factory()
-            ->create(['name' => 'Bulk Packaging Supply Co']);
-
-        // Create tiered pricing through different MOQs
+        // Create tiered pricing through different MOQs.
+        // product_suppliers has a unique (product_id, supplier_id), so each tier
+        // must be represented by a different supplier row.
         $tiers = [
             ['moq' => 100, 'price' => 2.50, 'lead_time' => 3],
             ['moq' => 500, 'price' => 2.25, 'lead_time' => 5],
@@ -342,6 +341,10 @@ class ProductSupplierSeeder extends Seeder
         ];
 
         foreach ($tiers as $index => $tier) {
+            $supplier = Supplier::factory()->create([
+                'company_name' => 'Bulk Packaging Supply Co Tier ' . ($index + 1),
+            ]);
+
             ProductSupplier::factory()
                 ->forProduct($product->id)
                 ->fromSupplier($supplier->id)
@@ -429,7 +432,7 @@ class ProductSupplierSeeder extends Seeder
 
         // Primary supplier (year-round)
         $primarySupplier = Supplier::factory()
-            ->create(['name' => 'Year-Round Supplies Inc']);
+            ->create(['company_name' => 'Year-Round Supplies Inc']);
 
         ProductSupplier::factory()
             ->forProduct($product->id)
@@ -441,7 +444,7 @@ class ProductSupplierSeeder extends Seeder
 
         // Seasonal supplier (Q4 only)
         $seasonalSupplier = Supplier::factory()
-            ->create(['name' => 'Holiday Specialists Co']);
+            ->create(['company_name' => 'Holiday Specialists Co']);
 
         ProductSupplier::factory()
             ->forProduct($product->id)
@@ -505,7 +508,7 @@ class ProductSupplierSeeder extends Seeder
                 return [
                     $item->product?->name ?? 'Unknown',
                     $item->supplier_count,
-                    $preferred?->supplier?->name ?? 'None',
+                    $preferred?->supplier?->company_name ?? 'None',
                 ];
             })->toArray()
         );
@@ -518,7 +521,7 @@ class ProductSupplierSeeder extends Seeder
             ->first();
 
         if ($sampleProduct) {
-            $comparison = $sampleProduct->getPriceComparison($sampleProduct->product_id);
+            $comparison = ProductSupplier::getPriceStatistics($sampleProduct->product_id);
 
             $this->command->table(
                 ['Metric', 'Value'],

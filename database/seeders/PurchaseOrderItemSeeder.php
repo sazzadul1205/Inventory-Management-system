@@ -69,7 +69,7 @@ class PurchaseOrderItemSeeder extends Seeder
 
         foreach ($purchaseOrders as $po) {
             // Number of items per PO based on PO type
-            $itemCount = $this->getItemCountForPO($po);
+            $itemCount = $this->getItemCountForPO($po); // Modify this method to return smaller numbers
 
             // Get products that this supplier provides
             $supplierProducts = $po->supplier->products ?? collect();
@@ -113,9 +113,9 @@ class PurchaseOrderItemSeeder extends Seeder
     protected function getItemCountForPO(PurchaseOrder $po): int
     {
         return match ($po->total_amount) {
-            $po->total_amount > 10000 => rand(5, 10), // Large orders
-            $po->total_amount > 5000 => rand(3, 6),
-            default => rand(1, 4),
+            $po->total_amount > 10000 => rand(1, 2), // Was rand(5,10)
+            $po->total_amount > 5000 => rand(1, 2), // Was rand(3,6)
+            default => rand(1, 2), // Was rand(1,4)
         };
     }
 

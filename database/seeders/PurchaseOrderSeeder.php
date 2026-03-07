@@ -17,7 +17,7 @@ class PurchaseOrderSeeder extends Seeder
     /**
      * Number of purchase orders to create
      */
-    protected const PO_COUNT = 300;
+    protected const PO_COUNT = 30; // Was 300
 
     /**
      * Run the database seeds.

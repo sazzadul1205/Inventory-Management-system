@@ -27,6 +27,8 @@ class UserFactory extends Factory
      * The current password being used by the factory.
      */
     protected static ?string $password = 'password';
+    protected static array $reservedUsernames = [];
+    protected static array $reservedEmails = [];
 
     /**
      * User roles distribution for realistic assignments
@@ -172,12 +174,7 @@ class UserFactory extends Factory
     {
         $firstName = $this->faker->randomElement($this->firstNames);
         $lastName = $this->faker->randomElement($this->lastNames);
-        $email = strtolower($firstName . '.' . $lastName . '@' . $this->faker->randomElement([
-            'company.com',
-            'inventory.com',
-            'warehouse.com',
-            'supplychain.com'
-        ]));
+        $email = $this->generateUniqueEmail($firstName, $lastName);
 
         // Get random role based on distribution
         $roleName = $this->getRandomRole();
@@ -193,7 +190,6 @@ class UserFactory extends Factory
             'department_id' => $this->assignDepartment($roleName),
             'is_active' => $this->faker->boolean(95), // 95% active
             'last_login' => $this->faker->optional(0.7)->dateTimeBetween('-30 days', 'now'),
-            'email_verified_at' => $this->faker->optional(0.9)->dateTimeBetween('-1 year', 'now'),
             'two_factor_confirmed_at' => $this->faker->optional(0.2)->dateTimeBetween('-6 months', 'now'),
             'remember_token' => Str::random(10),
             'created_at' => $this->faker->dateTimeBetween('-5 years', '-1 month'),
@@ -229,12 +225,76 @@ class UserFactory extends Factory
         $base = strtolower(substr($firstName, 0, 1) . $lastName);
         $base = preg_replace('/[^a-z0-9]/', '', $base);
 
-        // Ensure uniqueness by adding random number if needed
         if (strlen($base) < 3) {
-            $base = $base . $this->faker->randomNumber(3);
+            $base .= 'user';
         }
 
-        return $base;
+        $username = $base;
+        $counter = 1;
+
+        while (in_array($username, self::$reservedUsernames, true) || User::where('username', $username)->exists()) {
+            $username = $base . $counter;
+            $counter++;
+        }
+
+        self::$reservedUsernames[] = $username;
+        return $username;
+    }
+
+    /**
+     * Generate a unique email from first and last name.
+     */
+    protected function generateUniqueEmail(string $firstName, string $lastName): string
+    {
+        $domains = [
+            'company.com',
+            'inventory.com',
+            'warehouse.com',
+            'supplychain.com',
+        ];
+
+        $domain = $this->faker->randomElement($domains);
+        $baseLocal = strtolower($firstName . '.' . $lastName);
+        $baseLocal = preg_replace('/[^a-z0-9.]/', '', $baseLocal);
+
+        if (empty($baseLocal)) {
+            $baseLocal = 'user';
+        }
+
+        $email = $baseLocal . '@' . $domain;
+        $counter = 1;
+
+        while (in_array($email, self::$reservedEmails, true) || User::where('email', $email)->exists()) {
+            $email = $baseLocal . $counter . '@' . $domain;
+            $counter++;
+        }
+
+        self::$reservedEmails[] = $email;
+        return $email;
+    }
+
+    /**
+     * Generate a unique email for a specific domain.
+     */
+    protected function generateUniqueEmailForDomain(string $firstName, string $lastName, string $domain): string
+    {
+        $baseLocal = strtolower($firstName . '.' . $lastName);
+        $baseLocal = preg_replace('/[^a-z0-9.]/', '', $baseLocal);
+
+        if (empty($baseLocal)) {
+            $baseLocal = 'user';
+        }
+
+        $email = $baseLocal . '@' . $domain;
+        $counter = 1;
+
+        while (in_array($email, self::$reservedEmails, true) || User::where('email', $email)->exists()) {
+            $email = $baseLocal . $counter . '@' . $domain;
+            $counter++;
+        }
+
+        self::$reservedEmails[] = $email;
+        return $email;
     }
 
     /**
@@ -467,7 +527,7 @@ class UserFactory extends Factory
                 'first_name' => $firstName,
                 'last_name' => $lastName,
                 'username' => $this->generateUsername($firstName, $lastName),
-                'email' => strtolower($firstName . '.' . $lastName . '@company.com'),
+                'email' => $this->generateUniqueEmailForDomain($firstName, $lastName, 'company.com'),
             ];
         });
     }
@@ -516,7 +576,6 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'last_login' => null,
-                'email_verified_at' => null,
             ];
         });
     }

@@ -416,7 +416,7 @@ class CategorySeeder extends Seeder
                 if (class_exists('Product')) {
                     Product::factory()
                         ->count($productCount)
-                        ->forCategory($category->id)
+                        ->inCategory($category->id)
                         ->create();
                 }
             });

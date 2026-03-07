@@ -19,7 +19,7 @@ class StockTransferSeeder extends Seeder
     /**
      * Number of stock transfers to create
      */
-    protected const TRANSFER_COUNT = 150;
+    protected const TRANSFER_COUNT = 15; // Was 150
 
     /**
      * Run the database seeds.
@@ -30,10 +30,10 @@ class StockTransferSeeder extends Seeder
 
         // Disable foreign key checks temporarily
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        
+
         // Truncate the table
         StockTransfer::truncate();
-        
+
         // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
@@ -77,18 +77,18 @@ class StockTransferSeeder extends Seeder
     protected function createTransfersByStatus(): void
     {
         $statusDistribution = [
-            StockTransfer::STATUS_DRAFT => 15,
-            StockTransfer::STATUS_PENDING => 20,
-            StockTransfer::STATUS_APPROVED => 25,
-            StockTransfer::STATUS_SHIPPED => 25,
-            StockTransfer::STATUS_PARTIALLY_RECEIVED => 20,
-            StockTransfer::STATUS_RECEIVED => 30,
-            StockTransfer::STATUS_CANCELLED => 5,
+            StockTransfer::STATUS_DRAFT => 2, // Was 15
+            StockTransfer::STATUS_PENDING => 2, // Was 20
+            StockTransfer::STATUS_APPROVED => 2, // Was 25
+            StockTransfer::STATUS_SHIPPED => 2, // Was 25
+            StockTransfer::STATUS_PARTIALLY_RECEIVED => 2, // Was 20
+            StockTransfer::STATUS_RECEIVED => 3, // Was 30
+            StockTransfer::STATUS_CANCELLED => 1, // Was 5
         ];
 
         foreach ($statusDistribution as $status => $count) {
             $this->command->info("\nCreating {$count} {$status} transfers...");
-            
+
             for ($i = 0; $i < $count; $i++) {
                 StockTransfer::factory()
                     ->{$status}()
@@ -466,9 +466,9 @@ class StockTransferSeeder extends Seeder
     protected function displayStatistics(): void
     {
         $this->command->info("\nStock Transfer Statistics:");
-        
+
         $stats = StockTransfer::getStatistics(365);
-        
+
         $this->command->table(
             ['Metric', 'Value'],
             [
@@ -500,11 +500,11 @@ class StockTransferSeeder extends Seeder
         // Show warehouse pair statistics
         $this->command->info("\nTop Warehouse Pairs:");
         $topPairs = StockTransfer::select(
-                'from_warehouse_id',
-                'to_warehouse_id',
-                DB::raw('count(*) as transfer_count'),
-                DB::raw('sum(total_quantity) as total_quantity')
-            )
+            'from_warehouse_id',
+            'to_warehouse_id',
+            DB::raw('count(*) as transfer_count'),
+            DB::raw('sum(total_quantity) as total_quantity')
+        )
             ->with(['fromWarehouse', 'toWarehouse'])
             ->groupBy('from_warehouse_id', 'to_warehouse_id')
             ->orderBy('transfer_count', 'desc')
@@ -527,7 +527,7 @@ class StockTransferSeeder extends Seeder
         $overdueCount = StockTransfer::overdue()->count();
         if ($overdueCount > 0) {
             $this->command->warn("\n⚠️  There are {$overdueCount} overdue transfers!");
-            
+
             $overdueTransfers = StockTransfer::overdue()
                 ->with(['fromWarehouse', 'toWarehouse'])
                 ->limit(5)

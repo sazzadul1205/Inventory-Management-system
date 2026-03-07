@@ -87,8 +87,8 @@ class InventorySeeder extends Seeder
         $this->command->info("\nCreating normal stock inventory...");
 
         // Create inventory for each product in main warehouse
-        $products = Product::take(50)->get();
-        $warehouses = Warehouse::take(3)->get();
+        $products = Product::take(10)->get(); // Was 50
+        $warehouses = Warehouse::take(2)->get(); // Was 3
 
         foreach ($products as $product) {
             foreach ($warehouses as $warehouse) {
@@ -115,8 +115,8 @@ class InventorySeeder extends Seeder
         // Create additional random inventory
         Inventory::factory()
             ->available()
-            ->count(100)
-            ->withMovements(rand(2, 5))
+            ->count(20) // Was 100
+            ->withMovements(rand(1, 2)) // Was rand(2,5)
             ->create();
 
         $this->command->getOutput()->progressAdvance(20);
@@ -144,7 +144,7 @@ class InventorySeeder extends Seeder
         // Additional low stock items
         Inventory::factory()
             ->lowStock()
-            ->count(30)
+            ->count(10) // Was 30
             ->create();
 
         $this->command->getOutput()->progressAdvance(15);
@@ -159,7 +159,7 @@ class InventorySeeder extends Seeder
 
         Inventory::factory()
             ->reserved()
-            ->count(40)
+            ->count(10) // Was 40
             ->withMovements(3)
             ->create();
 
@@ -176,19 +176,19 @@ class InventorySeeder extends Seeder
         // Expiring soon (next 30 days)
         Inventory::factory()
             ->expiringSoon(30)
-            ->count(25)
+            ->count(5) // Was 25
             ->create();
 
         // Expiring in 30-60 days
         Inventory::factory()
             ->expiringSoon(60)
-            ->count(20)
+            ->count(5) // Was 20
             ->create();
 
         // Already expired
         Inventory::factory()
             ->expired()
-            ->count(15)
+            ->count(3) // Was 15
             ->create();
 
         $this->command->getOutput()->progressAdvance(12);
@@ -277,12 +277,12 @@ class InventorySeeder extends Seeder
 
         Inventory::factory()
             ->damaged()
-            ->count(20)
+            ->count(5) // Was 20
             ->create();
 
         Inventory::factory()
             ->quarantined()
-            ->count(10)
+            ->count(3) // Was 10
             ->create();
 
         $this->command->getOutput()->progressAdvance(6);
@@ -297,7 +297,7 @@ class InventorySeeder extends Seeder
 
         Inventory::factory()
             ->highValue()
-            ->count(25)
+            ->count(5) // Was 25
             ->withMovements(2)
             ->create();
 
@@ -313,7 +313,7 @@ class InventorySeeder extends Seeder
 
         Inventory::factory()
             ->bulk()
-            ->count(15)
+            ->count(3) // Was 15
             ->create();
 
         $this->command->getOutput()->progressAdvance(4);

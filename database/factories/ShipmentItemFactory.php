@@ -83,7 +83,7 @@ class ShipmentItemFactory extends Factory
     /**
      * Indicate the item has a batch number.
      */
-    public function withBatch(string $batchNumber = null): static
+    public function withBatch(?string $batchNumber = null): static
     {
         return $this->state(function (array $attributes) use ($batchNumber) {
             return [
@@ -95,7 +95,7 @@ class ShipmentItemFactory extends Factory
     /**
      * Indicate the item has a serial number.
      */
-    public function withSerial(string $serialNumber = null): static
+    public function withSerial(?string $serialNumber = null): static
     {
         return $this->state(function (array $attributes) use ($serialNumber) {
             return [

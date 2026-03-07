@@ -165,7 +165,7 @@ class DepartmentFactory extends Factory
      */
     public function definition(): array
     {
-        $name = $this->faker->unique()->randomElement($this->departmentNames);
+        $name = $this->faker->randomElement($this->departmentNames);
 
         return [
             'name' => $name,
@@ -197,7 +197,7 @@ class DepartmentFactory extends Factory
     /**
      * Set a specific manager for the department.
      */
-    public function withManager(User $user = null): static
+    public function withManager(?User $user = null): static
     {
         return $this->state(function (array $attributes) use ($user) {
             return [
@@ -282,7 +282,7 @@ class DepartmentFactory extends Factory
     /**
      * Create a regional distribution center.
      */
-    public function regional(string $region = null): static
+    public function regional(?string $region = null): static
     {
         $regions = $region ? [$region] : ['North', 'South', 'East', 'West'];
         $region = $this->faker->randomElement($regions);
@@ -312,10 +312,6 @@ class DepartmentFactory extends Factory
                 $manager = $department->users()->inRandomOrder()->first();
                 $department->manager_id = $manager->id;
                 $department->save();
-
-                // Mark user as manager
-                $manager->is_manager = true;
-                $manager->save();
             }
         });
     }
@@ -335,9 +331,6 @@ class DepartmentFactory extends Factory
                 $manager = $department->users()->inRandomOrder()->first();
                 $department->manager_id = $manager->id;
                 $department->save();
-
-                $manager->is_manager = true;
-                $manager->save();
             }
         });
     }
@@ -442,9 +435,6 @@ class DepartmentFactory extends Factory
             $manager = $department->users()->inRandomOrder()->first();
             $department->manager_id = $manager->id;
             $department->save();
-
-            $manager->is_manager = true;
-            $manager->save();
 
             // Create various orders
             if (class_exists('PurchaseOrder')) {

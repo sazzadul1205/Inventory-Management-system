@@ -39,6 +39,12 @@ class DepartmentSeeder extends Seeder
 
         // Show statistics
         $this->command->info('Departments created successfully!');
+
+        $averageTeamSize = round(
+            Department::withCount('users')->get()->avg('users_count') ?? 0,
+            1
+        );
+
         $this->command->table(
             ['Metric', 'Count'],
             [
@@ -46,7 +52,7 @@ class DepartmentSeeder extends Seeder
                 ['With Managers', Department::hasManager()->count()],
                 ['Without Managers', Department::noManager()->count()],
                 ['Total Department Users', User::whereNotNull('department_id')->count()],
-                ['Average Team Size', round(Department::avg('user_count') ?? 0, 1)],
+                ['Average Team Size', $averageTeamSize],
             ]
         );
 

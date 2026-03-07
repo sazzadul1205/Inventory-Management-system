@@ -71,6 +71,9 @@ class LocationSeeder extends Seeder
      */
     protected function createWarehouseLocations(Warehouse $warehouse, int $count): void
     {
+        // Ensure we always work with a persisted warehouse row.
+        $warehouse = Warehouse::query()->find($warehouse->id) ?? $warehouse;
+
         // Define zone structure based on warehouse type
         $zoneStructure = $this->getZoneStructure($warehouse);
 
@@ -80,7 +83,7 @@ class LocationSeeder extends Seeder
             $this->command->info("  - Creating {$zoneCount} locations in Zone {$zone}");
 
             for ($i = 0; $i < $zoneCount; $i++) {
-                $this->createLocationInZone($warehouse->id, $zone, $config);
+                $this->createLocationInZone($warehouse, $zone, $config);
 
                 if ($i % 50 === 0) {
                     $this->command->getOutput()->progressAdvance(5);
@@ -167,9 +170,12 @@ class LocationSeeder extends Seeder
     /**
      * Create a location in a specific zone.
      */
-    protected function createLocationInZone(int $warehouseId, string $zone, array $config): void
+    protected function createLocationInZone(Warehouse $warehouse, string $zone, array $config): void
     {
-        $warehouse = Warehouse::find($warehouseId);
+        // Guard against stale references during long-running seed operations.
+        if (!$warehouse->exists || !Warehouse::query()->whereKey($warehouse->id)->exists()) {
+            return;
+        }
 
         // Generate hierarchy components
         $aisle = $this->generateAisle($zone);
@@ -191,8 +197,8 @@ class LocationSeeder extends Seeder
         $currentUtilization = (int) ($maxCapacity * ($utilizationPercent / 100));
 
         // Generate location code
-        $locationCode = Location::generateLocationCode(
-            $warehouse->code ?? 'WH',
+        $baseLocationCode = Location::generateLocationCode(
+            $warehouse->warehouse_code ?? 'WH',
             $zone,
             $aisle,
             $rack,
@@ -200,8 +206,15 @@ class LocationSeeder extends Seeder
             $bin
         );
 
+        $locationCode = $baseLocationCode;
+        $suffix = 1;
+        while (Location::where('location_code', $locationCode)->exists()) {
+            $locationCode = $baseLocationCode . '-' . $suffix;
+            $suffix++;
+        }
+
         Location::create([
-            'warehouse_id' => $warehouseId,
+            'warehouse_id' => $warehouse->id,
             'location_code' => $locationCode,
             'zone' => $zone,
             'aisle' => $aisle,
@@ -273,10 +286,11 @@ class LocationSeeder extends Seeder
         // Cross-docking area (temporary storage)
         foreach ($warehouses as $warehouse) {
             for ($i = 1; $i <= 20; $i++) {
+                $code = ($warehouse->warehouse_code ?? 'WH') . "-X_DOCK-{$i}";
                 Location::factory()
                     ->inWarehouse($warehouse->id)
                     ->inZone('X_DOCK')
-                    ->withCode("X_DOCK-{$i}")
+                    ->withCode($code)
                     ->state([
                         'aisle' => 'XD',
                         'rack' => null,
@@ -292,10 +306,11 @@ class LocationSeeder extends Seeder
         // Staging areas
         foreach ($warehouses as $warehouse) {
             for ($i = 1; $i <= 10; $i++) {
+                $code = ($warehouse->warehouse_code ?? 'WH') . "-STAGE-{$i}";
                 Location::factory()
                     ->inWarehouse($warehouse->id)
                     ->inZone('STAGE')
-                    ->withCode("STAGE-{$i}")
+                    ->withCode($code)
                     ->state([
                         'aisle' => 'S',
                         'rack' => null,
@@ -311,10 +326,11 @@ class LocationSeeder extends Seeder
         // Receiving docks
         foreach ($warehouses as $warehouse) {
             for ($i = 1; $i <= 5; $i++) {
+                $code = ($warehouse->warehouse_code ?? 'WH') . "-RECV-DOCK-{$i}";
                 Location::factory()
                     ->inWarehouse($warehouse->id)
                     ->inZone('RECEIVE')
-                    ->withCode("RECV-DOCK-{$i}")
+                    ->withCode($code)
                     ->state([
                         'aisle' => 'R',
                         'rack' => null,
@@ -330,10 +346,11 @@ class LocationSeeder extends Seeder
         // Shipping docks
         foreach ($warehouses as $warehouse) {
             for ($i = 1; $i <= 5; $i++) {
+                $code = ($warehouse->warehouse_code ?? 'WH') . "-SHIP-DOCK-{$i}";
                 Location::factory()
                     ->inWarehouse($warehouse->id)
                     ->inZone('SHIP')
-                    ->withCode("SHIP-DOCK-{$i}")
+                    ->withCode($code)
                     ->state([
                         'aisle' => 'S',
                         'rack' => null,
