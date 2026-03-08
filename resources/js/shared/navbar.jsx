@@ -18,15 +18,19 @@ import { login, register } from '@/routes';
 
 // Components
 import ThemeToggle from '@/components/ThemeToggle';
+import { HiPencil, HiQuestionMarkCircle, HiStar } from 'react-icons/hi2';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Navigation items array
+  // Navigation items array with all links
   const navItems = [
     { name: 'Home', path: '/', icon: HiHome },
     { name: 'About', path: '/about', icon: HiInformationCircle },
     { name: 'Services', path: '/services', icon: HiBriefcase },
+    { name: 'Testimonials', path: '/testimonials', icon: HiStar }, // You'll need to import HiStar
+    { name: 'FAQ', path: '/faq', icon: HiQuestionMarkCircle }, // You'll need to import HiQuestionMarkCircle
+    { name: 'Blog', path: '/blog', icon: HiPencil }, // You'll need to import HiPencil
     { name: 'Contact', path: '/contact', icon: HiMail },
   ];
 
@@ -38,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex items-center">

@@ -1,21 +1,61 @@
 // resources/js/pages/frontend/Home/Home.jsx
-import Footer from '../../../shared/Footer';
-import Navbar from '../../../shared/navbar';
+
+// Layout
+import FrontEnd_Layout from '../Layout/FrontEnd_Layout';
+import HeroSection1 from './HeroSection/HeroSection1';
+import HeroSection2 from './HeroSection/HeroSection2';
+import HeroSection3 from './HeroSection/HeroSection3';
+import HeroSectionCustom from './HeroSection/HeroSectionCustom';
 
 const Home = () => {
-  return (
-    <div className="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen transition-colors duration-300">
-      <Navbar />
+  const myHeroCustomConfig = {
+    // Custom light theme colors
+    lightTheme: {
+      background: '#f0f9ff',     // light blue background
+      text: '#0c4a6e',            // dark blue text
+      textSecondary: '#0369a1',    // medium blue
+      accent: '#0284c7',
+      badgeBg: '#bae6fd',
+      badgeText: '#0369a1',
+      cardBg: '#ffffff',
+      border: '#7dd3fc',
+      featureIcon: '#f97316',      // orange icons
+      primaryBtnBg: '#f97316',
+      primaryBtnHover: '#fb923c',
+      primaryBtnText: '#ffffff',
+      secondaryBtnBorder: '#0c4a6e',
+      secondaryBtnText: '#0c4a6e',
+    },
 
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-24 px-4 sm:px-6 lg:px-8 bg-indigo-50 dark:bg-gray-800 transition-colors duration-300">
-        <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
-          Welcome to Sazzad Inventory & Logistics
-        </h1>
-        <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-xl">
-          Fast, reliable, and efficient logistics and inventory solutions for your business.
-        </p>
-      </section>
+    // Custom dark theme colors
+    darkTheme: {
+      background: '#0f172a',
+      text: '#f8fafc',
+      textSecondary: '#cbd5e1',
+      accent: '#38bdf8',
+      badgeBg: '#1e293b',
+      badgeText: '#7dd3fc',
+      cardBg: '#1e293b',
+      border: '#334155',
+      featureIcon: '#f97316',
+      primaryBtnBg: '#f97316',
+      primaryBtnHover: '#fb923c',
+      primaryBtnText: '#0f172a',
+      secondaryBtnBorder: '#f8fafc',
+      secondaryBtnText: '#f8fafc',
+    },
+
+    title: 'Your Custom Title Here',
+    description: 'Your custom description with complete color control',
+  };
+
+  return (
+    <FrontEnd_Layout>
+
+      <HeroSection1 />
+      <HeroSection2 />
+      <HeroSection3 />
+      <HeroSectionCustom config={myHeroCustomConfig} theme="light" />
 
       {/* Example Info Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -41,8 +81,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </FrontEnd_Layout>
   );
 };
 

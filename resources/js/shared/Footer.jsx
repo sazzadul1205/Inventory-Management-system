@@ -1,22 +1,22 @@
 // resources/js/shared/Footer.jsx
 import React from 'react';
 import { Link } from '@inertiajs/react';
+
+// Icons
 import {
   HiMapPin,
   HiPhone,
   HiEnvelope,
   HiClock,
-  HiArrowUp,
 } from 'react-icons/hi2';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
+  // Current year
   const currentYear = new Date().getFullYear();
 
+  // Quick links
   const quickLinks = [
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
@@ -25,6 +25,7 @@ const Footer = () => {
     { name: 'Terms & Conditions', path: '/terms' },
   ];
 
+  // Services
   const services = [
     { name: 'Inventory Management', path: '/services/inventory' },
     { name: 'Warehouse Solutions', path: '/services/warehouse' },
@@ -33,6 +34,7 @@ const Footer = () => {
     { name: 'Real-time Tracking', path: '/services/tracking' },
   ];
 
+  // Contact info
   const contactInfo = [
     { icon: HiMapPin, text: '123 Business Avenue, Dhaka, Bangladesh', href: 'https://maps.google.com' },
     { icon: HiPhone, text: '+880 1234-567890', href: 'tel:+8801234567890' },
@@ -40,6 +42,7 @@ const Footer = () => {
     { icon: HiClock, text: 'Mon - Sat: 9:00 AM - 8:00 PM', href: null },
   ];
 
+  // Social links
   const socialLinks = [
     { icon: FaFacebook, href: 'https://facebook.com', label: 'Facebook', color: 'hover:text-blue-600 dark:hover:text-blue-400' },
     { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400 dark:hover:text-blue-300' },
@@ -49,16 +52,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white relative border-t border-gray-200 dark:border-gray-800">
-      {/* Scroll to top button */}
-      <button
-        onClick={scrollToTop}
-        className="absolute -top-5 right-10 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce z-50"
-        aria-label="Scroll to top"
-      >
-        <HiArrowUp className="h-5 w-5" />
-      </button>
 
+      {/* Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        {/* Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="space-y-4">
@@ -160,6 +157,8 @@ const Footer = () => {
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
               Get the latest updates on our services and offers
             </p>
+
+            {/* Newsletter Form */}
             <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
