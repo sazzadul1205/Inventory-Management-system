@@ -23,6 +23,7 @@ import {
   HiOutlineShieldExclamation,
   HiOutlineServer,
   HiOutlineRefresh,
+  HiArrowLeft,
 } from 'react-icons/hi';
 import { FiLogIn } from 'react-icons/fi';
 
@@ -312,8 +313,19 @@ const Login = ({ status, canResetPassword = true, canRegister = true }) => {
       {/* Document Head - Sets page title */}
       <Head title="Log in" />
 
+
       {/* Theme Toggle Button - Floating at top left */}
       <ThemeToggle />
+
+      {/* Floating Back Button at top-left */}
+      <button
+        type="button"
+        onClick={() => window.history.back()}
+        className="fixed top-4 left-4 flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium transition duration-150 bg-white dark:bg-gray-800 px-3 py-2 rounded-lg shadow-md hover:shadow-lg z-50"
+      >
+        <HiArrowLeft className="h-5 w-5 mr-1" />
+        Back
+      </button>
 
       {/* Main Container - Full viewport height with gradient background */}
       <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors duration-300">
