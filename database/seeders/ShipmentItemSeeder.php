@@ -22,7 +22,7 @@ class ShipmentItemSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             Shipment::class => 'No shipments found',
             SalesOrderItem::class => 'No sales order items found',
@@ -31,9 +31,9 @@ class ShipmentItemSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         ShipmentItem::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating shipment items...');
         $this->command->getOutput()->progressStart(100);
@@ -74,7 +74,10 @@ class ShipmentItemSeeder extends Seeder
         $shipments = Shipment::with('salesOrder.items')->get();
 
         foreach ($shipments as $shipment) {
-            $soItems = $shipment->salesOrder->items;
+            // Filter out cancelled items
+            $soItems = $shipment->salesOrder->items->filter(function ($item) {
+                return $item->status !== \App\Models\SalesOrderItem::STATUS_CANCELLED;
+            });
 
             if ($soItems->isEmpty()) {
                 continue;
@@ -95,9 +98,10 @@ class ShipmentItemSeeder extends Seeder
                     ->inRandomOrder()
                     ->first();
 
+                // Don't ship more than what's remaining
                 $quantity = fake()->numberBetween(1, min($remainingToShip, 10));
 
-                ShipmentItem::factory()
+                $shipmentItem = ShipmentItem::factory()
                     ->forShipment($shipment->id)
                     ->forSalesOrderItem($soItem->id)
                     ->forProduct($soItem->product_id)
@@ -106,9 +110,14 @@ class ShipmentItemSeeder extends Seeder
                     ->create();
 
                 // Update the sales order item's shipped quantity
-                $soItem->ship($quantity);
-
-                $this->command->getOutput()->progressAdvance(1);
+                try {
+                    $soItem->ship($quantity);
+                    $this->command->getOutput()->progressAdvance(1);
+                } catch (\Exception $e) {
+                    $this->command->warn("  - Error shipping: " . $e->getMessage());
+                    // Rollback if ship fails
+                    $shipmentItem->delete();
+                }
             }
         }
     }
@@ -259,17 +268,39 @@ class ShipmentItemSeeder extends Seeder
                 continue;
             }
 
+            // Check if item is cancelled
+            if ($soItem->status === \App\Models\SalesOrderItem::STATUS_CANCELLED) {
+                $this->command->warn("    - Skipping cancelled item for shipment {$shipment->id}");
+                continue;
+            }
+
             $locations = Location::where('warehouse_id', $shipment->warehouse_id)
                 ->inRandomOrder()
                 ->limit(3)
                 ->get();
 
+            $remainingToShip = $soItem->quantity_ordered - $soItem->quantity_shipped;
+
+            if ($remainingToShip <= 0) {
+                $this->command->warn("    - No remaining quantity to ship for shipment {$shipment->id}");
+                continue;
+            }
+
             $totalQuantity = 0;
+            $createdItems = [];
+
             foreach ($locations as $location) {
-                $quantity = fake()->numberBetween(1, 3);
+                // Calculate max quantity we can still ship from this location
+                $maxForThisLocation = min(3, $remainingToShip - $totalQuantity);
+
+                if ($maxForThisLocation <= 0) {
+                    break;
+                }
+
+                $quantity = fake()->numberBetween(1, $maxForThisLocation);
                 $totalQuantity += $quantity;
 
-                ShipmentItem::factory()
+                $shipmentItem = ShipmentItem::factory()
                     ->forShipment($shipment->id)
                     ->forSalesOrderItem($soItem->id)
                     ->forProduct($soItem->product_id)
@@ -277,11 +308,23 @@ class ShipmentItemSeeder extends Seeder
                     ->withQuantity($quantity)
                     ->create();
 
+                $createdItems[] = $shipmentItem;
                 $this->command->getOutput()->progressAdvance(1);
             }
 
-            // Update SO item with total shipped quantity
-            $soItem->ship($totalQuantity);
+            // Update SO item with total shipped quantity only if we created items
+            if ($totalQuantity > 0) {
+                try {
+                    $soItem->ship($totalQuantity);
+                    $this->command->info("    - Shipped {$totalQuantity} units for item {$soItem->id}");
+                } catch (\Exception $e) {
+                    $this->command->warn("    - Error shipping: " . $e->getMessage());
+                    // Rollback created shipment items if ship fails
+                    foreach ($createdItems as $item) {
+                        $item->delete();
+                    }
+                }
+            }
         }
     }
 
@@ -479,27 +522,39 @@ class ShipmentItemSeeder extends Seeder
                 ->withQuantity($totalQuantity, $product->unit_cost ?? 50, 0, 0)
                 ->create();
 
-            // Create multiple shipments for this order
+            // Make sure the item is not cancelled
+            if ($soItem->status === SalesOrderItem::STATUS_CANCELLED) {
+                continue;
+            }
+
+            // Create first shipment with unique number
             $shipment1 = Shipment::factory()
                 ->forSalesOrder($so->id)
                 ->shipped()
+                ->state([
+                    'shipment_number' => $this->generateUniqueShipmentNumber(),
+                ])
                 ->create();
 
             $qty1 = fake()->numberBetween(5, 15);
-            ShipmentItem::factory()
+            $item1 = ShipmentItem::factory()
                 ->forShipment($shipment1->id)
                 ->forSalesOrderItem($soItem->id)
                 ->forProduct($product->id)
                 ->withQuantity($qty1)
                 ->create();
 
+            // Create second shipment with unique number
             $shipment2 = Shipment::factory()
                 ->forSalesOrder($so->id)
                 ->shipped()
+                ->state([
+                    'shipment_number' => $this->generateUniqueShipmentNumber(),
+                ])
                 ->create();
 
             $qty2 = fake()->numberBetween(5, 15);
-            ShipmentItem::factory()
+            $item2 = ShipmentItem::factory()
                 ->forShipment($shipment2->id)
                 ->forSalesOrderItem($soItem->id)
                 ->forProduct($product->id)
@@ -507,9 +562,45 @@ class ShipmentItemSeeder extends Seeder
                 ->create();
 
             // Update SO item total shipped
-            $soItem->ship($qty1 + $qty2);
+            try {
+                $soItem->ship($qty1 + $qty2);
+                $this->command->getOutput()->progressAdvance(3);
+            } catch (\Exception $e) {
+                $this->command->warn("  - Skipping split shipment: " . $e->getMessage());
 
-            $this->command->getOutput()->progressAdvance(3);
+                // Clean up created items and shipments
+                // Delete items first (no restrictions on item deletion)
+                if (isset($item1)) {
+                    $item1->delete();
+                }
+                if (isset($item2)) {
+                    $item2->delete();
+                }
+
+                // Delete shipments if they exist and are not shipped
+                // Since they're already marked as shipped, we can't delete them
+                // Instead, we'll just leave them and mark as cancelled if possible
+                try {
+                    if (isset($shipment1) && $shipment1->status === Shipment::STATUS_SHIPPED) {
+                        // Can't delete, but we can mark as cancelled if the model allows
+                        $shipment1->status = Shipment::STATUS_CANCELLED;
+                        $shipment1->save();
+                    }
+                } catch (\Exception $ex) {
+                    // If we can't change status, just leave it
+                }
+
+                try {
+                    if (isset($shipment2) && $shipment2->status === Shipment::STATUS_SHIPPED) {
+                        $shipment2->status = Shipment::STATUS_CANCELLED;
+                        $shipment2->save();
+                    }
+                } catch (\Exception $ex) {
+                    // If we can't change status, just leave it
+                }
+
+                continue;
+            }
         }
     }
 
@@ -531,12 +622,23 @@ class ShipmentItemSeeder extends Seeder
                 ->withQuantity(10, $product->unit_cost ?? 50, 0, 5) // 5 shipped, 5 backordered
                 ->create();
 
+            // Make sure the item is not cancelled
+            if ($soItem->status === SalesOrderItem::STATUS_CANCELLED) {
+                continue;
+            }
+
+            // Generate a unique shipment number
+            $shipmentNumber = $this->generateUniqueShipmentNumber();
+
             $shipment = Shipment::factory()
                 ->forSalesOrder($so->id)
                 ->shipped()
+                ->state([
+                    'shipment_number' => $shipmentNumber,
+                ])
                 ->create();
 
-            ShipmentItem::factory()
+            $shipmentItem = ShipmentItem::factory()
                 ->forShipment($shipment->id)
                 ->forSalesOrderItem($soItem->id)
                 ->forProduct($product->id)
@@ -546,8 +648,42 @@ class ShipmentItemSeeder extends Seeder
                 ])
                 ->create();
 
-            $this->command->getOutput()->progressAdvance(2);
+            try {
+                $soItem->ship(5);
+                $this->command->getOutput()->progressAdvance(2);
+            } catch (\Exception $e) {
+                $this->command->warn("  - Skipping backordered item: " . $e->getMessage());
+
+                // Clean up created items
+                if (isset($shipmentItem)) {
+                    $shipmentItem->delete();
+                }
+
+                // Handle shipment cleanup
+                try {
+                    if (isset($shipment) && $shipment->status === Shipment::STATUS_SHIPPED) {
+                        $shipment->status = Shipment::STATUS_CANCELLED;
+                        $shipment->save();
+                    }
+                } catch (\Exception $ex) {
+                    // If we can't change status, just leave it
+                }
+
+                continue;
+            }
         }
+    }
+
+    /**
+     * Generate a unique shipment number.
+     */
+    protected function generateUniqueShipmentNumber(): string
+    {
+        do {
+            $number = 'SHIP-' . date('Ymd') . '-' . fake()->unique()->numberBetween(1000, 9999);
+        } while (Shipment::where('shipment_number', $number)->exists());
+
+        return $number;
     }
 
     /**
@@ -571,9 +707,17 @@ class ShipmentItemSeeder extends Seeder
                 ->withQuantity(5, $originalProduct->unit_cost ?? 50, 0, 0)
                 ->create();
 
+            // Make sure the item is not cancelled
+            if ($soItem->status === SalesOrderItem::STATUS_CANCELLED) {
+                continue;
+            }
+
             $shipment = Shipment::factory()
                 ->forSalesOrder($so->id)
                 ->shipped()
+                ->state([
+                    'shipment_number' => $this->generateUniqueShipmentNumber(),
+                ])
                 ->create();
 
             // Ship substitute product instead
@@ -588,7 +732,13 @@ class ShipmentItemSeeder extends Seeder
                 ->create();
 
             // Update SO item with shipped quantity
-            $soItem->ship(5);
+            try {
+                $soItem->ship(5);
+            } catch (\Exception $e) {
+                $this->command->warn("  - Skipping substituted item: " . $e->getMessage());
+                $shipment->delete();
+                continue;
+            }
 
             $this->command->getOutput()->progressAdvance(2);
         }

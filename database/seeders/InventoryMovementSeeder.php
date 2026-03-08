@@ -25,7 +25,7 @@ class InventoryMovementSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         if (!$this->checkDependencies([
             Product::class => 'No products found',
             Warehouse::class => 'No warehouses found',
@@ -34,9 +34,9 @@ class InventoryMovementSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         InventoryMovement::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating inventory movements...');
         $this->command->getOutput()->progressStart(self::MOVEMENT_COUNT);
@@ -75,6 +75,8 @@ class InventoryMovementSeeder extends Seeder
         }
     }
 
+// database/seeders/InventoryMovementSeeder.php
+
     /**
      * Create a batch of movements.
      */
@@ -87,11 +89,29 @@ class InventoryMovementSeeder extends Seeder
             $product = $products->random();
             $user = $users->random();
 
+            // Generate a unique movement number before creating
+            $movementNumber = $this->generateUniqueMovementNumber();
+
             InventoryMovement::factory()
                 ->forProduct($product->id)
                 ->createdBy($user->id)
+                ->state([
+                    'movement_number' => $movementNumber,
+                ])
                 ->create();
         }
+    }
+
+    /**
+     * Generate a unique movement number.
+     */
+    protected function generateUniqueMovementNumber(): string
+    {
+        do {
+            $number = 'MOV-' . date('Ymd') . '-' . str_pad(fake()->unique()->numberBetween(1, 9999), 4, '0', STR_PAD_LEFT);
+        } while (InventoryMovement::where('movement_number', $number)->exists());
+
+        return $number;
     }
 
     /**
@@ -149,6 +169,7 @@ class InventoryMovementSeeder extends Seeder
                 ->forProduct($product->id)
                 ->createdBy($user->id)
                 ->state([
+                    'movement_number' => $this->generateUniqueMovementNumber(),
                     'quantity' => 200,
                     'unit_cost' => $product->unit_cost ?? 50,
                     'reference_id' => 1000 + $i,
@@ -512,7 +533,17 @@ class InventoryMovementSeeder extends Seeder
         );
 
         $this->command->info("\nTotal Movements Created: " . InventoryMovement::count());
-        $this->command->info("Date Range: " . InventoryMovement::min('created_at')->format('Y-m-d') .
-            " to " . InventoryMovement::max('created_at')->format('Y-m-d'));
+
+        // Fix the date formatting issue
+        $minDate = InventoryMovement::min('created_at');
+        $maxDate = InventoryMovement::max('created_at');
+
+        if ($minDate && $maxDate) {
+            $minDateFormatted = \Carbon\Carbon::parse($minDate)->format('Y-m-d');
+            $maxDateFormatted = \Carbon\Carbon::parse($maxDate)->format('Y-m-d');
+            $this->command->info("Date Range: {$minDateFormatted} to {$maxDateFormatted}");
+        } else {
+            $this->command->info("Date Range: No movements found");
+        }
     }
 }

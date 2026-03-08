@@ -103,7 +103,8 @@ class InventoryMovementFactory extends Factory
         }
 
         return [
-            'movement_number' => InventoryMovement::generateMovementNumber(),
+            // Don't generate movement number here - let it be set by the seeder
+            'movement_number' => 'TEMP-' . uniqid(), // Temporary placeholder
             'product_id' => $product->id,
             'from_warehouse_id' => $fromWarehouse?->id,
             'to_warehouse_id' => $toWarehouse?->id,

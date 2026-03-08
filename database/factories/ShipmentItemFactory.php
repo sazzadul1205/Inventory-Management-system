@@ -47,6 +47,15 @@ class ShipmentItemFactory extends Factory
         $hasBatch = $product->is_batch_tracked ?? $this->faker->boolean(25);
         $hasSerial = $product->is_serial_tracked ?? $this->faker->boolean(15);
 
+        // Get the base date for timestamps
+        $baseDate = $shipment->shipped_date ?? $shipment->created_at;
+
+        // Ensure we have valid dates for updated_at
+        $now = now();
+        $updatedAt = $baseDate && $baseDate <= $now
+            ? $this->faker->dateTimeBetween($baseDate, $now)
+            : $this->faker->dateTimeBetween('-30 days', 'now');
+
         return [
             'shipment_id' => $shipment->id,
             'sales_order_item_id' => $salesOrderItem->id,
@@ -56,8 +65,8 @@ class ShipmentItemFactory extends Factory
             'batch_number' => $hasBatch ? $this->generateBatchNumber() : null,
             'serial_number' => $hasSerial ? $this->generateSerialNumber() : null,
             'notes' => $this->faker->optional(0.2)->sentence(),
-            'created_at' => $shipment->shipped_date ?? $shipment->created_at,
-            'updated_at' => $this->faker->dateTimeBetween($shipment->shipped_date ?? $shipment->created_at, 'now'),
+            'created_at' => $baseDate ?? $this->faker->dateTimeBetween('-60 days', '-30 days'),
+            'updated_at' => $updatedAt,
         ];
     }
 

@@ -34,9 +34,9 @@ class StockCountItemSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         StockCountItem::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating stock count items...');
         $this->command->getOutput()->progressStart(100);
@@ -466,14 +466,30 @@ class StockCountItemSeeder extends Seeder
                     ->inRandomOrder()
                     ->first();
 
+                if (!$location) {
+                    continue;
+                }
+
+                // Check for duplicates
+                $existingItem = StockCountItem::where('stock_count_id', $count->id)
+                    ->where('product_id', $product->id)
+                    ->where('location_id', $location->id)
+                    ->first();
+
+                if ($existingItem) {
+                    $this->command->warn("    Skipping duplicate high-value item for count {$count->id}, product {$product->id}");
+                    continue;
+                }
+
                 $expectedQty = $this->faker->numberBetween(1, 10);
                 $variance = $this->faker->numberBetween(-2, 2);
+                $countedQty = max(0, $expectedQty + $variance);
 
                 StockCountItem::factory()
                     ->forStockCount($count->id)
                     ->forProduct($product->id)
                     ->atLocation($location->id)
-                    ->withQuantities($expectedQty, max(0, $expectedQty + $variance))
+                    ->withQuantities($expectedQty, $countedQty)
                     ->approved()
                     ->withVarianceReason($variance < 0 ? StockCountItem::REASON_THEFT : StockCountItem::REASON_SYSTEM_ERROR)
                     ->state([
@@ -506,6 +522,10 @@ class StockCountItemSeeder extends Seeder
                     ->inRandomOrder()
                     ->first();
 
+                if (!$location) {
+                    continue;
+                }
+
                 // FIX: Check if item already exists for this count/product/location
                 $existingItem = StockCountItem::where('stock_count_id', $count->id)
                     ->where('product_id', $product->id)
@@ -513,18 +533,19 @@ class StockCountItemSeeder extends Seeder
                     ->first();
 
                 if ($existingItem) {
-                    $this->command->warn("    Skipping duplicate item for count {$count->id}, product {$product->id}, location {$location->id}");
+                    $this->command->warn("    Skipping duplicate bulk item for count {$count->id}, product {$product->id}, location {$location->id}");
                     continue;
                 }
 
                 $expectedQty = $this->faker->numberBetween(500, 5000);
                 $variance = $this->faker->numberBetween(-200, 200);
+                $countedQty = max(0, $expectedQty + $variance);
 
                 StockCountItem::factory()
                     ->forStockCount($count->id)
                     ->forProduct($product->id)
                     ->atLocation($location->id)
-                    ->withQuantities($expectedQty, max(0, $expectedQty + $variance))
+                    ->withQuantities($expectedQty, $countedQty)
                     ->approved()
                     ->withVarianceReason(StockCountItem::REASON_SYSTEM_ERROR)
                     ->state([
@@ -554,9 +575,28 @@ class StockCountItemSeeder extends Seeder
                     ->inRandomOrder()
                     ->first();
 
+                if (!$location) {
+                    $this->command->warn("    No location found for warehouse {$count->warehouse_id}");
+                    continue;
+                }
+
+                // Check if item already exists for this count/product/location
+                $existingItem = StockCountItem::where('stock_count_id', $count->id)
+                    ->where('product_id', $product->id)
+                    ->where('location_id', $location->id)
+                    ->first();
+
+                if ($existingItem) {
+                    $this->command->warn("    Skipping duplicate item for count {$count->id}, product {$product->id}, location {$location->id}");
+                    continue;
+                }
+
                 $expectedQty = $this->faker->numberBetween(10, 50);
-                $expiredQty = $this->faker->numberBetween(1, 10);
+                $expiredQty = $this->faker->numberBetween(1, min(10, $expectedQty - 1)); // Ensure countedQty is not negative
                 $countedQty = $expectedQty - $expiredQty;
+
+                // Ensure counted quantity is not negative
+                $countedQty = max(0, $countedQty);
 
                 StockCountItem::factory()
                     ->forStockCount($count->id)

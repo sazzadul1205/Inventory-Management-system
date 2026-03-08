@@ -233,9 +233,14 @@ class ProductSupplierSeeder extends Seeder
             ->inCategory(Category::where('name', 'Furniture')->first()?->id ?? 1)
             ->create();
 
-        $suppliers = Supplier::inRandomOrder()->limit(4)->get();
+        // Create new suppliers specifically for this scenario
+        $supplierNames = ['Budget Office Supply', 'Standard Furniture Co', 'Premium Ergo Inc', 'Competitive Office'];
 
-        foreach ($suppliers as $index => $supplier) {
+        foreach ($supplierNames as $index => $name) {
+            // Create a new supplier
+            $supplier = Supplier::factory()
+                ->create(['company_name' => $name]);
+
             // Create a range of prices
             $basePrice = 150;
             $price = match ($index) {
@@ -245,18 +250,25 @@ class ProductSupplierSeeder extends Seeder
                 3 => $basePrice * 0.9,   // Competitive
             };
 
-            ProductSupplier::factory()
-                ->forProduct($product->id)
-                ->fromSupplier($supplier->id)
-                ->when($index === 3, fn($factory) => $factory->preferred())
-                ->withUnitCost($price)
-                ->withLeadTime(match ($index) {
-                    0 => 10,  // Budget takes longer
-                    1 => 7,
-                    2 => 4,   // Premium is faster
-                    3 => 5,   // Competitive is balanced
-                })
-                ->create();
+            // Check if relationship already exists
+            $existing = ProductSupplier::where('product_id', $product->id)
+                ->where('supplier_id', $supplier->id)
+                ->first();
+
+            if (!$existing) {
+                ProductSupplier::factory()
+                    ->forProduct($product->id)
+                    ->fromSupplier($supplier->id)
+                    ->when($index === 3, fn($factory) => $factory->preferred())
+                    ->withUnitCost($price)
+                    ->withLeadTime(match ($index) {
+                        0 => 10,  // Budget takes longer
+                        1 => 7,
+                        2 => 4,   // Premium is faster
+                        3 => 5,   // Competitive is balanced
+                    })
+                    ->create();
+            }
 
             $this->command->getOutput()->progressAdvance(1);
         }
@@ -368,30 +380,52 @@ class ProductSupplierSeeder extends Seeder
             ->serialTracked()
             ->create();
 
-        // Local suppliers (3)
+        // Local suppliers (3) - Create new suppliers specifically for this product
         for ($i = 0; $i < 3; $i++) {
-            ProductSupplier::factory()
-                ->forProduct($product->id)
-                ->localSupplier()
-                ->when($i === 1, fn($factory) => $factory->preferred())
-                ->create();
+            // Create a new supplier for each relationship
+            $supplier = Supplier::factory()
+                ->local()
+                ->create(['company_name' => 'Local Electronics Supply ' . ($i + 1)]);
+
+            // Check if relationship already exists
+            $existing = ProductSupplier::where('product_id', $product->id)
+                ->where('supplier_id', $supplier->id)
+                ->first();
+
+            if (!$existing) {
+                ProductSupplier::factory()
+                    ->forProduct($product->id)
+                    ->fromSupplier($supplier->id)
+                    ->when($i === 1, fn($factory) => $factory->preferred())
+                    ->create();
+            }
+
+            $this->command->getOutput()->progressAdvance(1);
         }
 
         // International suppliers (4)
         $countries = ['China', 'Vietnam', 'Taiwan', 'Malaysia'];
-        foreach ($countries as $country) {
+        foreach ($countries as $index => $country) {
+            // Create a new supplier for each country
             $supplier = Supplier::factory()
                 ->fromCountry($country)
-                ->create();
+                ->create(['company_name' => $country . ' Electronics Co']);
 
-            ProductSupplier::factory()
-                ->forProduct($product->id)
-                ->fromSupplier($supplier->id)
-                ->internationalSupplier()
-                ->create();
+            // Check if relationship already exists
+            $existing = ProductSupplier::where('product_id', $product->id)
+                ->where('supplier_id', $supplier->id)
+                ->first();
+
+            if (!$existing) {
+                ProductSupplier::factory()
+                    ->forProduct($product->id)
+                    ->fromSupplier($supplier->id)
+                    ->internationalSupplier()
+                    ->create();
+            }
+
+            $this->command->getOutput()->progressAdvance(1);
         }
-
-        $this->command->getOutput()->progressAdvance(7);
     }
 
     /**
