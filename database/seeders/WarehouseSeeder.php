@@ -34,9 +34,9 @@ class WarehouseSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Warehouse::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating warehouses...');
         $this->command->getOutput()->progressStart(self::WAREHOUSE_COUNT);

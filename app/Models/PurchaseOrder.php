@@ -909,46 +909,6 @@ class PurchaseOrder extends Model
      * @param int $days
      * @return array<string, mixed>
      */
-    // public static function getStatistics(int $days = 30): array
-    // {
-    //     $since = now()->subDays($days);
-
-    //     $stats = self::where('created_at', '>=', $since)
-    //         ->selectRaw('
-    //             COUNT(*) as total_orders,
-    //             SUM(CASE WHEN status = "received" THEN 1 ELSE 0 END) as received_orders,
-    //             SUM(CASE WHEN status = "cancelled" THEN 1 ELSE 0 END) as cancelled_orders,
-    //             SUM(total_amount) as total_value,
-    //             AVG(total_amount) as average_value,
-    //             SUM(CASE WHEN expected_delivery_date < NOW() AND status NOT IN ("received", "cancelled") THEN 1 ELSE 0 END) as overdue_count
-    //         ')
-    //         ->first();
-
-    //     $byStatus = self::where('created_at', '>=', $since)
-    //         ->select('status', DB::raw('COUNT(*) as count'), DB::raw('SUM(total_amount) as value'))
-    //         ->groupBy('status')
-    //         ->get()
-    //         ->keyBy('status');
-
-    //     return [
-    //         'period_days' => $days,
-    //         'total_orders' => $stats->total_orders ?? 0,
-    //         'total_value' => $stats->total_value ?? 0,
-    //         'average_value' => $stats->average_value ?? 0,
-    //         'received_orders' => $stats->received_orders ?? 0,
-    //         'cancelled_orders' => $stats->cancelled_orders ?? 0,
-    //         'overdue_count' => $stats->overdue_count ?? 0,
-    //         'by_status' => $byStatus,
-    //         'completion_rate' => $stats->total_orders > 0
-    //             ? round(($stats->received_orders / $stats->total_orders) * 100, 2)
-    //             : 0
-    //     ];
-    // }
-
-
-    /**
-     * Get purchase order statistics.
-     */
     public static function getStatistics(int $days = 365): array
     {
         $dateThreshold = now()->subDays($days);

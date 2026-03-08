@@ -28,9 +28,9 @@ class SupplierSeeder extends Seeder
     {
         $this->faker = fake();
 
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Supplier::truncate();
-        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating suppliers...');
         $this->command->getOutput()->progressStart(self::SUPPLIER_COUNT);
@@ -299,70 +299,6 @@ class SupplierSeeder extends Seeder
     /**
      * Display statistics after seeding.
      */
-    // protected function displayStatistics(): void
-    // {
-    //     $this->command->info("\nSupplier Statistics:");
-
-    //     $stats = Supplier::getStatistics();
-
-    //     $this->command->table(
-    //         ['Metric', 'Value'],
-    //         [
-    //             ['Total Suppliers', $stats['total_suppliers']],
-    //             ['Active Suppliers', $stats['active_suppliers']],
-    //             ['Inactive Suppliers', $stats['inactive_suppliers']],
-    //             ['Average Rating', $stats['average_rating']],
-    //             ['Activity Rate', $stats['activity_rate'] . '%'],
-    //         ]
-    //     );
-
-    //     // Show top countries
-    //     $this->command->info("\nTop Supplier Countries:");
-    //     $countryData = [];
-    //     foreach (array_slice($stats['top_countries'], 0, 5, true) as $country => $count) {
-    //         $countryData[] = [$country, $count];
-    //     }
-    //     $this->command->table(['Country', 'Count'], $countryData);
-
-    //     // Show top performers
-    //     $this->command->info("\nTop Performing Suppliers:");
-    //     $topPerformers = Supplier::getTopPerformers(5);
-
-    //     $this->command->table(
-    //         ['Supplier', 'Rating', 'Orders', 'Lead Time'],
-    //         $topPerformers->map(fn($s) => [
-    //             $s['name'],
-    //             $s['rating'],
-    //             $s['order_count'],
-    //             $s['avg_lead_time'] . ' days',
-    //         ])->toArray()
-    //     );
-
-    //     // Show supplier summary
-    //     $this->command->info("\nSupplier Summary:");
-    //     $suppliers = Supplier::withCount('purchaseOrders')
-    //         ->withCount('products')
-    //         ->orderBy('purchase_orders_count', 'desc')
-    //         ->limit(5)
-    //         ->get();
-
-    //     $this->command->table(
-    //         ['Supplier', 'Products', 'Orders', 'Rating', 'Lead Time'],
-    //         $suppliers->map(function ($s) {
-    //             return [
-    //                 $s->company_name,
-    //                 $s->products_count,
-    //                 $s->purchase_orders_count,
-    //                 $s->rating ?? 'N/A',
-    //                 $s->lead_time_days . ' days',
-    //             ];
-    //         })->toArray()
-    //     );
-    // }
-
-    /**
-     * Display statistics after seeding. - For SQLite
-     */
     protected function displayStatistics(): void
     {
         $this->command->info("\nSupplier Statistics:");
@@ -388,13 +324,22 @@ class SupplierSeeder extends Seeder
         }
         $this->command->table(['Country', 'Count'], $countryData);
 
-        // TEMPORARY FIX FOR SQLITE: Skip Top Performing Suppliers query
-        $this->command->info("\nTop Performing Suppliers: (skipped for SQLite compatibility)");
+        // Show top performers
+        $this->command->info("\nTop Performing Suppliers:");
+        $topPerformers = Supplier::getTopPerformers(5);
 
-        // Show supplier summary - using simple query without HAVING clause
+        $this->command->table(
+            ['Supplier', 'Rating', 'Orders', 'Lead Time'],
+            $topPerformers->map(fn($s) => [
+                $s['name'],
+                $s['rating'],
+                $s['order_count'],
+                $s['avg_lead_time'] . ' days',
+            ])->toArray()
+        );
+
+        // Show supplier summary
         $this->command->info("\nSupplier Summary:");
-
-        // Simple query that works with SQLite
         $suppliers = Supplier::withCount('purchaseOrders')
             ->withCount('products')
             ->orderBy('purchase_orders_count', 'desc')

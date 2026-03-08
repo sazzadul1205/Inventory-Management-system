@@ -29,9 +29,9 @@ class InventorySeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Inventory::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating inventory records...');
         $this->command->getOutput()->progressStart(100);

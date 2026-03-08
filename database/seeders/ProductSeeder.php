@@ -29,9 +29,9 @@ class ProductSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Product::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating products...');
         $this->command->getOutput()->progressStart(self::PRODUCT_COUNT);

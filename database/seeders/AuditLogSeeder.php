@@ -32,9 +32,9 @@ class AuditLogSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       DB::statement('SET FOREIGN_KEY_CHECKS=0');
         AuditLog::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $users = User::all();
 

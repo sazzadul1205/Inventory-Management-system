@@ -1071,37 +1071,22 @@ class SalesOrder extends Model
      * @param int $months
      * @return Collection
      */
-    // public static function getMonthlySummary(int $months = 12): Collection
-    // {
-    //     return self::where('order_date', '>=', now()->subMonths($months))
-    //         ->select(
-    //             DB::raw('YEAR(order_date) as year'),
-    //             DB::raw('MONTH(order_date) as month'),
-    //             DB::raw('COUNT(*) as order_count'),
-    //             DB::raw('SUM(total_amount) as revenue'),
-    //             DB::raw('AVG(total_amount) as average_value')
-    //         )
-    //         ->groupBy('year', 'month')
-    //         ->orderBy('year', 'desc')
-    //         ->orderBy('month', 'desc')
-    //         ->get();
-    // }
     public static function getMonthlySummary(int $months = 12): Collection
     {
-        // SQLite version only
         return self::where('order_date', '>=', now()->subMonths($months))
             ->select(
-                DB::raw("strftime('%Y', order_date) as year"),
-                DB::raw("strftime('%m', order_date) as month"),
+                DB::raw('YEAR(order_date) as year'),
+                DB::raw('MONTH(order_date) as month'),
                 DB::raw('COUNT(*) as order_count'),
                 DB::raw('SUM(total_amount) as revenue'),
                 DB::raw('AVG(total_amount) as average_value')
             )
-            ->groupBy(DB::raw("strftime('%Y', order_date)"), DB::raw("strftime('%m', order_date)"))
+            ->groupBy('year', 'month')
             ->orderBy('year', 'desc')
             ->orderBy('month', 'desc')
             ->get();
     }
+
     
     /**
      * --------------------------------------------------------------------------

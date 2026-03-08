@@ -37,9 +37,9 @@ class PurchaseReceiptSeeder extends Seeder
             return;
         }
 
-       // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       DB::statement('SET FOREIGN_KEY_CHECKS=0');
         PurchaseReceipt::truncate();
-         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
+       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating purchase receipts...');
         $this->command->getOutput()->progressStart(self::RECEIPT_COUNT);
