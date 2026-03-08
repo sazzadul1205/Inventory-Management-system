@@ -28,9 +28,9 @@ class SalesOrderItemSeeder extends Seeder
             return;
         }
 
-       DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         SalesOrderItem::truncate();
-       DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating sales order items...');
         $this->command->getOutput()->progressStart(100);
@@ -546,13 +546,22 @@ class SalesOrderItemSeeder extends Seeder
     {
         $this->command->info('  - Creating rush items...');
 
-        $sos = SalesOrder::where('shipping_method', 'like', '%Next Day%')
-            ->orWhere('shipping_method', 'like', '%Expedited%')
+        // Instead of querying by shipping_method, get orders with urgent flag or recent orders
+        $sos = SalesOrder::where('order_date', '>=', now()->subDays(7))
+            ->orWhere('notes', 'like', '%rush%')
+            ->orWhere('notes', 'like', '%expedite%')
+            ->orWhere('notes', 'like', '%urgent%')
             ->get()
             ->take(5);
 
         if ($sos->isEmpty()) {
-            $sos = SalesOrder::factory()->urgent()->count(3)->create();
+            // Create new urgent orders
+            $sos = SalesOrder::factory()
+                ->count(3)
+                ->state([
+                    'notes' => 'Rush order - urgent processing',
+                ])
+                ->create();
         }
 
         foreach ($sos as $so) {

@@ -8,7 +8,6 @@ use App\Models\SalesOrder;
 use App\Models\Product;
 use App\Models\ShipmentItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<SalesOrderItem>

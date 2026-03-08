@@ -33,7 +33,7 @@ class ShipmentItemSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         ShipmentItem::truncate();
-      DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->command->info('Creating shipment items...');
         $this->command->getOutput()->progressStart(100);
@@ -753,7 +753,15 @@ class ShipmentItemSeeder extends Seeder
 
         $totalItems = ShipmentItem::count();
         $totalQuantity = ShipmentItem::sum('quantity_shipped');
-        $totalValue = ShipmentItem::sum('line_value');
+
+        // Fix: Calculate total value without using line_value column
+        // Option 1: If you have a relationship to get product prices
+        $shipmentItems = ShipmentItem::with('product')->get();
+        $totalValue = $shipmentItems->sum(function ($item) {
+            // Calculate line value as quantity * product price (or use a default)
+            $productPrice = $item->product->unit_price ?? $item->product->unit_cost ?? 0;
+            return $item->quantity_shipped * $productPrice;
+        });
 
         $batchCount = ShipmentItem::whereNotNull('batch_number')->count();
         $serialCount = ShipmentItem::whereNotNull('serial_number')->count();
@@ -776,25 +784,37 @@ class ShipmentItemSeeder extends Seeder
         // Show product shipping summary for a sample product
         $sampleProduct = Product::inRandomOrder()->first();
         if ($sampleProduct) {
-            $summary = ShipmentItem::getProductShippingSummary($sampleProduct->id, 90);
+            // Fix: Create a manual summary instead of using the model method
+            $sampleItems = ShipmentItem::where('product_id', $sampleProduct->id)
+                ->with('shipment')
+                ->whereHas('shipment', function ($q) {
+                    $q->where('shipped_date', '>=', now()->subDays(90));
+                })
+                ->get();
+
+            $totalShipped = $sampleItems->sum('quantity_shipped');
+            $totalValue = $sampleItems->sum(function ($item) use ($sampleProduct) {
+                $productPrice = $sampleProduct->unit_price ?? $sampleProduct->unit_cost ?? 0;
+                return $item->quantity_shipped * $productPrice;
+            });
 
             $this->command->info("\nSample Product Shipping Summary: {$sampleProduct->name}");
             $this->command->table(
                 ['Metric', 'Value'],
                 [
-                    ['Total Shipped', $summary['total_shipped']],
-                    ['Total Value', '$' . number_format($summary['total_value'], 2)],
-                    ['Shipment Count', $summary['shipment_count']],
-                    ['Average per Shipment', $summary['average_per_shipment']],
+                    ['Total Shipped', $totalShipped],
+                    ['Total Value', '$' . number_format($totalValue, 2)],
+                    ['Shipment Count', $sampleItems->count()],
+                    ['Average per Shipment', $sampleItems->count() > 0 ? round($totalShipped / $sampleItems->count(), 2) : 0],
                 ]
             );
         }
 
-        // Show items needing tracking validation
-        $needingValidation = ShipmentItem::getItemsNeedingTrackingValidation();
-        if ($needingValidation->isNotEmpty()) {
-            $this->command->warn("\n⚠️  There are {$needingValidation->count()} items that need tracking validation!");
-        }
+        // Fix: Remove or comment out this line if the method doesn't exist
+        // $needingValidation = ShipmentItem::getItemsNeedingTrackingValidation();
+        // if ($needingValidation->isNotEmpty()) {
+        //     $this->command->warn("\n⚠️  There are {$needingValidation->count()} items that need tracking validation!");
+        // }
 
         // Show top shipped products
         $this->command->info("\nTop 5 Shipped Products:");
