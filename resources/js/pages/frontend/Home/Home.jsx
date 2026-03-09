@@ -1,86 +1,97 @@
 // resources/js/pages/frontend/Home/Home.jsx
 
+import React, { Suspense, lazy, useState, useEffect } from 'react';
+
 // Layout
 import FrontEnd_Layout from '../Layout/FrontEnd_Layout';
-import HeroSection1 from './HeroSection/HeroSection1';
-import HeroSection2 from './HeroSection/HeroSection2';
-import HeroSection3 from './HeroSection/HeroSection3';
-import HeroSectionCustom from './HeroSection/HeroSectionCustom';
+import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
+
+// Import configuration
+import { Configuration } from './Config';
+
+// Lazy load hero sections
+const HeroSection1 = lazy(() => import('./HeroSection/HeroSection1'));
+const HeroSection2 = lazy(() => import('./HeroSection/HeroSection2'));
+const HeroSection3 = lazy(() => import('./HeroSection/HeroSection3'));
+const HeroSectionCustom = lazy(() => import('./HeroSection/HeroSectionCustom'));
+
+// Hero section selector component
+const HeroSectionSelector = ({ section, props }) => {
+  const sections = {
+    '1': <HeroSection1 {...props} />,
+    '2': <HeroSection2 {...props} />,
+    '3': <HeroSection3 {...props} />,
+    'custom': <HeroSectionCustom config={props} />,
+    'none': null
+  };
+
+  return sections[section] || null;
+};
 
 const Home = () => {
-  const myHeroCustomConfig = {
-    // Custom light theme colors
-    lightTheme: {
-      background: '#f0f9ff',     // light blue background
-      text: '#0c4a6e',            // dark blue text
-      textSecondary: '#0369a1',    // medium blue
-      accent: '#0284c7',
-      badgeBg: '#bae6fd',
-      badgeText: '#0369a1',
-      cardBg: '#ffffff',
-      border: '#7dd3fc',
-      featureIcon: '#f97316',      // orange icons
-      primaryBtnBg: '#f97316',
-      primaryBtnHover: '#fb923c',
-      primaryBtnText: '#ffffff',
-      secondaryBtnBorder: '#0c4a6e',
-      secondaryBtnText: '#0c4a6e',
-    },
+  const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState(null);
+  const [sectionProps, setSectionProps] = useState({});
 
-    // Custom dark theme colors
-    darkTheme: {
-      background: '#0f172a',
-      text: '#f8fafc',
-      textSecondary: '#cbd5e1',
-      accent: '#38bdf8',
-      badgeBg: '#1e293b',
-      badgeText: '#7dd3fc',
-      cardBg: '#1e293b',
-      border: '#334155',
-      featureIcon: '#f97316',
-      primaryBtnBg: '#f97316',
-      primaryBtnHover: '#fb923c',
-      primaryBtnText: '#0f172a',
-      secondaryBtnBorder: '#f8fafc',
-      secondaryBtnText: '#f8fafc',
-    },
+  useEffect(() => {
+    // Load configuration
+    const loadConfig = () => {
+      try {
+        const config = Configuration;
 
-    title: 'Your Custom Title Here',
-    description: 'Your custom description with complete color control',
-  };
+        // Get section for current page (home)
+        const pageSection = config.pageMappings?.home || config.activeSection;
+
+        // Check for A/B testing
+        let finalSection = pageSection;
+        if (config.abTesting?.enabled) {
+          const { variants, distribution } = config.abTesting;
+          const random = Math.random() * 100;
+          let cumulative = 0;
+
+          for (let i = 0; i < variants.length; i++) {
+            cumulative += distribution[i];
+            if (random < cumulative) {
+              finalSection = variants[i];
+              break;
+            }
+          }
+        }
+
+        setActiveSection(finalSection);
+
+        // Get props for the selected section
+        if (finalSection && config.sections[finalSection]?.enabled) {
+          setSectionProps(config.sections[finalSection].props || {});
+        }
+      } catch (error) {
+        console.error('Failed to load configuration:', error);
+        setActiveSection('none');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadConfig();
+  }, []);
+
+  if (loading) {
+    return (
+      <FrontEnd_Layout>
+        <HeroSectionSkeleton />
+      </FrontEnd_Layout>
+    );
+  }
 
   return (
     <FrontEnd_Layout>
-
-      <HeroSection1 />
-      <HeroSection2 />
-      <HeroSection3 />
-      <HeroSectionCustom config={myHeroCustomConfig} theme="light" />
-
-      {/* Example Info Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition duration-200">
-            <h2 className="text-xl font-semibold mb-2">Inventory Management</h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Keep track of your stock efficiently with our smart inventory solutions.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition duration-200">
-            <h2 className="text-xl font-semibold mb-2">Logistics & Delivery</h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Reliable logistics services ensuring timely deliveries.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition duration-200">
-            <h2 className="text-xl font-semibold mb-2">Customer Support</h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Our support team is here to assist you 24/7.
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* Hero Section with Lazy Loading */}
+      <Suspense fallback={<HeroSectionSkeleton />}>
+        <HeroSectionSelector
+          section={activeSection}
+          props={sectionProps}
+        />
+      </Suspense>
     </FrontEnd_Layout>
   );
 };
