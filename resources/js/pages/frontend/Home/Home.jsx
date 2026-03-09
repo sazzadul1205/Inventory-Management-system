@@ -6,8 +6,8 @@ import HeroSectionSkeleton from "./HeroSection/HeroSectionSkeleton";
 
 // Config
 import { Configuration } from "./Config";
-import BadgeSection from "./HeroSection/components/BadgeSection";
-import TitleSection from "./HeroSection/components/TitleSection";
+
+import F_Title from "../../../components/CMS_Title";
 
 // Lazy Hero Sections
 const HeroSection1 = lazy(() => import("./HeroSection/HeroSection1"));
@@ -27,6 +27,33 @@ const HeroSectionSelector = ({ section, props }) => {
   return sections[section] || null;
 };
 
+// Example 2: Title with multiple text color highlights using Tailwind
+const heroConfig = {
+  level: "h1",
+  text: "Build Modern Interfaces With Smart Components",
+  variant: "hero",
+  alignment: "center",
+
+  gradient: "from-blue-600 via-purple-600 to-pink-600",
+  darkGradient: "dark:from-blue-400 dark:via-purple-400 dark:to-pink-400",
+
+  highlightParts: [
+    {
+      start: 6,
+      end: 12,
+      highlightGradient: "from-yellow-400 to-orange-500"
+    },
+    {
+      start: 24,
+      end: 29,
+      highlightColor: "text-green-600",
+      darkHighlightColor: "dark:text-green-400"
+    }
+  ],
+
+  margin: "mb-12",
+  zLayer: "20",
+};
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -90,53 +117,7 @@ const Home = () => {
     );
   }
 
-  const badgeConfig = {
-    showBadge: true,
 
-    badgeText: "Next Generation Platform ",
-
-    variant: "gradient",
-    size: "lg",
-
-    icon: "hi2:HiSparkles",
-
-    colors: {
-      bg: "from-indigo-500 via-purple-500 to-pink-500"
-    },
-
-    darkMode: {
-      bg: "dark:from-indigo-600 dark:via-purple-600 dark:to-pink-600"
-    },
-
-    animation: {
-      type: "entrance",
-      name: "scaleIn",
-      duration: 0.6
-    },
-
-    hoverAnimation: "glow",
-    tapAnimation: "scale",
-
-    tooltip: "Learn more about our platform",
-
-    href: "/features",
-
-    alignment: "center"
-  };
-
-  const titleConfig = {
-    title: "Build the Future of Web Apps ",
-    highlightText: "Future",
-    highlight: { type: "gradient" },
-
-    // Inline CSS gradient fallback — this will always render.
-    highlightColors: {
-      gradientCss: "linear-gradient(90deg,#6366f1,#8b5cf6,#ec4899)"
-    },
-
-    size: "2xl",
-    align: "center"
-  };
   return (
     <FrontEnd_Layout>
       <Suspense fallback={<HeroSectionSkeleton />}>
@@ -146,8 +127,8 @@ const Home = () => {
         />
       </Suspense>
 
-      <BadgeSection config={badgeConfig} />
-      <TitleSection config={titleConfig} />
+      <F_Title config={heroConfig} />
+
     </FrontEnd_Layout>
   );
 };
