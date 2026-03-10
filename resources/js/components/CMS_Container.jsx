@@ -241,7 +241,8 @@ const deepMerge = (target, source) => {
 const applyVariant = (config) => {
   if (!config.variant || !variants[config.variant]) return config;
 
-  return deepMerge(config, variants[config.variant]);
+  // Start with the variant, then apply the user's config on top
+  const merged = deepMerge(variants[config.variant], config);  return merged;
 };
 
 /**
@@ -291,10 +292,21 @@ const needsWrapperAtAnyBreakpoint = (fullWidthConfig) => {
 const buildBackgroundClasses = (bg) => {
   const classes = [];
 
-  if (bg.color) classes.push(bg.color);
-  if (bg.darkColor) classes.push(bg.darkColor);
-  if (bg.gradient) classes.push(bg.gradient);
-  if (bg.darkGradient) classes.push(bg.darkGradient);
+  // User-specified color takes highest priority
+  if (bg.color) {
+    classes.push(bg.color);
+  }
+  // Then fall back to gradient if no color specified
+  else if (bg.gradient) {
+    classes.push(bg.gradient);
+  }
+
+  // Same for dark mode
+  if (bg.darkColor) {
+    classes.push(bg.darkColor);
+  } else if (bg.darkGradient) {
+    classes.push(bg.darkGradient);
+  }
 
   if (bg.image) {
     classes.push('bg-cover', 'bg-center', 'bg-no-repeat');
@@ -554,7 +566,8 @@ const CMS_Container = forwardRef(({
   // Apply variant and deep merge config with defaults
   const mergedConfig = useMemo(() => {
     const configWithVariant = applyVariant(config);
-    return deepMerge(defaultConfig, configWithVariant);
+    const merged = deepMerge(defaultConfig, configWithVariant);
+    return merged;
   }, [config]);
 
   // Determine if wrapper is needed

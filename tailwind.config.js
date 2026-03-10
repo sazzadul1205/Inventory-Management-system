@@ -1,91 +1,149 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-export default {
-    content: [
-        './resources/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.jsx',
-        './resources/**/*.ts',
-        './resources/**/*.tsx',
-    ],
+module.exports = {
+    content: ['./src/**/*.{js,ts,jsx,tsx}'],
+    theme: {
+        extend: {},
+    },
     safelist: [
-        // widths
+        // Widths
         'w-full',
         'w-screen',
         'w-auto',
+        'min-w-full',
+        'min-w-0',
         'max-w-none',
-        'max-w-full',
+        'max-w-sm',
+        'max-w-md',
+        'max-w-lg',
+        'max-w-xl',
+        'max-w-2xl',
+        'max-w-3xl',
+        'max-w-4xl',
+        'max-w-5xl',
+        'max-w-6xl',
         'max-w-7xl',
 
-        // heights
-        'h-auto',
+        // Heights
         'h-full',
         'h-screen',
+        'h-auto',
         'h-min',
         'h-max',
         'min-h-screen',
         'max-h-screen',
 
-        // spacing
+        // Spacing (common)
+        'p-0',
+        'p-1',
+        'p-2',
+        'p-3',
+        'p-4',
+        'p-5',
+        'p-6',
+        'p-8',
+        'p-10',
+        'p-12',
+        'p-16',
+        'px-0',
+        'px-1',
+        'px-2',
         'px-4',
+        'px-6',
+        'px-8',
+        'py-0',
+        'py-1',
+        'py-2',
         'py-4',
+        'py-6',
         'py-8',
         'py-12',
+        'py-16',
+        'm-0',
+        'm-1',
+        'm-2',
+        'm-3',
+        'm-4',
+        'm-5',
+        'm-6',
         'mx-auto',
 
-        // grid
+        // Grid & flex
+        'grid',
+        'flex',
+        'inline-flex',
+        'inline-block',
         'grid-cols-1',
         'grid-cols-2',
         'grid-cols-3',
         'grid-cols-4',
         'grid-cols-5',
         'grid-cols-6',
-        'grid-rows-1',
-        'grid-rows-2',
-        'grid-rows-3',
+        'grid-cols-12',
         'gap-0',
         'gap-1',
         'gap-2',
-        'gap-3',
         'gap-4',
-        'gap-5',
         'gap-6',
         'gap-8',
-
-        // flex
-        'flex',
-        'flex-row',
-        'flex-col',
-        'flex-wrap',
+        'justify-start',
         'justify-center',
+        'justify-end',
+        'justify-between',
+        'justify-around',
+        'justify-evenly',
+        'items-start',
         'items-center',
+        'items-end',
+        'items-stretch',
 
-        // visibility
-        'hidden',
-        'md:hidden',
-        'lg:hidden',
-
-        // backgrounds
-        'bg-cover',
-        'bg-center',
-        'bg-no-repeat',
-        'bg-gray-100',
-        'dark:bg-gray-900',
-
-        // borders & rounding
+        // Borders & rounding
+        'border',
+        'border-t',
+        'border-b',
+        'border-l',
+        'border-r',
+        'border-gray-200',
         'rounded',
+        'rounded-lg',
+        'rounded-full',
         'rounded-t',
         'rounded-b',
-        'border',
-        'border-gray-200',
-        'shadow',
-        'shadow-lg',
 
-        // cursors
-        'cursor-pointer',
+        // Shadows
+        'shadow',
+        'shadow-md',
+        'shadow-lg',
+        'hover:shadow-lg',
+        'transition-shadow',
+
+        // Backgrounds
+        'bg-white',
+        'bg-gray-100',
+        'bg-gray-200',
+        'bg-gray-300',
+        'bg-black',
+        'bg-blue-900',
+        'bg-blue-800',
+        'dark:bg-gray-900',
+        'bg-gradient-to-r',
+        'from-blue-900',
+        'via-blue-800',
+        'to-blue-900',
+
+        // Opacity
+        'opacity-0',
+        'opacity-25',
+        'opacity-50',
+        'opacity-75',
+        'opacity-100',
+
+        // Responsive prefixes
+        'sm:grid-cols-1',
+        'sm:gap-4',
+        'md:grid-cols-2',
+        'md:gap-6',
+        'lg:grid-cols-3',
+        'lg:gap-8',
     ],
-    theme: {
-        extend: {},
-    },
-    darkMode: 'class',
-    plugins: [],
 };

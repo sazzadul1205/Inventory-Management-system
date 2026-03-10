@@ -65,7 +65,7 @@ const CMS_ListItem = ({
     active: false,
     nested: false,
     nestedLevel: depth,
-    marker: null, // Custom marker for ordered lists (1., a., i., etc.)
+    marker: null,
     color: 'text-gray-700',
     darkColor: 'dark:text-gray-300',
     bgColor: null,
@@ -110,12 +110,7 @@ const CMS_ListItem = ({
 
     return (
       <IconComponent
-        className={`
-          ${iconSize} 
-          ${iconColor} 
-          ${darkIconColor}
-          shrink-0
-        `}
+        className={`${iconSize} ${iconColor} ${darkIconColor} shrink-0`}
       />
     );
   };
@@ -142,10 +137,7 @@ const CMS_ListItem = ({
     };
 
     return (
-      <span className={`
-        ml-2 px-2 py-0.5 text-xs rounded-full
-        ${badgeVariants[mergedConfig.badgeVariant] || badgeVariants.default}
-      `}>
+      <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${badgeVariants[mergedConfig.badgeVariant] || badgeVariants.default}`}>
         {mergedConfig.badge}
       </span>
     );
@@ -267,19 +259,19 @@ const CMS_IconList = ({
   items = []
 }) => {
   const defaultIconListConfig = {
-    layout: 'grid',                  // 'grid', 'flex', 'inline'
-    columns: 4,                       // Number of columns for grid layout
-    gap: 'gap-4',                     // Gap between items
-    iconSize: 'w-8 h-8',              // Icon size
-    iconColor: null,                  // Icon color
-    darkIconColor: null,              // Dark mode icon color
-    showLabel: true,                   // Show labels under icons
-    labelPosition: 'bottom',           // 'bottom', 'right', 'tooltip'
+    layout: 'grid',
+    columns: 4,
+    gap: 'gap-4',
+    iconSize: 'w-8 h-8',
+    iconColor: null,
+    darkIconColor: null,
+    showLabel: true,
+    labelPosition: 'bottom',
     labelColor: 'text-gray-700',
     darkLabelColor: 'dark:text-gray-300',
     labelSize: 'text-sm',
     labelWeight: 'font-normal',
-    centered: true,                    // Center align items
+    centered: true,
     clickable: false,
     onItemClick: null,
     className: '',
@@ -300,75 +292,6 @@ const CMS_IconList = ({
 
     const IconComponent = lib[icon];
     return IconComponent || null;
-  };
-
-  // Render grid layout
-  const renderGrid = () => {
-    const gridCols = {
-      1: 'grid-cols-1',
-      2: 'grid-cols-2',
-      3: 'grid-cols-3',
-      4: 'grid-cols-4',
-      5: 'grid-cols-5',
-      6: 'grid-cols-6'
-    };
-
-    return (
-      <div className={`
-        grid 
-        ${gridCols[mergedConfig.columns] || 'grid-cols-4'}
-        ${mergedConfig.gap}
-      `}>
-        {items.map((item, index) => (
-          <IconListItem
-            key={index}
-            item={item}
-            config={mergedConfig}
-            index={index}
-          />
-        ))}
-      </div>
-    );
-  };
-
-  // Render flex layout
-  const renderFlex = () => {
-    return (
-      <div className={`
-        flex flex-wrap
-        ${mergedConfig.gap}
-        ${mergedConfig.centered ? 'justify-center' : 'justify-start'}
-      `}>
-        {items.map((item, index) => (
-          <IconListItem
-            key={index}
-            item={item}
-            config={mergedConfig}
-            index={index}
-          />
-        ))}
-      </div>
-    );
-  };
-
-  // Render inline layout
-  const renderInline = () => {
-    return (
-      <div className={`
-        flex flex-wrap items-center
-        ${mergedConfig.gap}
-      `}>
-        {items.map((item, index) => (
-          <IconListItem
-            key={index}
-            item={item}
-            config={mergedConfig}
-            index={index}
-            inline
-          />
-        ))}
-      </div>
-    );
   };
 
   // Icon List Item
@@ -443,15 +366,45 @@ const CMS_IconList = ({
   };
 
   // Render based on layout
-  switch (mergedConfig.layout) {
-    case 'flex':
-      return renderFlex();
-    case 'inline':
-      return renderInline();
-    case 'grid':
-    default:
-      return renderGrid();
-  }
+  const renderContent = () => {
+    switch (mergedConfig.layout) {
+      case 'flex':
+        return (
+          <div className={`flex flex-wrap ${mergedConfig.gap} ${mergedConfig.centered ? 'justify-center' : 'justify-start'}`}>
+            {items.map((item, index) => (
+              <IconListItem key={index} item={item} config={mergedConfig} index={index} />
+            ))}
+          </div>
+        );
+      case 'inline':
+        return (
+          <div className={`flex flex-wrap items-center ${mergedConfig.gap}`}>
+            {items.map((item, index) => (
+              <IconListItem key={index} item={item} config={mergedConfig} index={index} inline />
+            ))}
+          </div>
+        );
+      case 'grid':
+      default:
+        const gridCols = {
+          1: 'grid-cols-1',
+          2: 'grid-cols-2',
+          3: 'grid-cols-3',
+          4: 'grid-cols-4',
+          5: 'grid-cols-5',
+          6: 'grid-cols-6'
+        };
+        return (
+          <div className={`grid ${gridCols[mergedConfig.columns] || 'grid-cols-4'} ${mergedConfig.gap}`}>
+            {items.map((item, index) => (
+              <IconListItem key={index} item={item} config={mergedConfig} index={index} />
+            ))}
+          </div>
+        );
+    }
+  };
+
+  return renderContent();
 };
 
 // ============================================================================
@@ -467,13 +420,13 @@ const CMS_List = ({
   children
 }) => {
   const defaultListConfig = {
-    type: 'ul',                       // 'ul', 'ol', 'dl', 'icon-list'
-    variant: 'default',                // 'default', 'bordered', 'striped', 'card'
-    style: 'none',                     // 'none', 'disc', 'decimal', 'circle', 'square', 'roman', 'alpha'
-    layout: 'vertical',                // 'vertical', 'horizontal', 'grid'
-    columns: 1,                        // Number of columns for grid layout
-    gap: 'gap-2',                      // Gap between items
-    spacing: 'space-y-2',              // Spacing between items
+    type: 'ul',
+    variant: 'default',
+    style: 'none',
+    layout: 'vertical',
+    columns: 1,
+    gap: 'gap-2',
+    spacing: 'space-y-2',
     padding: 'p-0',
     margin: 'm-0',
     bgColor: null,
@@ -482,33 +435,19 @@ const CMS_List = ({
     borderColor: null,
     rounded: null,
     shadow: null,
-
-    // Ordered list specific
-    start: 1,                          // Starting number for ordered lists
-    reversed: false,                    // Reverse order
-
-    // Icon list specific
-    iconListConfig: {},                 // Config for CMS_IconList
-
-    // Nested list support
+    start: 1,
+    reversed: false,
+    iconListConfig: {},
     nested: false,
-    nestedIndent: 4,                    // Indentation in rem units
-
-    // Interactive
+    nestedIndent: 4,
     selectable: false,
     multiple: false,
     selectedItems: [],
     onSelect: null,
-
-    // Colors
     color: 'text-gray-900',
     darkColor: 'dark:text-white',
-
-    // Accessibility
     ariaLabel: null,
     ariaLabelledBy: null,
-
-    // Additional
     className: '',
     style: {}
   };
@@ -527,8 +466,8 @@ const CMS_List = ({
     decimal: 'list-decimal',
     circle: 'list-circle',
     square: 'list-square',
-    roman: 'list-roman list-decimal', // Fallback to decimal
-    alpha: 'list-alpha list-decimal'   // Fallback to decimal
+    roman: 'list-roman list-decimal',
+    alpha: 'list-alpha list-decimal'
   };
 
   // Handle item selection
@@ -583,6 +522,21 @@ const CMS_List = ({
     return classes.join(' ');
   }, [mergedConfig]);
 
+  // Ensure style is always an object
+  const listStyle = useMemo(() => {
+    // If mergedConfig.style is a string, convert to empty object (ignore it)
+    if (typeof mergedConfig.style === 'string') {
+      console.warn('CMS_List: style prop should be an object, not a string. Ignoring string style.');
+      return {};
+    }
+    // If it's an object, use it
+    if (mergedConfig.style && typeof mergedConfig.style === 'object') {
+      return mergedConfig.style;
+    }
+    // Default to empty object
+    return {};
+  }, [mergedConfig.style]);
+
   // Render icon list
   if (mergedConfig.type === 'icon-list') {
     return (
@@ -600,7 +554,7 @@ const CMS_List = ({
         className={listClasses}
         aria-label={mergedConfig.ariaLabel}
         aria-labelledby={mergedConfig.ariaLabelledBy}
-        style={mergedConfig.style}
+        style={listStyle}
       >
         {items.map((item, index) => (
           <React.Fragment key={index}>
@@ -670,7 +624,7 @@ const CMS_List = ({
       reversed={mergedConfig.type === 'ol' && mergedConfig.reversed}
       aria-label={mergedConfig.ariaLabel}
       aria-labelledby={mergedConfig.ariaLabelledBy}
-      style={mergedConfig.style}
+      style={listStyle}
     >
       {renderItems(items)}
       {children}
