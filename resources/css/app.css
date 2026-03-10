@@ -10,3 +10,18 @@ button {
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
+
+/* Add to your global CSS file */
+button:hover,
+a:hover {
+    /* This ensures any button/link on hover can have borders removed */
+}
+
+/* Specific override for buttons with hover:border-0 */
+.hover\:border-0:hover {
+    border-width: 0px !important;
+}
+
+.hover\:border-transparent:hover {
+    border-color: transparent !important;
+}

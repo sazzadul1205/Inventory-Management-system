@@ -1,403 +1,347 @@
-import { color } from 'framer-motion';
+/**
+ * HeroInventory Component - Dynamic CMS Page Builder
+ * 
+ * This component serves as a dynamic page builder that renders components based on a JSON configuration.
+ * It lazy loads all CMS components to optimize initial bundle size and supports nested component structures.
+ * 
+ * Features:
+ * - Dynamic component rendering from JSON configuration
+ * - Lazy loading with Suspense for code splitting
+ * - Support for nested components (containers can have children)
+ * - Skeleton loading fallback for better UX
+ * - Error handling for unknown component types
+ */
+
 import React, { Suspense, lazy } from 'react';
+import HeroSectionSkeleton from './HeroSectionSkeleton';
 
-// Lazy load CMS components
-const CMS_Section = lazy(() => import('../../../../components/CMS_Container').then(mod => ({ default: mod.CMS_Section })));
-const CMS_Grid = lazy(() => import('../../../../components/CMS_Container').then(mod => ({ default: mod.CMS_Grid })));
-const CMS_Flex = lazy(() => import('../../../../components/CMS_Container').then(mod => ({ default: mod.CMS_Flex })));
+// ============================================================================
+// Container Components
+// These components provide layout structure (sections, grids, flex containers)
+// ============================================================================
+
+/**
+ * CMS_Section - Full section container with background and spacing
+ * CMS_Grid - Grid layout container for multi-column arrangements
+ * CMS_Flex - Flexbox layout container for flexible arrangements
+ */
+const CMS_Section = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Section })));
+const CMS_Grid = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Grid })));
+const CMS_Flex = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Flex })));
+
+// ============================================================================
+// Content Components
+// These components render actual content (text, titles, buttons, media)
+// ============================================================================
+
+/**
+ * CMS_Title - Main heading component with variants (h1-h6)
+ * CMS_Subtitle - Subheading component for supporting text
+ * CMS_Text - Paragraph and body text component
+ * CMS_Button - Interactive button component with multiple variants
+ * CMS_Badge - Small status indicator component
+ * CMS_Media - Image and video component with lazy loading
+ */
 const CMS_Title = lazy(() => import('../../../../components/CMS_Title'));
+const CMS_Subtitle = lazy(() => import('../../../../components/CMS_Subtitle'));
 const CMS_Text = lazy(() => import('../../../../components/CMS_Text'));
-const CMS_List = lazy(() => import('../../../../components/CMS_List'));
-const CMS_Media = lazy(() => import('../../../../components/CMS_Media'));
-const CMS_Badge = lazy(() => import('../../../../components/CMS_Badge'));
 const CMS_Button = lazy(() => import('../../../../components/CMS_Button'));
+const CMS_Badge = lazy(() => import('../../../../components/CMS_Badge'));
+const CMS_Media = lazy(() => import('../../../../components/CMS_Media'));
 
-const ExamplePage = () => {
+// ============================================================================
+// Layout Components
+// These components provide structured layouts (cards, dividers, lists)
+// ============================================================================
+
+/**
+ * CMS_Card - Card container with header, body, and footer sections
+ * CMS_Divider - Horizontal or vertical divider with optional text/icons
+ * CMS_List - Ordered, unordered, and icon lists with nesting support
+ */
+const CMS_Card = lazy(() => import('../../../../components/CMS_Card'));
+const CMS_Divider = lazy(() => import('../../../../components/CMS_Divider'));
+const CMS_List = lazy(() => import('../../../../components/CMS_List'));
+
+// ============================================================================
+// Data Display Components
+// These components render structured data (tables)
+// ============================================================================
+
+/**
+ * CMS_Table - Data table with sorting, pagination, and selection
+ */
+const CMS_Table = lazy(() => import('../../../../components/CMS_Table'));
+
+// ============================================================================
+// Form Components
+// These components handle user input (inputs, forms)
+// ============================================================================
+
+/**
+ * CMS_Input - Form input component with multiple types and validation
+ */
+const CMS_Input = lazy(() => import('../../../../components/CMS_Input'));
+
+// ============================================================================
+// Main Component
+// ============================================================================
+
+/**
+ * HeroInventory - Main page builder component
+ * 
+ * Renders a component tree based on the configuration from config.json.
+ * Supports recursive rendering of nested components through the renderComponent function.
+ * 
+ * @returns {JSX.Element} The rendered component tree with Suspense fallback
+ */
+const HeroInventory = ({ config }) => {
+  /**
+   * Recursively renders a component based on its type and configuration
+   * 
+   * @param {Object} component - Component configuration object
+   * @param {string} component.component - Component type name (e.g., 'CMS_Section')
+   * @param {Object} component.config - Component styling and behavior configuration
+   * @param {Array} component.children - Nested child components (for containers)
+   * @returns {JSX.Element|null} Rendered component or null if type unknown
+   */
+  const renderComponent = (component) => {
+    // If component is undefined or null, return nothing
+    if (!component) return null;
+
+    switch (component.component) {
+      // ======================================================================
+      // Container Components
+      // These components can have children that are rendered recursively
+      // ======================================================================
+
+      case 'CMS_Section':
+        // Section container with full width background support
+        return (
+          <CMS_Section config={component.config}>
+            {/* Recursively render all child components */}
+            {component.children?.map((child, index) => (
+              <React.Fragment key={index}>
+                {renderComponent(child)}
+              </React.Fragment>
+            ))}
+          </CMS_Section>
+        );
+
+      case 'CMS_Grid':
+        // Grid layout container with responsive columns
+        return (
+          <CMS_Grid config={component.config}>
+            {/* Recursively render all child components */}
+            {component.children?.map((child, index) => (
+              <React.Fragment key={index}>
+                {renderComponent(child)}
+              </React.Fragment>
+            ))}
+          </CMS_Grid>
+        );
+
+      case 'CMS_Flex':
+        // Flexbox layout container with direction and alignment
+        return (
+          <CMS_Flex config={component.config}>
+            {/* Recursively render all child components */}
+            {component.children?.map((child, index) => (
+              <React.Fragment key={index}>
+                {renderComponent(child)}
+              </React.Fragment>
+            ))}
+          </CMS_Flex>
+        );
+
+      // ======================================================================
+      // Content Components
+      // These components render actual content and typically don't have children
+      // ======================================================================
+
+      case 'CMS_Badge':
+        // Small badge/status indicator
+        return <CMS_Badge config={component.config} />;
+
+      case 'CMS_Title':
+        // Main heading with variants and text highlighting
+        return <CMS_Title config={component.config} />;
+
+      case 'CMS_Subtitle':
+        // Subheading for supporting content
+        return <CMS_Subtitle config={component.config} />;
+
+      case 'CMS_Text':
+        // Paragraph and body text content
+        return <CMS_Text config={component.config} />;
+
+      case 'CMS_Button':
+        // Interactive button with multiple styles and states
+        return <CMS_Button config={component.config} />;
+
+      case 'CMS_Media':
+        // Image or video with lazy loading and placeholders
+        return <CMS_Media config={component.config} />;
+
+      // ======================================================================
+      // Layout Components
+      // These components provide structured layouts
+      // ======================================================================
+
+      case 'CMS_Card':
+        // Card container with header, body, and footer sections
+        return (
+          <CMS_Card
+            config={component.config}
+            header={component.header}
+            body={component.body}
+            footer={component.footer}
+          >
+            {/* Optional children inside card */}
+            {component.children?.map((child, index) => (
+              <React.Fragment key={index}>
+                {renderComponent(child)}
+              </React.Fragment>
+            ))}
+          </CMS_Card>
+        );
+
+      case 'CMS_Divider':
+        // Standard divider line
+        return <CMS_Divider config={component.config} />;
+
+      case 'CMS_DividerWithText':
+        // Divider with centered text label
+        return <CMS_DividerWithText config={component.config} text={component.text} />;
+
+      case 'CMS_DividerWithIcon':
+        // Divider with centered icon
+        return <CMS_DividerWithIcon config={component.config} icon={component.icon} iconLibrary={component.iconLibrary} />;
+
+      case 'CMS_VerticalDivider':
+        // Vertical divider for side-by-side content
+        return <CMS_VerticalDivider config={component.config} />;
+
+      case 'CMS_List':
+        // List container (ul/ol) with items
+        return (
+          <CMS_List
+            config={component.config}
+            items={component.items}
+          >
+            {/* Optional nested list items */}
+            {component.children?.map((child, index) => (
+              <React.Fragment key={index}>
+                {renderComponent(child)}
+              </React.Fragment>
+            ))}
+          </CMS_List>
+        );
+
+      case 'CMS_ListItem':
+        // Individual list item with icon and badge support
+        return <CMS_ListItem config={component.config} />;
+
+      case 'CMS_IconList':
+        // Grid of icons with optional labels
+        return <CMS_IconList config={component.config} items={component.items} />;
+
+      // ======================================================================
+      // Data Display Components
+      // These components render structured data
+      // ======================================================================
+
+      case 'CMS_Table':
+        // Data table with sorting, pagination, and selection
+        return (
+          <CMS_Table
+            columns={component.columns}        // Table column definitions
+            data={component.data}              // Table data array
+            config={component.config}           // Table styling configuration
+            onRowClick={component.onRowClick}   // Row click handler
+            onSort={component.onSort}           // Sort handler
+            onPageChange={component.onPageChange} // Pagination handler
+            loading={component.loading}         // Loading state
+          />
+        );
+
+      // ======================================================================
+      // Form Components
+      // These components handle user input
+      // ======================================================================
+
+      case 'CMS_Input':
+        // Form input with multiple types and validation
+        return (
+          <CMS_Input
+            type={component.type}               // Input type (text, email, etc.)
+            name={component.name}                // Input name attribute
+            label={component.label}               // Input label text
+            placeholder={component.placeholder}   // Placeholder text
+            value={component.value}               // Controlled value
+            defaultValue={component.defaultValue} // Default value
+            error={component.error}               // Error message
+            hint={component.hint}                 // Helper hint text
+            disabled={component.disabled}         // Disabled state
+            required={component.required}         // Required field
+            leftIcon={component.leftIcon}         // Left side icon
+            rightIcon={component.rightIcon}       // Right side icon
+            config={component.config}              // Input styling config
+          />
+        );
+
+      case 'CMS_InputGroup':
+        // Group of related inputs
+        return (
+          <CMS_InputGroup config={component.config}>
+            {/* Child input components */}
+            {component.children?.map((child, index) => (
+              <React.Fragment key={index}>
+                {renderComponent(child)}
+              </React.Fragment>
+            ))}
+          </CMS_InputGroup>
+        );
+
+      case 'CMS_InputAddon':
+        // Prefix or suffix addon for inputs
+        return (
+          <CMS_InputAddon
+            config={component.config}
+            position={component.position} // 'left' or 'right'
+          >
+            {component.text || component.children}
+          </CMS_InputAddon>
+        );
+
+      // ======================================================================
+      // Unknown Component Type
+      // Log warning and return null for unrecognized components
+      // ======================================================================
+
+      default:
+        console.warn(`Unknown component type: ${component.component}`);
+        return null;
+    }
+  };
+
+  // ==========================================================================
+  // Render
+  // ==========================================================================
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <CMS_Section
-        config={{
-          variant: 'hero',
-          background: {
-            color: 'bg-white',
-            fullWidth: true,
-          },
-          dimensions: {
-            minHeight: 'screen',
-          },
-          spacing: {
-            padding: 'py-24 md:py-32 lg:py-40',
-          },
-        }}
-      >
-        <CMS_Grid
-          config={{
-            grid: {
-              cols: 1,
-              colsTablet: 2,
-              colsDesktop: 2,
-              gap: 12,
-            },
-            spacing: {
-              padding: 'px-4',
-            },
-          }}
-        >
-          {/* Left Column */}
-          <CMS_Flex
-            config={{
-              flex: {
-                direction: 'col',
-                align: 'start',
-              },
-              spacing: {
-                gap: 6,
-              },
-            }}
-          >
-            {/* Fixed width and height for image */}
-            <CMS_Media
-              config={{
-                type: 'image',
-                src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                alt: 'Team collaboration',
-                // Fixed dimensions
-                width: '400px',      // Fixed width
-                height: '225px',     // Fixed height (16:9 ratio)
-                objectFit: 'cover',
-                rounded: 'rounded-xl',
-                shadow: 'shadow-lg',
-                // Light mode border
-                border: 'border',
-                borderColor: 'border-gray-200',
-                darkBorderColor: 'dark:border-gray-700',
-              }}
-            />
-
-            <CMS_Title
-              config={{
-                text: 'Build Better Products Faster',
-                variant: 'hero',
-                // Light mode color
-                color: 'text-gray-900',
-                // Dark mode color
-                darkColor: 'dark:text-white',
-                alignment: 'left',
-                margin: 'mt-4',
-              }}
-            />
-
-            <CMS_Text
-              config={{
-                text: 'Our platform helps teams collaborate seamlessly, ship features faster, and delight users with exceptional experiences.',
-                variant: 'lead',
-                // Light mode color
-                color: 'text-gray-600',
-                // Dark mode color
-                darkColor: 'dark:text-gray-300',
-                alignment: 'left',
-                maxWidth: 'max-w-xl',
-              }}
-            />
-
-            <CMS_Badge
-              config={{
-                text: 'FEATURES',
-                variant: 'primary',
-                size: 'sm',
-                // Light mode colors
-                color: 'text-blue-800',
-                bgColor: 'bg-blue-100',
-                // Dark mode colors
-                darkColor: 'dark:text-blue-200',
-                darkBgColor: 'dark:bg-blue-900',
-                rounded: 'pill',
-                margin: 'mt-2',
-              }}
-            />
-
-            <CMS_List
-              config={{
-                type: 'ul',
-                style: 'none',
-                spacing: 'space-y-3',
-                // Light mode color
-                color: 'text-gray-700',
-                // Dark mode color
-                darkColor: 'dark:text-white',
-              }}
-              items={[
-                {
-                  icon: 'FaCheckCircle',
-                  iconLibrary: 'fa',
-                  // Light mode icon color
-                  iconColor: 'text-green-600',
-                  // Dark mode icon color
-                  darkIconColor: 'dark:text-green-400',
-                  iconSize: 'w-5 h-5',
-                  text: 'Unlimited projects and team members',
-                  // Light mode text color
-                  color: 'text-gray-700',
-                  // Dark mode text color
-                  darkColor: 'dark:text-white',
-                },
-                {
-                  icon: 'FaCheckCircle',
-                  iconLibrary: 'fa',
-                  iconColor: 'text-green-600',
-                  darkIconColor: 'dark:text-green-400',
-                  iconSize: 'w-5 h-5',
-                  text: 'Advanced analytics and reporting',
-                  color: 'text-gray-700',
-                  darkColor: 'dark:text-white',
-                },
-                {
-                  icon: 'FaCheckCircle',
-                  iconLibrary: 'fa',
-                  iconColor: 'text-green-600',
-                  darkIconColor: 'dark:text-green-400',
-                  iconSize: 'w-5 h-5',
-                  text: '24/7 priority support',
-                  color: 'text-gray-700',
-                  darkColor: 'dark:text-white',
-                },
-              ]}
-            />
-
-            <CMS_Button
-              config={{
-                text: 'Get Started Today',
-                variant: 'gradient',
-                size: 'lg',
-                icon: 'FaArrowRight',
-                iconLibrary: 'fa',
-                iconPosition: 'right',
-                // Light mode gradient
-                gradient: 'from-purple-500 to-pink-500',
-                // Dark mode gradient
-                darkGradient: 'dark:from-purple-400 dark:to-pink-400',
-                color: 'text-white',
-                darkColor: 'dark:text-white',
-                hover: {
-                  scale: 'scale-105',
-                  shadow: 'shadow-xl',
-                },
-                margin: 'mt-8',
-                rounded: 'rounded-full',
-              }}
-            />
-          </CMS_Flex>
-
-          {/* Right Column */}
-          <CMS_Flex
-            config={{
-              flex: {
-                direction: 'col',
-                align: 'start',
-              },
-              spacing: {
-                gap: 6,
-              },
-            }}
-          >
-            <CMS_Badge
-              config={{
-                text: 'WHAT WE OFFER',
-                variant: 'primary',
-                size: 'sm',
-                // Light mode colors
-                color: 'text-blue-800',
-                bgColor: 'bg-blue-100',
-                // Dark mode colors
-                darkColor: 'dark:text-blue-200',
-                darkBgColor: 'dark:bg-blue-900',
-                rounded: 'pill',
-              }}
-            />
-
-            <CMS_Title
-              config={{
-                text: 'Everything You Need to Succeed',
-                variant: 'section',
-                // Light mode color
-                color: 'text-gray-900',
-                // Dark mode color
-                darkColor: 'dark:text-white',
-                alignment: 'left',
-              }}
-            />
-
-            <CMS_Text
-              config={{
-                text: 'Comprehensive tools and features designed to streamline your workflow and boost productivity.',
-                variant: 'description',
-                // Light mode color
-                color: 'text-gray-600',
-                // Dark mode color
-                darkColor: 'dark:text-gray-400',
-                alignment: 'left',
-                maxWidth: 'max-w-md',
-              }}
-            />
-
-            <CMS_Flex
-              config={{
-                flex: {
-                  direction: 'row',
-                  wrap: 'wrap',
-                },
-                spacing: {
-                  gap: 4,
-                  margin: 'mt-8',
-                },
-              }}
-            >
-              <CMS_Button
-                config={{
-                  text: 'Learn More',
-                  variant: 'outline',
-                  size: 'md',
-                  // Light mode colors
-                  color: 'text-blue-600',
-                  border: 'border-2 border-blue-600',
-                  // Dark mode colors
-                  darkColor: 'dark:text-blue-400',
-                  darkBorder: 'dark:border-blue-400',
-                  hover: {
-                    // Light mode hover
-                    bgColor: 'bg-blue-600',
-                    textColor: 'text-white',
-                    // Dark mode hover
-                    darkBgColor: 'dark:bg-blue-500',
-                    darkTextColor: 'dark:text-white',
-                  },
-                  rounded: 'rounded-full',
-                }}
-              />
-              <CMS_Button
-                config={{
-                  text: 'Watch Demo',
-                  variant: 'ghost',
-                  size: 'md',
-                  icon: 'FaPlay',
-                  iconLibrary: 'fa',
-                  // Light mode color
-                  color: 'text-gray-700',
-                  // Dark mode color
-                  darkColor: 'dark:text-white',
-                  hover: {
-                    scale: 'scale-105',
-                    // Light mode hover
-                    bgColor: 'bg-gray-100',
-                    // Dark mode hover
-                    darkBgColor: 'dark:bg-white/10',
-                  },
-                  rounded: 'rounded-full',
-                }}
-              />
-            </CMS_Flex>
-
-            {/* Stats with light/dark mode */}
-            <CMS_Flex
-              config={{
-                flex: {
-                  direction: 'row',
-                  wrap: 'wrap',
-                },
-                spacing: {
-                  gap: 8,
-                  margin: 'mt-12',
-                },
-              }}
-            >
-              <CMS_Flex
-                config={{
-                  flex: {
-                    direction: 'col',
-                    align: 'center',
-                  },
-                }}
-              >
-                <CMS_Title
-                  config={{
-                    text: '500+',
-                    variant: 'hero',
-                    fontSize: 'text-4xl',
-                    // Light mode
-                    color: 'text-gray-900',
-                    // Dark mode
-                    darkColor: 'dark:text-white',
-                  }}
-                />
-                <CMS_Text
-                  config={{
-                    text: 'Happy Clients',
-                    // Light mode
-                    color: 'text-gray-600',
-                    // Dark mode
-                    darkColor: 'dark:text-gray-400',
-                    fontSize: 'text-sm',
-                  }}
-                />
-              </CMS_Flex>
-              <CMS_Flex
-                config={{
-                  flex: {
-                    direction: 'col',
-                    align: 'center',
-                  },
-                }}
-              >
-                <CMS_Title
-                  config={{
-                    text: '50M+',
-                    variant: 'hero',
-                    fontSize: 'text-4xl',
-                    color: 'text-gray-900',
-                    darkColor: 'dark:text-white',
-                  }}
-                />
-                <CMS_Text
-                  config={{
-                    text: 'Tasks Completed',
-                    color: 'text-gray-600',
-                    darkColor: 'dark:text-gray-400',
-                    fontSize: 'text-sm',
-                  }}
-                />
-              </CMS_Flex>
-              <CMS_Flex
-                config={{
-                  flex: {
-                    direction: 'col',
-                    align: 'center',
-                  },
-                }}
-              >
-                <CMS_Title
-                  config={{
-                    text: '99.9%',
-                    variant: 'hero',
-                    fontSize: 'text-4xl',
-                    color: 'text-gray-900',
-                    darkColor: 'dark:text-white',
-                  }}
-                />
-                <CMS_Text
-                  config={{
-                    text: 'Uptime',
-                    color: 'text-gray-600',
-                    darkColor: 'dark:text-gray-400',
-                    fontSize: 'text-sm',
-                  }}
-                />
-              </CMS_Flex>
-            </CMS_Flex>
-          </CMS_Flex>
-        </CMS_Grid>
-      </CMS_Section>
+    /**
+     * Suspense boundary for lazy-loaded components
+     * Shows HeroSectionSkeleton while components are loading
+     */
+    <Suspense fallback={<HeroSectionSkeleton />}>
+      {/**
+       * Start rendering from the root component in config
+       * The config contains the complete component tree structure
+       */}
+      {renderComponent(config)}
     </Suspense>
   );
 };
 
-export default ExamplePage;
+export default HeroInventory;

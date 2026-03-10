@@ -1,9 +1,6 @@
 /**
  * CMS_Badge Component - A highly customizable badge component with dark mode support
- * 
- * This component renders a badge with configurable styling, icon support (including React Icons),
- * and hover effects. Perfect for labels, status indicators, counts, and tags.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Now with full customization priority - custom values always override defaults
  */
 
 import React, { useMemo, useState } from 'react';
@@ -47,9 +44,9 @@ const iconLibraries = {
 // Default configuration
 const defaultConfig = {
   text: "Badge",
-  variant: "default",              // Predefined variants: "default", "primary", "success", "warning", "danger", "info", "outline"
-  size: "md",                      // "sm", "md", "lg"
-  shape: "rounded",                // "rounded", "pill", "square"
+  variant: "default",
+  size: "md",
+  shape: "rounded",
   position: "relative",
 
   // Colors
@@ -60,43 +57,44 @@ const defaultConfig = {
 
   // Border
   border: "border border-transparent",
-  borderColor: null,
-  darkBorderColor: null,
+  borderColor: "",
+  darkBorderColor: "",
 
   // Shadow
-  shadow: null,
-  darkShadow: null,
+  shadow: "",
+  darkShadow: "",
 
-  // Icon support (React Icons)
-  icon: null,                      // Icon name from library (e.g., "FaBeer", "HiHome")
-  iconLibrary: 'fa',                // Icon library: 'fa', 'hi', 'md', etc.
-  iconPosition: "left",            // "left", "right"
-  iconOnly: false,                 // If true, only show icon
-  iconSize: null,                  // Override icon size
+  // Icon support
+  icon: null,
+  iconLibrary: 'fa',
+  iconPosition: "left",
+  iconOnly: false,
+  iconSize: null,
 
-  // Count/Number support
-  count: null,                      // Number to display (overrides text)
-  maxCount: 99,                     // Maximum count before showing 99+
-  showZero: false,                  // Whether to show 0 or hide
+  // Count support
+  count: null,
+  maxCount: 99,
+  showZero: false,
 
-  // Dot indicator (for status badges)
-  dot: false,                       // Show as colored dot
-  dotSize: "w-2 h-2",               // Size of dot
-  dotColor: null,                   // Override dot color
-  pulse: false,                      // Add pulse animation to dot
+  // Dot indicator
+  dot: false,
+  dotSize: "w-2 h-2",
+  dotColor: "",
+  pulse: false,
 
   // Interactive states
-  clickable: false,                 // Whether badge is clickable
-  href: null,                       // URL for link
-  onClick: null,                    // Click handler
+  clickable: false,
+  href: null,
+  onClick: null,
 
-  // Hover effects (if clickable)
+  // Hover effects
   hover: {
-    scale: null,
-    bgColor: null,
-    darkBgColor: null,
-    shadow: null,
-    transition: "transition-all duration-200"
+    scale: "",
+    bgColor: "",
+    darkBgColor: "",
+    shadow: "",
+    transition: "transition-all duration-200",
+    customStyles: {}
   },
 
   // Z-Layer support
@@ -109,13 +107,14 @@ const defaultConfig = {
   ariaLabel: "",
   role: "status",
 
-  // Additional styling
-  margin: "m-0",
+  // Additional styling - NOW FULLY CUSTOMIZABLE
+  padding: null,      // Custom padding (e.g., "px-3 py-4")
+  margin: null,       // Custom margin (e.g., "m-2 mt-4")
   className: "",
   style: {}
 };
 
-// Size mappings
+// Size mappings - these will be used as fallbacks only
 const sizeStyles = {
   sm: {
     padding: "px-1.5 py-0.5",
@@ -134,7 +133,7 @@ const sizeStyles = {
     height: "h-5"
   },
   lg: {
-    padding: "px-2.5 py-1",
+    padding: "px-2.5 py-1.5",
     fontSize: "text-sm",
     gap: "gap-1.5",
     iconSize: "w-4 h-4",
@@ -156,37 +155,43 @@ const defaultVariantStyles = {
     bgColor: "bg-gray-100",
     darkBgColor: "dark:bg-gray-700",
     color: "text-gray-700",
-    darkColor: "dark:text-gray-300"
+    darkColor: "dark:text-gray-300",
+    border: "border border-transparent"
   },
   primary: {
     bgColor: "bg-blue-100",
-    darkBgColor: "dark:bg-blue-900",
+    darkBgColor: "dark:bg-blue-900/30",
     color: "text-blue-700",
-    darkColor: "dark:text-blue-300"
+    darkColor: "dark:text-blue-300",
+    border: "border border-transparent"
   },
   success: {
     bgColor: "bg-green-100",
-    darkBgColor: "dark:bg-green-900",
+    darkBgColor: "dark:bg-green-900/30",
     color: "text-green-700",
-    darkColor: "dark:text-green-300"
+    darkColor: "dark:text-green-300",
+    border: "border border-transparent"
   },
   warning: {
     bgColor: "bg-yellow-100",
-    darkBgColor: "dark:bg-yellow-900",
+    darkBgColor: "dark:bg-yellow-900/30",
     color: "text-yellow-700",
-    darkColor: "dark:text-yellow-300"
+    darkColor: "dark:text-yellow-300",
+    border: "border border-transparent"
   },
   danger: {
     bgColor: "bg-red-100",
-    darkBgColor: "dark:bg-red-900",
+    darkBgColor: "dark:bg-red-900/30",
     color: "text-red-700",
-    darkColor: "dark:text-red-300"
+    darkColor: "dark:text-red-300",
+    border: "border border-transparent"
   },
   info: {
     bgColor: "bg-cyan-100",
-    darkBgColor: "dark:bg-cyan-900",
+    darkBgColor: "dark:bg-cyan-900/30",
     color: "text-cyan-700",
-    darkColor: "dark:text-cyan-300"
+    darkColor: "dark:text-cyan-300",
+    border: "border border-transparent"
   },
   outline: {
     bgColor: "bg-transparent",
@@ -197,29 +202,36 @@ const defaultVariantStyles = {
     borderColor: "border-gray-300",
     darkBorderColor: "dark:border-gray-600"
   },
-  // Status variants
   online: {
     bgColor: "bg-green-500",
+    darkBgColor: "dark:bg-green-600",
     color: "text-white",
+    darkColor: "dark:text-white",
     dot: true,
     dotColor: "bg-green-500",
     pulse: true
   },
   offline: {
     bgColor: "bg-gray-400",
+    darkBgColor: "dark:bg-gray-600",
     color: "text-white",
+    darkColor: "dark:text-white",
     dot: true,
     dotColor: "bg-gray-400"
   },
   busy: {
     bgColor: "bg-red-500",
+    darkBgColor: "dark:bg-red-600",
     color: "text-white",
+    darkColor: "dark:text-white",
     dot: true,
     dotColor: "bg-red-500"
   },
   away: {
     bgColor: "bg-yellow-500",
+    darkBgColor: "dark:bg-yellow-600",
     color: "text-white",
+    darkColor: "dark:text-white",
     dot: true,
     dotColor: "bg-yellow-500"
   }
@@ -237,10 +249,10 @@ const zIndexMap = {
 };
 
 /**
- * Main Badge Component
+ * Main Badge Component - CUSTOM VALUES ALWAYS TAKE PRIORITY
  */
 const CMS_Badge = ({
-  config = defaultConfig,
+  config = {},
   customVariants = {},
   children
 }) => {
@@ -253,7 +265,9 @@ const CMS_Badge = ({
   }), [customVariants]);
 
   // Merge config with defaults and apply variant styles
+  // CUSTOM VALUES ALWAYS TAKE PRIORITY
   const mergedConfig = useMemo(() => {
+    // Start with default config
     const baseConfig = {
       ...defaultConfig,
       ...config
@@ -265,23 +279,84 @@ const CMS_Badge = ({
       variantApplied = variantStyles[baseConfig.variant];
     }
 
-    // Apply size styles
+    // Get size-based styles (will be used as fallbacks)
     const sizeApplied = sizeStyles[baseConfig.size] || sizeStyles.md;
 
     // Apply shape styles
     const shapeApplied = shapeStyles[baseConfig.shape] || shapeStyles.rounded;
 
+    // Merge hover config - custom hover takes priority
+    const hoverConfig = {
+      ...defaultConfig.hover,
+      ...(variantApplied.hover || {}),
+      ...(baseConfig.hover || {})
+    };
+
+    // Return merged config with CUSTOM VALUES TAKING PRIORITY
     return {
       ...baseConfig,
-      ...variantApplied,
-      ...sizeApplied,
+
+      // SHAPE - custom shape takes priority
       shape: shapeApplied,
-      // Merge hover config
-      hover: {
-        ...defaultConfig.hover,
-        ...variantApplied.hover,
-        ...baseConfig.hover
-      }
+
+      // FONT SIZE - custom fontSize takes priority over size-based
+      fontSize: baseConfig.fontSize || sizeApplied.fontSize,
+
+      // GAP - custom gap takes priority
+      gap: baseConfig.gap || sizeApplied.gap,
+
+      // ICON SIZE - custom iconSize takes priority
+      iconSize: baseConfig.iconSize || sizeApplied.iconSize,
+
+      // MIN WIDTH - custom minWidth takes priority
+      minWidth: baseConfig.minWidth || sizeApplied.minWidth,
+
+      // HEIGHT - custom height takes priority
+      height: baseConfig.height || sizeApplied.height,
+
+      // PADDING - CUSTOM PADDING ALWAYS TAKES PRIORITY
+      // If custom padding is provided, use it. Otherwise use size-based padding
+      padding: baseConfig.padding !== null && baseConfig.padding !== undefined
+        ? baseConfig.padding
+        : sizeApplied.padding,
+
+      // MARGIN - CUSTOM MARGIN ALWAYS TAKES PRIORITY
+      margin: baseConfig.margin !== null && baseConfig.margin !== undefined
+        ? baseConfig.margin
+        : (baseConfig.margin || defaultConfig.margin),
+
+      // COLORS - custom colors take priority over variant
+      bgColor: baseConfig.bgColor !== defaultConfig.bgColor
+        ? baseConfig.bgColor
+        : (variantApplied.bgColor || baseConfig.bgColor),
+      darkBgColor: baseConfig.darkBgColor !== defaultConfig.darkBgColor
+        ? baseConfig.darkBgColor
+        : (variantApplied.darkBgColor || baseConfig.darkBgColor),
+      color: baseConfig.color !== defaultConfig.color
+        ? baseConfig.color
+        : (variantApplied.color || baseConfig.color),
+      darkColor: baseConfig.darkColor !== defaultConfig.darkColor
+        ? baseConfig.darkColor
+        : (variantApplied.darkColor || baseConfig.darkColor),
+
+      // BORDER - custom border takes priority
+      border: baseConfig.border !== defaultConfig.border
+        ? baseConfig.border
+        : (variantApplied.border || baseConfig.border),
+      borderColor: baseConfig.borderColor || variantApplied.borderColor || "",
+      darkBorderColor: baseConfig.darkBorderColor || variantApplied.darkBorderColor || "",
+
+      // SHADOW - custom shadow takes priority
+      shadow: baseConfig.shadow || variantApplied.shadow || "",
+      darkShadow: baseConfig.darkShadow || variantApplied.darkShadow || "",
+
+      // DOT - custom dot settings take priority
+      dot: baseConfig.dot !== undefined ? baseConfig.dot : (variantApplied.dot || false),
+      dotColor: baseConfig.dotColor || variantApplied.dotColor || "",
+      pulse: baseConfig.pulse !== undefined ? baseConfig.pulse : (variantApplied.pulse || false),
+
+      // HOVER - custom hover takes priority
+      hover: hoverConfig
     };
   }, [config, variantStyles]);
 
@@ -306,7 +381,7 @@ const CMS_Badge = ({
   const formatCount = () => {
     const { count, maxCount, showZero } = mergedConfig;
 
-    if (count === null) return null;
+    if (count === null || count === undefined) return null;
     if (count === 0 && !showZero) return null;
     if (count > maxCount) return `${maxCount}+`;
     return count.toString();
@@ -371,10 +446,8 @@ const CMS_Badge = ({
     const IconComponent = getIconComponent();
     if (!IconComponent) return null;
 
-    const iconSize = mergedConfig.iconSize || mergedConfig.iconSize;
-
     return (
-      <IconComponent className={iconSize} />
+      <IconComponent className={mergedConfig.iconSize} />
     );
   };
 
@@ -417,7 +490,7 @@ const CMS_Badge = ({
       return (
         <>
           {dot}
-          {displayText && <span>{displayText}</span>}
+          {displayText && <span className="ml-1">{displayText}</span>}
         </>
       );
     }
@@ -441,7 +514,7 @@ const CMS_Badge = ({
   };
 
   /**
-   * Build final classes
+   * Build final classes - CUSTOM VALUES ALWAYS INCLUDED
    */
   const badgeClasses = useMemo(() => {
     const zLayerClasses = getZLayerClasses(
@@ -456,42 +529,46 @@ const CMS_Badge = ({
       'inline-flex items-center justify-center',
       mergedConfig.position,
       mergedConfig.shape,
+
+      // PADDING - custom padding will be used here
       mergedConfig.padding,
+
+      // TYPOGRAPHY
       mergedConfig.fontSize,
       mergedConfig.gap,
       mergedConfig.minWidth,
       mergedConfig.height,
 
-      // Colors
+      // COLORS
       mergedConfig.bgColor,
       mergedConfig.darkBgColor,
       mergedConfig.color,
       mergedConfig.darkColor,
 
-      // Border
+      // BORDER
       mergedConfig.border,
       mergedConfig.borderColor,
       mergedConfig.darkBorderColor,
 
-      // Shadow
+      // SHADOW
       mergedConfig.shadow,
       mergedConfig.darkShadow,
 
-      // Z-index
+      // Z-INDEX
       ...zLayerClasses,
 
-      // Hover effects (if clickable)
+      // HOVER EFFECTS
       mergedConfig.clickable ? 'cursor-pointer' : '',
       getHoverClasses,
 
-      // Margin
+      // MARGIN - custom margin will be used here
       mergedConfig.margin,
 
-      // Additional classes
+      // ADDITIONAL CLASSES
       mergedConfig.className
-    ].filter(Boolean).join(' ');
+    ].filter(className => className && className.trim() !== '');
 
-    return classes;
+    return classes.join(' ');
   }, [mergedConfig, getHoverClasses]);
 
   /**
@@ -509,7 +586,7 @@ const CMS_Badge = ({
   const eventHandlers = {
     onMouseEnter: () => setIsHovered(true),
     onMouseLeave: () => setIsHovered(false),
-    onClick: mergedConfig.onClick
+    ...(mergedConfig.onClick && { onClick: mergedConfig.onClick })
   };
 
   /**
@@ -522,7 +599,7 @@ const CMS_Badge = ({
         className={badgeClasses}
         style={{
           ...mergedConfig.style,
-          ...(isHovered ? mergedConfig.hover?.customStyles : {})
+          ...(isHovered && mergedConfig.hover?.customStyles ? mergedConfig.hover.customStyles : {})
         }}
         {...accessibilityProps}
         {...eventHandlers}
@@ -542,7 +619,7 @@ const CMS_Badge = ({
         className={badgeClasses}
         style={{
           ...mergedConfig.style,
-          ...(isHovered ? mergedConfig.hover?.customStyles : {})
+          ...(isHovered && mergedConfig.hover?.customStyles ? mergedConfig.hover.customStyles : {})
         }}
         {...accessibilityProps}
         {...eventHandlers}
@@ -561,7 +638,7 @@ const CMS_Badge = ({
       className={badgeClasses}
       style={{
         ...mergedConfig.style,
-        ...(isHovered ? mergedConfig.hover?.customStyles : {})
+        ...(isHovered && mergedConfig.hover?.customStyles ? mergedConfig.hover.customStyles : {})
       }}
       {...accessibilityProps}
     >

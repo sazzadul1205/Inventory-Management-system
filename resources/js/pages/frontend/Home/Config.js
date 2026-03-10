@@ -15,7 +15,6 @@ export const Configuration = {
         3: {
             enabled: true,
         },
-
         custom: {
             enabled: true,
         },
