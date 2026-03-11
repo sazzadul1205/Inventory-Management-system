@@ -24,6 +24,20 @@ export const findComponentById = (components, id) => {
 };
 
 /**
+ * Find parent component by child ID in nested structure
+ */
+export const findParentById = (components, childId, parent = null) => {
+    for (const component of components) {
+        if (component.uid === childId) return parent;
+        if (component.children) {
+            const found = findParentById(component.children, childId, component);
+            if (found) return found;
+        }
+    }
+    return null;
+};
+
+/**
  * Update component in nested structure
  */
 export const updateComponentById = (components, id, updates) => {

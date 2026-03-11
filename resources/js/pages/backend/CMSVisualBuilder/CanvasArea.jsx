@@ -313,6 +313,7 @@ const CanvasArea = ({
   selectedId,
   previewMode,
 }) => {
+  const isDev = process.env.NODE_ENV !== 'production';
   const [isOver, setIsOver] = useState(false);
   const [canvasSize, setCanvasSize] = useState({
     width: '100%',
@@ -369,6 +370,7 @@ const CanvasArea = ({
    */
   const renderComponent = (component) => {
     const { children: componentChildren, ...componentProps } = component;
+    const debugProps = isDev ? { debug: true } : {};
 
     return (
       <ComponentWrapper
@@ -378,16 +380,19 @@ const CanvasArea = ({
         onSelect={onSelect}
         onDelete={onDelete}
       >
-        <DynamicComponent
-          componentType={component.component}
-          componentProps={{
-            ...componentProps,
-            uid: component.uid,
-          }}
-        >
-          {/* Render children recursively */}
-          {componentChildren?.map((child) => renderComponent(child))}
-        </DynamicComponent>
+        <div className="relative">
+          <DynamicComponent
+            componentType={component.component}
+            componentProps={{
+              ...componentProps,
+              uid: component.uid,
+              ...debugProps,
+            }}
+          >
+            {/* Render children recursively */}
+            {componentChildren?.map((child) => renderComponent(child))}
+          </DynamicComponent>
+        </div>
       </ComponentWrapper>
     );
   };

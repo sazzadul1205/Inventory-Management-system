@@ -15,294 +15,124 @@ const HeroSectionCustom = lazy(() => import("./HeroSection/HeroSectionCustom"));
 const PAGE_CONFIG = {
   heroVariant: "custom", // Change this to: "variant1", "variant2", "variant3", or "custom"
   "heroConfig": {
-    "uid": "hero-section-001",
+    "uid": "cms_section-1773233388249-rxh0gcw3a",
     "component": "CMS_Section",
     "classes": {
-      "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-indigo-50 via-white to-blue-50",
-      "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+      "base": " py-20 px-4 bg-[#27F52E] min-h-auto",
+      "dark": "dark:bg-[#111827]",
       "sm": "sm:py-12",
       "md": "md:py-16",
-      "lg": "lg:py-20",
-      "xl": "xl:py-24",
-      "2xl": "2xl:py-28"
+      "lg": "lg:py-20"
     },
     "fullWidth": true,
     "children": [
       {
-        "uid": "hero-grid-002",
+        "uid": "cms_grid-1773233403769-gxqeeuojw",
         "component": "CMS_Grid",
         "classes": {
-          "base": "grid gap-4 px-4",
-          "sm": "sm:gap-6 sm:px-6",
-          "md": "md:grid-cols-2 md:gap-8 md:px-8",
-          "lg": "lg:gap-12 lg:px-8",
-          "xl": "xl:gap-16"
+          "base": "grid gap-4 px-4 bg-[#5FED65] mx-5 min-h-auto",
+          "dark": "dark:bg-[#1F2937]",
+          "sm": "sm:gap-6 sm:px-6 grid-cols-1",
+          "md": "md:grid-cols-2 md:gap-8",
+          "lg": "lg:grid-cols-2 lg:gap-10"
         },
+        "fullWidth": false,
         "children": [
           {
-            "uid": "hero-left-flex-003",
-            "component": "CMS_Flex",
+            "uid": "grid-item-1773233478930-o65xoc361",
+            "component": "CMS_Container",
             "classes": {
-              "base": "flex-col items-start gap-4",
-              "sm": "sm:gap-5",
-              "md": "md:gap-6",
-              "lg": "lg:gap-7",
-              "xl": "xl:gap-8"
+              "base": "flex flex-col gap-3"
             },
             "children": [
               {
-                "uid": "hero-badge-004",
-                "component": "CMS_Badge",
-                "classes": {
-                  "base": "bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium",
-                  "dark": "dark:bg-indigo-900 dark:text-indigo-200",
-                  "sm": "sm:text-sm sm:px-4 sm:py-2",
-                  "md": "md:text-base md:px-5 md:py-2.5",
-                },
-                "text": "SMART INVENTORY PLATFORM"
-              },
-              {
-                "uid": "hero-title-005",
+                "uid": "cms_title-1773233478930-us3c031cs",
                 "component": "CMS_Title",
-                "level": "h1",
-                "text": "Manage Inventory, Warehouses & Logistics in One Powerful Platform",
+                "level": "h2",
+                "text": "Edit this title",
                 "alignment": "left",
                 "classes": {
-                  "base": "text-gray-900 font-bold tracking-tight",
-                  "dark": "dark:text-white",
-                  "sm": "sm:text-4xl sm:leading-tight",
-                  "md": "md:text-5xl md:leading-tight",
+                  "base": "text-3xl font-bold text-[#111827]",
+                  "dark": "dark:text-[#FFFFFF]",
+                  "sm": "sm:text-4xl",
+                  "md": "md:text-5xl",
+                  "lg": "lg:text-6xl"
                 },
-                "highlightClasses": [
-                  {
-                    "start": 48,
-                    "end": 65,
-                    "class": "bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400"
-                  }
-                ]
+               
               },
               {
-                "uid": "hero-description-006",
+                "uid": "cms_text-1773233519153-q5ofcyx0e",
                 "component": "CMS_Text",
                 "tag": "p",
-                "text": "Sazzad Inventory & Logistics helps businesses track products, control warehouses, monitor shipments, and automate supply chains with real-time analytics.",
+                "text": "Edit this text content. You can change it in the editor. ffwe fef few wefe f gwegfw iu ew gwegiewqg swegewugug  gewi i gg h iwg giu g g ug ir hiq wg guqg  gh  qg ug ig ugauh",
+                "alignment": "left",
                 "classes": {
-                  "base": "text-gray-600 max-w-xl",
-                  "dark": "dark:text-gray-300",
-                  "sm": "sm:text-base sm:leading-relaxed",
-                  "md": "md:text-lg md:leading-relaxed",
-                  "lg": "lg:text-xl lg:leading-relaxed"
-                }
+                  "base": "text-[#4B5563]",
+                  "dark": "dark:text-[#D1D5DB]",
+                  "sm": "sm:text-base",
+                  "md": "md:text-lg"
+                },
+               
               },
               {
-                "uid": "hero-buttons-flex-007",
-                "component": "CMS_Flex",
+                "uid": "cms_button-1773233587617-g94ic1g76",
+                "component": "CMS_Button",
+                "text": "Lets Party",
+                "size": "md",
+                "icon": "FaArrowRight",
+                "iconLibrary": "fa",
+                "iconPosition": "right",
                 "classes": {
-                  "base": "flex-col items-stretch w-full gap-3",
-                  "sm": "sm:flex-row sm:items-center sm:w-auto sm:gap-4",
-                  "md": "md:gap-5",
-                  "lg": "lg:gap-6"
+                  "base": "bg-[#2563EB] text-[#FFFFFF] rounded-full px-6 py-3 font-medium",
+                  "hover": "hover:bg-[#1D4ED8] hover:scale-100 hover:shadow-xl",
+                  "dark": "dark:bg-[#3B82F6] dark:hover:bg-[#2563EB]"
                 },
-                "children": [
-                  {
-                    "uid": "primary-button-008",
-                    "component": "CMS_Button",
-                    "text": "Start Managing Inventory",
-                    "size": "lg",
-                    "icon": "FaArrowRight",
-                    "iconLibrary": "fa",
-                    "iconPosition": "right",
-                    "classes": {
-                      "base": "bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium text-center",
-                      "hover": "hover:from-indigo-700 hover:to-blue-700 hover:scale-105 hover:shadow-xl",
-                      "dark": "dark:from-indigo-500 dark:to-blue-500 dark:hover:from-indigo-600 dark:hover:to-blue-600",
-                      "sm": "sm:px-6 sm:py-3 sm:text-sm",
-                      "md": "md:px-8 md:py-4 md:text-base",
-                    },
-                    "href": "/inventory"
-                  },
-                  {
-                    "uid": "secondary-button-009",
-                    "component": "CMS_Button",
-                    "text": "Track Shipments",
-                    "size": "lg",
-                    "icon": "FaTruck",
-                    "iconLibrary": "fa",
-                    "classes": {
-                      "base": "bg-transparent border-2 border-blue-600 text-black rounded-full font-medium text-center",
-                      "hover": "hover:bg-blue-600 hover:text-white hover:shadow-lg",
-                      "dark": "dark:border-blue-400 dark:text-white dark:hover:bg-blue-500 dark:hover:text-white",
-                      "sm": "sm:px-6 sm:py-3 sm:text-sm",
-                      "md": "md:px-8 md:py-4 md:text-base",
-                    },
-                    "href": "/tracking"
-                  }
-                ]
+             
+                "style": {
+                  "color": "#FFFFFF",
+                  "backgroundColor": "#2563EB"
+                }
               }
             ]
           },
           {
-            "uid": "hero-right-flex-010",
-            "component": "CMS_Flex",
+            "uid": "grid-item-1773233509140-g1l2cobkc",
+            "component": "CMS_Container",
             "classes": {
-              "base": "flex-col items-center mt-8",
-              "sm": "sm:mt-10",
-              "md": "md:mt-0"
+              "base": "flex flex-col gap-3"
             },
             "children": [
               {
-                "uid": "hero-media-011",
+                "uid": "cms_media-1773233509140-hp3dd43fr",
                 "component": "CMS_Media",
                 "type": "image",
                 "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
-                "alt": "Warehouse dashboard",
+                "alt": "Placeholder image",
                 "objectFit": "cover",
+                "aspectRatio": "16/9",
                 "classes": {
-                  "base": "rounded-xl shadow-xl border border-gray-200 dark:border-gray-700",
-                  "dark": "dark:border-gray-700",
-                  "sm": "sm:rounded-2xl sm:shadow-2xl",
-                  "media": "w-full h-auto object-cover",
-                  "sm:media": "sm:max-w-lg sm:mx-auto",
-                  "md:media": "md:max-w-full",
-                  "lg:media": "lg:h-[450px]",
-                  "xl:media": "xl:h-[500px]"
+                  "base": "rounded-2xl shadow-2xl border border-[#E5E7EB] bg-[#FFFFFF]",
+                  "dark": "dark:border-[#374151] dark:bg-[#1F2937]",
+                  "media": "w-full h-full"
+                },
+                "position": {
+                  "x": 778,
+                  "y": 133
                 }
               }
             ]
           }
-        ]
-      },
-      {
-        "uid": "stats-grid-012",
-        "component": "CMS_Grid",
-        "classes": {
-          "base": "grid gap-6 px-4 mt-12",
-          "sm": "sm:grid-cols-2 sm:gap-8 sm:px-6 sm:mt-16",
-          "md": "md:grid-cols-3 md:gap-10 md:px-8 md:mt-20",
-          "lg": "lg:gap-12 lg:mt-24",
-          "xl": "xl:gap-16 xl:mt-28"
-        },
-        "children": [
-          {
-            "uid": "stats-item1-013",
-            "component": "CMS_Flex",
-            "classes": {
-              "base": "flex-col items-center p-4",
-              "sm": "sm:p-5",
-              "md": "md:p-6",
-              "lg": "lg:p-8"
-            },
-            "children": [
-              {
-                "uid": "stats-number1-014",
-                "component": "CMS_Title",
-                "level": "h3",
-                "text": "10K+",
-                "classes": {
-                  "base": "text-gray-900 font-bold",
-                  "dark": "dark:text-white",
-                  "sm": "sm:text-4xl",
-                  "md": "md:text-5xl",
-                  "lg": "lg:text-6xl",
-                  "xl": "xl:text-7xl"
-                }
-              },
-              {
-                "uid": "stats-label1-015",
-                "component": "CMS_Text",
-                "tag": "p",
-                "text": "Products Managed",
-                "classes": {
-                  "base": "text-gray-500 text-center",
-                  "dark": "dark:text-gray-400",
-                  "sm": "sm:text-sm sm:mt-1",
-                  "md": "md:text-base md:mt-2",
-                  "lg": "lg:text-lg"
-                }
-              }
-            ]
-          },
-          {
-            "uid": "stats-item2-016",
-            "component": "CMS_Flex",
-            "classes": {
-              "base": "flex-col items-center p-4",
-              "sm": "sm:p-5",
-              "md": "md:p-6",
-              "lg": "lg:p-8"
-            },
-            "children": [
-              {
-                "uid": "stats-number2-017",
-                "component": "CMS_Title",
-                "level": "h3",
-                "text": "500+",
-                "classes": {
-                  "base": "text-gray-900 font-bold",
-                  "dark": "dark:text-white",
-                  "sm": "sm:text-4xl",
-                  "md": "md:text-5xl",
-                  "lg": "lg:text-6xl",
-                  "xl": "xl:text-7xl"
-                }
-              },
-              {
-                "uid": "stats-label2-018",
-                "component": "CMS_Text",
-                "tag": "p",
-                "text": "Active Warehouses",
-                "classes": {
-                  "base": "text-gray-500 text-center",
-                  "dark": "dark:text-gray-400",
-                  "sm": "sm:text-sm sm:mt-1",
-                  "md": "md:text-base md:mt-2",
-                  "lg": "lg:text-lg"
-                }
-              }
-            ]
-          },
-          {
-            "uid": "stats-item3-019",
-            "component": "CMS_Flex",
-            "classes": {
-              "base": "flex-col items-center p-4",
-              "sm": "sm:p-5",
-              "md": "md:p-6",
-              "lg": "lg:p-8"
-            },
-            "children": [
-              {
-                "uid": "stats-number3-020",
-                "component": "CMS_Title",
-                "level": "h3",
-                "text": "99.9%",
-                "classes": {
-                  "base": "text-gray-900 font-bold",
-                  "dark": "dark:text-white",
-                  "sm": "sm:text-4xl",
-                  "md": "md:text-5xl",
-                  "lg": "lg:text-6xl",
-                  "xl": "xl:text-7xl"
-                }
-              },
-              {
-                "uid": "stats-label3-021",
-                "component": "CMS_Text",
-                "tag": "p",
-                "text": "Inventory Accuracy",
-                "classes": {
-                  "base": "text-gray-500 text-center",
-                  "dark": "dark:text-gray-400",
-                  "sm": "sm:text-sm sm:mt-1",
-                  "md": "md:text-base md:mt-2",
-                  "lg": "lg:text-lg"
-                }
-              }
-            ]
-          }
-        ]
+        ],
+      
+        "style": {
+          "backgroundColor": "#5FED65"
+        }
       }
-    ]
+    ],
+  
+    "style": {
+      "backgroundColor": "#27F52E"
+    }
   }
 };
 
@@ -324,9 +154,9 @@ const Home = () => {
 
   return (
     <FrontEnd_Layout>
-      {/* <Suspense fallback={<HeroSectionSkeleton />}>
+      <Suspense fallback={<HeroSectionSkeleton />}>
         {renderHeroSection()}
-      </Suspense> */}
+      </Suspense>
 
       <CMSVisualBuilder />
     </FrontEnd_Layout>

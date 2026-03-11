@@ -11,7 +11,7 @@ import CanvasArea from "./CanvasArea";
 import PropertyEditor from "./PropertyEditor";
 import PreviewControls from "./PreviewControls";
 import JsonModal from "./JsonModal";
-import { generateId, updateComponentById, deleteComponentById, findComponentById, addChildById } from "./utils";
+import { generateId, updateComponentById, deleteComponentById, findComponentById, findParentById, addChildById } from "./utils";
 
 const CMSVisualBuilder = () => {
   const [components, setComponents] = useState([]);
@@ -36,6 +36,18 @@ const CMSVisualBuilder = () => {
   const handleDrop = (position) => {
     if (!draggedComponent) return;
 
+    const canHoldChildren = (node) =>
+      node && (Array.isArray(node.children) || node.component === "CMS_Grid" || node.component === "CMS_Section" || node.component === "CMS_Container" || node.component === "CMS_Flex");
+
+    const wrapInGridItem = (child) => ({
+      uid: generateId("grid-item"),
+      component: "CMS_Container",
+      classes: {
+        base: "flex flex-col gap-3",
+      },
+      children: [child],
+    });
+
     const newComponent = {
       ...draggedComponent.template.defaultConfig,
       uid: generateId(draggedComponent.template.type.toLowerCase()),
@@ -45,8 +57,14 @@ const CMSVisualBuilder = () => {
     setComponents((prev) => {
       if (selectedId) {
         const target = findComponentById(prev, selectedId);
-        if (target && Array.isArray(target.children)) {
-          return addChildById(prev, selectedId, newComponent);
+        if (canHoldChildren(target)) {
+          const toInsert = target.component === "CMS_Grid" ? wrapInGridItem(newComponent) : newComponent;
+          return addChildById(prev, selectedId, toInsert);
+        }
+        const parent = findParentById(prev, selectedId);
+        if (canHoldChildren(parent)) {
+          const toInsert = parent.component === "CMS_Grid" ? wrapInGridItem(newComponent) : newComponent;
+          return addChildById(prev, parent.uid, toInsert);
         }
       }
       return [...prev, newComponent];

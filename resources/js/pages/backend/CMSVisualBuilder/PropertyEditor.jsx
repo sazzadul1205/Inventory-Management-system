@@ -72,6 +72,19 @@ const PropertyEditor = ({ component, onUpdate, onClose }) => {
     return filtered.join(' ').trim();
   };
 
+  const buildInlineStyleFromClasses = (classString, existingStyle = {}) => {
+    if (!classString) return existingStyle;
+    const textHex = extractHexFromClass(classString, 'text-');
+    const bgHex = extractHexFromClass(classString, 'bg-');
+    const borderHex = extractHexFromClass(classString, 'border-');
+
+    const style = { ...existingStyle };
+    if (textHex) style.color = textHex;
+    if (bgHex) style.backgroundColor = bgHex;
+    if (borderHex) style.borderColor = borderHex;
+    return style;
+  };
+
   /**
    * Handles class changes with special support for color picker
    */
@@ -86,12 +99,18 @@ const PropertyEditor = ({ component, onUpdate, onClose }) => {
       finalValue = updateHexInClass(currentValue, colorPrefix, hexValue);
     }
 
+    const nextStyle =
+      key === 'base'
+        ? buildInlineStyleFromClasses(finalValue, effectiveComponent?.style || {})
+        : effectiveComponent?.style;
+
     const updated = {
       ...effectiveComponent,
       classes: {
         ...(effectiveComponent?.classes ?? {}),
         [key]: finalValue
-      }
+      },
+      ...(nextStyle ? { style: nextStyle } : {}),
     };
 
     setLocalComponent(updated);
