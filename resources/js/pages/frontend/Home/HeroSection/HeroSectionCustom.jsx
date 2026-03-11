@@ -10,6 +10,7 @@
  * - Support for nested components (containers can have children)
  * - Skeleton loading fallback for better UX
  * - Error handling for unknown component types
+ * - UID support for component selection and identification
  */
 
 import React, { Suspense, lazy } from 'react';
@@ -61,7 +62,12 @@ const CMS_Media = lazy(() => import('../../../../components/CMS_Media'));
  */
 const CMS_Card = lazy(() => import('../../../../components/CMS_Card'));
 const CMS_Divider = lazy(() => import('../../../../components/CMS_Divider'));
+const CMS_DividerWithText = lazy(() => import('../../../../components/CMS_Divider').then(m => ({ default: m.CMS_DividerWithText })));
+const CMS_DividerWithIcon = lazy(() => import('../../../../components/CMS_Divider').then(m => ({ default: m.CMS_DividerWithIcon })));
+const CMS_VerticalDivider = lazy(() => import('../../../../components/CMS_Divider').then(m => ({ default: m.CMS_VerticalDivider })));
 const CMS_List = lazy(() => import('../../../../components/CMS_List'));
+const CMS_ListItem = lazy(() => import('../../../../components/CMS_List').then(m => ({ default: m.CMS_ListItem })));
+const CMS_IconList = lazy(() => import('../../../../components/CMS_List').then(m => ({ default: m.CMS_IconList })));
 
 // ============================================================================
 // Data Display Components
@@ -82,6 +88,32 @@ const CMS_Table = lazy(() => import('../../../../components/CMS_Table'));
  * CMS_Input - Form input component with multiple types and validation
  */
 const CMS_Input = lazy(() => import('../../../../components/CMS_Input'));
+const CMS_InputGroup = lazy(() => import('../../../../components/CMS_Input').then(m => ({ default: m.CMS_InputGroup })));
+const CMS_InputAddon = lazy(() => import('../../../../components/CMS_Input').then(m => ({ default: m.CMS_InputAddon })));
+
+// ============================================================================
+// Utility Components
+// ============================================================================
+
+/**
+ * ComponentWrapper - Provides a data attribute for component selection
+ * 
+ * @param {Object} props
+ * @param {string} props.uid - Unique identifier for the component
+ * @param {React.ReactNode} props.children - Child components
+ * @returns {JSX.Element} Wrapped component with data attribute
+ */
+const ComponentWrapper = ({ uid, children }) => {
+  // If no UID, render children without wrapper
+  if (!uid) return children;
+
+  // Add data-component-id attribute for selection and identification
+  return (
+    <div data-component-id={uid} data-component-selectable="true">
+      {children}
+    </div>
+  );
+};
 
 // ============================================================================
 // Main Component
@@ -93,6 +125,8 @@ const CMS_Input = lazy(() => import('../../../../components/CMS_Input'));
  * Renders a component tree based on the configuration from config.json.
  * Supports recursive rendering of nested components through the renderComponent function.
  * 
+ * @param {Object} props
+ * @param {Object} props.config - Component configuration object
  * @returns {JSX.Element} The rendered component tree with Suspense fallback
  */
 const HeroInventory = ({ config }) => {
@@ -100,6 +134,7 @@ const HeroInventory = ({ config }) => {
    * Recursively renders a component based on its type and configuration
    * 
    * @param {Object} component - Component configuration object
+   * @param {string} component.uid - Unique identifier for the component
    * @param {string} component.component - Component type name (e.g., 'CMS_Section')
    * @param {Object} component.config - Component styling and behavior configuration
    * @param {Array} component.children - Nested child components (for containers)
@@ -109,6 +144,14 @@ const HeroInventory = ({ config }) => {
     // If component is undefined or null, return nothing
     if (!component) return null;
 
+    // Extract uid for wrapping
+    const { uid, ...componentProps } = component;
+
+    // Helper to wrap component with UID data attribute
+    const withUidWrapper = (element) => {
+      return <ComponentWrapper uid={uid}>{element}</ComponentWrapper>;
+    };
+
     switch (component.component) {
       // ======================================================================
       // Container Components
@@ -117,11 +160,11 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Section':
         // Section container with full width background support
-        return (
+        return withUidWrapper(
           <CMS_Section config={component.config}>
             {/* Recursively render all child components */}
             {component.children?.map((child, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={child.uid || `section-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
             ))}
@@ -130,11 +173,11 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Grid':
         // Grid layout container with responsive columns
-        return (
+        return withUidWrapper(
           <CMS_Grid config={component.config}>
             {/* Recursively render all child components */}
             {component.children?.map((child, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={child.uid || `grid-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
             ))}
@@ -143,11 +186,11 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Flex':
         // Flexbox layout container with direction and alignment
-        return (
+        return withUidWrapper(
           <CMS_Flex config={component.config}>
             {/* Recursively render all child components */}
             {component.children?.map((child, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={child.uid || `flex-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
             ))}
@@ -161,27 +204,27 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Badge':
         // Small badge/status indicator
-        return <CMS_Badge config={component.config} />;
+        return withUidWrapper(<CMS_Badge config={component.config} />);
 
       case 'CMS_Title':
         // Main heading with variants and text highlighting
-        return <CMS_Title config={component.config} />;
+        return withUidWrapper(<CMS_Title config={component.config} />);
 
       case 'CMS_Subtitle':
         // Subheading for supporting content
-        return <CMS_Subtitle config={component.config} />;
+        return withUidWrapper(<CMS_Subtitle config={component.config} />);
 
       case 'CMS_Text':
         // Paragraph and body text content
-        return <CMS_Text config={component.config} />;
+        return withUidWrapper(<CMS_Text config={component.config} />);
 
       case 'CMS_Button':
         // Interactive button with multiple styles and states
-        return <CMS_Button config={component.config} />;
+        return withUidWrapper(<CMS_Button config={component.config} />);
 
       case 'CMS_Media':
         // Image or video with lazy loading and placeholders
-        return <CMS_Media config={component.config} />;
+        return withUidWrapper(<CMS_Media config={component.config} />);
 
       // ======================================================================
       // Layout Components
@@ -190,7 +233,7 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Card':
         // Card container with header, body, and footer sections
-        return (
+        return withUidWrapper(
           <CMS_Card
             config={component.config}
             header={component.header}
@@ -199,7 +242,7 @@ const HeroInventory = ({ config }) => {
           >
             {/* Optional children inside card */}
             {component.children?.map((child, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={child.uid || `card-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
             ))}
@@ -208,30 +251,41 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Divider':
         // Standard divider line
-        return <CMS_Divider config={component.config} />;
+        return withUidWrapper(<CMS_Divider config={component.config} />);
 
       case 'CMS_DividerWithText':
         // Divider with centered text label
-        return <CMS_DividerWithText config={component.config} text={component.text} />;
+        return withUidWrapper(
+          <CMS_DividerWithText
+            config={component.config}
+            text={component.text}
+          />
+        );
 
       case 'CMS_DividerWithIcon':
         // Divider with centered icon
-        return <CMS_DividerWithIcon config={component.config} icon={component.icon} iconLibrary={component.iconLibrary} />;
+        return withUidWrapper(
+          <CMS_DividerWithIcon
+            config={component.config}
+            icon={component.icon}
+            iconLibrary={component.iconLibrary}
+          />
+        );
 
       case 'CMS_VerticalDivider':
         // Vertical divider for side-by-side content
-        return <CMS_VerticalDivider config={component.config} />;
+        return withUidWrapper(<CMS_VerticalDivider config={component.config} />);
 
       case 'CMS_List':
         // List container (ul/ol) with items
-        return (
+        return withUidWrapper(
           <CMS_List
             config={component.config}
             items={component.items}
           >
             {/* Optional nested list items */}
             {component.children?.map((child, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={child.uid || `list-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
             ))}
@@ -240,11 +294,16 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_ListItem':
         // Individual list item with icon and badge support
-        return <CMS_ListItem config={component.config} />;
+        return withUidWrapper(<CMS_ListItem config={component.config} />);
 
       case 'CMS_IconList':
         // Grid of icons with optional labels
-        return <CMS_IconList config={component.config} items={component.items} />;
+        return withUidWrapper(
+          <CMS_IconList
+            config={component.config}
+            items={component.items}
+          />
+        );
 
       // ======================================================================
       // Data Display Components
@@ -253,7 +312,7 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Table':
         // Data table with sorting, pagination, and selection
-        return (
+        return withUidWrapper(
           <CMS_Table
             columns={component.columns}        // Table column definitions
             data={component.data}              // Table data array
@@ -272,7 +331,7 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_Input':
         // Form input with multiple types and validation
-        return (
+        return withUidWrapper(
           <CMS_Input
             type={component.type}               // Input type (text, email, etc.)
             name={component.name}                // Input name attribute
@@ -292,11 +351,11 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_InputGroup':
         // Group of related inputs
-        return (
+        return withUidWrapper(
           <CMS_InputGroup config={component.config}>
             {/* Child input components */}
             {component.children?.map((child, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={child.uid || `inputgroup-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
             ))}
@@ -305,7 +364,7 @@ const HeroInventory = ({ config }) => {
 
       case 'CMS_InputAddon':
         // Prefix or suffix addon for inputs
-        return (
+        return withUidWrapper(
           <CMS_InputAddon
             config={component.config}
             position={component.position} // 'left' or 'right'
@@ -320,7 +379,7 @@ const HeroInventory = ({ config }) => {
       // ======================================================================
 
       default:
-        console.warn(`Unknown component type: ${component.component}`);
+        console.warn(`Unknown component type: ${component.component}`, { uid });
         return null;
     }
   };

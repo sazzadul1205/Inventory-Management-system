@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from "react";
 // Layout
 import FrontEnd_Layout from "../Layout/FrontEnd_Layout";
 import HeroSectionSkeleton from "./HeroSection/HeroSectionSkeleton";
+import CustomSectionBuilder from "../../backend/CustomSectionBuilder/CustomSectionBuilder";
 
 // Lazy Hero Sections
 const HeroSection1 = lazy(() => import("./HeroSection/HeroSection1"));
@@ -13,7 +14,8 @@ const HeroSectionCustom = lazy(() => import("./HeroSection/HeroSectionCustom"));
 // Page configuration - Update this object to change which hero is shown
 const PAGE_CONFIG = {
   heroVariant: "custom", // Change this to: "variant1", "variant2", "variant3", or "custom"
-  heroConfig : {
+  heroConfig: {
+    "uid": "hero-section-001",
     "component": "CMS_Section",
     "config": {
       "background": {
@@ -30,6 +32,7 @@ const PAGE_CONFIG = {
     },
     "children": [
       {
+        "uid": "hero-grid-002",
         "component": "CMS_Grid",
         "config": {
           "grid": {
@@ -43,6 +46,7 @@ const PAGE_CONFIG = {
         },
         "children": [
           {
+            "uid": "hero-left-flex-003",
             "component": "CMS_Flex",
             "config": {
               "flex": {
@@ -55,6 +59,7 @@ const PAGE_CONFIG = {
             },
             "children": [
               {
+                "uid": "hero-badge-004",
                 "component": "CMS_Badge",
                 "config": {
                   "text": "SMART INVENTORY PLATFORM",
@@ -69,6 +74,7 @@ const PAGE_CONFIG = {
                 }
               },
               {
+                "uid": "hero-title-005",
                 "component": "CMS_Title",
                 "config": {
                   "text": "Manage Inventory, Warehouses & Logistics in One Powerful Platform",
@@ -88,6 +94,7 @@ const PAGE_CONFIG = {
                 }
               },
               {
+                "uid": "hero-description-006",
                 "component": "CMS_Text",
                 "config": {
                   "text": "Sazzad Inventory & Logistics helps businesses track products, control warehouses, monitor shipments, and automate supply chains with real-time analytics.",
@@ -98,11 +105,12 @@ const PAGE_CONFIG = {
                 }
               },
               {
+                "uid": "hero-buttons-flex-007",
                 "component": "CMS_Flex",
                 "config": {
                   "flex": {
                     "direction": "row",
-                    "align": "start"
+                    "align": "center"
                   },
                   "grid": {
                     "gap": 4
@@ -113,6 +121,7 @@ const PAGE_CONFIG = {
                 },
                 "children": [
                   {
+                    "uid": "primary-button-008",
                     "component": "CMS_Button",
                     "config": {
                       "text": "Start Managing Inventory",
@@ -135,6 +144,7 @@ const PAGE_CONFIG = {
                     }
                   },
                   {
+                    "uid": "secondary-button-009",
                     "component": "CMS_Button",
                     "config": {
                       "text": "Track Shipments",
@@ -142,16 +152,17 @@ const PAGE_CONFIG = {
                       "icon": "FaTruck",
                       "iconLibrary": "fa",
                       "bgColor": "bg-transparent",
+                      "darkBgColor": "dark:bg-transparent",
                       "border": "border-2 border-blue-600",
                       "darkBorder": "dark:border-blue-400",
                       "color": "text-[#000000]",
-                      "darkColor": "dark:text-blue-400",
                       "rounded": "rounded-full",
                       "hover": {
                         "bgColor": "bg-blue-600",
                         "darkBgColor": "dark:bg-blue-500",
                         "color": "text-[#ffffff]",
-                        "scale": "scale-105",
+                        "darkColor": "text-[#ffffff]",
+                        "scale": "scale-100",
                         "shadow": "shadow-lg"
                       },
                       "href": "/tracking"
@@ -162,6 +173,7 @@ const PAGE_CONFIG = {
             ]
           },
           {
+            "uid": "hero-right-flex-010",
             "component": "CMS_Flex",
             "config": {
               "flex": {
@@ -171,6 +183,7 @@ const PAGE_CONFIG = {
             },
             "children": [
               {
+                "uid": "hero-media-011",
                 "component": "CMS_Media",
                 "config": {
                   "type": "image",
@@ -191,6 +204,7 @@ const PAGE_CONFIG = {
         ]
       },
       {
+        "uid": "stats-grid-012",
         "component": "CMS_Grid",
         "config": {
           "grid": {
@@ -205,6 +219,7 @@ const PAGE_CONFIG = {
         },
         "children": [
           {
+            "uid": "stats-item1-013",
             "component": "CMS_Flex",
             "config": {
               "flex": {
@@ -214,6 +229,7 @@ const PAGE_CONFIG = {
             },
             "children": [
               {
+                "uid": "stats-number1-014",
                 "component": "CMS_Title",
                 "config": {
                   "text": "10K+",
@@ -223,6 +239,7 @@ const PAGE_CONFIG = {
                 }
               },
               {
+                "uid": "stats-label1-015",
                 "component": "CMS_Text",
                 "config": {
                   "text": "Products Managed",
@@ -234,6 +251,7 @@ const PAGE_CONFIG = {
             ]
           },
           {
+            "uid": "stats-item2-016",
             "component": "CMS_Flex",
             "config": {
               "flex": {
@@ -243,6 +261,7 @@ const PAGE_CONFIG = {
             },
             "children": [
               {
+                "uid": "stats-number2-017",
                 "component": "CMS_Title",
                 "config": {
                   "text": "500+",
@@ -252,6 +271,7 @@ const PAGE_CONFIG = {
                 }
               },
               {
+                "uid": "stats-label2-018",
                 "component": "CMS_Text",
                 "config": {
                   "text": "Active Warehouses",
@@ -263,6 +283,7 @@ const PAGE_CONFIG = {
             ]
           },
           {
+            "uid": "stats-item3-019",
             "component": "CMS_Flex",
             "config": {
               "flex": {
@@ -272,6 +293,7 @@ const PAGE_CONFIG = {
             },
             "children": [
               {
+                "uid": "stats-number3-020",
                 "component": "CMS_Title",
                 "config": {
                   "text": "99.9%",
@@ -281,6 +303,7 @@ const PAGE_CONFIG = {
                 }
               },
               {
+                "uid": "stats-label3-021",
                 "component": "CMS_Text",
                 "config": {
                   "text": "Inventory Accuracy",
@@ -309,7 +332,7 @@ const Home = () => {
         return <HeroSection3 {...PAGE_CONFIG.heroProps} />;
       case "custom":
       default:
-        return <HeroSectionCustom config={PAGE_CONFIG. heroConfig} {...PAGE_CONFIG.heroProps} />;
+        return <HeroSectionCustom config={PAGE_CONFIG.heroConfig} {...PAGE_CONFIG.heroProps} />;
     }
   };
 
@@ -318,6 +341,8 @@ const Home = () => {
       <Suspense fallback={<HeroSectionSkeleton />}>
         {renderHeroSection()}
       </Suspense>
+
+      <CustomSectionBuilder />
     </FrontEnd_Layout>
   );
 };
