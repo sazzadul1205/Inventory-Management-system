@@ -1,12 +1,20 @@
 /**
- * CMS_List Component - A highly customizable list component with dark mode support
+ * CMS_List Component - Editor-friendly list with flat class structure
  * 
- * This component renders lists with configurable styling, icons, and nested items.
- * Supports ordered lists, unordered lists, icon lists, and definition lists.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Features:
+ * - Flat class structure for easy editing
+ * - Multiple list types (ul, ol, dl, icon-list)
+ * - Nested list support
+ * - Icons for each item
+ * - Badges on list items
+ * - Interactive items (clickable, links)
+ * - Selection support
+ * - Grid layout for icon lists
+ * - Dark mode support
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
+import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
@@ -20,7 +28,10 @@ import * as SiIcons from 'react-icons/si';
 import * as IoIcons from 'react-icons/io5';
 import * as BiIcons from 'react-icons/bi';
 
-// Icon library mappings
+// ============================================================================
+// Icon Libraries Registry
+// ============================================================================
+
 const iconLibraries = {
   fa: FaIcons,
   hi: HiIcons,
@@ -33,449 +44,494 @@ const iconLibraries = {
   fi: FiIcons,
   si: SiIcons,
   io: IoIcons,
-  bi: BiIcons
+  bi: BiIcons,
+};
+
+// ============================================================================
+// Default Classes Structure
+// ============================================================================
+
+const defaultListClasses = {
+  // Container classes
+  container: '',
+  containerHover: '',
+  containerDark: '',
+
+  // List item classes
+  item: '',
+  itemHover: '',
+  itemActive: '',
+  itemDisabled: '',
+  itemDark: '',
+
+  // Icon classes
+  icon: '',
+  iconLeft: '',
+  iconRight: '',
+
+  // Badge classes
+  badge: '',
+  badgePrimary: '',
+  badgeSuccess: '',
+  badgeWarning: '',
+  badgeDanger: '',
+  badgeInfo: '',
+
+  // Marker classes (for ordered lists)
+  marker: '',
+
+  // Nested list classes
+  nested: '',
+  nestedItem: '',
+
+  // Icon list specific
+  iconGrid: '',
+  iconItem: '',
+  iconLabel: '',
+
+  // Definition list classes
+  term: '',
+  description: '',
+
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultListProps = {
+  // Basic
+  type: 'ul', // 'ul', 'ol', 'dl', 'icon-list'
+  variant: 'default', // 'default', 'bordered', 'striped', 'card'
+  style: 'none', // 'none', 'disc', 'decimal', 'circle', 'square', 'roman', 'alpha'
+
+  // Layout
+  layout: 'vertical', // 'vertical', 'horizontal', 'grid'
+  columns: 1,
+  gap: 'gap-2',
+  spacing: 'space-y-2',
+
+  // List attributes
+  start: 1,
+  reversed: false,
+
+  // Nested
+  nested: false,
+  nestedIndent: 4,
+
+  // Selection
+  selectable: false,
+  multiple: false,
+  selectedItems: [],
+
+  // Icon list specific
+  iconListConfig: {
+    columns: 4,
+    gap: 'gap-4',
+    showLabel: true,
+    labelPosition: 'bottom',
+    centered: true,
+  },
+
+  // Accessibility
+  ariaLabel: null,
+  ariaLabelledBy: null,
+
+  // Events
+  onSelect: null,
+};
+
+// List style mappings
+const listStyleClasses = {
+  none: 'list-none',
+  disc: 'list-disc',
+  decimal: 'list-decimal',
+  circle: 'list-circle',
+  square: 'list-square',
+  roman: 'list-roman',
+  alpha: 'list-alpha',
+};
+
+// Badge variants
+const badgeVariants = {
+  primary: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
+  success: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
+  warning: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
+  danger: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
+  info: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300',
+  default: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+};
+
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'List',
+  description: 'Flexible list component with icons and nested items',
+  category: 'layout',
+  icon: '📋',
+  editable: ['container', 'item', 'icon', 'badge', 'marker', 'nested'],
+  controls: [
+    { type: 'select', target: 'type', label: 'List Type', options: ['ul', 'ol', 'dl', 'icon-list'] },
+    { type: 'select', target: 'variant', label: 'Variant', options: ['default', 'bordered', 'striped', 'card'] },
+    { type: 'select', target: 'style', label: 'Bullet Style', options: Object.keys(listStyleClasses) },
+    { type: 'select', target: 'layout', label: 'Layout', options: ['vertical', 'horizontal', 'grid'] },
+    { type: 'number', target: 'columns', label: 'Grid Columns', min: 1, max: 6 },
+    { type: 'toggle', target: 'selectable', label: 'Selectable Items' },
+    { type: 'toggle', target: 'multiple', label: 'Multi-Select' },
+    { type: 'class-editor', target: 'container', label: 'Container Styles' },
+    { type: 'class-editor', target: 'item', label: 'Item Styles' },
+    { type: 'class-editor', target: 'icon', label: 'Icon Styles' },
+    { type: 'class-editor', target: 'badge', label: 'Badge Styles' },
+  ]
+};
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Container classes
+    classes.container,
+    classes.containerHover,
+    classes.containerDark,
+
+    // Item classes
+    classes.item,
+    classes.itemHover,
+    classes.itemActive,
+    classes.itemDisabled,
+    classes.itemDark,
+
+    // Icon classes
+    classes.icon,
+    classes.iconLeft,
+    classes.iconRight,
+
+    // Badge classes
+    classes.badge,
+    classes.badgePrimary,
+    classes.badgeSuccess,
+    classes.badgeWarning,
+    classes.badgeDanger,
+    classes.badgeInfo,
+
+    // Marker
+    classes.marker,
+
+    // Nested
+    classes.nested,
+    classes.nestedItem,
+
+    // Icon list
+    classes.iconGrid,
+    classes.iconItem,
+    classes.iconLabel,
+
+    // Definition list
+    classes.term,
+    classes.description,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom override
+    classes.custom,
+
+    // Emergency override
+    extraClassName
+  );
+};
+
+/**
+ * Get icon component from library
+ */
+const getIconComponent = (iconName, libraryPrefix) => {
+  if (!iconName || !libraryPrefix) return null;
+  const library = iconLibraries[libraryPrefix];
+  return library?.[iconName] || null;
 };
 
 // ============================================================================
 // CMS_ListItem Component
 // ============================================================================
 
-/**
- * CMS_ListItem - Individual list item component
- */
-const CMS_ListItem = ({
-  config = {},
+const CMS_ListItem = forwardRef(({
+  text,
+  icon,
+  iconLibrary = 'fa',
+  iconPosition = 'left',
+  badge,
+  badgeVariant = 'primary',
+  href,
+  target,
+  onClick,
+  disabled = false,
+  active = false,
+  marker,
+  nested = false,
+  nestedLevel = 0,
+  classes = {},
+  className,
+  style,
   children,
-  depth = 0
-}) => {
-  const defaultItemConfig = {
-    text: null,
-    icon: null,
-    iconLibrary: 'fa',
-    iconPosition: 'left',
-    iconColor: null,
-    darkIconColor: null,
-    iconSize: null,
-    badge: null,
-    badgeVariant: 'primary',
-    href: null,
-    target: null,
-    onClick: null,
-    disabled: false,
-    active: false,
-    nested: false,
-    nestedLevel: depth,
-    marker: null,
-    color: 'text-gray-700',
-    darkColor: 'dark:text-gray-300',
-    bgColor: null,
-    darkBgColor: null,
-    hoverBgColor: null,
-    darkHoverBgColor: null,
-    padding: 'py-1 px-2',
-    margin: 'm-0',
-    rounded: null,
-    fontSize: 'text-base',
-    fontWeight: 'font-normal',
-    className: '',
-    style: {}
-  };
-
-  const mergedConfig = useMemo(() => ({
-    ...defaultItemConfig,
-    ...config
-  }), [config]);
+  ...props
+}, ref) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  // Get icon component
-  const getIconComponent = () => {
-    if (!mergedConfig.icon) return null;
+  const IconComponent = useMemo(
+    () => getIconComponent(icon, iconLibrary),
+    [icon, iconLibrary]
+  );
 
-    const library = iconLibraries[mergedConfig.iconLibrary];
-    if (!library) return null;
+  const itemClasses = clsx(
+    'flex items-start',
+    !disabled && (href || onClick) && 'cursor-pointer',
+    disabled && 'opacity-50 cursor-not-allowed',
+    active && classes.itemActive,
+    classes.item,
+    isHovered && classes.itemHover,
+    disabled && classes.itemDisabled,
+    nested && classes.nestedItem,
+    className
+  );
 
-    const IconComponent = library[mergedConfig.icon];
-    return IconComponent || null;
+  const iconClasses = clsx(
+    'shrink-0',
+    classes.icon,
+    iconPosition === 'left' ? clsx('mr-2', classes.iconLeft) : clsx('ml-2', classes.iconRight)
+  );
+
+  const badgeClasses = clsx(
+    'ml-2 px-2 py-0.5 text-xs rounded-full',
+    badgeVariants[badgeVariant] || badgeVariants.default,
+    classes.badge,
+    classes[`badge${badgeVariant.charAt(0).toUpperCase() + badgeVariant.slice(1)}`]
+  );
+
+  const markerClasses = clsx('mr-2 font-mono', classes.marker);
+
+  const handleClick = (e) => {
+    if (disabled) return;
+    onClick?.(e);
   };
 
-  // Render icon
-  const renderIcon = () => {
-    const IconComponent = getIconComponent();
-    if (!IconComponent) return null;
-
-    const iconSize = mergedConfig.iconSize || 'w-5 h-5';
-    const iconColor = mergedConfig.iconColor || '';
-    const darkIconColor = mergedConfig.darkIconColor || '';
-
-    return (
-      <IconComponent
-        className={`${iconSize} ${iconColor} ${darkIconColor} shrink-0`}
-      />
-    );
-  };
-
-  // Render marker (for ordered lists)
-  const renderMarker = () => {
-    if (mergedConfig.marker) {
-      return <span className="mr-2 font-mono">{mergedConfig.marker}</span>;
-    }
-    return null;
-  };
-
-  // Render badge
-  const renderBadge = () => {
-    if (!mergedConfig.badge) return null;
-
-    const badgeVariants = {
-      primary: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-      success: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-      warning: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
-      danger: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
-      info: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300',
-      default: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
-    };
-
-    return (
-      <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${badgeVariants[mergedConfig.badgeVariant] || badgeVariants.default}`}>
-        {mergedConfig.badge}
-      </span>
-    );
-  };
-
-  // Build item classes
-  const itemClasses = useMemo(() => {
-    const classes = [
-      'flex items-start',
-      mergedConfig.padding,
-      mergedConfig.margin,
-      mergedConfig.fontSize,
-      mergedConfig.fontWeight,
-      mergedConfig.color,
-      mergedConfig.darkColor,
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.rounded,
-      mergedConfig.href || mergedConfig.onClick ? 'cursor-pointer' : '',
-      mergedConfig.disabled ? 'opacity-50 cursor-not-allowed' : '',
-      mergedConfig.active ? 'bg-blue-50 dark:bg-blue-900/20' : '',
-      mergedConfig.className
-    ];
-
-    // Add hover effects if interactive
-    if ((mergedConfig.href || mergedConfig.onClick) && !mergedConfig.disabled) {
-      if (mergedConfig.hoverBgColor) classes.push(`hover:${mergedConfig.hoverBgColor}`);
-      if (mergedConfig.darkHoverBgColor) classes.push(`hover:${mergedConfig.darkHoverBgColor}`);
-      classes.push('transition-colors duration-200');
-    }
-
-    // Add nested indentation
-    if (mergedConfig.nestedLevel > 0) {
-      classes.push(`pl-${mergedConfig.nestedLevel * 4}`);
-    }
-
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
-
-  // Content wrapper
   const content = (
     <>
-      <div className="flex items-start flex-1 min-w-0">
-        {/* Marker or icon */}
-        {renderMarker()}
-        {mergedConfig.iconPosition === 'left' && renderIcon()}
+      {marker && <span className={markerClasses}>{marker}</span>}
 
-        {/* Text content */}
-        <span className="flex-1 min-w-0 wrap-break-word">
-          {mergedConfig.text}
-          {children}
-        </span>
+      {iconPosition === 'left' && IconComponent && (
+        <IconComponent className={iconClasses} />
+      )}
 
-        {/* Right icon or badge */}
-        {mergedConfig.iconPosition === 'right' && (
-          <span className="ml-2 shrink-0">{renderIcon()}</span>
-        )}
-        {renderBadge()}
-      </div>
+      <span className="flex-1 min-w-0">{text || children}</span>
+
+      {iconPosition === 'right' && IconComponent && (
+        <IconComponent className={iconClasses} />
+      )}
+
+      {badge && <span className={badgeClasses}>{badge}</span>}
     </>
   );
 
-  // Render as link
-  if (mergedConfig.href) {
+  if (href && !disabled) {
     return (
       <a
-        href={mergedConfig.href}
-        target={mergedConfig.target}
+        ref={ref}
+        href={href}
+        target={target}
         className={itemClasses}
-        style={mergedConfig.style}
+        style={style}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={mergedConfig.onClick}
-        aria-disabled={mergedConfig.disabled}
+        {...props}
       >
         {content}
       </a>
     );
   }
 
-  // Render as button
-  if (mergedConfig.onClick) {
+  if (onClick) {
     return (
       <button
+        ref={ref}
         className={itemClasses}
-        style={mergedConfig.style}
+        style={style}
+        onClick={handleClick}
+        disabled={disabled}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={mergedConfig.onClick}
-        disabled={mergedConfig.disabled}
+        {...props}
       >
         {content}
       </button>
     );
   }
 
-  // Render as div
   return (
     <div
+      ref={ref}
       className={itemClasses}
-      style={mergedConfig.style}
+      style={style}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      {...props}
     >
       {content}
     </div>
   );
-};
+});
+
+CMS_ListItem.displayName = 'CMS_ListItem';
 
 // ============================================================================
 // CMS_IconList Component
 // ============================================================================
 
-/**
- * CMS_IconList - Grid of icons with labels
- */
-const CMS_IconList = ({
-  config = {},
-  items = []
-}) => {
-  const defaultIconListConfig = {
-    layout: 'grid',
-    columns: 4,
-    gap: 'gap-4',
-    iconSize: 'w-8 h-8',
-    iconColor: null,
-    darkIconColor: null,
-    showLabel: true,
-    labelPosition: 'bottom',
-    labelColor: 'text-gray-700',
-    darkLabelColor: 'dark:text-gray-300',
-    labelSize: 'text-sm',
-    labelWeight: 'font-normal',
-    centered: true,
-    clickable: false,
-    onItemClick: null,
-    className: '',
-    style: {}
+const CMS_IconList = forwardRef(({
+  items = [],
+  columns = 4,
+  gap = 'gap-4',
+  showLabel = true,
+  labelPosition = 'bottom',
+  centered = true,
+  iconSize = 'w-8 h-8',
+  clickable = false,
+  onItemClick,
+  classes = {},
+  className,
+  style,
+  ...props
+}, ref) => {
+
+  const gridCols = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-2',
+    3: 'grid-cols-3',
+    4: 'grid-cols-4',
+    5: 'grid-cols-5',
+    6: 'grid-cols-6',
   };
 
-  const mergedConfig = useMemo(() => ({
-    ...defaultIconListConfig,
-    ...config
-  }), [config]);
+  const containerClasses = clsx(
+    'grid',
+    gridCols[columns] || 'grid-cols-4',
+    gap,
+    centered && 'justify-items-center',
+    classes.iconGrid,
+    className
+  );
 
-  // Get icon component
-  const getIconComponent = (icon, library = 'fa') => {
-    if (!icon) return null;
+  return (
+    <div ref={ref} className={containerClasses} style={style} {...props}>
+      {items.map((item, index) => {
+        const IconComponent = getIconComponent(item.icon, item.iconLibrary || 'fa');
 
-    const lib = iconLibraries[library];
-    if (!lib) return null;
-
-    const IconComponent = lib[icon];
-    return IconComponent || null;
-  };
-
-  // Icon List Item
-  const IconListItem = ({ item, config, index, inline = false }) => {
-    const IconComponent = getIconComponent(item.icon, item.iconLibrary || 'fa');
-    const [isHovered, setIsHovered] = useState(false);
-
-    const itemConfig = {
-      ...config,
-      ...item
-    };
-
-    const handleClick = () => {
-      if (config.onItemClick) {
-        config.onItemClick(item, index);
-      }
-      if (item.onClick) {
-        item.onClick();
-      }
-    };
-
-    const content = (
-      <div
-        className={`
-          flex
-          ${inline ? 'flex-row items-center' : 'flex-col items-center'}
-          ${config.clickable || item.clickable ? 'cursor-pointer' : ''}
-          transition-all duration-200
-          ${isHovered && (config.clickable || item.clickable) ? 'transform scale-105' : ''}
-        `}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={handleClick}
-      >
-        {/* Icon */}
-        {IconComponent && (
-          <div className={`
-            ${itemConfig.iconSize || config.iconSize}
-            ${itemConfig.iconColor || config.iconColor}
-            ${itemConfig.darkIconColor || config.darkIconColor}
-            flex items-center justify-center
-            ${isHovered && itemConfig.hoverEffect ? itemConfig.hoverEffect : ''}
-          `}>
-            <IconComponent className="w-full h-full" />
-          </div>
-        )}
-
-        {/* Label */}
-        {config.showLabel && item.label && (
-          <div className={`
-            ${inline ? 'ml-2' : 'mt-2 text-center'}
-            ${itemConfig.labelColor || config.labelColor}
-            ${itemConfig.darkLabelColor || config.darkLabelColor}
-            ${itemConfig.labelSize || config.labelSize}
-            ${itemConfig.labelWeight || config.labelWeight}
-          `}>
-            {item.label}
-          </div>
-        )}
-      </div>
-    );
-
-    if (item.href) {
-      return (
-        <a href={item.href} target={item.target} className="no-underline">
-          {content}
-        </a>
-      );
-    }
-
-    return content;
-  };
-
-  // Render based on layout
-  const renderContent = () => {
-    switch (mergedConfig.layout) {
-      case 'flex':
         return (
-          <div className={`flex flex-wrap ${mergedConfig.gap} ${mergedConfig.centered ? 'justify-center' : 'justify-start'}`}>
-            {items.map((item, index) => (
-              <IconListItem key={index} item={item} config={mergedConfig} index={index} />
-            ))}
+          <div
+            key={index}
+            className={clsx(
+              'flex flex-col items-center',
+              classes.iconItem
+            )}
+            onClick={() => onItemClick?.(item, index)}
+          >
+            {IconComponent && (
+              <div className={clsx(iconSize, classes.icon)}>
+                <IconComponent className="w-full h-full" />
+              </div>
+            )}
+            {showLabel && item.label && (
+              <span className={clsx('mt-2 text-sm', classes.iconLabel)}>
+                {item.label}
+              </span>
+            )}
           </div>
         );
-      case 'inline':
-        return (
-          <div className={`flex flex-wrap items-center ${mergedConfig.gap}`}>
-            {items.map((item, index) => (
-              <IconListItem key={index} item={item} config={mergedConfig} index={index} inline />
-            ))}
-          </div>
-        );
-      case 'grid':
-      default:
-        const gridCols = {
-          1: 'grid-cols-1',
-          2: 'grid-cols-2',
-          3: 'grid-cols-3',
-          4: 'grid-cols-4',
-          5: 'grid-cols-5',
-          6: 'grid-cols-6'
-        };
-        return (
-          <div className={`grid ${gridCols[mergedConfig.columns] || 'grid-cols-4'} ${mergedConfig.gap}`}>
-            {items.map((item, index) => (
-              <IconListItem key={index} item={item} config={mergedConfig} index={index} />
-            ))}
-          </div>
-        );
-    }
-  };
+      })}
+    </div>
+  );
+});
 
-  return renderContent();
-};
+CMS_IconList.displayName = 'CMS_IconList';
 
 // ============================================================================
 // CMS_List Main Component
 // ============================================================================
 
-/**
- * CMS_List - Main list component with support for various list types
- */
-const CMS_List = ({
-  config = {},
+const CMS_List = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_List',
+
+  // Main styling - flat class structure
+  classes = defaultListClasses,
+
+  // Basic
+  type = 'ul',
+  variant = 'default',
+  style: listStyle = 'none',
+
+  // Layout
+  layout = 'vertical',
+  columns = 1,
+  gap = 'gap-2',
+  spacing = 'space-y-2',
+
+  // List attributes
+  start = 1,
+  reversed = false,
+
+  // Nested
+  nested = false,
+  nestedIndent = 4,
+
+  // Selection
+  selectable = false,
+  multiple = false,
+  selectedItems = [],
+
+  // Icon list specific
+  iconListConfig = {},
+
+  // Items
   items = [],
-  children
-}) => {
-  const defaultListConfig = {
-    type: 'ul',
-    variant: 'default',
-    style: 'none',
-    layout: 'vertical',
-    columns: 1,
-    gap: 'gap-2',
-    spacing: 'space-y-2',
-    padding: 'p-0',
-    margin: 'm-0',
-    bgColor: null,
-    darkBgColor: null,
-    border: null,
-    borderColor: null,
-    rounded: null,
-    shadow: null,
-    start: 1,
-    reversed: false,
-    iconListConfig: {},
-    nested: false,
-    nestedIndent: 4,
-    selectable: false,
-    multiple: false,
-    selectedItems: [],
-    onSelect: null,
-    color: 'text-gray-900',
-    darkColor: 'dark:text-white',
-    ariaLabel: null,
-    ariaLabelledBy: null,
-    className: '',
-    style: {}
-  };
 
-  const mergedConfig = useMemo(() => ({
-    ...defaultListConfig,
-    ...config
-  }), [config]);
+  // Accessibility
+  ariaLabel,
+  ariaLabelledBy,
 
-  const [selected, setSelected] = useState(mergedConfig.selectedItems || []);
+  // Events
+  onSelect,
 
-  // List style classes
-  const listStyleClasses = {
-    none: 'list-none',
-    disc: 'list-disc',
-    decimal: 'list-decimal',
-    circle: 'list-circle',
-    square: 'list-square',
-    roman: 'list-roman list-decimal',
-    alpha: 'list-alpha list-decimal'
-  };
+  // Extra
+  className,
+  style: externalStyle,
+  children,
+  ...props
+}, ref) => {
+
+  const [selected, setSelected] = useState(selectedItems || []);
 
   // Handle item selection
   const handleItemSelect = (item, index) => {
-    if (!mergedConfig.selectable) return;
+    if (!selectable) return;
 
     let newSelected;
-    if (mergedConfig.multiple) {
+    if (multiple) {
       newSelected = selected.includes(index)
         ? selected.filter(i => i !== index)
         : [...selected, index];
@@ -484,82 +540,74 @@ const CMS_List = ({
     }
 
     setSelected(newSelected);
-    mergedConfig.onSelect?.(newSelected, item);
+    onSelect?.(newSelected, item);
   };
 
-  // Build list classes
-  const listClasses = useMemo(() => {
-    const classes = [
-      mergedConfig.type === 'ol' ? listStyleClasses[mergedConfig.style] || 'list-decimal' : '',
-      mergedConfig.type === 'ul' ? listStyleClasses[mergedConfig.style] || 'list-disc' : '',
-      mergedConfig.layout === 'vertical' ? mergedConfig.spacing : '',
-      mergedConfig.layout === 'horizontal' ? 'flex flex-wrap gap-4' : '',
-      mergedConfig.layout === 'grid' ? `grid grid-cols-${mergedConfig.columns} ${mergedConfig.gap}` : '',
-      mergedConfig.padding,
-      mergedConfig.margin,
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.rounded,
-      mergedConfig.shadow,
-      mergedConfig.color,
-      mergedConfig.darkColor,
-      mergedConfig.className
-    ].filter(Boolean);
+  // Build container classes
+  const containerClasses = useMemo(() => {
+    const baseClasses = [
+      // Base
+      type !== 'icon-list' && listStyleClasses[listStyle],
 
-    // Add variant styles
-    if (mergedConfig.variant === 'bordered') {
-      classes.push('divide-y divide-gray-200 dark:divide-gray-700');
-    }
-    if (mergedConfig.variant === 'striped') {
-      classes.push('[&>*:nth-child(odd)]:bg-gray-50 dark:[&>*:nth-child(odd)]:bg-gray-800/50');
-    }
-    if (mergedConfig.variant === 'card') {
-      classes.push('bg-white dark:bg-gray-800 rounded-lg shadow p-4');
-    }
+      // Layout
+      layout === 'vertical' && spacing,
+      layout === 'horizontal' && 'flex flex-wrap',
+      layout === 'horizontal' && gap,
+      layout === 'grid' && `grid grid-cols-${columns}`,
+      layout === 'grid' && gap,
 
-    return classes.join(' ');
-  }, [mergedConfig]);
+      // Variant
+      variant === 'bordered' && 'divide-y divide-gray-200 dark:divide-gray-700',
+      variant === 'striped' && '[&>*:nth-child(odd)]:bg-gray-50 dark:[&>*:nth-child(odd)]:bg-gray-800/50',
+      variant === 'card' && 'bg-white dark:bg-gray-800 rounded-lg shadow p-4',
 
-  // Ensure style is always an object
-  const listStyle = useMemo(() => {
-    // If mergedConfig.style is a string, convert to empty object (ignore it)
-    if (typeof mergedConfig.style === 'string') {
-      console.warn('CMS_List: style prop should be an object, not a string. Ignoring string style.');
-      return {};
-    }
-    // If it's an object, use it
-    if (mergedConfig.style && typeof mergedConfig.style === 'object') {
-      return mergedConfig.style;
-    }
-    // Default to empty object
-    return {};
-  }, [mergedConfig.style]);
+      // Nested
+      nested && `ml-${nestedIndent}`,
+
+      // Custom classes
+      buildClasses(classes),
+
+      className
+    ];
+
+    return clsx(baseClasses);
+  }, [type, listStyle, layout, spacing, gap, columns, variant, nested, nestedIndent, classes, className]);
 
   // Render icon list
-  if (mergedConfig.type === 'icon-list') {
+  if (type === 'icon-list') {
     return (
       <CMS_IconList
-        config={mergedConfig.iconListConfig}
+        ref={ref}
         items={items}
+        columns={iconListConfig.columns || columns}
+        gap={iconListConfig.gap || gap}
+        showLabel={iconListConfig.showLabel}
+        labelPosition={iconListConfig.labelPosition}
+        centered={iconListConfig.centered}
+        classes={classes}
+        data-uid={uid}
+        data-component={component}
+        {...props}
       />
     );
   }
 
   // Render definition list
-  if (mergedConfig.type === 'dl') {
+  if (type === 'dl') {
     return (
       <dl
-        className={listClasses}
-        aria-label={mergedConfig.ariaLabel}
-        aria-labelledby={mergedConfig.ariaLabelledBy}
-        style={listStyle}
+        ref={ref}
+        className={containerClasses}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        data-uid={uid}
+        data-component={component}
+        {...props}
       >
         {items.map((item, index) => (
           <React.Fragment key={index}>
-            <dt className="font-bold">{item.term}</dt>
-            <dd className="ml-4 mb-2">{item.description}</dd>
+            <dt className={clsx('font-bold', classes.term)}>{item.term}</dt>
+            <dd className={clsx('ml-4 mb-2', classes.description)}>{item.description}</dd>
           </React.Fragment>
         ))}
         {children}
@@ -568,48 +616,42 @@ const CMS_List = ({
   }
 
   // Render ordered or unordered list
-  const ListTag = mergedConfig.type === 'ol' ? 'ol' : 'ul';
+  const ListTag = type === 'ol' ? 'ol' : 'ul';
 
   // Render list items recursively
   const renderItems = (itemsList, depth = 0) => {
     return itemsList.map((item, index) => {
-      const isSelected = mergedConfig.selectable && selected.includes(index);
-
-      // Handle nested items
+      const isSelected = selectable && selected.includes(index);
       const hasNested = item.items && item.items.length > 0;
 
       return (
         <React.Fragment key={index}>
           <CMS_ListItem
-            config={{
-              ...item,
-              nested: depth > 0,
-              nestedLevel: depth,
-              active: isSelected,
-              marker: mergedConfig.type === 'ol'
-                ? `${mergedConfig.start + index}.`
-                : null,
-              onClick: mergedConfig.selectable
-                ? () => handleItemSelect(item, index)
-                : item.onClick,
-              className: mergedConfig.selectable
-                ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800'
-                : ''
-            }}
+            {...item}
+            active={isSelected}
+            marker={type === 'ol' ? `${start + index}.` : null}
+            onClick={selectable ? () => handleItemSelect(item, index) : item.onClick}
+            nested={depth > 0}
+            nestedLevel={depth}
+            classes={classes}
+            className={clsx(
+              selectable && 'cursor-pointer',
+              selectable && classes.itemHover
+            )}
           />
 
-          {/* Render nested items */}
           {hasNested && (
             <CMS_List
-              config={{
-                type: mergedConfig.type,
-                style: mergedConfig.style,
-                nested: true,
-                nestedIndent: mergedConfig.nestedIndent,
-                spacing: mergedConfig.spacing,
-                margin: `ml-${mergedConfig.nestedIndent}`
-              }}
+              type={type}
+              style={listStyle}
+              nested={true}
+              nestedIndent={nestedIndent}
+              spacing={spacing}
               items={item.items}
+              classes={{
+                ...classes,
+                container: clsx(`ml-${nestedIndent}`, classes.nested)
+              }}
             />
           )}
         </React.Fragment>
@@ -619,19 +661,86 @@ const CMS_List = ({
 
   return (
     <ListTag
-      className={listClasses}
-      start={mergedConfig.type === 'ol' ? mergedConfig.start : undefined}
-      reversed={mergedConfig.type === 'ol' && mergedConfig.reversed}
-      aria-label={mergedConfig.ariaLabel}
-      aria-labelledby={mergedConfig.ariaLabelledBy}
-      style={listStyle}
+      ref={ref}
+      className={containerClasses}
+      start={type === 'ol' ? start : undefined}
+      reversed={type === 'ol' && reversed}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      data-uid={uid}
+      data-component={component}
+      {...props}
     >
       {renderItems(items)}
       {children}
     </ListTag>
   );
-};
+});
 
-// Export all components
-export { CMS_List, CMS_ListItem, CMS_IconList };
+CMS_List.displayName = 'CMS_List';
+CMS_List.metadata = componentMetadata;
+CMS_List.defaultProps = defaultListProps;
+
+// ============================================================================
+// Pre-configured List Components
+// ============================================================================
+
+export const CMS_UnorderedList = forwardRef((props, ref) => (
+  <CMS_List ref={ref} type="ul" {...props} />
+));
+CMS_UnorderedList.displayName = 'CMS_UnorderedList';
+
+export const CMS_OrderedList = forwardRef((props, ref) => (
+  <CMS_List ref={ref} type="ol" {...props} />
+));
+CMS_OrderedList.displayName = 'CMS_OrderedList';
+
+export const CMS_DefinitionList = forwardRef((props, ref) => (
+  <CMS_List ref={ref} type="dl" {...props} />
+));
+CMS_DefinitionList.displayName = 'CMS_DefinitionList';
+
+export const CMS_BulletList = forwardRef((props, ref) => (
+  <CMS_List
+    ref={ref}
+    type="ul"
+    style="disc"
+    classes={{
+      item: 'ml-4',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_BulletList.displayName = 'CMS_BulletList';
+
+export const CMS_Checklist = forwardRef((props, ref) => {
+  const itemsWithIcons = props.items?.map(item => ({
+    ...item,
+    icon: item.checked ? 'FaCheckCircle' : 'FaRegCircle',
+    iconLibrary: 'fa',
+    iconColor: item.checked ? 'text-green-500' : 'text-gray-400',
+    ...item
+  }));
+
+  return (
+    <CMS_List
+      ref={ref}
+      type="ul"
+      items={itemsWithIcons || props.items}
+      classes={{
+        item: 'items-center',
+        ...props.classes
+      }}
+      {...props}
+    />
+  );
+});
+CMS_Checklist.displayName = 'CMS_Checklist';
+
+// ============================================================================
+// Export
+// ============================================================================
+
+export { CMS_ListItem, CMS_IconList };
 export default CMS_List;

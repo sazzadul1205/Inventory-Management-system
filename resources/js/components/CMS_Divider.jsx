@@ -1,97 +1,144 @@
 /**
- * CMS_Divider Component - A highly customizable divider component with dark mode support
+ * CMS_Divider Component - Editor-friendly divider with flat class structure
  * 
- * This component renders dividers with configurable styling, orientation, labels,
- * icons, and various visual styles. Perfect for separating content sections.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Features:
+ * - Flat class structure for easy editing
+ * - Horizontal and vertical orientations
+ * - Multiple variants (solid, dashed, dotted, double, gradient)
+ * - Label support with text and icons
+ * - Decorative elements (dots, stars, lines)
+ * - Thickness control
+ * - Dark mode support
  */
 
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
+import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
 import * as AiIcons from 'react-icons/ai';
 import * as BiIcons from 'react-icons/bi';
 
-// Icon library mappings
+// ============================================================================
+// Icon Libraries Registry
+// ============================================================================
+
 const iconLibraries = {
   fa: FaIcons,
   hi: HiIcons,
   md: MdIcons,
   ai: AiIcons,
-  bi: BiIcons
+  bi: BiIcons,
 };
 
-// Default configuration
-const defaultConfig = {
+// ============================================================================
+// Default Classes Structure
+// ============================================================================
+
+const defaultDividerClasses = {
+  // Container classes
+  container: '',
+  containerHorizontal: '',
+  containerVertical: '',
+  containerDark: '',
+
+  // Line classes
+  line: '',
+  lineLeft: '',
+  lineRight: '',
+  lineTop: '',
+  lineBottom: '',
+  lineSolid: '',
+  lineDashed: '',
+  lineDotted: '',
+  lineDouble: '',
+  lineGradient: '',
+  lineDark: '',
+
+  // Label classes
+  label: '',
+  labelContainer: '',
+  labelText: '',
+  labelIcon: '',
+  labelLeft: '',
+  labelCenter: '',
+  labelRight: '',
+  labelDefault: '',
+  labelOutlined: '',
+  labelPill: '',
+  labelDark: '',
+
+  // Decorative classes
+  decorative: '',
+  decorativeDots: '',
+  decorativeStars: '',
+  decorativeLines: '',
+
+  // Thickness classes
+  thin: '',
+  medium: '',
+  thick: '',
+
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Hide on breakpoints
+  hideMobile: '',
+  hideTablet: '',
+  hideDesktop: '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultDividerProps = {
   // Orientation
-  orientation: 'horizontal',         // 'horizontal', 'vertical'
+  orientation: 'horizontal', // 'horizontal', 'vertical'
 
   // Visual style
-  variant: 'solid',                  // 'solid', 'dashed', 'dotted', 'double', 'gradient'
-  thickness: 'thin',                  // 'thin', 'medium', 'thick'
+  variant: 'solid', // 'solid', 'dashed', 'dotted', 'double', 'gradient'
+  thickness: 'thin', // 'thin', 'medium', 'thick'
 
-  // Colors
+  // Colors (for non-gradient variants)
   color: 'gray-300',
   darkColor: 'gray-700',
 
-  // Gradient (if variant is 'gradient')
+  // Gradient
   gradient: 'from-gray-300 to-gray-100',
-  darkGradient: 'dark:from-gray-700 dark:to-gray-600',
+  darkGradient: 'from-gray-700 to-gray-600',
   gradientDirection: 'to-r',
 
   // Label
-  label: null,                        // Text label in the middle
-  labelPosition: 'center',            // 'left', 'center', 'right' (for horizontal)
-  labelVariant: 'default',            // 'default', 'outlined', 'pill'
+  label: null,
+  labelPosition: 'center', // 'left', 'center', 'right'
+  labelVariant: 'default', // 'default', 'outlined', 'pill'
 
   // Icon with label
   icon: null,
   iconLibrary: 'hi',
-  iconPosition: 'left',               // 'left', 'right'
-  iconSize: 'w-4 h-4',
+  iconPosition: 'left', // 'left', 'right'
 
   // Spacing
-  spacing: 'my-8',                     // Vertical margin for horizontal, horizontal margin for vertical
-  width: 'full',                       // For horizontal: 'full', 'screen', or custom width
-  height: null,                        // For vertical: 'full', 'screen', or custom height
+  spacing: 'my-8',
+  width: 'full',
+  height: null,
 
-  // Line customization
-  lineStyle: null,                     // Custom line style (overrides variant)
-  lineWidth: null,                      // Custom line width
-
-  // Label styling
-  labelBg: 'bg-white',
-  darkLabelBg: 'dark:bg-gray-900',
-  labelColor: 'text-gray-500',
-  darkLabelColor: 'dark:text-gray-400',
-  labelSize: 'text-sm',
-  labelWeight: 'font-medium',
-  labelPadding: 'px-3',
-
-  // Label border (for outlined variant)
-  labelBorder: 'border',
-  labelBorderColor: 'border-gray-300',
-  darkLabelBorderColor: 'dark:border-gray-700',
-  labelRounded: 'rounded-full',
-
-  // With content (children between lines)
-  withContent: false,
-  contentPosition: 'center',           // 'left', 'center', 'right'
-
-  // Decorative elements
-  decorative: false,                    // Show decorative elements (stars, dots, etc.)
-  decorativeType: 'dots',               // 'dots', 'stars', 'lines', 'custom'
+  // Decorative
+  decorative: false,
+  decorativeType: 'dots', // 'dots', 'stars', 'lines'
   decorativeCount: 3,
-  decorativeColor: 'gray-400',
-  darkDecorativeColor: 'gray-600',
 
   // Animation
   animated: false,
+  animationType: 'pulse', // 'pulse', 'bounce', 'spin', 'ping'
   animationDuration: 'duration-300',
-  animationType: 'pulse',               // 'pulse', 'bounce', 'spin', 'ping'
 
-  // Responsive
+  // Hide on breakpoints
   hideOnMobile: false,
   hideOnTablet: false,
   hideOnDesktop: false,
@@ -99,320 +146,418 @@ const defaultConfig = {
   // Accessibility
   role: 'separator',
   ariaLabel: null,
-
-  // Additional
-  className: '',
-  style: {}
 };
 
-// Thickness mappings
-const thicknessStyles = {
+// Thickness presets
+const thicknessPresets = {
   thin: {
-    borderWidth: 'border',
+    horizontal: 'border-t',
+    vertical: 'border-l',
     height: 'h-px',
-    width: 'w-px'
+    width: 'w-px',
   },
   medium: {
-    borderWidth: 'border-2',
+    horizontal: 'border-t-2',
+    vertical: 'border-l-2',
     height: 'h-0.5',
-    width: 'w-0.5'
+    width: 'w-0.5',
   },
   thick: {
-    borderWidth: 'border-4',
+    horizontal: 'border-t-4',
+    vertical: 'border-l-4',
     height: 'h-1',
-    width: 'w-1'
-  }
+    width: 'w-1',
+  },
 };
 
-// Variant styles
-const variantStyles = {
+// Variant presets
+const variantPresets = {
   solid: 'border-solid',
   dashed: 'border-dashed',
   dotted: 'border-dotted',
   double: 'border-double',
-  gradient: '' // Handled separately
+  gradient: '',
+};
+
+// Label variant presets
+const labelVariantPresets = {
+  default: 'bg-white dark:bg-gray-900 px-3',
+  outlined: 'border border-gray-300 dark:border-gray-700 rounded-full px-4 py-1 bg-white dark:bg-gray-900',
+  pill: 'bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-1',
 };
 
 // Decorative elements
 const decorativeElements = {
-  dots: (count, color) => (
-    <div className="flex gap-1">
+  dots: (count, className) => (
+    <div className={clsx('flex gap-1', className)}>
       {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className={`w-1 h-1 rounded-full bg-${color} dark:bg-${color}`}
-        />
+        <div key={i} className="w-1 h-1 rounded-full bg-current" />
       ))}
     </div>
   ),
-  stars: (count, color) => (
-    <div className="flex gap-1">
+  stars: (count, className) => (
+    <div className={clsx('flex gap-1', className)}>
       {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className={`text-${color} dark:text-${color}`}>★</span>
+        <span key={i} className="text-current">★</span>
       ))}
     </div>
   ),
-  lines: (count, color) => (
-    <div className="flex gap-1">
+  lines: (count, className) => (
+    <div className={clsx('flex gap-1', className)}>
       {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className={`w-2 h-0.5 bg-${color} dark:bg-${color}`}
-        />
+        <div key={i} className="w-2 h-0.5 bg-current" />
       ))}
     </div>
-  )
+  ),
+};
+
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Divider',
+  description: 'Visual separator with optional label and icons',
+  category: 'layout',
+  icon: '➖',
+  editable: ['container', 'line', 'label', 'decorative'],
+  controls: [
+    { type: 'select', target: 'orientation', label: 'Orientation', options: ['horizontal', 'vertical'] },
+    { type: 'select', target: 'variant', label: 'Variant', options: ['solid', 'dashed', 'dotted', 'double', 'gradient'] },
+    { type: 'select', target: 'thickness', label: 'Thickness', options: ['thin', 'medium', 'thick'] },
+    { type: 'text', target: 'label', label: 'Label Text' },
+    { type: 'select', target: 'labelPosition', label: 'Label Position', options: ['left', 'center', 'right'] },
+    { type: 'select', target: 'labelVariant', label: 'Label Variant', options: ['default', 'outlined', 'pill'] },
+    { type: 'toggle', target: 'decorative', label: 'Decorative Elements' },
+    { type: 'select', target: 'decorativeType', label: 'Decorative Type', options: ['dots', 'stars', 'lines'] },
+    { type: 'class-editor', target: 'container', label: 'Container Styles' },
+    { type: 'class-editor', target: 'line', label: 'Line Styles' },
+    { type: 'class-editor', target: 'label', label: 'Label Styles' },
+  ]
+};
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Container
+    classes.container,
+    classes.containerHorizontal,
+    classes.containerVertical,
+    classes.containerDark,
+
+    // Line
+    classes.line,
+    classes.lineLeft,
+    classes.lineRight,
+    classes.lineTop,
+    classes.lineBottom,
+    classes.lineSolid,
+    classes.lineDashed,
+    classes.lineDotted,
+    classes.lineDouble,
+    classes.lineGradient,
+    classes.lineDark,
+
+    // Label
+    classes.label,
+    classes.labelContainer,
+    classes.labelText,
+    classes.labelIcon,
+    classes.labelLeft,
+    classes.labelCenter,
+    classes.labelRight,
+    classes.labelDefault,
+    classes.labelOutlined,
+    classes.labelPill,
+    classes.labelDark,
+
+    // Decorative
+    classes.decorative,
+    classes.decorativeDots,
+    classes.decorativeStars,
+    classes.decorativeLines,
+
+    // Thickness
+    classes.thin,
+    classes.medium,
+    classes.thick,
+
+    // Hide breakpoints
+    classes.hideMobile,
+    classes.hideTablet,
+    classes.hideDesktop,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom
+    classes.custom,
+
+    // Extra
+    extraClassName
+  );
 };
 
 /**
- * CMS_Divider Component
+ * Get icon component from library
  */
-const CMS_Divider = ({
-  config = defaultConfig,
-  children
-}) => {
-  // Merge config with defaults
-  const mergedConfig = useMemo(() => ({
-    ...defaultConfig,
-    ...config
-  }), [config]);
+const getIconComponent = (iconName, libraryPrefix) => {
+  if (!iconName || !libraryPrefix) return null;
+  const library = iconLibraries[libraryPrefix];
+  return library?.[iconName] || null;
+};
+
+// ============================================================================
+// CMS_Divider Component
+// ============================================================================
+
+const CMS_Divider = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Divider',
+
+  // Main styling - flat class structure
+  classes = defaultDividerClasses,
+
+  // Orientation
+  orientation = 'horizontal',
+
+  // Visual style
+  variant = 'solid',
+  thickness = 'thin',
+
+  // Colors
+  color = 'gray-300',
+  darkColor = 'gray-700',
+
+  // Gradient
+  gradient = 'from-gray-300 to-gray-100',
+  darkGradient = 'from-gray-700 to-gray-600',
+  gradientDirection = 'to-r',
+
+  // Label
+  label = null,
+  labelPosition = 'center',
+  labelVariant = 'default',
+
+  // Icon
+  icon = null,
+  iconLibrary = 'hi',
+  iconPosition = 'left',
+
+  // Spacing
+  spacing = 'my-8',
+  width = 'full',
+  height = null,
+
+  // Decorative
+  decorative = false,
+  decorativeType = 'dots',
+  decorativeCount = 3,
+
+  // Animation
+  animated = false,
+  animationType = 'pulse',
+  animationDuration = 'duration-300',
+
+  // Hide on breakpoints
+  hideOnMobile = false,
+  hideOnTablet = false,
+  hideOnDesktop = false,
+
+  // Accessibility
+  role = 'separator',
+  ariaLabel = null,
+
+  // Extra
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
+
+  // Get thickness preset
+  const thicknessPreset = thicknessPresets[thickness] || thicknessPresets.thin;
 
   // Get icon component
-  const getIconComponent = (icon, library) => {
-    if (!icon) return null;
-    const lib = iconLibraries[library];
-    if (!lib) return null;
-    return lib[icon];
-  };
+  const IconComponent = useMemo(
+    () => getIconComponent(icon, iconLibrary),
+    [icon, iconLibrary]
+  );
 
-  // Build divider classes
-  const dividerClasses = useMemo(() => {
-    const classes = [
-      // Base
-      'relative',
-      mergedConfig.orientation === 'horizontal' ? 'flex items-center' : 'flex flex-col items-center',
-
-      // Spacing
-      mergedConfig.orientation === 'horizontal' ? mergedConfig.spacing : '',
-      mergedConfig.orientation === 'vertical' ? mergedConfig.spacing : '',
-
-      // Width/Height
-      mergedConfig.orientation === 'horizontal' ? (
-        mergedConfig.width === 'full' ? 'w-full' :
-          mergedConfig.width === 'screen' ? 'w-screen' :
-            `w-${mergedConfig.width}`
+  // Build container classes
+  const containerClasses = useMemo(() => {
+    return clsx(
+      'relative flex',
+      orientation === 'horizontal' ? 'flex-row items-center' : 'flex-col items-center',
+      orientation === 'horizontal' ? spacing : '',
+      orientation === 'horizontal' ? (
+        width === 'full' ? 'w-full' :
+          width === 'screen' ? 'w-screen' :
+            `w-${width}`
       ) : '',
-
-      mergedConfig.orientation === 'vertical' ? (
-        mergedConfig.height === 'full' ? 'h-full' :
-          mergedConfig.height === 'screen' ? 'h-screen' :
-            `h-${mergedConfig.height}`
+      orientation === 'vertical' ? (
+        height === 'full' ? 'h-full' :
+          height === 'screen' ? 'h-screen' :
+            `h-${height}`
       ) : '',
-
-      // Hide on breakpoints
-      mergedConfig.hideOnMobile ? 'hidden' : '',
-      mergedConfig.hideOnTablet ? 'md:hidden' : '',
-      mergedConfig.hideOnDesktop ? 'lg:hidden' : '',
-
-      // Animation
-      mergedConfig.animated ? `animate-${mergedConfig.animationType} ${mergedConfig.animationDuration}` : '',
-
-      mergedConfig.className
-    ].filter(Boolean);
-
-    return classes.join(' ');
-  }, [mergedConfig]);
+      orientation === 'vertical' && spacing,
+      hideOnMobile && 'hidden',
+      hideOnTablet && 'md:hidden',
+      hideOnDesktop && 'lg:hidden',
+      animated && `animate-${animationType} ${animationDuration}`,
+      buildClasses(classes, className)
+    );
+  }, [orientation, spacing, width, height, hideOnMobile, hideOnTablet, hideOnDesktop, animated, animationType, animationDuration, classes, className]);
 
   // Build line classes
-  const getLineClasses = (position = 'left') => {
-    const thickness = thicknessStyles[mergedConfig.thickness];
-    const variant = variantStyles[mergedConfig.variant];
-
-    const classes = [
-      // Base
-      mergedConfig.orientation === 'horizontal' ? 'flex-1' : 'flex-1 w-px',
-
-      // Border style
-      variant,
-
-      // Border color
-      mergedConfig.variant === 'gradient' ? '' : `border-${mergedConfig.color}`,
-      mergedConfig.variant === 'gradient' ? '' : `dark:border-${mergedConfig.darkColor}`,
-
-      // Border width
-      mergedConfig.orientation === 'horizontal' ? thickness.borderWidth : '',
-      mergedConfig.orientation === 'vertical' ? thickness.borderWidth : '',
-
-      // Custom line style
-      mergedConfig.lineStyle || '',
-
-      // For gradient variant
-      mergedConfig.variant === 'gradient' ? `bg-gradient-${mergedConfig.gradientDirection} ${mergedConfig.gradient}` : '',
-      mergedConfig.variant === 'gradient' && mergedConfig.darkGradient ? mergedConfig.darkGradient : '',
-
-      // For gradient with label, add opacity transition
-      mergedConfig.label && mergedConfig.variant === 'gradient' ? 'transition-opacity' : ''
-    ].filter(Boolean);
-
-    return classes.join(' ');
-  };
-
-  // Render icon
-  const renderIcon = () => {
-    if (!mergedConfig.icon) return null;
-
-    const IconComponent = getIconComponent(mergedConfig.icon, mergedConfig.iconLibrary);
-    if (!IconComponent) return null;
-
-    return (
-      <IconComponent className={`
-        ${mergedConfig.iconSize}
-        ${mergedConfig.labelColor}
-        ${mergedConfig.darkLabelColor}
-      `} />
+  const getLineClasses = (position = 'center') => {
+    const baseLineClasses = clsx(
+      orientation === 'horizontal' ? thicknessPreset.horizontal : thicknessPreset.vertical,
+      variantPresets[variant],
+      variant !== 'gradient' && `border-${color}`,
+      variant !== 'gradient' && `dark:border-${darkColor}`,
+      variant === 'gradient' && `bg-gradient-${gradientDirection} ${gradient}`,
+      variant === 'gradient' && darkGradient && `dark:${darkGradient}`,
+      classes.line,
+      position === 'left' && classes.lineLeft,
+      position === 'right' && classes.lineRight,
+      position === 'top' && classes.lineTop,
+      position === 'bottom' && classes.lineBottom,
+      variant === 'solid' && classes.lineSolid,
+      variant === 'dashed' && classes.lineDashed,
+      variant === 'dotted' && classes.lineDotted,
+      variant === 'double' && classes.lineDouble,
+      variant === 'gradient' && classes.lineGradient,
+      classes.lineDark,
+      thickness === 'thin' && classes.thin,
+      thickness === 'medium' && classes.medium,
+      thickness === 'thick' && classes.thick
     );
-  };
 
-  // Render label content
-  const renderLabelContent = () => {
-    const icon = renderIcon();
-    const labelText = mergedConfig.label;
-
-    if (!icon && !labelText) return null;
-
-    return (
-      <div className="flex items-center gap-1">
-        {mergedConfig.iconPosition === 'left' && icon}
-        {labelText && <span>{labelText}</span>}
-        {mergedConfig.iconPosition === 'right' && icon}
-      </div>
-    );
-  };
-
-  // Render label
-  const renderLabel = () => {
-    const content = renderLabelContent();
-    if (!content) return null;
-
-    const labelClasses = [
-      // Base
-      'inline-flex items-center justify-center',
-      mergedConfig.labelSize,
-      mergedConfig.labelWeight,
-      mergedConfig.labelColor,
-      mergedConfig.darkLabelColor,
-      mergedConfig.labelPadding,
-
-      // Background
-      mergedConfig.labelBg,
-      mergedConfig.darkLabelBg,
-
-      // Variant specific
-      mergedConfig.labelVariant === 'outlined' ? mergedConfig.labelBorder : '',
-      mergedConfig.labelVariant === 'outlined' ? mergedConfig.labelBorderColor : '',
-      mergedConfig.labelVariant === 'outlined' ? mergedConfig.darkLabelBorderColor : '',
-      mergedConfig.labelVariant === 'outlined' ? mergedConfig.labelRounded : '',
-
-      mergedConfig.labelVariant === 'pill' ? 'px-4 py-1 rounded-full' : '',
-
-      // Z-index to appear above lines
-      'z-10',
-
-      // Whitespace
-      'whitespace-nowrap'
-    ].filter(Boolean).join(' ');
-
-    return (
-      <div className={labelClasses}>
-        {content}
-      </div>
-    );
+    return orientation === 'horizontal'
+      ? clsx('flex-1', baseLineClasses)
+      : clsx('flex-1 w-px', baseLineClasses);
   };
 
   // Render decorative elements
   const renderDecorative = () => {
-    if (!mergedConfig.decorative) return null;
+    if (!decorative) return null;
 
-    const DecorativeComponent = decorativeElements[mergedConfig.decorativeType];
+    const DecorativeComponent = decorativeElements[decorativeType];
     if (!DecorativeComponent) return null;
 
     return DecorativeComponent(
-      mergedConfig.decorativeCount,
-      mergedConfig.decorativeColor
+      decorativeCount,
+      clsx(
+        classes.decorative,
+        decorativeType === 'dots' && classes.decorativeDots,
+        decorativeType === 'stars' && classes.decorativeStars,
+        decorativeType === 'lines' && classes.decorativeLines
+      )
     );
   };
 
-  // Render horizontal divider
-  const renderHorizontal = () => {
-    const label = renderLabel();
-    const decorative = renderDecorative();
+  // Render label with icon
+  const renderLabel = () => {
+    if (!label && !icon) return null;
 
-    // If no label and no decorative, simple line
-    if (!label && !decorative && !mergedConfig.withContent) {
-      return (
-        <div
-          className={`${getLineClasses()} ${mergedConfig.orientation === 'horizontal' ? 'h-0' : ''}`}
-          role={mergedConfig.role}
-          aria-label={mergedConfig.ariaLabel}
-        />
-      );
-    }
+    const labelClasses = clsx(
+      'inline-flex items-center justify-center z-10 whitespace-nowrap',
+      labelVariantPresets[labelVariant],
+      labelPosition === 'left' && classes.labelLeft,
+      labelPosition === 'center' && classes.labelCenter,
+      labelPosition === 'right' && classes.labelRight,
+      labelVariant === 'default' && classes.labelDefault,
+      labelVariant === 'outlined' && classes.labelOutlined,
+      labelVariant === 'pill' && classes.labelPill,
+      classes.label,
+      classes.labelDark
+    );
 
-    // Determine label position classes
+    const iconClasses = clsx(
+      iconPosition === 'left' ? 'mr-1' : 'ml-1',
+      classes.labelIcon
+    );
+
+    return (
+      <div className={labelClasses}>
+        {iconPosition === 'left' && IconComponent && (
+          <IconComponent className={iconClasses} />
+        )}
+        {label && <span className={classes.labelText}>{label}</span>}
+        {iconPosition === 'right' && IconComponent && (
+          <IconComponent className={iconClasses} />
+        )}
+      </div>
+    );
+  };
+
+  // Render simple line (no label, no decorative)
+  const renderSimpleLine = () => (
+    <div
+      className={getLineClasses()}
+      role={role}
+      aria-label={ariaLabel}
+    />
+  );
+
+  // Render horizontal divider with label
+  const renderHorizontalWithLabel = () => {
+    const decorativeEl = renderDecorative();
+    const labelEl = renderLabel();
+
+    // Position classes
     const positionClasses = {
       left: 'justify-start',
       center: 'justify-center',
-      right: 'justify-end'
+      right: 'justify-end',
     };
 
     return (
-      <div className={`flex items-center w-full ${positionClasses[mergedConfig.labelPosition]}`}>
-        {/* Left line */}
-        {mergedConfig.labelPosition !== 'left' && (
+      <div className={clsx('flex items-center w-full', positionClasses[labelPosition])}>
+        {/* Left line (unless label is at left) */}
+        {labelPosition !== 'left' && (
           <div className={getLineClasses('left')} />
         )}
 
-        {/* Label / Decorative / Content */}
-        <div className="flex items-center gap-2">
-          {decorative}
-          {label}
-          {mergedConfig.withContent && children}
+        {/* Center content */}
+        <div className={clsx('flex items-center gap-2', classes.labelContainer)}>
+          {decorativeEl}
+          {labelEl}
+          {children}
         </div>
 
-        {/* Right line */}
-        {mergedConfig.labelPosition !== 'right' && (
+        {/* Right line (unless label is at right) */}
+        {labelPosition !== 'right' && (
           <div className={getLineClasses('right')} />
         )}
       </div>
     );
   };
 
-  // Render vertical divider
-  const renderVertical = () => {
-    const label = renderLabel();
-    const decorative = renderDecorative();
-
-    // If no label and no decorative, simple vertical line
-    if (!label && !decorative && !mergedConfig.withContent) {
-      return (
-        <div
-          className={`${getLineClasses()} ${mergedConfig.orientation === 'vertical' ? 'w-0 h-full' : ''}`}
-          role={mergedConfig.role}
-          aria-label={mergedConfig.ariaLabel}
-        />
-      );
-    }
+  // Render vertical divider with label
+  const renderVerticalWithLabel = () => {
+    const decorativeEl = renderDecorative();
+    const labelEl = renderLabel();
 
     return (
       <div className="flex flex-col items-center h-full">
         {/* Top line */}
         <div className={getLineClasses('top')} />
 
-        {/* Label / Decorative / Content */}
-        <div className="flex flex-col items-center gap-2 py-2">
-          {decorative}
-          {label}
-          {mergedConfig.withContent && children}
+        {/* Center content */}
+        <div className={clsx('flex flex-col items-center gap-2 py-2', classes.labelContainer)}>
+          {decorativeEl}
+          {labelEl}
+          {children}
         </div>
 
         {/* Bottom line */}
@@ -421,90 +566,89 @@ const CMS_Divider = ({
     );
   };
 
+  // Determine if we need label/decorative layout
+  const hasContent = label || icon || decorative || children;
+
   return (
     <div
-      className={dividerClasses}
-      style={mergedConfig.style}
-      role={mergedConfig.role}
-      aria-label={mergedConfig.ariaLabel}
+      ref={ref}
+      className={containerClasses}
+      style={style}
+      role={role}
+      aria-label={ariaLabel}
+      data-uid={uid}
+      data-component={component}
+      {...props}
     >
-      {mergedConfig.orientation === 'horizontal' ? renderHorizontal() : renderVertical()}
+      {!hasContent && renderSimpleLine()}
+      {hasContent && orientation === 'horizontal' && renderHorizontalWithLabel()}
+      {hasContent && orientation === 'vertical' && renderVerticalWithLabel()}
     </div>
   );
-};
+});
+
+CMS_Divider.displayName = 'CMS_Divider';
+CMS_Divider.metadata = componentMetadata;
+CMS_Divider.defaultProps = defaultDividerProps;
 
 // ============================================================================
-// CMS_DividerWithText Component
+// Pre-configured Divider Components
 // ============================================================================
 
-/**
- * CMS_DividerWithText - Simplified divider with text label
- */
-const CMS_DividerWithText = ({
-  text,
-  config = {},
-  ...props
-}) => {
-  const dividerConfig = {
-    ...config,
-    label: text,
-    variant: config.variant || 'solid',
-    labelVariant: config.labelVariant || 'default'
-  };
+export const CMS_DividerWithText = forwardRef(({ text, ...props }, ref) => (
+  <CMS_Divider
+    ref={ref}
+    label={text}
+    {...props}
+  />
+));
+CMS_DividerWithText.displayName = 'CMS_DividerWithText';
 
-  return <CMS_Divider config={dividerConfig} {...props} />;
-};
+export const CMS_DividerWithIcon = forwardRef(({ icon, iconLibrary = 'hi', ...props }, ref) => (
+  <CMS_Divider
+    ref={ref}
+    icon={icon}
+    iconLibrary={iconLibrary}
+    label={null}
+    {...props}
+  />
+));
+CMS_DividerWithIcon.displayName = 'CMS_DividerWithIcon';
+
+export const CMS_VerticalDivider = forwardRef((props, ref) => (
+  <CMS_Divider
+    ref={ref}
+    orientation="vertical"
+    height="full"
+    spacing="mx-2"
+    {...props}
+  />
+));
+CMS_VerticalDivider.displayName = 'CMS_VerticalDivider';
+
+export const CMS_GradientDivider = forwardRef((props, ref) => (
+  <CMS_Divider
+    ref={ref}
+    variant="gradient"
+    gradient="from-blue-500 to-purple-500"
+    darkGradient="from-blue-400 to-purple-400"
+    {...props}
+  />
+));
+CMS_GradientDivider.displayName = 'CMS_GradientDivider';
+
+export const CMS_DashedDivider = forwardRef((props, ref) => (
+  <CMS_Divider
+    ref={ref}
+    variant="dashed"
+    thickness="medium"
+    {...props}
+  />
+));
+CMS_DashedDivider.displayName = 'CMS_DashedDivider';
 
 // ============================================================================
-// CMS_DividerWithIcon Component
+// Export
 // ============================================================================
 
-/**
- * CMS_DividerWithIcon - Simplified divider with icon
- */
-const CMS_DividerWithIcon = ({
-  icon,
-  iconLibrary = 'hi',
-  config = {},
-  ...props
-}) => {
-  const dividerConfig = {
-    ...config,
-    icon,
-    iconLibrary,
-    iconPosition: config.iconPosition || 'center',
-    label: null
-  };
-
-  return <CMS_Divider config={dividerConfig} {...props} />;
-};
-
-// ============================================================================
-// CMS_VerticalDivider Component
-// ============================================================================
-
-/**
- * CMS_VerticalDivider - Simplified vertical divider
- */
-const CMS_VerticalDivider = ({
-  config = {},
-  ...props
-}) => {
-  const dividerConfig = {
-    ...config,
-    orientation: 'vertical',
-    height: config.height || 'full',
-    spacing: config.spacing || 'mx-2'
-  };
-
-  return <CMS_Divider config={dividerConfig} {...props} />;
-};
-
-// Export all components
-export {
-  CMS_Divider,
-  CMS_DividerWithText,
-  CMS_DividerWithIcon,
-  CMS_VerticalDivider
-};
 export default CMS_Divider;

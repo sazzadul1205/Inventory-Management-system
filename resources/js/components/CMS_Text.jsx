@@ -1,401 +1,242 @@
 /**
- * CMS_Text Component - A highly customizable text component for descriptions and body content
+ * CMS_Text Component - Editor-friendly text component with flat class structure
  * 
- * This component renders text content with configurable styling and multiple highlighting options.
- * Perfect for descriptions, paragraphs, and general text content.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Features:
+ * - Flat class structure for easy editing
+ * - Multiple HTML tags (p, span, div, li, blockquote, code)
+ * - Highlight array for text highlighting
+ * - Support for gradients and colors
+ * - Dark mode support
+ * - Responsive breakpoints
+ * - List item support with bullets
  */
 
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
+import clsx from 'clsx';
 
-// Default configuration - defined outside component to prevent recreation
-const defaultConfig = {
-  text: "Default text content",
-  variant: "body",                  // Predefined variants: "body", "description", "lead", "small", "tiny"
-  alignment: "left",
-  color: "text-gray-700",
-  darkColor: "dark:text-gray-300",
-  margin: "mb-4",
-  padding: "p-0",
-  wrapping: "normal",               // "normal", "truncate", "break-words"
-  overflow: "visible",              // "visible", "hidden", "ellipsis"
-  highlightParts: [],
-  // Gradient support
-  gradient: null,                   // e.g., "from-blue-400 to-purple-500"
-  darkGradient: null,               // e.g., "dark:from-blue-300 dark:to-purple-300"
-  gradientDirection: "to-r",        // "to-r", "to-b", "to-tl", etc.
-  // Z-Layer support
-  zLayer: "auto",                    // Z-index: "auto", "0", "10", "20", "30", "40", "50"
-  zLayerMobile: null,
-  zLayerTablet: null,
-  zLayerDesktop: null,
-  // Positioning context
-  position: "relative",              // "static", "relative", "absolute", "fixed", "sticky"
-  // Text specific properties
-  maxWidth: null,                    // e.g., "max-w-prose", "max-w-2xl"
-  indent: null,                      // e.g., "indent-8" for first line indent
-  listItem: false,                   // Whether this is a list item
-  bulletPoint: null,                 // Custom bullet point for lists
-  // Accessibility
-  ariaLabel: "",
-  role: ""                           // Auto-set based on context
+// ============================================================================
+// Types & Defaults
+// ============================================================================
+
+const defaultClasses = {
+  // Base styles (always applied)
+  base: '',
+
+  // Interactive states
+  hover: '',
+  focus: '',
+  active: '',
+
+  // Theme states
+  dark: '',
+  darkHover: '',
+  darkFocus: '',
+
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Custom override
+  custom: '',
 };
 
-// Default variant mappings for text content
-const defaultVariantStyles = {
-  // Body text variants
-  body: {
-    fontSize: "text-base md:text-lg",
-    fontWeight: "font-normal",
-    letterSpacing: "tracking-normal",
-    lineHeight: "leading-relaxed",
-    color: "text-gray-700",
-    darkColor: "dark:text-gray-300"
-  },
-  lead: {
-    fontSize: "text-lg md:text-xl",
-    fontWeight: "font-light",
-    letterSpacing: "tracking-wide",
-    lineHeight: "leading-relaxed",
-    color: "text-gray-600",
-    darkColor: "dark:text-gray-400"
-  },
-  description: {
-    fontSize: "text-base",
-    fontWeight: "font-normal",
-    letterSpacing: "tracking-normal",
-    lineHeight: "leading-relaxed",
-    color: "text-gray-600",
-    darkColor: "dark:text-gray-400"
-  },
-  small: {
-    fontSize: "text-sm",
-    fontWeight: "font-normal",
-    letterSpacing: "tracking-normal",
-    lineHeight: "leading-normal",
-    color: "text-gray-500",
-    darkColor: "dark:text-gray-500"
-  },
-  tiny: {
-    fontSize: "text-xs",
-    fontWeight: "font-light",
-    letterSpacing: "tracking-wide",
-    lineHeight: "leading-normal",
-    color: "text-gray-400",
-    darkColor: "dark:text-gray-600"
-  },
-
-  // Specialized text variants
-  quote: {
-    fontSize: "text-lg md:text-xl",
-    fontWeight: "font-light",
-    letterSpacing: "tracking-wide",
-    lineHeight: "leading-relaxed",
-    color: "text-gray-600",
-    darkColor: "dark:text-gray-400",
-    fontStyle: "italic",
-    className: "border-l-4 border-gray-300 pl-4"
-  },
-  code: {
-    fontSize: "text-sm",
-    fontWeight: "font-mono",
-    letterSpacing: "tracking-normal",
-    lineHeight: "leading-normal",
-    color: "text-gray-800",
-    darkColor: "dark:text-gray-200",
-    className: "bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5"
-  },
-  label: {
-    fontSize: "text-sm",
-    fontWeight: "font-medium",
-    letterSpacing: "tracking-wide",
-    lineHeight: "leading-normal",
-    color: "text-gray-600",
-    darkColor: "dark:text-gray-400",
-    textTransform: "uppercase"
-  },
-
-  // List variants
-  bulletList: {
-    fontSize: "text-base",
-    fontWeight: "font-normal",
-    letterSpacing: "tracking-normal",
-    lineHeight: "leading-relaxed",
-    color: "text-gray-700",
-    darkColor: "dark:text-gray-300",
-    listItem: true,
-    bulletPoint: "•"
-  },
-  numberedList: {
-    fontSize: "text-base",
-    fontWeight: "font-normal",
-    letterSpacing: "tracking-normal",
-    lineHeight: "leading-relaxed",
-    color: "text-gray-700",
-    darkColor: "dark:text-gray-300",
-    listItem: true,
-    bulletPoint: "1."
-  }
+// Default props (non-class properties)
+const defaultProps = {
+  tag: 'p',
+  text: 'Default text content',
+  alignment: 'left',
+  listItem: false,
+  bulletPoint: '•',
+  highlightClasses: [], // Array of highlight objects with class strings
 };
 
-// Allowed HTML tags for text content
+// Allowed HTML tags
 const allowedTags = ['p', 'span', 'div', 'li', 'blockquote', 'code', 'label'];
 
-// Z-index mapping for Tailwind classes
-const zIndexMap = {
-  'auto': 'z-auto',
-  '0': 'z-0',
-  '10': 'z-10',
-  '20': 'z-20',
-  '30': 'z-30',
-  '40': 'z-40',
-  '50': 'z-50',
-  'max': 'z-max',
-  'min': 'z-min'
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Text',
+  description: 'Paragraph and text content with highlighting',
+  category: 'typography',
+  icon: 'T',
+  editable: ['base', 'hover', 'dark', 'md', 'lg'],
+  controls: [
+    { type: 'select', target: 'tag', label: 'HTML Tag', options: allowedTags },
+    { type: 'text', target: 'text', label: 'Text Content' },
+    { type: 'class-editor', target: 'base', label: 'Base Styles' },
+    { type: 'color-picker', target: 'text-', label: 'Text Color' },
+    { type: 'font-size', target: 'text-', label: 'Font Size' },
+    { type: 'font-weight', target: 'font-', label: 'Font Weight' },
+    { type: 'alignment', target: 'text-', label: 'Alignment' },
+    { type: 'spacing', target: 'm-', label: 'Margin' },
+    { type: 'spacing', target: 'p-', label: 'Padding' },
+    { type: 'max-width', target: 'max-w-', label: 'Max Width' },
+    { type: 'highlight', target: 'highlightClasses', label: 'Highlights' },
+    { type: 'toggle', target: 'listItem', label: 'List Item' },
+    { type: 'text', target: 'bulletPoint', label: 'Bullet Point' },
+  ]
+};
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Base styles
+    classes.base,
+
+    // Interactive states
+    classes.hover,
+    classes.focus,
+    classes.active,
+
+    // Theme states
+    classes.dark,
+    classes.darkHover,
+    classes.darkFocus,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom override
+    classes.custom,
+
+    // Emergency override
+    extraClassName
+  );
 };
 
 /**
- * Main Text Component
- * @param {Object} props - Component props
- * @param {Object} props.config - Configuration object for the text
- * @param {Object} props.customVariants - Custom variant styles to merge/override defaults
- * @returns {JSX.Element} Rendered text component
+ * Get alignment class
  */
-const CMS_Text = ({
-  config = defaultConfig,
-  customVariants = {} // Allow custom variants to be passed from parent
-}) => {
+const getAlignmentClass = (alignment) => {
+  switch (alignment) {
+    case 'center': return 'text-center';
+    case 'right': return 'text-right';
+    case 'justify': return 'text-justify';
+    case 'left': default: return 'text-left';
+  }
+};
 
-  // Merge default variants with custom variants
-  const variantStyles = useMemo(() => ({
-    ...defaultVariantStyles,
-    ...customVariants
-  }), [customVariants]);
+// ============================================================================
+// Main Component
+// ============================================================================
 
-  // Merge config with defaults and apply variant styles
-  const mergedConfig = useMemo(() => {
-    const baseConfig = {
-      ...defaultConfig,
-      ...config
-    };
+const CMS_Text = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Text',
 
-    // Apply variant styles if variant exists
-    if (baseConfig.variant && variantStyles[baseConfig.variant]) {
-      return {
-        ...baseConfig,
-        ...variantStyles[baseConfig.variant]
-      };
-    }
+  // Main styling - flat class structure
+  classes = defaultClasses,
 
-    return baseConfig;
-  }, [config, variantStyles]);
+  // Non-class props
+  tag = 'p',
+  text = 'Default text content',
+  alignment = 'left',
+  listItem = false,
+  bulletPoint = '•',
 
-  // Determine HTML tag based on context
+  // Highlights array - each item is { start, end, class: "text-red-500 font-bold" }
+  highlightClasses = [],
+
+  // Debug
+  debug = false,
+
+  // Extra
+  className,
+  style,
+  children, // Allow children override
+  ...props
+}, ref) => {
+
+  // Determine HTML tag
   const HtmlTag = useMemo(() => {
-    // If specific tag requested and allowed
-    if (mergedConfig.tag && allowedTags.includes(mergedConfig.tag)) {
-      return mergedConfig.tag;
-    }
+    if (tag && allowedTags.includes(tag)) return tag;
+    if (listItem) return 'li';
+    return 'p';
+  }, [tag, listItem]);
 
-    // Auto-select based on variant
-    switch (mergedConfig.variant) {
-      case 'quote': return 'blockquote';
-      case 'code': return 'code';
-      case 'label': return 'label';
-      case 'bulletList':
-      case 'numberedList': return 'li';
-      default: return 'p';
-    }
-  }, [mergedConfig.tag, mergedConfig.variant]);
+  // Build base classes
+  const baseClasses = useMemo(() => {
+    return clsx(
+      buildClasses(classes),
+      getAlignmentClass(alignment)
+    );
+  }, [classes, alignment]);
 
   /**
-   * Converts alignment prop to Tailwind class
+   * Render text with highlights
    */
-  const getAlignmentClass = (alignment) => {
-    switch (alignment) {
-      case 'center': return 'text-center';
-      case 'right': return 'text-right';
-      case 'justify': return 'text-justify';
-      case 'left': default: return 'text-left';
-    }
-  };
+  const renderText = useMemo(() => {
+    // If children provided, use them instead
+    if (children) return children;
 
-  /**
-   * Converts wrapping prop to Tailwind class
-   */
-  const getWrappingClass = (wrapping) => {
-    switch (wrapping) {
-      case 'truncate': return 'truncate';
-      case 'break-words': return 'break-words';
-      case 'normal': default: return 'whitespace-normal';
-    }
-  };
-
-  /**
-   * Converts overflow prop to Tailwind/utility class
-   */
-  const getOverflowClasses = (overflow) => {
-    switch (overflow) {
-      case 'hidden':
-        return { className: 'overflow-hidden' };
-      case 'ellipsis':
-        return {
-          className: 'overflow-hidden truncate',
-          style: { textOverflow: 'ellipsis' }
-        };
-      case 'visible':
-      default:
-        return { className: 'overflow-visible' };
-    }
-  };
-
-  /**
-   * Builds gradient classes for text
-   */
-  const getGradientClasses = (gradient, darkGradient, direction = 'to-r') => {
-    if (!gradient) return '';
-
-    const gradientClasses = [
-      `bg-gradient-${direction}`,
-      gradient,
-      'bg-clip-text',
-      'text-transparent'
-    ];
-
-    if (darkGradient) {
-      gradientClasses.push(darkGradient);
-    }
-
-    return gradientClasses.join(' ');
-  };
-
-  /**
-   * Builds z-index classes with responsive support
-   */
-  const getZLayerClasses = (zLayer, zMobile, zTablet, zDesktop) => {
-    const classes = [];
-
-    // Handle base z-index
-    if (zLayer) {
-      if (zIndexMap[zLayer]) {
-        classes.push(zIndexMap[zLayer]);
-      } else if (zLayer.startsWith('z-')) {
-        classes.push(zLayer);
-      } else if (!isNaN(zLayer)) {
-        classes.push(`z-${zLayer}`);
-      }
-    }
-
-    // Handle responsive z-indices
-    if (zMobile) {
-      const mobileClass = zIndexMap[zMobile] || (zMobile.startsWith('z-') ? zMobile : `z-${zMobile}`);
-      classes.push(mobileClass);
-    }
-
-    if (zTablet) {
-      const tabletClass = zIndexMap[zTablet] || (zTablet.startsWith('z-') ? zTablet : `z-${zTablet}`);
-      classes.push(`md:${tabletClass}`);
-    }
-
-    if (zDesktop) {
-      const desktopClass = zIndexMap[zDesktop] || (zDesktop.startsWith('z-') ? zDesktop : `z-${zDesktop}`);
-      classes.push(`lg:${desktopClass}`);
-    }
-
-    return classes;
-  };
-
-  /**
-   * Renders text with highlight sections - MEMOIZED
-   * Supports both regular and gradient highlights
-   */
-  const renderHighlightedText = useMemo(() => {
-    const { text, highlightParts, gradient, darkGradient, gradientDirection } = mergedConfig;
-
-    if (!highlightParts || highlightParts.length === 0) {
-      // Add bullet point for list items if needed
-      if (mergedConfig.listItem && mergedConfig.bulletPoint) {
+    // Handle list item with bullet point
+    if (listItem && bulletPoint) {
+      // If no highlights, simple bullet + text
+      if (!highlightClasses?.length) {
         return (
           <>
-            <span className="inline-block mr-2">{mergedConfig.bulletPoint}</span>
+            <span className="inline-block mr-2 select-none">{bulletPoint}</span>
             {text}
           </>
         );
       }
+    }
+
+    // If no highlights, return plain text
+    if (!highlightClasses?.length || !text) {
       return text;
     }
+
+    // Sort highlights by start position
+    const sortedHighlights = [...highlightClasses]
+      .filter(h => h.start >= 0 && h.end <= text.length && h.start < h.end)
+      .sort((a, b) => a.start - b.start);
+
+    if (sortedHighlights.length === 0) return text;
 
     let lastIndex = 0;
     const parts = [];
 
-    // Sort highlights once
-    const sortedHighlights = [...highlightParts]
-      .filter(h => h.start >= 0 && h.end <= text.length && h.start < h.end)
-      .sort((a, b) => a.start - b.start);
+    // Add bullet point at beginning if needed
+    if (listItem && bulletPoint && lastIndex === 0) {
+      parts.push(
+        <span key="bullet" className="inline-block mr-2 select-none">
+          {bulletPoint}
+        </span>
+      );
+    }
 
     sortedHighlights.forEach((highlight, idx) => {
-      const {
-        start,
-        end,
-        highlightColor,
-        darkHighlightColor,
-        highlightGradient,
-        darkHighlightGradient,
-        highlightGradientDirection = 'to-r',
-        highlightStyle = {}
-      } = highlight;
+      const { start, end, class: highlightClass = '' } = highlight;
 
       // Add text before highlight
       if (start > lastIndex) {
-        // Add bullet point at the very beginning if needed
-        if (lastIndex === 0 && mergedConfig.listItem && mergedConfig.bulletPoint) {
-          parts.push(
-            <span key={`bullet-${idx}`} className="inline-block mr-2">
-              {mergedConfig.bulletPoint}
-            </span>
-          );
-        }
-
-        if (gradient && !highlightParts.some(h => h.start <= lastIndex && h.end >= lastIndex)) {
-          parts.push(
-            <span
-              key={`text-${idx}`}
-              className={getGradientClasses(gradient, darkGradient, gradientDirection)}
-            >
-              {text.substring(lastIndex, start)}
-            </span>
-          );
-        } else {
-          parts.push(
-            <span key={`text-${idx}`}>
-              {text.substring(lastIndex, start)}
-            </span>
-          );
-        }
-      }
-
-      // Build className for highlight
-      let highlightClassName = '';
-
-      if (highlightGradient) {
-        highlightClassName = getGradientClasses(
-          highlightGradient,
-          darkHighlightGradient || darkHighlightColor,
-          highlightGradientDirection
+        parts.push(
+          <span key={`text-${idx}`}>
+            {text.substring(lastIndex, start)}
+          </span>
         );
-      } else if (highlightColor) {
-        highlightClassName = highlightColor;
-        if (darkHighlightColor) {
-          highlightClassName += ` ${darkHighlightColor}`;
-        }
       }
 
-      // Add the HIGHLIGHTED text section
+      // Add highlighted text
       parts.push(
         <span
           key={`highlight-${idx}`}
-          className={highlightClassName.trim() || undefined}
-          style={highlightStyle}
+          className={highlightClass}
         >
           {text.substring(start, end)}
         </span>
@@ -404,101 +245,109 @@ const CMS_Text = ({
       lastIndex = end;
     });
 
-    // Add remaining text AFTER the last highlight
+    // Add remaining text
     if (lastIndex < text.length) {
-      if (gradient && !highlightParts.some(h => h.start <= lastIndex && h.end >= lastIndex)) {
-        parts.push(
-          <span
-            key="text-end"
-            className={getGradientClasses(gradient, darkGradient, gradientDirection)}
-          >
-            {text.substring(lastIndex)}
-          </span>
-        );
-      } else {
-        parts.push(
-          <span key="text-end">
-            {text.substring(lastIndex)}
-          </span>
-        );
-      }
+      parts.push(
+        <span key="text-end">
+          {text.substring(lastIndex)}
+        </span>
+      );
     }
 
     return parts;
-  }, [mergedConfig.text, mergedConfig.highlightParts, mergedConfig.gradient,
-  mergedConfig.darkGradient, mergedConfig.gradientDirection,
-  mergedConfig.listItem, mergedConfig.bulletPoint]);
+  }, [text, highlightClasses, listItem, bulletPoint, children]);
 
-  // Memoize styles and classes
-  const { overflowResult, textClasses, textStyles } = useMemo(() => {
-    const overflow = getOverflowClasses(mergedConfig.overflow);
-    const alignment = getAlignmentClass(mergedConfig.alignment);
-    const wrapping = getWrappingClass(mergedConfig.wrapping);
-
-    // Get z-layer classes
-    const zLayerClasses = getZLayerClasses(
-      mergedConfig.zLayer,
-      mergedConfig.zLayerMobile,
-      mergedConfig.zLayerTablet,
-      mergedConfig.zLayerDesktop
-    );
-
-    // Determine if the main text uses gradient
-    const gradientClasses = mergedConfig.gradient
-      ? getGradientClasses(mergedConfig.gradient, mergedConfig.darkGradient, mergedConfig.gradientDirection)
-      : '';
-
-    const classes = [
-      mergedConfig.position,
-      alignment,
-      wrapping,
-      overflow.className,
-      ...zLayerClasses,
-      mergedConfig.maxWidth,
-      mergedConfig.indent,
-      mergedConfig.fontSize,
-      mergedConfig.fontWeight,
-      mergedConfig.fontStyle,
-      // Only add color classes if not using gradient
-      ...(mergedConfig.gradient ? [gradientClasses] : [
-        mergedConfig.color,
-        mergedConfig.darkColor
-      ]),
-      mergedConfig.margin,
-      mergedConfig.padding,
-      mergedConfig.letterSpacing,
-      mergedConfig.lineHeight,
-      mergedConfig.textTransform,
-      mergedConfig.className // Allow additional custom classes
-    ].filter(Boolean).join(' ');
-
-    return {
-      overflowResult: overflow,
-      textClasses: classes,
-      textStyles: {
-        ...overflow.style,
-        ...mergedConfig.style
-      }
-    };
-  }, [mergedConfig]);
-
-  // Accessibility attributes
-  const accessibilityProps = {
-    ...(mergedConfig.ariaLabel && { 'aria-label': mergedConfig.ariaLabel }),
-    ...(mergedConfig.role && { role: mergedConfig.role }),
-    ...((mergedConfig.wrapping === 'truncate' || mergedConfig.overflow === 'ellipsis') &&
-      { title: mergedConfig.text })
-  };
+  // Build final className
+  const finalClassName = useMemo(() => {
+    return clsx(baseClasses, className);
+  }, [baseClasses, className]);
 
   return (
     <HtmlTag
-      className={textClasses}
-      style={textStyles}
-      {...accessibilityProps}
+      ref={ref}
+      className={finalClassName}
+      style={style}
+      data-uid={uid}
+      data-component={component}
+      {...props}
     >
-      {renderHighlightedText}
+      {renderText}
     </HtmlTag>
   );
-};
+});
+
+CMS_Text.displayName = 'CMS_Text';
+CMS_Text.metadata = componentMetadata;
+CMS_Text.defaultProps = defaultProps;
+
+// ============================================================================
+// Pre-configured Text Components
+// ============================================================================
+
+export const CMS_Paragraph = forwardRef((props, ref) => (
+  <CMS_Text ref={ref} tag="p" {...props} />
+));
+CMS_Paragraph.displayName = 'CMS_Paragraph';
+
+export const CMS_Span = forwardRef((props, ref) => (
+  <CMS_Text ref={ref} tag="span" {...props} />
+));
+CMS_Span.displayName = 'CMS_Span';
+
+export const CMS_Quote = forwardRef((props, ref) => (
+  <CMS_Text
+    ref={ref}
+    tag="blockquote"
+    classes={{
+      base: clsx('border-l-4 border-gray-300 pl-4 italic', props.classes?.base),
+      dark: clsx('dark:border-gray-600', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_Quote.displayName = 'CMS_Quote';
+
+export const CMS_Code = forwardRef((props, ref) => (
+  <CMS_Text
+    ref={ref}
+    tag="code"
+    classes={{
+      base: clsx('bg-gray-100 rounded px-1 py-0.5 font-mono text-sm', props.classes?.base),
+      dark: clsx('dark:bg-gray-800', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_Code.displayName = 'CMS_Code';
+
+export const CMS_Label = forwardRef((props, ref) => (
+  <CMS_Text
+    ref={ref}
+    tag="label"
+    classes={{
+      base: clsx('text-sm font-medium uppercase tracking-wide', props.classes?.base),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_Label.displayName = 'CMS_Label';
+
+export const CMS_ListItem = forwardRef((props, ref) => (
+  <CMS_Text
+    ref={ref}
+    tag="li"
+    listItem={true}
+    bulletPoint="•"
+    {...props}
+  />
+));
+CMS_ListItem.displayName = 'CMS_ListItem';
+
+// ============================================================================
+// Export
+// ============================================================================
 
 export default CMS_Text;

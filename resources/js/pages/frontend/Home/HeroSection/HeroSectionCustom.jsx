@@ -1,15 +1,14 @@
 /**
- * HeroInventory Component - Dynamic CMS Page Builder
+ * HeroSectionCustom Component - Dynamic CMS Page Builder
  * 
  * This component serves as a dynamic page builder that renders components based on a JSON configuration.
  * It lazy loads all CMS components to optimize initial bundle size and supports nested component structures.
  * 
  * Features:
  * - Dynamic component rendering from JSON configuration
- * - Lazy loading with Suspense for code splitting
+ * - Flat class structure for easy editing
  * - Support for nested components (containers can have children)
  * - Skeleton loading fallback for better UX
- * - Error handling for unknown component types
  * - UID support for component selection and identification
  */
 
@@ -21,11 +20,6 @@ import HeroSectionSkeleton from './HeroSectionSkeleton';
 // These components provide layout structure (sections, grids, flex containers)
 // ============================================================================
 
-/**
- * CMS_Section - Full section container with background and spacing
- * CMS_Grid - Grid layout container for multi-column arrangements
- * CMS_Flex - Flexbox layout container for flexible arrangements
- */
 const CMS_Section = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Section })));
 const CMS_Grid = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Grid })));
 const CMS_Flex = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Flex })));
@@ -35,16 +29,7 @@ const CMS_Flex = lazy(() => import('../../../../components/CMS_Container').then(
 // These components render actual content (text, titles, buttons, media)
 // ============================================================================
 
-/**
- * CMS_Title - Main heading component with variants (h1-h6)
- * CMS_Subtitle - Subheading component for supporting text
- * CMS_Text - Paragraph and body text component
- * CMS_Button - Interactive button component with multiple variants
- * CMS_Badge - Small status indicator component
- * CMS_Media - Image and video component with lazy loading
- */
 const CMS_Title = lazy(() => import('../../../../components/CMS_Title'));
-const CMS_Subtitle = lazy(() => import('../../../../components/CMS_Subtitle'));
 const CMS_Text = lazy(() => import('../../../../components/CMS_Text'));
 const CMS_Button = lazy(() => import('../../../../components/CMS_Button'));
 const CMS_Badge = lazy(() => import('../../../../components/CMS_Badge'));
@@ -55,11 +40,6 @@ const CMS_Media = lazy(() => import('../../../../components/CMS_Media'));
 // These components provide structured layouts (cards, dividers, lists)
 // ============================================================================
 
-/**
- * CMS_Card - Card container with header, body, and footer sections
- * CMS_Divider - Horizontal or vertical divider with optional text/icons
- * CMS_List - Ordered, unordered, and icon lists with nesting support
- */
 const CMS_Card = lazy(() => import('../../../../components/CMS_Card'));
 const CMS_Divider = lazy(() => import('../../../../components/CMS_Divider'));
 const CMS_DividerWithText = lazy(() => import('../../../../components/CMS_Divider').then(m => ({ default: m.CMS_DividerWithText })));
@@ -74,9 +54,6 @@ const CMS_IconList = lazy(() => import('../../../../components/CMS_List').then(m
 // These components render structured data (tables)
 // ============================================================================
 
-/**
- * CMS_Table - Data table with sorting, pagination, and selection
- */
 const CMS_Table = lazy(() => import('../../../../components/CMS_Table'));
 
 // ============================================================================
@@ -84,9 +61,6 @@ const CMS_Table = lazy(() => import('../../../../components/CMS_Table'));
 // These components handle user input (inputs, forms)
 // ============================================================================
 
-/**
- * CMS_Input - Form input component with multiple types and validation
- */
 const CMS_Input = lazy(() => import('../../../../components/CMS_Input'));
 const CMS_InputGroup = lazy(() => import('../../../../components/CMS_Input').then(m => ({ default: m.CMS_InputGroup })));
 const CMS_InputAddon = lazy(() => import('../../../../components/CMS_Input').then(m => ({ default: m.CMS_InputAddon })));
@@ -97,17 +71,9 @@ const CMS_InputAddon = lazy(() => import('../../../../components/CMS_Input').the
 
 /**
  * ComponentWrapper - Provides a data attribute for component selection
- * 
- * @param {Object} props
- * @param {string} props.uid - Unique identifier for the component
- * @param {React.ReactNode} props.children - Child components
- * @returns {JSX.Element} Wrapped component with data attribute
  */
 const ComponentWrapper = ({ uid, children }) => {
-  // If no UID, render children without wrapper
   if (!uid) return children;
-
-  // Add data-component-id attribute for selection and identification
   return (
     <div data-component-id={uid} data-component-selectable="true">
       {children}
@@ -119,51 +85,33 @@ const ComponentWrapper = ({ uid, children }) => {
 // Main Component
 // ============================================================================
 
-/**
- * HeroInventory - Main page builder component
- * 
- * Renders a component tree based on the configuration from config.json.
- * Supports recursive rendering of nested components through the renderComponent function.
- * 
- * @param {Object} props
- * @param {Object} props.config - Component configuration object
- * @returns {JSX.Element} The rendered component tree with Suspense fallback
- */
-const HeroInventory = ({ config }) => {
+const HeroSectionCustom = ({ config }) => {
   /**
    * Recursively renders a component based on its type and configuration
-   * 
-   * @param {Object} component - Component configuration object
-   * @param {string} component.uid - Unique identifier for the component
-   * @param {string} component.component - Component type name (e.g., 'CMS_Section')
-   * @param {Object} component.config - Component styling and behavior configuration
-   * @param {Array} component.children - Nested child components (for containers)
-   * @returns {JSX.Element|null} Rendered component or null if type unknown
    */
   const renderComponent = (component) => {
-    // If component is undefined or null, return nothing
     if (!component) return null;
 
-    // Extract uid for wrapping
-    const { uid, ...componentProps } = component;
+    const { uid, component: componentType, children, ...props } = component;
 
-    // Helper to wrap component with UID data attribute
     const withUidWrapper = (element) => {
       return <ComponentWrapper uid={uid}>{element}</ComponentWrapper>;
     };
 
-    switch (component.component) {
+    switch (componentType) {
       // ======================================================================
       // Container Components
-      // These components can have children that are rendered recursively
       // ======================================================================
 
       case 'CMS_Section':
-        // Section container with full width background support
         return withUidWrapper(
-          <CMS_Section config={component.config}>
-            {/* Recursively render all child components */}
-            {component.children?.map((child, index) => (
+          <CMS_Section
+            uid={uid}
+            classes={props.classes}
+            fullWidth={props.fullWidth}
+            elementType="section"
+          >
+            {children?.map((child, index) => (
               <React.Fragment key={child.uid || `section-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
@@ -172,11 +120,13 @@ const HeroInventory = ({ config }) => {
         );
 
       case 'CMS_Grid':
-        // Grid layout container with responsive columns
         return withUidWrapper(
-          <CMS_Grid config={component.config}>
-            {/* Recursively render all child components */}
-            {component.children?.map((child, index) => (
+          <CMS_Grid
+            uid={uid}
+            classes={props.classes}
+            fullWidth={props.fullWidth}
+          >
+            {children?.map((child, index) => (
               <React.Fragment key={child.uid || `grid-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
@@ -185,11 +135,13 @@ const HeroInventory = ({ config }) => {
         );
 
       case 'CMS_Flex':
-        // Flexbox layout container with direction and alignment
         return withUidWrapper(
-          <CMS_Flex config={component.config}>
-            {/* Recursively render all child components */}
-            {component.children?.map((child, index) => (
+          <CMS_Flex
+            uid={uid}
+            classes={props.classes}
+            fullWidth={props.fullWidth}
+          >
+            {children?.map((child, index) => (
               <React.Fragment key={child.uid || `flex-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
@@ -199,49 +151,130 @@ const HeroInventory = ({ config }) => {
 
       // ======================================================================
       // Content Components
-      // These components render actual content and typically don't have children
       // ======================================================================
 
       case 'CMS_Badge':
-        // Small badge/status indicator
-        return withUidWrapper(<CMS_Badge config={component.config} />);
+        return withUidWrapper(
+          <CMS_Badge
+            uid={uid}
+            text={props.text}
+            icon={props.icon}
+            iconLibrary={props.iconLibrary}
+            iconPosition={props.iconPosition}
+            iconOnly={props.iconOnly}
+            size={props.size}
+            shape={props.shape}
+            count={props.count}
+            dot={props.dot}
+            pulse={props.pulse}
+            clickable={props.clickable}
+            href={props.href}
+            classes={props.classes}
+          />
+        );
 
       case 'CMS_Title':
-        // Main heading with variants and text highlighting
-        return withUidWrapper(<CMS_Title config={component.config} />);
-
-      case 'CMS_Subtitle':
-        // Subheading for supporting content
-        return withUidWrapper(<CMS_Subtitle config={component.config} />);
+        return withUidWrapper(
+          <CMS_Title
+            uid={uid}
+            level={props.level || 'h2'}
+            text={props.text}
+            alignment={props.alignment}
+            highlightClasses={props.highlightClasses}
+            classes={props.classes}
+          />
+        );
 
       case 'CMS_Text':
-        // Paragraph and body text content
-        return withUidWrapper(<CMS_Text config={component.config} />);
+        return withUidWrapper(
+          <CMS_Text
+            uid={uid}
+            tag={props.tag || 'p'}
+            text={props.text}
+            alignment={props.alignment}
+            listItem={props.listItem}
+            bulletPoint={props.bulletPoint}
+            highlightClasses={props.highlightClasses}
+            classes={props.classes}
+          />
+        );
 
       case 'CMS_Button':
-        // Interactive button with multiple styles and states
-        return withUidWrapper(<CMS_Button config={component.config} />);
+        return withUidWrapper(
+          <CMS_Button
+            uid={uid}
+            text={props.text}
+            icon={props.icon}
+            iconLibrary={props.iconLibrary}
+            iconPosition={props.iconPosition}
+            iconOnly={props.iconOnly}
+            size={props.size}
+            fullWidth={props.fullWidth}
+            type={props.type}
+            disabled={props.disabled}
+            loading={props.loading}
+            href={props.href}
+            method={props.method}
+            onClick={props.onClick}
+            classes={props.classes}
+          />
+        );
 
       case 'CMS_Media':
-        // Image or video with lazy loading and placeholders
-        return withUidWrapper(<CMS_Media config={component.config} />);
+        return withUidWrapper(
+          <CMS_Media
+            uid={uid}
+            type={props.type}
+            src={props.src}
+            alt={props.alt}
+            poster={props.poster}
+            aspectRatio={props.aspectRatio}
+            objectFit={props.objectFit}
+            objectPosition={props.objectPosition}
+            controls={props.controls}
+            autoPlay={props.autoPlay}
+            loop={props.loop}
+            muted={props.muted}
+            lazy={props.lazy}
+            placeholder={props.placeholder}
+            fallback={props.fallback}
+            caption={props.caption}
+            captionPosition={props.captionPosition}
+            playButton={props.playButton}
+            href={props.href}
+            onClick={props.onClick}
+            classes={props.classes}
+          />
+        );
 
       // ======================================================================
       // Layout Components
-      // These components provide structured layouts
       // ======================================================================
 
       case 'CMS_Card':
-        // Card container with header, body, and footer sections
         return withUidWrapper(
           <CMS_Card
-            config={component.config}
-            header={component.header}
-            body={component.body}
-            footer={component.footer}
+            uid={uid}
+            layout={props.layout}
+            variant={props.variant}
+            size={props.size}
+            width={props.width}
+            height={props.height}
+            clickable={props.clickable}
+            href={props.href}
+            badge={props.badge}
+            badgeVariant={props.badgeVariant}
+            badgePosition={props.badgePosition}
+            media={props.media}
+            mediaPosition={props.mediaPosition}
+            overlay={props.overlay}
+            overlayHover={props.overlayHover}
+            header={props.header}
+            body={props.body}
+            footer={props.footer}
+            classes={props.classes}
           >
-            {/* Optional children inside card */}
-            {component.children?.map((child, index) => (
+            {children?.map((child, index) => (
               <React.Fragment key={child.uid || `card-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
@@ -250,41 +283,40 @@ const HeroInventory = ({ config }) => {
         );
 
       case 'CMS_Divider':
-        // Standard divider line
-        return withUidWrapper(<CMS_Divider config={component.config} />);
-
-      case 'CMS_DividerWithText':
-        // Divider with centered text label
         return withUidWrapper(
-          <CMS_DividerWithText
-            config={component.config}
-            text={component.text}
+          <CMS_Divider
+            uid={uid}
+            orientation={props.orientation}
+            variant={props.variant}
+            thickness={props.thickness}
+            label={props.label}
+            labelPosition={props.labelPosition}
+            labelVariant={props.labelVariant}
+            icon={props.icon}
+            iconLibrary={props.iconLibrary}
+            iconPosition={props.iconPosition}
+            decorative={props.decorative}
+            decorativeType={props.decorativeType}
+            animated={props.animated}
+            classes={props.classes}
           />
         );
-
-      case 'CMS_DividerWithIcon':
-        // Divider with centered icon
-        return withUidWrapper(
-          <CMS_DividerWithIcon
-            config={component.config}
-            icon={component.icon}
-            iconLibrary={component.iconLibrary}
-          />
-        );
-
-      case 'CMS_VerticalDivider':
-        // Vertical divider for side-by-side content
-        return withUidWrapper(<CMS_VerticalDivider config={component.config} />);
 
       case 'CMS_List':
-        // List container (ul/ol) with items
         return withUidWrapper(
           <CMS_List
-            config={component.config}
-            items={component.items}
+            uid={uid}
+            type={props.type}
+            variant={props.variant}
+            style={props.style}
+            layout={props.layout}
+            columns={props.columns}
+            items={props.items || []}
+            selectable={props.selectable}
+            multiple={props.multiple}
+            classes={props.classes}
           >
-            {/* Optional nested list items */}
-            {component.children?.map((child, index) => (
+            {children?.map((child, index) => (
               <React.Fragment key={child.uid || `list-child-${index}`}>
                 {renderComponent(child)}
               </React.Fragment>
@@ -292,94 +324,70 @@ const HeroInventory = ({ config }) => {
           </CMS_List>
         );
 
-      case 'CMS_ListItem':
-        // Individual list item with icon and badge support
-        return withUidWrapper(<CMS_ListItem config={component.config} />);
-
-      case 'CMS_IconList':
-        // Grid of icons with optional labels
-        return withUidWrapper(
-          <CMS_IconList
-            config={component.config}
-            items={component.items}
-          />
-        );
-
       // ======================================================================
       // Data Display Components
-      // These components render structured data
       // ======================================================================
 
       case 'CMS_Table':
-        // Data table with sorting, pagination, and selection
         return withUidWrapper(
           <CMS_Table
-            columns={component.columns}        // Table column definitions
-            data={component.data}              // Table data array
-            config={component.config}           // Table styling configuration
-            onRowClick={component.onRowClick}   // Row click handler
-            onSort={component.onSort}           // Sort handler
-            onPageChange={component.onPageChange} // Pagination handler
-            loading={component.loading}         // Loading state
+            uid={uid}
+            columns={props.columns || []}
+            data={props.data || []}
+            rowKey={props.rowKey}
+            variant={props.variant}
+            size={props.size}
+            sortable={props.sortable}
+            selectable={props.selectable}
+            pagination={props.pagination}
+            pageSize={props.pageSize}
+            loading={props.loading}
+            classes={props.classes}
+            onRowClick={props.onRowClick}
+            onSort={props.onSort}
+            onPageChange={props.onPageChange}
           />
         );
 
       // ======================================================================
       // Form Components
-      // These components handle user input
       // ======================================================================
 
       case 'CMS_Input':
-        // Form input with multiple types and validation
         return withUidWrapper(
           <CMS_Input
-            type={component.type}               // Input type (text, email, etc.)
-            name={component.name}                // Input name attribute
-            label={component.label}               // Input label text
-            placeholder={component.placeholder}   // Placeholder text
-            value={component.value}               // Controlled value
-            defaultValue={component.defaultValue} // Default value
-            error={component.error}               // Error message
-            hint={component.hint}                 // Helper hint text
-            disabled={component.disabled}         // Disabled state
-            required={component.required}         // Required field
-            leftIcon={component.leftIcon}         // Left side icon
-            rightIcon={component.rightIcon}       // Right side icon
-            config={component.config}              // Input styling config
+            uid={uid}
+            type={props.type}
+            name={props.name}
+            label={props.label}
+            placeholder={props.placeholder}
+            value={props.value}
+            defaultValue={props.defaultValue}
+            error={props.error}
+            hint={props.hint}
+            required={props.required}
+            disabled={props.disabled}
+            leftIcon={props.leftIcon}
+            rightIcon={props.rightIcon}
+            leftIconLibrary={props.leftIconLibrary}
+            rightIconLibrary={props.rightIconLibrary}
+            clearable={props.clearable}
+            showPasswordToggle={props.showPasswordToggle}
+            showCharCount={props.showCharCount}
+            loading={props.loading}
+            size={props.size}
+            variant={props.variant}
+            classes={props.classes}
+            onChange={props.onChange}
           />
-        );
-
-      case 'CMS_InputGroup':
-        // Group of related inputs
-        return withUidWrapper(
-          <CMS_InputGroup config={component.config}>
-            {/* Child input components */}
-            {component.children?.map((child, index) => (
-              <React.Fragment key={child.uid || `inputgroup-child-${index}`}>
-                {renderComponent(child)}
-              </React.Fragment>
-            ))}
-          </CMS_InputGroup>
-        );
-
-      case 'CMS_InputAddon':
-        // Prefix or suffix addon for inputs
-        return withUidWrapper(
-          <CMS_InputAddon
-            config={component.config}
-            position={component.position} // 'left' or 'right'
-          >
-            {component.text || component.children}
-          </CMS_InputAddon>
         );
 
       // ======================================================================
       // Unknown Component Type
-      // Log warning and return null for unrecognized components
       // ======================================================================
 
       default:
-        console.warn(`Unknown component type: ${component.component}`, { uid });
+        console.warn(`Unknown component type: ${componentType}`, { uid });
         return null;
     }
   };
@@ -389,18 +397,10 @@ const HeroInventory = ({ config }) => {
   // ==========================================================================
 
   return (
-    /**
-     * Suspense boundary for lazy-loaded components
-     * Shows HeroSectionSkeleton while components are loading
-     */
     <Suspense fallback={<HeroSectionSkeleton />}>
-      {/**
-       * Start rendering from the root component in config
-       * The config contains the complete component tree structure
-       */}
       {renderComponent(config)}
     </Suspense>
   );
 };
 
-export default HeroInventory;
+export default HeroSectionCustom;

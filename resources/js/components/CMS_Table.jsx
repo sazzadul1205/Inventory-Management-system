@@ -1,112 +1,347 @@
 /**
- * CMS_Table Component - A highly customizable table component with dark mode support
+ * CMS_Table Component - Editor-friendly table with flat class structure
  * 
- * This component renders tables with configurable styling, sorting, filtering, pagination,
- * and supports various data types, actions, and interactive features.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Features:
+ * - Flat class structure for easy editing
+ * - Sorting on columns
+ * - Row selection (single/multi)
+ * - Pagination with page size control
+ * - Striped, bordered, compact variants
+ * - Custom cell rendering
+ * - Loading state
+ * - Empty state
+ * - Sticky headers/footers
+ * - Dark mode support
  */
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
+import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
 import * as AiIcons from 'react-icons/ai';
 import * as BiIcons from 'react-icons/bi';
 
-// Icon library mappings
+// ============================================================================
+// Icon Libraries Registry
+// ============================================================================
+
 const iconLibraries = {
   fa: FaIcons,
   hi: HiIcons,
   md: MdIcons,
   ai: AiIcons,
-  bi: BiIcons
+  bi: BiIcons,
+};
+
+// ============================================================================
+// Default Classes Structure
+// ============================================================================
+
+const defaultTableClasses = {
+  // Container classes
+  container: '',
+  containerDark: '',
+
+  // Table classes
+  table: '',
+  tableDark: '',
+
+  // Header classes
+  header: '',
+  headerRow: '',
+  headerCell: '',
+  headerCellSorted: '',
+  headerCellHover: '',
+  headerDark: '',
+
+  // Body classes
+  body: '',
+  bodyRow: '',
+  bodyRowEven: '',
+  bodyRowOdd: '',
+  bodyRowHover: '',
+  bodyRowSelected: '',
+  bodyCell: '',
+  bodyDark: '',
+
+  // Footer classes
+  footer: '',
+  footerRow: '',
+  footerCell: '',
+  footerDark: '',
+
+  // Pagination classes
+  pagination: '',
+  paginationButton: '',
+  paginationButtonActive: '',
+  paginationButtonDisabled: '',
+  pageSizeSelect: '',
+
+  // Sort icons
+  sortIcon: '',
+  sortIconActive: '',
+
+  // Checkbox classes
+  checkbox: '',
+  checkboxChecked: '',
+
+  // Empty state
+  emptyState: '',
+  emptyIcon: '',
+  emptyText: '',
+
+  // Loading state
+  loadingOverlay: '',
+  loadingSpinner: '',
+
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultTableProps = {
+  // Data
+  columns: [],
+  data: [],
+  rowKey: 'id',
+
+  // Layout
+  layout: 'auto', // 'auto', 'fixed'
+  variant: 'default', // 'default', 'bordered', 'striped', 'compact', 'comfortable'
+
+  // Features
+  sortable: true,
+  selectable: false,
+  multipleSelection: true,
+  pagination: false,
+  stickyHeader: false,
+  stickyFooter: false,
+
+  // Pagination
+  pageSize: 10,
+  currentPage: 1,
+  totalRows: null,
+  pageSizeOptions: [10, 25, 50, 100],
+
+  // Text
+  loadingText: 'Loading...',
+  emptyText: 'No data available',
+  emptyIcon: 'HiDatabase',
+  emptyIconLibrary: 'hi',
+
+  // Events
+  onRowClick: null,
+  onCellClick: null,
+  onSort: null,
+  onPageChange: null,
+  onPageSizeChange: null,
+  onSelectionChange: null,
+
+  // Loading
+  loading: false,
+};
+
+// Size presets
+const sizePresets = {
+  compact: {
+    table: 'text-sm',
+    headerCell: 'px-2 py-1',
+    bodyCell: 'px-2 py-1',
+    footerCell: 'px-2 py-1',
+  },
+  default: {
+    table: 'text-sm',
+    headerCell: 'px-4 py-3',
+    bodyCell: 'px-4 py-3',
+    footerCell: 'px-4 py-3',
+  },
+  comfortable: {
+    table: 'text-base',
+    headerCell: 'px-6 py-4',
+    bodyCell: 'px-6 py-4',
+    footerCell: 'px-6 py-4',
+  },
+};
+
+// Variant presets
+const variantPresets = {
+  default: {
+    table: '',
+    headerCell: 'border-b border-gray-200 dark:border-gray-700',
+    bodyCell: 'border-b border-gray-200 dark:border-gray-700',
+  },
+  bordered: {
+    table: 'border-collapse border border-gray-200 dark:border-gray-700',
+    headerCell: 'border border-gray-200 dark:border-gray-700',
+    bodyCell: 'border border-gray-200 dark:border-gray-700',
+  },
+  striped: {
+    bodyRowEven: 'bg-gray-50 dark:bg-gray-800/50',
+    bodyRowOdd: 'bg-white dark:bg-gray-900',
+  },
+};
+
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Table',
+  description: 'Data table with sorting, selection, and pagination',
+  category: 'data',
+  icon: '📊',
+  editable: ['container', 'table', 'header', 'body', 'footer', 'pagination'],
+  controls: [
+    { type: 'select', target: 'variant', label: 'Variant', options: ['default', 'bordered', 'striped'] },
+    { type: 'select', target: 'size', label: 'Size', options: ['compact', 'default', 'comfortable'] },
+    { type: 'toggle', target: 'sortable', label: 'Enable Sorting' },
+    { type: 'toggle', target: 'selectable', label: 'Enable Selection' },
+    { type: 'toggle', target: 'pagination', label: 'Enable Pagination' },
+    { type: 'toggle', target: 'stickyHeader', label: 'Sticky Header' },
+    { type: 'number', target: 'pageSize', label: 'Page Size', min: 1, max: 100 },
+    { type: 'class-editor', target: 'container', label: 'Container Styles' },
+    { type: 'class-editor', target: 'table', label: 'Table Styles' },
+    { type: 'class-editor', target: 'header', label: 'Header Styles' },
+    { type: 'class-editor', target: 'body', label: 'Body Styles' },
+    { type: 'class-editor', target: 'pagination', label: 'Pagination Styles' },
+  ]
+};
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Container
+    classes.container,
+    classes.containerDark,
+
+    // Table
+    classes.table,
+    classes.tableDark,
+
+    // Header
+    classes.header,
+    classes.headerRow,
+    classes.headerCell,
+    classes.headerCellSorted,
+    classes.headerCellHover,
+    classes.headerDark,
+
+    // Body
+    classes.body,
+    classes.bodyRow,
+    classes.bodyRowEven,
+    classes.bodyRowOdd,
+    classes.bodyRowHover,
+    classes.bodyRowSelected,
+    classes.bodyCell,
+    classes.bodyDark,
+
+    // Footer
+    classes.footer,
+    classes.footerRow,
+    classes.footerCell,
+    classes.footerDark,
+
+    // Pagination
+    classes.pagination,
+    classes.paginationButton,
+    classes.paginationButtonActive,
+    classes.paginationButtonDisabled,
+    classes.pageSizeSelect,
+
+    // Icons
+    classes.sortIcon,
+    classes.sortIconActive,
+
+    // Checkbox
+    classes.checkbox,
+    classes.checkboxChecked,
+
+    // Empty state
+    classes.emptyState,
+    classes.emptyIcon,
+    classes.emptyText,
+
+    // Loading
+    classes.loadingOverlay,
+    classes.loadingSpinner,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom
+    classes.custom,
+
+    // Extra
+    extraClassName
+  );
+};
+
+/**
+ * Get icon component from library
+ */
+const getIconComponent = (iconName, libraryPrefix) => {
+  if (!iconName || !libraryPrefix) return null;
+  const library = iconLibraries[libraryPrefix];
+  return library?.[iconName] || null;
 };
 
 // ============================================================================
 // CMS_TableHeader Component
 // ============================================================================
 
-/**
- * CMS_TableHeader - Header section of the table with column definitions
- */
-const CMS_TableHeader = ({
+const CMS_TableHeader = forwardRef(({
   columns = [],
-  config = {},
-  onSort,
+  sortable = true,
   sortColumn,
   sortDirection,
-  selectable,
+  onSort,
+  selectable = false,
   onSelectAll,
-  selectedRows,
-  allSelected,
-  someSelected
-}) => {
-  const defaultHeaderConfig = {
-    sticky: false,
-    bgColor: 'bg-gray-50',
-    darkBgColor: 'dark:bg-gray-800',
-    textColor: 'text-gray-700',
-    darkTextColor: 'dark:text-gray-300',
-    fontSize: 'text-sm',
-    fontWeight: 'font-semibold',
-    padding: 'px-4 py-3',
-    border: 'border-b',
-    borderColor: 'border-gray-200',
-    darkBorderColor: 'dark:border-gray-700',
-    rounded: 'rounded-t-lg',
-    className: ''
-  };
+  allSelected = false,
+  someSelected = false,
+  classes = {},
+  className,
+  style,
+  ...props
+}, ref) => {
 
-  const mergedConfig = useMemo(() => ({
-    ...defaultHeaderConfig,
-    ...config
-  }), [config]);
+  const SortIcon = getIconComponent('HiSelector', 'hi');
+  const SortAscIcon = getIconComponent('HiChevronUp', 'hi');
+  const SortDescIcon = getIconComponent('HiChevronDown', 'hi');
 
-  // Get icon component
-  const getIconComponent = (icon, library = 'hi') => {
-    if (!icon) return null;
-    const lib = iconLibraries[library];
-    if (!lib) return null;
-    return lib[icon];
-  };
+  const headerClasses = clsx(
+    classes.header,
+    classes.headerDark,
+    className
+  );
 
-  // Render sort icon
-  const renderSortIcon = (column) => {
-    if (!column.sortable) return null;
-
-    const isSorted = sortColumn === column.key;
-    const SortIcon = getIconComponent(
-      isSorted
-        ? (sortDirection === 'asc' ? 'HiChevronUp' : 'HiChevronDown')
-        : 'HiSelector',
-      'hi'
-    );
-
-    return SortIcon ? (
-      <SortIcon className={`
-        w-4 h-4 ml-1 inline-block
-        ${isSorted ? 'text-blue-500' : 'text-gray-400'}
-      `} />
-    ) : null;
-  };
+  const headerCellClasses = clsx(
+    'text-left font-semibold',
+    classes.headerCell
+  );
 
   return (
-    <thead className={`
-      ${mergedConfig.sticky ? 'sticky top-0' : ''}
-      ${mergedConfig.bgColor}
-      ${mergedConfig.darkBgColor}
-      ${mergedConfig.rounded}
-    `}>
-      <tr>
+    <thead ref={ref} className={headerClasses} style={style} {...props}>
+      <tr className={classes.headerRow}>
         {/* Select all checkbox */}
         {selectable && (
-          <th className={`
-            ${mergedConfig.padding}
-            ${mergedConfig.border}
-            ${mergedConfig.borderColor}
-            ${mergedConfig.darkBorderColor}
-            w-10
-          `}>
+          <th className={clsx(headerCellClasses, 'w-10')}>
             <input
               type="checkbox"
               checked={allSelected}
@@ -116,113 +351,96 @@ const CMS_TableHeader = ({
                 }
               }}
               onChange={onSelectAll}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className={clsx('rounded', classes.checkbox)}
             />
           </th>
         )}
 
         {/* Column headers */}
-        {columns.map((column, index) => (
-          <th
-            key={column.key || index}
-            onClick={() => column.sortable && onSort?.(column.key)}
-            className={`
-              ${mergedConfig.padding}
-              ${mergedConfig.fontSize}
-              ${mergedConfig.fontWeight}
-              ${mergedConfig.textColor}
-              ${mergedConfig.darkTextColor}
-              ${mergedConfig.border}
-              ${mergedConfig.borderColor}
-              ${mergedConfig.darkBorderColor}
-              ${column.sortable ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700' : ''}
-              ${column.align === 'right' ? 'text-right' : column.align === 'center' ? 'text-center' : 'text-left'}
-              ${column.width ? `w-${column.width}` : ''}
-              ${column.className || ''}
-            `}
-            style={column.style}
-          >
-            <div className="flex items-center gap-1">
-              {column.icon && (
-                <span className="mr-1">
-                  {React.createElement(getIconComponent(column.icon, column.iconLibrary || 'hi'), {
-                    className: `w-4 h-4 ${column.iconColor || ''}`
-                  })}
-                </span>
+        {columns.map((column, index) => {
+          const isSorted = sortColumn === column.key;
+          const canSort = sortable && column.sortable !== false;
+
+          return (
+            <th
+              key={column.key || index}
+              onClick={() => canSort && onSort?.(column.key)}
+              className={clsx(
+                headerCellClasses,
+                column.align === 'right' && 'text-right',
+                column.align === 'center' && 'text-center',
+                canSort && clsx('cursor-pointer', classes.headerCellHover),
+                isSorted && classes.headerCellSorted,
+                column.className
               )}
-              <span>{column.title}</span>
-              {renderSortIcon(column)}
-            </div>
-          </th>
-        ))}
+              style={column.style}
+            >
+              <div className="flex items-center gap-1">
+                {column.icon && (
+                  <span className={clsx('mr-1', classes.sortIcon)}>
+                    {React.createElement(
+                      getIconComponent(column.icon, column.iconLibrary || 'hi'),
+                      { className: 'w-4 h-4' }
+                    )}
+                  </span>
+                )}
+                <span>{column.title}</span>
+                {canSort && (
+                  <span className="ml-1">
+                    {isSorted ? (
+                      sortDirection === 'asc' ? (
+                        SortAscIcon && <SortAscIcon className={clsx('w-4 h-4', classes.sortIconActive)} />
+                      ) : (
+                        SortDescIcon && <SortDescIcon className={clsx('w-4 h-4', classes.sortIconActive)} />
+                      )
+                    ) : (
+                      SortIcon && <SortIcon className={clsx('w-4 h-4', classes.sortIcon)} />
+                    )}
+                  </span>
+                )}
+              </div>
+            </th>
+          );
+        })}
       </tr>
     </thead>
   );
-};
+});
+
+CMS_TableHeader.displayName = 'CMS_TableHeader';
 
 // ============================================================================
 // CMS_TableBody Component
 // ============================================================================
 
-/**
- * CMS_TableBody - Body section of the table with data rows
- */
-const CMS_TableBody = ({
+const CMS_TableBody = forwardRef(({
   data = [],
   columns = [],
-  config = {},
+  rowKey = 'id',
+  selectable = false,
+  selectedRows = [],
+  onSelectRow,
   onRowClick,
   onCellClick,
-  selectable,
-  selectedRows,
-  onSelectRow,
-  rowKey = 'id'
-}) => {
-  const defaultBodyConfig = {
-    striped: true,
-    hoverable: true,
-    rowBgColor: 'bg-white',
-    darkRowBgColor: 'dark:bg-gray-900',
-    stripedColor: 'bg-gray-50',
-    darkStripedColor: 'dark:bg-gray-800/50',
-    hoverColor: 'hover:bg-gray-50',
-    darkHoverColor: 'dark:hover:bg-gray-800',
-    textColor: 'text-gray-700',
-    darkTextColor: 'dark:text-gray-300',
-    fontSize: 'text-sm',
-    padding: 'px-4 py-3',
-    border: 'border-b',
-    borderColor: 'border-gray-200',
-    darkBorderColor: 'dark:border-gray-700',
-    emptyText: 'No data available',
-    emptyIcon: 'HiDatabase',
-    emptyIconLibrary: 'hi',
-    className: ''
-  };
+  emptyText = 'No data available',
+  emptyIcon = 'HiDatabase',
+  emptyIconLibrary = 'hi',
+  classes = {},
+  className,
+  style,
+  ...props
+}, ref) => {
 
-  const mergedConfig = useMemo(() => ({
-    ...defaultBodyConfig,
-    ...config
-  }), [config]);
+  const EmptyIcon = getIconComponent(emptyIcon, emptyIconLibrary);
 
-  // Get icon component
-  const getIconComponent = (icon, library = 'hi') => {
-    if (!icon) return null;
-    const lib = iconLibraries[library];
-    if (!lib) return null;
-    return lib[icon];
-  };
-
-  // Render cell content based on type
-  const renderCellContent = (item, column, rowIndex, colIndex) => {
+  // Render cell content
+  const renderCellContent = (item, column, rowIndex) => {
     const value = column.key ? item[column.key] : null;
 
-    // Custom render function
     if (column.render) {
       return column.render(value, item, rowIndex);
     }
 
-    // Handle different value types
     if (value === null || value === undefined) {
       return <span className="text-gray-400">—</span>;
     }
@@ -239,68 +457,58 @@ const CMS_TableBody = ({
   };
 
   // Render empty state
-  const renderEmptyState = () => {
-    const EmptyIcon = getIconComponent(mergedConfig.emptyIcon, mergedConfig.emptyIconLibrary);
+  const renderEmptyState = () => (
+    <tr>
+      <td
+        colSpan={columns.length + (selectable ? 1 : 0)}
+        className={clsx('text-center py-12', classes.emptyState)}
+      >
+        <div className="flex flex-col items-center justify-center text-gray-500">
+          {EmptyIcon && <EmptyIcon className={clsx('w-12 h-12 mb-3 opacity-50', classes.emptyIcon)} />}
+          <p className={classes.emptyText}>{emptyText}</p>
+        </div>
+      </td>
+    </tr>
+  );
 
-    return (
-      <tr>
-        <td
-          colSpan={columns.length + (selectable ? 1 : 0)}
-          className="text-center py-12"
-        >
-          <div className="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400">
-            {EmptyIcon && <EmptyIcon className="w-12 h-12 mb-3 opacity-50" />}
-            <p>{mergedConfig.emptyText}</p>
-          </div>
-        </td>
-      </tr>
-    );
-  };
+  const bodyClasses = clsx(classes.body, classes.bodyDark, className);
+  const bodyCellClasses = clsx(classes.bodyCell);
 
   if (!data || data.length === 0) {
     return (
-      <tbody>
+      <tbody ref={ref} className={bodyClasses} style={style} {...props}>
         {renderEmptyState()}
       </tbody>
     );
   }
 
   return (
-    <tbody>
+    <tbody ref={ref} className={bodyClasses} style={style} {...props}>
       {data.map((item, rowIndex) => {
-        const isSelected = selectedRows?.includes(item[rowKey]);
+        const rowId = item[rowKey] || rowIndex;
+        const isSelected = selectedRows?.includes(rowId);
+        const isEven = rowIndex % 2 === 0;
 
         return (
           <tr
-            key={item[rowKey] || rowIndex}
+            key={rowId}
             onClick={() => onRowClick?.(item, rowIndex)}
-            className={`
-              ${mergedConfig.rowBgColor}
-              ${mergedConfig.darkRowBgColor}
-              ${mergedConfig.striped && rowIndex % 2 === 1 ? mergedConfig.stripedColor : ''}
-              ${mergedConfig.darkStripedColor && rowIndex % 2 === 1 ? mergedConfig.darkStripedColor : ''}
-              ${mergedConfig.hoverable ? mergedConfig.hoverColor : ''}
-              ${mergedConfig.darkHoverColor ? mergedConfig.darkHoverColor : ''}
-              ${isSelected ? 'bg-blue-50 dark:bg-blue-900/20' : ''}
-              ${onRowClick ? 'cursor-pointer' : ''}
-              transition-colors duration-150
-            `}
+            className={clsx(
+              classes.bodyRow,
+              isEven ? classes.bodyRowEven : classes.bodyRowOdd,
+              onRowClick && classes.bodyRowHover,
+              isSelected && classes.bodyRowSelected
+            )}
           >
             {/* Select checkbox */}
             {selectable && (
-              <td className={`
-                ${mergedConfig.padding}
-                ${mergedConfig.border}
-                ${mergedConfig.borderColor}
-                ${mergedConfig.darkBorderColor}
-                w-10
-              `}>
+              <td className={clsx(bodyCellClasses, 'w-10')}>
                 <input
                   type="checkbox"
                   checked={isSelected}
-                  onChange={() => onSelectRow?.(item[rowKey])}
+                  onChange={() => onSelectRow?.(rowId)}
                   onClick={(e) => e.stopPropagation()}
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className={clsx('rounded', classes.checkbox, isSelected && classes.checkboxChecked)}
                 />
               </td>
             )}
@@ -313,20 +521,15 @@ const CMS_TableBody = ({
                   e.stopPropagation();
                   onCellClick?.(item, column, rowIndex, colIndex);
                 }}
-                className={`
-                  ${mergedConfig.padding}
-                  ${mergedConfig.fontSize}
-                  ${mergedConfig.textColor}
-                  ${mergedConfig.darkTextColor}
-                  ${mergedConfig.border}
-                  ${mergedConfig.borderColor}
-                  ${mergedConfig.darkBorderColor}
-                  ${column.align === 'right' ? 'text-right' : column.align === 'center' ? 'text-center' : 'text-left'}
-                  ${column.className || ''}
-                `}
+                className={clsx(
+                  bodyCellClasses,
+                  column.align === 'right' && 'text-right',
+                  column.align === 'center' && 'text-center',
+                  column.className
+                )}
                 style={column.style}
               >
-                {renderCellContent(item, column, rowIndex, colIndex)}
+                {renderCellContent(item, column, rowIndex)}
               </td>
             ))}
           </tr>
@@ -334,97 +537,79 @@ const CMS_TableBody = ({
       })}
     </tbody>
   );
-};
+});
+
+CMS_TableBody.displayName = 'CMS_TableBody';
 
 // ============================================================================
 // CMS_TableFooter Component
 // ============================================================================
 
-/**
- * CMS_TableFooter - Footer section of the table
- */
-const CMS_TableFooter = ({
-  config = {},
+const CMS_TableFooter = forwardRef(({
   totalRows,
   currentPage,
   pageSize,
-  onPageChange,
   totalPages,
+  onPageChange,
   onPageSizeChange,
-  pageSizeOptions = [10, 25, 50, 100]
-}) => {
-  const defaultFooterConfig = {
-    showPagination: true,
-    showPageSize: true,
-    showTotal: true,
-    showPageInfo: true,
-    position: 'bottom',              // 'bottom', 'top', 'both'
-    sticky: false,
-    bgColor: 'bg-gray-50',
-    darkBgColor: 'dark:bg-gray-800',
-    textColor: 'text-gray-600',
-    darkTextColor: 'dark:text-gray-400',
-    fontSize: 'text-sm',
-    padding: 'px-4 py-3',
-    border: 'border-t',
-    borderColor: 'border-gray-200',
-    darkBorderColor: 'dark:border-gray-700',
-    rounded: 'rounded-b-lg',
-    className: ''
-  };
+  pageSizeOptions = [10, 25, 50, 100],
+  showPagination = true,
+  showPageSize = true,
+  showTotal = true,
+  showPageInfo = true,
+  classes = {},
+  className,
+  style,
+  ...props
+}, ref) => {
 
-  const mergedConfig = useMemo(() => ({
-    ...defaultFooterConfig,
-    ...config
-  }), [config]);
-
-  // Calculate page info
   const startRow = (currentPage - 1) * pageSize + 1;
   const endRow = Math.min(currentPage * pageSize, totalRows);
 
+  const footerClasses = clsx(
+    classes.footer,
+    classes.footerDark,
+    className
+  );
+
+  const buttonClasses = clsx(
+    'px-3 py-1 rounded-md',
+    classes.paginationButton
+  );
+
+  const activeButtonClasses = clsx(buttonClasses, classes.paginationButtonActive);
+  const disabledButtonClasses = clsx(buttonClasses, classes.paginationButtonDisabled);
+
   return (
-    <tfoot className={`
-      ${mergedConfig.sticky ? 'sticky bottom-0' : ''}
-      ${mergedConfig.bgColor}
-      ${mergedConfig.darkBgColor}
-      ${mergedConfig.rounded}
-    `}>
-      <tr>
+    <tfoot ref={ref} className={footerClasses} style={style} {...props}>
+      <tr className={classes.footerRow}>
         <td
           colSpan="100"
-          className={`
-            ${mergedConfig.padding}
-            ${mergedConfig.fontSize}
-            ${mergedConfig.textColor}
-            ${mergedConfig.darkTextColor}
-            ${mergedConfig.border}
-            ${mergedConfig.borderColor}
-            ${mergedConfig.darkBorderColor}
-          `}
+          className={clsx(classes.footerCell)}
         >
-          <div className="flex items-center justify-between">
+          <div className={clsx('flex items-center justify-between', classes.pagination)}>
             {/* Total rows */}
-            {mergedConfig.showTotal && (
+            {showTotal && (
               <div>
                 Total: <span className="font-semibold">{totalRows}</span> rows
               </div>
             )}
 
             {/* Page info */}
-            {mergedConfig.showPageInfo && (
+            {showPageInfo && (
               <div>
                 Showing {startRow} to {endRow} of {totalRows} entries
               </div>
             )}
 
             {/* Page size selector */}
-            {mergedConfig.showPageSize && (
+            {showPageSize && (
               <div className="flex items-center gap-2">
                 <span>Show</span>
                 <select
                   value={pageSize}
                   onChange={(e) => onPageSizeChange?.(Number(e.target.value))}
-                  className="px-2 py-1 border rounded-md bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+                  className={clsx('px-2 py-1 border rounded-md', classes.pageSizeSelect)}
                 >
                   {pageSizeOptions.map(size => (
                     <option key={size} value={size}>{size}</option>
@@ -435,18 +620,12 @@ const CMS_TableFooter = ({
             )}
 
             {/* Pagination */}
-            {mergedConfig.showPagination && totalPages > 1 && (
+            {showPagination && totalPages > 1 && (
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => onPageChange?.(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className={`
-                    px-3 py-1 rounded-md
-                    ${currentPage === 1
-                      ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                    }
-                  `}
+                  className={currentPage === 1 ? disabledButtonClasses : buttonClasses}
                 >
                   Previous
                 </button>
@@ -469,13 +648,7 @@ const CMS_TableFooter = ({
                       <button
                         key={pageNum}
                         onClick={() => onPageChange?.(pageNum)}
-                        className={`
-                          w-8 h-8 rounded-md
-                          ${currentPage === pageNum
-                            ? 'bg-blue-500 text-white'
-                            : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                          }
-                        `}
+                        className={currentPage === pageNum ? activeButtonClasses : buttonClasses}
                       >
                         {pageNum}
                       </button>
@@ -486,13 +659,7 @@ const CMS_TableFooter = ({
                 <button
                   onClick={() => onPageChange?.(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className={`
-                    px-3 py-1 rounded-md
-                    ${currentPage === totalPages
-                      ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                    }
-                  `}
+                  className={currentPage === totalPages ? disabledButtonClasses : buttonClasses}
                 >
                   Next
                 </button>
@@ -503,97 +670,67 @@ const CMS_TableFooter = ({
       </tr>
     </tfoot>
   );
-};
+});
+
+CMS_TableFooter.displayName = 'CMS_TableFooter';
 
 // ============================================================================
 // CMS_Table Main Component
 // ============================================================================
 
-/**
- * CMS_Table - Main table component with full features
- */
-const CMS_Table = ({
+const CMS_Table = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Table',
+
+  // Main styling - flat class structure
+  classes = defaultTableClasses,
+
+  // Data
   columns = [],
   data = [],
-  config = {},
+  rowKey = 'id',
+
+  // Layout
+  layout = 'auto',
+  variant = 'default',
+  size = 'default',
+
+  // Features
+  sortable = true,
+  selectable = false,
+  multipleSelection = true,
+  pagination = false,
+  stickyHeader = false,
+  stickyFooter = false,
+
+  // Pagination
+  pageSize = 10,
+  currentPage = 1,
+  totalRows: externalTotalRows,
+  pageSizeOptions = [10, 25, 50, 100],
+
+  // Text
+  loading = false,
+  loadingText = 'Loading...',
+  emptyText = 'No data available',
+  emptyIcon = 'HiDatabase',
+  emptyIconLibrary = 'hi',
+
+  // Events
   onRowClick,
   onCellClick,
-  onSort,
-  onFilter,
+  onSort: externalOnSort,
   onPageChange,
   onPageSizeChange,
   onSelectionChange,
-  rowKey = 'id',
-  loading = false,
-  loadingText = 'Loading...'
-}) => {
-  const defaultTableConfig = {
-    // Layout
-    layout: 'auto',                  // 'auto', 'fixed'
-    width: 'full',                   // 'full', 'auto'
 
-    // Styling
-    variant: 'default',              // 'default', 'bordered', 'striped', 'compact', 'comfortable'
-    rounded: 'rounded-lg',
-    shadow: 'shadow',
-    bgColor: 'bg-white',
-    darkBgColor: 'dark:bg-gray-900',
-
-    // Borders
-    border: 'border',
-    borderColor: 'border-gray-200',
-    darkBorderColor: 'dark:border-gray-700',
-
-    // Spacing
-    margin: 'm-0',
-
-    // Features
-    sortable: true,
-    filterable: false,
-    selectable: false,
-    expandable: false,
-    stickyHeader: false,
-    stickyFooter: false,
-
-    // Selection
-    multipleSelection: true,
-
-    // Pagination
-    pagination: false,
-    pageSize: 10,
-    currentPage: 1,
-    totalRows: null,
-
-    // Header config
-    headerConfig: {},
-
-    // Body config
-    bodyConfig: {},
-
-    // Footer config
-    footerConfig: {},
-
-    // Loading state
-    loadingComponent: null,
-
-    // Empty state
-    emptyText: 'No data available',
-    emptyIcon: 'HiDatabase',
-    emptyIconLibrary: 'hi',
-
-    // Accessibility
-    caption: null,
-    summary: null,
-
-    // Additional
-    className: '',
-    style: {}
-  };
-
-  const mergedConfig = useMemo(() => ({
-    ...defaultTableConfig,
-    ...config
-  }), [config]);
+  // Extra
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
 
   // State for sorting
   const [sortColumn, setSortColumn] = useState(null);
@@ -603,12 +740,12 @@ const CMS_Table = ({
   const [selectedRows, setSelectedRows] = useState([]);
 
   // Calculate total rows
-  const totalRows = mergedConfig.totalRows || data.length;
-  const totalPages = Math.ceil(totalRows / mergedConfig.pageSize);
+  const totalRows = externalTotalRows || data.length;
+  const totalPages = Math.ceil(totalRows / pageSize);
 
   // Handle sort
   const handleSort = (columnKey) => {
-    if (!mergedConfig.sortable) return;
+    if (!sortable) return;
 
     let newDirection = 'asc';
     if (sortColumn === columnKey) {
@@ -617,37 +754,27 @@ const CMS_Table = ({
 
     setSortColumn(columnKey);
     setSortDirection(newDirection);
-
-    if (onSort) {
-      onSort(columnKey, newDirection);
-    }
+    externalOnSort?.(columnKey, newDirection);
   };
 
   // Handle select all
   const handleSelectAll = (e) => {
-    if (!mergedConfig.selectable) return;
+    if (!selectable) return;
 
-    if (e.target.checked) {
-      const allIds = data.map(item => item[rowKey]);
-      setSelectedRows(allIds);
-      onSelectionChange?.(allIds);
-    } else {
-      setSelectedRows([]);
-      onSelectionChange?.([]);
-    }
+    const newSelected = e.target.checked ? data.map(item => item[rowKey]) : [];
+    setSelectedRows(newSelected);
+    onSelectionChange?.(newSelected);
   };
 
   // Handle select row
   const handleSelectRow = (rowId) => {
-    if (!mergedConfig.selectable) return;
+    if (!selectable) return;
 
     let newSelected;
-    if (mergedConfig.multipleSelection) {
-      if (selectedRows.includes(rowId)) {
-        newSelected = selectedRows.filter(id => id !== rowId);
-      } else {
-        newSelected = [...selectedRows, rowId];
-      }
+    if (multipleSelection) {
+      newSelected = selectedRows.includes(rowId)
+        ? selectedRows.filter(id => id !== rowId)
+        : [...selectedRows, rowId];
     } else {
       newSelected = selectedRows.includes(rowId) ? [] : [rowId];
     }
@@ -660,131 +787,208 @@ const CMS_Table = ({
   const allSelected = data.length > 0 && data.every(item => selectedRows.includes(item[rowKey]));
   const someSelected = data.some(item => selectedRows.includes(item[rowKey])) && !allSelected;
 
+  // Get size preset
+  const sizePreset = sizePresets[size] || sizePresets.default;
+
+  // Get variant preset
+  const variantPreset = variantPresets[variant] || variantPresets.default;
+
+  // Build container classes
+  const containerClasses = useMemo(() => {
+    return clsx(
+      'overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700',
+      buildClasses(classes),
+      className
+    );
+  }, [classes, className]);
+
   // Build table classes
   const tableClasses = useMemo(() => {
-    const classes = [
+    return clsx(
       'w-full',
-      mergedConfig.layout === 'fixed' ? 'table-fixed' : 'table-auto',
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.className
-    ];
-
-    // Add variant styles
-    if (mergedConfig.variant === 'bordered') {
-      classes.push('border-collapse');
-    }
-    if (mergedConfig.variant === 'compact') {
-      classes.push('text-sm');
-    }
-    if (mergedConfig.variant === 'comfortable') {
-      classes.push('text-base');
-    }
-
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
-
-  // Container classes
-  const containerClasses = useMemo(() => {
-    const classes = [
-      'overflow-x-auto',
-      mergedConfig.rounded,
-      mergedConfig.shadow,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.darkBorderColor,
-      mergedConfig.margin
-    ];
-
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
-
-  // Render loading state
-  const renderLoading = () => {
-    if (!loading) return null;
-
-    if (mergedConfig.loadingComponent) {
-      return mergedConfig.loadingComponent;
-    }
-
-    return (
-      <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <svg className="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span className="text-gray-600 dark:text-gray-400">{loadingText}</span>
-        </div>
-      </div>
+      layout === 'fixed' ? 'table-fixed' : 'table-auto',
+      sizePreset.table,
+      variantPreset.table,
+      classes.table,
+      classes.tableDark
     );
+  }, [layout, sizePreset, variantPreset, classes]);
+
+  // Build header cell classes with presets
+  const headerCellClasses = useMemo(() => {
+    return clsx(
+      sizePreset.headerCell,
+      variantPreset.headerCell,
+      classes.headerCell
+    );
+  }, [sizePreset, variantPreset, classes]);
+
+  // Build body cell classes with presets
+  const bodyCellClasses = useMemo(() => {
+    return clsx(
+      sizePreset.bodyCell,
+      variantPreset.bodyCell,
+      classes.bodyCell
+    );
+  }, [sizePreset, variantPreset, classes]);
+
+  // Build footer cell classes with presets
+  const footerCellClasses = useMemo(() => {
+    return clsx(
+      sizePreset.footerCell,
+      classes.footerCell
+    );
+  }, [sizePreset, classes]);
+
+  // Merge classes for subcomponents
+  const headerClasses = {
+    ...classes,
+    headerCell: headerCellClasses,
+  };
+
+  const bodyClasses = {
+    ...classes,
+    bodyRowEven: clsx(variantPreset.bodyRowEven, classes.bodyRowEven),
+    bodyRowOdd: clsx(variantPreset.bodyRowOdd, classes.bodyRowOdd),
+    bodyCell: bodyCellClasses,
+  };
+
+  const footerClasses = {
+    ...classes,
+    footerCell: footerCellClasses,
   };
 
   return (
-    <div className={containerClasses} style={mergedConfig.style}>
-      {/* Caption */}
-      {mergedConfig.caption && (
-        <caption className="sr-only">{mergedConfig.caption}</caption>
+    <div
+      ref={ref}
+      className={containerClasses}
+      style={style}
+      data-uid={uid}
+      data-component={component}
+      {...props}
+    >
+      {/* Loading overlay */}
+      {loading && (
+        <div className={clsx('absolute inset-0 bg-white/50 dark:bg-gray-900/50 flex items-center justify-center z-10', classes.loadingOverlay)}>
+          <div className="flex items-center gap-3">
+            <svg className={clsx('animate-spin h-5 w-5', classes.loadingSpinner)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+            </svg>
+            <span className="text-gray-600 dark:text-gray-400">{loadingText}</span>
+          </div>
+        </div>
       )}
 
-      <table className={tableClasses} summary={mergedConfig.summary}>
+      <table className={tableClasses}>
         {/* Header */}
         <CMS_TableHeader
           columns={columns}
-          config={{
-            sticky: mergedConfig.stickyHeader,
-            ...mergedConfig.headerConfig
-          }}
-          onSort={handleSort}
+          sortable={sortable}
           sortColumn={sortColumn}
           sortDirection={sortDirection}
-          selectable={mergedConfig.selectable}
+          onSort={handleSort}
+          selectable={selectable}
           onSelectAll={handleSelectAll}
-          selectedRows={selectedRows}
           allSelected={allSelected}
           someSelected={someSelected}
+          classes={headerClasses}
+          style={stickyHeader ? { position: 'sticky', top: 0, zIndex: 10 } : undefined}
         />
 
         {/* Body */}
         <CMS_TableBody
           data={data}
           columns={columns}
-          config={{
-            striped: mergedConfig.variant === 'striped',
-            ...mergedConfig.bodyConfig,
-            emptyText: mergedConfig.emptyText,
-            emptyIcon: mergedConfig.emptyIcon,
-            emptyIconLibrary: mergedConfig.emptyIconLibrary
-          }}
-          onRowClick={onRowClick}
-          onCellClick={onCellClick}
-          selectable={mergedConfig.selectable}
+          rowKey={rowKey}
+          selectable={selectable}
           selectedRows={selectedRows}
           onSelectRow={handleSelectRow}
-          rowKey={rowKey}
+          onRowClick={onRowClick}
+          onCellClick={onCellClick}
+          emptyText={emptyText}
+          emptyIcon={emptyIcon}
+          emptyIconLibrary={emptyIconLibrary}
+          classes={bodyClasses}
         />
 
-        {/* Footer */}
-        {mergedConfig.pagination && (
+        {/* Footer with pagination */}
+        {pagination && (
           <CMS_TableFooter
-            config={{
-              sticky: mergedConfig.stickyFooter,
-              ...mergedConfig.footerConfig
-            }}
             totalRows={totalRows}
-            currentPage={mergedConfig.currentPage}
-            pageSize={mergedConfig.pageSize}
-            onPageChange={onPageChange}
+            currentPage={currentPage}
+            pageSize={pageSize}
             totalPages={totalPages}
+            onPageChange={onPageChange}
             onPageSizeChange={onPageSizeChange}
+            pageSizeOptions={pageSizeOptions}
+            showPagination={true}
+            showPageSize={true}
+            showTotal={true}
+            showPageInfo={true}
+            classes={footerClasses}
+            style={stickyFooter ? { position: 'sticky', bottom: 0, zIndex: 10 } : undefined}
           />
         )}
       </table>
 
-      {/* Loading overlay */}
-      {renderLoading()}
+      {children}
     </div>
   );
-};
+});
 
+CMS_Table.displayName = 'CMS_Table';
+CMS_Table.metadata = componentMetadata;
+CMS_Table.defaultProps = defaultTableProps;
+
+// ============================================================================
+// Pre-configured Table Components
+// ============================================================================
+
+export const CMS_DataTable = forwardRef((props, ref) => (
+  <CMS_Table
+    ref={ref}
+    variant="bordered"
+    size="compact"
+    sortable={true}
+    pagination={true}
+    {...props}
+  />
+));
+CMS_DataTable.displayName = 'CMS_DataTable';
+
+export const CMS_SimpleTable = forwardRef((props, ref) => (
+  <CMS_Table
+    ref={ref}
+    variant="default"
+    size="default"
+    sortable={false}
+    selectable={false}
+    pagination={false}
+    {...props}
+  />
+));
+CMS_SimpleTable.displayName = 'CMS_SimpleTable';
+
+export const CMS_SelectableTable = forwardRef((props, ref) => (
+  <CMS_Table
+    ref={ref}
+    variant="striped"
+    size="comfortable"
+    selectable={true}
+    multipleSelection={true}
+    {...props}
+  />
+));
+CMS_SelectableTable.displayName = 'CMS_SelectableTable';
+
+// ============================================================================
+// Export
+// ============================================================================
+
+export {
+  CMS_TableHeader,
+  CMS_TableBody,
+  CMS_TableFooter
+};
 export default CMS_Table;

@@ -1,39 +1,19 @@
 /**
- * CMS_Button Component – Fully customizable button with dark mode and Inertia.js support
- *
+ * CMS_Button Component - Editor-friendly button with flat class structure
+ * 
  * Features:
- * - No hardcoded variants – you control every style via the `config` prop.
- * - Supports 16+ icon libraries from `react-icons`.
- * - Built‑in loading spinner, disabled state, and full‑width option.
- * - Seamless Inertia.js `<Link>` integration when `href` is provided.
- * - Dark mode with `dark:` variants.
- * - Gradient backgrounds with multiple directions and hover support (inside `hover` object).
- * - Hover effects: scale, shadow, background color, gradient change, custom styles.
- * - Accessible (ARIA attributes) and touch friendly.
- *
- * Usage example:
- *   <CMS_Button
- *     config={{
- *       text: "Save",
- *       gradient: "from-blue-600 to-purple-600",
- *       gradientDirection: "to-r",
- *       hover: {
- *         gradient: "from-blue-700 to-purple-700",   // gradient on hover
- *         bgColor: "bg-blue-700",                     // solid background on hover (overrides gradient)
- *         darkBgColor: "dark:bg-blue-800",            // dark mode hover background
- *         scale: "scale-105",
- *         shadow: "shadow-lg"
- *       },
- *       icon: "FaSave",
- *       iconLibrary: "fa",
- *       onClick: () => console.log("Clicked")
- *     }}
- *   />
+ * - Flat class structure for easy editing
+ * - 16+ icon libraries from react-icons
+ * - Loading spinner and disabled states
+ * - Inertia.js Link integration
+ * - Hover effects with classes
+ * - Dark mode support
+ * - Gradient backgrounds
  */
 
-import React, { useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { forwardRef, useMemo, useState } from 'react';
 import { Link } from '@inertiajs/react';
+import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
@@ -51,9 +31,10 @@ import * as BiIcons from 'react-icons/bi';
 import * as ImIcons from 'react-icons/im';
 import * as CgIcons from 'react-icons/cg';
 
-// ----------------------------------------------------------------------
-// Icon library registry
-// ----------------------------------------------------------------------
+// ============================================================================
+// Icon Libraries Registry
+// ============================================================================
+
 const iconLibraries = {
   fa: FaIcons,
   hi: HiIcons,
@@ -73,46 +54,64 @@ const iconLibraries = {
   cg: CgIcons,
 };
 
-// ----------------------------------------------------------------------
-// Default configuration
-// ----------------------------------------------------------------------
-const defaultConfig = {
+// ============================================================================
+// Default Classes Structure
+// ============================================================================
+
+const defaultClasses = {
+  // Base button styles
+  base: '',
+
+  // Interactive states
+  hover: '',
+  focus: '',
+  active: '',
+  disabled: '',
+
+  // Theme states
+  dark: '',
+  darkHover: '',
+  darkFocus: '',
+  darkActive: '',
+
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Icon specific classes
+  icon: '',
+  iconLeft: '',
+  iconRight: '',
+
+  // Loading spinner
+  spinner: '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultProps = {
   // Content
   text: 'Button',
-  icon: null,               // e.g. 'FaBeer'
-  iconLibrary: 'fa',         // one of the keys above
-  iconPosition: 'left',      // 'left' or 'right'
-  iconOnly: false,           // if true, only the icon is shown (text becomes aria-label)
+  icon: null,
+  iconLibrary: 'fa',
+  iconPosition: 'left',
+  iconOnly: false,
 
-  // Sizing & spacing
-  size: 'md',                // 'sm', 'md', 'lg' – controls padding, font, gap, icon size
-  padding: '',               // optional custom padding (overrides size preset)
+  // Sizing
+  size: 'md', // 'sm', 'md', 'lg'
   fullWidth: false,
-  alignment: 'center',       // 'left', 'center', 'right'
-
-  // Colors (Tailwind classes) - used when gradient is not applied
-  color: 'text-white',
-  darkColor: 'dark:text-white',
-  bgColor: 'bg-blue-600',
-  darkBgColor: 'dark:bg-blue-500',
-
-  border: '',                // e.g. 'border border-gray-300'
-  darkBorder: '',            // e.g. 'dark:border-gray-600'
-
-  // Gradients - main gradient
-  gradient: null,            // e.g. 'from-blue-600 to-purple-600'
-  gradientDirection: 'to-r', // 'to-r', 'to-l', 'to-t', 'to-b', 'to-tr', 'to-tl', 'to-br', 'to-bl'
-  darkGradient: null,        // e.g. 'dark:from-blue-800 dark:to-purple-800'
-
-  // Borders & shape
-  rounded: 'rounded-md',
 
   // State
   type: 'button',
   disabled: false,
   loading: false,
 
-  // Inertia.js props (only used if href is provided)
+  // Inertia.js props
   href: null,
   method: 'get',
   preserveState: true,
@@ -121,190 +120,222 @@ const defaultConfig = {
   only: [],
   headers: {},
   data: {},
-  onStart: null,
-  onFinish: null,
-  onSuccess: null,
-  onError: null,
-  onCancelToken: null,
-
-  // Hover effects (all hover-related properties are inside this object)
-  hover: {
-    gradient: null,          // hover gradient (overrides main gradient on hover)
-    darkGradient: null,      // dark mode hover gradient
-    color: null,             // hover text color
-    darkColor: null,         // dark mode hover text color
-    scale: null,             // e.g. 'scale-105'
-    bgColor: null,           // e.g. 'bg-blue-700' (solid background on hover, overrides gradient)
-    darkBgColor: null,       // dark mode hover background
-    shadow: null,            // e.g. 'shadow-lg'
-    transition: 'transition-all duration-300',
-    customStyles: {},        // inline styles applied on hover
-  },
-
-  // Accessibility
-  ariaLabel: '',
-  ariaExpanded: null,
-  ariaControls: null,
 
   // Events
   onClick: null,
   onHover: null,
   onLeave: null,
 
-  // Additional inline styles
-  style: {},
+  // Accessibility
+  ariaLabel: '',
+  ariaExpanded: null,
+  ariaControls: null,
 };
 
-// ----------------------------------------------------------------------
-// Size presets (used unless overridden by custom padding)
-// ----------------------------------------------------------------------
+// Size presets (can be overridden by classes)
 const sizePresets = {
   sm: {
-    padding: 'px-3 py-1.5',
-    fontSize: 'text-sm',
-    gap: 'gap-1',
-    iconSize: 'w-4 h-4',
+    base: 'px-3 py-1.5 text-sm gap-1',
+    icon: 'w-4 h-4',
   },
   md: {
-    padding: 'px-4 py-2',
-    fontSize: 'text-base',
-    gap: 'gap-2',
-    iconSize: 'w-5 h-5',
+    base: 'px-4 py-2 text-base gap-2',
+    icon: 'w-5 h-5',
   },
   lg: {
-    padding: 'px-6 py-3',
-    fontSize: 'text-lg',
-    gap: 'gap-3',
-    iconSize: 'w-6 h-6',
+    base: 'px-6 py-3 text-lg gap-3',
+    icon: 'w-6 h-6',
   },
 };
 
-// ----------------------------------------------------------------------
-// Gradient direction mapping to Tailwind classes
-// ----------------------------------------------------------------------
-const gradientDirections = {
-  'to-r': 'bg-gradient-to-r',
-  'to-l': 'bg-gradient-to-l',
-  'to-t': 'bg-gradient-to-t',
-  'to-b': 'bg-gradient-to-b',
-  'to-tr': 'bg-gradient-to-tr',
-  'to-tl': 'bg-gradient-to-tl',
-  'to-br': 'bg-gradient-to-br',
-  'to-bl': 'bg-gradient-to-bl',
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Button',
+  description: 'Interactive button with icons and Inertia.js support',
+  category: 'interactive',
+  icon: '🔘',
+  editable: ['base', 'hover', 'dark', 'focus', 'icon'],
+  controls: [
+    { type: 'text', target: 'text', label: 'Button Text' },
+    { type: 'select', target: 'size', label: 'Size', options: ['sm', 'md', 'lg'] },
+    { type: 'toggle', target: 'fullWidth', label: 'Full Width' },
+    { type: 'toggle', target: 'disabled', label: 'Disabled' },
+    { type: 'toggle', target: 'loading', label: 'Loading' },
+    { type: 'select', target: 'iconLibrary', label: 'Icon Library', options: Object.keys(iconLibraries) },
+    { type: 'text', target: 'icon', label: 'Icon Name (e.g., FaSave)' },
+    { type: 'select', target: 'iconPosition', label: 'Icon Position', options: ['left', 'right'] },
+    { type: 'toggle', target: 'iconOnly', label: 'Icon Only' },
+    { type: 'class-editor', target: 'base', label: 'Base Styles' },
+    { type: 'class-editor', target: 'hover', label: 'Hover Styles' },
+    { type: 'class-editor', target: 'focus', label: 'Focus Styles' },
+    { type: 'class-editor', target: 'dark', label: 'Dark Mode Styles' },
+    { type: 'color-picker', target: 'bg-', label: 'Background' },
+    { type: 'color-picker', target: 'text-', label: 'Text Color' },
+    { type: 'border', target: 'border', label: 'Border' },
+    { type: 'shadow', target: 'shadow', label: 'Shadow' },
+  ]
 };
 
-// ----------------------------------------------------------------------
-// Helper: resolves an icon component from name and library prefix
-// ----------------------------------------------------------------------
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Base styles
+    classes.base,
+
+    // Interactive states
+    classes.hover,
+    classes.focus,
+    classes.active,
+    classes.disabled,
+
+    // Theme states
+    classes.dark,
+    classes.darkHover,
+    classes.darkFocus,
+    classes.darkActive,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom override
+    classes.custom,
+
+    // Emergency override
+    extraClassName
+  );
+};
+
+/**
+ * Get icon component from library
+ */
 const getIconComponent = (iconName, libraryPrefix) => {
   if (!iconName || !libraryPrefix) return null;
   const library = iconLibraries[libraryPrefix];
   return library?.[iconName] || null;
 };
 
-// ----------------------------------------------------------------------
-// Helper: returns an array of Tailwind classes for the button background
-// (handles gradient vs solid, hover overrides, dark mode)
-// ----------------------------------------------------------------------
-const getBackgroundClasses = (merged, isHovered) => {
-  if (merged.disabled || merged.loading) return [];
-
-  // Priority: hover solid > hover gradient > base gradient > base solid
-  if (isHovered) {
-    if (merged.hover.bgColor) {
-      // Solid hover background (overrides any gradient)
-      const classes = [merged.hover.bgColor];
-      if (merged.hover.darkBgColor) classes.push(merged.hover.darkBgColor);
-      return classes;
-    }
-    if (merged.hover.gradient) {
-      // Gradient hover background
-      const direction = gradientDirections[merged.gradientDirection] || 'bg-gradient-to-r';
-      const classes = [direction, merged.hover.gradient];
-      if (merged.hover.darkGradient) classes.push(merged.hover.darkGradient);
-      return classes;
-    }
-  }
-
-  // Not hovered, or no hover overrides
-  if (merged.gradient) {
-    const direction = gradientDirections[merged.gradientDirection] || 'bg-gradient-to-r';
-    const classes = [direction, merged.gradient];
-    if (merged.darkGradient) classes.push(merged.darkGradient);
-    return classes;
-  }
-
-  // Default solid background
-  const classes = [merged.bgColor];
-  if (merged.darkBgColor) classes.push(merged.darkBgColor);
-  return classes;
+/**
+ * Get alignment class
+ */
+const getAlignmentClass = (fullWidth) => {
+  return fullWidth ? 'justify-center' : 'inline-flex';
 };
 
-// ----------------------------------------------------------------------
+// ============================================================================
 // Main Component
-// ----------------------------------------------------------------------
-const CMS_Button = ({ config = {}, children }) => {
-  // Merge user config with defaults, then apply size presets
-  const merged = useMemo(() => {
-    const base = { ...defaultConfig, ...config };
-    const sizePreset = sizePresets[base.size] || sizePresets.md;
+// ============================================================================
 
-    // Allow custom padding to override the size preset
-    const finalPadding = base.padding || sizePreset.padding;
+const CMS_Button = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Button',
 
-    return {
-      ...base,
-      ...sizePreset,
-      padding: finalPadding,
-      hover: { ...defaultConfig.hover, ...base.hover },
-    };
-  }, [config]);
+  // Main styling - flat class structure
+  classes = defaultClasses,
 
-  // Local hover state for customStyles and background changes
+  // Content
+  text = 'Button',
+  icon,
+  iconLibrary = 'fa',
+  iconPosition = 'left',
+  iconOnly = false,
+
+  // Sizing
+  size = 'md',
+  fullWidth = false,
+
+  // State
+  type = 'button',
+  disabled = false,
+  loading = false,
+
+  // Inertia.js props
+  href,
+  method = 'get',
+  preserveState = true,
+  preserveScroll = false,
+  replace = false,
+  only = [],
+  headers = {},
+  data = {},
+
+  // Events
+  onClick,
+  onHover,
+  onLeave,
+
+  // Accessibility
+  ariaLabel,
+  ariaExpanded,
+  ariaControls,
+
+  // Debug
+  debug = false,
+
+  // Extra
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
+
   const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-  // Icon component (if any)
+  // Get icon component
   const IconComponent = useMemo(
-    () => getIconComponent(merged.icon, merged.iconLibrary),
-    [merged.icon, merged.iconLibrary]
+    () => getIconComponent(icon, iconLibrary),
+    [icon, iconLibrary]
   );
 
-  // --------------------------------------------------------------------
-  // Render helpers
-  // --------------------------------------------------------------------
+  // Apply size preset
+  const sizePreset = useMemo(() => {
+    return sizePresets[size] || sizePresets.md;
+  }, [size]);
+
+  // Build base classes with size preset
+  const baseClasses = useMemo(() => {
+    return clsx(
+      getAlignmentClass(fullWidth),
+      sizePreset.base,
+      buildClasses(classes, className),
+      fullWidth && 'w-full',
+      (disabled || loading) && 'cursor-not-allowed opacity-50',
+      !disabled && !loading && 'cursor-pointer',
+      className
+    );
+  }, [classes, sizePreset, fullWidth, disabled, loading, className]);
+
+  // Build icon classes
+  const iconClasses = useMemo(() => {
+    return clsx(
+      sizePreset.icon,
+      classes.icon,
+      iconOnly ? '' : (iconPosition === 'left' ? 'mr-2' : 'ml-2')
+    );
+  }, [sizePreset.icon, classes.icon, iconOnly, iconPosition]);
+
+  // Render icon
   const renderIcon = () => {
     if (!IconComponent) return null;
-    return <IconComponent className={merged.iconSize} />;
+    return <IconComponent className={iconClasses} />;
   };
 
-  const renderContent = () => {
-    if (merged.loading) return null; // loading spinner replaces everything
-    if (merged.iconOnly) return renderIcon();
-
-    const icon = renderIcon();
-    const text = <span>{merged.text}</span>;
-
-    if (merged.iconPosition === 'right') {
-      return (
-        <>
-          {text}
-          {icon && <span className="ml-2">{icon}</span>}
-        </>
-      );
-    }
-    return (
-      <>
-        {icon && <span className="mr-2">{icon}</span>}
-        {text}
-      </>
-    );
-  };
-
-  const renderLoading = () => {
-    if (!merged.loading) return null;
+  // Render loading spinner
+  const renderSpinner = () => {
     return (
       <svg
-        className={`animate-spin ${merged.iconSize} ${merged.text && !merged.iconOnly ? 'mr-2' : ''}`}
+        className={clsx('animate-spin', sizePreset.icon, classes.spinner)}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -319,147 +350,217 @@ const CMS_Button = ({ config = {}, children }) => {
     );
   };
 
-  // --------------------------------------------------------------------
-  // Build class list
-  // --------------------------------------------------------------------
-  const alignmentClass = {
-    left: 'justify-start',
-    center: 'justify-center',
-    right: 'justify-end',
-  }[merged.alignment] || 'justify-center';
+  // Render content
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <span className="inline-flex items-center">
+          {renderSpinner()}
+          {!iconOnly && text && <span className="ml-2">{text}</span>}
+        </span>
+      );
+    }
 
-  // Get background classes based on hover state and config
-  const backgroundClasses = getBackgroundClasses(merged, isHovered);
+    if (iconOnly && IconComponent) {
+      return renderIcon();
+    }
 
-  // Base classes that are always present
-  const baseClasses = [
-    'inline-flex items-center',
-    alignmentClass,
-    merged.padding,
-    merged.fontSize,
-    merged.rounded,
-    merged.gap,
-    merged.fullWidth ? 'w-full' : '',
-    merged.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-    merged.hover.transition, // e.g. 'transition-all duration-300'
-  ];
+    return (
+      <span className="inline-flex items-center">
+        {iconPosition === 'left' && renderIcon()}
+        <span>{text}</span>
+        {iconPosition === 'right' && renderIcon()}
+      </span>
+    );
+  };
 
-  // Add background classes (gradient or solid)
-  baseClasses.push(...backgroundClasses);
-
-  // Text colors
-  baseClasses.push(merged.color);
-  baseClasses.push(merged.darkColor);
-
-  // Border classes
-  if (merged.border) baseClasses.push(merged.border);
-  if (merged.darkBorder) baseClasses.push(merged.darkBorder);
-
-  // Hover classes for non‑background effects (only if not disabled)
-  if (!merged.disabled && !merged.loading) {
-    // Hover text color
-    if (merged.hover.color) baseClasses.push(`hover:${merged.hover.color}`);
-    if (merged.hover.darkColor) baseClasses.push(`dark:hover:${merged.hover.darkColor}`);
-
-    // Scale and shadow
-    if (merged.hover.scale) baseClasses.push(`hover:${merged.hover.scale}`);
-    if (merged.hover.shadow) baseClasses.push(`hover:${merged.hover.shadow}`);
-  }
-
-  const buttonClasses = baseClasses.filter(Boolean).join(' ');
-
-  // --------------------------------------------------------------------
   // Event handlers
-  // --------------------------------------------------------------------
   const handleMouseEnter = (e) => {
     setIsHovered(true);
-    merged.onHover?.(e);
+    onHover?.(e);
   };
+
   const handleMouseLeave = (e) => {
     setIsHovered(false);
-    merged.onLeave?.(e);
+    onLeave?.(e);
   };
+
+  const handleFocus = (e) => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = (e) => {
+    setIsFocused(false);
+  };
+
   const handleClick = (e) => {
-    if (merged.disabled || merged.loading) {
+    if (disabled || loading) {
       e.preventDefault();
       return;
     }
-    merged.onClick?.(e);
+    onClick?.(e);
   };
 
-  // --------------------------------------------------------------------
   // Accessibility props
-  // --------------------------------------------------------------------
   const accessibilityProps = {
-    'aria-label': merged.ariaLabel || (merged.iconOnly ? merged.text : undefined),
-    'aria-expanded': merged.ariaExpanded,
-    'aria-controls': merged.ariaControls,
-    'aria-disabled': merged.disabled || undefined,
-    'aria-busy': merged.loading || undefined,
+    'aria-label': ariaLabel || (iconOnly ? text : undefined),
+    'aria-expanded': ariaExpanded,
+    'aria-controls': ariaControls,
+    'aria-disabled': disabled || undefined,
+    'aria-busy': loading || undefined,
   };
 
-  // --------------------------------------------------------------------
-  // Inertia Link props (only used if href exists)
-  // --------------------------------------------------------------------
+  // Inertia Link props
   const inertiaProps = {
-    href: merged.href,
-    method: merged.method,
-    preserveState: merged.preserveState,
-    preserveScroll: merged.preserveScroll,
-    replace: merged.replace,
-    only: merged.only,
-    headers: merged.headers,
-    data: merged.data,
-    onStart: merged.onStart,
-    onFinish: merged.onFinish,
-    onSuccess: merged.onSuccess,
-    onError: merged.onError,
-    onCancelToken: merged.onCancelToken,
+    href,
+    method,
+    preserveState,
+    preserveScroll,
+    replace,
+    only,
+    headers,
+    data,
     onClick: handleClick,
-    disabled: merged.disabled || merged.loading,
-    className: buttonClasses,
-    style: { ...merged.style, ...(isHovered ? merged.hover.customStyles : {}) },
-    ...accessibilityProps,
+    disabled: disabled || loading,
+    className: baseClasses,
+    style: { ...style },
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    ...accessibilityProps,
   };
 
-  // --------------------------------------------------------------------
-  // Render
-  // --------------------------------------------------------------------
-  const inner = (
-    <span className="inline-flex items-center justify-center">
-      {merged.loading ? renderLoading() : renderContent()}
-      {children}
-    </span>
-  );
+  // Common props for both button and link
+  const commonProps = {
+    ref,
+    className: baseClasses,
+    style,
+    onClick: handleClick,
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    'data-uid': uid,
+    'data-component': component,
+    'data-hovered': isHovered ? 'true' : undefined,
+    'data-focused': isFocused ? 'true' : undefined,
+    ...accessibilityProps,
+    ...props,
+  };
 
-  if (merged.href) {
-    return <Link {...inertiaProps}>{inner}</Link>;
+  // Render as Link if href provided
+  if (href) {
+    return (
+      <Link {...inertiaProps} {...commonProps}>
+        {renderContent()}
+        {children}
+      </Link>
+    );
   }
 
+  // Render as button
   return (
     <button
-      type={merged.type}
-      disabled={merged.disabled || merged.loading}
-      className={buttonClasses}
-      style={{ ...merged.style, ...(isHovered ? merged.hover.customStyles : {}) }}
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      {...accessibilityProps}
+      type={type}
+      disabled={disabled || loading}
+      {...commonProps}
     >
-      {inner}
+      {renderContent()}
+      {children}
     </button>
   );
-};
+});
 
-// ----------------------------------------------------------------------
-// PropTypes (optional but helpful)
-// ----------------------------------------------------------------------
-CMS_Button.propTypes = {
-  config: PropTypes.object,
-  children: PropTypes.node,
-};
+CMS_Button.displayName = 'CMS_Button';
+CMS_Button.metadata = componentMetadata;
+CMS_Button.defaultProps = defaultProps;
+
+// ============================================================================
+// Pre-configured Button Components
+// ============================================================================
+
+export const CMS_PrimaryButton = forwardRef((props, ref) => (
+  <CMS_Button
+    ref={ref}
+    classes={{
+      base: 'bg-blue-600 text-white font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+      dark: 'dark:bg-blue-500 dark:hover:bg-blue-600',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_PrimaryButton.displayName = 'CMS_PrimaryButton';
+
+export const CMS_SecondaryButton = forwardRef((props, ref) => (
+  <CMS_Button
+    ref={ref}
+    classes={{
+      base: 'bg-gray-200 text-gray-800 font-medium hover:bg-gray-300 focus:ring-2 focus:ring-gray-400',
+      dark: 'dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_SecondaryButton.displayName = 'CMS_SecondaryButton';
+
+export const CMS_DangerButton = forwardRef((props, ref) => (
+  <CMS_Button
+    ref={ref}
+    classes={{
+      base: 'bg-red-600 text-white font-medium hover:bg-red-700 focus:ring-2 focus:ring-red-500',
+      dark: 'dark:bg-red-500 dark:hover:bg-red-600',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_DangerButton.displayName = 'CMS_DangerButton';
+
+export const CMS_OutlineButton = forwardRef((props, ref) => (
+  <CMS_Button
+    ref={ref}
+    classes={{
+      base: 'border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-50',
+      dark: 'dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_OutlineButton.displayName = 'CMS_OutlineButton';
+
+export const CMS_GradientButton = forwardRef((props, ref) => (
+  <CMS_Button
+    ref={ref}
+    classes={{
+      base: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700',
+      dark: 'dark:from-blue-500 dark:to-purple-500',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_GradientButton.displayName = 'CMS_GradientButton';
+
+export const CMS_IconButton = forwardRef((props, ref) => (
+  <CMS_Button
+    ref={ref}
+    iconOnly={true}
+    classes={{
+      base: 'p-2 rounded-full hover:bg-gray-100',
+      dark: 'dark:hover:bg-gray-800',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_IconButton.displayName = 'CMS_IconButton';
+
+// ============================================================================
+// Export
+// ============================================================================
 
 export default CMS_Button;

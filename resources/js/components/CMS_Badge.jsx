@@ -1,9 +1,19 @@
 /**
- * CMS_Badge Component - A highly customizable badge component with dark mode support
- * Now with full customization priority - custom values always override defaults
+ * CMS_Badge Component - Editor-friendly badge with flat class structure
+ * 
+ * Features:
+ * - Flat class structure for easy editing
+ * - Multiple variants (default, primary, success, warning, danger, etc.)
+ * - Icon support from 16+ libraries
+ * - Count/notification badges with max count
+ * - Dot indicators with pulse animation
+ * - Interactive states (clickable, links)
+ * - Hover effects with classes
+ * - Dark mode support
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
+import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
@@ -21,7 +31,10 @@ import * as BiIcons from 'react-icons/bi';
 import * as ImIcons from 'react-icons/im';
 import * as CgIcons from 'react-icons/cg';
 
-// Icon library mappings
+// ============================================================================
+// Icon Libraries Registry
+// ============================================================================
+
 const iconLibraries = {
   fa: FaIcons,
   hi: HiIcons,
@@ -38,38 +51,61 @@ const iconLibraries = {
   gr: GrIcons,
   bi: BiIcons,
   im: ImIcons,
-  cg: CgIcons
+  cg: CgIcons,
 };
 
-// Default configuration
-const defaultConfig = {
-  text: "Badge",
-  variant: "default",
-  size: "md",
-  shape: "rounded",
-  position: "relative",
+// ============================================================================
+// Default Classes Structure
+// ============================================================================
 
-  // Colors
-  color: "text-gray-700",
-  darkColor: "dark:text-gray-300",
-  bgColor: "bg-gray-100",
-  darkBgColor: "dark:bg-gray-700",
+const defaultClasses = {
+  // Base badge styles
+  base: '',
 
-  // Border
-  border: "border border-transparent",
-  borderColor: "",
-  darkBorderColor: "",
+  // Interactive states
+  hover: '',
+  focus: '',
+  active: '',
 
-  // Shadow
-  shadow: "",
-  darkShadow: "",
+  // Theme states
+  dark: '',
+  darkHover: '',
+  darkFocus: '',
 
-  // Icon support
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Icon specific classes
+  icon: '',
+  iconLeft: '',
+  iconRight: '',
+
+  // Dot indicator classes
+  dot: '',
+  dotPulse: '',
+
+  // Count/number classes
+  count: '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultProps = {
+  // Content
+  text: 'Badge',
   icon: null,
   iconLibrary: 'fa',
-  iconPosition: "left",
+  iconPosition: 'left',
   iconOnly: false,
-  iconSize: null,
+
+  // Size
+  size: 'md', // 'sm', 'md', 'lg'
 
   // Count support
   count: null,
@@ -78,574 +114,550 @@ const defaultConfig = {
 
   // Dot indicator
   dot: false,
-  dotSize: "w-2 h-2",
-  dotColor: "",
+  dotSize: 'w-2 h-2',
   pulse: false,
 
-  // Interactive states
+  // Interactive
   clickable: false,
   href: null,
-  onClick: null,
-
-  // Hover effects
-  hover: {
-    scale: "",
-    bgColor: "",
-    darkBgColor: "",
-    shadow: "",
-    transition: "transition-all duration-200",
-    customStyles: {}
-  },
-
-  // Z-Layer support
-  zLayer: "auto",
-  zLayerMobile: null,
-  zLayerTablet: null,
-  zLayerDesktop: null,
 
   // Accessibility
-  ariaLabel: "",
-  role: "status",
+  ariaLabel: '',
+  role: 'status',
 
-  // Additional styling - NOW FULLY CUSTOMIZABLE
-  padding: null,      // Custom padding (e.g., "px-3 py-4")
-  margin: null,       // Custom margin (e.g., "m-2 mt-4")
-  className: "",
-  style: {}
+  // Events
+  onClick: null,
+  onHover: null,
+  onLeave: null,
 };
 
-// Size mappings - these will be used as fallbacks only
-const sizeStyles = {
+// Size presets (can be overridden by classes)
+const sizePresets = {
   sm: {
-    padding: "px-1.5 py-0.5",
-    fontSize: "text-xs",
-    gap: "gap-0.5",
-    iconSize: "w-3 h-3",
-    minWidth: "min-w-[1.5rem]",
-    height: "h-4"
+    base: 'px-1.5 py-0.5 text-xs gap-0.5',
+    icon: 'w-3 h-3',
+    dot: 'w-1.5 h-1.5',
+    count: 'text-xs',
   },
   md: {
-    padding: "px-2 py-1",
-    fontSize: "text-xs",
-    gap: "gap-1",
-    iconSize: "w-3.5 h-3.5",
-    minWidth: "min-w-[2rem]",
-    height: "h-5"
+    base: 'px-2 py-1 text-xs gap-1',
+    icon: 'w-3.5 h-3.5',
+    dot: 'w-2 h-2',
+    count: 'text-xs',
   },
   lg: {
-    padding: "px-2.5 py-1.5",
-    fontSize: "text-sm",
-    gap: "gap-1.5",
-    iconSize: "w-4 h-4",
-    minWidth: "min-w-[2.5rem]",
-    height: "h-6"
-  }
+    base: 'px-2.5 py-1.5 text-sm gap-1.5',
+    icon: 'w-4 h-4',
+    dot: 'w-2.5 h-2.5',
+    count: 'text-sm',
+  },
 };
 
-// Shape mappings
-const shapeStyles = {
-  rounded: "rounded",
-  pill: "rounded-full",
-  square: "rounded-none"
-};
-
-// Default variant mappings
-const defaultVariantStyles = {
+// Pre-defined variant presets (can be used with classes)
+const variantPresets = {
   default: {
-    bgColor: "bg-gray-100",
-    darkBgColor: "dark:bg-gray-700",
-    color: "text-gray-700",
-    darkColor: "dark:text-gray-300",
-    border: "border border-transparent"
+    base: 'bg-gray-100 text-gray-700',
+    dark: 'dark:bg-gray-700 dark:text-gray-300',
   },
   primary: {
-    bgColor: "bg-blue-100",
-    darkBgColor: "dark:bg-blue-900/30",
-    color: "text-blue-700",
-    darkColor: "dark:text-blue-300",
-    border: "border border-transparent"
+    base: 'bg-blue-100 text-blue-700',
+    dark: 'dark:bg-blue-900/30 dark:text-blue-300',
   },
   success: {
-    bgColor: "bg-green-100",
-    darkBgColor: "dark:bg-green-900/30",
-    color: "text-green-700",
-    darkColor: "dark:text-green-300",
-    border: "border border-transparent"
+    base: 'bg-green-100 text-green-700',
+    dark: 'dark:bg-green-900/30 dark:text-green-300',
   },
   warning: {
-    bgColor: "bg-yellow-100",
-    darkBgColor: "dark:bg-yellow-900/30",
-    color: "text-yellow-700",
-    darkColor: "dark:text-yellow-300",
-    border: "border border-transparent"
+    base: 'bg-yellow-100 text-yellow-700',
+    dark: 'dark:bg-yellow-900/30 dark:text-yellow-300',
   },
   danger: {
-    bgColor: "bg-red-100",
-    darkBgColor: "dark:bg-red-900/30",
-    color: "text-red-700",
-    darkColor: "dark:text-red-300",
-    border: "border border-transparent"
+    base: 'bg-red-100 text-red-700',
+    dark: 'dark:bg-red-900/30 dark:text-red-300',
   },
   info: {
-    bgColor: "bg-cyan-100",
-    darkBgColor: "dark:bg-cyan-900/30",
-    color: "text-cyan-700",
-    darkColor: "dark:text-cyan-300",
-    border: "border border-transparent"
+    base: 'bg-cyan-100 text-cyan-700',
+    dark: 'dark:bg-cyan-900/30 dark:text-cyan-300',
   },
   outline: {
-    bgColor: "bg-transparent",
-    darkBgColor: "dark:bg-transparent",
-    color: "text-gray-700",
-    darkColor: "dark:text-gray-300",
-    border: "border",
-    borderColor: "border-gray-300",
-    darkBorderColor: "dark:border-gray-600"
+    base: 'bg-transparent border border-gray-300 text-gray-700',
+    dark: 'dark:border-gray-600 dark:text-gray-300',
   },
   online: {
-    bgColor: "bg-green-500",
-    darkBgColor: "dark:bg-green-600",
-    color: "text-white",
-    darkColor: "dark:text-white",
-    dot: true,
-    dotColor: "bg-green-500",
-    pulse: true
+    base: 'bg-green-500 text-white',
+    dot: 'bg-green-500',
+    pulse: 'animate-pulse',
   },
   offline: {
-    bgColor: "bg-gray-400",
-    darkBgColor: "dark:bg-gray-600",
-    color: "text-white",
-    darkColor: "dark:text-white",
-    dot: true,
-    dotColor: "bg-gray-400"
+    base: 'bg-gray-400 text-white',
+    dot: 'bg-gray-400',
   },
   busy: {
-    bgColor: "bg-red-500",
-    darkBgColor: "dark:bg-red-600",
-    color: "text-white",
-    darkColor: "dark:text-white",
-    dot: true,
-    dotColor: "bg-red-500"
+    base: 'bg-red-500 text-white',
+    dot: 'bg-red-500',
   },
   away: {
-    bgColor: "bg-yellow-500",
-    darkBgColor: "dark:bg-yellow-600",
-    color: "text-white",
-    darkColor: "dark:text-white",
-    dot: true,
-    dotColor: "bg-yellow-500"
-  }
+    base: 'bg-yellow-500 text-white',
+    dot: 'bg-yellow-500',
+  },
 };
 
-// Z-index mapping
-const zIndexMap = {
-  'auto': 'z-auto',
-  '0': 'z-0',
-  '10': 'z-10',
-  '20': 'z-20',
-  '30': 'z-30',
-  '40': 'z-40',
-  '50': 'z-50'
+// Shape presets
+const shapePresets = {
+  rounded: 'rounded',
+  pill: 'rounded-full',
+  square: 'rounded-none',
+};
+
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Badge',
+  description: 'Status indicator, label, or notification badge',
+  category: 'display',
+  icon: '🏷️',
+  editable: ['base', 'hover', 'dark', 'dot', 'icon'],
+  controls: [
+    { type: 'text', target: 'text', label: 'Badge Text' },
+    { type: 'select', target: 'size', label: 'Size', options: ['sm', 'md', 'lg'] },
+    { type: 'select', target: 'variant', label: 'Variant', options: Object.keys(variantPresets) },
+    { type: 'select', target: 'shape', label: 'Shape', options: ['rounded', 'pill', 'square'] },
+    { type: 'toggle', target: 'dot', label: 'Dot Indicator' },
+    { type: 'toggle', target: 'pulse', label: 'Pulse Animation' },
+    { type: 'number', target: 'count', label: 'Count' },
+    { type: 'number', target: 'maxCount', label: 'Max Count' },
+    { type: 'select', target: 'iconLibrary', label: 'Icon Library', options: Object.keys(iconLibraries) },
+    { type: 'text', target: 'icon', label: 'Icon Name' },
+    { type: 'select', target: 'iconPosition', label: 'Icon Position', options: ['left', 'right'] },
+    { type: 'toggle', target: 'clickable', label: 'Clickable' },
+    { type: 'class-editor', target: 'base', label: 'Base Styles' },
+    { type: 'class-editor', target: 'hover', label: 'Hover Styles' },
+    { type: 'class-editor', target: 'dark', label: 'Dark Mode Styles' },
+  ]
+};
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Base styles
+    classes.base,
+
+    // Interactive states
+    classes.hover,
+    classes.focus,
+    classes.active,
+
+    // Theme states
+    classes.dark,
+    classes.darkHover,
+    classes.darkFocus,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom override
+    classes.custom,
+
+    // Emergency override
+    extraClassName
+  );
 };
 
 /**
- * Main Badge Component - CUSTOM VALUES ALWAYS TAKE PRIORITY
+ * Get icon component from library
  */
-const CMS_Badge = ({
-  config = {},
-  customVariants = {},
-  children
-}) => {
+const getIconComponent = (iconName, libraryPrefix) => {
+  if (!iconName || !libraryPrefix) return null;
+  const library = iconLibraries[libraryPrefix];
+  return library?.[iconName] || null;
+};
+
+/**
+ * Format count with max
+ */
+const formatCount = (count, maxCount, showZero) => {
+  if (count === null || count === undefined) return null;
+  if (count === 0 && !showZero) return null;
+  if (count > maxCount) return `${maxCount}+`;
+  return count.toString();
+};
+
+// ============================================================================
+// Main Component
+// ============================================================================
+
+const CMS_Badge = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Badge',
+
+  // Main styling - flat class structure
+  classes = defaultClasses,
+
+  // Content
+  text = 'Badge',
+  icon,
+  iconLibrary = 'fa',
+  iconPosition = 'left',
+  iconOnly = false,
+
+  // Size
+  size = 'md',
+
+  // Shape
+  shape = 'rounded',
+
+  // Count support
+  count,
+  maxCount = 99,
+  showZero = false,
+
+  // Dot indicator
+  dot = false,
+  dotSize,
+  pulse = false,
+
+  // Interactive
+  clickable = false,
+  href,
+
+  // Accessibility
+  ariaLabel,
+  role = 'status',
+
+  // Events
+  onClick,
+  onHover,
+  onLeave,
+
+  // Debug
+  debug = false,
+
+  // Extra
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
+
   const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-  // Merge default variants with custom variants
-  const variantStyles = useMemo(() => ({
-    ...defaultVariantStyles,
-    ...customVariants
-  }), [customVariants]);
+  // Get icon component
+  const IconComponent = useMemo(
+    () => getIconComponent(icon, iconLibrary),
+    [icon, iconLibrary]
+  );
 
-  // Merge config with defaults and apply variant styles
-  // CUSTOM VALUES ALWAYS TAKE PRIORITY
-  const mergedConfig = useMemo(() => {
-    // Start with default config
-    const baseConfig = {
-      ...defaultConfig,
-      ...config
-    };
+  // Apply size preset
+  const sizePreset = useMemo(() => {
+    return sizePresets[size] || sizePresets.md;
+  }, [size]);
 
-    // Apply variant styles if variant exists
-    let variantApplied = {};
-    if (baseConfig.variant && variantStyles[baseConfig.variant]) {
-      variantApplied = variantStyles[baseConfig.variant];
-    }
+  // Apply shape preset
+  const shapePreset = useMemo(() => {
+    return shapePresets[shape] || shapePresets.rounded;
+  }, [shape]);
 
-    // Get size-based styles (will be used as fallbacks)
-    const sizeApplied = sizeStyles[baseConfig.size] || sizeStyles.md;
+  // Format count for display
+  const displayCount = useMemo(() => {
+    return formatCount(count, maxCount, showZero);
+  }, [count, maxCount, showZero]);
 
-    // Apply shape styles
-    const shapeApplied = shapeStyles[baseConfig.shape] || shapeStyles.rounded;
+  // Build base classes with size preset and shape
+  const baseClasses = useMemo(() => {
+    return clsx(
+      'inline-flex items-center justify-center',
+      shapePreset,
+      sizePreset.base,
+      buildClasses(classes, className),
+      clickable && 'cursor-pointer',
+      className
+    );
+  }, [classes, sizePreset, shapePreset, clickable, className]);
 
-    // Merge hover config - custom hover takes priority
-    const hoverConfig = {
-      ...defaultConfig.hover,
-      ...(variantApplied.hover || {}),
-      ...(baseConfig.hover || {})
-    };
+  // Build icon classes
+  const iconClasses = useMemo(() => {
+    return clsx(
+      sizePreset.icon,
+      classes.icon,
+      iconOnly ? '' : (iconPosition === 'left' ? 'mr-1' : 'ml-1')
+    );
+  }, [sizePreset.icon, classes.icon, iconOnly, iconPosition]);
 
-    // Return merged config with CUSTOM VALUES TAKING PRIORITY
-    return {
-      ...baseConfig,
+  // Build dot classes
+  const dotClasses = useMemo(() => {
+    return clsx(
+      dotSize || sizePreset.dot,
+      'rounded-full',
+      classes.dot,
+      pulse && (classes.dotPulse || 'animate-pulse')
+    );
+  }, [dotSize, sizePreset.dot, classes.dot, classes.dotPulse, pulse]);
 
-      // SHAPE - custom shape takes priority
-      shape: shapeApplied,
+  // Build count classes
+  const countClasses = useMemo(() => {
+    return clsx(
+      sizePreset.count,
+      classes.count
+    );
+  }, [sizePreset.count, classes.count]);
 
-      // FONT SIZE - custom fontSize takes priority over size-based
-      fontSize: baseConfig.fontSize || sizeApplied.fontSize,
-
-      // GAP - custom gap takes priority
-      gap: baseConfig.gap || sizeApplied.gap,
-
-      // ICON SIZE - custom iconSize takes priority
-      iconSize: baseConfig.iconSize || sizeApplied.iconSize,
-
-      // MIN WIDTH - custom minWidth takes priority
-      minWidth: baseConfig.minWidth || sizeApplied.minWidth,
-
-      // HEIGHT - custom height takes priority
-      height: baseConfig.height || sizeApplied.height,
-
-      // PADDING - CUSTOM PADDING ALWAYS TAKES PRIORITY
-      // If custom padding is provided, use it. Otherwise use size-based padding
-      padding: baseConfig.padding !== null && baseConfig.padding !== undefined
-        ? baseConfig.padding
-        : sizeApplied.padding,
-
-      // MARGIN - CUSTOM MARGIN ALWAYS TAKES PRIORITY
-      margin: baseConfig.margin !== null && baseConfig.margin !== undefined
-        ? baseConfig.margin
-        : (baseConfig.margin || defaultConfig.margin),
-
-      // COLORS - custom colors take priority over variant
-      bgColor: baseConfig.bgColor !== defaultConfig.bgColor
-        ? baseConfig.bgColor
-        : (variantApplied.bgColor || baseConfig.bgColor),
-      darkBgColor: baseConfig.darkBgColor !== defaultConfig.darkBgColor
-        ? baseConfig.darkBgColor
-        : (variantApplied.darkBgColor || baseConfig.darkBgColor),
-      color: baseConfig.color !== defaultConfig.color
-        ? baseConfig.color
-        : (variantApplied.color || baseConfig.color),
-      darkColor: baseConfig.darkColor !== defaultConfig.darkColor
-        ? baseConfig.darkColor
-        : (variantApplied.darkColor || baseConfig.darkColor),
-
-      // BORDER - custom border takes priority
-      border: baseConfig.border !== defaultConfig.border
-        ? baseConfig.border
-        : (variantApplied.border || baseConfig.border),
-      borderColor: baseConfig.borderColor || variantApplied.borderColor || "",
-      darkBorderColor: baseConfig.darkBorderColor || variantApplied.darkBorderColor || "",
-
-      // SHADOW - custom shadow takes priority
-      shadow: baseConfig.shadow || variantApplied.shadow || "",
-      darkShadow: baseConfig.darkShadow || variantApplied.darkShadow || "",
-
-      // DOT - custom dot settings take priority
-      dot: baseConfig.dot !== undefined ? baseConfig.dot : (variantApplied.dot || false),
-      dotColor: baseConfig.dotColor || variantApplied.dotColor || "",
-      pulse: baseConfig.pulse !== undefined ? baseConfig.pulse : (variantApplied.pulse || false),
-
-      // HOVER - custom hover takes priority
-      hover: hoverConfig
-    };
-  }, [config, variantStyles]);
-
-  /**
-   * Get icon component from React Icons library
-   */
-  const getIconComponent = () => {
-    const { icon, iconLibrary } = mergedConfig;
-
-    if (!icon) return null;
-
-    const library = iconLibraries[iconLibrary];
-    if (!library) return null;
-
-    const IconComponent = library[icon];
-    return IconComponent || null;
-  };
-
-  /**
-   * Format count for display
-   */
-  const formatCount = () => {
-    const { count, maxCount, showZero } = mergedConfig;
-
-    if (count === null || count === undefined) return null;
-    if (count === 0 && !showZero) return null;
-    if (count > maxCount) return `${maxCount}+`;
-    return count.toString();
-  };
-
-  /**
-   * Build hover classes
-   */
-  const getHoverClasses = useMemo(() => {
-    if (!mergedConfig.clickable || !mergedConfig.hover) return '';
-
-    const hoverClasses = [];
-    const hover = mergedConfig.hover;
-
-    if (hover.scale) hoverClasses.push(`hover:${hover.scale}`);
-    if (hover.bgColor) hoverClasses.push(`hover:${hover.bgColor}`);
-    if (hover.darkBgColor) hoverClasses.push(`hover:${hover.darkBgColor}`);
-    if (hover.shadow) hoverClasses.push(`hover:${hover.shadow}`);
-    if (hover.transition) hoverClasses.push(hover.transition);
-
-    return hoverClasses.join(' ');
-  }, [mergedConfig.clickable, mergedConfig.hover]);
-
-  /**
-   * Build z-index classes
-   */
-  const getZLayerClasses = (zLayer, zMobile, zTablet, zDesktop) => {
-    const classes = [];
-
-    if (zLayer) {
-      if (zIndexMap[zLayer]) {
-        classes.push(zIndexMap[zLayer]);
-      } else if (zLayer.startsWith('z-')) {
-        classes.push(zLayer);
-      } else if (!isNaN(zLayer)) {
-        classes.push(`z-${zLayer}`);
-      }
-    }
-
-    if (zMobile) {
-      const mobileClass = zIndexMap[zMobile] || (zMobile.startsWith('z-') ? zMobile : `z-${zMobile}`);
-      classes.push(mobileClass);
-    }
-
-    if (zTablet) {
-      const tabletClass = zIndexMap[zTablet] || (zTablet.startsWith('z-') ? zTablet : `z-${zTablet}`);
-      classes.push(`md:${tabletClass}`);
-    }
-
-    if (zDesktop) {
-      const desktopClass = zIndexMap[zDesktop] || (zDesktop.startsWith('z-') ? zDesktop : `z-${zDesktop}`);
-      classes.push(`lg:${desktopClass}`);
-    }
-
-    return classes;
-  };
-
-  /**
-   * Render icon
-   */
+  // Render icon
   const renderIcon = () => {
-    const IconComponent = getIconComponent();
     if (!IconComponent) return null;
-
-    return (
-      <IconComponent className={mergedConfig.iconSize} />
-    );
+    return <IconComponent className={iconClasses} />;
   };
 
-  /**
-   * Render dot indicator
-   */
+  // Render dot
   const renderDot = () => {
-    if (!mergedConfig.dot) return null;
-
-    const dotColor = mergedConfig.dotColor || mergedConfig.bgColor;
-    const pulseClass = mergedConfig.pulse ? 'animate-pulse' : '';
-
-    return (
-      <span
-        className={`
-          ${mergedConfig.dotSize}
-          ${dotColor}
-          rounded-full
-          ${pulseClass}
-          inline-block
-        `}
-      />
-    );
+    if (!dot) return null;
+    return <span className={dotClasses} />;
   };
 
-  /**
-   * Render content
-   */
+  // Render content
   const renderContent = () => {
-    if (mergedConfig.iconOnly) {
+    if (iconOnly && IconComponent) {
       return renderIcon();
     }
 
-    const displayText = formatCount() || mergedConfig.text;
-    const icon = renderIcon();
-    const dot = renderDot();
+    const contentText = displayCount || text;
+    const iconEl = renderIcon();
+    const dotEl = renderDot();
 
-    // If dot indicator, show dot with optional text
-    if (mergedConfig.dot) {
+    // Dot with optional text
+    if (dot) {
       return (
         <>
-          {dot}
-          {displayText && <span className="ml-1">{displayText}</span>}
+          {dotEl}
+          {contentText && <span className="ml-1">{contentText}</span>}
         </>
       );
     }
 
     // Icon with text
-    if (mergedConfig.iconPosition === 'right') {
+    if (iconPosition === 'right') {
       return (
         <>
-          <span>{displayText}</span>
-          {icon && <span className="ml-1">{icon}</span>}
+          <span>{contentText}</span>
+          {iconEl}
         </>
       );
     }
 
     return (
       <>
-        {icon && <span className="mr-1">{icon}</span>}
-        <span>{displayText}</span>
+        {iconEl}
+        <span>{contentText}</span>
       </>
     );
   };
 
-  /**
-   * Build final classes - CUSTOM VALUES ALWAYS INCLUDED
-   */
-  const badgeClasses = useMemo(() => {
-    const zLayerClasses = getZLayerClasses(
-      mergedConfig.zLayer,
-      mergedConfig.zLayerMobile,
-      mergedConfig.zLayerTablet,
-      mergedConfig.zLayerDesktop
-    );
+  // Event handlers
+  const handleMouseEnter = (e) => {
+    setIsHovered(true);
+    onHover?.(e);
+  };
 
-    const classes = [
-      // Base styles
-      'inline-flex items-center justify-center',
-      mergedConfig.position,
-      mergedConfig.shape,
+  const handleMouseLeave = (e) => {
+    setIsHovered(false);
+    onLeave?.(e);
+  };
 
-      // PADDING - custom padding will be used here
-      mergedConfig.padding,
+  const handleFocus = (e) => {
+    setIsFocused(true);
+  };
 
-      // TYPOGRAPHY
-      mergedConfig.fontSize,
-      mergedConfig.gap,
-      mergedConfig.minWidth,
-      mergedConfig.height,
+  const handleBlur = (e) => {
+    setIsFocused(false);
+  };
 
-      // COLORS
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.color,
-      mergedConfig.darkColor,
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+    }
+  };
 
-      // BORDER
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.darkBorderColor,
-
-      // SHADOW
-      mergedConfig.shadow,
-      mergedConfig.darkShadow,
-
-      // Z-INDEX
-      ...zLayerClasses,
-
-      // HOVER EFFECTS
-      mergedConfig.clickable ? 'cursor-pointer' : '',
-      getHoverClasses,
-
-      // MARGIN - custom margin will be used here
-      mergedConfig.margin,
-
-      // ADDITIONAL CLASSES
-      mergedConfig.className
-    ].filter(className => className && className.trim() !== '');
-
-    return classes.join(' ');
-  }, [mergedConfig, getHoverClasses]);
-
-  /**
-   * Accessibility props
-   */
+  // Accessibility props
   const accessibilityProps = {
-    ...(mergedConfig.ariaLabel && { 'aria-label': mergedConfig.ariaLabel }),
-    ...(mergedConfig.role && { role: mergedConfig.role }),
-    ...(mergedConfig.clickable && { tabIndex: 0 })
+    'aria-label': ariaLabel || (iconOnly ? text : undefined),
+    'role': role,
+    'tabIndex': clickable ? 0 : undefined,
+    ...props,
   };
 
-  /**
-   * Event handlers
-   */
-  const eventHandlers = {
-    onMouseEnter: () => setIsHovered(true),
-    onMouseLeave: () => setIsHovered(false),
-    ...(mergedConfig.onClick && { onClick: mergedConfig.onClick })
+  // Common props for all elements
+  const commonProps = {
+    ref,
+    className: baseClasses,
+    style,
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    onClick: handleClick,
+    'data-uid': uid,
+    'data-component': component,
+    'data-hovered': isHovered ? 'true' : undefined,
+    'data-focused': isFocused ? 'true' : undefined,
+    ...accessibilityProps,
   };
 
-  /**
-   * Render as link if href provided
-   */
-  if (mergedConfig.href) {
+  // Render as link if href provided
+  if (href) {
     return (
-      <a
-        href={mergedConfig.href}
-        className={badgeClasses}
-        style={{
-          ...mergedConfig.style,
-          ...(isHovered && mergedConfig.hover?.customStyles ? mergedConfig.hover.customStyles : {})
-        }}
-        {...accessibilityProps}
-        {...eventHandlers}
-      >
+      <a href={href} {...commonProps}>
         {renderContent()}
         {children}
       </a>
     );
   }
 
-  /**
-   * Render as button if clickable
-   */
-  if (mergedConfig.clickable) {
+  // Render as button if clickable
+  if (clickable) {
     return (
-      <button
-        className={badgeClasses}
-        style={{
-          ...mergedConfig.style,
-          ...(isHovered && mergedConfig.hover?.customStyles ? mergedConfig.hover.customStyles : {})
-        }}
-        {...accessibilityProps}
-        {...eventHandlers}
-      >
+      <button type="button" {...commonProps}>
         {renderContent()}
         {children}
       </button>
     );
   }
 
-  /**
-   * Render as span (default)
-   */
+  // Render as span (default)
   return (
-    <span
-      className={badgeClasses}
-      style={{
-        ...mergedConfig.style,
-        ...(isHovered && mergedConfig.hover?.customStyles ? mergedConfig.hover.customStyles : {})
-      }}
-      {...accessibilityProps}
-    >
+    <span {...commonProps}>
       {renderContent()}
       {children}
     </span>
   );
-};
+});
+
+CMS_Badge.displayName = 'CMS_Badge';
+CMS_Badge.metadata = componentMetadata;
+CMS_Badge.defaultProps = defaultProps;
+CMS_Badge.variants = variantPresets;
+
+// ============================================================================
+// Pre-configured Badge Components
+// ============================================================================
+
+export const CMS_PrimaryBadge = forwardRef((props, ref) => (
+  <CMS_Badge
+    ref={ref}
+    classes={{
+      base: clsx('bg-blue-100 text-blue-700', props.classes?.base),
+      dark: clsx('dark:bg-blue-900/30 dark:text-blue-300', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_PrimaryBadge.displayName = 'CMS_PrimaryBadge';
+
+export const CMS_SuccessBadge = forwardRef((props, ref) => (
+  <CMS_Badge
+    ref={ref}
+    classes={{
+      base: clsx('bg-green-100 text-green-700', props.classes?.base),
+      dark: clsx('dark:bg-green-900/30 dark:text-green-300', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_SuccessBadge.displayName = 'CMS_SuccessBadge';
+
+export const CMS_WarningBadge = forwardRef((props, ref) => (
+  <CMS_Badge
+    ref={ref}
+    classes={{
+      base: clsx('bg-yellow-100 text-yellow-700', props.classes?.base),
+      dark: clsx('dark:bg-yellow-900/30 dark:text-yellow-300', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_WarningBadge.displayName = 'CMS_WarningBadge';
+
+export const CMS_DangerBadge = forwardRef((props, ref) => (
+  <CMS_Badge
+    ref={ref}
+    classes={{
+      base: clsx('bg-red-100 text-red-700', props.classes?.base),
+      dark: clsx('dark:bg-red-900/30 dark:text-red-300', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_DangerBadge.displayName = 'CMS_DangerBadge';
+
+export const CMS_InfoBadge = forwardRef((props, ref) => (
+  <CMS_Badge
+    ref={ref}
+    classes={{
+      base: clsx('bg-cyan-100 text-cyan-700', props.classes?.base),
+      dark: clsx('dark:bg-cyan-900/30 dark:text-cyan-300', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_InfoBadge.displayName = 'CMS_InfoBadge';
+
+export const CMS_OutlineBadge = forwardRef((props, ref) => (
+  <CMS_Badge
+    ref={ref}
+    classes={{
+      base: clsx('bg-transparent border border-gray-300 text-gray-700', props.classes?.base),
+      dark: clsx('dark:border-gray-600 dark:text-gray-300', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_OutlineBadge.displayName = 'CMS_OutlineBadge';
+
+export const CMS_CountBadge = forwardRef(({ count, ...props }, ref) => (
+  <CMS_Badge
+    ref={ref}
+    count={count}
+    classes={{
+      base: clsx('bg-red-500 text-white', props.classes?.base),
+      dark: clsx('dark:bg-red-600', props.classes?.dark),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_CountBadge.displayName = 'CMS_CountBadge';
+
+export const CMS_DotBadge = forwardRef(({ color, ...props }, ref) => (
+  <CMS_Badge
+    ref={ref}
+    dot={true}
+    classes={{
+      base: clsx('bg-transparent', props.classes?.base),
+      dot: clsx(color || 'bg-green-500', props.classes?.dot),
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_DotBadge.displayName = 'CMS_DotBadge';
+
+// ============================================================================
+// Export
+// ============================================================================
 
 export default CMS_Badge;

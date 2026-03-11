@@ -1,12 +1,21 @@
 /**
- * CMS_Card Component - A highly customizable card component with dark mode support
+ * CMS_Card Component - Editor-friendly card with flat class structure
  * 
- * This component renders cards with configurable styling, header, body, footer sections,
- * and supports images, icons, badges, and interactive states.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Features:
+ * - Flat class structure for easy editing
+ * - Header, Body, Footer sections with independent styling
+ * - Multiple variants (default, bordered, elevated, gradient, outline, ghost)
+ * - Badge support with positioning
+ * - Media/image support
+ * - Overlay with hover effects
+ * - Interactive states (clickable, links)
+ * - Hover effects with classes
+ * - Dark mode support
+ * - Icon support from 16+ libraries
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
+import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
@@ -19,7 +28,10 @@ import * as FiIcons from 'react-icons/fi';
 import * as IoIcons from 'react-icons/io5';
 import * as BiIcons from 'react-icons/bi';
 
-// Icon library mappings
+// ============================================================================
+// Icon Libraries Registry
+// ============================================================================
+
 const iconLibraries = {
   fa: FaIcons,
   hi: HiIcons,
@@ -31,841 +43,826 @@ const iconLibraries = {
   gi: GiIcons,
   fi: FiIcons,
   io: IoIcons,
-  bi: BiIcons
+  bi: BiIcons,
+};
+
+// ============================================================================
+// Default Classes Structure
+// ============================================================================
+
+const defaultCardClasses = {
+  // Card container
+  container: '',
+  containerHover: '',
+  containerFocus: '',
+  containerDark: '',
+
+  // Header section
+  header: '',
+  headerHover: '',
+  headerDark: '',
+
+  // Body section
+  body: '',
+  bodyHover: '',
+  bodyDark: '',
+
+  // Footer section
+  footer: '',
+  footerHover: '',
+  footerDark: '',
+
+  // Media section
+  media: '',
+  mediaTop: '',
+  mediaBottom: '',
+  mediaCover: '',
+
+  // Badge
+  badge: '',
+  badgeTopLeft: '',
+  badgeTopRight: '',
+  badgeBottomLeft: '',
+  badgeBottomRight: '',
+
+  // Overlay
+  overlay: '',
+  overlayHover: '',
+
+  // Icon classes
+  icon: '',
+  iconLeft: '',
+  iconRight: '',
+
+  // Title/Subtitle
+  title: '',
+  subtitle: '',
+
+  // Actions container
+  actions: '',
+  actionButton: '',
+
+  // Responsive breakpoints
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultCardProps = {
+  // Layout
+  layout: 'vertical', // 'vertical', 'horizontal'
+
+  // Variant
+  variant: 'default', // 'default', 'bordered', 'elevated', 'gradient', 'outline', 'ghost'
+
+  // Dimensions
+  width: null,
+  height: null,
+  maxWidth: null,
+  minWidth: null,
+  maxHeight: null,
+  minHeight: null,
+
+  // Interactive
+  clickable: false,
+  href: null,
+  target: null,
+  disabled: false,
+  loading: false,
+
+  // Badge
+  badge: null,
+  badgeVariant: 'primary',
+  badgePosition: 'top-right', // 'top-left', 'top-right', 'bottom-left', 'bottom-right'
+
+  // Media
+  media: null,
+  mediaPosition: 'top', // 'top', 'bottom', 'cover'
+
+  // Overlay
+  overlay: null,
+  overlayHover: false,
+
+  // Accessibility
+  ariaLabel: null,
+  role: 'article',
+
+  // Events
+  onClick: null,
+  onHover: null,
+  onLeave: null,
+};
+
+// Size presets
+const sizePresets = {
+  sm: {
+    container: 'max-w-sm',
+    header: 'p-3',
+    body: 'p-3',
+    footer: 'p-3',
+    title: 'text-base',
+    subtitle: 'text-xs',
+    icon: 'w-4 h-4',
+  },
+  md: {
+    container: 'max-w-md',
+    header: 'p-4',
+    body: 'p-4',
+    footer: 'p-4',
+    title: 'text-lg',
+    subtitle: 'text-sm',
+    icon: 'w-5 h-5',
+  },
+  lg: {
+    container: 'max-w-lg',
+    header: 'p-6',
+    body: 'p-6',
+    footer: 'p-6',
+    title: 'text-xl',
+    subtitle: 'text-base',
+    icon: 'w-6 h-6',
+  },
+};
+
+// Variant presets
+const variantPresets = {
+  default: {
+    container: 'bg-white border border-gray-200',
+    containerDark: 'dark:bg-gray-800 dark:border-gray-700',
+  },
+  bordered: {
+    container: 'bg-white border-2 border-gray-200',
+    containerDark: 'dark:bg-gray-800 dark:border-gray-700',
+  },
+  elevated: {
+    container: 'bg-white shadow-md',
+    containerDark: 'dark:bg-gray-800 dark:shadow-gray-900/30',
+    containerHover: 'hover:shadow-lg',
+  },
+  gradient: {
+    container: 'bg-gradient-to-br from-blue-500 to-purple-600 text-white',
+    containerDark: 'dark:from-blue-600 dark:to-purple-700',
+  },
+  outline: {
+    container: 'bg-transparent border-2 border-blue-500',
+    containerDark: 'dark:border-blue-400',
+  },
+  ghost: {
+    container: 'bg-transparent',
+    containerDark: 'dark:bg-transparent',
+  },
+};
+
+// Badge variant presets
+const badgeVariants = {
+  primary: 'bg-blue-500 text-white',
+  success: 'bg-green-500 text-white',
+  warning: 'bg-yellow-500 text-white',
+  danger: 'bg-red-500 text-white',
+  info: 'bg-cyan-500 text-white',
+  default: 'bg-gray-500 text-white',
+};
+
+// Badge positions
+const badgePositions = {
+  'top-left': 'top-2 left-2',
+  'top-right': 'top-2 right-2',
+  'bottom-left': 'bottom-2 left-2',
+  'bottom-right': 'bottom-2 right-2',
+};
+
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Card',
+  description: 'Flexible card container with header, body, and footer',
+  category: 'layout',
+  icon: '🃏',
+  editable: ['container', 'header', 'body', 'footer', 'title', 'subtitle'],
+  controls: [
+    { type: 'select', target: 'variant', label: 'Variant', options: Object.keys(variantPresets) },
+    { type: 'select', target: 'size', label: 'Size', options: ['sm', 'md', 'lg'] },
+    { type: 'select', target: 'layout', label: 'Layout', options: ['vertical', 'horizontal'] },
+    { type: 'text', target: 'badge', label: 'Badge Text' },
+    { type: 'select', target: 'badgeVariant', label: 'Badge Variant', options: Object.keys(badgeVariants) },
+    { type: 'select', target: 'badgePosition', label: 'Badge Position', options: Object.keys(badgePositions) },
+    { type: 'toggle', target: 'clickable', label: 'Clickable' },
+    { type: 'text', target: 'href', label: 'Link URL' },
+    { type: 'class-editor', target: 'container', label: 'Container Styles' },
+    { type: 'class-editor', target: 'header', label: 'Header Styles' },
+    { type: 'class-editor', target: 'body', label: 'Body Styles' },
+    { type: 'class-editor', target: 'footer', label: 'Footer Styles' },
+    { type: 'class-editor', target: 'badge', label: 'Badge Styles' },
+  ]
+};
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Base styles
+    classes.container,
+    classes.header,
+    classes.body,
+    classes.footer,
+    classes.media,
+    classes.badge,
+    classes.overlay,
+    classes.title,
+    classes.subtitle,
+    classes.icon,
+    classes.actions,
+
+    // Interactive states
+    classes.containerHover,
+    classes.headerHover,
+    classes.bodyHover,
+    classes.footerHover,
+    classes.overlayHover,
+
+    // Theme states
+    classes.containerDark,
+    classes.headerDark,
+    classes.bodyDark,
+    classes.footerDark,
+
+    // Position specific
+    classes.mediaTop,
+    classes.mediaBottom,
+    classes.mediaCover,
+    classes.badgeTopLeft,
+    classes.badgeTopRight,
+    classes.badgeBottomLeft,
+    classes.badgeBottomRight,
+    classes.iconLeft,
+    classes.iconRight,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom override
+    classes.custom,
+
+    // Emergency override
+    extraClassName
+  );
+};
+
+/**
+ * Get icon component from library
+ */
+const getIconComponent = (iconName, libraryPrefix) => {
+  if (!iconName || !libraryPrefix) return null;
+  const library = iconLibraries[libraryPrefix];
+  return library?.[iconName] || null;
 };
 
 // ============================================================================
 // CMS_CardHeader Component
 // ============================================================================
 
-/**
- * CMS_CardHeader - Header section of the card
- */
-const CMS_CardHeader = ({
-  config = {},
-  children
-}) => {
-  const defaultHeaderConfig = {
-    // Content
-    title: null,
-    subtitle: null,
-    icon: null,
-    iconLibrary: 'fa',
-    iconPosition: 'left',
-    iconSize: 'w-6 h-6',
-    iconColor: null,
-    darkIconColor: null,
+const CMS_CardHeader = forwardRef(({
+  title,
+  subtitle,
+  icon,
+  iconLibrary = 'fa',
+  iconPosition = 'left',
+  actions,
+  badge,
+  badgeVariant = 'primary',
+  classes = {},
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
 
-    // Badge
-    badge: null,
-    badgeVariant: 'primary',
-    badgePosition: 'right',
-
-    // Actions
-    actions: null, // Array of action buttons
-
-    // Styling
-    variant: 'default',              // 'default', 'bordered', 'gradient'
-    divider: true,                    // Show divider after header
-    padding: 'p-4',
-    bgColor: null,
-    darkBgColor: null,
-    gradient: null,
-    darkGradient: null,
-    border: null,
-    borderColor: null,
-    darkBorderColor: null,
-    rounded: 'rounded-t-lg',
-
-    // Typography
-    titleSize: 'text-lg',
-    titleWeight: 'font-semibold',
-    titleColor: 'text-gray-900',
-    darkTitleColor: 'dark:text-white',
-    subtitleSize: 'text-sm',
-    subtitleWeight: 'font-normal',
-    subtitleColor: 'text-gray-500',
-    darkSubtitleColor: 'dark:text-gray-400',
-
-    // Spacing
-    margin: 'm-0',
-    gap: 'gap-2',
-
-    // Interactive
-    clickable: false,
-    onClick: null,
-
-    // Accessibility
-    ariaLabel: null,
-
-    // Additional
-    className: '',
-    style: {}
-  };
-
-  const mergedConfig = useMemo(() => ({
-    ...defaultHeaderConfig,
-    ...config
-  }), [config]);
-
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Get icon component
-  const getIconComponent = () => {
-    if (!mergedConfig.icon) return null;
-
-    const library = iconLibraries[mergedConfig.iconLibrary];
-    if (!library) return null;
-
-    const IconComponent = library[mergedConfig.icon];
-    return IconComponent || null;
-  };
-
-  // Render icon
-  const renderIcon = () => {
-    const IconComponent = getIconComponent();
-    if (!IconComponent) return null;
-
-    return (
-      <IconComponent
-        className={`
-          ${mergedConfig.iconSize}
-          ${mergedConfig.iconColor}
-          ${mergedConfig.darkIconColor}
-          shrink-0
-        `}
-      />
-    );
-  };
-
-  // Render badge
-  const renderBadge = () => {
-    if (!mergedConfig.badge) return null;
-
-    const badgeVariants = {
-      primary: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-      success: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-      warning: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
-      danger: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
-      info: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300',
-      default: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
-    };
-
-    return (
-      <span className={`
-        px-2 py-0.5 text-xs rounded-full
-        ${badgeVariants[mergedConfig.badgeVariant] || badgeVariants.default}
-      `}>
-        {mergedConfig.badge}
-      </span>
-    );
-  };
-
-  // Render actions
-  const renderActions = () => {
-    if (!mergedConfig.actions) return null;
-
-    return (
-      <div className="flex items-center gap-2 ml-auto">
-        {mergedConfig.actions}
-      </div>
-    );
-  };
-
-  // Build header classes
-  const headerClasses = useMemo(() => {
-    const classes = [
-      'flex items-start',
-      mergedConfig.padding,
-      mergedConfig.margin,
-      mergedConfig.gap,
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.darkBorderColor,
-      mergedConfig.rounded,
-      mergedConfig.clickable ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800' : '',
-      mergedConfig.className
-    ];
-
-    // Add gradient if specified
-    if (mergedConfig.gradient) {
-      classes.push(`bg-gradient-${mergedConfig.gradientDirection || 'to-r'} ${mergedConfig.gradient}`);
-      if (mergedConfig.darkGradient) {
-        classes.push(mergedConfig.darkGradient);
-      }
-    }
-
-    // Add divider
-    if (mergedConfig.divider) {
-      classes.push('border-b border-gray-200 dark:border-gray-700');
-    }
-
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
-
-  // Content wrapper
-  const content = (
-    <div className="flex items-start w-full">
-      {/* Left icon */}
-      {mergedConfig.iconPosition === 'left' && renderIcon()}
-
-      {/* Title and subtitle */}
-      <div className="flex-1 min-w-0">
-        {mergedConfig.title && (
-          <div className={`
-            ${mergedConfig.titleSize}
-            ${mergedConfig.titleWeight}
-            ${mergedConfig.titleColor}
-            ${mergedConfig.darkTitleColor}
-          `}>
-            {mergedConfig.title}
-          </div>
-        )}
-        {mergedConfig.subtitle && (
-          <div className={`
-            ${mergedConfig.subtitleSize}
-            ${mergedConfig.subtitleWeight}
-            ${mergedConfig.subtitleColor}
-            ${mergedConfig.darkSubtitleColor}
-          `}>
-            {mergedConfig.subtitle}
-          </div>
-        )}
-      </div>
-
-      {/* Right icon or badge */}
-      {mergedConfig.iconPosition === 'right' && renderIcon()}
-      {mergedConfig.badgePosition === 'right' && renderBadge()}
-
-      {/* Actions */}
-      {renderActions()}
-    </div>
+  const IconComponent = useMemo(
+    () => getIconComponent(icon, iconLibrary),
+    [icon, iconLibrary]
   );
 
-  // Render header
+  const headerClasses = clsx(
+    'flex items-start gap-2',
+    classes.header,
+    classes.headerDark,
+    className
+  );
+
+  const titleClasses = clsx('font-semibold', classes.title);
+  const subtitleClasses = clsx('text-sm text-gray-500', classes.subtitle);
+  const iconClasses = clsx('shrink-0', classes.icon, iconPosition === 'left' ? classes.iconLeft : classes.iconRight);
+
+  const badgeClasses = clsx(
+    'px-2 py-0.5 text-xs rounded-full',
+    badgeVariants[badgeVariant] || badgeVariants.default,
+    classes.badge
+  );
+
   return (
-    <div
-      className={headerClasses}
-      style={mergedConfig.style}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={mergedConfig.onClick}
-      aria-label={mergedConfig.ariaLabel}
-    >
-      {content}
+    <div ref={ref} className={headerClasses} style={style} {...props}>
+      {iconPosition === 'left' && IconComponent && (
+        <IconComponent className={iconClasses} />
+      )}
+
+      <div className="flex-1 min-w-0">
+        {title && <div className={titleClasses}>{title}</div>}
+        {subtitle && <div className={subtitleClasses}>{subtitle}</div>}
+      </div>
+
+      {badge && <span className={badgeClasses}>{badge}</span>}
+
+      {iconPosition === 'right' && IconComponent && (
+        <IconComponent className={iconClasses} />
+      )}
+
+      {actions && (
+        <div className={clsx('flex items-center gap-2 ml-auto', classes.actions)}>
+          {actions}
+        </div>
+      )}
+
       {children}
     </div>
   );
-};
+});
+
+CMS_CardHeader.displayName = 'CMS_CardHeader';
 
 // ============================================================================
 // CMS_CardBody Component
 // ============================================================================
 
-/**
- * CMS_CardBody - Body section of the card
- */
-const CMS_CardBody = ({
-  config = {},
-  children
-}) => {
-  const defaultBodyConfig = {
-    // Content
-    text: null,
+const CMS_CardBody = forwardRef(({
+  text,
+  media,
+  mediaPosition = 'top',
+  classes = {},
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
 
-    // Styling
-    variant: 'default',              // 'default', 'bordered', 'gradient'
-    padding: 'p-4',
-    bgColor: null,
-    darkBgColor: null,
-    gradient: null,
-    darkGradient: null,
-    border: null,
-    borderColor: null,
-    darkBorderColor: null,
+  const bodyClasses = clsx(
+    'flex-1',
+    classes.body,
+    classes.bodyDark,
+    className
+  );
 
-    // Typography
-    textSize: 'text-base',
-    textWeight: 'font-normal',
-    textColor: 'text-gray-700',
-    darkTextColor: 'dark:text-gray-300',
+  const mediaClasses = clsx(
+    classes.media,
+    mediaPosition === 'top' && classes.mediaTop,
+    mediaPosition === 'bottom' && classes.mediaBottom,
+    mediaPosition === 'cover' && classes.mediaCover
+  );
 
-    // Media
-    media: null,                      // Image or video component
-    mediaPosition: 'top',              // 'top', 'bottom', 'left', 'right'
-    mediaWidth: 'full',                // 'full', 'auto', or specific width
-
-    // Spacing
-    margin: 'm-0',
-
-    // Interactive
-    clickable: false,
-    onClick: null,
-
-    // Accessibility
-    ariaLabel: null,
-
-    // Additional
-    className: '',
-    style: {}
-  };
-
-  const mergedConfig = useMemo(() => ({
-    ...defaultBodyConfig,
-    ...config
-  }), [config]);
-
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Build body classes
-  const bodyClasses = useMemo(() => {
-    const classes = [
-      mergedConfig.padding,
-      mergedConfig.margin,
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.darkBorderColor,
-      mergedConfig.textSize,
-      mergedConfig.textWeight,
-      mergedConfig.textColor,
-      mergedConfig.darkTextColor,
-      mergedConfig.clickable ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800' : '',
-      mergedConfig.className
-    ];
-
-    // Add gradient if specified
-    if (mergedConfig.gradient) {
-      classes.push(`bg-gradient-${mergedConfig.gradientDirection || 'to-r'} ${mergedConfig.gradient}`);
-      if (mergedConfig.darkGradient) {
-        classes.push(mergedConfig.darkGradient);
-      }
-    }
-
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
-
-  // Render media
   const renderMedia = () => {
-    if (!mergedConfig.media) return null;
+    if (!media) return null;
 
-    const mediaClasses = {
-      top: 'mb-4',
-      bottom: 'mt-4',
-      left: 'mr-4 float-left',
-      right: 'ml-4 float-right'
-    };
-
-    return (
-      <div className={mediaClasses[mergedConfig.mediaPosition]}>
-        {mergedConfig.media}
-      </div>
+    const mediaWrapperClasses = clsx(
+      mediaPosition === 'top' && 'mb-4',
+      mediaPosition === 'bottom' && 'mt-4',
+      mediaPosition === 'left' && 'mr-4 float-left',
+      mediaPosition === 'right' && 'ml-4 float-right',
+      mediaClasses
     );
+
+    return <div className={mediaWrapperClasses}>{media}</div>;
   };
 
   return (
-    <div
-      className={bodyClasses}
-      style={mergedConfig.style}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={mergedConfig.onClick}
-      aria-label={mergedConfig.ariaLabel}
-    >
-      {mergedConfig.mediaPosition === 'top' && renderMedia()}
-      {mergedConfig.mediaPosition === 'left' && renderMedia()}
+    <div ref={ref} className={bodyClasses} style={style} {...props}>
+      {(mediaPosition === 'top' || mediaPosition === 'left') && renderMedia()}
 
       <div className="flex-1">
-        {mergedConfig.text}
+        {text}
         {children}
       </div>
 
-      {mergedConfig.mediaPosition === 'right' && renderMedia()}
-      {mergedConfig.mediaPosition === 'bottom' && renderMedia()}
+      {(mediaPosition === 'bottom' || mediaPosition === 'right') && renderMedia()}
     </div>
   );
-};
+});
+
+CMS_CardBody.displayName = 'CMS_CardBody';
 
 // ============================================================================
 // CMS_CardFooter Component
 // ============================================================================
 
-/**
- * CMS_CardFooter - Footer section of the card
- */
-const CMS_CardFooter = ({
-  config = {},
-  children
-}) => {
-  const defaultFooterConfig = {
-    // Content
-    text: null,
-    icon: null,
-    iconLibrary: 'fa',
-    iconPosition: 'left',
+const CMS_CardFooter = forwardRef(({
+  text,
+  icon,
+  iconLibrary = 'fa',
+  iconPosition = 'left',
+  actions,
+  classes = {},
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
 
-    // Actions
-    actions: null, // Array of action buttons
+  const IconComponent = useMemo(
+    () => getIconComponent(icon, iconLibrary),
+    [icon, iconLibrary]
+  );
 
-    // Styling
-    variant: 'default',              // 'default', 'bordered', 'gradient'
-    divider: true,                    // Show divider before footer
-    padding: 'p-4',
-    bgColor: null,
-    darkBgColor: null,
-    gradient: null,
-    darkGradient: null,
-    border: null,
-    borderColor: null,
-    darkBorderColor: null,
-    rounded: 'rounded-b-lg',
+  const footerClasses = clsx(
+    'flex items-center gap-2 border-t border-gray-200 dark:border-gray-700',
+    classes.footer,
+    classes.footerDark,
+    className
+  );
 
-    // Typography
-    textSize: 'text-sm',
-    textWeight: 'font-normal',
-    textColor: 'text-gray-600',
-    darkTextColor: 'dark:text-gray-400',
-
-    // Spacing
-    margin: 'm-0',
-    gap: 'gap-2',
-
-    // Interactive
-    clickable: false,
-    onClick: null,
-
-    // Accessibility
-    ariaLabel: null,
-
-    // Additional
-    className: '',
-    style: {}
-  };
-
-  const mergedConfig = useMemo(() => ({
-    ...defaultFooterConfig,
-    ...config
-  }), [config]);
-
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Get icon component
-  const getIconComponent = () => {
-    if (!mergedConfig.icon) return null;
-
-    const library = iconLibraries[mergedConfig.iconLibrary];
-    if (!library) return null;
-
-    const IconComponent = library[mergedConfig.icon];
-    return IconComponent || null;
-  };
-
-  // Render icon
-  const renderIcon = () => {
-    const IconComponent = getIconComponent();
-    if (!IconComponent) return null;
-
-    return <IconComponent className="w-4 h-4" />;
-  };
-
-  // Render actions
-  const renderActions = () => {
-    if (!mergedConfig.actions) return null;
-
-    return (
-      <div className="flex items-center gap-2 ml-auto">
-        {mergedConfig.actions}
-      </div>
-    );
-  };
-
-  // Build footer classes
-  const footerClasses = useMemo(() => {
-    const classes = [
-      'flex items-center',
-      mergedConfig.padding,
-      mergedConfig.margin,
-      mergedConfig.gap,
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.darkBorderColor,
-      mergedConfig.rounded,
-      mergedConfig.textSize,
-      mergedConfig.textWeight,
-      mergedConfig.textColor,
-      mergedConfig.darkTextColor,
-      mergedConfig.clickable ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800' : '',
-      mergedConfig.className
-    ];
-
-    // Add gradient if specified
-    if (mergedConfig.gradient) {
-      classes.push(`bg-gradient-${mergedConfig.gradientDirection || 'to-r'} ${mergedConfig.gradient}`);
-      if (mergedConfig.darkGradient) {
-        classes.push(mergedConfig.darkGradient);
-      }
-    }
-
-    // Add divider
-    if (mergedConfig.divider) {
-      classes.push('border-t border-gray-200 dark:border-gray-700');
-    }
-
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
+  const iconClasses = clsx('w-4 h-4', classes.icon, iconPosition === 'left' ? classes.iconLeft : classes.iconRight);
 
   return (
-    <div
-      className={footerClasses}
-      style={mergedConfig.style}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={mergedConfig.onClick}
-      aria-label={mergedConfig.ariaLabel}
-    >
-      {mergedConfig.iconPosition === 'left' && renderIcon()}
-      <span className="flex-1">{mergedConfig.text}</span>
-      {mergedConfig.iconPosition === 'right' && renderIcon()}
-      {renderActions()}
+    <div ref={ref} className={footerClasses} style={style} {...props}>
+      {iconPosition === 'left' && IconComponent && (
+        <IconComponent className={iconClasses} />
+      )}
+
+      <span className="flex-1 text-sm text-gray-600 dark:text-gray-400">{text}</span>
+
+      {iconPosition === 'right' && IconComponent && (
+        <IconComponent className={iconClasses} />
+      )}
+
+      {actions && (
+        <div className={clsx('flex items-center gap-2 ml-auto', classes.actions)}>
+          {actions}
+        </div>
+      )}
+
       {children}
     </div>
   );
-};
+});
+
+CMS_CardFooter.displayName = 'CMS_CardFooter';
 
 // ============================================================================
 // CMS_Card Main Component
 // ============================================================================
 
-/**
- * CMS_Card - Main card container component
- */
-const CMS_Card = ({
-  config = {},
+const CMS_Card = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Card',
+
+  // Main styling - flat class structure
+  classes = defaultCardClasses,
+
+  // Layout
+  layout = 'vertical',
+
+  // Variant
+  variant = 'default',
+
+  // Size
+  size = 'md',
+
+  // Dimensions
+  width,
+  height,
+  maxWidth,
+  minWidth,
+  maxHeight,
+  minHeight,
+
+  // Interactive
+  clickable = false,
+  href,
+  target,
+  disabled = false,
+  loading = false,
+
+  // Badge
+  badge,
+  badgeVariant = 'primary',
+  badgePosition = 'top-right',
+
+  // Media
+  media,
+  mediaPosition = 'top',
+
+  // Overlay
+  overlay,
+  overlayHover = false,
+
+  // Sections
   header,
   body,
   footer,
-  children
-}) => {
-  const defaultCardConfig = {
-    // Layout
-    layout: 'vertical',               // 'vertical', 'horizontal'
 
-    // Styling
-    variant: 'default',                // 'default', 'bordered', 'elevated', 'gradient', 'outline', 'ghost'
-    bgColor: 'bg-white',
-    darkBgColor: 'dark:bg-gray-800',
-    border: 'border',
-    borderColor: 'border-gray-200',
-    darkBorderColor: 'dark:border-gray-700',
-    rounded: 'rounded-lg',
-    shadow: 'shadow',
-    hoverShadow: 'hover:shadow-lg',
-    hoverScale: null,
+  // Accessibility
+  ariaLabel,
+  role = 'article',
 
-    // Gradient
-    gradient: null,
-    darkGradient: null,
-    gradientDirection: 'to-r',
+  // Events
+  onClick,
+  onHover,
+  onLeave,
 
-    // Dimensions
-    width: null,                       // 'full', 'auto', or specific width
-    height: null,                       // 'full', 'auto', or specific height
-    maxWidth: null,
-    minWidth: null,
-    maxHeight: null,
-    minHeight: null,
-
-    // Spacing
-    padding: 'p-0',                    // Overall card padding (sections have their own padding)
-    margin: 'm-0',
-    gap: 'gap-0',                      // Gap between sections
-
-    // Interactive
-    clickable: false,
-    href: null,
-    target: null,
-    onClick: null,
-    disabled: false,
-    loading: false,
-
-    // Hover effects
-    hover: {
-      scale: null,
-      shadow: null,
-      borderColor: null,
-      bgColor: null,
-      darkBgColor: null,
-      transition: 'transition-all duration-300'
-    },
-
-    // Overlay
-    overlay: null,
-    overlayHover: false,
-    overlayOpacity: '50',
-
-    // Badge (card-level badge)
-    badge: null,
-    badgeVariant: 'primary',
-    badgePosition: 'top-right',        // 'top-left', 'top-right', 'bottom-left', 'bottom-right'
-
-    // Image/Media (full card image)
-    media: null,
-    mediaPosition: 'top',              // 'top', 'bottom', 'cover'
-
-    // Accessibility
-    ariaLabel: null,
-    role: 'article',
-
-    // Z-Layer
-    zLayer: 'auto',
-
-    // Additional
-    className: '',
-    style: {}
-  };
-
-  const mergedConfig = useMemo(() => ({
-    ...defaultCardConfig,
-    ...config
-  }), [config]);
+  // Extra
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  // Badge positions
-  const badgePositions = {
-    'top-left': 'top-2 left-2',
-    'top-right': 'top-2 right-2',
-    'bottom-left': 'bottom-2 left-2',
-    'bottom-right': 'bottom-2 right-2'
-  };
+  // Get size preset
+  const sizePreset = useMemo(() => {
+    return sizePresets[size] || sizePresets.md;
+  }, [size]);
 
-  // Build card classes
-  const cardClasses = useMemo(() => {
-    const classes = [
+  // Get variant preset
+  const variantPreset = useMemo(() => {
+    return variantPresets[variant] || variantPresets.default;
+  }, [variant]);
+
+  // Build container classes
+  const containerClasses = useMemo(() => {
+    return clsx(
+      // Base
       'relative overflow-hidden',
-      mergedConfig.layout === 'horizontal' ? 'flex' : 'flex-col',
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.darkBorderColor,
-      mergedConfig.rounded,
-      mergedConfig.shadow,
-      mergedConfig.padding,
-      mergedConfig.margin,
-      mergedConfig.gap,
-      mergedConfig.clickable || mergedConfig.href ? 'cursor-pointer' : '',
-      mergedConfig.disabled ? 'opacity-50 cursor-not-allowed' : '',
-      mergedConfig.className
-    ];
+      layout === 'vertical' ? 'flex flex-col' : 'flex',
 
-    // Add dimensions
-    if (mergedConfig.width === 'full') classes.push('w-full');
-    else if (mergedConfig.width) classes.push(`w-${mergedConfig.width}`);
+      // Size preset
+      sizePreset.container,
 
-    if (mergedConfig.height === 'full') classes.push('h-full');
-    else if (mergedConfig.height) classes.push(`h-${mergedConfig.height}`);
+      // Variant preset
+      variantPreset.container,
 
-    if (mergedConfig.maxWidth) classes.push(`max-w-${mergedConfig.maxWidth}`);
-    if (mergedConfig.minWidth) classes.push(`min-w-${mergedConfig.minWidth}`);
-    if (mergedConfig.maxHeight) classes.push(`max-h-${mergedConfig.maxHeight}`);
-    if (mergedConfig.minHeight) classes.push(`min-h-${mergedConfig.minHeight}`);
+      // Dimensions
+      width === 'full' && 'w-full',
+      width && width !== 'full' && `w-${width}`,
+      height === 'full' && 'h-full',
+      height && height !== 'full' && `h-${height}`,
+      maxWidth && `max-w-${maxWidth}`,
+      minWidth && `min-w-${minWidth}`,
+      maxHeight && `max-h-${maxHeight}`,
+      minHeight && `min-h-${minHeight}`,
 
-    // Add gradient
-    if (mergedConfig.gradient) {
-      classes.push(`bg-gradient-${mergedConfig.gradientDirection} ${mergedConfig.gradient}`);
-      if (mergedConfig.darkGradient) {
-        classes.push(mergedConfig.darkGradient);
-      }
-    }
+      // Interactive
+      (clickable || href) && !disabled && 'cursor-pointer',
+      disabled && 'opacity-50 cursor-not-allowed',
 
-    // Add hover effects
-    if (mergedConfig.hover) {
-      if (mergedConfig.hover.scale) classes.push(`hover:${mergedConfig.hover.scale}`);
-      if (mergedConfig.hover.shadow) classes.push(`hover:${mergedConfig.hover.shadow}`);
-      if (mergedConfig.hover.borderColor) classes.push(`hover:${mergedConfig.hover.borderColor}`);
-      if (mergedConfig.hover.bgColor) classes.push(`hover:${mergedConfig.hover.bgColor}`);
-      if (mergedConfig.hover.darkBgColor) classes.push(`hover:${mergedConfig.hover.darkBgColor}`);
-      if (mergedConfig.hover.transition) classes.push(mergedConfig.hover.transition);
-    }
+      // Hover effects
+      variantPreset.containerHover,
+      isHovered && classes.containerHover,
 
-    // Add z-index
-    if (mergedConfig.zLayer !== 'auto') {
-      classes.push(`z-${mergedConfig.zLayer}`);
-    }
+      // Dark mode
+      variantPreset.containerDark,
+      classes.containerDark,
 
-    return classes.filter(Boolean).join(' ');
-  }, [mergedConfig]);
+      // Custom classes
+      classes.container,
 
-  // Render badge
-  const renderBadge = () => {
-    if (!mergedConfig.badge) return null;
+      // Responsive
+      classes.sm,
+      classes.md,
+      classes.lg,
 
-    const badgeVariants = {
-      primary: 'bg-blue-500 text-white',
-      success: 'bg-green-500 text-white',
-      warning: 'bg-yellow-500 text-white',
-      danger: 'bg-red-500 text-white',
-      info: 'bg-cyan-500 text-white',
-      default: 'bg-gray-500 text-white'
-    };
-
-    return (
-      <div className={`
-        absolute z-10
-        ${badgePositions[mergedConfig.badgePosition] || 'top-2 right-2'}
-        px-2 py-1 text-xs font-semibold rounded-full
-        ${badgeVariants[mergedConfig.badgeVariant] || badgeVariants.default}
-      `}>
-        {mergedConfig.badge}
-      </div>
+      // Final className
+      className
     );
+  }, [layout, sizePreset, variantPreset, width, height, maxWidth, minWidth, maxHeight, minHeight, clickable, href, disabled, classes, isHovered, className]);
+
+  // Build badge classes
+  const badgeClasses = useMemo(() => {
+    return clsx(
+      'absolute z-10 px-2 py-1 text-xs font-semibold rounded-full',
+      badgePositions[badgePosition],
+      badgeVariants[badgeVariant] || badgeVariants.default,
+      classes.badge,
+      badgePosition === 'top-left' && classes.badgeTopLeft,
+      badgePosition === 'top-right' && classes.badgeTopRight,
+      badgePosition === 'bottom-left' && classes.badgeBottomLeft,
+      badgePosition === 'bottom-right' && classes.badgeBottomRight
+    );
+  }, [badgePosition, badgeVariant, classes]);
+
+  // Build overlay classes
+  const overlayClasses = useMemo(() => {
+    return clsx(
+      'absolute inset-0 z-20 transition-opacity duration-300',
+      overlay,
+      overlayHover && !isHovered ? 'opacity-0' : 'opacity-100',
+      classes.overlay,
+      isHovered && classes.overlayHover
+    );
+  }, [overlay, overlayHover, isHovered, classes]);
+
+  // Build media classes
+  const mediaClasses = useMemo(() => {
+    return clsx(
+      mediaPosition === 'cover' ? 'absolute inset-0 w-full h-full object-cover' : 'w-full',
+      classes.media,
+      mediaPosition === 'top' && classes.mediaTop,
+      mediaPosition === 'bottom' && classes.mediaBottom,
+      mediaPosition === 'cover' && classes.mediaCover
+    );
+  }, [mediaPosition, classes]);
+
+  // Event handlers
+  const handleMouseEnter = (e) => {
+    setIsHovered(true);
+    onHover?.(e);
   };
 
-  // Render overlay
-  const renderOverlay = () => {
-    if (!mergedConfig.overlay) return null;
-
-    const overlayClass = mergedConfig.overlayHover && !isHovered
-      ? 'opacity-0'
-      : `opacity-${mergedConfig.overlayOpacity}`;
-
-    return (
-      <div
-        className={`
-          absolute inset-0 z-20
-          ${mergedConfig.overlay}
-          transition-opacity duration-300
-          ${overlayClass}
-        `}
-      />
-    );
+  const handleMouseLeave = (e) => {
+    setIsHovered(false);
+    onLeave?.(e);
   };
 
-  // Render media (full card image)
-  const renderMedia = () => {
-    if (!mergedConfig.media) return null;
-
-    const mediaClasses = {
-      top: 'w-full',
-      bottom: 'w-full',
-      cover: 'absolute inset-0 w-full h-full object-cover'
-    };
-
-    const positionClasses = {
-      top: '',
-      bottom: 'mt-auto',
-      cover: ''
-    };
-
-    return (
-      <div className={`
-        ${mediaClasses[mergedConfig.mediaPosition]}
-        ${positionClasses[mergedConfig.mediaPosition]}
-        overflow-hidden
-      `}>
-        {mergedConfig.media}
-      </div>
-    );
-  };
-
-  // Handle click
   const handleClick = (e) => {
-    if (mergedConfig.disabled || mergedConfig.loading) return;
+    if (disabled || loading) return;
+    onClick?.(e);
+  };
 
-    if (mergedConfig.onClick) {
-      mergedConfig.onClick(e);
-    }
-
-    if (mergedConfig.href && !e.defaultPrevented) {
-      window.location.href = mergedConfig.href;
-    }
+  // Common props
+  const commonProps = {
+    ref,
+    className: containerClasses,
+    style,
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    onClick: handleClick,
+    'data-uid': uid,
+    'data-component': component,
+    'data-hovered': isHovered ? 'true' : undefined,
+    'aria-label': ariaLabel,
+    'role': role,
+    'aria-disabled': disabled,
+    ...props,
   };
 
   // Card content
   const cardContent = (
     <>
       {/* Media at top */}
-      {mergedConfig.mediaPosition === 'top' && renderMedia()}
+      {media && mediaPosition === 'top' && (
+        <div className={mediaClasses}>{media}</div>
+      )}
 
       {/* Header */}
       {header && (
-        <CMS_CardHeader config={typeof header === 'object' ? header : {}}>
-          {typeof header !== 'object' && header}
-        </CMS_CardHeader>
+        typeof header === 'object' && header !== null && 'title' in header ? (
+          <CMS_CardHeader
+            {...header}
+            classes={classes}
+            sizePreset={sizePreset}
+          />
+        ) : (
+          <CMS_CardHeader
+            title={header}
+            classes={classes}
+            sizePreset={sizePreset}
+          />
+        )
       )}
 
       {/* Body */}
       {body && (
-        <CMS_CardBody config={typeof body === 'object' ? body : {}}>
-          {typeof body !== 'object' && body}
-        </CMS_CardBody>
+        typeof body === 'object' && body !== null && 'text' in body ? (
+          <CMS_CardBody
+            {...body}
+            classes={classes}
+            sizePreset={sizePreset}
+          />
+        ) : (
+          <CMS_CardBody
+            text={body}
+            classes={classes}
+            sizePreset={sizePreset}
+          />
+        )
       )}
 
       {/* Footer */}
       {footer && (
-        <CMS_CardFooter config={typeof footer === 'object' ? footer : {}}>
-          {typeof footer !== 'object' && footer}
-        </CMS_CardFooter>
+        typeof footer === 'object' && footer !== null && 'text' in footer ? (
+          <CMS_CardFooter
+            {...footer}
+            classes={classes}
+            sizePreset={sizePreset}
+          />
+        ) : (
+          <CMS_CardFooter
+            text={footer}
+            classes={classes}
+            sizePreset={sizePreset}
+          />
+        )
       )}
 
-      {/* Children (additional content) */}
+      {/* Children */}
       {children}
 
       {/* Media at bottom */}
-      {mergedConfig.mediaPosition === 'bottom' && renderMedia()}
-
-      {/* Overlay */}
-      {renderOverlay()}
+      {media && mediaPosition === 'bottom' && (
+        <div className={mediaClasses}>{media}</div>
+      )}
 
       {/* Badge */}
-      {renderBadge()}
+      {badge && <div className={badgeClasses}>{badge}</div>}
+
+      {/* Overlay */}
+      {overlay && <div className={overlayClasses} />}
     </>
   );
 
-  // Render as link or div
-  if (mergedConfig.href) {
+  // Render as link if href provided
+  if (href && !disabled) {
     return (
-      <a
-        href={mergedConfig.disabled ? undefined : mergedConfig.href}
-        target={mergedConfig.target}
-        className={cardClasses}
-        style={mergedConfig.style}
-        onClick={handleClick}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        aria-label={mergedConfig.ariaLabel}
-        role={mergedConfig.role}
-        aria-disabled={mergedConfig.disabled}
-      >
+      <a href={href} target={target} {...commonProps}>
         {cardContent}
       </a>
     );
   }
 
+  // Render as div
   return (
-    <div
-      className={cardClasses}
-      style={mergedConfig.style}
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      aria-label={mergedConfig.ariaLabel}
-      role={mergedConfig.role}
-    >
+    <div {...commonProps}>
       {cardContent}
     </div>
   );
-};
+});
 
-// Export all components
+CMS_Card.displayName = 'CMS_Card';
+CMS_Card.metadata = componentMetadata;
+CMS_Card.defaultProps = defaultCardProps;
+
+// ============================================================================
+// Pre-configured Card Components
+// ============================================================================
+
+export const CMS_ProductCard = forwardRef((props, ref) => (
+  <CMS_Card
+    ref={ref}
+    variant="elevated"
+    classes={{
+      container: 'hover:shadow-xl transition-shadow',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_ProductCard.displayName = 'CMS_ProductCard';
+
+export const CMS_ProfileCard = forwardRef((props, ref) => (
+  <CMS_Card
+    ref={ref}
+    variant="bordered"
+    classes={{
+      header: 'text-center border-b',
+      body: 'text-center',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_ProfileCard.displayName = 'CMS_ProfileCard';
+
+export const CMS_ArticleCard = forwardRef((props, ref) => (
+  <CMS_Card
+    ref={ref}
+    variant="default"
+    classes={{
+      container: 'overflow-hidden',
+      media: 'h-48 object-cover',
+      ...props.classes
+    }}
+    {...props}
+  />
+));
+CMS_ArticleCard.displayName = 'CMS_ArticleCard';
+
+// ============================================================================
+// Export
+// ============================================================================
+
 export {
-  CMS_Card,
   CMS_CardHeader,
   CMS_CardBody,
   CMS_CardFooter

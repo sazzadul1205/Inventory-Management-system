@@ -3,7 +3,6 @@ import React, { Suspense, lazy } from "react";
 // Layout
 import FrontEnd_Layout from "../Layout/FrontEnd_Layout";
 import HeroSectionSkeleton from "./HeroSection/HeroSectionSkeleton";
-import CustomSectionBuilder from "../../backend/CustomSectionBuilder/CustomSectionBuilder";
 
 // Lazy Hero Sections
 const HeroSection1 = lazy(() => import("./HeroSection/HeroSection1"));
@@ -14,159 +13,128 @@ const HeroSectionCustom = lazy(() => import("./HeroSection/HeroSectionCustom"));
 // Page configuration - Update this object to change which hero is shown
 const PAGE_CONFIG = {
   heroVariant: "custom", // Change this to: "variant1", "variant2", "variant3", or "custom"
-  heroConfig: {
+  "heroConfig": {
     "uid": "hero-section-001",
     "component": "CMS_Section",
-    "config": {
-      "background": {
-        "gradient": "bg-gradient-to-br from-indigo-50 via-white to-blue-50",
-        "darkGradient": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
-        "fullWidth": true
-      },
-      "dimensions": {
-        "minHeight": "screen"
-      },
-      "spacing": {
-        "padding": "py-20 lg:py-28"
-      }
+    "classes": {
+      "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-indigo-50 via-white to-blue-50",
+      "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+      "sm": "sm:py-12",
+      "md": "md:py-16",
+      "lg": "lg:py-20",
+      "xl": "xl:py-24",
+      "2xl": "2xl:py-28"
     },
+    "fullWidth": true,
     "children": [
       {
         "uid": "hero-grid-002",
         "component": "CMS_Grid",
-        "config": {
-          "grid": {
-            "cols": 1,
-            "colsDesktop": 2,
-            "gap": 16
-          },
-          "spacing": {
-            "padding": "px-6"
-          }
+        "classes": {
+          "base": "grid gap-4 px-4",
+          "sm": "sm:gap-6 sm:px-6",
+          "md": "md:grid-cols-2 md:gap-8 md:px-8",
+          "lg": "lg:gap-12 lg:px-8",
+          "xl": "xl:gap-16"
         },
         "children": [
           {
             "uid": "hero-left-flex-003",
             "component": "CMS_Flex",
-            "config": {
-              "flex": {
-                "direction": "col",
-                "align": "start"
-              },
-              "spacing": {
-                "gap": 6
-              }
+            "classes": {
+              "base": "flex-col items-start gap-4",
+              "sm": "sm:gap-5",
+              "md": "md:gap-6",
+              "lg": "lg:gap-7",
+              "xl": "xl:gap-8"
             },
             "children": [
               {
                 "uid": "hero-badge-004",
                 "component": "CMS_Badge",
-                "config": {
-                  "text": "SMART INVENTORY PLATFORM",
-                  "size": "sm",
-                  "shape": "pill",
-                  "padding": "px-3 py-4",
-                  "color": "text-indigo-700",
-                  "bgColor": "bg-indigo-100",
-                  "darkColor": "dark:text-indigo-200",
-                  "darkBgColor": "dark:bg-indigo-900",
-                  "rounded": "rounded-full"
-                }
+                "classes": {
+                  "base": "bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium",
+                  "dark": "dark:bg-indigo-900 dark:text-indigo-200",
+                  "sm": "sm:text-sm sm:px-4 sm:py-2",
+                  "md": "md:text-base md:px-5 md:py-2.5",
+                },
+                "text": "SMART INVENTORY PLATFORM"
               },
               {
                 "uid": "hero-title-005",
                 "component": "CMS_Title",
-                "config": {
-                  "text": "Manage Inventory, Warehouses & Logistics in One Powerful Platform",
-                  "fontSize": "text-4xl md:text-5xl lg:text-6xl",
-                  "color": "text-gray-900",
-                  "darkColor": "dark:text-white",
-                  "alignment": "left",
-                  "highlightParts": [
-                    {
-                      "start": 48,
-                      "end": 65,
-                      "highlightGradient": "from-blue-600 to-purple-600",
-                      "darkHighlightGradient": "dark:from-blue-400 dark:to-purple-400",
-                      "highlightGradientDirection": "to-r"
-                    }
-                  ]
-                }
+                "level": "h1",
+                "text": "Manage Inventory, Warehouses & Logistics in One Powerful Platform",
+                "alignment": "left",
+                "classes": {
+                  "base": "text-gray-900 font-bold tracking-tight",
+                  "dark": "dark:text-white",
+                  "sm": "sm:text-4xl sm:leading-tight",
+                  "md": "md:text-5xl md:leading-tight",
+                },
+                "highlightClasses": [
+                  {
+                    "start": 48,
+                    "end": 65,
+                    "class": "bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400"
+                  }
+                ]
               },
               {
                 "uid": "hero-description-006",
                 "component": "CMS_Text",
-                "config": {
-                  "text": "Sazzad Inventory & Logistics helps businesses track products, control warehouses, monitor shipments, and automate supply chains with real-time analytics.",
-                  "fontSize": "text-lg",
-                  "color": "text-gray-600",
-                  "darkColor": "dark:text-gray-300",
-                  "maxWidth": "max-w-xl"
+                "tag": "p",
+                "text": "Sazzad Inventory & Logistics helps businesses track products, control warehouses, monitor shipments, and automate supply chains with real-time analytics.",
+                "classes": {
+                  "base": "text-gray-600 max-w-xl",
+                  "dark": "dark:text-gray-300",
+                  "sm": "sm:text-base sm:leading-relaxed",
+                  "md": "md:text-lg md:leading-relaxed",
+                  "lg": "lg:text-xl lg:leading-relaxed"
                 }
               },
               {
                 "uid": "hero-buttons-flex-007",
                 "component": "CMS_Flex",
-                "config": {
-                  "flex": {
-                    "direction": "row",
-                    "align": "center"
-                  },
-                  "grid": {
-                    "gap": 4
-                  },
-                  "spacing": {
-                    "padding": "px-0"
-                  }
+                "classes": {
+                  "base": "flex-col items-stretch w-full gap-3",
+                  "sm": "sm:flex-row sm:items-center sm:w-auto sm:gap-4",
+                  "md": "md:gap-5",
+                  "lg": "lg:gap-6"
                 },
                 "children": [
                   {
                     "uid": "primary-button-008",
                     "component": "CMS_Button",
-                    "config": {
-                      "text": "Start Managing Inventory",
-                      "size": "lg",
-                      "icon": "FaArrowRight",
-                      "iconLibrary": "fa",
-                      "iconPosition": "right",
-                      "gradient": "from-indigo-600 to-blue-600",
-                      "gradientDirection": "to-r",
-                      "darkGradient": "dark:from-indigo-500 dark:to-blue-500",
-                      "color": "text-white",
-                      "rounded": "rounded-full",
-                      "hover": {
-                        "gradient": "from-indigo-700 to-blue-700",
-                        "darkGradient": "dark:from-indigo-600 dark:to-blue-600",
-                        "scale": "scale-105",
-                        "shadow": "shadow-xl"
-                      },
-                      "href": "/inventory"
-                    }
+                    "text": "Start Managing Inventory",
+                    "size": "lg",
+                    "icon": "FaArrowRight",
+                    "iconLibrary": "fa",
+                    "iconPosition": "right",
+                    "classes": {
+                      "base": "bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium text-center",
+                      "hover": "hover:from-indigo-700 hover:to-blue-700 hover:scale-105 hover:shadow-xl",
+                      "dark": "dark:from-indigo-500 dark:to-blue-500 dark:hover:from-indigo-600 dark:hover:to-blue-600",
+                      "sm": "sm:px-6 sm:py-3 sm:text-sm",
+                      "md": "md:px-8 md:py-4 md:text-base",
+                    },
+                    "href": "/inventory"
                   },
                   {
                     "uid": "secondary-button-009",
                     "component": "CMS_Button",
-                    "config": {
-                      "text": "Track Shipments",
-                      "size": "lg",
-                      "icon": "FaTruck",
-                      "iconLibrary": "fa",
-                      "bgColor": "bg-transparent",
-                      "darkBgColor": "dark:bg-transparent",
-                      "border": "border-2 border-blue-600",
-                      "darkBorder": "dark:border-blue-400",
-                      "color": "text-[#000000]",
-                      "rounded": "rounded-full",
-                      "hover": {
-                        "bgColor": "bg-blue-600",
-                        "darkBgColor": "dark:bg-blue-500",
-                        "color": "text-[#ffffff]",
-                        "darkColor": "text-[#ffffff]",
-                        "scale": "scale-100",
-                        "shadow": "shadow-lg"
-                      },
-                      "href": "/tracking"
-                    }
+                    "text": "Track Shipments",
+                    "size": "lg",
+                    "icon": "FaTruck",
+                    "iconLibrary": "fa",
+                    "classes": {
+                      "base": "bg-transparent border-2 border-blue-600 text-black rounded-full font-medium text-center",
+                      "hover": "hover:bg-blue-600 hover:text-white hover:shadow-lg",
+                      "dark": "dark:border-blue-400 dark:text-white dark:hover:bg-blue-500 dark:hover:text-white",
+                      "sm": "sm:px-6 sm:py-3 sm:text-sm",
+                      "md": "md:px-8 md:py-4 md:text-base",
+                    },
+                    "href": "/tracking"
                   }
                 ]
               }
@@ -175,28 +143,28 @@ const PAGE_CONFIG = {
           {
             "uid": "hero-right-flex-010",
             "component": "CMS_Flex",
-            "config": {
-              "flex": {
-                "direction": "col",
-                "align": "center"
-              }
+            "classes": {
+              "base": "flex-col items-center mt-8",
+              "sm": "sm:mt-10",
+              "md": "md:mt-0"
             },
             "children": [
               {
                 "uid": "hero-media-011",
                 "component": "CMS_Media",
-                "config": {
-                  "type": "image",
-                  "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
-                  "alt": "Warehouse dashboard",
-                  "width": "640px",
-                  "height": "420px",
-                  "objectFit": "cover",
-                  "rounded": "rounded-2xl",
-                  "shadow": "shadow-2xl",
-                  "border": "border",
-                  "borderColor": "border-gray-200",
-                  "darkBorderColor": "dark:border-gray-700"
+                "type": "image",
+                "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
+                "alt": "Warehouse dashboard",
+                "objectFit": "cover",
+                "classes": {
+                  "base": "rounded-xl shadow-xl border border-gray-200 dark:border-gray-700",
+                  "dark": "dark:border-gray-700",
+                  "sm": "sm:rounded-2xl sm:shadow-2xl",
+                  "media": "w-full h-auto object-cover",
+                  "sm:media": "sm:max-w-lg sm:mx-auto",
+                  "md:media": "md:max-w-full",
+                  "lg:media": "lg:h-[450px]",
+                  "xl:media": "xl:h-[500px]"
                 }
               }
             ]
@@ -206,46 +174,49 @@ const PAGE_CONFIG = {
       {
         "uid": "stats-grid-012",
         "component": "CMS_Grid",
-        "config": {
-          "grid": {
-            "cols": 1,
-            "colsTablet": 2,
-            "colsDesktop": 3,
-            "gap": 8
-          },
-          "spacing": {
-            "margin": ""
-          }
+        "classes": {
+          "base": "grid gap-6 px-4 mt-12",
+          "sm": "sm:grid-cols-2 sm:gap-8 sm:px-6 sm:mt-16",
+          "md": "md:grid-cols-3 md:gap-10 md:px-8 md:mt-20",
+          "lg": "lg:gap-12 lg:mt-24",
+          "xl": "xl:gap-16 xl:mt-28"
         },
         "children": [
           {
             "uid": "stats-item1-013",
             "component": "CMS_Flex",
-            "config": {
-              "flex": {
-                "direction": "col",
-                "align": "center"
-              }
+            "classes": {
+              "base": "flex-col items-center p-4",
+              "sm": "sm:p-5",
+              "md": "md:p-6",
+              "lg": "lg:p-8"
             },
             "children": [
               {
                 "uid": "stats-number1-014",
                 "component": "CMS_Title",
-                "config": {
-                  "text": "10K+",
-                  "fontSize": "text-3xl",
-                  "color": "text-gray-900",
-                  "darkColor": "dark:text-white"
+                "level": "h3",
+                "text": "10K+",
+                "classes": {
+                  "base": "text-gray-900 font-bold",
+                  "dark": "dark:text-white",
+                  "sm": "sm:text-4xl",
+                  "md": "md:text-5xl",
+                  "lg": "lg:text-6xl",
+                  "xl": "xl:text-7xl"
                 }
               },
               {
                 "uid": "stats-label1-015",
                 "component": "CMS_Text",
-                "config": {
-                  "text": "Products Managed",
-                  "fontSize": "text-sm",
-                  "color": "text-gray-500",
-                  "darkColor": "dark:text-gray-400"
+                "tag": "p",
+                "text": "Products Managed",
+                "classes": {
+                  "base": "text-gray-500 text-center",
+                  "dark": "dark:text-gray-400",
+                  "sm": "sm:text-sm sm:mt-1",
+                  "md": "md:text-base md:mt-2",
+                  "lg": "lg:text-lg"
                 }
               }
             ]
@@ -253,31 +224,38 @@ const PAGE_CONFIG = {
           {
             "uid": "stats-item2-016",
             "component": "CMS_Flex",
-            "config": {
-              "flex": {
-                "direction": "col",
-                "align": "center"
-              }
+            "classes": {
+              "base": "flex-col items-center p-4",
+              "sm": "sm:p-5",
+              "md": "md:p-6",
+              "lg": "lg:p-8"
             },
             "children": [
               {
                 "uid": "stats-number2-017",
                 "component": "CMS_Title",
-                "config": {
-                  "text": "500+",
-                  "fontSize": "text-3xl",
-                  "color": "text-gray-900",
-                  "darkColor": "dark:text-white"
+                "level": "h3",
+                "text": "500+",
+                "classes": {
+                  "base": "text-gray-900 font-bold",
+                  "dark": "dark:text-white",
+                  "sm": "sm:text-4xl",
+                  "md": "md:text-5xl",
+                  "lg": "lg:text-6xl",
+                  "xl": "xl:text-7xl"
                 }
               },
               {
                 "uid": "stats-label2-018",
                 "component": "CMS_Text",
-                "config": {
-                  "text": "Active Warehouses",
-                  "fontSize": "text-sm",
-                  "color": "text-gray-500",
-                  "darkColor": "dark:text-gray-400"
+                "tag": "p",
+                "text": "Active Warehouses",
+                "classes": {
+                  "base": "text-gray-500 text-center",
+                  "dark": "dark:text-gray-400",
+                  "sm": "sm:text-sm sm:mt-1",
+                  "md": "md:text-base md:mt-2",
+                  "lg": "lg:text-lg"
                 }
               }
             ]
@@ -285,31 +263,38 @@ const PAGE_CONFIG = {
           {
             "uid": "stats-item3-019",
             "component": "CMS_Flex",
-            "config": {
-              "flex": {
-                "direction": "col",
-                "align": "center"
-              }
+            "classes": {
+              "base": "flex-col items-center p-4",
+              "sm": "sm:p-5",
+              "md": "md:p-6",
+              "lg": "lg:p-8"
             },
             "children": [
               {
                 "uid": "stats-number3-020",
                 "component": "CMS_Title",
-                "config": {
-                  "text": "99.9%",
-                  "fontSize": "text-3xl",
-                  "color": "text-gray-900",
-                  "darkColor": "dark:text-white"
+                "level": "h3",
+                "text": "99.9%",
+                "classes": {
+                  "base": "text-gray-900 font-bold",
+                  "dark": "dark:text-white",
+                  "sm": "sm:text-4xl",
+                  "md": "md:text-5xl",
+                  "lg": "lg:text-6xl",
+                  "xl": "xl:text-7xl"
                 }
               },
               {
                 "uid": "stats-label3-021",
                 "component": "CMS_Text",
-                "config": {
-                  "text": "Inventory Accuracy",
-                  "fontSize": "text-sm",
-                  "color": "text-gray-500",
-                  "darkColor": "dark:text-gray-400"
+                "tag": "p",
+                "text": "Inventory Accuracy",
+                "classes": {
+                  "base": "text-gray-500 text-center",
+                  "dark": "dark:text-gray-400",
+                  "sm": "sm:text-sm sm:mt-1",
+                  "md": "md:text-base md:mt-2",
+                  "lg": "lg:text-lg"
                 }
               }
             ]
@@ -342,8 +327,6 @@ const Home = () => {
         {renderHeroSection()}
       </Suspense>
 
-
-      <CustomSectionBuilder />
     </FrontEnd_Layout>
   );
 };

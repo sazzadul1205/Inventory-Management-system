@@ -1,140 +1,105 @@
 /**
- * CMS_Media Component - A highly customizable media component for images and videos
+ * CMS_Media Component - Editor-friendly media component with flat class structure
  * 
- * This component renders images and videos with configurable styling, lazy loading,
- * placeholders, overlays, and hover effects. Supports both static and dynamic content.
- * Uses Tailwind CSS for styling with dark mode support via the 'dark:' modifier.
+ * Features:
+ * - Flat class structure for easy editing
+ * - Supports images, videos, iframes, YouTube, Vimeo
+ * - Lazy loading and placeholders
+ * - Hover effects with classes
+ * - Overlay support
+ * - Captions
+ * - Play button for videos
  */
 
-import React, { useMemo, useState, useRef } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
+import clsx from 'clsx';
 
-// Default configuration
-const defaultConfig = {
-  // Media type
-  type: 'image',                    // 'image', 'video', 'iframe', 'youtube', 'vimeo'
+// ============================================================================
+// Types & Defaults
+// ============================================================================
 
-  // Source
-  src: null,                         // Media source URL
-  poster: null,                      // Poster image for videos
-  alt: 'Media',                      // Alt text for accessibility
-  title: null,                       // Title attribute
+const defaultClasses = {
+  // Container base styles
+  base: '',
 
-  // Dimensions
-  width: null,                       // Width in pixels or 'full', 'auto'
-  height: null,                      // Height in pixels or 'full', 'auto'
-  aspectRatio: null,                 // e.g., '16/9', '4/3', '1/1', '21/9'
+  // Container states
+  hover: '',
+  focus: '',
+  active: '',
 
-  // Sizing
-  objectFit: 'cover',                // 'cover', 'contain', 'fill', 'scale-down', 'none'
-  objectPosition: 'center',          // 'center', 'top', 'bottom', 'left', 'right'
+  // Theme states
+  dark: '',
+  darkHover: '',
 
   // Responsive
-  responsive: true,                  // Enable responsive behavior
-  sizes: null,                        // srcset sizes attribute
-  srcSet: null,                       // srcset for responsive images
+  sm: '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+
+  // Media element specific
+  media: '',
+  mediaHover: '',
+  mediaDark: '',
+
+  // Overlay classes
+  overlay: '',
+  overlayHover: '',
+
+  // Caption classes
+  caption: '',
+  captionHover: '',
+  captionDark: '',
+
+  // Play button classes
+  playButton: '',
+  playButtonHover: '',
+
+  // Custom override
+  custom: '',
+};
+
+// Default props (non-class properties)
+const defaultProps = {
+  type: 'image',           // 'image', 'video', 'iframe', 'youtube', 'vimeo'
+  src: null,
+  alt: 'Media',
+  poster: null,
+
+  // Dimensions
+  aspectRatio: null,
+  objectFit: 'cover',
+  objectPosition: 'center',
 
   // Video specific
-  controls: true,                     // Show video controls
-  autoPlay: false,                    // Autoplay video
-  loop: false,                        // Loop video
-  muted: false,                       // Muted video
-  playsInline: true,                   // Play inline on mobile
-
-  // YouTube/Vimeo specific
-  videoId: null,                      // YouTube or Vimeo video ID
-  startAt: 0,                          // Start time in seconds
-  showInfo: true,                      // Show video info
-  showControls: true,                  // Show player controls
-  modestBranding: false,                // YouTube modest branding
+  controls: true,
+  autoPlay: false,
+  loop: false,
+  muted: false,
+  playsInline: true,
 
   // Loading
-  lazy: true,                         // Lazy load
-  loading: 'lazy',                    // 'lazy', 'eager'
-  placeholder: null,                   // Placeholder image while loading
-  blurUp: false,                       // Blur-up effect
-  blurAmount: 'blur-sm',               // Blur amount for placeholder
+  lazy: true,
+  placeholder: null,
 
   // Fallback
-  fallback: null,                      // Fallback image on error
-  fallbackText: 'Media failed to load', // Fallback text
-
-  // Overlay
-  overlay: null,                       // Overlay color/gradient
-  overlayOpacity: '50',                // '0' to '100'
-  overlayHover: null,                  // Overlay on hover
-
-  // Hover effects
-  hover: {
-    scale: null,                       // e.g., 'scale-105', 'scale-110'
-    rotate: null,                       // e.g., 'rotate-3', '-rotate-3'
-    translateX: null,                    // e.g., 'translate-x-2'
-    translateY: null,                    // e.g., '-translate-y-2'
-    brightness: null,                    // e.g., 'brightness-110'
-    contrast: null,                       // e.g., 'contrast-125'
-    grayscale: null,                      // e.g., 'grayscale-0', 'grayscale'
-    blur: null,                           // e.g., 'blur-sm', 'blur-none'
-    opacity: null,                        // e.g., 'opacity-90'
-    shadow: null,                         // e.g., 'shadow-xl'
-    transition: 'transition-all duration-300',
-    customClasses: null,
-    customStyles: {}
-  },
-
-  // Border & Shadow
-  rounded: null,                       // 'rounded', 'rounded-lg', 'rounded-full', etc.
-  border: null,                        // 'border', 'border-2', etc.
-  borderColor: null,                    // 'border-gray-200', etc.
-  shadow: null,                         // 'shadow', 'shadow-md', 'shadow-lg', etc.
-
-  // Z-Layer support
-  zLayer: 'auto',
-  zLayerMobile: null,
-  zLayerTablet: null,
-  zLayerDesktop: null,
-
-  // Positioning
-  position: 'relative',
-
-  // Margin & Padding
-  margin: 'm-0',
-  padding: 'p-0',
-
-  // Background (for containers)
-  bgColor: null,
-  darkBgColor: null,
-
-  // Interactive
-  clickable: false,
-  href: null,                          // Link URL
-  target: null,                        // '_blank', etc.
-  onClick: null,
+  fallback: null,
+  fallbackText: 'Media failed to load',
 
   // Caption
-  caption: null,                        // Caption text
-  captionPosition: 'bottom',             // 'top', 'bottom', 'overlay'
-  captionBg: 'bg-black/50',              // Caption background
-  captionColor: 'text-white',            // Caption text color
+  caption: null,
+  captionPosition: 'bottom', // 'top', 'bottom', 'overlay'
 
-  // Play button (for videos)
-  playButton: true,                      // Show play button
-  playButtonIcon: null,                   // Custom play icon
-  playButtonSize: 'lg',                   // 'sm', 'md', 'lg'
-  playButtonPosition: 'center',            // 'center', 'top-left', etc.
+  // Play button
+  playButton: true,
 
-  // Accessibility
-  ariaLabel: null,
-  role: null,
+  // Link
+  href: null,
+  target: null,
 
   // Events
-  onLoad: null,
-  onError: null,
-  onPlay: null,
-  onPause: null,
-  onEnded: null,
-
-  // Additional
-  className: '',
-  style: {}
+  onClick: null,
 };
 
 // Aspect ratio classes
@@ -146,7 +111,6 @@ const aspectRatios = {
   '2/1': 'aspect-[2/1]',
   '3/2': 'aspect-[3/2]',
   '5/4': 'aspect-[5/4]',
-  'golden': 'aspect-[1.618/1]'
 };
 
 // Object fit classes
@@ -155,7 +119,7 @@ const objectFitClasses = {
   contain: 'object-contain',
   fill: 'object-fill',
   'scale-down': 'object-scale-down',
-  none: 'object-none'
+  none: 'object-none',
 };
 
 // Object position classes
@@ -168,306 +132,278 @@ const objectPositionClasses = {
   'top-left': 'object-left-top',
   'top-right': 'object-right-top',
   'bottom-left': 'object-left-bottom',
-  'bottom-right': 'object-right-bottom'
+  'bottom-right': 'object-right-bottom',
 };
 
-// Play button positions
-const playButtonPositions = {
-  center: 'inset-1/2 transform -translate-x-1/2 -translate-y-1/2',
-  'top-left': 'top-4 left-4',
-  'top-right': 'top-4 right-4',
-  'bottom-left': 'bottom-4 left-4',
-  'bottom-right': 'bottom-4 right-4'
+// Caption positions
+const captionPositions = {
+  top: 'top-0 left-0 right-0',
+  bottom: 'bottom-0 left-0 right-0',
+  overlay: 'inset-0 flex items-center justify-center',
 };
 
-// Play button sizes
-const playButtonSizes = {
-  sm: 'w-8 h-8',
-  md: 'w-12 h-12',
-  lg: 'w-16 h-16',
-  xl: 'w-20 h-20'
+// Metadata for visual editor
+const componentMetadata = {
+  name: 'Media',
+  description: 'Image, video, and iframe with overlay and hover effects',
+  category: 'media',
+  icon: '🖼️',
+  editable: ['base', 'hover', 'dark', 'media', 'overlay', 'caption', 'playButton'],
+  controls: [
+    { type: 'select', target: 'type', label: 'Media Type', options: ['image', 'video', 'youtube', 'vimeo', 'iframe'] },
+    { type: 'text', target: 'src', label: 'Source URL' },
+    { type: 'text', target: 'alt', label: 'Alt Text' },
+    { type: 'select', target: 'aspectRatio', label: 'Aspect Ratio', options: ['1/1', '4/3', '16/9', '21/9', '2/1', '3/2'] },
+    { type: 'select', target: 'objectFit', label: 'Object Fit', options: ['cover', 'contain', 'fill', 'scale-down', 'none'] },
+    { type: 'class-editor', target: 'base', label: 'Container Styles' },
+    { type: 'class-editor', target: 'media', label: 'Media Styles' },
+    { type: 'class-editor', target: 'overlay', label: 'Overlay Styles' },
+    { type: 'class-editor', target: 'caption', label: 'Caption Styles' },
+    { type: 'class-editor', target: 'playButton', label: 'Play Button Styles' },
+    { type: 'toggle', target: 'controls', label: 'Show Controls' },
+    { type: 'toggle', target: 'autoPlay', label: 'Auto Play' },
+    { type: 'toggle', target: 'loop', label: 'Loop' },
+    { type: 'toggle', target: 'playButton', label: 'Show Play Button' },
+    { type: 'text', target: 'caption', label: 'Caption Text' },
+  ]
 };
 
-// Z-index mapping
-const zIndexMap = {
-  'auto': 'z-auto',
-  '0': 'z-0',
-  '10': 'z-10',
-  '20': 'z-20',
-  '30': 'z-30',
-  '40': 'z-40',
-  '50': 'z-50'
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Build final class string from config
+ */
+const buildClasses = (classes = {}, extraClassName) => {
+  return clsx(
+    // Base styles
+    classes.base,
+
+    // Interactive states
+    classes.hover,
+    classes.focus,
+    classes.active,
+
+    // Theme states
+    classes.dark,
+    classes.darkHover,
+
+    // Responsive
+    classes.sm,
+    classes.md,
+    classes.lg,
+    classes.xl,
+    classes['2xl'],
+
+    // Custom override
+    classes.custom,
+
+    // Emergency override
+    extraClassName
+  );
 };
 
 /**
- * Main Media Component
+ * Extract YouTube ID from URL
  */
-const CMS_Media = ({
-  config = defaultConfig,
-  children
-}) => {
+const getYouTubeId = (url) => {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
+/**
+ * Extract Vimeo ID from URL
+ */
+const getVimeoId = (url) => {
+  if (!url) return null;
+  const regExp = /vimeo\.com\/(?:video\/)?(\d+)/;
+  const match = url.match(regExp);
+  return match ? match[1] : null;
+};
+
+// ============================================================================
+// Main Component
+// ============================================================================
+
+const CMS_Media = forwardRef(({
+  // Component identification
+  uid,
+  component = 'CMS_Media',
+
+  // Main styling - flat class structure
+  classes = defaultClasses,
+
+  // Non-class props
+  type = 'image',
+  src,
+  alt = 'Media',
+  poster,
+
+  // Dimensions
+  aspectRatio,
+  objectFit = 'cover',
+  objectPosition = 'center',
+
+  // Video specific
+  controls = true,
+  autoPlay = false,
+  loop = false,
+  muted = false,
+  playsInline = true,
+
+  // Loading
+  lazy = true,
+  placeholder,
+
+  // Fallback
+  fallback,
+  fallbackText = 'Media failed to load',
+
+  // Caption
+  caption,
+  captionPosition = 'bottom',
+
+  // Play button
+  playButton = true,
+
+  // Link
+  href,
+  target,
+
+  // Events
+  onClick,
+
+  // Debug
+  debug = false,
+
+  // Extra
+  className,
+  style,
+  children,
+  ...props
+}, ref) => {
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const mediaRef = useRef(null);
-  const videoRef = useRef(null);
-  const iframeRef = useRef(null);
-
-  // Merge config with defaults
-  const mergedConfig = useMemo(() => {
-    return {
-      ...defaultConfig,
-      ...config
-    };
-  }, [config]);
-
-  // Check if YouTube URL
-  const isYouTubeUrl = (url) => {
-    return url && (
-      url.includes('youtube.com') ||
-      url.includes('youtu.be') ||
-      url.includes('youtube-nocookie.com')
-    );
-  };
-
-  // Check if Vimeo URL
-  const isVimeoUrl = (url) => {
-    return url && url.includes('vimeo.com');
-  };
-
-  // Extract YouTube ID from URL
-  const getYouTubeId = (url) => {
-    if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  };
-
-  // Extract Vimeo ID from URL
-  const getVimeoId = (url) => {
-    if (!url) return null;
-    const regExp = /vimeo\.com\/(?:video\/)?(\d+)/;
-    const match = url.match(regExp);
-    return match ? match[1] : null;
-  };
-
-  // Determine media type
+  // Determine actual media type
   const mediaType = useMemo(() => {
-    if (mergedConfig.type !== 'image' && mergedConfig.type !== 'video') {
-      return mergedConfig.type;
+    if (type !== 'image' && type !== 'video') return type;
+
+    if (src) {
+      if (src.includes('youtube.com') || src.includes('youtu.be')) return 'youtube';
+      if (src.includes('vimeo.com')) return 'vimeo';
     }
 
-    if (mergedConfig.src) {
-      if (isYouTubeUrl(mergedConfig.src)) return 'youtube';
-      if (isVimeoUrl(mergedConfig.src)) return 'vimeo';
-    }
-
-    if (mergedConfig.videoId) return 'youtube';
-
-    return mergedConfig.type;
-  }, [mergedConfig.type, mergedConfig.src, mergedConfig.videoId]);
+    return type;
+  }, [type, src]);
 
   // Build YouTube embed URL
-  const youtubeEmbedUrl = useMemo(() => {
-    const id = mergedConfig.videoId || getYouTubeId(mergedConfig.src);
+  const youtubeUrl = useMemo(() => {
+    const id = getYouTubeId(src);
     if (!id) return null;
 
     const params = new URLSearchParams({
-      autoplay: mergedConfig.autoPlay ? '1' : '0',
-      controls: mergedConfig.showControls ? '1' : '0',
-      loop: mergedConfig.loop ? '1' : '0',
-      muted: mergedConfig.muted ? '1' : '0',
-      playsinline: mergedConfig.playsInline ? '1' : '0',
-      start: mergedConfig.startAt,
-      modestbranding: mergedConfig.modestBranding ? '1' : '0',
-      rel: mergedConfig.showInfo ? '1' : '0'
+      autoplay: autoPlay ? '1' : '0',
+      controls: controls ? '1' : '0',
+      loop: loop ? '1' : '0',
+      muted: muted ? '1' : '0',
+      playsinline: playsInline ? '1' : '0',
     });
 
     return `https://www.youtube.com/embed/${id}?${params.toString()}`;
-  }, [mergedConfig]);
+  }, [src, autoPlay, controls, loop, muted, playsInline]);
 
   // Build Vimeo embed URL
-  const vimeoEmbedUrl = useMemo(() => {
-    const id = mergedConfig.videoId || getVimeoId(mergedConfig.src);
+  const vimeoUrl = useMemo(() => {
+    const id = getVimeoId(src);
     if (!id) return null;
 
     const params = new URLSearchParams({
-      autoplay: mergedConfig.autoPlay ? '1' : '0',
-      controls: mergedConfig.showControls ? '1' : '0',
-      loop: mergedConfig.loop ? '1' : '0',
-      muted: mergedConfig.muted ? '1' : '0',
-      title: mergedConfig.showInfo ? '1' : '0',
-      byline: mergedConfig.showInfo ? '1' : '0',
-      portrait: mergedConfig.showInfo ? '1' : '0'
+      autoplay: autoPlay ? '1' : '0',
+      controls: controls ? '1' : '0',
+      loop: loop ? '1' : '0',
+      muted: muted ? '1' : '0',
     });
 
     return `https://player.vimeo.com/video/${id}?${params.toString()}`;
-  }, [mergedConfig]);
-
-  // Build hover classes
-  const getHoverClasses = useMemo(() => {
-    if (!mergedConfig.hover) return '';
-
-    const hoverClasses = [];
-    const hover = mergedConfig.hover;
-
-    if (hover.scale) hoverClasses.push(`hover:${hover.scale}`);
-    if (hover.rotate) hoverClasses.push(`hover:${hover.rotate}`);
-    if (hover.translateX) hoverClasses.push(`hover:${hover.translateX}`);
-    if (hover.translateY) hoverClasses.push(`hover:${hover.translateY}`);
-    if (hover.brightness) hoverClasses.push(`hover:${hover.brightness}`);
-    if (hover.contrast) hoverClasses.push(`hover:${hover.contrast}`);
-    if (hover.grayscale) hoverClasses.push(`hover:${hover.grayscale}`);
-    if (hover.blur) hoverClasses.push(`hover:${hover.blur}`);
-    if (hover.opacity) hoverClasses.push(`hover:${hover.opacity}`);
-    if (hover.shadow) hoverClasses.push(`hover:${hover.shadow}`);
-    if (hover.transition) hoverClasses.push(hover.transition);
-
-    return hoverClasses.join(' ');
-  }, [mergedConfig.hover]);
-
-  // Build z-index classes
-  const getZLayerClasses = (zLayer, zMobile, zTablet, zDesktop) => {
-    const classes = [];
-
-    if (zLayer) {
-      if (zIndexMap[zLayer]) {
-        classes.push(zIndexMap[zLayer]);
-      } else if (zLayer.startsWith('z-')) {
-        classes.push(zLayer);
-      } else if (!isNaN(zLayer)) {
-        classes.push(`z-${zLayer}`);
-      }
-    }
-
-    if (zMobile) {
-      const mobileClass = zIndexMap[zMobile] || (zMobile.startsWith('z-') ? zMobile : `z-${zMobile}`);
-      classes.push(mobileClass);
-    }
-
-    if (zTablet) {
-      const tabletClass = zIndexMap[zTablet] || (zTablet.startsWith('z-') ? zTablet : `z-${zTablet}`);
-      classes.push(`md:${tabletClass}`);
-    }
-
-    if (zDesktop) {
-      const desktopClass = zIndexMap[zDesktop] || (zDesktop.startsWith('z-') ? zDesktop : `z-${zDesktop}`);
-      classes.push(`lg:${desktopClass}`);
-    }
-
-    return classes;
-  };
+  }, [src, autoPlay, controls, loop, muted]);
 
   // Build container classes
   const containerClasses = useMemo(() => {
-    const zLayerClasses = getZLayerClasses(
-      mergedConfig.zLayer,
-      mergedConfig.zLayerMobile,
-      mergedConfig.zLayerTablet,
-      mergedConfig.zLayerDesktop
+    return clsx(
+      buildClasses(classes, className),
+      'relative overflow-hidden',
+      aspectRatio && (aspectRatios[aspectRatio] || `aspect-[${aspectRatio}]`),
+      href && 'cursor-pointer',
+      className
     );
+  }, [classes, aspectRatio, href, className]);
 
-    const aspectClass = mergedConfig.aspectRatio
-      ? aspectRatios[mergedConfig.aspectRatio] || `aspect-[${mergedConfig.aspectRatio}]`
-      : '';
+  // Build media element classes
+  const mediaClasses = useMemo(() => {
+    return clsx(
+      'w-full h-full',
+      objectFitClasses[objectFit],
+      objectPositionClasses[objectPosition],
+      classes.media,
+      isHovered && classes.mediaHover,
+      classes.mediaDark
+    );
+  }, [objectFit, objectPosition, classes.media, classes.mediaHover, classes.mediaDark, isHovered]);
 
-    const classes = [
-      mergedConfig.position,
-      mergedConfig.margin,
-      mergedConfig.padding,
-      mergedConfig.bgColor,
-      mergedConfig.darkBgColor,
-      mergedConfig.rounded,
-      mergedConfig.border,
-      mergedConfig.borderColor,
-      mergedConfig.shadow,
-      aspectClass,
-      ...zLayerClasses,
-      mergedConfig.clickable ? 'cursor-pointer' : '',
-      getHoverClasses,
-      mergedConfig.className
-    ].filter(Boolean).join(' ');
-
-    return classes;
-  }, [mergedConfig, getHoverClasses]);
-
-  // Handle image load
-  const handleImageLoad = (e) => {
+  // Handle load/error
+  const handleLoad = () => {
     setIsLoaded(true);
     setHasError(false);
-    mergedConfig.onLoad?.(e);
   };
 
-  // Handle image error
-  const handleImageError = (e) => {
+  const handleError = () => {
     setHasError(true);
-    mergedConfig.onError?.(e);
-  };
-
-  // Handle video play/pause
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
+    setIsLoaded(false);
   };
 
   // Render image
   const renderImage = () => {
-    const imageSrc = hasError && mergedConfig.fallback
-      ? mergedConfig.fallback
-      : mergedConfig.src;
+    const imageSrc = hasError && fallback ? fallback : src;
 
     if (!imageSrc) {
       return renderFallback();
     }
 
-    const width = mergedConfig.width === 'full' ? 'w-full' : mergedConfig.width;
-    const height = mergedConfig.height === 'full' ? 'h-full' : mergedConfig.height;
-
     return (
       <>
         {/* Placeholder */}
-        {mergedConfig.placeholder && !isLoaded && (
+        {placeholder && !isLoaded && (
           <img
-            src={mergedConfig.placeholder}
-            alt={mergedConfig.alt}
-            className={`
-              absolute inset-0 w-full h-full
-              ${objectFitClasses[mergedConfig.objectFit]}
-              ${mergedConfig.blurUp ? mergedConfig.blurAmount : ''}
-              transition-opacity duration-300
-              ${isLoaded ? 'opacity-0' : 'opacity-100'}
-            `}
+            src={placeholder}
+            alt={alt}
+            className={clsx(
+              'absolute inset-0 w-full h-full',
+              objectFitClasses[objectFit],
+              'transition-opacity duration-300',
+              isLoaded ? 'opacity-0' : 'opacity-100'
+            )}
           />
         )}
 
         {/* Main image */}
         <img
-          ref={mediaRef}
           src={imageSrc}
-          srcSet={mergedConfig.srcSet}
-          sizes={mergedConfig.sizes}
-          alt={mergedConfig.alt}
-          title={mergedConfig.title}
-          width={!isNaN(mergedConfig.width) ? mergedConfig.width : undefined}
-          height={!isNaN(mergedConfig.height) ? mergedConfig.height : undefined}
-          loading={mergedConfig.lazy ? 'lazy' : 'eager'}
-          className={`
-            w-full h-full
-            ${objectFitClasses[mergedConfig.objectFit]}
-            ${objectPositionClasses[mergedConfig.objectPosition]}
-            transition-opacity duration-300
-            ${mergedConfig.placeholder && !isLoaded ? 'opacity-0' : 'opacity-100'}
-          `}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
+          alt={alt}
+          loading={lazy ? 'lazy' : 'eager'}
+          className={clsx(
+            mediaClasses,
+            'transition-opacity duration-300',
+            placeholder && !isLoaded ? 'opacity-0' : 'opacity-100'
+          )}
+          onLoad={handleLoad}
+          onError={handleError}
         />
       </>
     );
@@ -477,62 +413,52 @@ const CMS_Media = ({
   const renderVideo = () => {
     return (
       <video
-        ref={videoRef}
-        src={mergedConfig.src}
-        poster={mergedConfig.poster}
-        controls={mergedConfig.controls}
-        autoPlay={mergedConfig.autoPlay}
-        loop={mergedConfig.loop}
-        muted={mergedConfig.muted}
-        playsInline={mergedConfig.playsInline}
-        className={`
-          w-full h-full
-          ${objectFitClasses[mergedConfig.objectFit]}
-          ${objectPositionClasses[mergedConfig.objectPosition]}
-        `}
-        onLoad={handleImageLoad}
-        onError={handleImageError}
+        src={src}
+        poster={poster}
+        controls={controls}
+        autoPlay={autoPlay}
+        loop={loop}
+        muted={muted}
+        playsInline={playsInline}
+        className={mediaClasses}
+        onLoad={handleLoad}
+        onError={handleError}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        onEnded={mergedConfig.onEnded}
       />
     );
   };
 
-  // Render YouTube embed
+  // Render YouTube
   const renderYouTube = () => {
-    const embedUrl = youtubeEmbedUrl;
-    if (!embedUrl) return renderFallback('Invalid YouTube URL');
+    if (!youtubeUrl) return renderFallback('Invalid YouTube URL');
 
     return (
       <iframe
-        ref={iframeRef}
-        src={embedUrl}
-        title={mergedConfig.title || mergedConfig.alt}
+        src={youtubeUrl}
+        title={alt}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        className="absolute inset-0 w-full h-full"
-        onLoad={handleImageLoad}
-        onError={handleImageError}
+        className={clsx('absolute inset-0 w-full h-full', classes.media)}
+        onLoad={handleLoad}
+        onError={handleError}
       />
     );
   };
 
-  // Render Vimeo embed
+  // Render Vimeo
   const renderVimeo = () => {
-    const embedUrl = vimeoEmbedUrl;
-    if (!embedUrl) return renderFallback('Invalid Vimeo URL');
+    if (!vimeoUrl) return renderFallback('Invalid Vimeo URL');
 
     return (
       <iframe
-        ref={iframeRef}
-        src={embedUrl}
-        title={mergedConfig.title || mergedConfig.alt}
+        src={vimeoUrl}
+        title={alt}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        className="absolute inset-0 w-full h-full"
-        onLoad={handleImageLoad}
-        onError={handleImageError}
+        className={clsx('absolute inset-0 w-full h-full', classes.media)}
+        onLoad={handleLoad}
+        onError={handleError}
       />
     );
   };
@@ -541,14 +467,13 @@ const CMS_Media = ({
   const renderIframe = () => {
     return (
       <iframe
-        ref={iframeRef}
-        src={mergedConfig.src}
-        title={mergedConfig.title || mergedConfig.alt}
-        allow={mergedConfig.autoPlay ? 'autoplay' : ''}
+        src={src}
+        title={alt}
+        allow={autoPlay ? 'autoplay' : ''}
         allowFullScreen
-        className="absolute inset-0 w-full h-full"
-        onLoad={handleImageLoad}
-        onError={handleImageError}
+        className={clsx('absolute inset-0 w-full h-full', classes.media)}
+        onLoad={handleLoad}
+        onError={handleError}
       />
     );
   };
@@ -561,141 +486,152 @@ const CMS_Media = ({
           <svg className="w-12 h-12 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <p>{customMessage || mergedConfig.fallbackText}</p>
+          <p>{customMessage || fallbackText}</p>
         </div>
       </div>
     );
   };
 
-  // Render play button
-  const renderPlayButton = () => {
-    if (!mergedConfig.playButton || mediaType === 'image') return null;
-    if (isPlaying && mediaType !== 'youtube' && mediaType !== 'vimeo') return null;
-
-    const position = playButtonPositions[mergedConfig.playButtonPosition] || playButtonPositions.center;
-    const size = playButtonSizes[mergedConfig.playButtonSize] || playButtonSizes.lg;
-
-    return (
-      <button
-        onClick={togglePlay}
-        className={`
-          absolute ${position} z-20
-          flex items-center justify-center
-          bg-black/50 hover:bg-black/70
-          rounded-full
-          transition-all duration-300
-          ${size}
-          transform hover:scale-110
-          focus:outline-none focus:ring-2 focus:ring-white
-        `}
-        aria-label={isPlaying ? 'Pause' : 'Play'}
-      >
-        {mergedConfig.playButtonIcon ? (
-          mergedConfig.playButtonIcon
-        ) : (
-          <svg className="w-1/2 h-1/2 text-white" fill="currentColor" viewBox="0 0 24 24">
-            {isPlaying ? (
-              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-            ) : (
-              <path d="M8 5v14l11-7L8 5z" />
-            )}
-          </svg>
-        )}
-      </button>
-    );
-  };
-
   // Render overlay
   const renderOverlay = () => {
-    if (!mergedConfig.overlay) return null;
-
-    const overlayClass = mergedConfig.overlayHover && !isHovered
-      ? 'opacity-0'
-      : 'opacity-' + mergedConfig.overlayOpacity;
+    if (!classes.overlay) return null;
 
     return (
       <div
-        className={`
-          absolute inset-0 z-10
-          ${mergedConfig.overlay}
-          transition-opacity duration-300
-          ${overlayClass}
-        `}
+        className={clsx(
+          'absolute inset-0 transition-all duration-300',
+          classes.overlay,
+          isHovered && classes.overlayHover
+        )}
       />
     );
   };
 
   // Render caption
   const renderCaption = () => {
-    if (!mergedConfig.caption) return null;
-
-    const positionClasses = {
-      top: 'top-0 left-0 right-0',
-      bottom: 'bottom-0 left-0 right-0',
-      overlay: 'inset-0 flex items-center justify-center'
-    };
+    if (!caption) return null;
 
     return (
       <div
-        className={`
-          absolute z-20 p-4
-          ${positionClasses[mergedConfig.captionPosition]}
-          ${mergedConfig.captionBg}
-          ${mergedConfig.captionColor}
-          ${mergedConfig.captionPosition === 'overlay' ? 'text-center' : ''}
-        `}
+        className={clsx(
+          'absolute z-10 p-4',
+          captionPositions[captionPosition],
+          classes.caption,
+          isHovered && classes.captionHover,
+          classes.captionDark
+        )}
       >
-        {mergedConfig.caption}
+        {caption}
       </div>
+    );
+  };
+
+  // Render play button
+  const renderPlayButton = () => {
+    if (!playButton || mediaType === 'image') return null;
+    if (isPlaying && mediaType !== 'youtube' && mediaType !== 'vimeo') return null;
+
+    return (
+      <button
+        onClick={() => {
+          const video = document.querySelector('video');
+          if (video) {
+            if (isPlaying) video.pause();
+            else video.play();
+            setIsPlaying(!isPlaying);
+          }
+        }}
+        className={clsx(
+          'absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20',
+          'flex items-center justify-center',
+          'rounded-full transition-all duration-300',
+          'hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white',
+          classes.playButton,
+          isHovered && classes.playButtonHover
+        )}
+        aria-label={isPlaying ? 'Pause' : 'Play'}
+      >
+        <svg className="w-1/2 h-1/2 text-white" fill="currentColor" viewBox="0 0 24 24">
+          {isPlaying ? (
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+          ) : (
+            <path d="M8 5v14l11-7L8 5z" />
+          )}
+        </svg>
+      </button>
     );
   };
 
   // Render media based on type
   const renderMedia = () => {
     switch (mediaType) {
-      case 'video':
-        return renderVideo();
-      case 'youtube':
-        return renderYouTube();
-      case 'vimeo':
-        return renderVimeo();
-      case 'iframe':
-        return renderIframe();
+      case 'video': return renderVideo();
+      case 'youtube': return renderYouTube();
+      case 'vimeo': return renderVimeo();
+      case 'iframe': return renderIframe();
       case 'image':
-      default:
-        return renderImage();
+      default: return renderImage();
     }
   };
 
   // Container element
-  const Container = mergedConfig.href ? 'a' : 'div';
+  const Container = href ? 'a' : 'div';
 
   return (
     <Container
-      href={mergedConfig.href}
-      target={mergedConfig.target}
+      ref={ref}
+      href={href}
+      target={target}
       className={containerClasses}
-      style={{
-        width: mergedConfig.width && !isNaN(mergedConfig.width) ? `${mergedConfig.width}px` : mergedConfig.width,
-        height: mergedConfig.height && !isNaN(mergedConfig.height) ? `${mergedConfig.height}px` : mergedConfig.height,
-        ...mergedConfig.style,
-        ...(isHovered ? mergedConfig.hover?.customStyles : {})
-      }}
+      style={style}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={mergedConfig.onClick}
-      aria-label={mergedConfig.ariaLabel}
-      role={mergedConfig.role}
+      onClick={onClick}
+      data-uid={uid}
+      data-component={component}
+      {...props}
     >
-      <div className="relative w-full h-full overflow-hidden">
+      <div className="relative w-full h-full">
         {renderMedia()}
         {renderOverlay()}
-        {renderPlayButton()}
         {renderCaption()}
+        {renderPlayButton()}
         {children}
       </div>
     </Container>
   );
-};
+});
+
+CMS_Media.displayName = 'CMS_Media';
+CMS_Media.metadata = componentMetadata;
+CMS_Media.defaultProps = defaultProps;
+
+// ============================================================================
+// Pre-configured Media Components
+// ============================================================================
+
+export const CMS_Image = forwardRef((props, ref) => (
+  <CMS_Media ref={ref} type="image" {...props} />
+));
+CMS_Image.displayName = 'CMS_Image';
+
+export const CMS_Video = forwardRef((props, ref) => (
+  <CMS_Media ref={ref} type="video" {...props} />
+));
+CMS_Video.displayName = 'CMS_Video';
+
+export const CMS_YouTube = forwardRef((props, ref) => (
+  <CMS_Media ref={ref} type="youtube" {...props} />
+));
+CMS_YouTube.displayName = 'CMS_YouTube';
+
+export const CMS_Vimeo = forwardRef((props, ref) => (
+  <CMS_Media ref={ref} type="vimeo" {...props} />
+));
+CMS_Vimeo.displayName = 'CMS_Vimeo';
+
+// ============================================================================
+// Export
+// ============================================================================
 
 export default CMS_Media;
