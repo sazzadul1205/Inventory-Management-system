@@ -43,7 +43,7 @@ const FrontEnd_Layout = ({ children }) => {
         {children}
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
 
       {/* Scroll To Top Button */}
       {showTopBtn && (

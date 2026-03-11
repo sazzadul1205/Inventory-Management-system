@@ -1,7 +1,10 @@
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./src/**/*.{js,ts,jsx,tsx}'],
+    content: [
+        './src/**/*.{js,ts,jsx,tsx}',
+        './resources/**/*.{js,ts,jsx,tsx,blade.php}',
+    ],
     theme: {
         extend: {},
     },
@@ -127,9 +130,43 @@ module.exports = {
         'bg-blue-800',
         'dark:bg-gray-900',
         'bg-gradient-to-r',
+        'bg-gradient-to-br',
         'from-blue-900',
         'via-blue-800',
         'to-blue-900',
+        {
+            pattern: /bg-gradient-to-(t|tr|r|br|b|bl|l|tl)/,
+        },
+        {
+            pattern: /(from|via|to)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900|950)/,
+        },
+        {
+            pattern: /(text|bg|border)-\[#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\]/,
+        },
+        {
+            pattern: /(text|bg|border)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900|950)/,
+        },
+        {
+            pattern: /text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)/,
+        },
+        {
+            pattern: /font-(thin|extralight|light|normal|medium|semibold|bold|extrabold|black)/,
+        },
+        {
+            pattern: /(p|px|py|pt|pr|pb|pl|m|mx|my|mt|mr|mb|ml)-([0-9]|0\.5|1\.5|2\.5|3\.5|4|5|6|7|8|9|10|11|12|14|16|20|24|28|32|36|40|44|48|52|56|60|64|72|80|96)/,
+        },
+        {
+            pattern: /leading-(none|tight|snug|normal|relaxed|loose|3|4|5|6|7|8|9|10)/,
+        },
+        {
+            pattern: /tracking-(tighter|tight|normal|wide|wider|widest)/,
+        },
+        {
+            pattern: /rounded-(none|sm|md|lg|xl|2xl|3xl|full)/,
+        },
+        {
+            pattern: /shadow-(sm|md|lg|xl|2xl|inner|none)/,
+        },
 
         // Opacity
         'opacity-0',

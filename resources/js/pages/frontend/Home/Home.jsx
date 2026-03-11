@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from "react";
 // Layout
 import FrontEnd_Layout from "../Layout/FrontEnd_Layout";
 import HeroSectionSkeleton from "./HeroSection/HeroSectionSkeleton";
+import CMSVisualBuilder from "../../backend/CMSVisualBuilder/CMSVisualBuilder";
 
 // Lazy Hero Sections
 const HeroSection1 = lazy(() => import("./HeroSection/HeroSection1"));
@@ -323,10 +324,11 @@ const Home = () => {
 
   return (
     <FrontEnd_Layout>
-      <Suspense fallback={<HeroSectionSkeleton />}>
+      {/* <Suspense fallback={<HeroSectionSkeleton />}>
         {renderHeroSection()}
-      </Suspense>
+      </Suspense> */}
 
+      <CMSVisualBuilder />
     </FrontEnd_Layout>
   );
 };

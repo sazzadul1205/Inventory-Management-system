@@ -264,6 +264,15 @@ const getIconComponent = (iconName, libraryPrefix) => {
   return library?.[iconName] || null;
 };
 
+const normalizeText = (value) => {
+  if (value == null) return '';
+  if (typeof value === 'string' || typeof value === 'number') return value;
+  if (typeof value === 'object') {
+    return value.label ?? value.text ?? value.name ?? '';
+  }
+  return String(value);
+};
+
 // ============================================================================
 // CMS_ListItem Component
 // ============================================================================
@@ -329,6 +338,9 @@ const CMS_ListItem = forwardRef(({
     onClick?.(e);
   };
 
+  const contentText = normalizeText(text);
+  const badgeText = normalizeText(badge);
+
   const content = (
     <>
       {marker && <span className={markerClasses}>{marker}</span>}
@@ -337,13 +349,13 @@ const CMS_ListItem = forwardRef(({
         <IconComponent className={iconClasses} />
       )}
 
-      <span className="flex-1 min-w-0">{text || children}</span>
+      <span className="flex-1 min-w-0">{contentText || children}</span>
 
       {iconPosition === 'right' && IconComponent && (
         <IconComponent className={iconClasses} />
       )}
 
-      {badge && <span className={badgeClasses}>{badge}</span>}
+      {badgeText && <span className={badgeClasses}>{badgeText}</span>}
     </>
   );
 
