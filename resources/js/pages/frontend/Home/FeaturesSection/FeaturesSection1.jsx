@@ -1,31 +1,45 @@
-// page/frontend/Home/ServicesSection/ServicesSection1.jsx
+// page/frontend/Home/FeaturesSection/FeaturesSection1.jsx
 
 // React
 import { Link } from '@inertiajs/react';
 
 // Icons
-import { HiArrowRight, HiCog, HiTruck, HiChartBar, HiShieldCheck, HiClock, HiGlobe } from 'react-icons/hi';
+import {
+  HiOutlineClock,
+  HiOutlineChartBar,
+  HiOutlineShieldCheck,
+  HiOutlineTruck,
+  HiOutlineGlobeAlt,
+  HiOutlineCog,
+  HiOutlineCurrencyDollar,
+  HiOutlineUserGroup,
+  HiArrowRight
+} from 'react-icons/hi';
 
-const ServicesSection1 = ({ config }) => {
+const FeaturesSection1 = ({ config }) => {
   // Icon mapping
   const getIcon = (iconName, className = "w-8 h-8") => {
-    const iconClasses = `${className} text-blue-600 dark:text-blue-400 group-hover:text-white group-hover:dark:text-white group-hover:scale-110 transition-transform`;
+    const iconClasses = `${className} text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300`;
 
     switch (iconName) {
-      case 'cog':
-        return <HiCog className={iconClasses} aria-hidden="true" />;
-      case 'truck':
-        return <HiTruck className={iconClasses} aria-hidden="true" />;
-      case 'chartBar':
-        return <HiChartBar className={iconClasses} aria-hidden="true" />;
-      case 'shieldCheck':
-        return <HiShieldCheck className={iconClasses} aria-hidden="true" />;
       case 'clock':
-        return <HiClock className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineClock className={iconClasses} aria-hidden="true" />;
+      case 'chart':
+        return <HiOutlineChartBar className={iconClasses} aria-hidden="true" />;
+      case 'shield':
+        return <HiOutlineShieldCheck className={iconClasses} aria-hidden="true" />;
+      case 'truck':
+        return <HiOutlineTruck className={iconClasses} aria-hidden="true" />;
       case 'globe':
-        return <HiGlobe className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineGlobeAlt className={iconClasses} aria-hidden="true" />;
+      case 'cog':
+        return <HiOutlineCog className={iconClasses} aria-hidden="true" />;
+      case 'dollar':
+        return <HiOutlineCurrencyDollar className={iconClasses} aria-hidden="true" />;
+      case 'users':
+        return <HiOutlineUserGroup className={iconClasses} aria-hidden="true" />;
       default:
-        return <HiCog className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineCog className={iconClasses} aria-hidden="true" />;
     }
   };
 
@@ -43,7 +57,7 @@ const ServicesSection1 = ({ config }) => {
     <section
       className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"
       role="region"
-      aria-label="Services section"
+      aria-label="Features section"
       itemScope
       itemType="https://schema.org/ItemList"
     >
@@ -51,8 +65,8 @@ const ServicesSection1 = ({ config }) => {
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
 
       {/* Gradient Orbs - decorative */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -61,7 +75,7 @@ const ServicesSection1 = ({ config }) => {
           {config?.badge?.show && (
             <div
               className={`inline-flex items-center ${config.badge.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config.badge.borderColor}`}
-              aria-label="Services badge"
+              aria-label="Features badge"
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
@@ -112,16 +126,16 @@ const ServicesSection1 = ({ config }) => {
           )}
         </div>
 
-        {/* Services Grid */}
+        {/* Features Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           role="list"
-          aria-label="Services list"
+          aria-label="Features list"
         >
-          {config?.services?.map((service, index) => (
-            <article
-              key={service.id || index}
-              className="group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 hover:shadow-2xl dark:hover:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+          {config?.features?.map((feature, index) => (
+            <div
+              key={feature.id || index}
+              className="group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 hover:bg-white dark:hover:bg-gray-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:hover:shadow-gray-900/50 border border-gray-100 dark:border-gray-700"
               itemProp="itemListElement"
               itemScope
               itemType="https://schema.org/Service"
@@ -129,64 +143,38 @@ const ServicesSection1 = ({ config }) => {
             >
               {/* Icon Container */}
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-all duration-300">
-                {getIcon(service.icon)}
+                {getIcon(feature.icon)}
               </div>
 
               {/* Content */}
               <h3
-                className="text-2xl font-bold text-gray-900 dark:text-white mb-3"
+                className="text-xl font-bold text-gray-900 dark:text-white mb-3"
                 itemProp="name"
               >
-                {service.title}
+                {feature.title}
               </h3>
               <p
-                className="text-gray-600 dark:text-gray-400 mb-6"
+                className="text-gray-600 dark:text-gray-400 mb-4"
                 itemProp="description"
               >
-                {service.description}
+                {feature.description}
               </p>
 
-              {/* Features List */}
-              {service.features && service.features.length > 0 && (
-                <ul className="space-y-2 mb-6" aria-label="Service features">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <svg
-                        className="w-4 h-4 text-green-500 dark:text-green-400 mr-2 mt-0.5 shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* Feature Stats (if available) */}
+              {feature.stat && (
+                <div className="flex items-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <span className="text-2xl font-bold text-blue-600 dark:text-blue-400 mr-2">
+                    {feature.stat.value}
+                  </span>
+                  <span className="text-sm text-gray-500 dark:text-gray-500">
+                    {feature.stat.label}
+                  </span>
+                </div>
               )}
 
-              {/* CTA Link */}
-              {service.link && (
-                <Link
-                  href={service.link}
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors group/link focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                  aria-label={`Learn more about ${service.title}`}
-                >
-                  {service.linkText || "Learn more"}
-                  <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" aria-hidden="true" />
-                </Link>
-              )}
-
-              {/* Decorative corner accent */}
-              <div
-                className="absolute top-4 right-4 w-12 h-12 bg-blue-500/10 dark:bg-blue-400/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                aria-hidden="true"
-              ></div>
-            </article>
+              {/* Hover Effect Overlay */}
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10 dark:ring-white/10 group-hover:ring-blue-500/50 dark:group-hover:ring-blue-400/50 transition-all duration-300 pointer-events-none" aria-hidden="true"></div>
+            </div>
           ))}
         </div>
 
@@ -201,25 +189,6 @@ const ServicesSection1 = ({ config }) => {
               {config.bottomCta.text}
               {getButtonIcon(config.bottomCta.icon)}
             </Link>
-          </div>
-        )}
-
-        {/* Stats Section */}
-        {config?.stats?.show && (
-          <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-gray-200 dark:border-gray-800"
-            aria-label="Company statistics"
-          >
-            {config.stats.items.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
           </div>
         )}
       </div>
@@ -240,4 +209,4 @@ const ServicesSection1 = ({ config }) => {
   );
 };
 
-export default ServicesSection1;
+export default FeaturesSection1;

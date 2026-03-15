@@ -1,7 +1,7 @@
-// page/frontend/Home/HeroSection/HeroSectionCustom.jsx
+// page/frontend/Home/HeroSection/FeaturesSectionCustom.jsx
 
 /**
- * HeroSectionCustom Component - Dynamic CMS Page Builder
+ * FeaturesSectionCustom Component - Dynamic CMS Page Builder
  * 
  * This component serves as a dynamic page builder that renders components based on a JSON configuration.
  * It lazy loads all CMS components to optimize initial bundle size and supports nested component structures.
@@ -355,7 +355,7 @@ const componentRegistry = {
 // Main Component
 // ============================================================================
 
-const HeroSectionCustom = ({ config }) => {
+const FeaturesSectionCustom = ({ config }) => {
 
   /**
    * Recursively renders a component based on its type and configuration
@@ -423,10 +423,10 @@ const HeroSectionCustom = ({ config }) => {
   return (
     <Suspense>
       <section
-        id="hero-section"
+        id="features-section"
         className="outline-none"
         tabIndex="-1"
-        aria-label="Hero section"
+        aria-label="Features section"
       >
         {renderComponent(config)}
       </section>
@@ -434,4 +434,4 @@ const HeroSectionCustom = ({ config }) => {
   );
 };
 
-export default HeroSectionCustom;
+export default FeaturesSectionCustom;

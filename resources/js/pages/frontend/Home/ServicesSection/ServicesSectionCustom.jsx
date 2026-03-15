@@ -15,15 +15,10 @@
  */
 
 // React
-import { Head } from '@inertiajs/react';
 import React, { Suspense, lazy } from 'react';
-
-// Skeleton
-import ServicesSectionSkeleton from './ServicesSectionSkeleton';
 
 // ============================================================================
 // Container Components
-// These components provide layout structure (sections, grids, flex containers)
 // ============================================================================
 
 const CMS_Grid = lazy(() => import('../../../../components/CMS_Container').then(m => ({ default: m.CMS_Grid })));
@@ -33,7 +28,6 @@ const CMS_Container = lazy(() => import('../../../../components/CMS_Container'))
 
 // ============================================================================
 // Content Components
-// These components render actual content (text, titles, buttons, media)
 // ============================================================================
 
 const CMS_Title = lazy(() => import('../../../../components/CMS_Title'));
@@ -75,7 +69,6 @@ const CMS_YouTube = lazy(() => import('../../../../components/CMS_Media').then(m
 
 // ============================================================================
 // Layout Components
-// These components provide structured layouts (cards, dividers, lists)
 // ============================================================================
 
 const CMS_Card = lazy(() => import('../../../../components/CMS_Card'));
@@ -104,7 +97,6 @@ const CMS_DefinitionList = lazy(() => import('../../../../components/CMS_List').
 
 // ============================================================================
 // Data Display Components
-// These components render structured data (tables)
 // ============================================================================
 
 const CMS_Table = lazy(() => import('../../../../components/CMS_Table'));
@@ -117,7 +109,6 @@ const CMS_SelectableTable = lazy(() => import('../../../../components/CMS_Table'
 
 // ============================================================================
 // Form Components
-// These components handle user input (inputs, forms)
 // ============================================================================
 
 const CMS_Input = lazy(() => import('../../../../components/CMS_Input'));
@@ -135,31 +126,114 @@ const CMS_PasswordInput = lazy(() => import('../../../../components/CMS_Input').
 // ============================================================================
 
 /**
- * ComponentWrapper - Provides a data attribute for component selection and SEO metadata
+ * ComponentWrapper - Provides data attributes for component selection and accessibility
  */
 const ComponentWrapper = ({ uid, componentType, children }) => {
   if (!uid) return children;
 
-  // Generate SEO-friendly attributes based on component type
+  /**
+   * Generate ARIA roles based on component type
+   * Comprehensive mapping for all CMS components
+   */
   const getComponentRole = (type) => {
     const roleMap = {
-      'CMS_Title': 'heading',
+      // ===== Title Components =====
       'CMS_H1': 'heading',
       'CMS_H2': 'heading',
       'CMS_H3': 'heading',
       'CMS_H4': 'heading',
-      'CMS_Text': 'contentinfo',
-      'CMS_Paragraph': 'contentinfo',
+      'CMS_Title': 'heading',
+
+      // ===== Text Components =====
+      'CMS_Span': 'text',
+      'CMS_Code': 'code',
+      'CMS_Label': 'label',
+      'CMS_Text': 'paragraph',
+      'CMS_Quote': 'blockquote',
+      'CMS_Paragraph': 'paragraph',
+
+      // ===== Button Components =====
       'CMS_Button': 'button',
+      'CMS_IconButton': 'button',
+      'CMS_DangerButton': 'button',
+      'CMS_OutlineButton': 'button',
+      'CMS_PrimaryButton': 'button',
+      'CMS_GradientButton': 'button',
+      'CMS_SecondaryButton': 'button',
+
+      // ===== Badge Components =====
+      'CMS_Badge': 'status',
+      'CMS_DotBadge': 'status',
+      'CMS_InfoBadge': 'status',
+      'CMS_CountBadge': 'status',
+      'CMS_DangerBadge': 'status',
+      'CMS_PrimaryBadge': 'status',
+      'CMS_SuccessBadge': 'status',
+      'CMS_WarningBadge': 'status',
+      'CMS_OutlineBadge': 'status',
+
+      // ===== Media Components =====
       'CMS_Media': 'img',
+      'CMS_Image': 'img',
+      'CMS_Video': 'video',
+      'CMS_Vimeo': 'video',
+      'CMS_YouTube': 'video',
+
+      // ===== Card Components =====
       'CMS_Card': 'article',
-      'CMS_Section': 'region',
+      'CMS_CardBody': 'main',
+      'CMS_CardFooter': 'footer',
+      'CMS_CardHeader': 'header',
+      'CMS_ProductCard': 'article',
+      'CMS_ProfileCard': 'article',
+      'CMS_ArticleCard': 'article',
+
+      // ===== Container Components =====
       'CMS_Grid': 'grid',
       'CMS_Flex': 'region',
+      'CMS_Section': 'region',
+      'CMS_Container': 'region',
+
+      // ===== Divider Components =====
+      'CMS_Divider': 'separator',
+      'CMS_DashedDivider': 'separator',
+      'CMS_DividerWithText': 'separator',
+      'CMS_DividerWithIcon': 'separator',
+      'CMS_VerticalDivider': 'separator',
+      'CMS_GradientDivider': 'separator',
+
+      // ===== List Components =====
       'CMS_List': 'list',
+      'CMS_IconList': 'list',
+      'CMS_Checklist': 'list',
+      'CMS_BulletList': 'list',
+      'CMS_OrderedList': 'list',
+      'CMS_ListItem': 'listitem',
+      'CMS_UnorderedList': 'list',
+      'CMS_DefinitionList': 'list',
+
+      // ===== Table Components =====
       'CMS_Table': 'table',
+      'CMS_DataTable': 'table',
+      'CMS_SimpleTable': 'table',
+      'CMS_TableBody': 'rowgroup',
+      'CMS_TableHeader': 'rowgroup',
+      'CMS_TableFooter': 'rowgroup',
+      'CMS_SelectableTable': 'table',
+
+      // ===== Input Components =====
+      'CMS_Input': 'textbox',
+      'CMS_Select': 'listbox',
+      'CMS_Textarea': 'textbox',
+      'CMS_InputGroup': 'group',
+      'CMS_InputAddon': 'group',
+      'CMS_TextInput': 'textbox',
+      'CMS_EmailInput': 'textbox',
+      'CMS_PasswordInput': 'textbox',
+      'CMS_NumberInput': 'spinbutton',
     };
-    return roleMap[type] || 'region';
+
+    return roleMap[type] || 'region'; // Default to region for unknown types
   };
 
   return (
@@ -281,62 +355,7 @@ const componentRegistry = {
 // Main Component
 // ============================================================================
 
-const ServicesSectionCustom = ({
-  config,
-  pageConfig
-}) => {
-  /**
-   * Generate SEO metadata from config
-   */
-  const generateSEOMetadata = () => {
-    // Use SEO from config if available
-    if (config?.seo) {
-      return {
-        title: config.seo.title || 'Sazzad Inventory & Logistics',
-        description: config.seo.description || 'Dynamic page builder for inventory and logistics solutions',
-        keywords: config.seo.keywords || 'CMS builder, dynamic page, inventory management, logistics, page builder',
-        structuredData: config.seo.structuredData || {
-          "@type": "SoftwareApplication",
-          "name": "Sazzad CMS Page Builder",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web",
-          "description": "Dynamic page builder for inventory and logistics solutions"
-        }
-      };
-    }
-
-    // Fallback: try to extract from content
-    let title = 'Sazzad Inventory & Logistics';
-    let description = 'Dynamic page builder for inventory and logistics solutions';
-
-    const findTitle = (obj) => {
-      if (!obj) return;
-      if (obj.component === 'CMS_Title' && obj.text) {
-        title = obj.text;
-      }
-      if (obj.component === 'CMS_Text' && obj.text && !description) {
-        description = obj.text;
-      }
-      if (obj.children) {
-        obj.children.forEach(findTitle);
-      }
-    };
-
-    findTitle(config);
-
-    return { title, description };
-  };
-
-  const seo = generateSEOMetadata();
-  const siteConfig = pageConfig?.siteConfig || {};
-  const currentUrl = typeof window !== 'undefined' ? window.location.origin : siteConfig.url || '';
-
-  // Build structured data
-  const structuredData = {
-    "@context": "https://schema.org",
-    ...seo.structuredData,
-    "description": seo.description
-  };
+const ServicesSectionCustom = ({ config }) => {
 
   /**
    * Recursively renders a component based on its type and configuration
@@ -402,51 +421,16 @@ const ServicesSectionCustom = ({
   // ==========================================================================
 
   return (
-    <>
-      {/* SEO Meta Tags using Inertia's Head component */}
-      <Head>
-        {/* Primary Meta Tags */}
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta name="keywords" content={seo.keywords || "CMS builder, dynamic page, inventory management, logistics, page builder"} />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta property="og:url" content={currentUrl} />
-        <meta property="og:site_name" content={siteConfig.name || "Sazzad Inventory & Logistics"} />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={seo.title} />
-        <meta name="twitter:description" content={seo.description} />
-
-        {/* Additional SEO */}
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <link rel="canonical" href={currentUrl} />
-
-        {/* Structured Data */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-
-        {/* Accessibility */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#4f46e5" />
-      </Head>
-
-      <Suspense fallback={<ServicesSectionSkeleton />}>
-        <main
-          id="main-content"
-          className="outline-none"
-          tabIndex="-1"
-          role="main"
-          aria-label="Main content"
-        >
-          {renderComponent(config)}
-        </main>
-      </Suspense>
-    </>
+    <Suspense>
+      <section
+        id="services-section"
+        className="outline-none"
+        tabIndex="-1"
+        aria-label="Services section"
+      >
+        {renderComponent(config)}
+      </section>
+    </Suspense>
   );
 };
 

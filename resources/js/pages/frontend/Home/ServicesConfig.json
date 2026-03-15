@@ -543,6 +543,7 @@
             "contact": "/contact"
         }
     },
+
     "servicesSectionCustom": {
         "uid": "services-section-001",
         "component": "CMS_Section",
@@ -640,8 +641,8 @@
                         "uid": "service-card-1-007",
                         "component": "CMS_Card",
                         "classes": {
-                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
-                            "containerHover": "hover:shadow-xl hover:border-indigo-200 dark:hover:border-indigo-800",
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300",
+                            "containerHover": "hover:shadow-xl hover:border-indigo-200 dark:hover:border-indigo-800 hover:-translate-y-2",
                             "dark": "dark:bg-gray-800 dark:border-gray-700"
                         },
                         "children": [
@@ -649,7 +650,7 @@
                                 "uid": "card1-icon-008",
                                 "component": "CMS_Container",
                                 "classes": {
-                                    "base": "w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4"
+                                    "base": "w-14 h-14 bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900 dark:to-indigo-800 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                                 },
                                 "children": [
                                     {
@@ -659,7 +660,7 @@
                                         "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cube.svg",
                                         "alt": "Inventory icon",
                                         "classes": {
-                                            "media": "w-6 h-6 text-indigo-600 dark:text-indigo-300"
+                                            "media": "w-7 h-7 text-indigo-600 dark:text-indigo-300"
                                         }
                                     }
                                 ]
@@ -670,160 +671,216 @@
                                 "level": "h3",
                                 "text": "Smart Inventory",
                                 "classes": {
-                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
                                 }
                             },
                             {
                                 "uid": "card1-text-011",
                                 "component": "CMS_Text",
                                 "tag": "p",
-                                "text": "AI-powered inventory optimization with real-time tracking and demand forecasting.",
+                                "text": "AI-powered inventory optimization with real-time tracking and demand forecasting to prevent stockouts.",
                                 "classes": {
-                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card1-link-012",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "href": "/services/inventory",
+                                "icon": "HiArrowRight",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-indigo-600 dark:text-indigo-400 font-medium mt-4 inline-flex items-center group",
+                                    "hover": "hover:text-indigo-700 dark:hover:text-indigo-300"
                                 }
                             }
                         ]
                     },
                     {
-                        "uid": "service-card-2-012",
+                        "uid": "service-card-2-013",
                         "component": "CMS_Card",
                         "classes": {
-                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
-                            "containerHover": "hover:shadow-xl hover:border-purple-200 dark:hover:border-purple-800",
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300",
+                            "containerHover": "hover:shadow-xl hover:border-purple-200 dark:hover:border-purple-800 hover:-translate-y-2",
                             "dark": "dark:bg-gray-800 dark:border-gray-700"
                         },
                         "children": [
                             {
-                                "uid": "card2-icon-013",
+                                "uid": "card2-icon-014",
                                 "component": "CMS_Container",
                                 "classes": {
-                                    "base": "w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4"
+                                    "base": "w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                                 },
                                 "children": [
                                     {
-                                        "uid": "card2-icon-svg-014",
+                                        "uid": "card2-icon-svg-015",
                                         "component": "CMS_Media",
                                         "type": "image",
                                         "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
                                         "alt": "Freight icon",
                                         "classes": {
-                                            "media": "w-6 h-6 text-purple-600 dark:text-purple-300"
+                                            "media": "w-7 h-7 text-purple-600 dark:text-purple-300"
                                         }
                                     }
                                 ]
                             },
                             {
-                                "uid": "card2-title-015",
+                                "uid": "card2-title-016",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "Global Freight",
                                 "classes": {
-                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
                                 }
                             },
                             {
-                                "uid": "card2-text-016",
+                                "uid": "card2-text-017",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "Seamless international shipping with multi-modal transport and customs clearance.",
                                 "classes": {
-                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card2-link-018",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "href": "/services/freight",
+                                "icon": "HiArrowRight",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-purple-600 dark:text-purple-400 font-medium mt-4 inline-flex items-center group",
+                                    "hover": "hover:text-purple-700 dark:hover:text-purple-300"
                                 }
                             }
                         ]
                     },
                     {
-                        "uid": "service-card-3-017",
+                        "uid": "service-card-3-019",
                         "component": "CMS_Card",
                         "classes": {
-                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
-                            "containerHover": "hover:shadow-xl hover:border-green-200 dark:hover:border-green-800",
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300",
+                            "containerHover": "hover:shadow-xl hover:border-green-200 dark:hover:border-green-800 hover:-translate-y-2",
                             "dark": "dark:bg-gray-800 dark:border-gray-700"
                         },
                         "children": [
                             {
-                                "uid": "card3-icon-018",
+                                "uid": "card3-icon-020",
                                 "component": "CMS_Container",
                                 "classes": {
-                                    "base": "w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4"
+                                    "base": "w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                                 },
                                 "children": [
                                     {
-                                        "uid": "card3-icon-svg-019",
+                                        "uid": "card3-icon-svg-021",
                                         "component": "CMS_Media",
                                         "type": "image",
                                         "src": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/cog-6-tooth.svg",
                                         "alt": "Warehouse icon",
                                         "classes": {
-                                            "media": "w-6 h-6 text-green-600 dark:text-green-300"
+                                            "media": "w-7 h-7 text-green-600 dark:text-green-300"
                                         }
                                     }
                                 ]
                             },
                             {
-                                "uid": "card3-title-020",
+                                "uid": "card3-title-022",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "Warehouse Auto",
                                 "classes": {
-                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
                                 }
                             },
                             {
-                                "uid": "card3-text-021",
+                                "uid": "card3-text-023",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "Cutting-edge automation with robotics and smart picking technologies.",
                                 "classes": {
-                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card3-link-024",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "href": "/services/warehouse",
+                                "icon": "HiArrowRight",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-green-600 dark:text-green-400 font-medium mt-4 inline-flex items-center group",
+                                    "hover": "hover:text-green-700 dark:hover:text-green-300"
                                 }
                             }
                         ]
                     },
                     {
-                        "uid": "service-card-4-022",
+                        "uid": "service-card-4-025",
                         "component": "CMS_Card",
                         "classes": {
-                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
-                            "containerHover": "hover:shadow-xl hover:border-yellow-200 dark:hover:border-yellow-800",
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300",
+                            "containerHover": "hover:shadow-xl hover:border-yellow-200 dark:hover:border-yellow-800 hover:-translate-y-2",
                             "dark": "dark:bg-gray-800 dark:border-gray-700"
                         },
                         "children": [
                             {
-                                "uid": "card4-icon-023",
+                                "uid": "card4-icon-026",
                                 "component": "CMS_Container",
                                 "classes": {
-                                    "base": "w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mb-4"
+                                    "base": "w-14 h-14 bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-900 dark:to-yellow-800 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                                 },
                                 "children": [
                                     {
-                                        "uid": "card4-icon-svg-024",
+                                        "uid": "card4-icon-svg-027",
                                         "component": "CMS_Media",
                                         "type": "image",
                                         "src": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/clock.svg",
                                         "alt": "Last mile icon",
                                         "classes": {
-                                            "media": "w-6 h-6 text-yellow-600 dark:text-yellow-300"
+                                            "media": "w-7 h-7 text-yellow-600 dark:text-yellow-300"
                                         }
                                     }
                                 ]
                             },
                             {
-                                "uid": "card4-title-025",
+                                "uid": "card4-title-028",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "Last-Mile",
                                 "classes": {
-                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
                                 }
                             },
                             {
-                                "uid": "card4-text-026",
+                                "uid": "card4-text-029",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "Optimized delivery with route optimization and real-time tracking.",
                                 "classes": {
-                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card4-link-030",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "href": "/services/last-mile",
+                                "icon": "HiArrowRight",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-yellow-600 dark:text-yellow-400 font-medium mt-4 inline-flex items-center group",
+                                    "hover": "hover:text-yellow-700 dark:hover:text-yellow-300"
                                 }
                             }
                         ]
@@ -831,35 +888,35 @@
                 ]
             },
             {
-                "uid": "services-cta-027",
+                "uid": "services-cta-031",
                 "component": "CMS_Container",
                 "classes": {
-                    "base": "px-4 mt-12",
-                    "sm": "sm:px-6 sm:mt-16",
-                    "md": "md:px-8 md:mt-20",
-                    "lg": "lg:mt-24",
-                    "xl": "xl:mt-28"
+                    "base": "px-4 mt-16",
+                    "sm": "sm:px-6 sm:mt-20",
+                    "md": "md:px-8 md:mt-24",
+                    "lg": "lg:mt-28",
+                    "xl": "xl:mt-32"
                 },
                 "children": [
                     {
-                        "uid": "cta-card-028",
+                        "uid": "cta-card-032",
                         "component": "CMS_Card",
                         "classes": {
-                            "container": "bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8",
+                            "container": "bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 shadow-xl",
                             "sm:container": "sm:p-10",
                             "md:container": "md:p-12",
                             "body": "flex flex-col md:flex-row items-center justify-between gap-6"
                         },
                         "children": [
                             {
-                                "uid": "cta-text-029",
+                                "uid": "cta-text-033",
                                 "component": "CMS_Container",
                                 "classes": {
                                     "base": "text-center md:text-left"
                                 },
                                 "children": [
                                     {
-                                        "uid": "cta-title-030",
+                                        "uid": "cta-title-034",
                                         "component": "CMS_Title",
                                         "level": "h3",
                                         "text": "Ready to Transform Your Supply Chain?",
@@ -868,10 +925,10 @@
                                         }
                                     },
                                     {
-                                        "uid": "cta-desc-031",
+                                        "uid": "cta-desc-035",
                                         "component": "CMS_Text",
                                         "tag": "p",
-                                        "text": "Partner with us to create a customized logistics solution for your business.",
+                                        "text": "Partner with us to create a customized logistics solution that meets your unique business needs.",
                                         "classes": {
                                             "base": "text-indigo-100 text-sm sm:text-base"
                                         }
@@ -879,14 +936,14 @@
                                 ]
                             },
                             {
-                                "uid": "cta-button-032",
+                                "uid": "cta-button-036",
                                 "component": "CMS_Button",
-                                "text": "Get Started",
+                                "text": "Get Started Today",
                                 "size": "lg",
                                 "href": "/contact",
                                 "classes": {
-                                    "base": "bg-white text-indigo-600 rounded-lg px-6 py-3 font-semibold",
-                                    "hover": "hover:bg-gray-100 hover:scale-105",
+                                    "base": "bg-white text-indigo-600 rounded-lg px-6 py-3 font-semibold shadow-lg transition-all duration-300",
+                                    "hover": "hover:bg-gray-100 hover:scale-105 hover:shadow-xl",
                                     "sm": "sm:px-8 sm:py-4"
                                 }
                             }
@@ -895,25 +952,37 @@
                 ]
             },
             {
-                "uid": "stats-grid-033",
+                "uid": "services-divider-037",
+                "component": "CMS_Divider",
+                "classes": {
+                    "base": "px-4 mt-12",
+                    "sm": "sm:px-6 sm:mt-16",
+                    "md": "md:px-8 md:mt-20"
+                },
+                "variant": "gradient",
+                "gradient": "from-indigo-500 to-purple-500",
+                "thickness": "thin"
+            },
+            {
+                "uid": "services-stats-038",
                 "component": "CMS_Grid",
                 "classes": {
-                    "base": "grid gap-4 px-4 mt-12",
-                    "sm": "sm:grid-cols-2 sm:gap-6 sm:px-6 sm:mt-16",
-                    "md": "md:grid-cols-4 md:gap-8 md:px-8 md:mt-20",
-                    "lg": "lg:gap-10 lg:mt-24",
-                    "xl": "xl:gap-12 xl:mt-28"
+                    "base": "grid gap-6 px-4 mt-8",
+                    "sm": "sm:grid-cols-2 sm:gap-8 sm:px-6 sm:mt-12",
+                    "md": "md:grid-cols-4 md:gap-10 md:px-8 md:mt-16",
+                    "lg": "lg:gap-12 lg:mt-20",
+                    "xl": "xl:gap-14 xl:mt-24"
                 },
                 "children": [
                     {
-                        "uid": "stat-1-034",
+                        "uid": "stat-1-039",
                         "component": "CMS_Container",
                         "classes": {
                             "base": "text-center"
                         },
                         "children": [
                             {
-                                "uid": "stat-1-number-035",
+                                "uid": "stat-1-number-040",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "500+",
@@ -922,7 +991,7 @@
                                 }
                             },
                             {
-                                "uid": "stat-1-label-036",
+                                "uid": "stat-1-label-041",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "Clients Worldwide",
@@ -933,14 +1002,14 @@
                         ]
                     },
                     {
-                        "uid": "stat-2-037",
+                        "uid": "stat-2-042",
                         "component": "CMS_Container",
                         "classes": {
                             "base": "text-center"
                         },
                         "children": [
                             {
-                                "uid": "stat-2-number-038",
+                                "uid": "stat-2-number-043",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "10K+",
@@ -949,7 +1018,7 @@
                                 }
                             },
                             {
-                                "uid": "stat-2-label-039",
+                                "uid": "stat-2-label-044",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "Shipments Monthly",
@@ -960,14 +1029,14 @@
                         ]
                     },
                     {
-                        "uid": "stat-3-040",
+                        "uid": "stat-3-045",
                         "component": "CMS_Container",
                         "classes": {
                             "base": "text-center"
                         },
                         "children": [
                             {
-                                "uid": "stat-3-number-041",
+                                "uid": "stat-3-number-046",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "98%",
@@ -976,7 +1045,7 @@
                                 }
                             },
                             {
-                                "uid": "stat-3-label-042",
+                                "uid": "stat-3-label-047",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "On-Time Delivery",
@@ -987,14 +1056,14 @@
                         ]
                     },
                     {
-                        "uid": "stat-4-043",
+                        "uid": "stat-4-048",
                         "component": "CMS_Container",
                         "classes": {
                             "base": "text-center"
                         },
                         "children": [
                             {
-                                "uid": "stat-4-number-044",
+                                "uid": "stat-4-number-049",
                                 "component": "CMS_Title",
                                 "level": "h3",
                                 "text": "24/7",
@@ -1003,7 +1072,7 @@
                                 }
                             },
                             {
-                                "uid": "stat-4-label-045",
+                                "uid": "stat-4-label-050",
                                 "component": "CMS_Text",
                                 "tag": "p",
                                 "text": "Support Available",

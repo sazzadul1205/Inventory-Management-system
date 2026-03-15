@@ -1,0 +1,1826 @@
+{
+    "featuresSectionConfig": {
+        "featuresVariant": "variant3"
+    },
+    "featuresSection1": {
+        "seo": {
+            "title": "Powerful Features for Modern Logistics - Sazzad",
+            "description": "Discover the powerful features that make our inventory and logistics platform the choice of leading businesses worldwide.",
+            "keywords": "inventory features, logistics features, real-time tracking, demand forecasting, warehouse automation, supply chain analytics",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Platform Features",
+                "description": "Key features of our inventory and logistics platform"
+            }
+        },
+        "badge": {
+            "show": true,
+            "text": "✦ POWERFUL FEATURES",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "image": {
+            "src": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "alt": "Sazzad platform features overview"
+        },
+        "heading": {
+            "prefix": "Everything You Need for",
+            "highlightedText": "Seamless Operations",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": ""
+        },
+        "description": "Our comprehensive platform offers all the tools you need to streamline your supply chain, reduce costs, and improve efficiency.",
+        "features": [
+            {
+                "id": "real-time-tracking",
+                "icon": "clock",
+                "title": "Real-Time Tracking",
+                "description": "Track inventory and shipments in real-time with GPS and IoT sensors for complete visibility.",
+                "stat": {
+                    "value": "99.9%",
+                    "label": "Accuracy"
+                }
+            },
+            {
+                "id": "demand-forecasting",
+                "icon": "chart",
+                "title": "Demand Forecasting",
+                "description": "AI-powered predictions to optimize stock levels and prevent stockouts or overstocking.",
+                "stat": {
+                    "value": "95%",
+                    "label": "Forecast Accuracy"
+                }
+            },
+            {
+                "id": "quality-assurance",
+                "icon": "shield",
+                "title": "Quality Assurance",
+                "description": "Automated quality checks and compliance monitoring throughout the supply chain.",
+                "stat": {
+                    "value": "100%",
+                    "label": "Compliance"
+                }
+            },
+            {
+                "id": "smart-routing",
+                "icon": "truck",
+                "title": "Smart Routing",
+                "description": "Optimized delivery routes that save time, fuel, and reduce carbon emissions.",
+                "stat": {
+                    "value": "30%",
+                    "label": "Cost Savings"
+                }
+            },
+            {
+                "id": "global-coverage",
+                "icon": "globe",
+                "title": "Global Coverage",
+                "description": "International shipping and logistics support in over 100 countries worldwide.",
+                "stat": {
+                    "value": "100+",
+                    "label": "Countries"
+                }
+            },
+            {
+                "id": "automation",
+                "icon": "cog",
+                "title": "Warehouse Automation",
+                "description": "Robotic picking, automated storage, and intelligent warehouse management.",
+                "stat": {
+                    "value": "3x",
+                    "label": "Faster Processing"
+                }
+            },
+            {
+                "id": "cost-optimization",
+                "icon": "dollar",
+                "title": "Cost Optimization",
+                "description": "Identify cost-saving opportunities and optimize your logistics spending.",
+                "stat": {
+                    "value": "25%",
+                    "label": "Avg. Savings"
+                }
+            },
+            {
+                "id": "dedicated-support",
+                "icon": "users",
+                "title": "Dedicated Support",
+                "description": "24/7 customer support with dedicated account managers for enterprise clients.",
+                "stat": {
+                    "value": "24/7",
+                    "label": "Support"
+                }
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Explore All Features",
+            "url": "/features",
+            "icon": "arrowRight",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "Explore all platform features"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "featuresSection2": {
+        "seo": {
+            "title": "Powerful Platform Features - Sazzad Inventory & Logistics",
+            "description": "Explore our comprehensive platform features including inventory management, real-time tracking, analytics, and automation tools.",
+            "keywords": "platform features, inventory features, logistics features, supply chain tools, warehouse automation, real-time tracking",
+            "ogImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Platform Features",
+                "description": "Comprehensive supply chain platform features"
+            }
+        },
+        "badge": {
+            "text": "POWERFUL PLATFORM"
+        },
+        "image": {
+            "src": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "alt": "Sazzad platform features"
+        },
+        "heading": {
+            "line1": "Powerful Features for",
+            "highlighted": "Modern Supply Chains"
+        },
+        "description": "Our platform combines cutting-edge technology with intuitive design to give you complete control over your supply chain operations.",
+        "categories": [
+            {
+                "id": "inventory",
+                "name": "Inventory Management"
+            },
+            {
+                "id": "tracking",
+                "name": "Real-Time Tracking"
+            },
+            {
+                "id": "analytics",
+                "name": "Analytics & Reports"
+            },
+            {
+                "id": "automation",
+                "name": "Automation"
+            }
+        ],
+        "features": [
+            {
+                "id": "smart-inventory",
+                "category": "inventory",
+                "categoryName": "Inventory Management",
+                "categoryIcon": "cube",
+                "title": "Smart Inventory Management",
+                "description": "AI-powered inventory optimization with real-time tracking, automated reordering, and demand forecasting.",
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "Real-time stock levels across all locations",
+                    "Automated reorder point calculations",
+                    "Demand forecasting with machine learning",
+                    "Batch and expiry tracking",
+                    "Multi-warehouse synchronization"
+                ],
+                "metrics": [
+                    {
+                        "value": "99.9%",
+                        "label": "Inventory Accuracy"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Cost Reduction"
+                    }
+                ],
+                "floatingCard": {
+                    "icon": "cube",
+                    "iconBg": "bg-blue-500",
+                    "label": "Current Stock Value",
+                    "value": "$2.4M"
+                },
+                "link": "/features/inventory-management"
+            },
+            {
+                "id": "real-time-tracking",
+                "category": "tracking",
+                "categoryName": "Real-Time Tracking",
+                "categoryIcon": "eye",
+                "title": "End-to-End Visibility",
+                "description": "Track your shipments and inventory in real-time with GPS, IoT sensors, and blockchain verification.",
+                "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "GPS tracking for all shipments",
+                    "IoT sensor monitoring",
+                    "Blockchain verification",
+                    "Automated status alerts",
+                    "Proof of delivery with photos"
+                ],
+                "metrics": [
+                    {
+                        "value": "Real-time",
+                        "label": "Updates Every 5s"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Shipment Visibility"
+                    }
+                ],
+                "floatingCard": {
+                    "icon": "eye",
+                    "iconBg": "bg-green-500",
+                    "label": "Active Shipments",
+                    "value": "1,247"
+                },
+                "link": "/features/real-time-tracking"
+            },
+            {
+                "id": "advanced-analytics",
+                "category": "analytics",
+                "categoryName": "Analytics & Reports",
+                "categoryIcon": "chart",
+                "title": "Advanced Analytics",
+                "description": "Transform your supply chain data into actionable insights with powerful analytics and customizable dashboards.",
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "Customizable dashboards",
+                    "Predictive analytics",
+                    "Cost optimization insights",
+                    "Performance benchmarking",
+                    "Automated report generation"
+                ],
+                "metrics": [
+                    {
+                        "value": "50+",
+                        "label": "Pre-built Reports"
+                    },
+                    {
+                        "value": "Real-time",
+                        "label": "Data Updates"
+                    }
+                ],
+                "floatingCard": {
+                    "icon": "trending",
+                    "iconBg": "bg-purple-500",
+                    "label": "Efficiency Gain",
+                    "value": "+24.5%"
+                },
+                "link": "/features/analytics"
+            },
+            {
+                "id": "warehouse-automation",
+                "category": "automation",
+                "categoryName": "Automation",
+                "categoryIcon": "lightning",
+                "title": "Warehouse Automation",
+                "description": "Streamline your warehouse operations with robotics, automated picking, and intelligent workflow management.",
+                "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "Robotic picking and packing",
+                    "Automated storage & retrieval",
+                    "Intelligent task routing",
+                    "Labor optimization",
+                    "Integration with WMS"
+                ],
+                "metrics": [
+                    {
+                        "value": "3x",
+                        "label": "Faster Processing"
+                    },
+                    {
+                        "value": "50%",
+                        "label": "Labor Savings"
+                    }
+                ],
+                "floatingCard": {
+                    "icon": "lightning",
+                    "iconBg": "bg-yellow-500",
+                    "label": "Orders Processed",
+                    "value": "15.2K/day"
+                },
+                "link": "/features/warehouse-automation"
+            },
+            {
+                "id": "mobile-access",
+                "category": "tracking",
+                "categoryName": "Real-Time Tracking",
+                "categoryIcon": "mobile",
+                "title": "Mobile Access",
+                "description": "Manage your supply chain from anywhere with our mobile apps for iOS and Android.",
+                "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "Native iOS and Android apps",
+                    "Offline mode support",
+                    "Push notifications",
+                    "Barcode scanning",
+                    "Digital signatures"
+                ],
+                "metrics": [
+                    {
+                        "value": "4.8★",
+                        "label": "App Store Rating"
+                    },
+                    {
+                        "value": "100K+",
+                        "label": "Downloads"
+                    }
+                ],
+                "floatingCard": {
+                    "icon": "mobile",
+                    "iconBg": "bg-indigo-500",
+                    "label": "Active Users",
+                    "value": "25.3K"
+                },
+                "link": "/features/mobile"
+            },
+            {
+                "id": "security-compliance",
+                "category": "automation",
+                "categoryName": "Automation",
+                "categoryIcon": "lock",
+                "title": "Security & Compliance",
+                "description": "Enterprise-grade security with automated compliance checks for global regulations.",
+                "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "End-to-end encryption",
+                    "Automated compliance checks",
+                    "Audit trails",
+                    "Role-based access control",
+                    "GDPR & SOC2 compliant"
+                ],
+                "metrics": [
+                    {
+                        "value": "99.99%",
+                        "label": "Uptime SLA"
+                    },
+                    {
+                        "value": "ISO27001",
+                        "label": "Certified"
+                    }
+                ],
+                "floatingCard": {
+                    "icon": "lock",
+                    "iconBg": "bg-red-500",
+                    "label": "Security Score",
+                    "value": "A+"
+                },
+                "link": "/features/security"
+            }
+        ],
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "featuresSection3": {
+        "seo": {
+            "title": "Comprehensive Platform Capabilities - Sazzad",
+            "description": "Explore our extensive range of features and capabilities designed to optimize every aspect of your supply chain operations.",
+            "keywords": "platform capabilities, inventory features, logistics features, supply chain tools, warehouse management, tracking features",
+            "ogImage": "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Platform Capabilities",
+                "description": "Complete supply chain platform features"
+            }
+        },
+        "badge": {
+            "icon": "star",
+            "text": "PLATFORM CAPABILITIES"
+        },
+        "image": {
+            "src": "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "alt": "Sazzad platform capabilities"
+        },
+        "heading": {
+            "prefix": "Everything You Need in",
+            "highlightedText": "One Platform",
+            "suffix": ""
+        },
+        "description": "Our comprehensive platform combines all the tools you need to manage your inventory, track shipments, analyze performance, and optimize your supply chain.",
+        "features": [
+            {
+                "id": "inventory-management",
+                "icon": "cube",
+                "iconBg": "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+                "accentColor": "from-blue-500 to-blue-600",
+                "title": "Inventory Management",
+                "description": "Complete control over your inventory with real-time tracking, batch management, and automated reordering.",
+                "tags": [
+                    {
+                        "text": "Real-time",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "Multi-warehouse",
+                        "bgColor": "bg-purple-100 dark:bg-purple-900/30",
+                        "textColor": "text-purple-800 dark:text-purple-200"
+                    },
+                    {
+                        "text": "AI-powered",
+                        "bgColor": "bg-green-100 dark:bg-green-900/30",
+                        "textColor": "text-green-800 dark:text-green-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "99.9%",
+                        "label": "Accuracy"
+                    },
+                    {
+                        "value": "<1s",
+                        "label": "Updates"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Real-time stock levels across all locations",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Batch and expiry date tracking",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Automated reorder point calculations",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Cycle counting and audit trails",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/inventory",
+                "linkColor": "text-blue-600 dark:text-blue-400"
+            },
+            {
+                "id": "shipment-tracking",
+                "icon": "truck",
+                "iconBg": "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400",
+                "accentColor": "from-green-500 to-green-600",
+                "title": "Shipment Tracking",
+                "description": "End-to-end visibility of all shipments with GPS tracking, status updates, and delivery confirmation.",
+                "tags": [
+                    {
+                        "text": "GPS Tracking",
+                        "bgColor": "bg-green-100 dark:bg-green-900/30",
+                        "textColor": "text-green-800 dark:text-green-200"
+                    },
+                    {
+                        "text": "Real-time",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "Proof of Delivery",
+                        "bgColor": "bg-yellow-100 dark:bg-yellow-900/30",
+                        "textColor": "text-yellow-800 dark:text-yellow-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "100%",
+                        "label": "Visibility"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Monitoring"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Live GPS tracking for all shipments",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Automated status notifications",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Electronic proof of delivery with photos",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Delivery exception alerts",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/tracking",
+                "linkColor": "text-green-600 dark:text-green-400"
+            },
+            {
+                "id": "analytics-dashboards",
+                "icon": "chart",
+                "iconBg": "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+                "accentColor": "from-purple-500 to-purple-600",
+                "title": "Analytics & Dashboards",
+                "description": "Powerful analytics and customizable dashboards to visualize your supply chain performance.",
+                "tags": [
+                    {
+                        "text": "Real-time",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "Customizable",
+                        "bgColor": "bg-purple-100 dark:bg-purple-900/30",
+                        "textColor": "text-purple-800 dark:text-purple-200"
+                    },
+                    {
+                        "text": "Predictive",
+                        "bgColor": "bg-indigo-100 dark:bg-indigo-900/30",
+                        "textColor": "text-indigo-800 dark:text-indigo-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "50+",
+                        "label": "Reports"
+                    },
+                    {
+                        "value": "95%",
+                        "label": "Accuracy"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Customizable KPI dashboards",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Predictive analytics and forecasting",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Automated report generation",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Export to PDF, Excel, CSV",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/analytics",
+                "linkColor": "text-purple-600 dark:text-purple-400"
+            },
+            {
+                "id": "warehouse-automation",
+                "icon": "cog",
+                "iconBg": "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+                "accentColor": "from-yellow-500 to-yellow-600",
+                "title": "Warehouse Automation",
+                "description": "Streamline warehouse operations with automation tools, robotics integration, and smart workflows.",
+                "tags": [
+                    {
+                        "text": "Robotics",
+                        "bgColor": "bg-yellow-100 dark:bg-yellow-900/30",
+                        "textColor": "text-yellow-800 dark:text-yellow-200"
+                    },
+                    {
+                        "text": "Smart Picking",
+                        "bgColor": "bg-orange-100 dark:bg-orange-900/30",
+                        "textColor": "text-orange-800 dark:text-orange-200"
+                    },
+                    {
+                        "text": "WMS",
+                        "bgColor": "bg-amber-100 dark:bg-amber-900/30",
+                        "textColor": "text-amber-800 dark:text-amber-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "3x",
+                        "label": "Faster"
+                    },
+                    {
+                        "value": "50%",
+                        "label": "Labor Savings"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Robotic picking and packing integration",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Automated storage and retrieval systems",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Smart task routing and optimization",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Labor management and tracking",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/warehouse",
+                "linkColor": "text-yellow-600 dark:text-yellow-400"
+            },
+            {
+                "id": "quality-compliance",
+                "icon": "shield",
+                "iconBg": "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400",
+                "accentColor": "from-red-500 to-red-600",
+                "title": "Quality & Compliance",
+                "description": "Ensure quality standards and regulatory compliance with automated checks and audit trails.",
+                "tags": [
+                    {
+                        "text": "ISO Certified",
+                        "bgColor": "bg-red-100 dark:bg-red-900/30",
+                        "textColor": "text-red-800 dark:text-red-200"
+                    },
+                    {
+                        "text": "GDPR",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "Audit Trail",
+                        "bgColor": "bg-gray-100 dark:bg-gray-700",
+                        "textColor": "text-gray-800 dark:text-gray-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Monitoring"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Automated quality control checks",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Regulatory compliance monitoring",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Complete audit trails",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Document management and versioning",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/compliance",
+                "linkColor": "text-red-600 dark:text-red-400"
+            },
+            {
+                "id": "mobile-access",
+                "icon": "eye",
+                "iconBg": "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400",
+                "accentColor": "from-indigo-500 to-indigo-600",
+                "title": "Mobile Access",
+                "description": "Access your supply chain data anytime, anywhere with our mobile apps for iOS and Android.",
+                "tags": [
+                    {
+                        "text": "iOS",
+                        "bgColor": "bg-gray-100 dark:bg-gray-700",
+                        "textColor": "text-gray-800 dark:text-gray-200"
+                    },
+                    {
+                        "text": "Android",
+                        "bgColor": "bg-green-100 dark:bg-green-900/30",
+                        "textColor": "text-green-800 dark:text-green-200"
+                    },
+                    {
+                        "text": "Offline",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "4.8★",
+                        "label": "App Store"
+                    },
+                    {
+                        "value": "4.7★",
+                        "label": "Play Store"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Native iOS and Android apps",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Offline mode with sync",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Barcode scanning",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Push notifications",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/mobile",
+                "linkColor": "text-indigo-600 dark:text-indigo-400"
+            },
+            {
+                "id": "demand-forecasting",
+                "icon": "lightning",
+                "iconBg": "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400",
+                "accentColor": "from-cyan-500 to-cyan-600",
+                "title": "Demand Forecasting",
+                "description": "AI-powered demand forecasting to optimize inventory levels and prevent stockouts or overstocking.",
+                "tags": [
+                    {
+                        "text": "AI/ML",
+                        "bgColor": "bg-cyan-100 dark:bg-cyan-900/30",
+                        "textColor": "text-cyan-800 dark:text-cyan-200"
+                    },
+                    {
+                        "text": "Predictive",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "Real-time",
+                        "bgColor": "bg-green-100 dark:bg-green-900/30",
+                        "textColor": "text-green-800 dark:text-green-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "95%",
+                        "label": "Accuracy"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Stock Reduction"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Machine learning predictions",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Seasonal trend analysis",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Promotion impact modeling",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Safety stock optimization",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/forecasting",
+                "linkColor": "text-cyan-600 dark:text-cyan-400"
+            },
+            {
+                "id": "supply-chain-visibility",
+                "icon": "globe",
+                "iconBg": "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
+                "accentColor": "from-emerald-500 to-emerald-600",
+                "title": "Supply Chain Visibility",
+                "description": "End-to-end visibility across your entire supply chain from suppliers to customers.",
+                "tags": [
+                    {
+                        "text": "End-to-End",
+                        "bgColor": "bg-emerald-100 dark:bg-emerald-900/30",
+                        "textColor": "text-emerald-800 dark:text-emerald-200"
+                    },
+                    {
+                        "text": "Multi-tier",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "Real-time",
+                        "bgColor": "bg-purple-100 dark:bg-purple-900/30",
+                        "textColor": "text-purple-800 dark:text-purple-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "100%",
+                        "label": "Visibility"
+                    },
+                    {
+                        "value": "50+",
+                        "label": "Integrations"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "Supplier performance tracking",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Multi-tier supply chain mapping",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Risk assessment and alerts",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Carbon footprint tracking",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/visibility",
+                "linkColor": "text-emerald-600 dark:text-emerald-400"
+            },
+            {
+                "id": "integration-api",
+                "icon": "template",
+                "iconBg": "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+                "accentColor": "from-orange-500 to-orange-600",
+                "title": "Integrations & API",
+                "description": "Seamlessly connect with your existing systems through our robust API and pre-built integrations.",
+                "tags": [
+                    {
+                        "text": "REST API",
+                        "bgColor": "bg-orange-100 dark:bg-orange-900/30",
+                        "textColor": "text-orange-800 dark:text-orange-200"
+                    },
+                    {
+                        "text": "Webhooks",
+                        "bgColor": "bg-blue-100 dark:bg-blue-900/30",
+                        "textColor": "text-blue-800 dark:text-blue-200"
+                    },
+                    {
+                        "text": "ERP",
+                        "bgColor": "bg-purple-100 dark:bg-purple-900/30",
+                        "textColor": "text-purple-800 dark:text-purple-200"
+                    }
+                ],
+                "stats": [
+                    {
+                        "value": "100+",
+                        "label": "Integrations"
+                    },
+                    {
+                        "value": "99.9%",
+                        "label": "Uptime"
+                    }
+                ],
+                "list": [
+                    {
+                        "icon": "check",
+                        "text": "RESTful API with comprehensive docs",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Pre-built ERP integrations",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Webhook support for real-time events",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    },
+                    {
+                        "icon": "check",
+                        "text": "Custom integration support",
+                        "iconBg": "bg-green-100 dark:bg-green-900/30"
+                    }
+                ],
+                "link": "/features/integrations",
+                "linkColor": "text-orange-600 dark:text-orange-400"
+            }
+        ],
+        "bottomHighlight": {
+            "show": true,
+            "title": "Ready to transform your supply chain?",
+            "description": "Join thousands of businesses that trust Sazzad for their inventory and logistics needs.",
+            "buttonText": "Start Free Trial",
+            "buttonUrl": "/signup"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "featuresSectionCustom": {
+        "uid": "features-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Powerful Platform Features - Sazzad Inventory & Logistics",
+            "description": "Discover our comprehensive suite of features designed to optimize your inventory management, streamline logistics, and transform your supply chain operations.",
+            "keywords": "inventory features, logistics features, supply chain tools, warehouse automation, real-time tracking, demand forecasting",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Platform Features",
+                "description": "Complete supply chain management features"
+            }
+        },
+        "children": [
+            {
+                "uid": "features-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8",
+                    "lg": "lg:px-8"
+                },
+                "children": [
+                    {
+                        "uid": "features-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "PLATFORM FEATURES",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-4 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "features-title-004",
+                        "component": "CMS_H2",
+                        "text": "Everything You Need for Modern Supply Chains",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 21,
+                                "end": 37,
+                                "class": "bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "features-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Our comprehensive platform combines cutting-edge technology with intuitive design to give you complete control over your inventory, logistics, and supply chain operations.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "features-grid-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-6 px-4 mt-12",
+                    "sm": "sm:grid-cols-2 sm:gap-8 sm:px-6",
+                    "md": "md:grid-cols-3 md:gap-10 md:px-8",
+                    "lg": "lg:gap-12",
+                    "xl": "xl:gap-14"
+                },
+                "children": [
+                    {
+                        "uid": "feature-card-1-007",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/features/inventory",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-blue-200 dark:hover:border-blue-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card1-icon-008",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-icon-svg-009",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cube.svg",
+                                        "alt": "Inventory icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-title-010",
+                                "component": "CMS_H3",
+                                "text": "Smart Inventory",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card1-text-011",
+                                "component": "CMS_Paragraph",
+                                "text": "AI-powered inventory optimization with real-time tracking and demand forecasting to prevent stockouts.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card1-stats-012",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 justify-between"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-stat1-013",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card1-stat1-value-014",
+                                                "component": "CMS_Span",
+                                                "text": "99.9%",
+                                                "classes": {
+                                                    "base": "text-blue-600 dark:text-blue-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-stat1-label-015",
+                                                "component": "CMS_Span",
+                                                "text": "Accuracy",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card1-stat2-016",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card1-stat2-value-017",
+                                                "component": "CMS_Span",
+                                                "text": "<1s",
+                                                "classes": {
+                                                    "base": "text-blue-600 dark:text-blue-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-stat2-label-018",
+                                                "component": "CMS_Span",
+                                                "text": "Updates",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "feature-card-2-019",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/features/tracking",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-purple-200 dark:hover:border-purple-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card2-icon-020",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-icon-svg-021",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
+                                        "alt": "Tracking icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-title-022",
+                                "component": "CMS_H3",
+                                "text": "Real-Time Tracking",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card2-text-023",
+                                "component": "CMS_Paragraph",
+                                "text": "End-to-end visibility with GPS tracking, status updates, and delivery confirmation for all shipments.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card2-stats-024",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 justify-between"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-stat1-025",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card2-stat1-value-026",
+                                                "component": "CMS_Span",
+                                                "text": "100%",
+                                                "classes": {
+                                                    "base": "text-purple-600 dark:text-purple-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-stat1-label-027",
+                                                "component": "CMS_Span",
+                                                "text": "Visibility",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card2-stat2-028",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card2-stat2-value-029",
+                                                "component": "CMS_Span",
+                                                "text": "24/7",
+                                                "classes": {
+                                                    "base": "text-purple-600 dark:text-purple-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-stat2-label-030",
+                                                "component": "CMS_Span",
+                                                "text": "Monitoring",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "feature-card-3-031",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/features/analytics",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-green-200 dark:hover:border-green-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card3-icon-032",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-icon-svg-033",
+                                        "component": "CMS_Image",
+                                        "src": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/chart-bar.svg",
+                                        "alt": "Analytics icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-title-034",
+                                "component": "CMS_H3",
+                                "text": "Advanced Analytics",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card3-text-035",
+                                "component": "CMS_Paragraph",
+                                "text": "Powerful dashboards and predictive analytics to optimize your supply chain performance.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card3-stats-036",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 justify-between"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-stat1-037",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card3-stat1-value-038",
+                                                "component": "CMS_Span",
+                                                "text": "50+",
+                                                "classes": {
+                                                    "base": "text-green-600 dark:text-green-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-stat1-label-039",
+                                                "component": "CMS_Span",
+                                                "text": "Reports",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card3-stat2-040",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card3-stat2-value-041",
+                                                "component": "CMS_Span",
+                                                "text": "95%",
+                                                "classes": {
+                                                    "base": "text-green-600 dark:text-green-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-stat2-label-042",
+                                                "component": "CMS_Span",
+                                                "text": "Accuracy",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "feature-card-4-043",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/features/warehouse",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-yellow-200 dark:hover:border-yellow-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card4-icon-044",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card4-icon-svg-045",
+                                        "component": "CMS_Image",
+                                        "src": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/cog-6-tooth.svg",
+                                        "alt": "Automation icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card4-title-046",
+                                "component": "CMS_H3",
+                                "text": "Warehouse Auto",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card4-text-047",
+                                "component": "CMS_Paragraph",
+                                "text": "Robotics integration, automated picking, and smart workflows to streamline operations.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card4-stats-048",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 justify-between"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card4-stat1-049",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card4-stat1-value-050",
+                                                "component": "CMS_Span",
+                                                "text": "3x",
+                                                "classes": {
+                                                    "base": "text-yellow-600 dark:text-yellow-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card4-stat1-label-051",
+                                                "component": "CMS_Span",
+                                                "text": "Faster",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card4-stat2-052",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card4-stat2-value-053",
+                                                "component": "CMS_Span",
+                                                "text": "50%",
+                                                "classes": {
+                                                    "base": "text-yellow-600 dark:text-yellow-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card4-stat2-label-054",
+                                                "component": "CMS_Span",
+                                                "text": "Labor Savings",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "feature-card-5-055",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/features/security",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-red-200 dark:hover:border-red-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card5-icon-056",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card5-icon-svg-057",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shield-check.svg",
+                                        "alt": "Security icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card5-title-058",
+                                "component": "CMS_H3",
+                                "text": "Security & Compliance",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card5-text-059",
+                                "component": "CMS_Paragraph",
+                                "text": "Enterprise-grade security with automated compliance checks and complete audit trails.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card5-stats-060",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 justify-between"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card5-stat1-061",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card5-stat1-value-062",
+                                                "component": "CMS_Span",
+                                                "text": "99.99%",
+                                                "classes": {
+                                                    "base": "text-red-600 dark:text-red-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card5-stat1-label-063",
+                                                "component": "CMS_Span",
+                                                "text": "Uptime",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card5-stat2-064",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card5-stat2-value-065",
+                                                "component": "CMS_Span",
+                                                "text": "SOC2",
+                                                "classes": {
+                                                    "base": "text-red-600 dark:text-red-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card5-stat2-label-066",
+                                                "component": "CMS_Span",
+                                                "text": "Certified",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "feature-card-6-067",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/features/global",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-indigo-200 dark:hover:border-indigo-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card6-icon-068",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card6-icon-svg-069",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/globe.svg",
+                                        "alt": "Global icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card6-title-070",
+                                "component": "CMS_H3",
+                                "text": "Global Coverage",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card6-text-071",
+                                "component": "CMS_Paragraph",
+                                "text": "International shipping and logistics support in over 100 countries worldwide.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                                }
+                            },
+                            {
+                                "uid": "card6-stats-072",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 justify-between"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card6-stat1-073",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card6-stat1-value-074",
+                                                "component": "CMS_Span",
+                                                "text": "100+",
+                                                "classes": {
+                                                    "base": "text-indigo-600 dark:text-indigo-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card6-stat1-label-075",
+                                                "component": "CMS_Span",
+                                                "text": "Countries",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card6-stat2-076",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "card6-stat2-value-077",
+                                                "component": "CMS_Span",
+                                                "text": "24/7",
+                                                "classes": {
+                                                    "base": "text-indigo-600 dark:text-indigo-400 font-bold text-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card6-stat2-label-078",
+                                                "component": "CMS_Span",
+                                                "text": "Support",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-400 text-xs ml-1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "features-cta-079",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-16",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8",
+                    "lg": "lg:px-8"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-080",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 shadow-xl",
+                            "body": "flex flex-col md:flex-row items-center justify-between gap-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-text-081",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center md:text-left"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-title-082",
+                                        "component": "CMS_H3",
+                                        "text": "Ready to Transform Your Supply Chain?",
+                                        "classes": {
+                                            "base": "text-white font-bold text-2xl md:text-3xl mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-desc-083",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Join thousands of businesses that trust Sazzad for their inventory and logistics needs.",
+                                        "classes": {
+                                            "base": "text-blue-100 text-base"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "cta-button-084",
+                                "component": "CMS_PrimaryButton",
+                                "text": "Get Started Today",
+                                "size": "lg",
+                                "href": "/contact",
+                                "classes": {
+                                    "base": "bg-white text-blue-600 rounded-lg px-8 py-4 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "features-divider-085",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "features-stats-086",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4 mt-8",
+                    "sm": "sm:grid-cols-2 sm:px-6",
+                    "md": "md:grid-cols-4 md:px-8 md:mt-12",
+                    "lg": "lg:gap-12 lg:mt-16"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-087",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-number-088",
+                                "component": "CMS_H3",
+                                "text": "500+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-089",
+                                "component": "CMS_Paragraph",
+                                "text": "Clients Worldwide",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-090",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-number-091",
+                                "component": "CMS_H3",
+                                "text": "10K+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-092",
+                                "component": "CMS_Paragraph",
+                                "text": "Shipments Monthly",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-093",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-number-094",
+                                "component": "CMS_H3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-095",
+                                "component": "CMS_Paragraph",
+                                "text": "On-Time Delivery",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-096",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-number-097",
+                                "component": "CMS_H3",
+                                "text": "24/7",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-098",
+                                "component": "CMS_Paragraph",
+                                "text": "Support Available",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
