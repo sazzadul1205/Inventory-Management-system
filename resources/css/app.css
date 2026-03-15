@@ -1,25 +1,22 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "tw-animate-css";
 
-button {
+/* Scan Blade templates */
+@source "../views";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+
+/* Dark mode variant */
+@custom-variant dark (&:is(.dark *));
+
+/* Global UI improvements */
+button,
+a {
     cursor: pointer;
 }
 
-@import 'tw-animate-css';
-
-@source '../views';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-
-@custom-variant dark (&:is(.dark *));
-
-/* Add to your global CSS file */
-button:hover,
-a:hover {
-    /* This ensures any button/link on hover can have borders removed */
-}
-
-/* Specific override for buttons with hover:border-0 */
+/* Utility fixes (only when needed) */
 .hover\:border-0:hover {
-    border-width: 0px !important;
+    border-width: 0 !important;
 }
 
 .hover\:border-transparent:hover {

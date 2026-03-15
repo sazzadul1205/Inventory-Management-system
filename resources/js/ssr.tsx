@@ -1,34 +1,52 @@
-import { createInertiaApp } from '@inertiajs/react';
-import createServer from '@inertiajs/react/server';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import ReactDOMServer from 'react-dom/server';
+// Ssr.tsx
 
+// React
+import ReactDOMServer from 'react-dom/server';
+import createServer from '@inertiajs/react/server';
+import { createInertiaApp } from '@inertiajs/react';
+
+// Helpers
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+
+// App name from environment variable or fallback
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+// Glob all page files (TSX and JSX)
 const pageFiles = import.meta.glob('./pages/**/*.{tsx,jsx}');
 
+/**
+ * Resolves a page component dynamically.
+ * It prioritizes .tsx files, then falls back to .jsx.
+ */
 const resolvePage = (name: string) => {
     const tsxPath = `./pages/${name}.tsx`;
     const jsxPath = `./pages/${name}.jsx`;
+
+    // Determine which file exists
     const pagePath = pageFiles[tsxPath]
         ? tsxPath
         : pageFiles[jsxPath]
           ? jsxPath
           : null;
 
+    // Throw an error if the page is not found
     if (!pagePath) {
         throw new Error(`Page not found: ${tsxPath} or ${jsxPath}`);
     }
 
+    // Resolve the page component
     return resolvePageComponent(pagePath, pageFiles);
 };
 
+// Create a server-side renderer for Inertia
 createServer((page) =>
     createInertiaApp({
-        page,
-        render: ReactDOMServer.renderToString,
-        title: (title) => (title ? `${title} - ${appName}` : appName),
-        resolve: resolvePage,
+        page, // SSR page object
+        render: ReactDOMServer.renderToString, // Server render method
+        title: (title) => (title ? `${title} - ${appName}` : appName), // Page title
+        resolve: resolvePage, // Page resolver
         setup: ({ App, props }) => {
+            // Return the root component for SSR
             return <App {...props} />;
         },
     }),

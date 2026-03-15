@@ -1,4 +1,4 @@
-import React from 'react';
+// Page/frontend/Home/HeroSection/HeroSectionSkeleton.jsx
 
 const HeroSectionSkeleton = () => {
   return (

@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    class="{{ ($appearance ?? 'system') === 'dark' ? 'dark' : '' }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{-- Inline script to detect system dark mode preference and apply it immediately --}}
+    <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Prevent theme flash -->
     <script>
         (function() {
-            const appearance = '{{ $appearance ?? 'system' }}';
+            const appearance = @json($appearance ?? 'system');
+            const root = document.documentElement;
 
-            if (appearance === 'system') {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                if (prefersDark) {
-                    document.documentElement.classList.add('dark');
-                }
+            if (appearance === 'dark') {
+                root.classList.add('dark');
+                return;
             }
+
+            if (appearance === 'light') {
+                root.classList.remove('dark');
+                return;
+            }
+
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) root.classList.add('dark');
         })();
     </script>
 
-    {{-- Inline style to set the HTML background color based on our theme in app.css --}}
+    <!-- Background fallback to prevent white flash -->
     <style>
         html {
             background-color: oklch(1 0 0);
@@ -31,21 +40,22 @@
         }
     </style>
 
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
-
+    <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <!-- Font loading optimization -->
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap">
 
+    <!-- Scripts -->
     @viteReactRefresh
-    @vite(['resources/js/app.tsx'])
+    @vite('resources/js/app.tsx')
     @inertiaHead
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
     @inertia
 </body>
 
