@@ -2,6 +2,7 @@
 
 // React
 import { useState } from 'react';
+import { Head, Link } from '@inertiajs/react';
 
 // Icons
 import {
@@ -10,9 +11,6 @@ import {
   HiCheckCircle,
   HiLightningBolt
 } from 'react-icons/hi';
-
-// Inertia
-import { Head, Link } from '@inertiajs/react';
 
 const HeroSection3 = ({ config, pageConfig }) => {
 
@@ -330,43 +328,6 @@ const HeroSection3 = ({ config, pageConfig }) => {
             </div>
           </div>
         </div>
-
-        {/* Footer Links */}
-        <nav
-          className="absolute bottom-4 right-4 text-xs text-gray-500 dark:text-gray-500 space-x-4"
-          aria-label="Footer navigation"
-        >
-          <Link
-            href={config?.links.privacy}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-gray-900 rounded"
-          >
-            Privacy
-          </Link>
-          <Link
-            href={config?.links.terms}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-gray-900 rounded"
-          >
-            Terms
-          </Link>
-          <Link
-            href={config?.links.contact}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-gray-900 rounded"
-          >
-            Contact
-          </Link>
-          <Link
-            href={config?.links.about}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-gray-900 rounded"
-          >
-            About
-          </Link>
-          <Link
-            href={config?.links.careers}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-gray-900 rounded"
-          >
-            Careers
-          </Link>
-        </nav>
       </div>
     </>
   );

@@ -1,5 +1,8 @@
 // page/frontend/Home/HeroSection/HeroSection2.jsx
 
+// React
+import { Head, Link } from '@inertiajs/react';
+
 // Icons
 import {
   HiOutlineTruck,
@@ -7,7 +10,6 @@ import {
   HiOutlineGlobe,
   HiArrowRight
 } from 'react-icons/hi';
-import { Head, Link } from '@inertiajs/react';
 
 const HeroSection2 = ({ config, pageConfig }) => {
   // Icon mapping function
@@ -232,37 +234,6 @@ const HeroSection2 = ({ config, pageConfig }) => {
             </div>
           </div>
         </div>
-
-        {/* Footer Links */}
-        <nav
-          className="absolute bottom-4 right-4 text-xs text-gray-500 dark:text-gray-500 space-x-4"
-          aria-label="Footer navigation"
-        >
-          <Link
-            href={config?.links.privacy}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded"
-          >
-            Privacy
-          </Link>
-          <Link
-            href={config?.links.terms}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded"
-          >
-            Terms
-          </Link>
-          <Link
-            href={config?.links.contact}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded"
-          >
-            Contact
-          </Link>
-          <Link
-            href={config?.links.blog}
-            className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded"
-          >
-            Blog
-          </Link>
-        </nav>
 
         {/* Required CSS for animations - add to your global CSS file */}
         <style jsx>{`

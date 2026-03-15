@@ -1,16 +1,6 @@
-{
-    "pageConfig": {
-        "heroVariant": "variant2",
-        "heroProps": {},
-        "siteConfig": {
-            "name": "Sazzad Inventory & Logistics",
-            "url": "https://sazzad.com",
-            "social": {
-                "facebook": "https://facebook.com/sazzad",
-                "twitter": "https://twitter.com/sazzad",
-                "linkedin": "https://linkedin.com/company/sazzad"
-            }
-        }
+    {
+    "heroSectionConfig": {
+        "heroVariant": "variant1"
     },
     "heroSection1": {
         "trustBadge": {

@@ -1,0 +1,1020 @@
+{
+    "servicesSectionConfig": {
+        "servicesVariant": "custom"
+    },
+    "servicesSection1": {
+        "seo": {
+            "title": "Our Comprehensive Services - Sazzad Inventory & Logistics",
+            "description": "Discover our full range of inventory management and logistics services designed to streamline your supply chain operations.",
+            "keywords": "inventory management services, logistics solutions, supply chain services, warehouse management, freight forwarding, order fulfillment",
+            "ogImage": "/images/services-og.jpg",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Logistics Services",
+                "description": "Complete supply chain and inventory management solutions"
+            }
+        },
+        "badge": {
+            "show": true,
+            "text": "✦ Our Services",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Comprehensive",
+            "highlightedText": "Supply Chain",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "Solutions"
+        },
+        "description": "End-to-end logistics and inventory management services tailored to optimize your business operations, reduce costs, and improve efficiency.",
+        "image": {
+            "src": "/images/services-bg.jpg",
+            "alt": "Sazzad logistics services overview"
+        },
+        "services": [
+            {
+                "id": "inventory-management",
+                "icon": "cog",
+                "title": "Inventory Management",
+                "description": "Real-time tracking, automated reordering, and intelligent stock optimization to prevent overstocking and stockouts.",
+                "features": [
+                    "Real-time inventory tracking",
+                    "Automated reordering",
+                    "Stock optimization algorithms",
+                    "Multi-warehouse support"
+                ],
+                "link": "/services/inventory-management",
+                "linkText": "Explore inventory"
+            },
+            {
+                "id": "freight-logistics",
+                "icon": "truck",
+                "title": "Freight & Logistics",
+                "description": "Nationwide and international shipping with real-time tracking, route optimization, and guaranteed delivery times.",
+                "features": [
+                    "Nationwide coverage",
+                    "Route optimization",
+                    "Real-time shipment tracking",
+                    "Express delivery options"
+                ],
+                "link": "/services/freight-logistics",
+                "linkText": "Explore logistics"
+            },
+            {
+                "id": "analytics-reporting",
+                "icon": "chartBar",
+                "title": "Analytics & Reporting",
+                "description": "Comprehensive dashboards and reports providing actionable insights into your supply chain performance.",
+                "features": [
+                    "Custom dashboards",
+                    "Performance metrics",
+                    "Predictive analytics",
+                    "Automated reporting"
+                ],
+                "link": "/services/analytics",
+                "linkText": "View analytics"
+            },
+            {
+                "id": "quality-assurance",
+                "icon": "shieldCheck",
+                "title": "Quality Assurance",
+                "description": "Rigorous quality control processes ensuring your products meet the highest standards throughout the supply chain.",
+                "features": [
+                    "Quality inspections",
+                    "Compliance monitoring",
+                    "Audit trails",
+                    "Certification management"
+                ],
+                "link": "/services/quality-assurance",
+                "linkText": "Learn about QA"
+            },
+            {
+                "id": "express-delivery",
+                "icon": "clock",
+                "title": "Express Delivery",
+                "description": "Time-critical shipping solutions with guaranteed delivery windows and priority handling for urgent shipments.",
+                "features": [
+                    "Same-day delivery",
+                    "Time-definite delivery",
+                    "Priority handling",
+                    "Emergency logistics"
+                ],
+                "link": "/services/express-delivery",
+                "linkText": "Express options"
+            },
+            {
+                "id": "global-trade",
+                "icon": "globe",
+                "title": "Global Trade",
+                "description": "International shipping expertise including customs clearance, documentation, and compliance management.",
+                "features": [
+                    "Customs brokerage",
+                    "International documentation",
+                    "Trade compliance",
+                    "Multi-modal shipping"
+                ],
+                "link": "/services/global-trade",
+                "linkText": "Global solutions"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "View All Services",
+            "url": "/services",
+            "icon": "arrowRight",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "View all available services"
+        },
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "500+",
+                    "label": "Clients Worldwide"
+                },
+                {
+                    "value": "10K+",
+                    "label": "Shipments Monthly"
+                },
+                {
+                    "value": "98%",
+                    "label": "On-Time Delivery"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Support Available"
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "servicesSection2": {
+        "seo": {
+            "title": "End-to-End Logistics Solutions - Sazzad Inventory & Logistics",
+            "description": "Comprehensive logistics solutions including inventory management, freight forwarding, warehouse automation, and supply chain optimization.",
+            "keywords": "logistics solutions, supply chain management, freight forwarding, warehouse automation, inventory optimization, 3PL services",
+            "ogImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "Service",
+                "name": "Sazzad Logistics Solutions",
+                "description": "Complete supply chain and logistics services"
+            }
+        },
+        "badge": {
+            "text": "END-TO-END SOLUTIONS"
+        },
+        "headerImage": {
+            "show": true,
+            "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "alt": "Modern logistics container ship at port",
+            "title": "Smart Logistics Solutions",
+            "subtitle": "Integrated technology and expertise for modern supply chains"
+        },
+        "heading": {
+            "main": "Comprehensive Logistics Solutions"
+        },
+        "description": "From inventory management to last-mile delivery, our integrated solutions ensure your supply chain runs smoothly, efficiently, and cost-effectively.",
+        "services": [
+            {
+                "id": "inventory-optimization",
+                "icon": "cube",
+                "title": "Smart Inventory Management",
+                "description": "AI-powered inventory optimization with real-time tracking, demand forecasting, and automated replenishment to reduce costs and prevent stockouts.",
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Real-time inventory tracking across multiple locations",
+                    "AI-driven demand forecasting and planning",
+                    "Automated reorder point calculations",
+                    "Batch and expiry management",
+                    "Cycle counting automation"
+                ],
+                "stats": [
+                    {
+                        "value": "99.5%",
+                        "label": "Inventory Accuracy"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Cost Reduction"
+                    }
+                ],
+                "link": "/services/inventory-management",
+                "linkText": "Optimize inventory"
+            },
+            {
+                "id": "freight-forwarding",
+                "icon": "truck",
+                "title": "Global Freight Forwarding",
+                "description": "Seamless international shipping with multi-modal transport options, customs clearance, and real-time shipment tracking from origin to destination.",
+                "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Air, ocean, and ground freight options",
+                    "Customs brokerage and documentation",
+                    "Real-time shipment visibility",
+                    "Consolidation and deconsolidation",
+                    "Insurance and risk management"
+                ],
+                "stats": [
+                    {
+                        "value": "100+",
+                        "label": "Countries Served"
+                    },
+                    {
+                        "value": "48h",
+                        "label": "Avg. Clearance Time"
+                    }
+                ],
+                "link": "/services/freight-forwarding",
+                "linkText": "Ship globally"
+            },
+            {
+                "id": "warehouse-automation",
+                "icon": "sparkles",
+                "title": "Warehouse Automation",
+                "description": "Cutting-edge warehouse automation solutions including robotics, automated storage and retrieval systems, and smart picking technologies.",
+                "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Automated storage and retrieval (ASRS)",
+                    "Robotic picking and packing",
+                    "Conveyor and sortation systems",
+                    "WMS integration and optimization",
+                    "Labor management and analytics"
+                ],
+                "stats": [
+                    {
+                        "value": "3x",
+                        "label": "Throughput Increase"
+                    },
+                    {
+                        "value": "50%",
+                        "label": "Labor Efficiency"
+                    }
+                ],
+                "link": "/services/warehouse-automation",
+                "linkText": "Automate warehouse"
+            },
+            {
+                "id": "last-mile-delivery",
+                "icon": "clock",
+                "title": "Last-Mile Delivery",
+                "description": "Optimized last-mile delivery solutions with route optimization, real-time tracking, and flexible delivery options for superior customer experience.",
+                "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Route optimization algorithms",
+                    "Real-time driver tracking",
+                    "Delivery time windows",
+                    "Electronic proof of delivery",
+                    "Returns management"
+                ],
+                "stats": [
+                    {
+                        "value": "98%",
+                        "label": "On-Time Delivery"
+                    },
+                    {
+                        "value": "15min",
+                        "label": "Avg. Delivery Window"
+                    }
+                ],
+                "link": "/services/last-mile-delivery",
+                "linkText": "Optimize delivery"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "title": "Ready to Transform Your Supply Chain?",
+            "description": "Partner with us to create a customized logistics solution that meets your unique business needs.",
+            "buttonText": "Get Started Today",
+            "url": "/contact",
+            "icon": "arrowRight",
+            "ariaLabel": "Contact us to get started with logistics solutions"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "servicesSection3": {
+        "seo": {
+            "title": "Service Categories - Sazzad Inventory & Logistics Solutions",
+            "description": "Browse our comprehensive service categories including inventory management, transportation, warehouse automation, and supply chain analytics.",
+            "keywords": "service categories, inventory services, transportation solutions, warehouse automation, supply chain analytics, logistics categories",
+            "ogImage": "/images/service-categories-og.jpg",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Service Categories",
+                "description": "Organized service offerings by category"
+            }
+        },
+        "badge": {
+            "text": "✦ CATEGORIZED SERVICES"
+        },
+        "image": {
+            "src": "/images/services-categories.jpg",
+            "alt": "Service categories overview"
+        },
+        "heading": {
+            "line1": "Services Organized by",
+            "highlighted": "Category"
+        },
+        "description": "Browse our comprehensive range of logistics and inventory solutions, organized by category to help you find exactly what you need.",
+        "categories": [
+            {
+                "id": "inventory",
+                "name": "Inventory Management",
+                "icon": "inventory"
+            },
+            {
+                "id": "transportation",
+                "name": "Transportation",
+                "icon": "transport"
+            },
+            {
+                "id": "warehouse",
+                "name": "Warehouse Solutions",
+                "icon": "warehouse"
+            },
+            {
+                "id": "analytics",
+                "name": "Analytics & Reporting",
+                "icon": "analytics"
+            }
+        ],
+        "services": [
+            {
+                "id": "real-time-tracking",
+                "category": "inventory",
+                "icon": "cube",
+                "iconBg": "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+                "accentColor": "from-blue-500 to-blue-600",
+                "title": "Real-Time Inventory Tracking",
+                "description": "Track inventory across multiple locations in real-time with barcode scanning, RFID, and IoT sensors.",
+                "features": [
+                    "Multi-location tracking",
+                    "Barcode & RFID support",
+                    "Low stock alerts",
+                    "Batch tracking",
+                    "Serial number tracking",
+                    "Inventory valuation"
+                ],
+                "deliveryTime": "Instant updates",
+                "link": "/services/real-time-tracking"
+            },
+            {
+                "id": "demand-forecasting",
+                "category": "inventory",
+                "icon": "chartBar",
+                "iconBg": "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+                "accentColor": "from-purple-500 to-purple-600",
+                "title": "AI Demand Forecasting",
+                "description": "Predict future demand with machine learning algorithms that analyze historical data and market trends.",
+                "features": [
+                    "ML-based predictions",
+                    "Seasonal adjustments",
+                    "Promotion planning",
+                    "Safety stock optimization",
+                    "Trend analysis"
+                ],
+                "deliveryTime": "Daily updates",
+                "link": "/services/demand-forecasting"
+            },
+            {
+                "id": "freight-shipping",
+                "category": "transportation",
+                "icon": "truck",
+                "iconBg": "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400",
+                "accentColor": "from-green-500 to-green-600",
+                "title": "Freight & Shipping",
+                "description": "Comprehensive freight solutions including LTL, FTL, intermodal, and expedited shipping options.",
+                "features": [
+                    "LTL & FTL shipping",
+                    "Intermodal transport",
+                    "Expedited services",
+                    "Freight consolidation",
+                    "Rate negotiation"
+                ],
+                "deliveryTime": "24/7 dispatch",
+                "link": "/services/freight-shipping"
+            },
+            {
+                "id": "last-mile-optimization",
+                "category": "transportation",
+                "icon": "clock",
+                "iconBg": "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+                "accentColor": "from-yellow-500 to-yellow-600",
+                "title": "Last-Mile Optimization",
+                "description": "Optimize your last-mile delivery with route optimization, real-time tracking, and delivery management.",
+                "features": [
+                    "Route optimization",
+                    "Driver management",
+                    "Proof of delivery",
+                    "Customer notifications",
+                    "Returns management"
+                ],
+                "deliveryTime": "Real-time",
+                "link": "/services/last-mile"
+            },
+            {
+                "id": "warehouse-automation",
+                "category": "warehouse",
+                "icon": "cog",
+                "iconBg": "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+                "accentColor": "from-orange-500 to-orange-600",
+                "title": "Warehouse Automation",
+                "description": "Automate your warehouse operations with robotics, conveyor systems, and automated storage solutions.",
+                "features": [
+                    "Automated picking",
+                    "Conveyor systems",
+                    "ASRS integration",
+                    "Robot management",
+                    "Labor optimization"
+                ],
+                "deliveryTime": "24/7 operation",
+                "link": "/services/warehouse-automation"
+            },
+            {
+                "id": "inventory-optimization",
+                "category": "warehouse",
+                "icon": "refresh",
+                "iconBg": "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400",
+                "accentColor": "from-cyan-500 to-cyan-600",
+                "title": "Inventory Optimization",
+                "description": "Optimize stock levels with advanced algorithms that balance service levels and carrying costs.",
+                "features": [
+                    "Stock optimization",
+                    "ABC analysis",
+                    "Cycle counting",
+                    "Dead stock alerts",
+                    "Replenishment planning"
+                ],
+                "deliveryTime": "Real-time",
+                "link": "/services/inventory-optimization"
+            },
+            {
+                "id": "business-intelligence",
+                "category": "analytics",
+                "icon": "document",
+                "iconBg": "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400",
+                "accentColor": "from-red-500 to-red-600",
+                "title": "Business Intelligence",
+                "description": "Transform your supply chain data into actionable insights with powerful BI tools and dashboards.",
+                "features": [
+                    "Custom dashboards",
+                    "KPI tracking",
+                    "Trend analysis",
+                    "Performance reports",
+                    "Data visualization"
+                ],
+                "deliveryTime": "On-demand",
+                "link": "/services/bi-analytics"
+            },
+            {
+                "id": "predictive-analytics",
+                "category": "analytics",
+                "icon": "search",
+                "iconBg": "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400",
+                "accentColor": "from-indigo-500 to-indigo-600",
+                "title": "Predictive Analytics",
+                "description": "Anticipate future trends and potential issues with predictive analytics and machine learning.",
+                "features": [
+                    "Risk prediction",
+                    "Demand sensing",
+                    "Maintenance forecasting",
+                    "Supply chain visibility",
+                    "What-if analysis"
+                ],
+                "deliveryTime": "Daily insights",
+                "link": "/services/predictive-analytics"
+            }
+        ],
+        "bottomCards": [
+            {
+                "icon": "clock",
+                "iconBg": "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+                "title": "24/7 Support",
+                "description": "Round-the-clock customer support and technical assistance for all your logistics needs."
+            },
+            {
+                "icon": "globe",
+                "iconBg": "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400",
+                "title": "Global Coverage",
+                "description": "International shipping and logistics services with partners in over 100 countries."
+            },
+            {
+                "icon": "shieldCheck",
+                "iconBg": "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+                "title": "Fully Insured",
+                "description": "Comprehensive insurance coverage for all shipments and stored inventory."
+            }
+        ],
+        "trustIndicators": {
+            "show": true,
+            "items": [
+                {
+                    "value": "15+",
+                    "label": "Years Experience"
+                },
+                {
+                    "value": "500+",
+                    "label": "Team Members"
+                },
+                {
+                    "value": "50K+",
+                    "label": "Shipments/Month"
+                },
+                {
+                    "value": "98%",
+                    "label": "Client Retention"
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "servicesSectionCustom": {
+        "uid": "services-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-indigo-50 via-white to-blue-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Our Services - Sazzad Inventory & Logistics",
+            "description": "Comprehensive logistics and inventory management solutions including smart inventory, global freight, warehouse automation, and last-mile delivery.",
+            "keywords": "logistics services, inventory management, freight forwarding, warehouse automation, supply chain solutions",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Sazzad Logistics Services",
+                "description": "End-to-end supply chain solutions"
+            }
+        },
+        "children": [
+            {
+                "uid": "services-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "services-badge-003",
+                        "component": "CMS_Badge",
+                        "classes": {
+                            "base": "bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium inline-block",
+                            "dark": "dark:bg-indigo-900 dark:text-indigo-200",
+                            "sm": "sm:text-sm sm:px-4 sm:py-2",
+                            "md": "md:text-base md:px-5 md:py-2.5"
+                        },
+                        "text": "OUR SERVICES"
+                    },
+                    {
+                        "uid": "services-title-004",
+                        "component": "CMS_Title",
+                        "level": "h2",
+                        "text": "Comprehensive Logistics Solutions",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 font-bold tracking-tight mt-4",
+                            "dark": "dark:text-white",
+                            "sm": "sm:text-3xl sm:leading-tight",
+                            "md": "md:text-4xl md:leading-tight",
+                            "lg": "lg:text-5xl lg:leading-tight"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 13,
+                                "end": 32,
+                                "class": "bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-purple-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "services-description-005",
+                        "component": "CMS_Text",
+                        "tag": "p",
+                        "text": "From inventory management to last-mile delivery, our integrated solutions ensure your supply chain runs smoothly, efficiently, and cost-effectively.",
+                        "classes": {
+                            "base": "text-gray-600 max-w-2xl mx-auto mt-4",
+                            "dark": "dark:text-gray-300",
+                            "sm": "sm:text-base sm:leading-relaxed",
+                            "md": "md:text-lg md:leading-relaxed",
+                            "lg": "lg:text-xl lg:leading-relaxed"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "services-grid-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-4 px-4",
+                    "sm": "sm:grid-cols-2 sm:gap-6 sm:px-6",
+                    "md": "md:grid-cols-4 md:gap-8 md:px-8",
+                    "lg": "lg:gap-10 lg:px-8",
+                    "xl": "xl:gap-12"
+                },
+                "children": [
+                    {
+                        "uid": "service-card-1-007",
+                        "component": "CMS_Card",
+                        "classes": {
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
+                            "containerHover": "hover:shadow-xl hover:border-indigo-200 dark:hover:border-indigo-800",
+                            "dark": "dark:bg-gray-800 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "card1-icon-008",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-icon-svg-009",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cube.svg",
+                                        "alt": "Inventory icon",
+                                        "classes": {
+                                            "media": "w-6 h-6 text-indigo-600 dark:text-indigo-300"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-title-010",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "Smart Inventory",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card1-text-011",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "AI-powered inventory optimization with real-time tracking and demand forecasting.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-2-012",
+                        "component": "CMS_Card",
+                        "classes": {
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
+                            "containerHover": "hover:shadow-xl hover:border-purple-200 dark:hover:border-purple-800",
+                            "dark": "dark:bg-gray-800 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "card2-icon-013",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-icon-svg-014",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
+                                        "alt": "Freight icon",
+                                        "classes": {
+                                            "media": "w-6 h-6 text-purple-600 dark:text-purple-300"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-title-015",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "Global Freight",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card2-text-016",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "Seamless international shipping with multi-modal transport and customs clearance.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-3-017",
+                        "component": "CMS_Card",
+                        "classes": {
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
+                            "containerHover": "hover:shadow-xl hover:border-green-200 dark:hover:border-green-800",
+                            "dark": "dark:bg-gray-800 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "card3-icon-018",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-icon-svg-019",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/cog-6-tooth.svg",
+                                        "alt": "Warehouse icon",
+                                        "classes": {
+                                            "media": "w-6 h-6 text-green-600 dark:text-green-300"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-title-020",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "Warehouse Auto",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card3-text-021",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "Cutting-edge automation with robotics and smart picking technologies.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-4-022",
+                        "component": "CMS_Card",
+                        "classes": {
+                            "container": "bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700",
+                            "containerHover": "hover:shadow-xl hover:border-yellow-200 dark:hover:border-yellow-800",
+                            "dark": "dark:bg-gray-800 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "card4-icon-023",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card4-icon-svg-024",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/clock.svg",
+                                        "alt": "Last mile icon",
+                                        "classes": {
+                                            "media": "w-6 h-6 text-yellow-600 dark:text-yellow-300"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card4-title-025",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "Last-Mile",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card4-text-026",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "Optimized delivery with route optimization and real-time tracking.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "services-cta-027",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-12",
+                    "sm": "sm:px-6 sm:mt-16",
+                    "md": "md:px-8 md:mt-20",
+                    "lg": "lg:mt-24",
+                    "xl": "xl:mt-28"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-028",
+                        "component": "CMS_Card",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8",
+                            "sm:container": "sm:p-10",
+                            "md:container": "md:p-12",
+                            "body": "flex flex-col md:flex-row items-center justify-between gap-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-text-029",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center md:text-left"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-title-030",
+                                        "component": "CMS_Title",
+                                        "level": "h3",
+                                        "text": "Ready to Transform Your Supply Chain?",
+                                        "classes": {
+                                            "base": "text-white font-bold text-xl sm:text-2xl md:text-3xl mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-desc-031",
+                                        "component": "CMS_Text",
+                                        "tag": "p",
+                                        "text": "Partner with us to create a customized logistics solution for your business.",
+                                        "classes": {
+                                            "base": "text-indigo-100 text-sm sm:text-base"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "cta-button-032",
+                                "component": "CMS_Button",
+                                "text": "Get Started",
+                                "size": "lg",
+                                "href": "/contact",
+                                "classes": {
+                                    "base": "bg-white text-indigo-600 rounded-lg px-6 py-3 font-semibold",
+                                    "hover": "hover:bg-gray-100 hover:scale-105",
+                                    "sm": "sm:px-8 sm:py-4"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "stats-grid-033",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-4 px-4 mt-12",
+                    "sm": "sm:grid-cols-2 sm:gap-6 sm:px-6 sm:mt-16",
+                    "md": "md:grid-cols-4 md:gap-8 md:px-8 md:mt-20",
+                    "lg": "lg:gap-10 lg:mt-24",
+                    "xl": "xl:gap-12 xl:mt-28"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-034",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-number-035",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "500+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-036",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "Clients Worldwide",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm sm:text-base"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-037",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-number-038",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "10K+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-039",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "Shipments Monthly",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm sm:text-base"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-040",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-number-041",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-042",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "On-Time Delivery",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm sm:text-base"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-043",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-number-044",
+                                "component": "CMS_Title",
+                                "level": "h3",
+                                "text": "24/7",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-2xl sm:text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-045",
+                                "component": "CMS_Text",
+                                "tag": "p",
+                                "text": "Support Available",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm sm:text-base"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,8 +1,10 @@
 // page/frontend/Home/HeroSection/HeroSection1.jsx
 
+// React
+import { Head, Link } from '@inertiajs/react';
+
 // Icons
 import { HiArrowRight, HiPlay } from 'react-icons/hi';
-import { Head, Link } from '@inertiajs/react';
 
 const HeroSection1 = ({ config, pageConfig }) => {
   // Icon mapping
@@ -254,19 +256,6 @@ const HeroSection1 = ({ config, pageConfig }) => {
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 animate-pulse delay-700" aria-hidden="true"></div>
             </div>
           </div>
-
-          {/* Footer Links */}
-          <nav className="absolute bottom-4 right-4 text-xs text-blue-200 dark:text-gray-500 space-x-4" aria-label="Footer navigation">
-            <Link href={config?.links.privacy} className="hover:text-white dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 rounded">
-              Privacy
-            </Link>
-            <Link href={config?.links.terms} className="hover:text-white dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 rounded">
-              Terms
-            </Link>
-            <Link href={config?.links.contact} className="hover:text-white dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 rounded">
-              Contact
-            </Link>
-          </nav>
 
           {/* Bottom Wave Effect - decorative only */}
           <div className="absolute bottom-0 left-0 right-0" aria-hidden="true">

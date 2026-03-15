@@ -1,7 +1,7 @@
-// page/frontend/Home/HeroSection/HeroSectionCustom.jsx
+// page/frontend/Home/HeroSection/ServicesSectionCustom.jsx
 
 /**
- * HeroSectionCustom Component - Dynamic CMS Page Builder
+ * ServicesSectionCustom Component - Dynamic CMS Page Builder
  * 
  * This component serves as a dynamic page builder that renders components based on a JSON configuration.
  * It lazy loads all CMS components to optimize initial bundle size and supports nested component structures.
@@ -19,7 +19,7 @@ import { Head } from '@inertiajs/react';
 import React, { Suspense, lazy } from 'react';
 
 // Skeleton
-import HeroSectionSkeleton from './HeroSectionSkeleton';
+import ServicesSectionSkeleton from './ServicesSectionSkeleton';
 
 // ============================================================================
 // Container Components
@@ -281,7 +281,10 @@ const componentRegistry = {
 // Main Component
 // ============================================================================
 
-const HeroSectionCustom = ({ config, pageConfig }) => {
+const ServicesSectionCustom = ({
+  config,
+  pageConfig
+}) => {
   /**
    * Generate SEO metadata from config
    */
@@ -432,7 +435,7 @@ const HeroSectionCustom = ({ config, pageConfig }) => {
         <meta name="theme-color" content="#4f46e5" />
       </Head>
 
-      <Suspense fallback={<HeroSectionSkeleton />}>
+      <Suspense fallback={<ServicesSectionSkeleton />}>
         <main
           id="main-content"
           className="outline-none"
@@ -447,4 +450,4 @@ const HeroSectionCustom = ({ config, pageConfig }) => {
   );
 };
 
-export default HeroSectionCustom;
+export default ServicesSectionCustom;
