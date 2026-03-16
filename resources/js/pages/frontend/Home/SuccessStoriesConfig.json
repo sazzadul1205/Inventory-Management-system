@@ -1,0 +1,1836 @@
+{
+    "successStoriesConfig": {
+        "servicesVariant": "custom"
+    },
+    "successStoriesSection1": {
+        "seo": {
+            "title": "Success Stories - Sazzad Inventory & Logistics",
+            "description": "Read real success stories from businesses that transformed their supply chain with Sazzad's inventory and logistics solutions.",
+            "keywords": "success stories, case studies, customer stories, logistics success, inventory management results",
+            "ogImage": "/images/success-stories-og.jpg",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Success Stories",
+                "description": "Real results from real businesses"
+            }
+        },
+        "badge": {
+            "show": true,
+            "text": "✦ SUCCESS STORIES",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Real",
+            "highlightedText": "Success",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "Stories"
+        },
+        "description": "Discover how businesses like yours achieved remarkable results with our platform.",
+        "categories": [
+            {
+                "id": "retail",
+                "name": "Retail"
+            },
+            {
+                "id": "logistics",
+                "name": "Logistics"
+            },
+            {
+                "id": "manufacturing",
+                "name": "Manufacturing"
+            },
+            {
+                "id": "healthcare",
+                "name": "Healthcare"
+            }
+        ],
+        "stories": [
+            {
+                "id": "story-1",
+                "category": "retail",
+                "companyName": "Fashion Forward",
+                "companyInitials": "FF",
+                "industry": "Retail & E-commerce",
+                "location": "New York, NY",
+                "rating": 5,
+                "reviewCount": 128,
+                "quote": "Sazzad helped us reduce stockouts by 95% while cutting inventory costs by 30%. The real-time visibility across our 12 stores and online channel has been game-changing.",
+                "authorName": "Sarah Johnson",
+                "authorTitle": "VP of Operations",
+                "authorImage": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "metrics": [
+                    {
+                        "value": "95%",
+                        "label": "Fewer Stockouts"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Cost Reduction"
+                    },
+                    {
+                        "value": "12",
+                        "label": "Stores Integrated"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "hasVideo": true,
+                "link": "/success-stories/fashion-forward"
+            },
+            {
+                "id": "story-2",
+                "category": "logistics",
+                "companyName": "Swift Delivery",
+                "companyInitials": "SD",
+                "industry": "Logistics",
+                "location": "Chicago, IL",
+                "rating": 5,
+                "reviewCount": 89,
+                "quote": "Route optimization alone saved us 25% on fuel costs. Our drivers love the mobile app, and customers appreciate real-time tracking updates.",
+                "authorName": "Michael Chen",
+                "authorTitle": "Fleet Manager",
+                "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "metrics": [
+                    {
+                        "value": "25%",
+                        "label": "Fuel Savings"
+                    },
+                    {
+                        "value": "98%",
+                        "label": "On-Time Delivery"
+                    },
+                    {
+                        "value": "50K+",
+                        "label": "Miles Optimized"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "hasVideo": false,
+                "link": "/success-stories/swift-delivery"
+            },
+            {
+                "id": "story-3",
+                "category": "manufacturing",
+                "companyName": "Precision Parts",
+                "companyInitials": "PP",
+                "industry": "Manufacturing",
+                "location": "Detroit, MI",
+                "rating": 4,
+                "reviewCount": 56,
+                "quote": "Just-in-time inventory management reduced our warehouse space needs by 40%. Production lines never stop thanks to automated reordering.",
+                "authorName": "Robert Martinez",
+                "authorTitle": "Supply Chain Director",
+                "authorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "metrics": [
+                    {
+                        "value": "40%",
+                        "label": "Less Space"
+                    },
+                    {
+                        "value": "99.9%",
+                        "label": "Line Uptime"
+                    },
+                    {
+                        "value": "15%",
+                        "label": "Faster Throughput"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "hasVideo": true,
+                "link": "/success-stories/precision-parts"
+            },
+            {
+                "id": "story-4",
+                "category": "healthcare",
+                "companyName": "MediSupply",
+                "companyInitials": "MS",
+                "industry": "Healthcare",
+                "location": "Boston, MA",
+                "rating": 5,
+                "reviewCount": 42,
+                "quote": "Cold chain monitoring gives us peace of mind. We've had zero temperature excursions since implementing Sazzad's IoT sensors.",
+                "authorName": "Dr. Emily Williams",
+                "authorTitle": "Compliance Officer",
+                "authorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "metrics": [
+                    {
+                        "value": "0",
+                        "label": "Temperature Excursions"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Monitoring"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "hasVideo": false,
+                "link": "/success-stories/medisupply"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "View All Success Stories",
+            "url": "/success-stories",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "View all customer success stories"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "successStoriesSection2": {
+        "seo": {
+            "title": "Customer Success Stories - Sazzad Inventory & Logistics",
+            "description": "Explore detailed case studies from businesses that achieved remarkable results with Sazzad's supply chain solutions.",
+            "keywords": "case studies, customer success, logistics results, inventory management success, business transformation",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Success Stories",
+                "description": "Detailed case studies of business transformation"
+            }
+        },
+        "badge": {
+            "text": "CASE STUDIES"
+        },
+        "heading": {
+            "line1": "Real Results,",
+            "highlighted": "Real Stories"
+        },
+        "description": "Explore detailed case studies from businesses that transformed their supply chain with Sazzad.",
+        "stories": [
+            {
+                "id": "story-1",
+                "companyName": "Fashion Forward",
+                "companyInitials": "FF",
+                "industry": "Retail & E-commerce",
+                "location": "New York, NY",
+                "rating": 5,
+                "quote": "Implementing Sazzad transformed our entire operation. We went from manual inventory counts to real-time visibility across all channels. The ROI was evident within the first three months.",
+                "challenge": "Fashion Forward was struggling with inventory discrepancies across their 12 retail stores and e-commerce platform. Stockouts were common during peak seasons, and overstock was tying up capital.",
+                "solution": "We implemented Sazzad's omnichannel inventory management with real-time sync, automated reordering, and predictive analytics to forecast demand based on historical data and trends.",
+                "metrics": [
+                    {
+                        "value": "95%",
+                        "label": "Fewer Stockouts"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Cost Reduction"
+                    },
+                    {
+                        "value": "40%",
+                        "label": "Faster Fulfillment"
+                    },
+                    {
+                        "value": "12",
+                        "label": "Stores Integrated"
+                    }
+                ],
+                "authorName": "Sarah Johnson",
+                "authorTitle": "VP of Operations",
+                "authorImage": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/fashion-forward"
+            },
+            {
+                "id": "story-2",
+                "companyName": "Swift Delivery",
+                "companyInitials": "SD",
+                "industry": "Logistics",
+                "location": "Chicago, IL",
+                "rating": 5,
+                "quote": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love the mobile app, and customers appreciate the real-time tracking updates.",
+                "challenge": "Swift Delivery was facing rising fuel costs, inefficient routes, and lack of visibility for customers. Dispatchers spent hours manually planning routes each day.",
+                "solution": "We deployed our logistics platform with AI-powered route optimization, real-time GPS tracking, electronic proof of delivery, and automated customer notifications.",
+                "metrics": [
+                    {
+                        "value": "25%",
+                        "label": "Fuel Savings"
+                    },
+                    {
+                        "value": "98%",
+                        "label": "On-Time Delivery"
+                    },
+                    {
+                        "value": "2hrs",
+                        "label": "Daily Planning Saved"
+                    },
+                    {
+                        "value": "50K+",
+                        "label": "Miles Optimized"
+                    }
+                ],
+                "authorName": "Michael Chen",
+                "authorTitle": "Fleet Manager",
+                "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/swift-delivery"
+            },
+            {
+                "id": "story-3",
+                "companyName": "Precision Parts",
+                "companyInitials": "PP",
+                "industry": "Manufacturing",
+                "location": "Detroit, MI",
+                "rating": 5,
+                "quote": "Just-in-time inventory management reduced our warehouse space needs by 40%. Production lines never stop thanks to automated reordering and supplier coordination.",
+                "challenge": "Precision Parts was dealing with production line stoppages due to parts shortages, excessive inventory holding costs, and poor visibility into supplier performance.",
+                "solution": "We implemented our manufacturing solution with JIT inventory, supplier portal, work-in-progress tracking, and automated reorder points based on production schedules.",
+                "metrics": [
+                    {
+                        "value": "40%",
+                        "label": "Less Warehouse Space"
+                    },
+                    {
+                        "value": "99.9%",
+                        "label": "Line Uptime"
+                    },
+                    {
+                        "value": "15%",
+                        "label": "Faster Throughput"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Inventory Reduction"
+                    }
+                ],
+                "authorName": "Robert Martinez",
+                "authorTitle": "Supply Chain Director",
+                "authorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/precision-parts"
+            },
+            {
+                "id": "story-4",
+                "companyName": "MediSupply",
+                "companyInitials": "MS",
+                "industry": "Healthcare",
+                "location": "Boston, MA",
+                "rating": 5,
+                "quote": "Cold chain monitoring gives us complete peace of mind. We've had zero temperature excursions since implementing Sazzad's IoT sensors and real-time alerts.",
+                "challenge": "MediSupply was struggling with temperature monitoring for sensitive pharmaceuticals. Manual checks were error-prone and didn't provide continuous visibility.",
+                "solution": "We deployed our healthcare solution with IoT temperature sensors, real-time monitoring, automated alerts, and comprehensive audit trails for regulatory compliance.",
+                "metrics": [
+                    {
+                        "value": "0",
+                        "label": "Temperature Excursions"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Monitoring"
+                    },
+                    {
+                        "value": "99.9%",
+                        "label": "Product Integrity"
+                    }
+                ],
+                "authorName": "Dr. Emily Williams",
+                "authorTitle": "Compliance Officer",
+                "authorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/medisupply"
+            },
+            {
+                "id": "story-5",
+                "companyName": "Fresh Foods",
+                "companyInitials": "FF",
+                "industry": "Food & Beverage",
+                "location": "Los Angeles, CA",
+                "rating": 4,
+                "quote": "Expiry management has been a game-changer. We've reduced waste by 60% and ensured customers always receive the freshest products.",
+                "challenge": "Fresh Foods was losing significant revenue due to expired products. Manual FIFO management was inefficient and error-prone.",
+                "solution": "We implemented batch tracking with automated FIFO picking, expiry alerts, and inventory optimization to ensure oldest stock moves first.",
+                "metrics": [
+                    {
+                        "value": "60%",
+                        "label": "Waste Reduction"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "FIFO Compliance"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Faster Turnover"
+                    },
+                    {
+                        "value": "0",
+                        "label": "Customer Complaints"
+                    }
+                ],
+                "authorName": "Lisa Chen",
+                "authorTitle": "Operations Manager",
+                "authorImage": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/fresh-foods"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Read All Case Studies",
+            "url": "/success-stories",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-purple-600",
+            "hoverColor": "hover:from-blue-700 hover:to-purple-700",
+            "textColor": "text-white",
+            "ariaLabel": "Read all case studies"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "successStoriesSection3": {
+        "seo": {
+            "title": "Customer Success Stories - Sazzad Inventory & Logistics",
+            "description": "Watch video testimonials and read success stories from businesses that transformed their supply chain with Sazzad.",
+            "keywords": "video testimonials, customer stories, success stories, logistics results, inventory management success",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Success Stories",
+                "description": "Video testimonials and success stories"
+            }
+        },
+        "badge": {
+            "text": "CUSTOMER LOVE"
+        },
+        "heading": {
+            "prefix": "Stories of",
+            "highlightedText": "Success",
+            "suffix": "from Our Customers"
+        },
+        "description": "Watch video testimonials and read stories from businesses that achieved remarkable results with Sazzad.",
+        "stories": [
+            {
+                "id": "story-1",
+                "companyName": "Fashion Forward",
+                "companyInitials": "FF",
+                "industry": "Retail & E-commerce",
+                "rating": 5,
+                "reviewCount": 128,
+                "quote": "Sazzad transformed our entire operation. We went from manual inventory counts to real-time visibility across all channels. The ROI was evident within the first three months.",
+                "quotePreview": "Sazzad transformed our entire operation. We went from manual inventory counts to real-time visibility...",
+                "featuredImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "videoDuration": "3:45",
+                "results": [
+                    {
+                        "value": "95%",
+                        "label": "Fewer Stockouts"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Cost Reduction"
+                    },
+                    {
+                        "value": "40%",
+                        "label": "Faster Fulfillment"
+                    }
+                ],
+                "keyResult": {
+                    "value": "95%",
+                    "label": "Fewer Stockouts"
+                },
+                "authorName": "Sarah Johnson",
+                "authorTitle": "VP of Operations",
+                "authorImage": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/fashion-forward"
+            },
+            {
+                "id": "story-2",
+                "companyName": "Swift Delivery",
+                "companyInitials": "SD",
+                "industry": "Logistics",
+                "rating": 5,
+                "reviewCount": 89,
+                "quote": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love the mobile app, and customers appreciate the real-time tracking.",
+                "quotePreview": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love...",
+                "featuredImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "videoDuration": "4:12",
+                "results": [
+                    {
+                        "value": "25%",
+                        "label": "Fuel Savings"
+                    },
+                    {
+                        "value": "98%",
+                        "label": "On-Time Delivery"
+                    },
+                    {
+                        "value": "2hrs",
+                        "label": "Daily Planning Saved"
+                    }
+                ],
+                "keyResult": {
+                    "value": "25%",
+                    "label": "Fuel Savings"
+                },
+                "authorName": "Michael Chen",
+                "authorTitle": "Fleet Manager",
+                "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/swift-delivery"
+            },
+            {
+                "id": "story-3",
+                "companyName": "Precision Parts",
+                "companyInitials": "PP",
+                "industry": "Manufacturing",
+                "rating": 5,
+                "reviewCount": 56,
+                "quote": "Just-in-time inventory management reduced our warehouse space needs by 40%. Production lines never stop thanks to automated reordering.",
+                "quotePreview": "Just-in-time inventory management reduced our warehouse space needs by 40%. Production lines never...",
+                "featuredImage": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "image": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "videoDuration": "5:30",
+                "results": [
+                    {
+                        "value": "40%",
+                        "label": "Less Warehouse Space"
+                    },
+                    {
+                        "value": "99.9%",
+                        "label": "Line Uptime"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Inventory Reduction"
+                    }
+                ],
+                "keyResult": {
+                    "value": "40%",
+                    "label": "Less Space"
+                },
+                "authorName": "Robert Martinez",
+                "authorTitle": "Supply Chain Director",
+                "authorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/precision-parts"
+            },
+            {
+                "id": "story-4",
+                "companyName": "MediSupply",
+                "companyInitials": "MS",
+                "industry": "Healthcare",
+                "rating": 5,
+                "reviewCount": 42,
+                "quote": "Cold chain monitoring gives us complete peace of mind. We've had zero temperature excursions since implementing Sazzad's IoT sensors.",
+                "quotePreview": "Cold chain monitoring gives us complete peace of mind. We've had zero temperature excursions...",
+                "featuredImage": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "videoDuration": "3:55",
+                "results": [
+                    {
+                        "value": "0",
+                        "label": "Temperature Excursions"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Monitoring"
+                    }
+                ],
+                "keyResult": {
+                    "value": "0",
+                    "label": "Excursions"
+                },
+                "authorName": "Dr. Emily Williams",
+                "authorTitle": "Compliance Officer",
+                "authorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/medisupply"
+            },
+            {
+                "id": "story-5",
+                "companyName": "Fresh Foods",
+                "companyInitials": "FF",
+                "industry": "Food & Beverage",
+                "rating": 4,
+                "reviewCount": 38,
+                "quote": "Expiry management has been a game-changer. We've reduced waste by 60% and ensured customers always receive the freshest products.",
+                "quotePreview": "Expiry management has been a game-changer. We've reduced waste by 60% and ensured customers...",
+                "featuredImage": "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "videoDuration": "4:20",
+                "results": [
+                    {
+                        "value": "60%",
+                        "label": "Waste Reduction"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "FIFO Compliance"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Faster Turnover"
+                    }
+                ],
+                "keyResult": {
+                    "value": "60%",
+                    "label": "Waste Reduction"
+                },
+                "authorName": "Lisa Chen",
+                "authorTitle": "Operations Manager",
+                "authorImage": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/fresh-foods"
+            },
+            {
+                "id": "story-6",
+                "companyName": "Auto Parts Plus",
+                "companyInitials": "AP",
+                "industry": "Automotive",
+                "rating": 5,
+                "reviewCount": 27,
+                "quote": "Just-in-time delivery has transformed our supply chain. We've reduced inventory holding costs by 45% while improving parts availability.",
+                "quotePreview": "Just-in-time delivery has transformed our supply chain. We've reduced inventory holding costs...",
+                "featuredImage": "https://images.unsplash.com/photo-1568605117036-5fe5e7fa0ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "image": "https://images.unsplash.com/photo-1568605117036-5fe5e7fa0ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "videoDuration": "4:05",
+                "results": [
+                    {
+                        "value": "45%",
+                        "label": "Cost Reduction"
+                    },
+                    {
+                        "value": "99.9%",
+                        "label": "Parts Availability"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Faster Delivery"
+                    }
+                ],
+                "keyResult": {
+                    "value": "45%",
+                    "label": "Cost Reduction"
+                },
+                "authorName": "James Wilson",
+                "authorTitle": "Supply Chain Manager",
+                "authorImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "link": "/success-stories/auto-parts"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Watch All Stories",
+            "url": "/success-stories",
+            "backgroundColor": "bg-gradient-to-r from-amber-500 to-pink-500",
+            "hoverColor": "hover:from-amber-600 hover:to-pink-600",
+            "textColor": "text-white",
+            "ariaLabel": "Watch all customer stories"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "successStoriesSectionCustom": {
+        "uid": "success-stories-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-amber-50 via-white to-pink-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Success Stories - Sazzad Inventory & Logistics",
+            "description": "Read real success stories from businesses that transformed their supply chain with Sazzad's inventory and logistics solutions.",
+            "keywords": "success stories, case studies, customer stories, logistics success, inventory management results",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Success Stories",
+                "description": "Real results from real businesses"
+            }
+        },
+        "children": [
+            {
+                "uid": "stories-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "stories-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ SUCCESS STORIES",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "stories-title-004",
+                        "component": "CMS_H2",
+                        "text": "Real Success Stories from Our Customers",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 5,
+                                "end": 19,
+                                "class": "text-amber-600 dark:text-amber-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stories-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Discover how businesses like yours achieved remarkable results with our platform.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "stories-categories-006",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "flex-wrap justify-center gap-3 mb-12 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "category-all-007",
+                        "component": "CMS_Button",
+                        "text": "All Stories",
+                        "size": "md",
+                        "variant": "primary",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-retail-008",
+                        "component": "CMS_Button",
+                        "text": "Retail",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-logistics-009",
+                        "component": "CMS_Button",
+                        "text": "Logistics",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-manufacturing-010",
+                        "component": "CMS_Button",
+                        "text": "Manufacturing",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-healthcare-011",
+                        "component": "CMS_Button",
+                        "text": "Healthcare",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "stories-featured-012",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "mb-16 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "featured-card-013",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "lg",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-gray-100 dark:border-gray-700",
+                            "body": "grid lg:grid-cols-2 gap-8 items-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "featured-left-014",
+                                "component": "CMS_Container",
+                                "children": [
+                                    {
+                                        "uid": "featured-media-015",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                                        "alt": "Fashion Forward store",
+                                        "aspectRatio": "16/9",
+                                        "classes": {
+                                            "base": "rounded-2xl overflow-hidden shadow-xl",
+                                            "media": "w-full h-full object-cover"
+                                        }
+                                    },
+                                    {
+                                        "uid": "featured-dots-016",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "justify-center mt-4 space-x-2"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "dot-1-017",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-2 h-2 bg-amber-500 rounded-full"
+                                                }
+                                            },
+                                            {
+                                                "uid": "dot-2-018",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-2 h-2 bg-gray-300 dark:bg-gray-600 rounded-full"
+                                                }
+                                            },
+                                            {
+                                                "uid": "dot-3-019",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-2 h-2 bg-gray-300 dark:bg-gray-600 rounded-full"
+                                                }
+                                            },
+                                            {
+                                                "uid": "dot-4-020",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-2 h-2 bg-gray-300 dark:bg-gray-600 rounded-full"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "featured-right-021",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "space-y-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "featured-company-022",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "featured-initials-023",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-20 h-20 bg-gradient-to-br from-amber-500 to-pink-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "featured-initials-text-024",
+                                                        "component": "CMS_Span",
+                                                        "text": "FF"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "featured-company-info-025",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "featured-company-name-026",
+                                                        "component": "CMS_H3",
+                                                        "text": "Fashion Forward",
+                                                        "classes": {
+                                                            "base": "text-2xl font-bold text-gray-900 dark:text-white"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "featured-company-details-027",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Retail & E-commerce • New York, NY",
+                                                        "classes": {
+                                                            "base": "text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-rating-028",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-1"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "star-1-029",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-2-030",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-3-031",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-4-032",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-5-033",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "rating-count-034",
+                                                "component": "CMS_Span",
+                                                "text": "(128 reviews)",
+                                                "classes": {
+                                                    "base": "ml-2 text-sm text-gray-500 dark:text-gray-500"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-quote-035",
+                                        "component": "CMS_Quote",
+                                        "text": "Sazzad helped us reduce stockouts by 95% while cutting inventory costs by 30%. The real-time visibility across our 12 stores and online channel has been game-changing.",
+                                        "classes": {
+                                            "base": "text-xl text-gray-700 dark:text-gray-300 italic leading-relaxed"
+                                        }
+                                    },
+                                    {
+                                        "uid": "featured-metrics-036",
+                                        "component": "CMS_Grid",
+                                        "classes": {
+                                            "base": "grid grid-cols-3 gap-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "metric-1-037",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "text-center p-3 bg-gradient-to-br from-amber-50 to-pink-50 dark:from-amber-900/20 dark:to-pink-900/20 rounded-lg"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-1-value-038",
+                                                        "component": "CMS_H4",
+                                                        "text": "95%",
+                                                        "classes": {
+                                                            "base": "text-xl font-bold text-amber-600 dark:text-amber-400"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-1-label-039",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Fewer Stockouts",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "metric-2-040",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "text-center p-3 bg-gradient-to-br from-amber-50 to-pink-50 dark:from-amber-900/20 dark:to-pink-900/20 rounded-lg"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-2-value-041",
+                                                        "component": "CMS_H4",
+                                                        "text": "30%",
+                                                        "classes": {
+                                                            "base": "text-xl font-bold text-amber-600 dark:text-amber-400"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-2-label-042",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Cost Reduction",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "metric-3-043",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "text-center p-3 bg-gradient-to-br from-amber-50 to-pink-50 dark:from-amber-900/20 dark:to-pink-900/20 rounded-lg"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-3-value-044",
+                                                        "component": "CMS_H4",
+                                                        "text": "12",
+                                                        "classes": {
+                                                            "base": "text-xl font-bold text-amber-600 dark:text-amber-400"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-3-label-045",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Stores Integrated",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-author-046",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "author-info-047",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "author-image-048",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                        "alt": "Sarah Johnson",
+                                                        "classes": {
+                                                            "media": "w-10 h-10 rounded-full object-cover mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "author-details-049",
+                                                        "component": "CMS_Container",
+                                                        "children": [
+                                                            {
+                                                                "uid": "author-name-050",
+                                                                "component": "CMS_Span",
+                                                                "text": "Sarah Johnson",
+                                                                "classes": {
+                                                                    "base": "font-semibold text-gray-900 dark:text-white text-sm"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "author-title-051",
+                                                                "component": "CMS_Span",
+                                                                "text": "VP of Operations",
+                                                                "classes": {
+                                                                    "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "featured-link-052",
+                                                "component": "CMS_Button",
+                                                "text": "Read full story",
+                                                "size": "sm",
+                                                "variant": "link",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "href": "/success-stories/fashion-forward",
+                                                "classes": {
+                                                    "base": "text-amber-600 dark:text-amber-400 font-medium text-sm inline-flex items-center group/link"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "stories-grid-053",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-6 px-4",
+                    "sm": "sm:grid-cols-2 sm:gap-8",
+                    "md": "md:grid-cols-3 md:gap-10",
+                    "lg": "lg:gap-12"
+                },
+                "children": [
+                    {
+                        "uid": "story-card-1-054",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/success-stories/swift-delivery",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-amber-200 dark:hover:border-amber-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card1-image-055",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                                "alt": "Swift Delivery",
+                                "classes": {
+                                    "base": "h-48 overflow-hidden",
+                                    "media": "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                }
+                            },
+                            {
+                                "uid": "card1-overlay-056",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
+                                }
+                            },
+                            {
+                                "uid": "card1-badge-057",
+                                "component": "CMS_Badge",
+                                "classes": {
+                                    "base": "absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1 shadow-lg"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-star-058",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                        "alt": "Star",
+                                        "classes": {
+                                            "media": "w-4 h-4 text-yellow-400 fill-current"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card1-rating-059",
+                                        "component": "CMS_Span",
+                                        "text": "5.0",
+                                        "classes": {
+                                            "base": "text-sm font-medium text-gray-900 dark:text-white"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-initials-060",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-amber-500 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-initials-text-061",
+                                        "component": "CMS_Span",
+                                        "text": "SD"
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-content-062",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-title-063",
+                                        "component": "CMS_H3",
+                                        "text": "Swift Delivery",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card1-industry-064",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Logistics",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500 mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card1-key-result-065",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "mb-4 p-3 bg-gradient-to-br from-amber-50 to-pink-50 dark:from-amber-900/20 dark:to-pink-900/20 rounded-xl"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card1-key-value-066",
+                                                "component": "CMS_H4",
+                                                "text": "25%",
+                                                "classes": {
+                                                    "base": "text-2xl font-bold text-amber-600 dark:text-amber-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-key-label-067",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Fuel Savings",
+                                                "classes": {
+                                                    "base": "text-xs text-gray-600 dark:text-gray-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card1-quote-068",
+                                        "component": "CMS_Paragraph",
+                                        "text": "The route optimization feature alone saved us 25% on fuel costs in the first year.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card1-footer-069",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card1-author-070",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "card1-author-img-071",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                        "alt": "Michael Chen",
+                                                        "classes": {
+                                                            "media": "w-8 h-8 rounded-full object-cover mr-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "card1-author-name-072",
+                                                        "component": "CMS_Span",
+                                                        "text": "Michael",
+                                                        "classes": {
+                                                            "base": "text-xs font-medium text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "card1-link-073",
+                                                "component": "CMS_Button",
+                                                "text": "Read more",
+                                                "size": "xs",
+                                                "variant": "link",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "classes": {
+                                                    "base": "text-amber-600 dark:text-amber-400 text-xs font-medium inline-flex items-center group/link"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "story-card-2-074",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/success-stories/precision-parts",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-amber-200 dark:hover:border-amber-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card2-image-075",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                                "alt": "Precision Parts",
+                                "classes": {
+                                    "base": "h-48 overflow-hidden",
+                                    "media": "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                }
+                            },
+                            {
+                                "uid": "card2-overlay-076",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
+                                }
+                            },
+                            {
+                                "uid": "card2-badge-077",
+                                "component": "CMS_Badge",
+                                "classes": {
+                                    "base": "absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1 shadow-lg"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-star-078",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                        "alt": "Star",
+                                        "classes": {
+                                            "media": "w-4 h-4 text-yellow-400 fill-current"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card2-rating-079",
+                                        "component": "CMS_Span",
+                                        "text": "5.0",
+                                        "classes": {
+                                            "base": "text-sm font-medium text-gray-900 dark:text-white"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-initials-080",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-amber-500 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-initials-text-081",
+                                        "component": "CMS_Span",
+                                        "text": "PP"
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-content-082",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-title-083",
+                                        "component": "CMS_H3",
+                                        "text": "Precision Parts",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card2-industry-084",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Manufacturing",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500 mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card2-key-result-085",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "mb-4 p-3 bg-gradient-to-br from-amber-50 to-pink-50 dark:from-amber-900/20 dark:to-pink-900/20 rounded-xl"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card2-key-value-086",
+                                                "component": "CMS_H4",
+                                                "text": "40%",
+                                                "classes": {
+                                                    "base": "text-2xl font-bold text-amber-600 dark:text-amber-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-key-label-087",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Less Warehouse Space",
+                                                "classes": {
+                                                    "base": "text-xs text-gray-600 dark:text-gray-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card2-quote-088",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Just-in-time inventory management reduced our warehouse space needs by 40%.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card2-footer-089",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card2-author-090",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "card2-author-img-091",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                        "alt": "Robert Martinez",
+                                                        "classes": {
+                                                            "media": "w-8 h-8 rounded-full object-cover mr-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "card2-author-name-092",
+                                                        "component": "CMS_Span",
+                                                        "text": "Robert",
+                                                        "classes": {
+                                                            "base": "text-xs font-medium text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "card2-link-093",
+                                                "component": "CMS_Button",
+                                                "text": "Read more",
+                                                "size": "xs",
+                                                "variant": "link",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "classes": {
+                                                    "base": "text-amber-600 dark:text-amber-400 text-xs font-medium inline-flex items-center group/link"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "story-card-3-094",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/success-stories/medisupply",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-amber-200 dark:hover:border-amber-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card3-image-095",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                                "alt": "MediSupply",
+                                "classes": {
+                                    "base": "h-48 overflow-hidden",
+                                    "media": "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                }
+                            },
+                            {
+                                "uid": "card3-overlay-096",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
+                                }
+                            },
+                            {
+                                "uid": "card3-badge-097",
+                                "component": "CMS_Badge",
+                                "classes": {
+                                    "base": "absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1 shadow-lg"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-star-098",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                        "alt": "Star",
+                                        "classes": {
+                                            "media": "w-4 h-4 text-yellow-400 fill-current"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card3-rating-099",
+                                        "component": "CMS_Span",
+                                        "text": "5.0",
+                                        "classes": {
+                                            "base": "text-sm font-medium text-gray-900 dark:text-white"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-initials-100",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-amber-500 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-initials-text-101",
+                                        "component": "CMS_Span",
+                                        "text": "MS"
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-content-102",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-title-103",
+                                        "component": "CMS_H3",
+                                        "text": "MediSupply",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card3-industry-104",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Healthcare",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500 mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card3-key-result-105",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "mb-4 p-3 bg-gradient-to-br from-amber-50 to-pink-50 dark:from-amber-900/20 dark:to-pink-900/20 rounded-xl"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card3-key-value-106",
+                                                "component": "CMS_H4",
+                                                "text": "0",
+                                                "classes": {
+                                                    "base": "text-2xl font-bold text-amber-600 dark:text-amber-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-key-label-107",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Temperature Excursions",
+                                                "classes": {
+                                                    "base": "text-xs text-gray-600 dark:text-gray-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card3-quote-108",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Cold chain monitoring gives us complete peace of mind. Zero temperature excursions.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card3-footer-109",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card3-author-110",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "card3-author-img-111",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                        "alt": "Dr. Emily Williams",
+                                                        "classes": {
+                                                            "media": "w-8 h-8 rounded-full object-cover mr-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "card3-author-name-112",
+                                                        "component": "CMS_Span",
+                                                        "text": "Emily",
+                                                        "classes": {
+                                                            "base": "text-xs font-medium text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "card3-link-113",
+                                                "component": "CMS_Button",
+                                                "text": "Read more",
+                                                "size": "xs",
+                                                "variant": "link",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "classes": {
+                                                    "base": "text-amber-600 dark:text-amber-400 text-xs font-medium inline-flex items-center group/link"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "stories-cta-114",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-16 text-center"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-115",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-amber-600 to-pink-600 rounded-2xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto",
+                            "body": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-title-116",
+                                "component": "CMS_H3",
+                                "text": "Ready to Write Your Success Story?",
+                                "classes": {
+                                    "base": "text-white font-bold text-2xl md:text-3xl mb-4"
+                                }
+                            },
+                            {
+                                "uid": "cta-desc-117",
+                                "component": "CMS_Paragraph",
+                                "text": "Join thousands of businesses that have transformed their supply chain with Sazzad.",
+                                "classes": {
+                                    "base": "text-amber-100 text-base mb-8 max-w-2xl mx-auto"
+                                }
+                            },
+                            {
+                                "uid": "cta-button-118",
+                                "component": "CMS_PrimaryButton",
+                                "text": "Get Started Today",
+                                "size": "lg",
+                                "href": "/register",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "bg-white text-amber-600 rounded-lg px-8 py-4 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "stories-divider-119",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "stories-stats-120",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4 mt-8",
+                    "sm": "sm:grid-cols-2",
+                    "md": "md:grid-cols-4"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-121",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-number-122",
+                                "component": "CMS_H3",
+                                "text": "500+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-123",
+                                "component": "CMS_Paragraph",
+                                "text": "Success Stories",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-124",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-number-125",
+                                "component": "CMS_H3",
+                                "text": "12+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-126",
+                                "component": "CMS_Paragraph",
+                                "text": "Industries",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-127",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-number-128",
+                                "component": "CMS_H3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-129",
+                                "component": "CMS_Paragraph",
+                                "text": "Client Retention",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-130",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-number-131",
+                                "component": "CMS_H3",
+                                "text": "24/7",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-132",
+                                "component": "CMS_Paragraph",
+                                "text": "Support",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

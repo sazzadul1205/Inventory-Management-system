@@ -9,6 +9,7 @@ import ServicesSectionSkeleton from "./ServicesSection/ServicesSectionSkeleton";
 import FeaturesSectionSkeleton from "./FeaturesSection/FeaturesSectionSkeleton";
 import HowItWorksSectionSkeleton from "./HowItWorksSection/HowItWorksSectionSkeleton";
 import IndustriesSectionSkeleton from "./IndustriesSection/IndustriesSectionSkeleton";
+import SuccessStoriesSectionSkeleton from "./SuccessStoriesSection/SuccessStoriesSectionSkeleton";
 
 // Import the JSON configurations
 import homeConfig from "./HomeConfig.json";
@@ -16,6 +17,7 @@ import servicesConfig from "./ServicesConfig.json";
 import featuresConfig from "./FeaturesConfig.json";
 import howItWorksConfig from "./HowItWorksConfig.json";
 import industriesConfig from "./IndustriesConfig.json";
+import successStoriesConfig from "./SuccessStoriesConfig.json";
 
 
 // Import the CustomSection component
@@ -45,6 +47,11 @@ const HowItWorksSection3 = lazy(() => import("./HowItWorksSection/HowItWorksSect
 const IndustriesSection1 = lazy(() => import("./IndustriesSection/IndustriesSection1"));
 const IndustriesSection2 = lazy(() => import("./IndustriesSection/IndustriesSection2"));
 const IndustriesSection3 = lazy(() => import("./IndustriesSection/IndustriesSection3"));
+
+// Lazy Success Stories Sections
+const SuccessStoriesSection1 = lazy(() => import("./SuccessStoriesSection/SuccessStoriesSection1"));
+const SuccessStoriesSection2 = lazy(() => import("./SuccessStoriesSection/SuccessStoriesSection2"));
+const SuccessStoriesSection3 = lazy(() => import("./SuccessStoriesSection/SuccessStoriesSection3"));
 
 // ============================================================================
 // Page Configuration - Control which sections appear and their order
@@ -82,6 +89,12 @@ const pageConfig = {
       variant: "custom",
       order: 5,
       props: {}
+    },
+    successStories: {
+      enabled: true,
+      variant: "custom",
+      order: 6,
+      props: {}
     }
   },
 
@@ -102,7 +115,8 @@ const pageConfig = {
     showServices: true,
     showFeatures: true,
     showHowItWorks: true,
-    showIndustries: true
+    showIndustries: true,
+    showSuccessStories: true,
   }
 };
 
@@ -150,6 +164,14 @@ const {
   industriesSectionCustom
 } = industriesConfig;
 
+// Success Stories configurations
+const {
+  successStoriesSection1,
+  successStoriesSection2,
+  successStoriesSection3,
+  successStoriesSectionCustom
+} = successStoriesConfig;
+
 // ============================================================================
 // Helper function to get ordered sections
 // ============================================================================
@@ -177,6 +199,10 @@ const getOrderedSections = (config) => {
   const showIndustries = config.quickToggles.showIndustries !== undefined
     ? config.quickToggles.showIndustries
     : config.sections.industries.enabled;
+
+  const showSuccessStories = config.quickToggles.showSuccessStories !== undefined
+    ? config.quickToggles.showSuccessStories
+    : config.sections.successStories.enabled;
 
   // Add hero section if enabled
   if (showHero && config.sections.hero.enabled) {
@@ -239,6 +265,19 @@ const getOrderedSections = (config) => {
       props: {
         ...config.global.defaultProps,
         ...config.sections.industries.props
+      }
+    });
+  }
+
+  // Add success stories section if enabled
+  if (showSuccessStories && config.sections.successStories.enabled) {
+    sections.push({
+      type: 'successStories',
+      variant: config.sections.successStories.variant,
+      order: config.sections.successStories.order,
+      props: {
+        ...config.global.defaultProps,
+        ...config.sections.successStories.props
       }
     });
   }
@@ -386,6 +425,31 @@ const Home = () => {
             }
         }
 
+      case 'successStories':
+        switch (variant) {
+          case "variant1":
+            return <SuccessStoriesSection1 key="successStories1" config={successStoriesSection1} {...commonProps} />;
+          case "variant2":
+            return <SuccessStoriesSection2 key="successStories2" config={successStoriesSection2} {...commonProps} />;
+          case "variant3":
+            return <SuccessStoriesSection3 key="successStories3" config={successStoriesSection3} {...commonProps} />;
+          case "custom":
+            return <CustomSection key="successStories-custom" config={successStoriesSectionCustom} {...commonProps} />;
+          default:
+            // If variant doesn't match, use the one from pageConfig or fallback to custom
+            const defaultSuccessStoriesVariant = pageConfig.sections.successStories.variant;
+            if (defaultSuccessStoriesVariant === "variant1") {
+              return <SuccessStoriesSection1 key="successStories-default" config={successStoriesSection1} {...commonProps} />;
+            } else if (defaultSuccessStoriesVariant === "variant2") {
+              return <SuccessStoriesSection2 key="successStories-default" config={successStoriesSection2} {...commonProps} />;
+            } else if (defaultSuccessStoriesVariant === "variant3") {
+              return <SuccessStoriesSection3 key="successStories-default" config={successStoriesSection3} {...commonProps} />;
+            } else {
+              return <CustomSection key="successStories-default" config={successStoriesSectionCustom} {...commonProps} />;
+            }
+
+        }
+
       default:
         return null;
     }
@@ -404,6 +468,8 @@ const Home = () => {
         return <HowItWorksSectionSkeleton />;
       case 'industries':
         return <IndustriesSectionSkeleton />;
+      case 'successStories':
+        return <SuccessStoriesSectionSkeleton />;
       default:
         return <div className="animate-pulse bg-gray-200 h-96" />;
     }
