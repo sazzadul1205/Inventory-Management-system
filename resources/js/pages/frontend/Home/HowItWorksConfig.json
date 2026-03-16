@@ -1,0 +1,1102 @@
+{
+    "HowItWorksSectionConfig": {
+        "HowItWorksVariant": "variant1"
+    },
+    "howItWorksSection1": {
+        "badge": {
+            "show": true,
+            "text": "✦ SIMPLE PROCESS",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "How It",
+            "highlightedText": "Works",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "in 4 Simple Steps"
+        },
+        "description": "Getting started with our platform is easy. Follow these simple steps to transform your supply chain management.",
+        "image": {
+            "src": "/images/how-it-works-bg.jpg",
+            "alt": "How Sazzad platform works"
+        },
+        "steps": [
+            {
+                "id": "step-1",
+                "number": "1",
+                "icon": "clipboard",
+                "title": "Create Account",
+                "description": "Sign up for free and complete your company profile. No credit card required to get started.",
+                "duration": "Takes 5 minutes"
+            },
+            {
+                "id": "step-2",
+                "number": "2",
+                "icon": "cube",
+                "title": "Add Inventory",
+                "description": "Import your inventory manually or connect with your existing systems via our API.",
+                "duration": "Same day setup"
+            },
+            {
+                "id": "step-3",
+                "number": "3",
+                "icon": "truck",
+                "title": "Start Shipping",
+                "description": "Create shipments, track deliveries, and manage your logistics from one dashboard.",
+                "duration": "Real-time updates"
+            },
+            {
+                "id": "step-4",
+                "number": "4",
+                "icon": "document",
+                "title": "Analyze & Optimize",
+                "description": "Get insights, generate reports, and optimize your supply chain for better performance.",
+                "duration": "Continuous improvement"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Get Started Now",
+            "url": "/register",
+            "icon": "arrowRight",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "Get started with Sazzad platform"
+        },
+        "highlights": {
+            "show": true,
+            "items": [
+                {
+                    "title": "No Credit Card Required",
+                    "description": "Start your free trial today. No commitments, cancel anytime."
+                },
+                {
+                    "title": "24/7 Customer Support",
+                    "description": "Our team is always available to help you with any questions."
+                },
+                {
+                    "title": "Secure & Reliable",
+                    "description": "Enterprise-grade security with 99.9% uptime guarantee."
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "howItWorksSection2": {
+        "badge": {
+            "text": "INTERACTIVE GUIDE"
+        },
+        "heading": {
+            "line1": "See How It",
+            "highlighted": "Works in Action"
+        },
+        "description": "Experience our platform with this interactive guide. Click through each step to see how easy it is to manage your supply chain.",
+        "steps": [
+            {
+                "id": "step-1",
+                "number": 1,
+                "icon": "user",
+                "title": "Create Your Account",
+                "description": "Sign up in minutes with your email. No credit card required for the free trial.",
+                "features": [
+                    "Free 14-day trial",
+                    "No credit card needed",
+                    "Instant access"
+                ],
+                "duration": "Takes 2 minutes"
+            },
+            {
+                "id": "step-2",
+                "number": 2,
+                "icon": "database",
+                "title": "Import Inventory",
+                "description": "Easily import your existing inventory via CSV, Excel, or connect with your systems.",
+                "features": [
+                    "Bulk import support",
+                    "API integration",
+                    "Real-time sync"
+                ],
+                "duration": "Setup in 15 minutes"
+            },
+            {
+                "id": "step-3",
+                "number": 3,
+                "icon": "truck",
+                "title": "Manage Shipments",
+                "description": "Create and track shipments with real-time updates and automated notifications.",
+                "features": [
+                    "Real-time tracking",
+                    "Automated alerts",
+                    "Multi-carrier support"
+                ],
+                "duration": "24/7 monitoring"
+            },
+            {
+                "id": "step-4",
+                "number": 4,
+                "icon": "chart",
+                "title": "Analyze Performance",
+                "description": "Get insights with powerful analytics and customizable reports.",
+                "features": [
+                    "Custom dashboards",
+                    "Performance metrics",
+                    "Export reports"
+                ],
+                "duration": "Real-time analytics"
+            }
+        ],
+        "previewContent": [
+            [
+                {
+                    "icon": "user",
+                    "bgColor": "bg-blue-500",
+                    "text": "Account created successfully",
+                    "subtext": "john@company.com",
+                    "status": "Active",
+                    "statusColor": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                },
+                {
+                    "icon": "check",
+                    "bgColor": "bg-green-500",
+                    "text": "Email verified",
+                    "subtext": "Verification complete",
+                    "status": "Done",
+                    "statusColor": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                },
+                {
+                    "icon": "clock",
+                    "bgColor": "bg-purple-500",
+                    "text": "Free trial started",
+                    "subtext": "14 days remaining",
+                    "status": "Active",
+                    "statusColor": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                }
+            ],
+            [
+                {
+                    "icon": "database",
+                    "bgColor": "bg-indigo-500",
+                    "text": "Products imported",
+                    "subtext": "1,247 items",
+                    "status": "Success",
+                    "statusColor": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                },
+                {
+                    "icon": "check",
+                    "bgColor": "bg-green-500",
+                    "text": "Categories mapped",
+                    "subtext": "12 categories",
+                    "status": "Done",
+                    "statusColor": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                },
+                {
+                    "icon": "refresh",
+                    "bgColor": "bg-yellow-500",
+                    "text": "Auto-sync enabled",
+                    "subtext": "Real-time updates",
+                    "status": "Active",
+                    "statusColor": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                }
+            ],
+            [
+                {
+                    "icon": "truck",
+                    "bgColor": "bg-purple-500",
+                    "text": "Shipment created",
+                    "subtext": "Order #INV-2024-001",
+                    "status": "In Transit",
+                    "statusColor": "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300"
+                },
+                {
+                    "icon": "clock",
+                    "bgColor": "bg-blue-500",
+                    "text": "Estimated delivery",
+                    "subtext": "Tomorrow, 2:00 PM",
+                    "status": "On Time",
+                    "statusColor": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                },
+                {
+                    "icon": "check",
+                    "bgColor": "bg-green-500",
+                    "text": "Tracking activated",
+                    "subtext": "Real-time GPS",
+                    "status": "Live",
+                    "statusColor": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                }
+            ],
+            [
+                {
+                    "icon": "chart",
+                    "bgColor": "bg-pink-500",
+                    "text": "Monthly report generated",
+                    "subtext": "March 2024",
+                    "status": "Ready",
+                    "statusColor": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                },
+                {
+                    "icon": "check",
+                    "bgColor": "bg-green-500",
+                    "text": "KPI dashboard updated",
+                    "subtext": "12 metrics tracked",
+                    "status": "Live",
+                    "statusColor": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                },
+                {
+                    "icon": "refresh",
+                    "bgColor": "bg-cyan-500",
+                    "text": "Export ready",
+                    "subtext": "PDF, Excel, CSV",
+                    "status": "Available",
+                    "statusColor": "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
+                }
+            ]
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Try It Yourself",
+            "url": "/register",
+            "icon": "arrowRight",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-purple-600",
+            "hoverColor": "hover:from-blue-700 hover:to-purple-700",
+            "textColor": "text-white",
+            "ariaLabel": "Start your free trial"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "howItWorksSection3": {
+        "badge": {
+            "text": "YOUR JOURNEY STARTS HERE"
+        },
+        "heading": {
+            "prefix": "Your",
+            "highlightedText": "Journey",
+            "suffix": "to Success"
+        },
+        "description": "Follow our proven path to transform your supply chain. Each step brings you closer to complete visibility and control.",
+        "steps": [
+            {
+                "id": "step-1",
+                "number": 1,
+                "icon": "user",
+                "badgeColor": "from-amber-500 to-amber-600",
+                "markerColor": "from-amber-500 to-amber-600",
+                "overlayColor": "from-amber-500 to-amber-600",
+                "title": "Discovery & Onboarding",
+                "description": "We start by understanding your unique business needs and goals. Our team works with you to set up your account and import your data.",
+                "features": [
+                    "Consultation call with experts",
+                    "Data migration assistance",
+                    "Custom configuration",
+                    "Team training session"
+                ],
+                "metrics": [
+                    {
+                        "value": "24h",
+                        "label": "Setup time",
+                        "color": "from-amber-500 to-amber-600"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Data accuracy",
+                        "color": "from-amber-500 to-amber-600"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "floatingCard": {
+                    "icon": "user",
+                    "bgColor": "bg-amber-500",
+                    "label": "Active onboardings",
+                    "value": "1,247+"
+                }
+            },
+            {
+                "id": "step-2",
+                "number": 2,
+                "icon": "cube",
+                "badgeColor": "from-pink-500 to-pink-600",
+                "markerColor": "from-pink-500 to-pink-600",
+                "overlayColor": "from-pink-500 to-pink-600",
+                "title": "Inventory Setup",
+                "description": "We help you organize your inventory with our smart categorization system. Set up warehouses, SKUs, and reorder points.",
+                "features": [
+                    "Smart SKU generation",
+                    "Multi-warehouse setup",
+                    "Batch tracking",
+                    "Automated reordering"
+                ],
+                "metrics": [
+                    {
+                        "value": "50K+",
+                        "label": "Items processed",
+                        "color": "from-pink-500 to-pink-600"
+                    },
+                    {
+                        "value": "<1s",
+                        "label": "Update speed",
+                        "color": "from-pink-500 to-pink-600"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "floatingCard": {
+                    "icon": "cube",
+                    "bgColor": "bg-pink-500",
+                    "label": "Items tracked",
+                    "value": "2.3M+"
+                }
+            },
+            {
+                "id": "step-3",
+                "number": 3,
+                "icon": "truck",
+                "badgeColor": "from-purple-500 to-purple-600",
+                "markerColor": "from-purple-500 to-purple-600",
+                "overlayColor": "from-purple-500 to-purple-600",
+                "title": "Shipping Integration",
+                "description": "Connect with multiple carriers and start shipping. Real-time tracking and automated label generation included.",
+                "features": [
+                    "Multi-carrier support",
+                    "Automated label printing",
+                    "Real-time tracking",
+                    "Delivery notifications"
+                ],
+                "metrics": [
+                    {
+                        "value": "50+",
+                        "label": "Carriers",
+                        "color": "from-purple-500 to-purple-600"
+                    },
+                    {
+                        "value": "98%",
+                        "label": "On-time delivery",
+                        "color": "from-purple-500 to-purple-600"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "floatingCard": {
+                    "icon": "truck",
+                    "bgColor": "bg-purple-500",
+                    "label": "Daily shipments",
+                    "value": "15.2K"
+                }
+            },
+            {
+                "id": "step-4",
+                "number": 4,
+                "icon": "chart",
+                "badgeColor": "from-blue-500 to-blue-600",
+                "markerColor": "from-blue-500 to-blue-600",
+                "overlayColor": "from-blue-500 to-blue-600",
+                "title": "Optimization & Growth",
+                "description": "Use advanced analytics to optimize your supply chain. Identify trends, reduce costs, and scale your operations.",
+                "features": [
+                    "Predictive analytics",
+                    "Cost optimization",
+                    "Performance reports",
+                    "Growth planning"
+                ],
+                "metrics": [
+                    {
+                        "value": "30%",
+                        "label": "Cost reduction",
+                        "color": "from-blue-500 to-blue-600"
+                    },
+                    {
+                        "value": "2x",
+                        "label": "Efficiency gain",
+                        "color": "from-blue-500 to-blue-600"
+                    }
+                ],
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "floatingCard": {
+                    "icon": "chart",
+                    "bgColor": "bg-blue-500",
+                    "label": "Avg. savings",
+                    "value": "$50K/year"
+                }
+            }
+        ],
+        "bottomCards": [
+            {
+                "icon": "lightning",
+                "iconBg": "bg-amber-500",
+                "title": "Fast Implementation",
+                "description": "Get up and running in days, not months. Our team ensures smooth and quick deployment."
+            },
+            {
+                "icon": "shield",
+                "iconBg": "bg-pink-500",
+                "title": "Enterprise Security",
+                "description": "Your data is protected with bank-level encryption and regular security audits."
+            },
+            {
+                "icon": "globe",
+                "iconBg": "bg-purple-500",
+                "title": "Global Support",
+                "description": "24/7 customer support with dedicated account managers for enterprise clients."
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Start Your Journey",
+            "url": "/register",
+            "icon": "arrowRight",
+            "backgroundColor": "bg-gradient-to-r from-amber-500 to-pink-500",
+            "hoverColor": "hover:from-amber-600 hover:to-pink-600",
+            "textColor": "text-white",
+            "ariaLabel": "Start your journey with Sazzad"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+
+    "howItWorksSectionCustom": {
+        "uid": "how-it-works-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-indigo-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "How It Works - Sazzad Inventory & Logistics",
+            "description": "Follow our simple step-by-step process to transform your supply chain management with Sazzad's powerful platform.",
+            "keywords": "how it works, step by step guide, logistics process, inventory workflow, supply chain journey",
+            "structuredData": {
+                "@type": "HowTo",
+                "name": "Sazzad Platform Guide",
+                "description": "Complete guide to using Sazzad platform",
+                "totalTime": "PT15M",
+                "estimatedCost": {
+                    "@type": "MonetaryAmount",
+                    "value": "0",
+                    "currency": "USD"
+                }
+            }
+        },
+        "children": [
+            {
+                "uid": "how-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "how-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ HOW IT WORKS",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "how-title-004",
+                        "component": "CMS_H2",
+                        "text": "Get Started in Four Simple Steps",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 16,
+                                "end": 29,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "how-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Getting started with our platform is easy. Follow these simple steps to transform your supply chain management.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "how-steps-container-006",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "relative"
+                },
+                "children": [
+                    {
+                        "uid": "how-steps-grid-007",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid gap-6 px-4 relative z-10",
+                            "sm": "sm:grid-cols-2 sm:gap-8 sm:px-6",
+                            "md": "md:grid-cols-4 md:gap-6 md:px-8",
+                            "lg": "lg:gap-8",
+                            "xl": "xl:gap-10"
+                        },
+                        "children": [
+                            {
+                                "uid": "how-step-1-008",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "clickable": false,
+                                "classes": {
+                                    "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2 text-center",
+                                    "containerHover": "hover:border-blue-200 dark:hover:border-blue-800"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "step-1-number-009",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-1-number-text-010",
+                                                "component": "CMS_Span",
+                                                "text": "1"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-1-icon-011",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-1-icon-svg-012",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/user-circle.svg",
+                                                "alt": "Create account",
+                                                "classes": {
+                                                    "media": "w-10 h-10 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-1-title-013",
+                                        "component": "CMS_H3",
+                                        "text": "Create Account",
+                                        "classes": {
+                                            "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-1-desc-014",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Sign up for free and complete your company profile. No credit card required.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-1-duration-015",
+                                        "component": "CMS_Badge",
+                                        "text": "5 min",
+                                        "size": "sm",
+                                        "variant": "outline",
+                                        "classes": {
+                                            "base": "mt-4"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "how-step-2-016",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "clickable": false,
+                                "classes": {
+                                    "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2 text-center",
+                                    "containerHover": "hover:border-purple-200 dark:hover:border-purple-800"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "step-2-number-017",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-2-number-text-018",
+                                                "component": "CMS_Span",
+                                                "text": "2"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-2-icon-019",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-2-icon-svg-020",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cube.svg",
+                                                "alt": "Add inventory",
+                                                "classes": {
+                                                    "media": "w-10 h-10 text-purple-600 dark:text-purple-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-2-title-021",
+                                        "component": "CMS_H3",
+                                        "text": "Add Inventory",
+                                        "classes": {
+                                            "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-2-desc-022",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Import your inventory manually or connect with your existing systems via API.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-2-duration-023",
+                                        "component": "CMS_Badge",
+                                        "text": "15 min",
+                                        "size": "sm",
+                                        "variant": "outline",
+                                        "classes": {
+                                            "base": "mt-4"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "how-step-3-024",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "clickable": false,
+                                "classes": {
+                                    "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2 text-center",
+                                    "containerHover": "hover:border-indigo-200 dark:hover:border-indigo-800"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "step-3-number-025",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-3-number-text-026",
+                                                "component": "CMS_Span",
+                                                "text": "3"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-3-icon-027",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-20 h-20 bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900 dark:to-indigo-800 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-3-icon-svg-028",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
+                                                "alt": "Start shipping",
+                                                "classes": {
+                                                    "media": "w-10 h-10 text-indigo-600 dark:text-indigo-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-3-title-029",
+                                        "component": "CMS_H3",
+                                        "text": "Start Shipping",
+                                        "classes": {
+                                            "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-3-desc-030",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Create shipments, track deliveries, and manage logistics from one dashboard.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-3-duration-031",
+                                        "component": "CMS_Badge",
+                                        "text": "Real-time",
+                                        "size": "sm",
+                                        "variant": "outline",
+                                        "classes": {
+                                            "base": "mt-4"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "how-step-4-032",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "clickable": false,
+                                "classes": {
+                                    "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2 text-center",
+                                    "containerHover": "hover:border-pink-200 dark:hover:border-pink-800"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "step-4-number-033",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-4-number-text-034",
+                                                "component": "CMS_Span",
+                                                "text": "4"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-4-icon-035",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-20 h-20 bg-gradient-to-br from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "step-4-icon-svg-036",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/chart-bar.svg",
+                                                "alt": "Analyze",
+                                                "classes": {
+                                                    "media": "w-10 h-10 text-pink-600 dark:text-pink-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "step-4-title-037",
+                                        "component": "CMS_H3",
+                                        "text": "Analyze & Optimize",
+                                        "classes": {
+                                            "base": "text-gray-900 dark:text-white font-bold text-xl mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-4-desc-038",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Get insights, generate reports, and optimize your supply chain performance.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    },
+                                    {
+                                        "uid": "step-4-duration-039",
+                                        "component": "CMS_Badge",
+                                        "text": "Continuous",
+                                        "size": "sm",
+                                        "variant": "outline",
+                                        "classes": {
+                                            "base": "mt-4"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "how-steps-connector-040",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-1 z-0"
+                        },
+                        "children": [
+                            {
+                                "uid": "connector-line-041",
+                                "component": "CMS_Divider",
+                                "variant": "dashed",
+                                "thickness": "medium",
+                                "classes": {
+                                    "container": "w-full"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "how-features-042",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8",
+                    "lg": "lg:px-8"
+                },
+                "children": [
+                    {
+                        "uid": "features-title-043",
+                        "component": "CMS_H3",
+                        "text": "Why Choose Sazzad?",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-2xl md:text-3xl mb-10"
+                        }
+                    },
+                    {
+                        "uid": "features-grid-044",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid gap-8",
+                            "sm": "sm:grid-cols-2",
+                            "md": "md:grid-cols-3"
+                        },
+                        "children": [
+                            {
+                                "uid": "feature-1-045",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center space-x-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-1-icon-046",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center shrink-0"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-1-icon-svg-047",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                                "alt": "Check",
+                                                "classes": {
+                                                    "media": "w-6 h-6 text-green-600 dark:text-green-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-1-content-048",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "feature-1-title-049",
+                                                "component": "CMS_H4",
+                                                "text": "No Credit Card Required",
+                                                "classes": {
+                                                    "base": "text-gray-900 dark:text-white font-semibold text-base"
+                                                }
+                                            },
+                                            {
+                                                "uid": "feature-1-desc-050",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Start your free trial today. No commitments, cancel anytime.",
+                                                "classes": {
+                                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "feature-2-051",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center space-x-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-2-icon-052",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center shrink-0"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-2-icon-svg-053",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/clock.svg",
+                                                "alt": "Support",
+                                                "classes": {
+                                                    "media": "w-6 h-6 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-2-content-054",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "feature-2-title-055",
+                                                "component": "CMS_H4",
+                                                "text": "24/7 Customer Support",
+                                                "classes": {
+                                                    "base": "text-gray-900 dark:text-white font-semibold text-base"
+                                                }
+                                            },
+                                            {
+                                                "uid": "feature-2-desc-056",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Our team is always available to help you with any questions.",
+                                                "classes": {
+                                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "feature-3-057",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center space-x-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-3-icon-058",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center shrink-0"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-3-icon-svg-059",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shield-check.svg",
+                                                "alt": "Security",
+                                                "classes": {
+                                                    "media": "w-6 h-6 text-purple-600 dark:text-purple-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-3-content-060",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "feature-3-title-061",
+                                                "component": "CMS_H4",
+                                                "text": "Secure & Reliable",
+                                                "classes": {
+                                                    "base": "text-gray-900 dark:text-white font-semibold text-base"
+                                                }
+                                            },
+                                            {
+                                                "uid": "feature-3-desc-062",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Enterprise-grade security with 99.9% uptime guarantee.",
+                                                "classes": {
+                                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "how-cta-063",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-16 text-center",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8",
+                    "lg": "lg:px-8"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-064",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto",
+                            "body": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-title-065",
+                                "component": "CMS_H3",
+                                "text": "Ready to Transform Your Supply Chain?",
+                                "classes": {
+                                    "base": "text-white font-bold text-2xl md:text-3xl mb-4"
+                                }
+                            },
+                            {
+                                "uid": "cta-desc-066",
+                                "component": "CMS_Paragraph",
+                                "text": "Join thousands of businesses that trust Sazzad for their inventory and logistics needs.",
+                                "classes": {
+                                    "base": "text-blue-100 text-base mb-8 max-w-2xl mx-auto"
+                                }
+                            },
+                            {
+                                "uid": "cta-button-067",
+                                "component": "CMS_PrimaryButton",
+                                "text": "Get Started Now",
+                                "size": "lg",
+                                "href": "/register",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "bg-white text-blue-600 rounded-lg px-8 py-4 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

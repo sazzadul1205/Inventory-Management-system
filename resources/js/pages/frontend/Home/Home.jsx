@@ -6,30 +6,38 @@ import { Suspense, lazy } from "react";
 import FrontEnd_Layout from "../Layout/FrontEnd_Layout";
 import HeroSectionSkeleton from "./HeroSection/HeroSectionSkeleton";
 import ServicesSectionSkeleton from "./ServicesSection/ServicesSectionSkeleton";
-import FeaturesSectionSkeleton from "./FeaturesSection/FeaturesSectionSkeleton"; // Add this import
+import FeaturesSectionSkeleton from "./FeaturesSection/FeaturesSectionSkeleton";
+import HowItWorksSectionSkeleton from "./HowItWorksSection/HowItWorksSectionSkeleton";
 
 // Import the JSON configurations
 import homeConfig from "./HomeConfig.json";
 import servicesConfig from "./ServicesConfig.json";
 import featuresConfig from "./FeaturesConfig.json";
+import howItWorksConfig from "./HowItWorksConfig.json";
+
+
+// Import the CustomSection component
+const CustomSection = lazy(() => import("./CustomSection"));
 
 // Lazy Hero Sections
 const HeroSection1 = lazy(() => import("./HeroSection/HeroSection1"));
 const HeroSection2 = lazy(() => import("./HeroSection/HeroSection2"));
 const HeroSection3 = lazy(() => import("./HeroSection/HeroSection3"));
-const HeroSectionCustom = lazy(() => import("./HeroSection/HeroSectionCustom"));
 
 // Lazy Services Sections
 const ServicesSection1 = lazy(() => import("./ServicesSection/ServicesSection1"));
 const ServicesSection2 = lazy(() => import("./ServicesSection/ServicesSection2"));
 const ServicesSection3 = lazy(() => import("./ServicesSection/ServicesSection3"));
-const ServicesSectionCustom = lazy(() => import("./ServicesSection/ServicesSectionCustom"));
 
 // Lazy Features Sections
 const FeaturesSection1 = lazy(() => import("./FeaturesSection/FeaturesSection1"));
 const FeaturesSection2 = lazy(() => import("./FeaturesSection/FeaturesSection2"));
 const FeaturesSection3 = lazy(() => import("./FeaturesSection/FeaturesSection3"));
-const FeaturesSectionCustom = lazy(() => import("./FeaturesSection/FeaturesSectionCustom"));
+
+// Lazy How It Works Sections
+const HowItWorksSection1 = lazy(() => import("./HowItWorksSection/HowItWorksSection1"));
+const HowItWorksSection2 = lazy(() => import("./HowItWorksSection/HowItWorksSection2"));
+const HowItWorksSection3 = lazy(() => import("./HowItWorksSection/HowItWorksSection3"));
 
 // ============================================================================
 // Page Configuration - Control which sections appear and their order
@@ -40,20 +48,26 @@ const pageConfig = {
   sections: {
     hero: {
       enabled: true,
-      variant: "custom", // Changed to custom to use CMS builder
+      variant: "custom",
       order: 1,
       props: {}
     },
     services: {
       enabled: true,
-      variant: "custom", // Changed to custom to use CMS builder
+      variant: "custom",
       order: 2,
       props: {}
     },
     features: {
       enabled: true,
-      variant: "custom", // Changed to custom to use CMS builder
+      variant: "custom",
       order: 3,
+      props: {}
+    },
+    howItWorks: {
+      enabled: true,
+      variant: "custom",
+      order: 4,
       props: {}
     }
   },
@@ -73,7 +87,8 @@ const pageConfig = {
   quickToggles: {
     showHero: true,
     showServices: true,
-    showFeatures: true
+    showFeatures: true,
+    showHowItWorks: true,
   }
 };
 
@@ -105,6 +120,14 @@ const {
   featuresSectionCustom
 } = featuresConfig;
 
+// How It Works configurations
+const {
+  howItWorksSection1,
+  howItWorksSection2,
+  howItWorksSection3,
+  howItWorksSectionCustom
+} = howItWorksConfig;
+
 // ============================================================================
 // Helper function to get ordered sections
 // ============================================================================
@@ -124,6 +147,10 @@ const getOrderedSections = (config) => {
   const showFeatures = config.quickToggles.showFeatures !== undefined
     ? config.quickToggles.showFeatures
     : config.sections.features.enabled;
+
+  const showHowItWorks = config.quickToggles.showHowItWorks !== undefined
+    ? config.quickToggles.showHowItWorks
+    : config.sections.howItWorks.enabled;
 
   // Add hero section if enabled
   if (showHero && config.sections.hero.enabled) {
@@ -164,6 +191,19 @@ const getOrderedSections = (config) => {
     });
   }
 
+  // Add how it works section if enabled
+  if (showHowItWorks && config.sections.howItWorks.enabled) {
+    sections.push({
+      type: 'howItWorks',
+      variant: config.sections.howItWorks.variant,
+      order: config.sections.howItWorks.order,
+      props: {
+        ...config.global.defaultProps,
+        ...config.sections.howItWorks.props
+      }
+    });
+  }
+
   // Sort sections by order
   return sections.sort((a, b) => a.order - b.order);
 };
@@ -196,7 +236,7 @@ const Home = () => {
           case "variant3":
             return <HeroSection3 key="hero3" config={heroSection3} {...commonProps} />;
           case "custom":
-            return <HeroSectionCustom key="hero-custom" config={heroSectionCustom} {...commonProps} />;
+            return <CustomSection key="hero-custom" config={heroSectionCustom} {...commonProps} />;
           default:
             // If variant doesn't match, use the one from pageConfig or fallback to custom
             const defaultVariant = pageConfig.sections.hero.variant;
@@ -207,7 +247,7 @@ const Home = () => {
             } else if (defaultVariant === "variant3") {
               return <HeroSection3 key="hero-default" config={heroSection3} {...commonProps} />;
             } else {
-              return <HeroSectionCustom key="hero-default" config={heroSectionCustom} {...commonProps} />;
+              return <CustomSection key="hero-default" config={heroSectionCustom} {...commonProps} />;
             }
         }
 
@@ -220,7 +260,7 @@ const Home = () => {
           case "variant3":
             return <ServicesSection3 key="services3" config={servicesSection3} {...commonProps} />;
           case "custom":
-            return <ServicesSectionCustom key="services-custom" config={servicesSectionCustom} {...commonProps} />;
+            return <CustomSection key="services-custom" config={servicesSectionCustom} {...commonProps} />;
           default:
             // If variant doesn't match, use the one from pageConfig or fallback to custom
             const defaultServicesVariant = pageConfig.sections.services.variant;
@@ -231,7 +271,7 @@ const Home = () => {
             } else if (defaultServicesVariant === "variant3") {
               return <ServicesSection3 key="services-default" config={servicesSection3} {...commonProps} />;
             } else {
-              return <ServicesSectionCustom key="services-default" config={servicesSectionCustom} {...commonProps} />;
+              return <CustomSection key="services-default" config={servicesSectionCustom} {...commonProps} />;
             }
         }
 
@@ -244,7 +284,7 @@ const Home = () => {
           case "variant3":
             return <FeaturesSection3 key="features3" config={featuresSection3} {...commonProps} />;
           case "custom":
-            return <FeaturesSectionCustom key="features-custom" config={featuresSectionCustom} {...commonProps} />;
+            return <CustomSection key="features-custom" config={featuresSectionCustom} {...commonProps} />;
           default:
             // If variant doesn't match, use the one from pageConfig or fallback to custom
             const defaultFeaturesVariant = pageConfig.sections.features.variant;
@@ -255,7 +295,31 @@ const Home = () => {
             } else if (defaultFeaturesVariant === "variant3") {
               return <FeaturesSection3 key="features-default" config={featuresSection3} {...commonProps} />;
             } else {
-              return <FeaturesSectionCustom key="features-default" config={featuresSectionCustom} {...commonProps} />;
+              return <CustomSection key="features-default" config={featuresSectionCustom} {...commonProps} />;
+            }
+        }
+
+      case 'howItWorks':
+        switch (variant) {
+          case "variant1":
+            return <HowItWorksSection1 key="howItWorks1" config={howItWorksSection1} {...commonProps} />;
+          case "variant2":
+            return <HowItWorksSection2 key="howItWorks2" config={howItWorksSection2} {...commonProps} />;
+          case "variant3":
+            return <HowItWorksSection3 key="howItWorks3" config={howItWorksSection3} {...commonProps} />;
+          case "custom":
+            return <CustomSection key="howItWorks-custom" config={howItWorksSectionCustom} {...commonProps} />;
+          default:
+            // If variant doesn't match, use the one from pageConfig or fallback to custom
+            const defaultHowItWorksVariant = pageConfig.sections.howItWorks.variant;
+            if (defaultHowItWorksVariant === "variant1") {
+              return <HowItWorksSection1 key="howItWorks-default" config={howItWorksSection1} {...commonProps} />;
+            } else if (defaultHowItWorksVariant === "variant2") {
+              return <HowItWorksSection2 key="howItWorks-default" config={howItWorksSection2} {...commonProps} />;
+            } else if (defaultHowItWorksVariant === "variant3") {
+              return <HowItWorksSection3 key="howItWorks-default" config={howItWorksSection3} {...commonProps} />;
+            } else {
+              return <CustomSection key="howItWorks-default" config={howItWorksSectionCustom} {...commonProps} />;
             }
         }
 
@@ -273,6 +337,8 @@ const Home = () => {
         return <ServicesSectionSkeleton />;
       case 'features':
         return <FeaturesSectionSkeleton />;
+      case 'howItWorks':
+        return <HowItWorksSectionSkeleton />;
       default:
         return <div className="animate-pulse bg-gray-200 h-96" />;
     }
