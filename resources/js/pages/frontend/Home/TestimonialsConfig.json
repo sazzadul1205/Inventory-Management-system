@@ -1,0 +1,1667 @@
+{
+    "testimonialsConfig": {
+        "servicesVariant": "custom"
+    },
+    "testimonialsSection1": {
+        "seo": {
+            "title": "Customer Testimonials - Sazzad Inventory & Logistics",
+            "description": "Read what our customers say about their experience with Sazzad's inventory and logistics solutions.",
+            "keywords": "testimonials, customer reviews, client feedback, logistics reviews, inventory management testimonials",
+            "ogImage": "/images/testimonials-og.jpg",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Testimonials",
+                "description": "Real feedback from real customers"
+            }
+        },
+        "badge": {
+            "show": true,
+            "text": "✦ TESTIMONIALS",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "What Our",
+            "highlightedText": "Customers",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "Say About Us"
+        },
+        "description": "Don't just take our word for it - hear from some of our satisfied customers.",
+        "categories": [
+            {
+                "id": "retail",
+                "name": "Retail"
+            },
+            {
+                "id": "logistics",
+                "name": "Logistics"
+            },
+            {
+                "id": "manufacturing",
+                "name": "Manufacturing"
+            },
+            {
+                "id": "healthcare",
+                "name": "Healthcare"
+            }
+        ],
+        "testimonials": [
+            {
+                "id": "testimonial-1",
+                "category": "retail",
+                "rating": 5,
+                "testimonial": "Sazzad has completely transformed how we manage our inventory. The real-time visibility across our 12 stores and online channel has eliminated stockouts and reduced overstock by 30%. The platform is intuitive and the support team is exceptional.",
+                "authorName": "Sarah Johnson",
+                "authorTitle": "VP of Operations",
+                "authorImage": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Fashion Forward",
+                "companyInitials": "FF",
+                "industry": "Retail & E-commerce",
+                "location": "New York, NY",
+                "date": "March 15, 2024",
+                "keyBenefit": "30% reduction in overstock"
+            },
+            {
+                "id": "testimonial-2",
+                "category": "logistics",
+                "rating": 5,
+                "testimonial": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love the mobile app, and our customers appreciate the real-time tracking updates. It's been a game-changer for our delivery operations.",
+                "authorName": "Michael Chen",
+                "authorTitle": "Fleet Manager",
+                "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Swift Delivery",
+                "companyInitials": "SD",
+                "industry": "Logistics",
+                "location": "Chicago, IL",
+                "date": "February 28, 2024",
+                "keyBenefit": "25% fuel savings"
+            },
+            {
+                "id": "testimonial-3",
+                "category": "manufacturing",
+                "rating": 5,
+                "testimonial": "Implementing Sazzad's just-in-time inventory management has been transformative. Our production lines never stop thanks to automated reordering, and we've reduced warehouse space needs by 40%. The ROI was evident within months.",
+                "authorName": "Robert Martinez",
+                "authorTitle": "Supply Chain Director",
+                "authorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Precision Parts",
+                "companyInitials": "PP",
+                "industry": "Manufacturing",
+                "location": "Detroit, MI",
+                "date": "January 20, 2024",
+                "keyBenefit": "40% less warehouse space"
+            },
+            {
+                "id": "testimonial-4",
+                "category": "healthcare",
+                "rating": 5,
+                "testimonial": "Cold chain monitoring gives us complete peace of mind. We've had zero temperature excursions since implementing Sazzad's IoT sensors and real-time alerts. Compliance reporting is now automated and audit-ready.",
+                "authorName": "Dr. Emily Williams",
+                "authorTitle": "Compliance Officer",
+                "authorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "MediSupply",
+                "companyInitials": "MS",
+                "industry": "Healthcare",
+                "location": "Boston, MA",
+                "date": "April 5, 2024",
+                "keyBenefit": "100% compliance"
+            },
+            {
+                "id": "testimonial-5",
+                "category": "retail",
+                "rating": 4,
+                "testimonial": "The multi-channel inventory sync has eliminated discrepancies between our online store and physical locations. Our team can now fulfill orders from any location, improving customer satisfaction significantly.",
+                "authorName": "Jessica Park",
+                "authorTitle": "E-commerce Manager",
+                "authorImage": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Urban Outfitters",
+                "companyInitials": "UO",
+                "industry": "Retail",
+                "location": "Los Angeles, CA",
+                "date": "March 3, 2024",
+                "keyBenefit": "99.9% inventory accuracy"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Read More Testimonials",
+            "url": "/testimonials",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "Read more customer testimonials"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "testimonialsSection2": {
+        "seo": {
+            "title": "Customer Testimonials - Sazzad Inventory & Logistics",
+            "description": "Read what our customers say about their experience with Sazzad's inventory and logistics solutions.",
+            "keywords": "testimonials, customer reviews, client feedback, logistics reviews, inventory management testimonials",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Testimonials",
+                "description": "Real feedback from real customers"
+            }
+        },
+        "badge": {
+            "text": "CUSTOMER STORIES"
+        },
+        "heading": {
+            "line1": "Trusted by",
+            "highlighted": "500+ Companies"
+        },
+        "description": "Don't just take our word for it - hear from some of our satisfied customers.",
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "500+",
+                    "label": "Happy Clients"
+                },
+                {
+                    "value": "98%",
+                    "label": "Satisfaction Rate"
+                },
+                {
+                    "value": "4.9★",
+                    "label": "Average Rating"
+                },
+                {
+                    "value": "15+",
+                    "label": "Industries"
+                }
+            ]
+        },
+        "testimonials": [
+            {
+                "id": "testimonial-1",
+                "rating": 5,
+                "testimonial": "Sazzad has completely transformed how we manage our inventory. The real-time visibility across our 12 stores and online channel has eliminated stockouts and reduced overstock by 30%. The platform is intuitive and the support team is exceptional. We've seen a significant improvement in our operational efficiency.",
+                "authorName": "Sarah Johnson",
+                "authorTitle": "VP of Operations",
+                "authorImage": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Fashion Forward",
+                "companyInitials": "FF",
+                "location": "New York, NY",
+                "date": "March 15, 2024"
+            },
+            {
+                "id": "testimonial-2",
+                "rating": 5,
+                "testimonial": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love the mobile app, and our customers appreciate the real-time tracking updates. It's been a game-changer for our delivery operations. The ROI was evident within the first three months.",
+                "authorName": "Michael Chen",
+                "authorTitle": "Fleet Manager",
+                "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Swift Delivery",
+                "companyInitials": "SD",
+                "location": "Chicago, IL",
+                "date": "February 28, 2024"
+            },
+            {
+                "id": "testimonial-3",
+                "rating": 5,
+                "testimonial": "Implementing Sazzad's just-in-time inventory management has been transformative. Our production lines never stop thanks to automated reordering, and we've reduced warehouse space needs by 40%. The platform integrates seamlessly with our existing ERP system.",
+                "authorName": "Robert Martinez",
+                "authorTitle": "Supply Chain Director",
+                "authorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Precision Parts",
+                "companyInitials": "PP",
+                "location": "Detroit, MI",
+                "date": "January 20, 2024"
+            },
+            {
+                "id": "testimonial-4",
+                "rating": 5,
+                "testimonial": "Cold chain monitoring gives us complete peace of mind. We've had zero temperature excursions since implementing Sazzad's IoT sensors and real-time alerts. Compliance reporting is now automated and audit-ready. This has been invaluable for our regulatory compliance.",
+                "authorName": "Dr. Emily Williams",
+                "authorTitle": "Compliance Officer",
+                "authorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "MediSupply",
+                "companyInitials": "MS",
+                "location": "Boston, MA",
+                "date": "April 5, 2024"
+            },
+            {
+                "id": "testimonial-5",
+                "rating": 4,
+                "testimonial": "The multi-channel inventory sync has eliminated discrepancies between our online store and physical locations. Our team can now fulfill orders from any location, improving customer satisfaction significantly. The reporting features are also excellent.",
+                "authorName": "Jessica Park",
+                "authorTitle": "E-commerce Manager",
+                "authorImage": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Urban Outfitters",
+                "companyInitials": "UO",
+                "location": "Los Angeles, CA",
+                "date": "March 3, 2024"
+            },
+            {
+                "id": "testimonial-6",
+                "rating": 5,
+                "testimonial": "Sazzad's warehouse automation features have revolutionized our picking and packing process. We've increased throughput by 3x while reducing errors to near zero. The team was incredibly supportive during implementation.",
+                "authorName": "David Kim",
+                "authorTitle": "Warehouse Manager",
+                "authorImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Auto Parts Plus",
+                "companyInitials": "AP",
+                "location": "Dallas, TX",
+                "date": "February 10, 2024"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Read All Testimonials",
+            "url": "/testimonials",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-purple-600",
+            "hoverColor": "hover:from-blue-700 hover:to-purple-700",
+            "textColor": "text-white",
+            "ariaLabel": "Read all customer testimonials"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "testimonialsSection3": {
+        "seo": {
+            "title": "Customer Testimonials - Sazzad Inventory & Logistics",
+            "description": "Read what our customers say about their experience with Sazzad's inventory and logistics solutions.",
+            "keywords": "testimonials, customer reviews, client feedback, logistics reviews, inventory management testimonials",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Testimonials",
+                "description": "Real feedback from real customers"
+            }
+        },
+        "badge": {
+            "text": "LOVED BY CUSTOMERS"
+        },
+        "heading": {
+            "prefix": "What Our",
+            "highlightedText": "Customers",
+            "suffix": "Love About Us"
+        },
+        "description": "Don't just take our word for it - hear from some of our satisfied customers.",
+        "testimonials": [
+            {
+                "id": "testimonial-1",
+                "rating": 5,
+                "testimonial": "Sazzad has completely transformed how we manage our inventory. The real-time visibility across our 12 stores and online channel has eliminated stockouts and reduced overstock by 30%. The platform is intuitive and the support team is exceptional. We've seen a significant improvement in our operational efficiency and customer satisfaction scores have never been higher.",
+                "authorName": "Sarah Johnson",
+                "authorTitle": "VP of Operations",
+                "authorImage": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Fashion Forward",
+                "companyInitials": "FF",
+                "industry": "Retail & E-commerce",
+                "location": "New York, NY",
+                "date": "March 15, 2024",
+                "likes": 128,
+                "keyBenefit": "30% reduction in overstock",
+                "results": [
+                    {
+                        "value": "95%",
+                        "label": "Fewer Stockouts"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Cost Reduction"
+                    },
+                    {
+                        "value": "12",
+                        "label": "Stores Integrated"
+                    }
+                ]
+            },
+            {
+                "id": "testimonial-2",
+                "rating": 5,
+                "testimonial": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love the mobile app, and our customers appreciate the real-time tracking updates.",
+                "authorName": "Michael Chen",
+                "authorTitle": "Fleet Manager",
+                "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Swift Delivery",
+                "companyInitials": "SD",
+                "industry": "Logistics",
+                "location": "Chicago, IL",
+                "date": "February 28, 2024",
+                "likes": 89,
+                "keyBenefit": "25% fuel savings"
+            },
+            {
+                "id": "testimonial-3",
+                "rating": 5,
+                "testimonial": "Implementing Sazzad's just-in-time inventory management has been transformative. Our production lines never stop thanks to automated reordering.",
+                "authorName": "Robert Martinez",
+                "authorTitle": "Supply Chain Director",
+                "authorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Precision Parts",
+                "companyInitials": "PP",
+                "industry": "Manufacturing",
+                "location": "Detroit, MI",
+                "date": "January 20, 2024",
+                "likes": 56,
+                "keyBenefit": "40% less warehouse space"
+            },
+            {
+                "id": "testimonial-4",
+                "rating": 5,
+                "testimonial": "Cold chain monitoring gives us complete peace of mind. We've had zero temperature excursions since implementing Sazzad's IoT sensors.",
+                "authorName": "Dr. Emily Williams",
+                "authorTitle": "Compliance Officer",
+                "authorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "MediSupply",
+                "companyInitials": "MS",
+                "industry": "Healthcare",
+                "location": "Boston, MA",
+                "date": "April 5, 2024",
+                "likes": 42,
+                "keyBenefit": "100% compliance"
+            },
+            {
+                "id": "testimonial-5",
+                "rating": 4,
+                "testimonial": "The multi-channel inventory sync has eliminated discrepancies between our online store and physical locations. Customer satisfaction has improved significantly.",
+                "authorName": "Jessica Park",
+                "authorTitle": "E-commerce Manager",
+                "authorImage": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Urban Outfitters",
+                "companyInitials": "UO",
+                "industry": "Retail",
+                "location": "Los Angeles, CA",
+                "date": "March 3, 2024",
+                "likes": 38,
+                "keyBenefit": "99.9% inventory accuracy"
+            },
+            {
+                "id": "testimonial-6",
+                "rating": 5,
+                "testimonial": "Sazzad's warehouse automation features have revolutionized our picking and packing process. We've increased throughput by 3x.",
+                "authorName": "David Kim",
+                "authorTitle": "Warehouse Manager",
+                "authorImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "companyName": "Auto Parts Plus",
+                "companyInitials": "AP",
+                "industry": "Automotive",
+                "location": "Dallas, TX",
+                "date": "February 10, 2024",
+                "likes": 27,
+                "keyBenefit": "3x faster throughput"
+            }
+        ],
+        "videoTestimonials": {
+            "show": true,
+            "items": [
+                {
+                    "title": "How Fashion Forward Transformed Their Inventory",
+                    "thumbnail": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "duration": "3:45",
+                    "authorName": "Sarah Johnson",
+                    "companyName": "Fashion Forward",
+                    "link": "/videos/fashion-forward"
+                },
+                {
+                    "title": "Swift Delivery's Route Optimization Success",
+                    "thumbnail": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "duration": "4:12",
+                    "authorName": "Michael Chen",
+                    "companyName": "Swift Delivery",
+                    "link": "/videos/swift-delivery"
+                },
+                {
+                    "title": "Precision Parts: Just-in-Time Manufacturing",
+                    "thumbnail": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "duration": "5:30",
+                    "authorName": "Robert Martinez",
+                    "companyName": "Precision Parts",
+                    "link": "/videos/precision-parts"
+                }
+            ]
+        },
+        "trustSignals": {
+            "show": true,
+            "satisfiedCustomers": "2,500+",
+            "netPromoterScore": "74",
+            "reviews": "1,200+"
+        },
+        "bottomCta": {
+            "show": true,
+            "text": "Read More Stories",
+            "url": "/testimonials",
+            "backgroundColor": "bg-gradient-to-r from-amber-500 to-pink-500",
+            "hoverColor": "hover:from-amber-600 hover:to-pink-600",
+            "textColor": "text-white",
+            "ariaLabel": "Read more customer stories"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "testimonialsSectionCustom": {
+        "uid": "testimonials-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Customer Testimonials - Sazzad Inventory & Logistics",
+            "description": "Read what our customers say about their experience with Sazzad's inventory and logistics solutions.",
+            "keywords": "testimonials, customer reviews, client feedback, logistics reviews, inventory management testimonials",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Customer Testimonials",
+                "description": "Real feedback from real customers"
+            }
+        },
+        "children": [
+            {
+                "uid": "testimonials-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "testimonials-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ TESTIMONIALS",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "testimonials-title-004",
+                        "component": "CMS_H2",
+                        "text": "What Our Customers Say About Us",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 9,
+                                "end": 25,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "testimonials-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Don't just take our word for it - hear from some of our satisfied customers.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "testimonials-categories-006",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "flex-wrap justify-center gap-3 mb-12 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "category-all-007",
+                        "component": "CMS_Button",
+                        "text": "All Testimonials",
+                        "size": "md",
+                        "variant": "primary",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-retail-008",
+                        "component": "CMS_Button",
+                        "text": "Retail",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-logistics-009",
+                        "component": "CMS_Button",
+                        "text": "Logistics",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-manufacturing-010",
+                        "component": "CMS_Button",
+                        "text": "Manufacturing",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    },
+                    {
+                        "uid": "category-healthcare-011",
+                        "component": "CMS_Button",
+                        "text": "Healthcare",
+                        "size": "md",
+                        "variant": "outline",
+                        "classes": {
+                            "base": "rounded-full px-6 py-3"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "testimonials-featured-012",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "mb-16 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "featured-card-013",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "lg",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-gray-100 dark:border-gray-700",
+                            "body": "grid md:grid-cols-5 gap-8 items-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "featured-left-014",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "md:col-span-3 space-y-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "featured-quote-icon-015",
+                                        "component": "CMS_Span",
+                                        "text": "\"",
+                                        "classes": {
+                                            "base": "text-6xl text-blue-200 dark:text-blue-900/30 font-serif"
+                                        }
+                                    },
+                                    {
+                                        "uid": "featured-rating-016",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-1"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "star-1-017",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-2-018",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-3-019",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-4-020",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star-5-021",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-yellow-400 fill-current"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-quote-022",
+                                        "component": "CMS_Quote",
+                                        "text": "Sazzad has completely transformed how we manage our inventory. The real-time visibility across our 12 stores and online channel has eliminated stockouts and reduced overstock by 30%. The platform is intuitive and the support team is exceptional.",
+                                        "classes": {
+                                            "base": "text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed"
+                                        }
+                                    },
+                                    {
+                                        "uid": "featured-author-023",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "author-image-024",
+                                                "component": "CMS_Image",
+                                                "src": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                "alt": "Sarah Johnson",
+                                                "classes": {
+                                                    "media": "w-16 h-16 rounded-full object-cover"
+                                                }
+                                            },
+                                            {
+                                                "uid": "author-details-025",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "author-name-026",
+                                                        "component": "CMS_H4",
+                                                        "text": "Sarah Johnson",
+                                                        "classes": {
+                                                            "base": "text-lg font-bold text-gray-900 dark:text-white"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "author-title-027",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "VP of Operations, Fashion Forward",
+                                                        "classes": {
+                                                            "base": "text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "author-location-028",
+                                                        "component": "CMS_Flex",
+                                                        "classes": {
+                                                            "base": "items-center mt-1 text-sm text-gray-500 dark:text-gray-500"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "uid": "location-icon-029",
+                                                                "component": "CMS_Image",
+                                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/location-marker.svg",
+                                                                "alt": "Location",
+                                                                "classes": {
+                                                                    "media": "w-4 h-4 mr-1"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "location-text-030",
+                                                                "component": "CMS_Span",
+                                                                "text": "New York, NY"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-date-031",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center text-sm text-gray-500 dark:text-gray-500"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "date-icon-032",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/calendar.svg",
+                                                "alt": "Calendar",
+                                                "classes": {
+                                                    "media": "w-4 h-4 mr-1"
+                                                }
+                                            },
+                                            {
+                                                "uid": "date-text-033",
+                                                "component": "CMS_Span",
+                                                "text": "March 15, 2024"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "featured-right-034",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "md:col-span-2"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "company-card-035",
+                                        "component": "CMS_Card",
+                                        "variant": "default",
+                                        "size": "md",
+                                        "classes": {
+                                            "container": "bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 text-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "company-initials-036",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-3xl"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "initials-text-037",
+                                                        "component": "CMS_Span",
+                                                        "text": "FF"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "company-name-038",
+                                                "component": "CMS_H3",
+                                                "text": "Fashion Forward",
+                                                "classes": {
+                                                    "base": "text-xl font-bold text-gray-900 dark:text-white mb-2"
+                                                }
+                                            },
+                                            {
+                                                "uid": "company-industry-039",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Retail & E-commerce",
+                                                "classes": {
+                                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                                }
+                                            },
+                                            {
+                                                "uid": "key-benefit-040",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm mx-auto"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "benefit-icon-041",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                                        "alt": "Check",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-1"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "benefit-text-042",
+                                                        "component": "CMS_Span",
+                                                        "text": "30% reduction in overstock"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "testimonials-grid-043",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-6 px-4",
+                    "sm": "sm:grid-cols-2 sm:gap-8",
+                    "md": "md:grid-cols-3 md:gap-10",
+                    "lg": "lg:gap-12"
+                },
+                "children": [
+                    {
+                        "uid": "testimonial-card-1-044",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2"
+                        },
+                        "children": [
+                            {
+                                "uid": "card1-header-045",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-start justify-between mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-author-046",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-3"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card1-author-img-047",
+                                                "component": "CMS_Image",
+                                                "src": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                "alt": "Michael Chen",
+                                                "classes": {
+                                                    "media": "w-12 h-12 rounded-full object-cover"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-author-details-048",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "card1-author-name-049",
+                                                        "component": "CMS_H4",
+                                                        "text": "Michael Chen",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white text-sm"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "card1-author-title-050",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Fleet Manager",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-500 dark:text-gray-500"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card1-rating-051",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-1"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card1-star-1-052",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-star-2-053",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-star-3-054",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-star-4-055",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-star-5-056",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-company-057",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "mb-3"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-company-name-058",
+                                        "component": "CMS_Span",
+                                        "text": "Swift Delivery",
+                                        "classes": {
+                                            "base": "text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card1-industry-059",
+                                        "component": "CMS_Span",
+                                        "text": "Logistics",
+                                        "classes": {
+                                            "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-quote-060",
+                                "component": "CMS_Paragraph",
+                                "text": "The route optimization feature alone saved us 25% on fuel costs in the first year. Our drivers love the mobile app.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3"
+                                }
+                            },
+                            {
+                                "uid": "card1-benefit-061",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full text-xs font-medium text-blue-700 dark:text-blue-300 mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-benefit-icon-062",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                        "alt": "Check",
+                                        "classes": {
+                                            "media": "w-3 h-3 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card1-benefit-text-063",
+                                        "component": "CMS_Span",
+                                        "text": "25% fuel savings"
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-footer-064",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-date-065",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center text-xs text-gray-500 dark:text-gray-500"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card1-date-icon-066",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/calendar.svg",
+                                                "alt": "Calendar",
+                                                "classes": {
+                                                    "media": "w-3 h-3 mr-1"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card1-date-text-067",
+                                                "component": "CMS_Span",
+                                                "text": "Feb 28, 2024"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card1-link-068",
+                                        "component": "CMS_Button",
+                                        "text": "Read more",
+                                        "size": "xs",
+                                        "variant": "link",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 text-xs font-medium inline-flex items-center group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "testimonial-card-2-069",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2"
+                        },
+                        "children": [
+                            {
+                                "uid": "card2-header-070",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-start justify-between mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-author-071",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-3"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card2-author-img-072",
+                                                "component": "CMS_Image",
+                                                "src": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                "alt": "Robert Martinez",
+                                                "classes": {
+                                                    "media": "w-12 h-12 rounded-full object-cover"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-author-details-073",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "card2-author-name-074",
+                                                        "component": "CMS_H4",
+                                                        "text": "Robert Martinez",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white text-sm"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "card2-author-title-075",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Supply Chain Director",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-500 dark:text-gray-500"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card2-rating-076",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-1"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card2-star-1-077",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-star-2-078",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-star-3-079",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-star-4-080",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-star-5-081",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-company-082",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "mb-3"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-company-name-083",
+                                        "component": "CMS_Span",
+                                        "text": "Precision Parts",
+                                        "classes": {
+                                            "base": "text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card2-industry-084",
+                                        "component": "CMS_Span",
+                                        "text": "Manufacturing",
+                                        "classes": {
+                                            "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-quote-085",
+                                "component": "CMS_Paragraph",
+                                "text": "Just-in-time inventory management reduced our warehouse space needs by 40%. Production lines never stop thanks to automated reordering.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3"
+                                }
+                            },
+                            {
+                                "uid": "card2-benefit-086",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full text-xs font-medium text-blue-700 dark:text-blue-300 mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-benefit-icon-087",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                        "alt": "Check",
+                                        "classes": {
+                                            "media": "w-3 h-3 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card2-benefit-text-088",
+                                        "component": "CMS_Span",
+                                        "text": "40% less space"
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-footer-089",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-date-090",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center text-xs text-gray-500 dark:text-gray-500"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card2-date-icon-091",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/calendar.svg",
+                                                "alt": "Calendar",
+                                                "classes": {
+                                                    "media": "w-3 h-3 mr-1"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card2-date-text-092",
+                                                "component": "CMS_Span",
+                                                "text": "Jan 20, 2024"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card2-link-093",
+                                        "component": "CMS_Button",
+                                        "text": "Read more",
+                                        "size": "xs",
+                                        "variant": "link",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 text-xs font-medium inline-flex items-center group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "testimonial-card-3-094",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2"
+                        },
+                        "children": [
+                            {
+                                "uid": "card3-header-095",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-start justify-between mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-author-096",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-3"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card3-author-img-097",
+                                                "component": "CMS_Image",
+                                                "src": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                "alt": "Dr. Emily Williams",
+                                                "classes": {
+                                                    "media": "w-12 h-12 rounded-full object-cover"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-author-details-098",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "card3-author-name-099",
+                                                        "component": "CMS_H4",
+                                                        "text": "Dr. Emily Williams",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white text-sm"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "card3-author-title-100",
+                                                        "component": "CMS_Paragraph",
+                                                        "text": "Compliance Officer",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-500 dark:text-gray-500"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card3-rating-101",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center space-x-1"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card3-star-1-102",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-star-2-103",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-star-3-104",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-star-4-105",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-star-5-106",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-current"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-company-107",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "mb-3"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-company-name-108",
+                                        "component": "CMS_Span",
+                                        "text": "MediSupply",
+                                        "classes": {
+                                            "base": "text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card3-industry-109",
+                                        "component": "CMS_Span",
+                                        "text": "Healthcare",
+                                        "classes": {
+                                            "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-quote-110",
+                                "component": "CMS_Paragraph",
+                                "text": "Cold chain monitoring gives us complete peace of mind. Zero temperature excursions since implementing Sazzad's IoT sensors.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3"
+                                }
+                            },
+                            {
+                                "uid": "card3-benefit-111",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full text-xs font-medium text-blue-700 dark:text-blue-300 mb-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-benefit-icon-112",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                        "alt": "Check",
+                                        "classes": {
+                                            "media": "w-3 h-3 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "card3-benefit-text-113",
+                                        "component": "CMS_Span",
+                                        "text": "100% compliance"
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-footer-114",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-date-115",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center text-xs text-gray-500 dark:text-gray-500"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "card3-date-icon-116",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/calendar.svg",
+                                                "alt": "Calendar",
+                                                "classes": {
+                                                    "media": "w-3 h-3 mr-1"
+                                                }
+                                            },
+                                            {
+                                                "uid": "card3-date-text-117",
+                                                "component": "CMS_Span",
+                                                "text": "Apr 5, 2024"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "card3-link-118",
+                                        "component": "CMS_Button",
+                                        "text": "Read more",
+                                        "size": "xs",
+                                        "variant": "link",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 text-xs font-medium inline-flex items-center group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "testimonials-cta-119",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-16 text-center"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-120",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto",
+                            "body": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-title-121",
+                                "component": "CMS_H3",
+                                "text": "Ready to Join Our Happy Customers?",
+                                "classes": {
+                                    "base": "text-white font-bold text-2xl md:text-3xl mb-4"
+                                }
+                            },
+                            {
+                                "uid": "cta-desc-122",
+                                "component": "CMS_Paragraph",
+                                "text": "Join thousands of businesses that have transformed their supply chain with Sazzad.",
+                                "classes": {
+                                    "base": "text-blue-100 text-base mb-8 max-w-2xl mx-auto"
+                                }
+                            },
+                            {
+                                "uid": "cta-button-123",
+                                "component": "CMS_PrimaryButton",
+                                "text": "Get Started Today",
+                                "size": "lg",
+                                "href": "/register",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "bg-white text-blue-600 rounded-lg px-8 py-4 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "testimonials-divider-124",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "testimonials-stats-125",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4 mt-8",
+                    "sm": "sm:grid-cols-2",
+                    "md": "md:grid-cols-4"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-126",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-number-127",
+                                "component": "CMS_H3",
+                                "text": "500+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-128",
+                                "component": "CMS_Paragraph",
+                                "text": "Happy Clients",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-129",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-number-130",
+                                "component": "CMS_H3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-131",
+                                "component": "CMS_Paragraph",
+                                "text": "Satisfaction Rate",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-132",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-number-133",
+                                "component": "CMS_H3",
+                                "text": "4.9★",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-134",
+                                "component": "CMS_Paragraph",
+                                "text": "Average Rating",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-135",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-number-136",
+                                "component": "CMS_H3",
+                                "text": "12+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-137",
+                                "component": "CMS_Paragraph",
+                                "text": "Industries",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

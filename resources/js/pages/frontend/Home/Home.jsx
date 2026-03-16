@@ -9,6 +9,7 @@ import ServicesSectionSkeleton from "./ServicesSection/ServicesSectionSkeleton";
 import FeaturesSectionSkeleton from "./FeaturesSection/FeaturesSectionSkeleton";
 import HowItWorksSectionSkeleton from "./HowItWorksSection/HowItWorksSectionSkeleton";
 import IndustriesSectionSkeleton from "./IndustriesSection/IndustriesSectionSkeleton";
+import TestimonialsSectionSkeleton from "./TestimonialsSection/TestimonialsSectionSkeleton";
 import SuccessStoriesSectionSkeleton from "./SuccessStoriesSection/SuccessStoriesSectionSkeleton";
 
 // Import the JSON configurations
@@ -17,6 +18,7 @@ import servicesConfig from "./ServicesConfig.json";
 import featuresConfig from "./FeaturesConfig.json";
 import howItWorksConfig from "./HowItWorksConfig.json";
 import industriesConfig from "./IndustriesConfig.json";
+import TestimonialsConfig from "./TestimonialsConfig.json";
 import successStoriesConfig from "./SuccessStoriesConfig.json";
 
 
@@ -52,6 +54,11 @@ const IndustriesSection3 = lazy(() => import("./IndustriesSection/IndustriesSect
 const SuccessStoriesSection1 = lazy(() => import("./SuccessStoriesSection/SuccessStoriesSection1"));
 const SuccessStoriesSection2 = lazy(() => import("./SuccessStoriesSection/SuccessStoriesSection2"));
 const SuccessStoriesSection3 = lazy(() => import("./SuccessStoriesSection/SuccessStoriesSection3"));
+
+// Lazy Contact Sections
+const TestimonialsSection1 = lazy(() => import("./TestimonialsSection/TestimonialsSection1"));
+const TestimonialsSection2 = lazy(() => import("./TestimonialsSection/TestimonialsSection2"));
+const TestimonialsSection3 = lazy(() => import("./TestimonialsSection/TestimonialsSection3"));
 
 // ============================================================================
 // Page Configuration - Control which sections appear and their order
@@ -95,7 +102,14 @@ const pageConfig = {
       variant: "custom",
       order: 6,
       props: {}
+    },
+    testimonials: {
+      enabled: true,
+      variant: "custom",
+      order: 7,
+      props: {}
     }
+
   },
 
   // Global settings for all sections
@@ -117,6 +131,7 @@ const pageConfig = {
     showHowItWorks: true,
     showIndustries: true,
     showSuccessStories: true,
+    showTestimonials: true,
   }
 };
 
@@ -172,6 +187,14 @@ const {
   successStoriesSectionCustom
 } = successStoriesConfig;
 
+// Testimonials configurations
+const {
+  testimonialsSection1,
+  testimonialsSection2,
+  testimonialsSection3,
+  testimonialsSectionCustom
+} = TestimonialsConfig;
+
 // ============================================================================
 // Helper function to get ordered sections
 // ============================================================================
@@ -203,6 +226,10 @@ const getOrderedSections = (config) => {
   const showSuccessStories = config.quickToggles.showSuccessStories !== undefined
     ? config.quickToggles.showSuccessStories
     : config.sections.successStories.enabled;
+
+  const showTestimonials = config.quickToggles.showTestimonials !== undefined
+    ? config.quickToggles.showTestimonials
+    : config.sections.testimonials.enabled;
 
   // Add hero section if enabled
   if (showHero && config.sections.hero.enabled) {
@@ -278,6 +305,19 @@ const getOrderedSections = (config) => {
       props: {
         ...config.global.defaultProps,
         ...config.sections.successStories.props
+      }
+    });
+  }
+
+  // Add testimonials section if enabled
+  if (showTestimonials && config.sections.testimonials.enabled) {
+    sections.push({
+      type: 'testimonials',
+      variant: config.sections.testimonials.variant,
+      order: config.sections.testimonials.order,
+      props: {
+        ...config.global.defaultProps,
+        ...config.sections.testimonials.props
       }
     });
   }
@@ -450,6 +490,30 @@ const Home = () => {
 
         }
 
+      case 'testimonials':
+        switch (variant) {
+          case "variant1":
+            return <TestimonialsSection1 key="testimonials1" config={testimonialsSection1} {...commonProps} />;
+          case "variant2":
+            return <TestimonialsSection2 key="testimonials2" config={testimonialsSection2} {...commonProps} />;
+          case "variant3":
+            return <TestimonialsSection3 key="testimonials3" config={testimonialsSection3} {...commonProps} />;
+          case "custom":
+            return <CustomSection key="testimonials-custom" config={testimonialsSectionCustom} {...commonProps} />;
+          default:
+            // If variant doesn't match, use the one from pageConfig or fallback to custom
+            const defaultTestimonialsVariant = pageConfig.sections.testimonials.variant;
+            if (defaultTestimonialsVariant === "variant1") {
+              return <TestimonialsSection1 key="testimonials-default" config={testimonialsSection1} {...commonProps} />;
+            } else if (defaultTestimonialsVariant === "variant2") {
+              return <TestimonialsSection2 key="testimonials-default" config={testimonialsSection2} {...commonProps} />;
+            } else if (defaultTestimonialsVariant === "variant3") {
+              return <TestimonialsSection3 key="testimonials-default" config={testimonialsSection3} {...commonProps} />;
+            } else {
+              return <CustomSection key="testimonials-default" config={testimonialsSectionCustom} {...commonProps} />;
+            }
+        }
+
       default:
         return null;
     }
@@ -470,6 +534,8 @@ const Home = () => {
         return <IndustriesSectionSkeleton />;
       case 'successStories':
         return <SuccessStoriesSectionSkeleton />;
+      case 'testimonials':
+        return <TestimonialsSectionSkeleton />;
       default:
         return <div className="animate-pulse bg-gray-200 h-96" />;
     }
