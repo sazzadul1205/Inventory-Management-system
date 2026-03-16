@@ -299,7 +299,7 @@ const ServicesSection3 = ({ config }) => {
       </div>
 
       {/* Styles */}
-      <style jsx>{`
+      <style >{`
           .bg-circuit-pattern {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 L30 50 M10 30 L50 30 M20 20 L40 40 M40 20 L20 40' stroke='%23999' stroke-width='0.5' fill='none' stroke-opacity='0.2' /%3E%3C/svg%3E");
             background-size: 30px 30px;

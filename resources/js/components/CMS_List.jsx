@@ -284,6 +284,7 @@ const CMS_ListItem = forwardRef(({
   iconPosition = 'left',
   badge,
   badgeVariant = 'primary',
+  iconColor,   // ADD THIS LINE
   href,
   target,
   onClick,
@@ -318,8 +319,10 @@ const CMS_ListItem = forwardRef(({
     className
   );
 
+  // Build icon classes
   const iconClasses = clsx(
     'shrink-0',
+    iconColor,
     classes.icon,
     iconPosition === 'left' ? clsx('mr-2', classes.iconLeft) : clsx('ml-2', classes.iconRight)
   );

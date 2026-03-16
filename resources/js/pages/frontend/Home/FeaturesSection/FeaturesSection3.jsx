@@ -298,7 +298,7 @@ const FeaturesSection3 = ({ config }) => {
       </div>
 
       {/* Styles */}
-      <style jsx>{`
+      <style>{`
           .bg-dot-pattern {
             background-image: radial-gradient(circle at 1px 1px, #9ca3af 1px, transparent 0);
             background-size: 40px 40px;

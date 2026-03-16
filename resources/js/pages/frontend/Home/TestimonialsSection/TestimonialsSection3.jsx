@@ -369,7 +369,7 @@ const TestimonialsSection3 = ({ config }) => {
       </div>
 
       {/* Styles */}
-      <style jsx>{`
+      <style>{`
         .line-clamp-3 {
           overflow: hidden;
           display: -webkit-box;

@@ -87,12 +87,12 @@ const HeroSection3 = ({ config, pageConfig }) => {
           <div className="space-y-8">
             {/* Brand Highlight */}
             <div
-              className={`inline-flex items-center space-x-2 ${config?.brand.backgroundColor} rounded-lg px-4 py-2 shadow-sm dark:shadow-gray-900/50`}
+              className={`inline-flex items-center space-x-2 ${config?.brand?.backgroundColor} rounded-lg px-4 py-2 shadow-sm dark:shadow-gray-900/50`}
               aria-label="Brand highlight"
             >
-              {getIcon(config?.brand.icon)}
-              <span className={`text-sm font-semibold ${config?.brand.textColor}`}>
-                {config?.brand.name}
+              {getIcon(config?.brand?.icon)}
+              <span className={`text-sm font-semibold ${config?.brand?.textColor}`}>
+                {config?.brand?.name}
               </span>
             </div>
 
@@ -101,9 +101,9 @@ const HeroSection3 = ({ config, pageConfig }) => {
               className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight"
               itemProp="name"
             >
-              {config?.heading.prefix}{' '}
-              <span className={`${config?.heading.highlightColor} relative`}>
-                {config?.heading.highlightedText}
+              {config?.heading?.prefix}{' '}
+              <span className={`${config?.heading?.highlightColor} relative`}>
+                {config?.heading?.highlightedText}
                 <svg
                   className="absolute -bottom-2 left-0 w-full"
                   height="8"
@@ -114,11 +114,11 @@ const HeroSection3 = ({ config, pageConfig }) => {
                     stroke="currentColor"
                     strokeWidth="4"
                     strokeDasharray="6 6"
-                    className={config?.heading.highlightColor}
+                    className={config?.heading?.highlightColor}
                   />
                 </svg>
               </span>{' '}
-              {config?.heading.suffix}
+              {config?.heading?.suffix}
             </h1>
 
             {/* Description */}

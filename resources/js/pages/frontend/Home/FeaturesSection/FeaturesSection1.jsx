@@ -194,7 +194,7 @@ const FeaturesSection1 = ({ config }) => {
       </div>
 
       {/* Styles */}
-      <style jsx>{`
+      <style>{`
           .bg-grid-pattern {
             background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                               linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

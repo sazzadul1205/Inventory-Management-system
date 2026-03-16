@@ -1,0 +1,1636 @@
+{
+    "servicesSectionConfig": {
+        "servicesVariant": "custom"
+    },
+
+    "pricingPlansSection1": {
+        "badge": {
+            "show": true,
+            "text": "✦ PRICING PLANS",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true,
+            "saveText": "Save 20%"
+        },
+        "heading": {
+            "prefix": "Simple,",
+            "highlightedText": "Transparent",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "Pricing"
+        },
+        "description": "Choose the perfect plan for your business. All plans include a 14-day free trial.",
+        "plans": [
+            {
+                "id": "starter",
+                "name": "Starter",
+                "description": "Perfect for small businesses just getting started",
+                "priceMonthly": 29,
+                "priceAnnual": 279,
+                "popular": false,
+                "ctaText": "Start Free Trial",
+                "features": [
+                    {
+                        "text": "Up to 1,000 inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Basic inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Single user access",
+                        "included": true
+                    },
+                    {
+                        "text": "Email support",
+                        "included": true
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": false
+                    },
+                    {
+                        "text": "Advanced analytics",
+                        "included": false
+                    },
+                    {
+                        "text": "API access",
+                        "included": false
+                    }
+                ]
+            },
+            {
+                "id": "professional",
+                "name": "Professional",
+                "description": "Ideal for growing businesses with more complex needs",
+                "priceMonthly": 79,
+                "priceAnnual": 759,
+                "popular": true,
+                "ctaText": "Start Free Trial",
+                "features": [
+                    {
+                        "text": "Up to 10,000 inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Up to 5 users",
+                        "included": true
+                    },
+                    {
+                        "text": "Priority email & chat support",
+                        "included": true
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Basic analytics",
+                        "included": true
+                    },
+                    {
+                        "text": "API access",
+                        "included": false
+                    }
+                ]
+            },
+            {
+                "id": "business",
+                "name": "Business",
+                "description": "For established businesses requiring full features",
+                "priceMonthly": 199,
+                "priceAnnual": 1910,
+                "popular": false,
+                "ctaText": "Start Free Trial",
+                "features": [
+                    {
+                        "text": "Unlimited inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Unlimited users",
+                        "included": true
+                    },
+                    {
+                        "text": "24/7 priority support",
+                        "included": true
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced analytics",
+                        "included": true
+                    },
+                    {
+                        "text": "Full API access",
+                        "included": true
+                    }
+                ]
+            },
+            {
+                "id": "enterprise",
+                "name": "Enterprise",
+                "description": "Custom solutions for large organizations",
+                "priceMonthly": null,
+                "priceAnnual": null,
+                "popular": false,
+                "ctaText": "Contact Sales",
+                "features": [
+                    {
+                        "text": "Custom inventory limits",
+                        "included": true
+                    },
+                    {
+                        "text": "Custom features",
+                        "included": true
+                    },
+                    {
+                        "text": "Unlimited users",
+                        "included": true
+                    },
+                    {
+                        "text": "Dedicated account manager",
+                        "included": true
+                    },
+                    {
+                        "text": "Custom integrations",
+                        "included": true
+                    },
+                    {
+                        "text": "SLA guarantee",
+                        "included": true
+                    },
+                    {
+                        "text": "On-premise option",
+                        "included": true
+                    }
+                ]
+            }
+        ],
+        "enterprise": {
+            "show": true,
+            "title": "Need a custom solution?",
+            "description": "Our enterprise plan offers tailored solutions for large organizations with specific requirements.",
+            "features": [
+                "Custom feature development",
+                "Dedicated account manager",
+                "SLA guarantees",
+                "On-premise deployment option",
+                "Custom integrations"
+            ],
+            "link": "/contact",
+            "linkText": "Talk to our sales team",
+            "logos": ["Company 1", "Company 2", "Company 3", "Company 4"]
+        },
+        "faqLink": {
+            "show": true,
+            "text": "Have questions about our pricing?",
+            "linkText": "Check out our FAQ",
+            "url": "/faq"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "pricingPlansSection2": {
+        "badge": {
+            "text": "SIMPLE PRICING",
+            "saveText": "Save up to 20% with annual billing"
+        },
+        "heading": {
+            "line1": "Choose the Perfect",
+            "highlighted": "Plan for Your Business"
+        },
+        "description": "Simple, transparent pricing with no hidden fees. All plans include a 14-day free trial.",
+        "plans": [
+            {
+                "id": "starter",
+                "name": "Starter",
+                "description": "Perfect for small businesses",
+                "priceMonthly": 29,
+                "priceAnnual": 279,
+                "popular": false,
+                "trial": "14-day free trial",
+                "guarantee": "30-day money-back guarantee",
+                "ctaText": "Start Free Trial",
+                "link": "/register?plan=starter",
+                "features": [
+                    {
+                        "text": "Up to 1,000 inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Basic inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "3 team members",
+                        "included": true
+                    },
+                    {
+                        "text": "Email support",
+                        "included": true,
+                        "tooltip": "Response within 24 hours"
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": false
+                    },
+                    {
+                        "text": "Advanced analytics",
+                        "included": false
+                    },
+                    {
+                        "text": "API access",
+                        "included": false
+                    }
+                ]
+            },
+            {
+                "id": "professional",
+                "name": "Professional",
+                "description": "For growing businesses",
+                "priceMonthly": 79,
+                "priceAnnual": 759,
+                "popular": true,
+                "trial": "14-day free trial",
+                "guarantee": "30-day money-back guarantee",
+                "ctaText": "Start Free Trial",
+                "link": "/register?plan=professional",
+                "features": [
+                    {
+                        "text": "Up to 10,000 inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "10 team members",
+                        "included": true
+                    },
+                    {
+                        "text": "Priority email & chat support",
+                        "included": true,
+                        "tooltip": "Response within 4 hours"
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Basic analytics",
+                        "included": true
+                    },
+                    {
+                        "text": "API access (1000 calls/day)",
+                        "included": true
+                    }
+                ]
+            },
+            {
+                "id": "business",
+                "name": "Business",
+                "description": "For established companies",
+                "priceMonthly": 199,
+                "priceAnnual": 1910,
+                "popular": false,
+                "trial": "14-day free trial",
+                "guarantee": "30-day money-back guarantee",
+                "ctaText": "Start Free Trial",
+                "link": "/register?plan=business",
+                "features": [
+                    {
+                        "text": "Unlimited inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Unlimited team members",
+                        "included": true
+                    },
+                    {
+                        "text": "24/7 priority support",
+                        "included": true,
+                        "tooltip": "Response within 1 hour"
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced analytics",
+                        "included": true
+                    },
+                    {
+                        "text": "Full API access (unlimited)",
+                        "included": true
+                    }
+                ]
+            }
+        ],
+        "comparison": {
+            "show": true,
+            "title": "Compare Features",
+            "features": [
+                {
+                    "name": "Inventory items",
+                    "values": ["1,000", "10,000", "Unlimited"]
+                },
+                {
+                    "name": "Team members",
+                    "values": ["3", "10", "Unlimited"]
+                },
+                {
+                    "name": "Real-time tracking",
+                    "values": [false, true, true]
+                },
+                {
+                    "name": "Advanced analytics",
+                    "values": [false, false, true]
+                },
+                {
+                    "name": "API access",
+                    "values": [false, "1,000/day", "Unlimited"]
+                },
+                {
+                    "name": "Support response",
+                    "values": ["24h", "4h", "1h"]
+                }
+            ]
+        },
+        "faq": {
+            "show": true,
+            "title": "Frequently Asked Questions",
+            "items": [
+                {
+                    "question": "Can I change plans later?",
+                    "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle."
+                },
+                {
+                    "question": "Is there a long-term contract?",
+                    "answer": "No, all our plans are month-to-month. You can cancel anytime with no penalties."
+                },
+                {
+                    "question": "What payment methods do you accept?",
+                    "answer": "We accept all major credit cards, PayPal, and bank transfers for annual plans."
+                },
+                {
+                    "question": "Do you offer discounts for nonprofits?",
+                    "answer": "Yes, we offer special pricing for nonprofits and educational institutions. Please contact our sales team for more information."
+                }
+            ]
+        },
+        "guarantee": {
+            "show": true,
+            "text": "30-day money-back guarantee. No questions asked."
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "pricingPlansSection3": {
+        "badge": {
+            "text": "PRICING PLANS",
+            "saveText": "Save 20%"
+        },
+        "heading": {
+            "prefix": "Simple,",
+            "highlightedText": "Transparent",
+            "suffix": "Pricing"
+        },
+        "description": "Choose the perfect plan for your business. All plans include a 14-day free trial. No credit card required.",
+        "plans": [
+            {
+                "id": "starter",
+                "icon": "starter",
+                "name": "Starter",
+                "description": "Perfect for small businesses just getting started",
+                "priceMonthly": 29,
+                "priceAnnual": 279,
+                "popular": false,
+                "trial": "14-day free trial",
+                "ctaText": "Start Free Trial",
+                "link": "/register?plan=starter",
+                "features": [
+                    {
+                        "text": "Up to 1,000 inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Basic inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "3 team members",
+                        "included": true
+                    },
+                    {
+                        "text": "Email support",
+                        "included": true
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": false
+                    },
+                    {
+                        "text": "Advanced analytics",
+                        "included": false
+                    },
+                    {
+                        "text": "API access",
+                        "included": false
+                    }
+                ]
+            },
+            {
+                "id": "professional",
+                "icon": "professional",
+                "name": "Professional",
+                "description": "Ideal for growing businesses with more complex needs",
+                "priceMonthly": 79,
+                "priceAnnual": 759,
+                "popular": true,
+                "trial": "14-day free trial",
+                "ctaText": "Start Free Trial",
+                "link": "/register?plan=professional",
+                "features": [
+                    {
+                        "text": "Up to 10,000 inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "10 team members",
+                        "included": true
+                    },
+                    {
+                        "text": "Priority email & chat support",
+                        "included": true
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Basic analytics",
+                        "included": true
+                    },
+                    {
+                        "text": "API access (1,000 calls/day)",
+                        "included": true
+                    }
+                ]
+            },
+            {
+                "id": "business",
+                "icon": "business",
+                "name": "Business",
+                "description": "For established businesses requiring full features",
+                "priceMonthly": 199,
+                "priceAnnual": 1910,
+                "popular": false,
+                "trial": "14-day free trial",
+                "ctaText": "Start Free Trial",
+                "link": "/register?plan=business",
+                "features": [
+                    {
+                        "text": "Unlimited inventory items",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced inventory tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Unlimited team members",
+                        "included": true
+                    },
+                    {
+                        "text": "24/7 priority support",
+                        "included": true
+                    },
+                    {
+                        "text": "Real-time tracking",
+                        "included": true
+                    },
+                    {
+                        "text": "Advanced analytics",
+                        "included": true
+                    },
+                    {
+                        "text": "Full API access (unlimited)",
+                        "included": true
+                    }
+                ]
+            }
+        ],
+        "enterprise": {
+            "show": true,
+            "title": "Need a Custom Enterprise Solution?",
+            "description": "Get a tailored plan with custom features, dedicated support, and enterprise-grade security.",
+            "linkText": "Talk to Sales",
+            "link": "/contact"
+        },
+        "guarantee": {
+            "show": true,
+            "text": "30-day money-back guarantee. No questions asked."
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "pricingPlansSectionCustom": {
+        "uid": "pricing-plans-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Pricing Plans - Sazzad Inventory & Logistics",
+            "description": "Choose the perfect plan for your business. Simple, transparent pricing with no hidden fees.",
+            "keywords": "pricing, plans, subscription, inventory management cost, logistics pricing, saas pricing",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Pricing Plans",
+                "description": "Simple and transparent pricing for all businesses"
+            }
+        },
+        "children": [
+            {
+                "uid": "pricing-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "pricing-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ PRICING PLANS",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "pricing-title-004",
+                        "component": "CMS_H2",
+                        "text": "Simple, Transparent Pricing",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 7,
+                                "end": 18,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "pricing-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Choose the perfect plan for your business. All plans include a 14-day free trial.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "pricing-billing-toggle-006",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "flex justify-center items-center mb-12"
+                },
+                "children": [
+                    {
+                        "uid": "billing-toggle-007",
+                        "component": "CMS_Flex",
+                        "classes": {
+                            "base": "items-center space-x-4 bg-gray-100 dark:bg-gray-800 px-6 py-3 rounded-full"
+                        },
+                        "children": [
+                            {
+                                "uid": "monthly-label-008",
+                                "component": "CMS_Span",
+                                "text": "Monthly",
+                                "classes": {
+                                    "base": "text-sm font-medium text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "toggle-button-009",
+                                "component": "CMS_Button",
+                                "text": "",
+                                "size": "sm",
+                                "iconOnly": true,
+                                "classes": {
+                                    "base": "relative inline-flex h-7 w-14 items-center rounded-full bg-gray-300 dark:bg-gray-600"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "toggle-circle-010",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "inline-block h-5 w-5 transform rounded-full bg-white shadow-lg translate-x-8"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "annual-label-011",
+                                "component": "CMS_Span",
+                                "text": "Annual",
+                                "classes": {
+                                    "base": "text-sm font-medium text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "save-badge-012",
+                                "component": "CMS_Badge",
+                                "text": "Save 20%",
+                                "size": "sm",
+                                "variant": "success",
+                                "classes": {
+                                    "base": "ml-2"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "pricing-grid-013",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4",
+                    "sm": "sm:grid-cols-2 sm:gap-10",
+                    "md": "md:grid-cols-4 md:gap-8",
+                    "lg": "lg:gap-10"
+                },
+                "children": [
+                    {
+                        "uid": "plan-card-1-014",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-blue-200 dark:hover:border-blue-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "plan1-header-015",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "plan1-name-016",
+                                        "component": "CMS_H3",
+                                        "text": "Starter",
+                                        "classes": {
+                                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "plan1-desc-017",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Perfect for small businesses",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan1-price-018",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "price-wrapper-019",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "price-amount-020",
+                                                "component": "CMS_Span",
+                                                "text": "$29",
+                                                "classes": {
+                                                    "base": "text-4xl font-bold text-gray-900 dark:text-white"
+                                                }
+                                            },
+                                            {
+                                                "uid": "price-period-021",
+                                                "component": "CMS_Span",
+                                                "text": "/month",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-500 ml-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan1-features-022",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Up to 1,000 inventory items",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Basic inventory tracking",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "3 team members",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Email support",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineXCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-gray-300",
+                                        "text": "Real-time tracking",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineXCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-gray-300",
+                                        "text": "Advanced analytics",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-4 mb-8",
+                                    "item": "flex items-start"
+                                }
+                            },
+                            {
+                                "uid": "plan1-cta-023",
+                                "component": "CMS_Button",
+                                "text": "Get Started",
+                                "size": "lg",
+                                "fullWidth": true,
+                                "href": "/register?plan=starter",
+                                "classes": {
+                                    "base": "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "plan-card-2-024",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border-2 border-blue-500 dark:border-blue-400 shadow-2xl scale-105 z-10",
+                            "containerHover": "hover:shadow-2xl"
+                        },
+                        "children": [
+                            {
+                                "uid": "popular-badge-025",
+                                "component": "CMS_Badge",
+                                "text": "Most Popular",
+                                "size": "md",
+                                "variant": "warning",
+                                "icon": "HiOutlineStar",
+                                "iconLibrary": "hi",
+                                "iconPosition": "left",
+                                "classes": {
+                                    "base": "absolute -top-4 left-1/2 transform -translate-x-1/2 z-20 shadow-lg"
+                                }
+                            },
+                            {
+                                "uid": "plan2-header-026",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "plan2-name-027",
+                                        "component": "CMS_H3",
+                                        "text": "Professional",
+                                        "classes": {
+                                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "plan2-desc-028",
+                                        "component": "CMS_Paragraph",
+                                        "text": "For growing businesses",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan2-price-029",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "price2-wrapper-030",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "price2-amount-031",
+                                                "component": "CMS_Span",
+                                                "text": "$79",
+                                                "classes": {
+                                                    "base": "text-4xl font-bold text-gray-900 dark:text-white"
+                                                }
+                                            },
+                                            {
+                                                "uid": "price2-period-032",
+                                                "component": "CMS_Span",
+                                                "text": "/month",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-500 ml-2"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "savings-text-033",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Save 20% with annual billing",
+                                        "classes": {
+                                            "base": "text-sm text-green-600 dark:text-green-400 mt-1"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan2-features-034",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Up to 10,000 inventory items",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Advanced inventory tracking",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "10 team members",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Priority email & chat support",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Real-time tracking",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Basic analytics",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineXCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-gray-300",
+                                        "text": "Full API access",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-4 mb-8",
+                                    "item": "flex items-start"
+                                }
+                            },
+                            {
+                                "uid": "plan2-cta-035",
+                                "component": "CMS_Button",
+                                "text": "Get Started",
+                                "size": "lg",
+                                "fullWidth": true,
+                                "href": "/register?plan=professional",
+                                "classes": {
+                                    "base": "bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 shadow-lg transition-all duration-300"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "plan-card-3-036",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-purple-200 dark:hover:border-purple-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "plan3-header-037",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "plan3-name-038",
+                                        "component": "CMS_H3",
+                                        "text": "Business",
+                                        "classes": {
+                                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "plan3-desc-039",
+                                        "component": "CMS_Paragraph",
+                                        "text": "For established companies",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan3-price-040",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "price3-wrapper-041",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "price3-amount-042",
+                                                "component": "CMS_Span",
+                                                "text": "$199",
+                                                "classes": {
+                                                    "base": "text-4xl font-bold text-gray-900 dark:text-white"
+                                                }
+                                            },
+                                            {
+                                                "uid": "price3-period-043",
+                                                "component": "CMS_Span",
+                                                "text": "/month",
+                                                "classes": {
+                                                    "base": "text-gray-500 dark:text-gray-500 ml-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan3-features-044",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Unlimited inventory items",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Advanced inventory tracking",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Unlimited team members",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "24/7 priority support",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Real-time tracking",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Advanced analytics",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Full API access",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-4 mb-8",
+                                    "item": "flex items-start"
+                                }
+                            },
+                            {
+                                "uid": "plan3-cta-045",
+                                "component": "CMS_Button",
+                                "text": "Get Started",
+                                "size": "lg",
+                                "fullWidth": true,
+                                "href": "/register?plan=business",
+                                "classes": {
+                                    "base": "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "plan-card-4-046",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-pink-200 dark:hover:border-pink-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "plan4-header-047",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "plan4-name-048",
+                                        "component": "CMS_H3",
+                                        "text": "Enterprise",
+                                        "classes": {
+                                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "plan4-desc-049",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Custom solutions",
+                                        "classes": {
+                                            "base": "text-sm text-gray-500 dark:text-gray-500"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan4-price-050",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center mb-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "price4-amount-051",
+                                        "component": "CMS_Span",
+                                        "text": "Custom",
+                                        "classes": {
+                                            "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "plan4-features-052",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Custom inventory limits",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Custom features",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Unlimited users",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Dedicated account manager",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Custom integrations",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "SLA guarantee",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "On-premise option",
+                                        "classes": {
+                                            "icon": "w-5 h-5 mr-3"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-4 mb-8",
+                                    "item": "flex items-start"
+                                }
+                            },
+                            {
+                                "uid": "plan4-cta-053",
+                                "component": "CMS_Button",
+                                "text": "Contact Sales",
+                                "size": "lg",
+                                "fullWidth": true,
+                                "href": "/contact",
+                                "classes": {
+                                    "base": "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "enterprise-section-054",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "enterprise-card-055",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 md:p-12 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "enterprise-grid-056",
+                                "component": "CMS_Grid",
+                                "classes": {
+                                    "base": "grid md:grid-cols-2 gap-8 items-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "enterprise-content-057",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "enterprise-badge-058",
+                                                "component": "CMS_Badge",
+                                                "text": "Enterprise",
+                                                "size": "md",
+                                                "variant": "primary",
+                                                "icon": "HiOutlineSparkles",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "left",
+                                                "classes": {
+                                                    "base": "mb-4"
+                                                }
+                                            },
+                                            {
+                                                "uid": "enterprise-title-059",
+                                                "component": "CMS_H3",
+                                                "text": "Need a custom solution?",
+                                                "classes": {
+                                                    "base": "text-3xl font-bold text-gray-900 dark:text-white mb-4"
+                                                }
+                                            },
+                                            {
+                                                "uid": "enterprise-desc-060",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Our enterprise plan offers tailored solutions for large organizations with specific requirements.",
+                                                "classes": {
+                                                    "base": "text-lg text-gray-600 dark:text-gray-400 mb-6"
+                                                }
+                                            },
+                                            {
+                                                "uid": "enterprise-features-061",
+                                                "component": "CMS_List",
+                                                "type": "ul",
+                                                "style": "none",
+                                                "items": [
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-purple-600",
+                                                        "text": "Custom feature development",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-purple-600",
+                                                        "text": "Dedicated account manager",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-purple-600",
+                                                        "text": "SLA guarantees",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-purple-600",
+                                                        "text": "On-premise deployment option",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-purple-600",
+                                                        "text": "Custom integrations",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    }
+                                                ],
+                                                "classes": {
+                                                    "container": "space-y-3 mb-8"
+                                                }
+                                            },
+                                            {
+                                                "uid": "enterprise-link-062",
+                                                "component": "CMS_Button",
+                                                "text": "Talk to our sales team",
+                                                "size": "lg",
+                                                "variant": "link",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "href": "/contact",
+                                                "classes": {
+                                                    "base": "text-purple-600 dark:text-purple-400 font-semibold inline-flex items-center group"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "enterprise-logos-063",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-1"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "logos-card-064",
+                                                "component": "CMS_Card",
+                                                "variant": "default",
+                                                "classes": {
+                                                    "container": "bg-white dark:bg-gray-900 rounded-2xl p-6"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "logos-title-065",
+                                                        "component": "CMS_H4",
+                                                        "text": "Trusted by leading companies",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white mb-4"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "logos-grid-066",
+                                                        "component": "CMS_Grid",
+                                                        "classes": {
+                                                            "base": "grid grid-cols-2 gap-4"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "uid": "logo-1-067",
+                                                                "component": "CMS_Container",
+                                                                "classes": {
+                                                                    "base": "h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium"
+                                                                },
+                                                                "children": [
+                                                                    {
+                                                                        "uid": "logo-1-text-068",
+                                                                        "component": "CMS_Span",
+                                                                        "text": "Company 1"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "uid": "logo-2-069",
+                                                                "component": "CMS_Container",
+                                                                "classes": {
+                                                                    "base": "h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium"
+                                                                },
+                                                                "children": [
+                                                                    {
+                                                                        "uid": "logo-2-text-070",
+                                                                        "component": "CMS_Span",
+                                                                        "text": "Company 2"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "uid": "logo-3-071",
+                                                                "component": "CMS_Container",
+                                                                "classes": {
+                                                                    "base": "h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium"
+                                                                },
+                                                                "children": [
+                                                                    {
+                                                                        "uid": "logo-3-text-072",
+                                                                        "component": "CMS_Span",
+                                                                        "text": "Company 3"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "uid": "logo-4-073",
+                                                                "component": "CMS_Container",
+                                                                "classes": {
+                                                                    "base": "h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium"
+                                                                },
+                                                                "children": [
+                                                                    {
+                                                                        "uid": "logo-4-text-074",
+                                                                        "component": "CMS_Span",
+                                                                        "text": "Company 4"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "faq-link-075",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center mt-12 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "faq-text-076",
+                        "component": "CMS_Paragraph",
+                        "text": "Have questions about our pricing?",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 inline"
+                        }
+                    },
+                    {
+                        "uid": "faq-link-077",
+                        "component": "CMS_Button",
+                        "text": "Check out our FAQ",
+                        "size": "md",
+                        "variant": "link",
+                        "href": "/faq",
+                        "classes": {
+                            "base": "text-blue-600 dark:text-blue-400 font-semibold ml-2 inline"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "pricing-divider-078",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "pricing-guarantee-079",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center mt-8 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "guarantee-badge-080",
+                        "component": "CMS_Flex",
+                        "classes": {
+                            "base": "inline-flex items-center space-x-2 bg-green-100 dark:bg-green-900/20 px-4 py-2 rounded-full"
+                        },
+                        "children": [
+                            {
+                                "uid": "guarantee-icon-081",
+                                "component": "CMS_Image",
+                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shield-check.svg",
+                                "alt": "Shield",
+                                "classes": {
+                                    "media": "w-5 h-5 text-green-600 dark:text-green-400"
+                                }
+                            },
+                            {
+                                "uid": "guarantee-text-082",
+                                "component": "CMS_Span",
+                                "text": "30-day money-back guarantee. No questions asked.",
+                                "classes": {
+                                    "base": "text-sm text-gray-700 dark:text-gray-300"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

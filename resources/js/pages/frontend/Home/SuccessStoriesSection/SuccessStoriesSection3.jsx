@@ -412,7 +412,7 @@ const SuccessStoriesSection3 = ({ config }) => {
       </div>
 
       {/* Styles */}
-      <style jsx>{`
+      <style >{`
         .line-clamp-2 {
           overflow: hidden;
           display: -webkit-box;
