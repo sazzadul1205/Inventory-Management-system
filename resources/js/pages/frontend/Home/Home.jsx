@@ -8,12 +8,14 @@ import HeroSectionSkeleton from "./HeroSection/HeroSectionSkeleton";
 import ServicesSectionSkeleton from "./ServicesSection/ServicesSectionSkeleton";
 import FeaturesSectionSkeleton from "./FeaturesSection/FeaturesSectionSkeleton";
 import HowItWorksSectionSkeleton from "./HowItWorksSection/HowItWorksSectionSkeleton";
+import IndustriesSectionSkeleton from "./IndustriesSection/IndustriesSectionSkeleton";
 
 // Import the JSON configurations
 import homeConfig from "./HomeConfig.json";
 import servicesConfig from "./ServicesConfig.json";
 import featuresConfig from "./FeaturesConfig.json";
 import howItWorksConfig from "./HowItWorksConfig.json";
+import industriesConfig from "./IndustriesConfig.json";
 
 
 // Import the CustomSection component
@@ -38,6 +40,11 @@ const FeaturesSection3 = lazy(() => import("./FeaturesSection/FeaturesSection3")
 const HowItWorksSection1 = lazy(() => import("./HowItWorksSection/HowItWorksSection1"));
 const HowItWorksSection2 = lazy(() => import("./HowItWorksSection/HowItWorksSection2"));
 const HowItWorksSection3 = lazy(() => import("./HowItWorksSection/HowItWorksSection3"));
+
+// Lazy Industries Sections
+const IndustriesSection1 = lazy(() => import("./IndustriesSection/IndustriesSection1"));
+const IndustriesSection2 = lazy(() => import("./IndustriesSection/IndustriesSection2"));
+const IndustriesSection3 = lazy(() => import("./IndustriesSection/IndustriesSection3"));
 
 // ============================================================================
 // Page Configuration - Control which sections appear and their order
@@ -69,6 +76,12 @@ const pageConfig = {
       variant: "custom",
       order: 4,
       props: {}
+    },
+    industries: {
+      enabled: true,
+      variant: "custom",
+      order: 5,
+      props: {}
     }
   },
 
@@ -89,6 +102,7 @@ const pageConfig = {
     showServices: true,
     showFeatures: true,
     showHowItWorks: true,
+    showIndustries: true
   }
 };
 
@@ -128,6 +142,14 @@ const {
   howItWorksSectionCustom
 } = howItWorksConfig;
 
+// Industries configurations
+const {
+  industriesSection1,
+  industriesSection2,
+  industriesSection3,
+  industriesSectionCustom
+} = industriesConfig;
+
 // ============================================================================
 // Helper function to get ordered sections
 // ============================================================================
@@ -151,6 +173,10 @@ const getOrderedSections = (config) => {
   const showHowItWorks = config.quickToggles.showHowItWorks !== undefined
     ? config.quickToggles.showHowItWorks
     : config.sections.howItWorks.enabled;
+
+  const showIndustries = config.quickToggles.showIndustries !== undefined
+    ? config.quickToggles.showIndustries
+    : config.sections.industries.enabled;
 
   // Add hero section if enabled
   if (showHero && config.sections.hero.enabled) {
@@ -200,6 +226,19 @@ const getOrderedSections = (config) => {
       props: {
         ...config.global.defaultProps,
         ...config.sections.howItWorks.props
+      }
+    });
+  }
+
+  // Add industries section if enabled
+  if (showIndustries && config.sections.industries.enabled) {
+    sections.push({
+      type: 'industries',
+      variant: config.sections.industries.variant,
+      order: config.sections.industries.order,
+      props: {
+        ...config.global.defaultProps,
+        ...config.sections.industries.props
       }
     });
   }
@@ -323,6 +362,30 @@ const Home = () => {
             }
         }
 
+      case 'industries':
+        switch (variant) {
+          case "variant1":
+            return <IndustriesSection1 key="industries1" config={industriesSection1} {...commonProps} />;
+          case "variant2":
+            return <IndustriesSection2 key="industries2" config={industriesSection2} {...commonProps} />;
+          case "variant3":
+            return <IndustriesSection3 key="industries3" config={industriesSection3} {...commonProps} />;
+          case "custom":
+            return <CustomSection key="industries-custom" config={industriesSectionCustom} {...commonProps} />;
+          default:
+            // If variant doesn't match, use the one from pageConfig or fallback to custom
+            const defaultIndustriesVariant = pageConfig.sections.industries.variant;
+            if (defaultIndustriesVariant === "variant1") {
+              return <IndustriesSection1 key="industries-default" config={industriesSection1} {...commonProps} />;
+            } else if (defaultIndustriesVariant === "variant2") {
+              return <IndustriesSection2 key="industries-default" config={industriesSection2} {...commonProps} />;
+            } else if (defaultIndustriesVariant === "variant3") {
+              return <IndustriesSection3 key="industries-default" config={industriesSection3} {...commonProps} />;
+            } else {
+              return <CustomSection key="industries-default" config={industriesSectionCustom} {...commonProps} />;
+            }
+        }
+
       default:
         return null;
     }
@@ -339,6 +402,8 @@ const Home = () => {
         return <FeaturesSectionSkeleton />;
       case 'howItWorks':
         return <HowItWorksSectionSkeleton />;
+      case 'industries':
+        return <IndustriesSectionSkeleton />;
       default:
         return <div className="animate-pulse bg-gray-200 h-96" />;
     }

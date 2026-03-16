@@ -1,0 +1,1992 @@
+{
+    "industriesSectionConfig": {
+        "servicesVariant": "custom"
+    },
+    "industriesSection1": {
+        "seo": {
+            "title": "Industries We Serve - Sazzad Inventory & Logistics",
+            "description": "Discover how Sazzad's inventory and logistics solutions serve various industries including retail, manufacturing, healthcare, and more.",
+            "keywords": "industries served, retail logistics, manufacturing inventory, healthcare supply chain, e-commerce fulfillment, pharmaceutical logistics",
+            "ogImage": "/images/industries-og.jpg",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Industries We Serve",
+                "description": "Comprehensive logistics solutions for diverse industries"
+            }
+        },
+        "badge": {
+            "show": true,
+            "text": "✦ INDUSTRIES WE SERVE",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Tailored Solutions for",
+            "highlightedText": "Every Industry",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": ""
+        },
+        "description": "Our platform adapts to the unique challenges of different industries, providing specialized solutions that drive efficiency and growth.",
+        "industries": [
+            {
+                "id": "retail",
+                "icon": "retail",
+                "title": "Retail & E-commerce",
+                "description": "Omnichannel inventory management, real-time tracking, and seamless order fulfillment for modern retailers.",
+                "features": [
+                    "Multi-channel inventory sync",
+                    "Automated reordering",
+                    "Returns management",
+                    "Peak season scaling"
+                ],
+                "caseStudy": "/case-studies/retail",
+                "link": "/industries/retail"
+            },
+            {
+                "id": "logistics",
+                "icon": "logistics",
+                "title": "Logistics & Transportation",
+                "description": "End-to-end visibility, route optimization, and real-time tracking for freight and delivery companies.",
+                "features": [
+                    "Fleet management",
+                    "Route optimization",
+                    "Proof of delivery",
+                    "Carrier integration"
+                ],
+                "caseStudy": "/case-studies/logistics",
+                "link": "/industries/logistics"
+            },
+            {
+                "id": "manufacturing",
+                "icon": "manufacturing",
+                "title": "Manufacturing",
+                "description": "Raw material tracking, work-in-progress inventory, and just-in-time delivery optimization.",
+                "features": [
+                    "BOM management",
+                    "WIP tracking",
+                    "Supplier coordination",
+                    "Quality control"
+                ],
+                "caseStudy": "/case-studies/manufacturing",
+                "link": "/industries/manufacturing"
+            },
+            {
+                "id": "pharma",
+                "icon": "pharma",
+                "title": "Pharmaceuticals",
+                "description": "Cold chain monitoring, batch tracking, expiry management, and regulatory compliance.",
+                "features": [
+                    "Cold chain tracking",
+                    "Batch serialization",
+                    "Expiry alerts",
+                    "GDPR compliance"
+                ],
+                "caseStudy": "/case-studies/pharma",
+                "link": "/industries/pharmaceuticals"
+            },
+            {
+                "id": "technology",
+                "icon": "technology",
+                "title": "Technology & Electronics",
+                "description": "High-value asset tracking, serial number management, and warranty handling.",
+                "features": [
+                    "Asset tracking",
+                    "Serial number management",
+                    "Warranty tracking",
+                    "RMA processing"
+                ],
+                "caseStudy": "/case-studies/technology",
+                "link": "/industries/technology"
+            },
+            {
+                "id": "healthcare",
+                "icon": "healthcare",
+                "title": "Healthcare",
+                "description": "Medical supply inventory, equipment tracking, and compliance with healthcare regulations.",
+                "features": [
+                    "Medical supply tracking",
+                    "Equipment management",
+                    "Sterilization tracking",
+                    "Compliance reporting"
+                ],
+                "caseStudy": "/case-studies/healthcare",
+                "link": "/industries/healthcare"
+            },
+            {
+                "id": "realestate",
+                "icon": "realestate",
+                "title": "Real Estate & Construction",
+                "description": "Material tracking, equipment management, and project-based inventory control.",
+                "features": [
+                    "Material tracking",
+                    "Equipment management",
+                    "Site inventory",
+                    "Project costing"
+                ],
+                "caseStudy": "/case-studies/construction",
+                "link": "/industries/construction"
+            },
+            {
+                "id": "beauty",
+                "icon": "beauty",
+                "title": "Beauty & Cosmetics",
+                "description": "Batch tracking, expiry management, and compliance with cosmetic regulations.",
+                "features": [
+                    "Batch tracking",
+                    "Expiry management",
+                    "Ingredient tracking",
+                    "Regulatory compliance"
+                ],
+                "caseStudy": "/case-studies/beauty",
+                "link": "/industries/beauty"
+            },
+            {
+                "id": "automotive",
+                "icon": "automotive",
+                "title": "Automotive",
+                "description": "Parts inventory, just-in-time delivery, and supply chain optimization for automotive manufacturers.",
+                "features": [
+                    "Parts tracking",
+                    "JIT delivery",
+                    "Supplier management",
+                    "Warranty tracking"
+                ],
+                "caseStudy": "/case-studies/automotive",
+                "link": "/industries/automotive"
+            },
+            {
+                "id": "food",
+                "icon": "food",
+                "title": "Food & Beverage",
+                "description": "Perishable inventory management, batch tracking, and compliance with food safety regulations.",
+                "features": [
+                    "Perishable tracking",
+                    "Batch management",
+                    "Expiry monitoring",
+                    "FDA compliance"
+                ],
+                "caseStudy": "/case-studies/food",
+                "link": "/industries/food"
+            },
+            {
+                "id": "education",
+                "icon": "education",
+                "title": "Education",
+                "description": "Asset tracking, textbook inventory, and supply management for educational institutions.",
+                "features": [
+                    "Asset tracking",
+                    "Textbook inventory",
+                    "Supply management",
+                    "Grant tracking"
+                ],
+                "caseStudy": "/case-studies/education",
+                "link": "/industries/education"
+            },
+            {
+                "id": "nonprofit",
+                "icon": "nonprofit",
+                "title": "Nonprofit",
+                "description": "Donation tracking, grant management, and inventory control for nonprofit organizations.",
+                "features": [
+                    "Donation tracking",
+                    "Grant management",
+                    "Distribution tracking",
+                    "Impact reporting"
+                ],
+                "caseStudy": "/case-studies/nonprofit",
+                "link": "/industries/nonprofit"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "See All Industries",
+            "url": "/industries",
+            "icon": "arrowRight",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "View all industries we serve"
+        },
+        "trustIndicators": {
+            "show": true,
+            "items": [
+                {
+                    "value": "12+",
+                    "label": "Industries Served"
+                },
+                {
+                    "value": "500+",
+                    "label": "Enterprise Clients"
+                },
+                {
+                    "value": "98%",
+                    "label": "Client Retention"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Industry Support"
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "industriesSection2": {
+        "seo": {
+            "title": "Industries We Serve - Sazzad Inventory & Logistics",
+            "description": "Discover how Sazzad's inventory and logistics solutions serve various industries including retail, manufacturing, healthcare, and more.",
+            "keywords": "industries served, retail logistics, manufacturing inventory, healthcare supply chain, e-commerce fulfillment, pharmaceutical logistics",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Industries We Serve",
+                "description": "Comprehensive logistics solutions for diverse industries"
+            }
+        },
+        "badge": {
+            "text": "INDUSTRIES WE SERVE"
+        },
+        "heading": {
+            "line1": "Tailored Solutions for",
+            "highlighted": "Every Industry"
+        },
+        "description": "Our platform adapts to the unique challenges of different industries, providing specialized solutions that drive efficiency and growth.",
+        "categories": [
+            {
+                "id": "commercial",
+                "name": "Commercial",
+                "icon": "commercial"
+            },
+            {
+                "id": "industrial",
+                "name": "Industrial",
+                "icon": "industrial"
+            },
+            {
+                "id": "health",
+                "name": "Health & Science",
+                "icon": "health"
+            },
+            {
+                "id": "specialty",
+                "name": "Specialty",
+                "icon": "specialty"
+            }
+        ],
+        "industries": [
+            {
+                "id": "retail",
+                "category": "commercial",
+                "icon": "retail",
+                "iconBg": "bg-blue-500",
+                "title": "Retail & E-commerce",
+                "description": "Omnichannel inventory management, real-time tracking, and seamless order fulfillment for modern retailers.",
+                "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Multi-channel inventory sync",
+                    "Automated reordering",
+                    "Returns management",
+                    "Peak season scaling"
+                ],
+                "stats": [
+                    {
+                        "value": "99.9%",
+                        "label": "Inventory Accuracy"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Faster Fulfillment"
+                    }
+                ],
+                "link": "/industries/retail"
+            },
+            {
+                "id": "logistics",
+                "category": "commercial",
+                "icon": "logistics",
+                "iconBg": "bg-purple-500",
+                "title": "Logistics & Transportation",
+                "description": "End-to-end visibility, route optimization, and real-time tracking for freight and delivery companies.",
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Fleet management",
+                    "Route optimization",
+                    "Proof of delivery",
+                    "Carrier integration"
+                ],
+                "stats": [
+                    {
+                        "value": "98%",
+                        "label": "On-Time Delivery"
+                    },
+                    {
+                        "value": "25%",
+                        "label": "Cost Reduction"
+                    }
+                ],
+                "link": "/industries/logistics"
+            },
+            {
+                "id": "manufacturing",
+                "category": "industrial",
+                "icon": "manufacturing",
+                "iconBg": "bg-green-500",
+                "title": "Manufacturing",
+                "description": "Raw material tracking, work-in-progress inventory, and just-in-time delivery optimization.",
+                "image": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "BOM management",
+                    "WIP tracking",
+                    "Supplier coordination",
+                    "Quality control"
+                ],
+                "stats": [
+                    {
+                        "value": "99.5%",
+                        "label": "Material Traceability"
+                    },
+                    {
+                        "value": "40%",
+                        "label": "Less Downtime"
+                    }
+                ],
+                "link": "/industries/manufacturing"
+            },
+            {
+                "id": "pharma",
+                "category": "health",
+                "icon": "pharma",
+                "iconBg": "bg-pink-500",
+                "title": "Pharmaceuticals",
+                "description": "Cold chain monitoring, batch tracking, expiry management, and regulatory compliance.",
+                "image": "https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Cold chain tracking",
+                    "Batch serialization",
+                    "Expiry alerts",
+                    "GDPR compliance"
+                ],
+                "stats": [
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Cold Chain Monitoring"
+                    }
+                ],
+                "link": "/industries/pharmaceuticals"
+            },
+            {
+                "id": "technology",
+                "category": "industrial",
+                "icon": "technology",
+                "iconBg": "bg-indigo-500",
+                "title": "Technology & Electronics",
+                "description": "High-value asset tracking, serial number management, and warranty handling.",
+                "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Asset tracking",
+                    "Serial number management",
+                    "Warranty tracking",
+                    "RMA processing"
+                ],
+                "stats": [
+                    {
+                        "value": "99.99%",
+                        "label": "Asset Visibility"
+                    },
+                    {
+                        "value": "50%",
+                        "label": "Faster RMA"
+                    }
+                ],
+                "link": "/industries/technology"
+            },
+            {
+                "id": "healthcare",
+                "category": "health",
+                "icon": "healthcare",
+                "iconBg": "bg-red-500",
+                "title": "Healthcare",
+                "description": "Medical supply inventory, equipment tracking, and compliance with healthcare regulations.",
+                "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Medical supply tracking",
+                    "Equipment management",
+                    "Sterilization tracking",
+                    "Compliance reporting"
+                ],
+                "stats": [
+                    {
+                        "value": "100%",
+                        "label": "Regulatory Compliance"
+                    },
+                    {
+                        "value": "99.5%",
+                        "label": "Equipment Uptime"
+                    }
+                ],
+                "link": "/industries/healthcare"
+            },
+            {
+                "id": "realestate",
+                "category": "commercial",
+                "icon": "realestate",
+                "iconBg": "bg-yellow-500",
+                "title": "Real Estate & Construction",
+                "description": "Material tracking, equipment management, and project-based inventory control.",
+                "image": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Material tracking",
+                    "Equipment management",
+                    "Site inventory",
+                    "Project costing"
+                ],
+                "stats": [
+                    {
+                        "value": "35%",
+                        "label": "Less Waste"
+                    },
+                    {
+                        "value": "20%",
+                        "label": "Faster Projects"
+                    }
+                ],
+                "link": "/industries/construction"
+            },
+            {
+                "id": "beauty",
+                "category": "specialty",
+                "icon": "beauty",
+                "iconBg": "bg-pink-400",
+                "title": "Beauty & Cosmetics",
+                "description": "Batch tracking, expiry management, and compliance with cosmetic regulations.",
+                "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Batch tracking",
+                    "Expiry management",
+                    "Ingredient tracking",
+                    "Regulatory compliance"
+                ],
+                "stats": [
+                    {
+                        "value": "100%",
+                        "label": "Batch Traceability"
+                    },
+                    {
+                        "value": "0%",
+                        "label": "Expiry Waste"
+                    }
+                ],
+                "link": "/industries/beauty"
+            },
+            {
+                "id": "automotive",
+                "category": "industrial",
+                "icon": "automotive",
+                "iconBg": "bg-orange-500",
+                "title": "Automotive",
+                "description": "Parts inventory, just-in-time delivery, and supply chain optimization for automotive manufacturers.",
+                "image": "https://images.unsplash.com/photo-1568605117036-5fe5e7fa0ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "solutions": [
+                    "Parts tracking",
+                    "JIT delivery",
+                    "Supplier management",
+                    "Warranty tracking"
+                ],
+                "stats": [
+                    {
+                        "value": "99.9%",
+                        "label": "Parts Availability"
+                    },
+                    {
+                        "value": "45%",
+                        "label": "Inventory Reduction"
+                    }
+                ],
+                "link": "/industries/automotive"
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Explore All Industries",
+            "url": "/industries",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-purple-600",
+            "hoverColor": "hover:from-blue-700 hover:to-purple-700",
+            "textColor": "text-white",
+            "ariaLabel": "Explore all industries we serve"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "industriesSection3": {
+        "seo": {
+            "title": "Industries We Serve - Sazzad Inventory & Logistics",
+            "description": "Discover how Sazzad's inventory and logistics solutions serve various industries including retail, manufacturing, healthcare, and more.",
+            "keywords": "industries served, retail logistics, manufacturing inventory, healthcare supply chain, e-commerce fulfillment, pharmaceutical logistics",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Industries We Serve",
+                "description": "Comprehensive logistics solutions for diverse industries"
+            }
+        },
+        "badge": {
+            "text": "INDUSTRIES WE SERVE"
+        },
+        "heading": {
+            "prefix": "Industry-Specific",
+            "highlightedText": "Solutions",
+            "suffix": "for Your Business"
+        },
+        "description": "Select an industry below to see how our platform addresses unique challenges and delivers measurable results.",
+        "industries": [
+            {
+                "id": "retail",
+                "icon": "retail",
+                "iconBg": "from-blue-500 to-blue-600",
+                "title": "Retail & E-commerce",
+                "shortDesc": "Omnichannel inventory and fulfillment",
+                "category": "Commercial",
+                "rating": "4.9",
+                "detailedDesc": "Our retail solution provides real-time inventory visibility across all channels, automates reordering, and optimizes fulfillment to ensure you never miss a sale. Perfect for businesses of all sizes, from small boutiques to large enterprise retailers.",
+                "challenges": [
+                    "Inventory discrepancies across channels",
+                    "Peak season demand spikes",
+                    "Returns management complexity",
+                    "Last-mile delivery optimization"
+                ],
+                "solutions": [
+                    "Multi-channel inventory sync",
+                    "Automated reorder points",
+                    "Smart returns processing",
+                    "Route-optimized delivery"
+                ],
+                "metrics": [
+                    {
+                        "value": "99.9%",
+                        "label": "Inventory Accuracy"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Faster Fulfillment"
+                    },
+                    {
+                        "value": "25%",
+                        "label": "Cost Reduction"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "How Fashion Retailer Cut Stockouts by 95%",
+                    "link": "/case-studies/retail-fashion"
+                }
+            },
+            {
+                "id": "logistics",
+                "icon": "logistics",
+                "iconBg": "from-purple-500 to-purple-600",
+                "title": "Logistics & Transportation",
+                "shortDesc": "End-to-end shipment visibility",
+                "category": "Transportation",
+                "rating": "4.8",
+                "detailedDesc": "Transform your logistics operations with real-time tracking, route optimization, and automated proof of delivery. Our platform helps freight companies, 3PLs, and delivery services achieve new levels of efficiency.",
+                "challenges": [
+                    "Limited shipment visibility",
+                    "Inefficient route planning",
+                    "Paper-based proof of delivery",
+                    "Customer communication gaps"
+                ],
+                "solutions": [
+                    "Real-time GPS tracking",
+                    "AI-powered route optimization",
+                    "Electronic proof of delivery",
+                    "Automated customer notifications"
+                ],
+                "metrics": [
+                    {
+                        "value": "98%",
+                        "label": "On-Time Delivery"
+                    },
+                    {
+                        "value": "35%",
+                        "label": "Fuel Savings"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Digital Proof"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Regional Carrier Boosts Efficiency by 40%",
+                    "link": "/case-studies/regional-carrier"
+                }
+            },
+            {
+                "id": "manufacturing",
+                "icon": "manufacturing",
+                "iconBg": "from-green-500 to-green-600",
+                "title": "Manufacturing",
+                "shortDesc": "Raw material to finished goods",
+                "category": "Industrial",
+                "rating": "4.7",
+                "detailedDesc": "Optimize your manufacturing supply chain with complete visibility from raw materials to finished products. Our solution helps reduce waste, prevent production delays, and improve quality control.",
+                "challenges": [
+                    "Raw material shortages",
+                    "Work-in-progress tracking",
+                    "Quality control issues",
+                    "Supplier coordination"
+                ],
+                "solutions": [
+                    "Just-in-time inventory",
+                    "WIP tracking",
+                    "Automated quality checks",
+                    "Supplier portal"
+                ],
+                "metrics": [
+                    {
+                        "value": "99.5%",
+                        "label": "Material Traceability"
+                    },
+                    {
+                        "value": "40%",
+                        "label": "Less Downtime"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Waste Reduction"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Auto Parts Manufacturer Cuts Waste by 50%",
+                    "link": "/case-studies/auto-parts"
+                }
+            },
+            {
+                "id": "pharma",
+                "icon": "pharma",
+                "iconBg": "from-pink-500 to-pink-600",
+                "title": "Pharmaceuticals",
+                "shortDesc": "Cold chain & compliance",
+                "category": "Healthcare",
+                "rating": "5.0",
+                "detailedDesc": "Ensure patient safety and regulatory compliance with our pharmaceutical logistics solution. We provide end-to-end cold chain monitoring, batch tracking, and expiry management.",
+                "challenges": [
+                    "Temperature excursions",
+                    "Regulatory compliance",
+                    "Counterfeit prevention",
+                    "Expiry management"
+                ],
+                "solutions": [
+                    "Cold chain monitoring",
+                    "Batch serialization",
+                    "Blockchain verification",
+                    "Automated expiry alerts"
+                ],
+                "metrics": [
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    },
+                    {
+                        "value": "24/7",
+                        "label": "Cold Chain Monitoring"
+                    },
+                    {
+                        "value": "0%",
+                        "label": "Counterfeit Risk"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Global Pharma Achieves 100% Compliance",
+                    "link": "/case-studies/global-pharma"
+                }
+            },
+            {
+                "id": "technology",
+                "icon": "technology",
+                "iconBg": "from-indigo-500 to-indigo-600",
+                "title": "Technology & Electronics",
+                "shortDesc": "High-value asset tracking",
+                "category": "Technology",
+                "rating": "4.8",
+                "detailedDesc": "Protect your high-value electronics with serialized tracking, warranty management, and secure RMA processing. Perfect for manufacturers, distributors, and retailers of tech products.",
+                "challenges": [
+                    "Serial number tracking",
+                    "Warranty management",
+                    "RMA complexity",
+                    "Theft prevention"
+                ],
+                "solutions": [
+                    "Serial number tracking",
+                    "Automated warranty",
+                    "Streamlined RMA",
+                    "Asset security"
+                ],
+                "metrics": [
+                    {
+                        "value": "99.99%",
+                        "label": "Asset Visibility"
+                    },
+                    {
+                        "value": "50%",
+                        "label": "Faster RMA"
+                    },
+                    {
+                        "value": "0%",
+                        "label": "Lost Assets"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Electronics Distributor Cuts RMA Time by 60%",
+                    "link": "/case-studies/electronics-distributor"
+                }
+            },
+            {
+                "id": "healthcare",
+                "icon": "healthcare",
+                "iconBg": "from-red-500 to-red-600",
+                "title": "Healthcare",
+                "shortDesc": "Medical supply management",
+                "category": "Healthcare",
+                "rating": "4.9",
+                "detailedDesc": "Ensure critical medical supplies are always available with our healthcare inventory solution. Track equipment, manage sterilization cycles, and maintain regulatory compliance effortlessly.",
+                "challenges": [
+                    "Critical stockouts",
+                    "Equipment tracking",
+                    "Sterilization compliance",
+                    "Expiry management"
+                ],
+                "solutions": [
+                    "Automated reordering",
+                    "Equipment tracking",
+                    "Sterilization tracking",
+                    "Expiry alerts"
+                ],
+                "metrics": [
+                    {
+                        "value": "100%",
+                        "label": "Regulatory Compliance"
+                    },
+                    {
+                        "value": "99.5%",
+                        "label": "Equipment Uptime"
+                    },
+                    {
+                        "value": "0%",
+                        "label": "Critical Stockouts"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Hospital Network Eliminates Supply Shortages",
+                    "link": "/case-studies/hospital-network"
+                }
+            },
+            {
+                "id": "realestate",
+                "icon": "realestate",
+                "iconBg": "from-yellow-500 to-yellow-600",
+                "title": "Real Estate & Construction",
+                "shortDesc": "Project-based inventory",
+                "category": "Construction",
+                "rating": "4.6",
+                "detailedDesc": "Keep your construction projects on track with real-time material tracking, equipment management, and project-based inventory control. Reduce waste and prevent costly delays.",
+                "challenges": [
+                    "Material theft",
+                    "Project delays",
+                    "Equipment utilization",
+                    "Cost overruns"
+                ],
+                "solutions": [
+                    "Material tracking",
+                    "Project timelines",
+                    "Equipment management",
+                    "Budget tracking"
+                ],
+                "metrics": [
+                    {
+                        "value": "35%",
+                        "label": "Less Waste"
+                    },
+                    {
+                        "value": "20%",
+                        "label": "Faster Projects"
+                    },
+                    {
+                        "value": "15%",
+                        "label": "Cost Savings"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Construction Firm Reduces Material Theft by 90%",
+                    "link": "/case-studies/construction-firm"
+                }
+            },
+            {
+                "id": "beauty",
+                "icon": "beauty",
+                "iconBg": "from-pink-400 to-pink-500",
+                "title": "Beauty & Cosmetics",
+                "shortDesc": "Batch & expiry tracking",
+                "category": "Consumer Goods",
+                "rating": "4.7",
+                "detailedDesc": "Ensure product freshness and regulatory compliance with our beauty industry solution. Track batches, manage expiries, and maintain ingredient traceability throughout the supply chain.",
+                "challenges": [
+                    "Expiry management",
+                    "Batch traceability",
+                    "Regulatory compliance",
+                    "Ingredient tracking"
+                ],
+                "solutions": [
+                    "Batch tracking",
+                    "Expiry alerts",
+                    "FIFO automation",
+                    "Ingredient traceability"
+                ],
+                "metrics": [
+                    {
+                        "value": "100%",
+                        "label": "Batch Traceability"
+                    },
+                    {
+                        "value": "0%",
+                        "label": "Expiry Waste"
+                    },
+                    {
+                        "value": "100%",
+                        "label": "Compliance"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Cosmetics Brand Eliminates Expired Products",
+                    "link": "/case-studies/cosmetics-brand"
+                }
+            },
+            {
+                "id": "automotive",
+                "icon": "automotive",
+                "iconBg": "from-orange-500 to-orange-600",
+                "title": "Automotive",
+                "shortDesc": "Parts & JIT delivery",
+                "category": "Industrial",
+                "rating": "4.8",
+                "detailedDesc": "Keep assembly lines running with just-in-time parts delivery and complete supply chain visibility. Our automotive solution helps manufacturers and suppliers achieve new levels of efficiency.",
+                "challenges": [
+                    "Parts shortages",
+                    "JIT delivery pressure",
+                    "Supplier coordination",
+                    "Warranty tracking"
+                ],
+                "solutions": [
+                    "JIT inventory",
+                    "Supplier portal",
+                    "Parts tracking",
+                    "Warranty management"
+                ],
+                "metrics": [
+                    {
+                        "value": "99.9%",
+                        "label": "Parts Availability"
+                    },
+                    {
+                        "value": "45%",
+                        "label": "Inventory Reduction"
+                    },
+                    {
+                        "value": "30%",
+                        "label": "Faster Assembly"
+                    }
+                ],
+                "caseStudy": {
+                    "title": "Auto Manufacturer Achieves 99.9% Parts Availability",
+                    "link": "/case-studies/auto-manufacturer"
+                }
+            }
+        ],
+        "bottomCta": {
+            "show": true,
+            "text": "Discuss Your Industry Needs",
+            "url": "/contact",
+            "backgroundColor": "bg-gradient-to-r from-amber-500 to-pink-500",
+            "hoverColor": "hover:from-amber-600 hover:to-pink-600",
+            "textColor": "text-white",
+            "ariaLabel": "Contact us to discuss your industry needs"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "industriesSectionCustom": {
+        "uid": "industries-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-indigo-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Industries We Serve - Sazzad Inventory & Logistics",
+            "description": "Discover how Sazzad's inventory and logistics solutions serve various industries including retail, manufacturing, healthcare, and more.",
+            "keywords": "industries served, retail logistics, manufacturing inventory, healthcare supply chain, e-commerce fulfillment, pharmaceutical logistics",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Industries We Serve",
+                "description": "Comprehensive logistics solutions for diverse industries"
+            }
+        },
+        "children": [
+            {
+                "uid": "industries-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "industries-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ INDUSTRIES WE SERVE",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "industries-title-004",
+                        "component": "CMS_H2",
+                        "text": "Tailored Solutions for Every Industry",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 20,
+                                "end": 34,
+                                "class": "text-indigo-600 dark:text-indigo-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industries-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Our platform adapts to the unique challenges of different industries, providing specialized solutions that drive efficiency and growth.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "industries-grid-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-6 px-4",
+                    "sm": "sm:grid-cols-2 sm:gap-8 sm:px-6",
+                    "md": "md:grid-cols-3 md:gap-10 md:px-8",
+                    "lg": "lg:grid-cols-4 lg:gap-12",
+                    "xl": "xl:gap-14"
+                },
+                "children": [
+                    {
+                        "uid": "industry-card-1-007",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/retail",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-indigo-200 dark:hover:border-indigo-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card1-icon-008",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card1-icon-svg-009",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shopping-bag.svg",
+                                        "alt": "Retail icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card1-title-010",
+                                "component": "CMS_H3",
+                                "text": "Retail & E-commerce",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card1-desc-011",
+                                "component": "CMS_Paragraph",
+                                "text": "Omnichannel inventory management, real-time tracking, and seamless order fulfillment.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card1-features-012",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Multi-channel sync",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Automated reordering",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Returns management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card1-link-013",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-indigo-600 dark:text-indigo-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-2-014",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/logistics",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-purple-200 dark:hover:border-purple-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card2-icon-015",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card2-icon-svg-016",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
+                                        "alt": "Logistics icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card2-title-017",
+                                "component": "CMS_H3",
+                                "text": "Logistics & Transportation",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card2-desc-018",
+                                "component": "CMS_Paragraph",
+                                "text": "End-to-end visibility, route optimization, and real-time tracking for freight companies.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card2-features-019",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Fleet management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Route optimization",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Proof of delivery",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card2-link-020",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-purple-600 dark:text-purple-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-3-021",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/manufacturing",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-green-200 dark:hover:border-green-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card3-icon-022",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card3-icon-svg-023",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cube.svg",
+                                        "alt": "Manufacturing icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card3-title-024",
+                                "component": "CMS_H3",
+                                "text": "Manufacturing",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card3-desc-025",
+                                "component": "CMS_Paragraph",
+                                "text": "Raw material tracking, work-in-progress inventory, and just-in-time delivery optimization.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card3-features-026",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "BOM management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "WIP tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Supplier coordination",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card3-link-027",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-green-600 dark:text-green-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-4-028",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/pharmaceuticals",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-pink-200 dark:hover:border-pink-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card4-icon-029",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card4-icon-svg-030",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/beaker.svg",
+                                        "alt": "Pharma icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card4-title-031",
+                                "component": "CMS_H3",
+                                "text": "Pharmaceuticals",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card4-desc-032",
+                                "component": "CMS_Paragraph",
+                                "text": "Cold chain monitoring, batch tracking, expiry management, and regulatory compliance.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card4-features-033",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Cold chain tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Batch serialization",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Expiry alerts",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card4-link-034",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-pink-600 dark:text-pink-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-5-035",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/technology",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-blue-200 dark:hover:border-blue-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card5-icon-036",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card5-icon-svg-037",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/chip.svg",
+                                        "alt": "Technology icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card5-title-038",
+                                "component": "CMS_H3",
+                                "text": "Technology & Electronics",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card5-desc-039",
+                                "component": "CMS_Paragraph",
+                                "text": "High-value asset tracking, serial number management, and warranty handling.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card5-features-040",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Asset tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Serial number tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Warranty management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card5-link-041",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-blue-600 dark:text-blue-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-6-042",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/healthcare",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-red-200 dark:hover:border-red-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card6-icon-043",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card6-icon-svg-044",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/heart.svg",
+                                        "alt": "Healthcare icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card6-title-045",
+                                "component": "CMS_H3",
+                                "text": "Healthcare",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card6-desc-046",
+                                "component": "CMS_Paragraph",
+                                "text": "Medical supply inventory, equipment tracking, and compliance with healthcare regulations.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card6-features-047",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Medical supply tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Equipment management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Compliance reporting",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card6-link-048",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-red-600 dark:text-red-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-7-049",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/construction",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-yellow-200 dark:hover:border-yellow-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card7-icon-050",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card7-icon-svg-051",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/office-building.svg",
+                                        "alt": "Construction icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card7-title-052",
+                                "component": "CMS_H3",
+                                "text": "Real Estate & Construction",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card7-desc-053",
+                                "component": "CMS_Paragraph",
+                                "text": "Material tracking, equipment management, and project-based inventory control.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card7-features-054",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Material tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Equipment management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Project costing",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card7-link-055",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-yellow-600 dark:text-yellow-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "industry-card-8-056",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "clickable": true,
+                        "href": "/industries/automotive",
+                        "classes": {
+                            "container": "group relative bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-gray-900/50 hover:-translate-y-2",
+                            "containerHover": "hover:border-orange-200 dark:hover:border-orange-800"
+                        },
+                        "children": [
+                            {
+                                "uid": "card8-icon-057",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "card8-icon-svg-058",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/lightning-bolt.svg",
+                                        "alt": "Automotive icon",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "card8-title-059",
+                                "component": "CMS_H3",
+                                "text": "Automotive",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-lg mb-2"
+                                }
+                            },
+                            {
+                                "uid": "card8-desc-060",
+                                "component": "CMS_Paragraph",
+                                "text": "Parts inventory, just-in-time delivery, and supply chain optimization for automotive.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm mb-3"
+                                }
+                            },
+                            {
+                                "uid": "card8-features-061",
+                                "component": "CMS_List",
+                                "type": "ul",
+                                "style": "none",
+                                "items": [
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Parts tracking",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "JIT delivery",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    },
+                                    {
+                                        "icon": "HiOutlineCheckCircle",
+                                        "iconLibrary": "hi",
+                                        "iconColor": "text-green-500",
+                                        "text": "Supplier management",
+                                        "classes": {
+                                            "icon": "w-4 h-4 mr-1"
+                                        }
+                                    }
+                                ],
+                                "classes": {
+                                    "container": "space-y-1 mb-3",
+                                    "item": "flex items-center text-xs text-gray-500 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "card8-link-062",
+                                "component": "CMS_Button",
+                                "text": "Learn more",
+                                "size": "sm",
+                                "variant": "link",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "text-orange-600 dark:text-orange-400 font-medium text-sm inline-flex items-center group/link"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "industries-cta-063",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-16 text-center",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8",
+                    "lg": "lg:px-8"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-064",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto",
+                            "body": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-title-065",
+                                "component": "CMS_H3",
+                                "text": "Ready to Transform Your Industry?",
+                                "classes": {
+                                    "base": "text-white font-bold text-2xl md:text-3xl mb-4"
+                                }
+                            },
+                            {
+                                "uid": "cta-desc-066",
+                                "component": "CMS_Paragraph",
+                                "text": "Let's discuss how Sazzad can address the unique challenges of your industry.",
+                                "classes": {
+                                    "base": "text-indigo-100 text-base mb-8 max-w-2xl mx-auto"
+                                }
+                            },
+                            {
+                                "uid": "cta-button-067",
+                                "component": "CMS_PrimaryButton",
+                                "text": "Contact Our Team",
+                                "size": "lg",
+                                "href": "/contact",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "bg-white text-indigo-600 rounded-lg px-8 py-4 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "industries-divider-068",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "industries-stats-069",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4 mt-8",
+                    "sm": "sm:grid-cols-2 sm:px-6",
+                    "md": "md:grid-cols-4 md:px-8 md:mt-12",
+                    "lg": "lg:gap-12 lg:mt-16"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-070",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-number-071",
+                                "component": "CMS_H3",
+                                "text": "12+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-072",
+                                "component": "CMS_Paragraph",
+                                "text": "Industries Served",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-073",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-number-074",
+                                "component": "CMS_H3",
+                                "text": "500+",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-075",
+                                "component": "CMS_Paragraph",
+                                "text": "Enterprise Clients",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-076",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-number-077",
+                                "component": "CMS_H3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-078",
+                                "component": "CMS_Paragraph",
+                                "text": "Client Retention",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-079",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-number-080",
+                                "component": "CMS_H3",
+                                "text": "24/7",
+                                "classes": {
+                                    "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-081",
+                                "component": "CMS_Paragraph",
+                                "text": "Industry Support",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
