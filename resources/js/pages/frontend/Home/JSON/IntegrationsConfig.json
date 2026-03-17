@@ -1,0 +1,1940 @@
+{
+    "integrationsSection1": {
+        "badge": {
+            "show": true,
+            "text": "✦ INTEGRATIONS",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Connect with",
+            "highlightedText": "Your Favorite",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "Tools"
+        },
+        "description": "Seamlessly integrate Sazzad with the tools you already use. Our platform connects with 100+ popular applications.",
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "100+",
+                    "label": "Integrations"
+                },
+                {
+                    "value": "50+",
+                    "label": "Partners"
+                },
+                {
+                    "value": "24/7",
+                    "label": "API Support"
+                },
+                {
+                    "value": "99.9%",
+                    "label": "Uptime"
+                }
+            ]
+        },
+        "integrations": [
+            {
+                "id": "shopify",
+                "name": "Shopify",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": true,
+                "link": "/integrations/shopify"
+            },
+            {
+                "id": "woocommerce",
+                "name": "WooCommerce",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": true,
+                "link": "/integrations/woocommerce"
+            },
+            {
+                "id": "magento",
+                "name": "Magento",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": false,
+                "link": "/integrations/magento"
+            },
+            {
+                "id": "bigcommerce",
+                "name": "BigCommerce",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": false,
+                "link": "/integrations/bigcommerce"
+            },
+            {
+                "id": "salesforce",
+                "name": "Salesforce",
+                "icon": "cloud",
+                "category": "CRM",
+                "popular": true,
+                "link": "/integrations/salesforce"
+            },
+            {
+                "id": "hubspot",
+                "name": "HubSpot",
+                "icon": "users",
+                "category": "CRM",
+                "popular": true,
+                "link": "/integrations/hubspot"
+            },
+            {
+                "id": "stripe",
+                "name": "Stripe",
+                "icon": "credit",
+                "category": "Payments",
+                "popular": true,
+                "link": "/integrations/stripe"
+            },
+            {
+                "id": "paypal",
+                "name": "PayPal",
+                "icon": "credit",
+                "category": "Payments",
+                "popular": true,
+                "link": "/integrations/paypal"
+            },
+            {
+                "id": "quickbooks",
+                "name": "QuickBooks",
+                "icon": "database",
+                "category": "Accounting",
+                "popular": true,
+                "link": "/integrations/quickbooks"
+            },
+            {
+                "id": "xero",
+                "name": "Xero",
+                "icon": "database",
+                "category": "Accounting",
+                "popular": false,
+                "link": "/integrations/xero"
+            },
+            {
+                "id": "shipstation",
+                "name": "ShipStation",
+                "icon": "truck",
+                "category": "Shipping",
+                "popular": true,
+                "link": "/integrations/shipstation"
+            },
+            {
+                "id": "easypost",
+                "name": "EasyPost",
+                "icon": "truck",
+                "category": "Shipping",
+                "popular": false,
+                "link": "/integrations/easypost"
+            },
+            {
+                "id": "slack",
+                "name": "Slack",
+                "icon": "mail",
+                "category": "Communication",
+                "popular": true,
+                "link": "/integrations/slack"
+            },
+            {
+                "id": "zapier",
+                "name": "Zapier",
+                "icon": "cog",
+                "category": "Automation",
+                "popular": true,
+                "link": "/integrations/zapier"
+            },
+            {
+                "id": "mailchimp",
+                "name": "Mailchimp",
+                "icon": "mail",
+                "category": "Marketing",
+                "popular": false,
+                "link": "/integrations/mailchimp"
+            },
+            {
+                "id": "google-analytics",
+                "name": "Google Analytics",
+                "icon": "chart",
+                "category": "Analytics",
+                "popular": true,
+                "link": "/integrations/google-analytics"
+            },
+            {
+                "id": "sap",
+                "name": "SAP",
+                "icon": "database",
+                "category": "ERP",
+                "popular": false,
+                "link": "/integrations/sap"
+            },
+            {
+                "id": "oracle",
+                "name": "Oracle",
+                "icon": "database",
+                "category": "ERP",
+                "popular": false,
+                "link": "/integrations/oracle"
+            }
+        ],
+        "viewAll": {
+            "text": "View All Integrations",
+            "url": "/integrations"
+        },
+        "featured": {
+            "show": true,
+            "title": "Shopify Integration",
+            "description": "Sync your inventory, orders, and products seamlessly between Shopify and Sazzad. Manage everything from one place.",
+            "features": [
+                "Real-time inventory sync",
+                "Automatic order import",
+                "Product catalog synchronization",
+                "Multi-store support",
+                "Bulk product updates"
+            ],
+            "learnMoreUrl": "/integrations/shopify",
+            "docsUrl": "/docs/shopify",
+            "image": "https://images.unsplash.com/photo-1586882829410-5f8a1db50b3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "logoIcon": "cart",
+            "logoLabel": "Active Stores",
+            "logoValue": "2,500+"
+        },
+        "api": {
+            "show": true,
+            "title": "Custom Integrations with Our API",
+            "description": "Build custom integrations with our robust REST API. Complete documentation, webhooks, and SDKs available.",
+            "docsUrl": "/docs/api",
+            "consoleUrl": "/api-console"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "integrationsSection2": {
+        "badge": {
+            "text": "INTEGRATIONS"
+        },
+        "heading": {
+            "line1": "Connect with",
+            "highlighted": "100+ Tools"
+        },
+        "description": "Seamlessly integrate Sazzad with the tools you already use. Search and filter to find your favorite apps.",
+        "search": {
+            "placeholder": "Search integrations..."
+        },
+        "integrations": [
+            {
+                "id": "shopify",
+                "name": "Shopify",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": true,
+                "link": "https://shopify.com/apps/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg"
+            },
+            {
+                "id": "woocommerce",
+                "name": "WooCommerce",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": true,
+                "link": "https://woocommerce.com/products/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/woocommerce.svg"
+            },
+            {
+                "id": "magento",
+                "name": "Magento",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": false,
+                "link": "/integrations/magento",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/magento.svg"
+            },
+            {
+                "id": "bigcommerce",
+                "name": "BigCommerce",
+                "icon": "cart",
+                "category": "E-commerce",
+                "popular": false,
+                "link": "/integrations/bigcommerce",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bigcommerce.svg"
+            },
+            {
+                "id": "salesforce",
+                "name": "Salesforce",
+                "icon": "cloud",
+                "category": "CRM",
+                "popular": true,
+                "link": "https://appexchange.salesforce.com/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/salesforce.svg"
+            },
+            {
+                "id": "hubspot",
+                "name": "HubSpot",
+                "icon": "users",
+                "category": "CRM",
+                "popular": true,
+                "link": "https://ecosystem.hubspot.com/marketplace/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hubspot.svg"
+            },
+            {
+                "id": "stripe",
+                "name": "Stripe",
+                "icon": "credit",
+                "category": "Payments",
+                "popular": true,
+                "link": "https://stripe.com/partners/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/stripe.svg"
+            },
+            {
+                "id": "paypal",
+                "name": "PayPal",
+                "icon": "credit",
+                "category": "Payments",
+                "popular": true,
+                "link": "https://www.paypal.com/business/apps/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/paypal.svg"
+            },
+            {
+                "id": "quickbooks",
+                "name": "QuickBooks",
+                "icon": "database",
+                "category": "Accounting",
+                "popular": true,
+                "link": "https://quickbooks.intuit.com/apps/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/quickbooks.svg"
+            },
+            {
+                "id": "xero",
+                "name": "Xero",
+                "icon": "database",
+                "category": "Accounting",
+                "popular": false,
+                "link": "/integrations/xero",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xero.svg"
+            },
+            {
+                "id": "shipstation",
+                "name": "ShipStation",
+                "icon": "truck",
+                "category": "Shipping",
+                "popular": true,
+                "link": "https://www.shipstation.com/partners/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shipstation.svg"
+            },
+            {
+                "id": "easypost",
+                "name": "EasyPost",
+                "icon": "truck",
+                "category": "Shipping",
+                "popular": false,
+                "link": "/integrations/easypost",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/easypost.svg"
+            },
+            {
+                "id": "slack",
+                "name": "Slack",
+                "icon": "mail",
+                "category": "Communication",
+                "popular": true,
+                "link": "https://slack.com/apps/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/slack.svg"
+            },
+            {
+                "id": "zapier",
+                "name": "Zapier",
+                "icon": "cog",
+                "category": "Automation",
+                "popular": true,
+                "link": "https://zapier.com/apps/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/zapier.svg"
+            },
+            {
+                "id": "mailchimp",
+                "name": "Mailchimp",
+                "icon": "mail",
+                "category": "Marketing",
+                "popular": false,
+                "link": "/integrations/mailchimp",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mailchimp.svg"
+            },
+            {
+                "id": "google-analytics",
+                "name": "Google Analytics",
+                "icon": "chart",
+                "category": "Analytics",
+                "popular": true,
+                "link": "https://analytics.google.com/partners/sazzad",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googleanalytics.svg"
+            },
+            {
+                "id": "sap",
+                "name": "SAP",
+                "icon": "database",
+                "category": "ERP",
+                "popular": false,
+                "link": "/integrations/sap",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/sap.svg"
+            },
+            {
+                "id": "oracle",
+                "name": "Oracle",
+                "icon": "database",
+                "category": "ERP",
+                "popular": false,
+                "link": "/integrations/oracle",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/oracle.svg"
+            },
+            {
+                "id": "microsoft-dynamics",
+                "name": "Microsoft Dynamics",
+                "icon": "database",
+                "category": "ERP",
+                "popular": false,
+                "link": "/integrations/dynamics",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftdynamics.svg"
+            },
+            {
+                "id": "netsuite",
+                "name": "NetSuite",
+                "icon": "cloud",
+                "category": "ERP",
+                "popular": false,
+                "link": "/integrations/netsuite",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/netsuite.svg"
+            }
+        ],
+        "viewAll": {
+            "text": "Browse All Integrations",
+            "url": "/integrations"
+        },
+        "partners": {
+            "show": true,
+            "title": "Trusted Partners",
+            "items": [
+                {
+                    "name": "Shopify",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg"
+                },
+                {
+                    "name": "Salesforce",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/salesforce.svg"
+                },
+                {
+                    "name": "Stripe",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/stripe.svg"
+                },
+                {
+                    "name": "QuickBooks",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/quickbooks.svg"
+                },
+                {
+                    "name": "Slack",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/slack.svg"
+                },
+                {
+                    "name": "Zapier",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/zapier.svg"
+                },
+                {
+                    "name": "ShipStation",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shipstation.svg"
+                },
+                {
+                    "name": "Google Analytics",
+                    "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googleanalytics.svg"
+                }
+            ]
+        },
+        "api": {
+            "show": true,
+            "title": "Powerful API for Custom Integrations",
+            "description": "Build custom integrations with our robust REST API. Complete documentation, webhooks, and SDKs available.",
+            "features": [
+                "RESTful API with comprehensive documentation",
+                "Real-time webhooks for instant notifications",
+                "SDKs for Python, JavaScript, Ruby, and PHP",
+                "Rate limiting and authentication",
+                "API versioning and backwards compatibility"
+            ],
+            "docsUrl": "/docs/api",
+            "consoleUrl": "/api-console"
+        },
+        "bottomCta": {
+            "show": false,
+            "text": "Request an Integration",
+            "url": "/contact",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-purple-600",
+            "hoverColor": "hover:from-blue-700 hover:to-purple-700",
+            "textColor": "text-white",
+            "ariaLabel": "Request a new integration"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "integrationsSection3": {
+        "seo": {
+            "title": "Integrations - Sazzad Inventory & Logistics",
+            "description": "Connect Sazzad with your favorite tools. Seamless integrations with e-commerce platforms, ERPs, payment gateways, and more.",
+            "keywords": "integrations, api, connectors, e-commerce, erp, payment gateways, shipping carriers",
+            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Integrations",
+                "description": "Connect with your favorite tools"
+            }
+        },
+        "badge": {
+            "text": "INTEGRATIONS"
+        },
+        "heading": {
+            "prefix": "Connect",
+            "highlightedText": "Everything",
+            "suffix": "You Need"
+        },
+        "description": "Seamlessly integrate Sazzad with the tools you already use. Browse our extensive library of integrations.",
+        "search": {
+            "placeholder": "Search integrations..."
+        },
+        "categories": [
+            {
+                "id": "ecommerce",
+                "name": "E-commerce",
+                "count": 8
+            },
+            {
+                "id": "crm",
+                "name": "CRM",
+                "count": 5
+            },
+            {
+                "id": "payments",
+                "name": "Payments",
+                "count": 4
+            },
+            {
+                "id": "accounting",
+                "name": "Accounting",
+                "count": 6
+            },
+            {
+                "id": "shipping",
+                "name": "Shipping",
+                "count": 4
+            },
+            {
+                "id": "communication",
+                "name": "Communication",
+                "count": 3
+            },
+            {
+                "id": "automation",
+                "name": "Automation",
+                "count": 5
+            },
+            {
+                "id": "analytics",
+                "name": "Analytics",
+                "count": 4
+            },
+            {
+                "id": "erp",
+                "name": "ERP",
+                "count": 6
+            }
+        ],
+        "popularTags": {
+            "show": true,
+            "items": [
+                "Shopify",
+                "Salesforce",
+                "Stripe",
+                "Slack",
+                "Zapier",
+                "QuickBooks"
+            ]
+        },
+        "integrations": [
+            {
+                "id": "shopify",
+                "name": "Shopify",
+                "icon": "cart",
+                "category": "E-commerce",
+                "description": "Sync your inventory, orders, and products seamlessly between Shopify and Sazzad.",
+                "rating": 4.9,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/shopify",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg"
+            },
+            {
+                "id": "woocommerce",
+                "name": "WooCommerce",
+                "icon": "cart",
+                "category": "E-commerce",
+                "description": "Connect your WooCommerce store to automate inventory updates and order management.",
+                "rating": 4.8,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/woocommerce",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/woocommerce.svg"
+            },
+            {
+                "id": "magento",
+                "name": "Magento",
+                "icon": "cart",
+                "category": "E-commerce",
+                "description": "Enterprise-grade integration for Magento stores with full inventory sync.",
+                "rating": 4.7,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/magento",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/magento.svg"
+            },
+            {
+                "id": "bigcommerce",
+                "name": "BigCommerce",
+                "icon": "cart",
+                "category": "E-commerce",
+                "description": "Seamless integration with BigCommerce for real-time inventory management.",
+                "rating": 4.6,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/bigcommerce",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bigcommerce.svg"
+            },
+            {
+                "id": "salesforce",
+                "name": "Salesforce",
+                "icon": "cloud",
+                "category": "CRM",
+                "description": "Sync customer data, orders, and inventory with Salesforce CRM.",
+                "rating": 4.9,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/salesforce",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/salesforce.svg"
+            },
+            {
+                "id": "hubspot",
+                "name": "HubSpot",
+                "icon": "users",
+                "category": "CRM",
+                "description": "Connect HubSpot to track customer interactions and sync contact data.",
+                "rating": 4.8,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/hubspot",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hubspot.svg"
+            },
+            {
+                "id": "stripe",
+                "name": "Stripe",
+                "icon": "credit",
+                "category": "Payments",
+                "description": "Process payments and sync transaction data with Stripe integration.",
+                "rating": 4.9,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/stripe",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/stripe.svg"
+            },
+            {
+                "id": "paypal",
+                "name": "PayPal",
+                "icon": "credit",
+                "category": "Payments",
+                "description": "Accept payments and manage transactions through PayPal.",
+                "rating": 4.7,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/paypal",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/paypal.svg"
+            },
+            {
+                "id": "quickbooks",
+                "name": "QuickBooks",
+                "icon": "database",
+                "category": "Accounting",
+                "description": "Sync your financial data with QuickBooks for seamless accounting.",
+                "rating": 4.8,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/quickbooks",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/quickbooks.svg"
+            },
+            {
+                "id": "xero",
+                "name": "Xero",
+                "icon": "database",
+                "category": "Accounting",
+                "description": "Connect Xero for automated invoice and expense tracking.",
+                "rating": 4.7,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/xero",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xero.svg"
+            },
+            {
+                "id": "shipstation",
+                "name": "ShipStation",
+                "icon": "truck",
+                "category": "Shipping",
+                "description": "Streamline your shipping process with ShipStation integration.",
+                "rating": 4.8,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/shipstation",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shipstation.svg"
+            },
+            {
+                "id": "easypost",
+                "name": "EasyPost",
+                "icon": "truck",
+                "category": "Shipping",
+                "description": "Multi-carrier shipping integration with EasyPost.",
+                "rating": 4.6,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/easypost",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/easypost.svg"
+            },
+            {
+                "id": "slack",
+                "name": "Slack",
+                "icon": "mail",
+                "category": "Communication",
+                "description": "Get notifications and updates directly in your Slack channels.",
+                "rating": 4.9,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/slack",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/slack.svg"
+            },
+            {
+                "id": "zapier",
+                "name": "Zapier",
+                "icon": "cog",
+                "category": "Automation",
+                "description": "Connect Sazzad with thousands of apps through Zapier.",
+                "rating": 4.8,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/zapier",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/zapier.svg"
+            },
+            {
+                "id": "mailchimp",
+                "name": "Mailchimp",
+                "icon": "mail",
+                "category": "Marketing",
+                "description": "Sync customer data and automate email campaigns with Mailchimp.",
+                "rating": 4.7,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/mailchimp",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mailchimp.svg"
+            },
+            {
+                "id": "google-analytics",
+                "name": "Google Analytics",
+                "icon": "chart",
+                "category": "Analytics",
+                "description": "Track and analyze your e-commerce performance with Google Analytics.",
+                "rating": 4.8,
+                "verified": true,
+                "popular": true,
+                "link": "/integrations/google-analytics",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googleanalytics.svg"
+            },
+            {
+                "id": "sap",
+                "name": "SAP",
+                "icon": "database",
+                "category": "ERP",
+                "description": "Enterprise-grade integration with SAP for large organizations.",
+                "rating": 4.6,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/sap",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/sap.svg"
+            },
+            {
+                "id": "oracle",
+                "name": "Oracle",
+                "icon": "database",
+                "category": "ERP",
+                "description": "Connect Oracle ERP for comprehensive business management.",
+                "rating": 4.5,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/oracle",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/oracle.svg"
+            },
+            {
+                "id": "microsoft-dynamics",
+                "name": "Microsoft Dynamics",
+                "icon": "database",
+                "category": "ERP",
+                "description": "Seamless integration with Microsoft Dynamics 365.",
+                "rating": 4.7,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/dynamics",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftdynamics.svg"
+            },
+            {
+                "id": "netsuite",
+                "name": "NetSuite",
+                "icon": "cloud",
+                "category": "ERP",
+                "description": "Oracle NetSuite integration for comprehensive ERP management.",
+                "rating": 4.6,
+                "verified": false,
+                "popular": false,
+                "link": "/integrations/netsuite",
+                "logo": "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/netsuite.svg"
+            }
+        ],
+        "api": {
+            "show": true,
+            "title": "Build Your Own Integration",
+            "description": "Our powerful API lets you create custom integrations with ease. Full documentation, webhooks, and SDKs available.",
+            "docsUrl": "/docs/api",
+            "consoleUrl": "/api-console"
+        },
+        "request": {
+            "show": true,
+            "url": "/contact"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "integrationsSectionCustom": {
+        "uid": "integrations-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Integrations - Sazzad Inventory & Logistics",
+            "description": "Connect Sazzad with your favorite tools. Seamless integrations with e-commerce platforms, ERPs, payment gateways, and more.",
+            "keywords": "integrations, api, connectors, e-commerce, erp, payment gateways, shipping carriers",
+            "structuredData": {
+                "@type": "ItemList",
+                "name": "Integrations",
+                "description": "Connect with your favorite tools"
+            }
+        },
+        "children": [
+            {
+                "uid": "integrations-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "integrations-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ INTEGRATIONS",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "integrations-title-004",
+                        "component": "CMS_H2",
+                        "text": "Connect with Your Favorite Tools",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 12,
+                                "end": 25,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integrations-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Seamlessly integrate Sazzad with the tools you already use. Our platform connects with 100+ popular applications.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "integrations-stats-006",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "flex-wrap justify-center gap-8 mb-16 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-007",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-value-008",
+                                "component": "CMS_H3",
+                                "text": "100+",
+                                "classes": {
+                                    "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-009",
+                                "component": "CMS_Paragraph",
+                                "text": "Integrations",
+                                "classes": {
+                                    "base": "text-sm text-gray-500 dark:text-gray-500"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-010",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-value-011",
+                                "component": "CMS_H3",
+                                "text": "50+",
+                                "classes": {
+                                    "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-012",
+                                "component": "CMS_Paragraph",
+                                "text": "Partners",
+                                "classes": {
+                                    "base": "text-sm text-gray-500 dark:text-gray-500"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-013",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-value-014",
+                                "component": "CMS_H3",
+                                "text": "24/7",
+                                "classes": {
+                                    "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-015",
+                                "component": "CMS_Paragraph",
+                                "text": "API Support",
+                                "classes": {
+                                    "base": "text-sm text-gray-500 dark:text-gray-500"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-016",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-value-017",
+                                "component": "CMS_H3",
+                                "text": "99.9%",
+                                "classes": {
+                                    "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-018",
+                                "component": "CMS_Paragraph",
+                                "text": "Uptime",
+                                "classes": {
+                                    "base": "text-sm text-gray-500 dark:text-gray-500"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "integrations-grid-019",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-6 px-4",
+                    "sm": "sm:grid-cols-2 sm:gap-8",
+                    "md": "md:grid-cols-3 md:gap-8",
+                    "lg": "lg:grid-cols-6 lg:gap-6"
+                },
+                "children": [
+                    {
+                        "uid": "integration-1-020",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-1-icon-021",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-1-icon-svg-022",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shopping-cart.svg",
+                                        "alt": "Shopify",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-1-name-023",
+                                "component": "CMS_H4",
+                                "text": "Shopify",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-1-category-024",
+                                "component": "CMS_Paragraph",
+                                "text": "E-commerce",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            },
+                            {
+                                "uid": "integration-1-popular-025",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute -top-2 -right-2"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "popular-badge-026",
+                                        "component": "CMS_Badge",
+                                        "text": "Popular",
+                                        "size": "xs",
+                                        "variant": "success",
+                                        "classes": {
+                                            "base": "bg-gradient-to-r from-yellow-500 to-yellow-600 text-white"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-2-027",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-2-icon-028",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-2-icon-svg-029",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shopping-cart.svg",
+                                        "alt": "WooCommerce",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-2-name-030",
+                                "component": "CMS_H4",
+                                "text": "WooCommerce",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-2-category-031",
+                                "component": "CMS_Paragraph",
+                                "text": "E-commerce",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-3-032",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-3-icon-033",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-3-icon-svg-034",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cloud.svg",
+                                        "alt": "Salesforce",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-3-name-035",
+                                "component": "CMS_H4",
+                                "text": "Salesforce",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-3-category-036",
+                                "component": "CMS_Paragraph",
+                                "text": "CRM",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            },
+                            {
+                                "uid": "integration-3-popular-037",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute -top-2 -right-2"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "popular-badge-2-038",
+                                        "component": "CMS_Badge",
+                                        "text": "Popular",
+                                        "size": "xs",
+                                        "variant": "success",
+                                        "classes": {
+                                            "base": "bg-gradient-to-r from-yellow-500 to-yellow-600 text-white"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-4-039",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-4-icon-040",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-4-icon-svg-041",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/credit-card.svg",
+                                        "alt": "Stripe",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-4-name-042",
+                                "component": "CMS_H4",
+                                "text": "Stripe",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-4-category-043",
+                                "component": "CMS_Paragraph",
+                                "text": "Payments",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-5-044",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-5-icon-045",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-5-icon-svg-046",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/database.svg",
+                                        "alt": "QuickBooks",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-5-name-047",
+                                "component": "CMS_H4",
+                                "text": "QuickBooks",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-5-category-048",
+                                "component": "CMS_Paragraph",
+                                "text": "Accounting",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-6-049",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-6-icon-050",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-6-icon-svg-051",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
+                                        "alt": "ShipStation",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-6-name-052",
+                                "component": "CMS_H4",
+                                "text": "ShipStation",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-6-category-053",
+                                "component": "CMS_Paragraph",
+                                "text": "Shipping",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-7-054",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-7-icon-055",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-7-icon-svg-056",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/mail.svg",
+                                        "alt": "Slack",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-7-name-057",
+                                "component": "CMS_H4",
+                                "text": "Slack",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-7-category-058",
+                                "component": "CMS_Paragraph",
+                                "text": "Communication",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-8-059",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-8-icon-060",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-8-icon-svg-061",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cog.svg",
+                                        "alt": "Zapier",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-8-name-062",
+                                "component": "CMS_H4",
+                                "text": "Zapier",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-8-category-063",
+                                "component": "CMS_Paragraph",
+                                "text": "Automation",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-9-064",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-9-icon-065",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-9-icon-svg-066",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/chart-bar.svg",
+                                        "alt": "Google Analytics",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-9-name-067",
+                                "component": "CMS_H4",
+                                "text": "Google Analytics",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-9-category-068",
+                                "component": "CMS_Paragraph",
+                                "text": "Analytics",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-10-069",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-10-icon-070",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-10-icon-svg-071",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/users.svg",
+                                        "alt": "HubSpot",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-10-name-072",
+                                "component": "CMS_H4",
+                                "text": "HubSpot",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-10-category-073",
+                                "component": "CMS_Paragraph",
+                                "text": "CRM",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-11-074",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-11-icon-075",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-11-icon-svg-076",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/mail.svg",
+                                        "alt": "Mailchimp",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-11-name-077",
+                                "component": "CMS_H4",
+                                "text": "Mailchimp",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-11-category-078",
+                                "component": "CMS_Paragraph",
+                                "text": "Marketing",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "integration-12-079",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center cursor-pointer"
+                        },
+                        "children": [
+                            {
+                                "uid": "integration-12-icon-080",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "integration-12-icon-svg-081",
+                                        "component": "CMS_Image",
+                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/database.svg",
+                                        "alt": "SAP",
+                                        "classes": {
+                                            "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "integration-12-name-082",
+                                "component": "CMS_H4",
+                                "text": "SAP",
+                                "classes": {
+                                    "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "integration-12-category-083",
+                                "component": "CMS_Paragraph",
+                                "text": "ERP",
+                                "classes": {
+                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "integrations-view-all-084",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center mb-20 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "view-all-link-085",
+                        "component": "CMS_Button",
+                        "text": "View All Integrations",
+                        "size": "lg",
+                        "variant": "link",
+                        "icon": "HiArrowRight",
+                        "iconLibrary": "hi",
+                        "iconPosition": "right",
+                        "href": "/integrations",
+                        "classes": {
+                            "base": "text-blue-600 dark:text-blue-400 font-semibold inline-flex items-center group"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "featured-integration-086",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mb-20"
+                },
+                "children": [
+                    {
+                        "uid": "featured-card-087",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 rounded-3xl p-8 md:p-12 border border-blue-100 dark:border-blue-800/30"
+                        },
+                        "children": [
+                            {
+                                "uid": "featured-grid-088",
+                                "component": "CMS_Grid",
+                                "classes": {
+                                    "base": "grid gap-8",
+                                    "md": "md:grid-cols-2 md:gap-12"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "featured-content-089",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "featured-badge-090",
+                                                "component": "CMS_Badge",
+                                                "text": "FEATURED INTEGRATION",
+                                                "size": "sm",
+                                                "variant": "info",
+                                                "classes": {
+                                                    "base": "mb-4"
+                                                }
+                                            },
+                                            {
+                                                "uid": "featured-title-091",
+                                                "component": "CMS_H3",
+                                                "text": "Shopify Integration",
+                                                "classes": {
+                                                    "base": "text-3xl font-bold text-gray-900 dark:text-white mt-2 mb-4"
+                                                }
+                                            },
+                                            {
+                                                "uid": "featured-desc-092",
+                                                "component": "CMS_Paragraph",
+                                                "text": "Sync your inventory, orders, and products seamlessly between Shopify and Sazzad. Manage everything from one place.",
+                                                "classes": {
+                                                    "base": "text-lg text-gray-600 dark:text-gray-400 mb-6"
+                                                }
+                                            },
+                                            {
+                                                "uid": "featured-features-093",
+                                                "component": "CMS_List",
+                                                "type": "ul",
+                                                "style": "none",
+                                                "items": [
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-green-500",
+                                                        "text": "Real-time inventory sync",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-green-500",
+                                                        "text": "Automatic order import",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-green-500",
+                                                        "text": "Product catalog synchronization",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "icon": "HiOutlineCheckCircle",
+                                                        "iconLibrary": "hi",
+                                                        "iconColor": "text-green-500",
+                                                        "text": "Multi-store support",
+                                                        "classes": {
+                                                            "icon": "w-5 h-5 mr-3"
+                                                        }
+                                                    }
+                                                ],
+                                                "classes": {
+                                                    "container": "space-y-3 mb-8"
+                                                }
+                                            },
+                                            {
+                                                "uid": "featured-buttons-094",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "flex-wrap gap-4"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "featured-learn-095",
+                                                        "component": "CMS_Button",
+                                                        "text": "Learn More",
+                                                        "size": "lg",
+                                                        "variant": "primary",
+                                                        "icon": "HiArrowRight",
+                                                        "iconLibrary": "hi",
+                                                        "iconPosition": "right",
+                                                        "href": "/integrations/shopify",
+                                                        "classes": {
+                                                            "base": "bg-blue-600 text-white hover:bg-blue-700 rounded-lg px-6 py-3"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "featured-docs-096",
+                                                        "component": "CMS_Button",
+                                                        "text": "View Docs",
+                                                        "size": "lg",
+                                                        "variant": "outline",
+                                                        "href": "/docs/shopify",
+                                                        "classes": {
+                                                            "base": "border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-6 py-3"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-image-097",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "relative"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "featured-img-098",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1586882829410-5f8a1db50b3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                                                "alt": "Shopify Integration",
+                                                "classes": {
+                                                    "base": "rounded-2xl overflow-hidden shadow-2xl",
+                                                    "media": "w-full h-auto object-cover"
+                                                }
+                                            },
+                                            {
+                                                "uid": "featured-float-099",
+                                                "component": "CMS_Card",
+                                                "variant": "elevated",
+                                                "size": "sm",
+                                                "classes": {
+                                                    "container": "absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-xl border border-gray-100 dark:border-gray-700"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "float-flex-100",
+                                                        "component": "CMS_Flex",
+                                                        "classes": {
+                                                            "base": "items-center space-x-3"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "uid": "float-icon-101",
+                                                                "component": "CMS_Container",
+                                                                "classes": {
+                                                                    "base": "w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center"
+                                                                },
+                                                                "children": [
+                                                                    {
+                                                                        "uid": "float-icon-svg-102",
+                                                                        "component": "CMS_Image",
+                                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shopping-cart.svg",
+                                                                        "alt": "Shopify",
+                                                                        "classes": {
+                                                                            "media": "w-6 h-6 text-white filter brightness-0 invert"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "uid": "float-text-103",
+                                                                "component": "CMS_Container",
+                                                                "children": [
+                                                                    {
+                                                                        "uid": "float-label-104",
+                                                                        "component": "CMS_Paragraph",
+                                                                        "text": "Active Stores",
+                                                                        "classes": {
+                                                                            "base": "text-xs text-gray-500 dark:text-gray-500"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "uid": "float-value-105",
+                                                                        "component": "CMS_H4",
+                                                                        "text": "2,500+",
+                                                                        "classes": {
+                                                                            "base": "text-sm font-bold text-gray-900 dark:text-white"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "integrations-api-106",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "api-card-107",
+                        "component": "CMS_Card",
+                        "variant": "default",
+                        "classes": {
+                            "container": "bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "api-title-108",
+                                "component": "CMS_H3",
+                                "text": "Custom Integrations with Our API",
+                                "classes": {
+                                    "base": "text-2xl font-bold text-gray-900 dark:text-white mb-4"
+                                }
+                            },
+                            {
+                                "uid": "api-desc-109",
+                                "component": "CMS_Paragraph",
+                                "text": "Build custom integrations with our robust REST API. Complete documentation, webhooks, and SDKs available.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto"
+                                }
+                            },
+                            {
+                                "uid": "api-buttons-110",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "flex-wrap justify-center gap-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "api-docs-111",
+                                        "component": "CMS_Button",
+                                        "text": "Read API Docs",
+                                        "size": "lg",
+                                        "variant": "primary",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "href": "/docs/api",
+                                        "classes": {
+                                            "base": "bg-blue-600 text-white hover:bg-blue-700 rounded-lg px-6 py-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "api-console-112",
+                                        "component": "CMS_Button",
+                                        "text": "API Console",
+                                        "size": "lg",
+                                        "variant": "outline",
+                                        "href": "/api-console",
+                                        "classes": {
+                                            "base": "border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-6 py-3"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "integrations-divider-113",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "integrations-links-114",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "justify-center space-x-4 px-4 mt-8"
+                },
+                "children": [
+                    {
+                        "uid": "privacy-link-115",
+                        "component": "CMS_Button",
+                        "text": "Privacy",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/privacy",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "terms-link-116",
+                        "component": "CMS_Button",
+                        "text": "Terms",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/terms",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "contact-link-117",
+                        "component": "CMS_Button",
+                        "text": "Contact",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/contact",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

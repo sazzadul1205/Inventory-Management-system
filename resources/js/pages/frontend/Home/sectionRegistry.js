@@ -88,4 +88,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./WhyChooseUsSection/WhyChooseUsSection2')),
         variant3: lazy(() => import('./WhyChooseUsSection/WhyChooseUsSection3')),
     },
+
+    // Integrations
+    integrations: {
+        variant1: lazy(() => import('./IntegrationsSection/IntegrationsSection1')),
+        variant2: lazy(() => import('./IntegrationsSection/IntegrationsSection2')),
+        variant3: lazy(() => import('./IntegrationsSection/IntegrationsSection3')),
+    },
 };

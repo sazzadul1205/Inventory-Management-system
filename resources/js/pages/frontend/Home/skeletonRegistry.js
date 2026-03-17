@@ -11,6 +11,7 @@ import IndustriesSectionSkeleton from './IndustriesSection/IndustriesSectionSkel
 import WhyChooseUsSectionSkeleton from './WhyChooseUsSection/WhyChooseUsSectionSkeleton';
 import TestimonialsSectionSkeleton from './TestimonialsSection/TestimonialsSectionSkeleton';
 import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSectionSkeleton';
+import IntegrationsSectionSkeleton from './IntegrationsSection/IntegrationsSectionSkeleton';
 import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStoriesSectionSkeleton';
 
 // Export
@@ -25,5 +26,6 @@ export const skeletonRegistry = {
     whyChooseUs: WhyChooseUsSectionSkeleton,
     testimonials: TestimonialsSectionSkeleton,
     pricingPlans: PricingPlansSectionSkeleton,
+    integrations: IntegrationsSectionSkeleton,
     successStories: SuccessStoriesSectionSkeleton,
 };
