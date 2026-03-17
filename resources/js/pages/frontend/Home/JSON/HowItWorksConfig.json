@@ -1,7 +1,4 @@
 {
-    "HowItWorksSectionConfig": {
-        "HowItWorksVariant": "variant1"
-    },
     "howItWorksSection1": {
         "badge": {
             "show": true,
@@ -462,7 +459,6 @@
             "contact": "/contact"
         }
     },
-
     "howItWorksSectionCustom": {
         "uid": "how-it-works-section-001",
         "component": "CMS_Section",

@@ -1,8 +1,4 @@
 {
-    "servicesSectionConfig": {
-        "servicesVariant": "custom"
-    },
-
     "pricingPlansSection1": {
         "badge": {
             "show": true,

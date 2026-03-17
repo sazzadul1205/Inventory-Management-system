@@ -1,9 +1,15 @@
 // page/frontend/Home/Home.jsx
 
+// React
 import { Suspense } from "react";
+
+// Layout
 import FrontEnd_Layout from "../Layout/FrontEnd_Layout";
 
+// Section Imports
 import { sectionRegistry } from "./sectionRegistry";
+
+// Skeleton Imports
 import { skeletonRegistry } from "./skeletonRegistry";
 
 // JSON configs
@@ -17,6 +23,8 @@ import pricingPlansConfig from "./JSON/PricingPlansConfig.json";
 import successStoriesConfig from "./JSON/SuccessStoriesConfig.json";
 import FAQConfig from "./JSON/FAQConfig.json";
 import ContactConfig from "./JSON/ContactConfig.json";
+import AboutUsConfig from "./JSON/AboutUsConfig.json";
+
 
 // Map section → JSON config
 const configMap = {
@@ -30,6 +38,7 @@ const configMap = {
   pricingPlans: pricingPlansConfig,
   faq: FAQConfig,
   contact: ContactConfig,
+  aboutUs: AboutUsConfig,
 };
 
 // ============================================================================
@@ -38,16 +47,17 @@ const configMap = {
 
 const pageConfig = {
   sections: {
-    hero: { enabled: true, variant: "variant3", order: 1, props: {} },
-    services: { enabled: true, variant: "variant3", order: 2, props: {} },
-    features: { enabled: true, variant: "variant3", order: 3, props: {} },
-    howItWorks: { enabled: true, variant: "variant3", order: 4, props: {} },
-    industries: { enabled: true, variant: "variant3", order: 5, props: {} },
-    successStories: { enabled: true, variant: "variant3", order: 6, props: {} },
-    testimonials: { enabled: true, variant: "variant3", order: 7, props: {} },
-    pricingPlans: { enabled: true, variant: "variant3", order: 8, props: {} },
-    faq: { enabled: true, variant: "variant3", order: 9, props: {} },
-    contact: { enabled: true, variant: "variant3", order: 10, props: {} },
+    hero: { enabled: false, variant: "variant3", order: 1, props: {} },
+    services: { enabled: false, variant: "variant3", order: 2, props: {} },
+    features: { enabled: false, variant: "variant3", order: 3, props: {} },
+    howItWorks: { enabled: false, variant: "variant3", order: 4, props: {} },
+    industries: { enabled: false, variant: "variant3", order: 5, props: {} },
+    successStories: { enabled: false, variant: "variant3", order: 6, props: {} },
+    testimonials: { enabled: false, variant: "variant3", order: 7, props: {} },
+    pricingPlans: { enabled: false, variant: "variant3", order: 8, props: {} },
+    faq: { enabled: false, variant: "variant3", order: 9, props: {} },
+    contact: { enabled: false, variant: "variant3", order: 10, props: {} },
+    aboutUs: { enabled: true, variant: "variant3", order: 11, props: {} },
   },
 
   global: {
@@ -63,6 +73,7 @@ const pageConfig = {
 // Helpers
 // ============================================================================
 
+// Get ordered sections
 const getOrderedSections = () => {
   return Object.entries(pageConfig.sections)
     .filter(([_, section]) => section.enabled)
@@ -78,10 +89,14 @@ const getOrderedSections = () => {
 // ============================================================================
 
 const Home = () => {
+
+  // Get ordered sections
   const orderedSections = getOrderedSections();
 
+  // Render
   return (
     <FrontEnd_Layout>
+      {/* Render sections */}
       {orderedSections.map((section, index) => {
 
         // Destructure
@@ -103,6 +118,7 @@ const Home = () => {
         // Check if component exists
         if (!SectionComponent) return null;
 
+        // Render
         return (
           <Suspense key={`${type}-${index}`} fallback={<Skeleton />}>
             <SectionComponent

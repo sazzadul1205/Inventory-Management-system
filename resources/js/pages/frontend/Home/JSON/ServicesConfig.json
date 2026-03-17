@@ -1,7 +1,4 @@
 {
-    "servicesSectionConfig": {
-        "servicesVariant": "custom"
-    },
     "servicesSection1": {
         "seo": {
             "title": "Our Comprehensive Services - Sazzad Inventory & Logistics",
@@ -543,7 +540,6 @@
             "contact": "/contact"
         }
     },
-
     "servicesSectionCustom": {
         "uid": "services-section-001",
         "component": "CMS_Section",

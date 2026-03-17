@@ -1,3 +1,6 @@
+// Page/frontend/Home/skeletonRegistry.js
+
+// Components
 import FAQSectionSkeleton from './FAQSection/FAQSectionSkeleton';
 import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
 import ContactSectionSkeleton from './ContactSection/ContactSectionSkeleton';
@@ -9,6 +12,7 @@ import TestimonialsSectionSkeleton from './TestimonialsSection/TestimonialsSecti
 import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSectionSkeleton';
 import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStoriesSectionSkeleton';
 
+// Export
 export const skeletonRegistry = {
     faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,

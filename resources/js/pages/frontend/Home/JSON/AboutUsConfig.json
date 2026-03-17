@@ -1,0 +1,1427 @@
+{
+    "aboutUsSection1": {
+        "seo": {
+            "title": "About Us - Sazzad Inventory & Logistics",
+            "description": "Learn about Sazzad's mission, values, and the team behind our innovative inventory and logistics solutions.",
+            "keywords": "about us, our story, company mission, team, values, logistics company",
+            "ogImage": "/images/about-us-og.jpg",
+            "structuredData": {
+                "@type": "AboutPage",
+                "name": "About Sazzad",
+                "description": "Learn about our company"
+            }
+        },
+        "badge": {
+            "show": true,
+            "text": "✦ ABOUT US",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Who",
+            "highlightedText": "We Are",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": ""
+        },
+        "description": "Learn about our journey, our values, and the team dedicated to transforming supply chain management.",
+        "image": {
+            "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "alt": "Our team collaborating"
+        },
+        "experience": {
+            "show": true,
+            "years": "5",
+            "text": "Years of Excellence"
+        },
+        "content": {
+            "title": "We're on a Mission to Transform Supply Chains",
+            "paragraphs": [
+                "Founded in 2020, Sazzad Inventory & Logistics has grown from a small team of logistics enthusiasts to a comprehensive platform serving businesses worldwide. Our journey began with a simple observation: supply chain management was too complex, too fragmented, and too inaccessible for many businesses.",
+                "Today, we're proud to serve over 500 companies across 12+ industries, helping them streamline their operations, reduce costs, and improve customer satisfaction. Our platform combines cutting-edge technology with deep industry expertise to deliver solutions that just work.",
+                "What sets us apart is our commitment to our customers. We don't just provide software – we become partners in your success, offering dedicated support, continuous innovation, and a platform that evolves with your needs."
+            ],
+            "points": [
+                "Customer-first approach",
+                "Innovative technology",
+                "Industry expertise",
+                "24/7 dedicated support"
+            ],
+            "cta": {
+                "show": true,
+                "text": "Meet Our Team",
+                "url": "/team",
+                "backgroundColor": "bg-blue-600",
+                "hoverColor": "hover:bg-blue-700",
+                "textColor": "text-white"
+            }
+        },
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "500+",
+                    "label": "Companies Served"
+                },
+                {
+                    "value": "12+",
+                    "label": "Industries"
+                },
+                {
+                    "value": "98%",
+                    "label": "Client Retention"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Support Available"
+                }
+            ]
+        },
+        "values": {
+            "show": true,
+            "title": "Our Core Values",
+            "items": [
+                {
+                    "icon": "star",
+                    "title": "Excellence",
+                    "description": "We strive for excellence in everything we do, from our code to our customer service."
+                },
+                {
+                    "icon": "heart",
+                    "title": "Customer First",
+                    "description": "Our customers' success is our success. We put your needs at the center of everything."
+                },
+                {
+                    "icon": "lightning",
+                    "title": "Innovation",
+                    "description": "We continuously innovate to bring you the best solutions for evolving challenges."
+                },
+                {
+                    "icon": "users",
+                    "title": "Teamwork",
+                    "description": "We believe in the power of collaboration, both within our team and with our clients."
+                }
+            ]
+        },
+        "team": {
+            "show": true,
+            "title": "Meet Our Leadership Team",
+            "description": "The passionate people behind Sazzad's success",
+            "members": [
+                {
+                    "name": "Sarah Johnson",
+                    "position": "CEO & Co-Founder",
+                    "image": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/sarah"
+                        },
+                        { "icon": "tw", "url": "https://twitter.com/sarah" }
+                    ]
+                },
+                {
+                    "name": "Michael Chen",
+                    "position": "CTO & Co-Founder",
+                    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/michael"
+                        },
+                        { "icon": "gh", "url": "https://github.com/michael" }
+                    ]
+                },
+                {
+                    "name": "Emily Rodriguez",
+                    "position": "Head of Operations",
+                    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        { "icon": "in", "url": "https://linkedin.com/in/emily" }
+                    ]
+                },
+                {
+                    "name": "David Kim",
+                    "position": "Head of Product",
+                    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/david"
+                        },
+                        { "icon": "tw", "url": "https://twitter.com/david" }
+                    ]
+                }
+            ]
+        },
+        "bottomCta": {
+            "show": false,
+            "text": "Join Our Team",
+            "url": "/careers",
+            "backgroundColor": "bg-blue-600",
+            "hoverColor": "hover:bg-blue-700",
+            "textColor": "text-white",
+            "ariaLabel": "View careers at Sazzad"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "aboutUsSection2": {
+        "seo": {
+            "title": "About Us - Sazzad Inventory & Logistics",
+            "description": "Learn about Sazzad's mission, vision, and the team behind our innovative inventory and logistics solutions.",
+            "keywords": "about us, our story, company mission, vision, team, values, logistics company",
+            "ogImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "AboutPage",
+                "name": "About Sazzad",
+                "description": "Learn about our company"
+            }
+        },
+        "badge": {
+            "text": "ABOUT US"
+        },
+        "heading": {
+            "line1": "More Than Just",
+            "highlighted": "Software"
+        },
+        "description": "We're a team of passionate people dedicated to transforming supply chain management for businesses of all sizes.",
+        "showcase": {
+            "show": true,
+            "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "alt": "Sazzad team meeting",
+            "caption": "Our team collaborating on innovative solutions",
+            "duration": "2:34"
+        },
+        "video": {
+            "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            "title": "About Sazzad"
+        },
+        "mission": {
+            "title": "Our Mission",
+            "description": "To empower businesses of all sizes with intelligent, accessible supply chain solutions that drive efficiency, reduce costs, and foster sustainable growth."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "description": "To create a world where supply chain management is seamless, transparent, and accessible to every business, enabling them to focus on what they do best."
+        },
+        "timeline": {
+            "show": true,
+            "title": "Our Journey",
+            "events": [
+                {
+                    "year": "2020",
+                    "title": "The Beginning",
+                    "description": "Sazzad was founded by Sarah Johnson and Michael Chen with a vision to simplify supply chain management."
+                },
+                {
+                    "year": "2021",
+                    "title": "First 100 Customers",
+                    "description": "We reached our first 100 customers and expanded our team to better serve growing needs."
+                },
+                {
+                    "year": "2022",
+                    "title": "Platform Launch",
+                    "description": "Launched our comprehensive inventory and logistics platform with real-time tracking features."
+                },
+                {
+                    "year": "2023",
+                    "title": "Global Expansion",
+                    "description": "Expanded to serve customers in over 20 countries across North America, Europe, and Asia."
+                },
+                {
+                    "year": "2024",
+                    "title": "500+ Customers",
+                    "description": "Celebrated serving over 500 businesses worldwide and launched our AI-powered analytics."
+                }
+            ]
+        },
+        "values": {
+            "show": true,
+            "title": "What Drives Us",
+            "description": "The principles that guide everything we do",
+            "items": [
+                {
+                    "icon": "star",
+                    "title": "Excellence",
+                    "description": "We strive for excellence in everything we do, from our code to our customer service. We believe that good enough is never enough.",
+                    "points": [
+                        "Continuous improvement mindset",
+                        "Attention to every detail",
+                        "Exceeding expectations"
+                    ]
+                },
+                {
+                    "icon": "heart",
+                    "title": "Customer First",
+                    "description": "Our customers' success is our success. We put your needs at the center of everything, from product development to support.",
+                    "points": [
+                        "24/7 dedicated support",
+                        "Regular feedback sessions",
+                        "Customer-driven roadmap"
+                    ]
+                },
+                {
+                    "icon": "lightning",
+                    "title": "Innovation",
+                    "description": "We continuously innovate to bring you the best solutions for evolving challenges. The status quo is not for us.",
+                    "points": [
+                        "R&D investment",
+                        "Cutting-edge technology",
+                        "Forward-thinking solutions"
+                    ]
+                },
+                {
+                    "icon": "users",
+                    "title": "Teamwork",
+                    "description": "We believe in the power of collaboration, both within our team and with our clients. Together, we achieve more.",
+                    "points": [
+                        "Open communication",
+                        "Diverse perspectives",
+                        "Shared success"
+                    ]
+                }
+            ]
+        },
+        "team": {
+            "show": true,
+            "title": "Meet Our Leadership",
+            "description": "Experienced leaders dedicated to your success",
+            "members": [
+                {
+                    "name": "Sarah Johnson",
+                    "position": "CEO & Co-Founder",
+                    "image": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/sarah"
+                        },
+                        { "icon": "tw", "url": "https://twitter.com/sarah" }
+                    ]
+                },
+                {
+                    "name": "Michael Chen",
+                    "position": "CTO & Co-Founder",
+                    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/michael"
+                        },
+                        { "icon": "gh", "url": "https://github.com/michael" }
+                    ]
+                },
+                {
+                    "name": "Emily Rodriguez",
+                    "position": "Head of Operations",
+                    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        { "icon": "in", "url": "https://linkedin.com/in/emily" }
+                    ]
+                },
+                {
+                    "name": "David Kim",
+                    "position": "Head of Product",
+                    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/david"
+                        },
+                        { "icon": "tw", "url": "https://twitter.com/david" }
+                    ]
+                }
+            ]
+        },
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "icon": "users",
+                    "value": "500+",
+                    "label": "Companies Served"
+                },
+                {
+                    "icon": "globe",
+                    "value": "20+",
+                    "label": "Countries"
+                },
+                {
+                    "icon": "chart",
+                    "value": "98%",
+                    "label": "Client Retention"
+                },
+                {
+                    "icon": "rocket",
+                    "value": "5",
+                    "label": "Years of Innovation"
+                }
+            ]
+        },
+        "bottomCta": {
+            "show": false,
+            "text": "Join Our Team",
+            "url": "/careers",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-purple-600",
+            "hoverColor": "hover:from-blue-700 hover:to-purple-700",
+            "textColor": "text-white",
+            "ariaLabel": "View careers at Sazzad"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "aboutUsSection3": {
+        "seo": {
+            "title": "About Us - Sazzad Inventory & Logistics",
+            "description": "Learn about Sazzad's story, mission, and the passionate team behind our innovative inventory and logistics solutions.",
+            "keywords": "about us, our story, company mission, team, values, logistics company, founders",
+            "ogImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "structuredData": {
+                "@type": "AboutPage",
+                "name": "About Sazzad",
+                "description": "Learn about our company story and mission"
+            }
+        },
+        "badge": {
+            "text": "ABOUT US"
+        },
+        "heading": {
+            "prefix": "More Than a",
+            "highlightedText": "Company",
+            "suffix": "—a Community"
+        },
+        "description": "We're a team of passionate people dedicated to transforming supply chain management for businesses of all sizes.",
+        "hero": {
+            "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "alt": "Sazzad team",
+            "title": "We're on a Mission",
+            "subtitle": "To transform supply chain management for businesses worldwide"
+        },
+        "floatingStats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "500+",
+                    "label": "Companies"
+                },
+                {
+                    "value": "20+",
+                    "label": "Countries"
+                },
+                {
+                    "value": "98%",
+                    "label": "Retention"
+                }
+            ]
+        },
+        "story": {
+            "badge": "OUR STORY",
+            "title": "From a Simple Idea to a Global Platform",
+            "paragraphs": [
+                "Founded in 2020, Sazzad began with a simple observation: supply chain management was too complex and inaccessible for many businesses. Our founders, Sarah and Michael, set out to change that.",
+                "What started as a small project in a coffee shop has grown into a comprehensive platform serving over 500 companies across 20+ countries. Today, we're proud to help businesses of all sizes streamline their operations and achieve their goals.",
+                "Our journey has been driven by a relentless commitment to innovation and customer success. Every feature, every update, and every decision is made with our customers in mind."
+            ],
+            "quote": {
+                "text": "We started Sazzad because we believed there was a better way to manage supply chains. Seeing the impact we've had on our customers' businesses has been incredibly rewarding.",
+                "author": "Sarah Johnson",
+                "position": "CEO & Co-Founder"
+            },
+            "images": [
+                "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            ]
+        },
+        "mission": {
+            "title": "Our Mission",
+            "description": "To empower businesses with intelligent supply chain solutions that drive efficiency, reduce costs, and foster sustainable growth."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "description": "To create a world where supply chain management is seamless, transparent, and accessible to every business."
+        },
+        "values": {
+            "title": "Our Values",
+            "description": "Excellence, innovation, customer-first, and teamwork guide everything we do."
+        },
+        "timeline": {
+            "show": true,
+            "title": "Our Journey",
+            "events": [
+                {
+                    "year": "2020",
+                    "title": "The Beginning",
+                    "description": "Sazzad was founded by Sarah Johnson and Michael Chen in a small coffee shop with a big idea."
+                },
+                {
+                    "year": "2021",
+                    "title": "First 100 Customers",
+                    "description": "We reached our first 100 customers and expanded our team to better serve growing needs."
+                },
+                {
+                    "year": "2022",
+                    "title": "Platform Launch",
+                    "description": "Launched our comprehensive inventory and logistics platform with real-time tracking features."
+                },
+                {
+                    "year": "2023",
+                    "title": "Global Expansion",
+                    "description": "Expanded to serve customers in over 20 countries across North America, Europe, and Asia."
+                },
+                {
+                    "year": "2024",
+                    "title": "500+ Customers",
+                    "description": "Celebrated serving over 500 businesses worldwide and launched our AI-powered analytics."
+                }
+            ]
+        },
+        "team": {
+            "show": true,
+            "title": "Meet Our Leadership",
+            "description": "The passionate people behind Sazzad's success",
+            "members": [
+                {
+                    "name": "Sarah Johnson",
+                    "position": "CEO & Co-Founder",
+                    "image": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/sarah"
+                        },
+                        { "icon": "tw", "url": "https://twitter.com/sarah" }
+                    ]
+                },
+                {
+                    "name": "Michael Chen",
+                    "position": "CTO & Co-Founder",
+                    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/michael"
+                        },
+                        { "icon": "gh", "url": "https://github.com/michael" }
+                    ]
+                },
+                {
+                    "name": "Emily Rodriguez",
+                    "position": "Head of Operations",
+                    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        { "icon": "in", "url": "https://linkedin.com/in/emily" }
+                    ]
+                },
+                {
+                    "name": "David Kim",
+                    "position": "Head of Product",
+                    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "social": [
+                        {
+                            "icon": "in",
+                            "url": "https://linkedin.com/in/david"
+                        },
+                        { "icon": "tw", "url": "https://twitter.com/david" }
+                    ]
+                }
+            ]
+        },
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "icon": "users",
+                    "value": "500+",
+                    "label": "Companies Served"
+                },
+                {
+                    "icon": "globe",
+                    "value": "20+",
+                    "label": "Countries"
+                },
+                {
+                    "icon": "chart",
+                    "value": "98%",
+                    "label": "Client Retention"
+                },
+                {
+                    "icon": "rocket",
+                    "value": "5",
+                    "label": "Years of Innovation"
+                }
+            ]
+        },
+        "bottomCta": {
+            "show": false,
+            "text": "Join Our Team",
+            "url": "/careers",
+            "backgroundColor": "bg-gradient-to-r from-amber-500 to-pink-500",
+            "hoverColor": "hover:from-amber-600 hover:to-pink-600",
+            "textColor": "text-white",
+            "ariaLabel": "View careers at Sazzad"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "aboutUsSectionCustom": {
+        "uid": "about-us-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "About Us - Sazzad Inventory & Logistics",
+            "description": "Learn about Sazzad's mission, values, and the team behind our innovative inventory and logistics solutions.",
+            "keywords": "about us, our story, company mission, team, values, logistics company",
+            "structuredData": {
+                "@type": "AboutPage",
+                "name": "About Sazzad",
+                "description": "Learn about our company"
+            }
+        },
+        "children": [
+            {
+                "uid": "about-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "about-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ ABOUT US",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "about-title-004",
+                        "component": "CMS_H2",
+                        "text": "Who We Are",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 4,
+                                "end": 7,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "about-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Learn about our journey, our values, and the team dedicated to transforming supply chain management.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "about-main-grid-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-12 px-4",
+                    "lg": "lg:grid-cols-2 lg:gap-16"
+                },
+                "children": [
+                    {
+                        "uid": "about-image-007",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "relative"
+                        },
+                        "children": [
+                            {
+                                "uid": "main-image-008",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                                "alt": "Our team at work",
+                                "aspectRatio": "4/3",
+                                "classes": {
+                                    "base": "rounded-2xl overflow-hidden shadow-2xl",
+                                    "media": "w-full h-full object-cover"
+                                }
+                            },
+                            {
+                                "uid": "experience-badge-009",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "sm",
+                                "classes": {
+                                    "container": "absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "experience-years-010",
+                                        "component": "CMS_H3",
+                                        "text": "5+",
+                                        "classes": {
+                                            "base": "text-4xl font-bold text-blue-600 dark:text-blue-400"
+                                        }
+                                    },
+                                    {
+                                        "uid": "experience-text-011",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Years of Excellence",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "about-content-012",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "space-y-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "content-title-013",
+                                "component": "CMS_H3",
+                                "text": "We're on a Mission to Transform Supply Chains",
+                                "classes": {
+                                    "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "content-paragraph-1-014",
+                                "component": "CMS_Paragraph",
+                                "text": "Founded in 2020, Sazzad Inventory & Logistics has grown from a small team of logistics enthusiasts to a comprehensive platform serving businesses worldwide. Our journey began with a simple observation: supply chain management was too complex, too fragmented, and too inaccessible for many businesses.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "content-paragraph-2-015",
+                                "component": "CMS_Paragraph",
+                                "text": "Today, we're proud to serve over 500 companies across 12+ industries, helping them streamline their operations, reduce costs, and improve customer satisfaction. Our platform combines cutting-edge technology with deep industry expertise to deliver solutions that just work.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400"
+                                }
+                            },
+                            {
+                                "uid": "content-points-016",
+                                "component": "CMS_Grid",
+                                "classes": {
+                                    "base": "grid gap-4 pt-4",
+                                    "sm": "sm:grid-cols-2"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "point-1-017",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "point-1-icon-018",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                                "alt": "Check",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-green-500 dark:text-green-400 mr-2 shrink-0 mt-0.5"
+                                                }
+                                            },
+                                            {
+                                                "uid": "point-1-text-019",
+                                                "component": "CMS_Span",
+                                                "text": "Customer-first approach",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "point-2-020",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "point-2-icon-021",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                                "alt": "Check",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-green-500 dark:text-green-400 mr-2 shrink-0 mt-0.5"
+                                                }
+                                            },
+                                            {
+                                                "uid": "point-2-text-022",
+                                                "component": "CMS_Span",
+                                                "text": "Innovative technology",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "point-3-023",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "point-3-icon-024",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                                "alt": "Check",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-green-500 dark:text-green-400 mr-2 shrink-0 mt-0.5"
+                                                }
+                                            },
+                                            {
+                                                "uid": "point-3-text-025",
+                                                "component": "CMS_Span",
+                                                "text": "Industry expertise",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "point-4-026",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "point-4-icon-027",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/check-circle.svg",
+                                                "alt": "Check",
+                                                "classes": {
+                                                    "media": "w-5 h-5 text-green-500 dark:text-green-400 mr-2 shrink-0 mt-0.5"
+                                                }
+                                            },
+                                            {
+                                                "uid": "point-4-text-028",
+                                                "component": "CMS_Span",
+                                                "text": "24/7 dedicated support",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "content-cta-029",
+                                "component": "CMS_Button",
+                                "text": "Meet Our Team",
+                                "size": "lg",
+                                "href": "/team",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "classes": {
+                                    "base": "bg-blue-600 text-white hover:bg-blue-700 rounded-lg px-6 py-3 font-semibold inline-flex items-center group"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "about-stats-030",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4 py-12 mt-12 border-t border-gray-200 dark:border-gray-800",
+                    "sm": "sm:grid-cols-2",
+                    "md": "md:grid-cols-4"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-031",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-value-032",
+                                "component": "CMS_H3",
+                                "text": "500+",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-033",
+                                "component": "CMS_Paragraph",
+                                "text": "Companies Served",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-034",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-value-035",
+                                "component": "CMS_H3",
+                                "text": "12+",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-036",
+                                "component": "CMS_Paragraph",
+                                "text": "Industries",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-037",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-value-038",
+                                "component": "CMS_H3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-039",
+                                "component": "CMS_Paragraph",
+                                "text": "Client Retention",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-040",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-value-041",
+                                "component": "CMS_H3",
+                                "text": "24/7",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-042",
+                                "component": "CMS_Paragraph",
+                                "text": "Support Available",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "values-section-043",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "values-title-044",
+                        "component": "CMS_H3",
+                        "text": "Our Core Values",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-3xl font-bold text-gray-900 dark:text-white mb-12"
+                        }
+                    },
+                    {
+                        "uid": "values-grid-045",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid gap-8",
+                            "md": "md:grid-cols-2",
+                            "lg": "lg:grid-cols-4"
+                        },
+                        "children": [
+                            {
+                                "uid": "value-1-046",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "value-1-icon-047",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "value-1-icon-svg-048",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "value-1-title-049",
+                                        "component": "CMS_H4",
+                                        "text": "Excellence",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "value-1-desc-050",
+                                        "component": "CMS_Paragraph",
+                                        "text": "We strive for excellence in everything we do, from our code to our customer service.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "value-2-051",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "value-2-icon-052",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "value-2-icon-svg-053",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/heart.svg",
+                                                "alt": "Heart",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "value-2-title-054",
+                                        "component": "CMS_H4",
+                                        "text": "Customer First",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "value-2-desc-055",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Our customers' success is our success. We put your needs at the center of everything.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "value-3-056",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "value-3-icon-057",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "value-3-icon-svg-058",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/lightning-bolt.svg",
+                                                "alt": "Lightning",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "value-3-title-059",
+                                        "component": "CMS_H4",
+                                        "text": "Innovation",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "value-3-desc-060",
+                                        "component": "CMS_Paragraph",
+                                        "text": "We continuously innovate to bring you the best solutions for evolving challenges.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "value-4-061",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "value-4-icon-062",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "value-4-icon-svg-063",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/user-group.svg",
+                                                "alt": "Users",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "value-4-title-064",
+                                        "component": "CMS_H4",
+                                        "text": "Teamwork",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "value-4-desc-065",
+                                        "component": "CMS_Paragraph",
+                                        "text": "We believe in the power of collaboration, both within our team and with our clients.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "team-section-066",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "team-title-067",
+                        "component": "CMS_H3",
+                        "text": "Meet Our Leadership Team",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-3xl font-bold text-gray-900 dark:text-white mb-4"
+                        }
+                    },
+                    {
+                        "uid": "team-description-068",
+                        "component": "CMS_Paragraph",
+                        "text": "The passionate people behind Sazzad's success",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto"
+                        }
+                    },
+                    {
+                        "uid": "team-grid-069",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid gap-8",
+                            "md": "md:grid-cols-2",
+                            "lg": "lg:grid-cols-4"
+                        },
+                        "children": [
+                            {
+                                "uid": "team-1-070",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "group text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "team-1-image-071",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                                        "alt": "Sarah Johnson",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "mb-4 overflow-hidden rounded-2xl",
+                                            "media": "w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-1-name-072",
+                                        "component": "CMS_H4",
+                                        "text": "Sarah Johnson",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-1-position-073",
+                                        "component": "CMS_Paragraph",
+                                        "text": "CEO & Co-Founder",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-medium"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "team-2-074",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "group text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "team-2-image-075",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                                        "alt": "Michael Chen",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "mb-4 overflow-hidden rounded-2xl",
+                                            "media": "w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-2-name-076",
+                                        "component": "CMS_H4",
+                                        "text": "Michael Chen",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-2-position-077",
+                                        "component": "CMS_Paragraph",
+                                        "text": "CTO & Co-Founder",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-medium"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "team-3-078",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "group text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "team-3-image-079",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                                        "alt": "Emily Rodriguez",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "mb-4 overflow-hidden rounded-2xl",
+                                            "media": "w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-3-name-080",
+                                        "component": "CMS_H4",
+                                        "text": "Emily Rodriguez",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-3-position-081",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Head of Operations",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-medium"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "team-4-082",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "group text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "team-4-image-083",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                                        "alt": "David Kim",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "mb-4 overflow-hidden rounded-2xl",
+                                            "media": "w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-4-name-084",
+                                        "component": "CMS_H4",
+                                        "text": "David Kim",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white"
+                                        }
+                                    },
+                                    {
+                                        "uid": "team-4-position-085",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Head of Product",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-medium"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "about-divider-086",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "about-links-087",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "justify-center space-x-4 px-4 mt-8"
+                },
+                "children": [
+                    {
+                        "uid": "privacy-link-088",
+                        "component": "CMS_Button",
+                        "text": "Privacy",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/privacy",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "terms-link-089",
+                        "component": "CMS_Button",
+                        "text": "Terms",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/terms",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "contact-link-090",
+                        "component": "CMS_Button",
+                        "text": "Contact",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/contact",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
