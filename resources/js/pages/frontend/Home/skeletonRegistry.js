@@ -3,6 +3,7 @@
 // Components
 import FAQSectionSkeleton from './FAQSection/FAQSectionSkeleton';
 import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
+import BlogSectionSkeleton from './BlogSection/BlogSectionSkeleton';
 import ContactSectionSkeleton from './ContactSection/ContactSectionSkeleton';
 import ServicesSectionSkeleton from './ServicesSection/ServicesSectionSkeleton';
 import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
@@ -18,6 +19,7 @@ import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStorie
 export const skeletonRegistry = {
     faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,
+    blog: BlogSectionSkeleton,
     contact: ContactSectionSkeleton,
     services: ServicesSectionSkeleton,
     features: FeaturesSectionSkeleton,

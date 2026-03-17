@@ -24,7 +24,7 @@ import {
 const IntegrationsSection1 = ({ config }) => {
   // Icon mapping
   const getIcon = (iconName, className = "w-8 h-8") => {
-    const iconClasses = `${className} text-blue-600 dark:text-blue-400 group-hover:text-white group-hover:dark:text-white transition-all duration-300`;
+    const iconClasses = `${className} text-white dark:text-blue-400 group-hover:text-white group-hover:dark:text-white transition-all duration-300`;
 
     switch (iconName) {
       case 'cloud':
