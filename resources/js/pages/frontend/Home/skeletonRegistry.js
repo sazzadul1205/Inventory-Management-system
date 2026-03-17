@@ -1,5 +1,6 @@
 import FAQSectionSkeleton from './FAQSection/FAQSectionSkeleton';
 import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
+import ContactSectionSkeleton from './ContactSection/ContactSectionSkeleton';
 import ServicesSectionSkeleton from './ServicesSection/ServicesSectionSkeleton';
 import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
 import HowItWorksSectionSkeleton from './HowItWorksSection/HowItWorksSectionSkeleton';
@@ -11,6 +12,7 @@ import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStorie
 export const skeletonRegistry = {
     faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,
+    contact: ContactSectionSkeleton,
     services: ServicesSectionSkeleton,
     features: FeaturesSectionSkeleton,
     howItWorks: HowItWorksSectionSkeleton,

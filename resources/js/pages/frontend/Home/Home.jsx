@@ -16,6 +16,7 @@ import testimonialsConfig from "./JSON/TestimonialsConfig.json";
 import pricingPlansConfig from "./JSON/PricingPlansConfig.json";
 import successStoriesConfig from "./JSON/SuccessStoriesConfig.json";
 import FAQConfig from "./JSON/FAQConfig.json";
+import ContactConfig from "./JSON/ContactConfig.json";
 
 // Map section → JSON config
 const configMap = {
@@ -28,6 +29,7 @@ const configMap = {
   testimonials: testimonialsConfig,
   pricingPlans: pricingPlansConfig,
   faq: FAQConfig,
+  contact: ContactConfig,
 };
 
 // ============================================================================
@@ -44,7 +46,8 @@ const pageConfig = {
     successStories: { enabled: true, variant: "variant3", order: 6, props: {} },
     testimonials: { enabled: true, variant: "variant3", order: 7, props: {} },
     pricingPlans: { enabled: true, variant: "variant3", order: 8, props: {} },
-    faq: { enabled: true, variant: "custom", order: 9, props: {} },
+    faq: { enabled: true, variant: "variant3", order: 9, props: {} },
+    contact: { enabled: true, variant: "variant3", order: 10, props: {} },
   },
 
   global: {
