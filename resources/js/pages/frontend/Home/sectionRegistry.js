@@ -81,4 +81,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./AboutUsSection/AboutUsSection2')),
         variant3: lazy(() => import('./AboutUsSection/AboutUsSection3')),
     },
+
+    // Why Choose Us
+    whyChooseUs: {
+        variant1: lazy(() => import('./WhyChooseUsSection/WhyChooseUsSection1')),
+        variant2: lazy(() => import('./WhyChooseUsSection/WhyChooseUsSection2')),
+        variant3: lazy(() => import('./WhyChooseUsSection/WhyChooseUsSection3')),
+    },
 };
