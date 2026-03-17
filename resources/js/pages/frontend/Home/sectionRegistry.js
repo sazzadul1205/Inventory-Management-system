@@ -66,4 +66,10 @@ export const sectionRegistry = {
             () => import('./PricingPlansSection/PricingPlansSection3'),
         ),
     },
+
+    faq: {
+        variant1: lazy(() => import('./FAQSection/FAQSection1')),
+        variant2: lazy(() => import('./FAQSection/FAQSection2')),
+        variant3: lazy(() => import('./FAQSection/FAQSection3')),
+    },
 };

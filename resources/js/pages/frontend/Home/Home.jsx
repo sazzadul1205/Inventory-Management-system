@@ -15,6 +15,7 @@ import industriesConfig from "./JSON/IndustriesConfig.json";
 import testimonialsConfig from "./JSON/TestimonialsConfig.json";
 import pricingPlansConfig from "./JSON/PricingPlansConfig.json";
 import successStoriesConfig from "./JSON/SuccessStoriesConfig.json";
+import FAQConfig from "./JSON/FAQConfig.json";
 
 // Map section → JSON config
 const configMap = {
@@ -23,9 +24,10 @@ const configMap = {
   features: featuresConfig,
   howItWorks: howItWorksConfig,
   industries: industriesConfig,
+  successStories: successStoriesConfig,
   testimonials: testimonialsConfig,
   pricingPlans: pricingPlansConfig,
-  successStories: successStoriesConfig,
+  faq: FAQConfig,
 };
 
 // ============================================================================
@@ -42,6 +44,7 @@ const pageConfig = {
     successStories: { enabled: true, variant: "variant3", order: 6, props: {} },
     testimonials: { enabled: true, variant: "variant3", order: 7, props: {} },
     pricingPlans: { enabled: true, variant: "variant3", order: 8, props: {} },
+    faq: { enabled: true, variant: "custom", order: 9, props: {} },
   },
 
   global: {
@@ -77,18 +80,24 @@ const Home = () => {
   return (
     <FrontEnd_Layout>
       {orderedSections.map((section, index) => {
+
+        // Destructure
         const { type, variant, props } = section;
 
+        // Get component from registry
         const SectionComponent =
           sectionRegistry?.[type]?.[variant] ||
           sectionRegistry?.[type]?.variant1;
 
+        // Get skeleton
         const Skeleton =
           skeletonRegistry?.[type] ||
           (() => <div className="animate-pulse h-96 bg-gray-200" />);
 
+        // Get config
         const config = configMap[type]?.[`${type}Section${variant.replace("variant", "")}`];
 
+        // Check if component exists
         if (!SectionComponent) return null;
 
         return (

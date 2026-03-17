@@ -1,3 +1,4 @@
+import FAQSectionSkeleton from './FAQSection/FAQSectionSkeleton';
 import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
 import ServicesSectionSkeleton from './ServicesSection/ServicesSectionSkeleton';
 import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
@@ -8,12 +9,13 @@ import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSecti
 import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStoriesSectionSkeleton';
 
 export const skeletonRegistry = {
+    faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,
     services: ServicesSectionSkeleton,
     features: FeaturesSectionSkeleton,
     howItWorks: HowItWorksSectionSkeleton,
     industries: IndustriesSectionSkeleton,
-    successStories: SuccessStoriesSectionSkeleton,
     testimonials: TestimonialsSectionSkeleton,
     pricingPlans: PricingPlansSectionSkeleton,
+    successStories: SuccessStoriesSectionSkeleton,
 };
