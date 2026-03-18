@@ -144,4 +144,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./NewsletterSection/NewsletterSection2')),
         variant3: lazy(() => import('./NewsletterSection/NewsletterSection3')),
     },
+
+    // mobile app
+    mobileApp: {
+        variant1: lazy(() => import('./MobileAppSection/MobileAppSection1')),
+        variant2: lazy(() => import('./MobileAppSection/MobileAppSection2')),
+        variant3: lazy(() => import('./MobileAppSection/MobileAppSection3')),
+    },
 };

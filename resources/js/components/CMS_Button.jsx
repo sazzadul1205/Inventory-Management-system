@@ -228,7 +228,7 @@ const getIconComponent = (iconName, libraryPrefix) => {
  * Get alignment class
  */
 const getAlignmentClass = (fullWidth) => {
-  return fullWidth ? 'justify-center' : 'inline-flex';
+  return fullWidth ? 'inline-flex justify-center' : 'inline-flex';
 };
 
 // ============================================================================
@@ -311,8 +311,7 @@ const CMS_Button = forwardRef(({
       buildClasses(classes, className),
       fullWidth && 'w-full',
       (disabled || loading) && 'cursor-not-allowed opacity-50',
-      !disabled && !loading && 'cursor-pointer',
-      className
+      !disabled && !loading && 'cursor-pointer'
     );
   }, [classes, sizePreset, fullWidth, disabled, loading, className]);
 

@@ -33,6 +33,7 @@ import GlobalPresenceConfig from "./JSON/GlobalPresenceConfig.json";
 import CareerConfig from "./JSON/CareerConfig.json";
 import TrustSignalConfig from "./JSON/TrustSignalsConfig.json";
 import NewsletterConfig from "./JSON/NewsletterConfig.json";
+import MobileAppConfig from "./JSON/MobileAppConfig.json"
 
 
 // Map section → JSON config
@@ -57,6 +58,7 @@ const configMap = {
   career: CareerConfig,
   trustSignal: TrustSignalConfig,
   newsletter: NewsletterConfig,
+  mobileApp: MobileAppConfig,
 };
 
 // ============================================================================
@@ -84,7 +86,8 @@ const pageConfig = {
     globalPresence: { enabled: false, variant: "variant3", order: 17, props: {} },
     career: { enabled: false, variant: "variant3", order: 18, props: {} },
     trustSignal: { enabled: false, variant: "variant3", order: 19, props: {} },
-    newsletter: { enabled: true, variant: "variant3", order: 20, props: {} },
+    newsletter: { enabled: false, variant: "variant3", order: 20, props: {} },
+    mobileApp: { enabled: true, variant: "variant1", order: 21, props: {} },
   },
 
   global: {

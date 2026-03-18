@@ -796,7 +796,7 @@ const CMS_Table = forwardRef(({
   // Build container classes
   const containerClasses = useMemo(() => {
     return clsx(
-      'overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700',
+      'relative overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700',
       buildClasses(classes),
       className
     );

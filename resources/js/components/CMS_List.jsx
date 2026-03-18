@@ -735,7 +735,6 @@ export const CMS_Checklist = forwardRef((props, ref) => {
     icon: item.checked ? 'FaCheckCircle' : 'FaRegCircle',
     iconLibrary: 'fa',
     iconColor: item.checked ? 'text-green-500' : 'text-gray-400',
-    ...item
   }));
 
   return (

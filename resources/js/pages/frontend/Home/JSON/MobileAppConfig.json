@@ -1,0 +1,1025 @@
+{
+    "mobileAppSection1": {
+        "badge": {
+            "show": true,
+            "text": "✦ MOBILE APP",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Manage Your Inventory",
+            "highlightedText": "On the Go",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": ""
+        },
+        "description": "Take full control of your inventory management from anywhere with our powerful mobile app. Scan barcodes, track shipments, and get real-time alerts right from your phone.",
+        "features": {
+            "show": true,
+            "items": [
+                {
+                    "icon": "qrcode",
+                    "text": "Scan barcodes instantly"
+                },
+                {
+                    "icon": "camera",
+                    "text": "Add photos to inventory"
+                },
+                {
+                    "icon": "bell",
+                    "text": "Real-time alerts"
+                },
+                {
+                    "icon": "clock",
+                    "text": "Offline mode support"
+                },
+                {
+                    "icon": "cloud",
+                    "text": "Cloud sync across devices"
+                },
+                {
+                    "icon": "shield",
+                    "text": "Biometric security"
+                }
+            ]
+        },
+        "appButtons": {
+            "show": true,
+            "ios": {
+                "url": "https://apps.apple.com/app/sazzad"
+            },
+            "android": {
+                "url": "https://play.google.com/store/apps/details?id=com.sazzad"
+            }
+        },
+        "qrCode": {
+            "show": true,
+            "image": "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://sazzad.app/download",
+            "title": "Scan to download",
+            "description": "Available on iOS and Android"
+        },
+        "screenshots": {
+            "main": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "floating": [
+                {
+                    "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                    "position": "-top-6 -right-6"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1611162616301-c5a3bfc3b9f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                    "position": "-bottom-6 -left-6"
+                }
+            ]
+        },
+        "rating": {
+            "show": true,
+            "stars": 5,
+            "score": "4.9",
+            "count": "10k+"
+        },
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "100k+",
+                    "label": "Downloads"
+                },
+                {
+                    "value": "4.9",
+                    "label": "App Store Rating"
+                },
+                {
+                    "value": "4.8",
+                    "label": "Play Store Rating"
+                },
+                {
+                    "value": "50M+",
+                    "label": "Scans Completed"
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "mobileAppSection2": {
+        "badge": {
+            "text": "MOBILE FIRST"
+        },
+        "heading": {
+            "line1": "Manage Your Business",
+            "highlighted": "From Anywhere"
+        },
+        "description": "Take full control of your inventory management with our powerful mobile app. Scan barcodes, track shipments, and get real-time alerts right from your phone.",
+        "appButtons": {
+            "ios": {
+                "url": "https://apps.apple.com/app/sazzad"
+            },
+            "android": {
+                "url": "https://play.google.com/store/apps/details?id=com.sazzad"
+            }
+        },
+        "qrCode": {
+            "show": true,
+            "image": "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://sazzad.app/download",
+            "title": "Scan to download",
+            "description": "Available on iOS and Android"
+        },
+        "screenshots": {
+            "main": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+        },
+        "rating": {
+            "show": true,
+            "stars": 5,
+            "score": "4.9",
+            "count": "10k+"
+        },
+        "downloadBadge": "FREE DOWNLOAD",
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "100k+",
+                    "label": "Downloads"
+                },
+                {
+                    "value": "4.9",
+                    "label": "App Store Rating"
+                },
+                {
+                    "value": "4.8",
+                    "label": "Play Store Rating"
+                },
+                {
+                    "value": "50M+",
+                    "label": "Items Scanned"
+                }
+            ]
+        },
+        "testimonials": {
+            "show": true,
+            "items": [
+                {
+                    "name": "John Smith",
+                    "role": "Warehouse Manager",
+                    "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                    "rating": 5,
+                    "quote": "This app has revolutionized how we manage inventory. The barcode scanning feature alone saves us hours each week."
+                },
+                {
+                    "name": "Sarah Johnson",
+                    "role": "Operations Director",
+                    "avatar": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                    "rating": 5,
+                    "quote": "Being able to check stock levels and receive alerts on my phone has made my job so much easier."
+                },
+                {
+                    "name": "Michael Chen",
+                    "role": "Retail Store Owner",
+                    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                    "rating": 5,
+                    "quote": "The offline mode is a lifesaver. I can work in areas with poor connectivity and everything syncs automatically."
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "mobileAppSection3": {
+        "badge": {
+            "show": true,
+            "text": "✦ MOBILE POWER",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Your Business",
+            "highlightedText": "In Your Pocket",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": ""
+        },
+        "description": "Experience the full power of Sazzad on your mobile device. Manage inventory, track shipments, and stay connected wherever you go.",
+        "screenshots": {
+            "main": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "0": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "1": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "2": "https://images.unsplash.com/photo-1611162616301-c5a3bfc3b9f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "3": "https://images.unsplash.com/photo-1611162617474-5b21a879c3e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "4": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            "5": "https://images.unsplash.com/photo-1611162616301-c5a3bfc3b9f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+        },
+        "appButtons": {
+            "ios": {
+                "url": "https://apps.apple.com/app/sazzad"
+            },
+            "android": {
+                "url": "https://play.google.com/store/apps/details?id=com.sazzad"
+            }
+        },
+        "qrCode": {
+            "show": true,
+            "image": "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://sazzad.app/download",
+            "title": "Scan to download",
+            "description": "Available on iOS and Android"
+        },
+        "rating": {
+            "show": true,
+            "stars": 5,
+            "score": "4.9"
+        },
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "100k+",
+                    "label": "Downloads"
+                },
+                {
+                    "value": "4.9★",
+                    "label": "App Store"
+                },
+                {
+                    "value": "4.8★",
+                    "label": "Play Store"
+                },
+                {
+                    "value": "50M+",
+                    "label": "Scans"
+                }
+            ]
+        },
+        "compatibility": "Compatible with iOS 14+ and Android 11+. Requires internet for initial sync.",
+        "cta": {
+            "show": true,
+            "text": "Learn More About the App",
+            "url": "/mobile-app"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "mobileAppSectionCustom": {
+        "uid": "mobile-app-section-custom-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Mobile App - Sazzad Inventory & Logistics",
+            "description": "Manage your inventory on the go with our powerful mobile app for iOS and Android.",
+            "keywords": "mobile app, inventory app, barcode scanner, warehouse management",
+            "structuredData": {
+                "@type": "MobileApplication",
+                "name": "Sazzad Mobile App",
+                "description": "Inventory management on the go"
+            }
+        },
+        "children": [
+            {
+                "uid": "mobile-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "mobile-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ MOBILE APP",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800"
+                        },
+                        "showPulse": true,
+                        "pulse": true
+                    },
+                    {
+                        "uid": "mobile-title-004",
+                        "component": "CMS_H2",
+                        "text": "Manage Your Inventory On the Go",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 20,
+                                "end": 28,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "mobile-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Take full control of your inventory management from anywhere with our powerful mobile app. Scan barcodes, track shipments, and get real-time alerts right from your phone.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "mobile-grid-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid lg:grid-cols-2 gap-12 items-center px-4"
+                },
+                "children": [
+                    {
+                        "uid": "left-content-007",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "space-y-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "left-badge-008",
+                                "component": "CMS_Badge",
+                                "text": "✦ POWERFUL FEATURES",
+                                "size": "md",
+                                "variant": "primary",
+                                "shape": "pill",
+                                "classes": {
+                                    "base": "inline-flex bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800"
+                                }
+                            },
+                            {
+                                "uid": "left-heading-009",
+                                "component": "CMS_H3",
+                                "text": "Everything you need, right in your pocket",
+                                "classes": {
+                                    "base": "text-3xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "left-description-010",
+                                "component": "CMS_Paragraph",
+                                "text": "Our mobile app gives you access to all the essential features of our platform, optimized for on-the-go use.",
+                                "classes": {
+                                    "base": "text-gray-600 dark:text-gray-400 text-lg"
+                                }
+                            },
+                            {
+                                "uid": "features-grid-011",
+                                "component": "CMS_Grid",
+                                "classes": {
+                                    "base": "grid sm:grid-cols-2 gap-4 pt-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-1-012",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-1-icon-013",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "feature-1-icon-svg-014",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/qrcode.svg",
+                                                        "alt": "QR Code",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "feature-1-text-015",
+                                                "component": "CMS_Span",
+                                                "text": "Scan barcodes instantly",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-2-016",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-2-icon-017",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "feature-2-icon-svg-018",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/camera.svg",
+                                                        "alt": "Camera",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "feature-2-text-019",
+                                                "component": "CMS_Span",
+                                                "text": "Add photos to inventory",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-3-020",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-3-icon-021",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "feature-3-icon-svg-022",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/bell.svg",
+                                                        "alt": "Bell",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "feature-3-text-023",
+                                                "component": "CMS_Span",
+                                                "text": "Real-time alerts",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-4-024",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-4-icon-025",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "feature-4-icon-svg-026",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/clock.svg",
+                                                        "alt": "Clock",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "feature-4-text-027",
+                                                "component": "CMS_Span",
+                                                "text": "Offline mode support",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-5-028",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-5-icon-029",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "feature-5-icon-svg-030",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cloud.svg",
+                                                        "alt": "Cloud",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "feature-5-text-031",
+                                                "component": "CMS_Span",
+                                                "text": "Cloud sync across devices",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-6-032",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-6-icon-033",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "feature-6-icon-svg-034",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shield-check.svg",
+                                                        "alt": "Shield",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "feature-6-text-035",
+                                                "component": "CMS_Span",
+                                                "text": "Biometric security",
+                                                "classes": {
+                                                    "base": "text-gray-700 dark:text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "app-buttons-036",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "flex flex-wrap gap-4 pt-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "ios-button-037",
+                                        "component": "CMS_Button",
+                                        "text": "App Store",
+                                        "size": "lg",
+                                        "href": "https://apps.apple.com/app/sazzad",
+                                        "icon": "FaApple",
+                                        "iconLibrary": "fa",
+                                        "iconPosition": "left",
+                                        "classes": {
+                                            "base": "inline-flex items-center bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                        }
+                                    },
+                                    {
+                                        "uid": "android-button-038",
+                                        "component": "CMS_Button",
+                                        "text": "Google Play",
+                                        "size": "lg",
+                                        "href": "https://play.google.com/store/apps/details?id=com.sazzad",
+                                        "icon": "FaGooglePlay",
+                                        "iconLibrary": "fa",
+                                        "iconPosition": "left",
+                                        "classes": {
+                                            "base": "inline-flex items-center bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "qr-code-039",
+                                "component": "CMS_Flex",
+                                "classes": {
+                                    "base": "items-center space-x-4 pt-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "qr-image-040",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://sazzad.app/download",
+                                        "alt": "QR Code",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-xl p-2",
+                                            "media": "w-full h-full object-contain"
+                                        }
+                                    },
+                                    {
+                                        "uid": "qr-text-041",
+                                        "component": "CMS_Container",
+                                        "children": [
+                                            {
+                                                "uid": "qr-title-042",
+                                                "component": "CMS_Span",
+                                                "text": "Scan to download",
+                                                "classes": {
+                                                    "base": "text-sm font-medium text-gray-900 dark:text-white"
+                                                }
+                                            },
+                                            {
+                                                "uid": "qr-description-043",
+                                                "component": "CMS_Span",
+                                                "text": "Available on iOS and Android",
+                                                "classes": {
+                                                    "base": "text-xs text-gray-500 dark:text-gray-500"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "right-content-044",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "relative"
+                        },
+                        "children": [
+                            {
+                                "uid": "phone-mockup-045",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "relative mx-auto max-w-[300px]"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "phone-frame-046",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "relative bg-gradient-to-br from-blue-600 to-indigo-600 rounded-[40px] p-3 shadow-2xl"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "phone-screen-047",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                                                "alt": "App screenshot",
+                                                "aspectRatio": "9/16",
+                                                "classes": {
+                                                    "base": "bg-white dark:bg-gray-900 rounded-[32px] overflow-hidden",
+                                                    "media": "w-full h-auto"
+                                                }
+                                            },
+                                            {
+                                                "uid": "dynamic-island-048",
+                                                "component": "CMS_Container",
+                                                "classes": {
+                                                    "base": "absolute top-4 left-1/2 transform -translate-x-1/2 w-20 h-6 bg-black rounded-full"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "floating-screenshot-1-049",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-6 -right-6 w-24 h-24 rounded-2xl shadow-xl overflow-hidden border-4 border-white dark:border-gray-800 hidden lg:block"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "floating-image-1-050",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                "alt": "App feature",
+                                                "aspectRatio": "1/1",
+                                                "classes": {
+                                                    "media": "w-full h-full object-cover"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "floating-screenshot-2-051",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -bottom-6 -left-6 w-24 h-24 rounded-2xl shadow-xl overflow-hidden border-4 border-white dark:border-gray-800 hidden lg:block"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "floating-image-2-052",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1611162616301-c5a3bfc3b9f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                                                "alt": "App feature",
+                                                "aspectRatio": "1/1",
+                                                "classes": {
+                                                    "media": "w-full h-full object-cover"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "rating-badge-053",
+                                        "component": "CMS_Card",
+                                        "variant": "elevated",
+                                        "size": "sm",
+                                        "classes": {
+                                            "container": "absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-xl border border-gray-100 dark:border-gray-700"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "rating-stars-054",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center space-x-2"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "stars-flex-055",
+                                                        "component": "CMS_Flex",
+                                                        "classes": {
+                                                            "base": "flex"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "uid": "star1-056",
+                                                                "component": "CMS_Image",
+                                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                                "alt": "Star",
+                                                                "classes": {
+                                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "star2-057",
+                                                                "component": "CMS_Image",
+                                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                                "alt": "Star",
+                                                                "classes": {
+                                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "star3-058",
+                                                                "component": "CMS_Image",
+                                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                                "alt": "Star",
+                                                                "classes": {
+                                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "star4-059",
+                                                                "component": "CMS_Image",
+                                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                                "alt": "Star",
+                                                                "classes": {
+                                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "star5-060",
+                                                                "component": "CMS_Image",
+                                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                                "alt": "Star",
+                                                                "classes": {
+                                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "uid": "rating-score-061",
+                                                        "component": "CMS_Span",
+                                                        "text": "4.9",
+                                                        "classes": {
+                                                            "base": "text-sm font-semibold text-gray-900 dark:text-white"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "rating-count-062",
+                                                "component": "CMS_Span",
+                                                "text": "10k+ ratings",
+                                                "classes": {
+                                                    "base": "text-xs text-gray-500 dark:text-gray-500 mt-1 block"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "stats-section-063",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid grid-cols-2 md:grid-cols-4 gap-8 px-4 mt-20 pt-8 border-t border-gray-200 dark:border-gray-800"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-064",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-value-065",
+                                "component": "CMS_H4",
+                                "text": "100k+",
+                                "classes": {
+                                    "base": "text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-066",
+                                "component": "CMS_Span",
+                                "text": "Downloads",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-067",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-value-068",
+                                "component": "CMS_H4",
+                                "text": "4.9",
+                                "classes": {
+                                    "base": "text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-069",
+                                "component": "CMS_Span",
+                                "text": "App Store Rating",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-070",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-value-071",
+                                "component": "CMS_H4",
+                                "text": "4.8",
+                                "classes": {
+                                    "base": "text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-072",
+                                "component": "CMS_Span",
+                                "text": "Play Store Rating",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-073",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-value-074",
+                                "component": "CMS_H4",
+                                "text": "50M+",
+                                "classes": {
+                                    "base": "text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-075",
+                                "component": "CMS_Span",
+                                "text": "Scans Completed",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "mobile-divider-076",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "mobile-links-077",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "justify-center space-x-4 px-4 mt-8"
+                },
+                "children": [
+                    {
+                        "uid": "privacy-link-078",
+                        "component": "CMS_Button",
+                        "text": "Privacy",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/privacy",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "terms-link-079",
+                        "component": "CMS_Button",
+                        "text": "Terms",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/terms",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "contact-link-080",
+                        "component": "CMS_Button",
+                        "text": "Contact",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/contact",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -14,7 +14,7 @@
  * - Input group and addon components
  */
 
-import React, { forwardRef, useMemo, useState, useEffect, useRef } from 'react';
+import React, { forwardRef, useMemo, useState, useEffect, useRef, useImperativeHandle } from 'react';
 import clsx from 'clsx';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
@@ -351,7 +351,7 @@ const CMS_Input = forwardRef(({
   const [isHovered, setIsHovered] = useState(false);
 
   const inputRef = useRef(null);
-  const combinedRef = ref || inputRef;
+  useImperativeHandle(ref, () => inputRef.current);
 
   // Sync with external value
   useEffect(() => {
@@ -435,7 +435,7 @@ const CMS_Input = forwardRef(({
       setInternalValue('');
     }
     onChange?.({ target: { value: '', name } });
-    combinedRef.current?.focus();
+    inputRef.current?.focus();
   };
 
   // Event handlers
@@ -621,7 +621,7 @@ const CMS_Input = forwardRef(({
   // Render input based on type
   const renderInput = () => {
     const commonProps = {
-      ref: combinedRef,
+      ref: inputRef,
       id: id || name,
       name,
       value: internalValue,
@@ -725,8 +725,7 @@ const CMS_Input = forwardRef(({
   const containerClasses = useMemo(() => {
     return clsx(
       buildClasses(classes, className),
-      sizePreset.container,
-      className
+      sizePreset.container
     );
   }, [classes, sizePreset, className]);
 

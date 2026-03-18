@@ -74,8 +74,8 @@ const componentRegistry = {
 
   // Cards
   CMS_Card: load("CMS_Card"),
-  CMS_CardBody: load("CMS_Card", "CMS_CardBody"),
   CMS_CardHeader: load("CMS_Card", "CMS_CardHeader"),
+  CMS_CardBody: load("CMS_Card", "CMS_CardBody"),
   CMS_CardFooter: load("CMS_Card", "CMS_CardFooter"),
   CMS_ProductCard: load("CMS_Card", "CMS_ProductCard"),
   CMS_ProfileCard: load("CMS_Card", "CMS_ProfileCard"),
@@ -102,10 +102,10 @@ const componentRegistry = {
   // Tables
   CMS_Table: load("CMS_Table"),
   CMS_DataTable: load("CMS_Table", "CMS_DataTable"),
-  CMS_TableBody: load("CMS_Table", "CMS_TableBody"),
-  CMS_SimpleTable: load("CMS_Table", "CMS_SimpleTable"),
   CMS_TableHeader: load("CMS_Table", "CMS_TableHeader"),
+  CMS_TableBody: load("CMS_Table", "CMS_TableBody"),
   CMS_TableFooter: load("CMS_Table", "CMS_TableFooter"),
+  CMS_SimpleTable: load("CMS_Table", "CMS_SimpleTable"),
   CMS_SelectableTable: load("CMS_Table", "CMS_SelectableTable"),
 
   // Inputs
@@ -132,6 +132,9 @@ const containerComponents = new Set([
   "CMS_Flex",
   "CMS_Container",
   "CMS_Card",
+  "CMS_CardHeader",
+  "CMS_CardBody",
+  "CMS_CardFooter",
   "CMS_List",
   "CMS_UnorderedList",
   "CMS_OrderedList",
@@ -139,6 +142,10 @@ const containerComponents = new Set([
   "CMS_BulletList",
   "CMS_Checklist",
   "CMS_InputGroup",
+  "CMS_Table",
+  "CMS_TableHeader",
+  "CMS_TableBody",
+  "CMS_TableFooter",
 ]);
 
 /*
@@ -181,9 +188,11 @@ const CustomSection = ({ config }) => {
       return null;
     }
 
+    const childNodes = Array.isArray(children) ? children : (children ? [children] : []);
+
     const element = containerComponents.has(component) ? (
       <Component {...props}>
-        {children?.map((child, i) => (
+        {childNodes.map((child, i) => (
           <React.Fragment key={child.uid || i}>
             {renderComponent(child)}
           </React.Fragment>

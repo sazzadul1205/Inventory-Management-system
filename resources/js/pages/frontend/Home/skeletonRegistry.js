@@ -10,6 +10,7 @@ import ContactSectionSkeleton from './ContactSection/ContactSectionSkeleton';
 import ServicesSectionSkeleton from './ServicesSection/ServicesSectionSkeleton';
 import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
 import PartnersSectionSkeleton from './PartnersSection/PartnersSectionSkeleton';
+import MobileAppSectionSkeleton from './MobileAppSection/MobileAppSectionSkeleton';
 import HowItWorksSectionSkeleton from './HowItWorksSection/HowItWorksSectionSkeleton';
 import IndustriesSectionSkeleton from './IndustriesSection/IndustriesSectionSkeleton';
 import NewsletterSectionSkeleton from './NewsletterSection/NewsletterSectionSkeleton';
@@ -32,6 +33,7 @@ export const skeletonRegistry = {
     partner: PartnersSectionSkeleton,
     services: ServicesSectionSkeleton,
     features: FeaturesSectionSkeleton,
+    mobileApp: MobileAppSectionSkeleton,
     howItWorks: HowItWorksSectionSkeleton,
     industries: IndustriesSectionSkeleton,
     newsletter: NewsletterSectionSkeleton,

@@ -11,7 +11,7 @@
  * - Play button for videos
  */
 
-import React, { forwardRef, useMemo, useState } from 'react';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 // ============================================================================
@@ -290,6 +290,7 @@ const CMS_Media = forwardRef(({
   const [hasError, setHasError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
 
   // Determine actual media type
   const mediaType = useMemo(() => {
@@ -413,6 +414,7 @@ const CMS_Media = forwardRef(({
   const renderVideo = () => {
     return (
       <video
+        ref={videoRef}
         src={src}
         poster={poster}
         controls={controls}
@@ -421,7 +423,7 @@ const CMS_Media = forwardRef(({
         muted={muted}
         playsInline={playsInline}
         className={mediaClasses}
-        onLoad={handleLoad}
+        onLoadedData={handleLoad}
         onError={handleError}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
@@ -534,7 +536,7 @@ const CMS_Media = forwardRef(({
     return (
       <button
         onClick={() => {
-          const video = document.querySelector('video');
+          const video = videoRef.current;
           if (video) {
             if (isPlaying) video.pause();
             else video.play();
@@ -576,12 +578,14 @@ const CMS_Media = forwardRef(({
 
   // Container element
   const Container = href ? 'a' : 'div';
+  const rel = href && target === '_blank' ? 'noreferrer' : undefined;
 
   return (
     <Container
       ref={ref}
       href={href}
       target={target}
+      rel={rel}
       className={containerClasses}
       style={style}
       onMouseEnter={() => setIsHovered(true)}
