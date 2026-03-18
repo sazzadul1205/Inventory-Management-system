@@ -11,10 +11,10 @@ import {
   HiOutlineUsers,
   HiOutlineGlobeAlt,
   HiOutlineClock,
-  HiOutlineTrophy,
   HiOutlineHeart,
   HiOutlineArrowRight,
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 import { FaAward, FaCertificate, FaRibbon } from 'react-icons/fa';
 
 const TrustSignalsSection1 = ({ config }) => {

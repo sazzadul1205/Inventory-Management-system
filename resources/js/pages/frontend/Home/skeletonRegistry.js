@@ -12,6 +12,7 @@ import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
 import PartnersSectionSkeleton from './PartnersSection/PartnersSectionSkeleton';
 import HowItWorksSectionSkeleton from './HowItWorksSection/HowItWorksSectionSkeleton';
 import IndustriesSectionSkeleton from './IndustriesSection/IndustriesSectionSkeleton';
+import NewsletterSectionSkeleton from './NewsletterSection/NewsletterSectionSkeleton';
 import WhyChooseUsSectionSkeleton from './WhyChooseUsSection/WhyChooseUsSectionSkeleton';
 import TestimonialsSectionSkeleton from './TestimonialsSection/TestimonialsSectionSkeleton';
 import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSectionSkeleton';
@@ -33,11 +34,12 @@ export const skeletonRegistry = {
     features: FeaturesSectionSkeleton,
     howItWorks: HowItWorksSectionSkeleton,
     industries: IndustriesSectionSkeleton,
+    newsletter: NewsletterSectionSkeleton,
     whyChooseUs: WhyChooseUsSectionSkeleton,
+    trustSignal: TrustSignalsSectionSkeleton,
     testimonials: TestimonialsSectionSkeleton,
     pricingPlans: PricingPlansSectionSkeleton,
     integrations: IntegrationsSectionSkeleton,
-    trustSignals: TrustSignalsSectionSkeleton,
     globalPresence: GlobalPresenceSectionSkeleton,
     successStories: SuccessStoriesSectionSkeleton,
 };

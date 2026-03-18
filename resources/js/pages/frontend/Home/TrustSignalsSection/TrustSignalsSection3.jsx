@@ -12,7 +12,6 @@ import {
   HiOutlineUsers,
   HiOutlineGlobeAlt,
   HiOutlineClock,
-  HiOutlineTrophy,
   HiOutlineHeart,
   HiOutlineArrowRight,
   HiOutlineSparkles,
@@ -23,6 +22,7 @@ import {
   HiOutlineDocumentText,
   HiOutlineEye,
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 import { FaAward, FaCertificate, } from 'react-icons/fa';
 
 const TrustSignalsSection3 = ({ config }) => {

@@ -32,6 +32,7 @@ import PartnersConfig from "./JSON/PartnersConfig.json";
 import GlobalPresenceConfig from "./JSON/GlobalPresenceConfig.json";
 import CareerConfig from "./JSON/CareerConfig.json";
 import TrustSignalConfig from "./JSON/TrustSignalsConfig.json";
+import NewsletterConfig from "./JSON/NewsletterConfig.json";
 
 
 // Map section → JSON config
@@ -54,7 +55,8 @@ const configMap = {
   partner: PartnersConfig,
   globalPresence: GlobalPresenceConfig,
   career: CareerConfig,
-  trustSignal: TrustSignalConfig
+  trustSignal: TrustSignalConfig,
+  newsletter: NewsletterConfig,
 };
 
 // ============================================================================
@@ -76,12 +78,13 @@ const pageConfig = {
     aboutUs: { enabled: false, variant: "variant3", order: 11, props: {} },
     whyChooseUs: { enabled: false, variant: "variant3", order: 12, props: {} },
     integrations: { enabled: false, variant: "variant3", order: 13, props: {} },
-    blog: { enabled: false, variant: "variant3", order: 14, props: {} },
+    news: { enabled: false, variant: "variant3", order: 14, props: {} },
     news: { enabled: false, variant: "variant3", order: 15, props: {} },
     partner: { enabled: false, variant: "variant3", order: 16, props: {} },
     globalPresence: { enabled: false, variant: "variant3", order: 17, props: {} },
-    career: { enabled: true, variant: "variant3", order: 18, props: {} },
-    trustSignal: { enabled: false, variant: "variant3", order: 19, props: {} }, 
+    career: { enabled: false, variant: "variant3", order: 18, props: {} },
+    trustSignal: { enabled: false, variant: "variant3", order: 19, props: {} },
+    newsletter: { enabled: true, variant: "variant3", order: 20, props: {} },
   },
 
   global: {

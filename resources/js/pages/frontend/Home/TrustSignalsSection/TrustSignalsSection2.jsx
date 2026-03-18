@@ -12,7 +12,6 @@ import {
   HiOutlineUsers,
   HiOutlineGlobeAlt,
   HiOutlineClock,
-  HiOutlineTrophy,
   HiOutlineHeart,
   HiOutlineArrowRight,
   HiOutlineSparkles,
@@ -21,7 +20,9 @@ import {
   HiOutlineServer,
   HiOutlineScale,
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 import { FaAward, FaCertificate, FaRibbon } from 'react-icons/fa';
+
 
 const TrustSignalsSection2 = ({ config }) => {
   // State for active tab

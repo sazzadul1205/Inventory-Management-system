@@ -1,5 +1,5 @@
 {
-    "trustSignalsSection1": {
+    "trustSignalSection1": {
         "badge": {
             "show": true,
             "text": "✦ TRUSTED PARTNER",
@@ -182,7 +182,7 @@
             "contact": "/contact"
         }
     },
-    "trustSignalsSection2": {
+    "trustSignalSection2": {
         "badge": {
             "text": "TRUST & SECURITY"
         },
@@ -474,7 +474,7 @@
             "contact": "/contact"
         }
     },
-    "trustSignalsSection3": {
+    "trustSignalSection3": {
         "badge": {
             "show": true,
             "text": "✦ TRUSTED WORLDWIDE",
@@ -663,7 +663,7 @@
             "contact": "/contact"
         }
     },
-    "trustSignalsSectionCustom": {
+    "trustSignalSectionCustom": {
         "uid": "trust-signals-custom-001",
         "component": "CMS_Section",
         "classes": {

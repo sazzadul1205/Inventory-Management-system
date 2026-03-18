@@ -132,9 +132,16 @@ export const sectionRegistry = {
     },
 
     // trust signals
-    trustSignals: {
+    trustSignal: {
         variant1: lazy(() => import('./TrustSignalsSection/TrustSignalsSection1')),
         variant2: lazy(() => import('./TrustSignalsSection/TrustSignalsSection2')),
         variant3: lazy(() => import('./TrustSignalsSection/TrustSignalsSection3')),
+    },
+
+    // newsletter
+    newsletter: {
+        variant1: lazy(() => import('./NewsletterSection/NewsletterSection1')),
+        variant2: lazy(() => import('./NewsletterSection/NewsletterSection2')),
+        variant3: lazy(() => import('./NewsletterSection/NewsletterSection3')),
     },
 };
