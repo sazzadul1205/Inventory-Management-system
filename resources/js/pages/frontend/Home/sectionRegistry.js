@@ -151,4 +151,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./MobileAppSection/MobileAppSection2')),
         variant3: lazy(() => import('./MobileAppSection/MobileAppSection3')),
     },
+
+    // event
+    event: {
+        variant1: lazy(() => import('./EventsSection/EventsSection1')),
+        variant2: lazy(() => import('./EventsSection/EventsSection1')),
+        variant3: lazy(() => import('./EventsSection/EventsSection3')),
+    },
 };

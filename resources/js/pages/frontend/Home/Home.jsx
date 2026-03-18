@@ -34,6 +34,7 @@ import CareerConfig from "./JSON/CareerConfig.json";
 import TrustSignalConfig from "./JSON/TrustSignalsConfig.json";
 import NewsletterConfig from "./JSON/NewsletterConfig.json";
 import MobileAppConfig from "./JSON/MobileAppConfig.json"
+import EventsConfig from "./JSON/EventConfig.json";
 
 
 // Map section → JSON config
@@ -59,6 +60,7 @@ const configMap = {
   trustSignal: TrustSignalConfig,
   newsletter: NewsletterConfig,
   mobileApp: MobileAppConfig,
+  event: EventsConfig,
 };
 
 // ============================================================================
@@ -81,13 +83,13 @@ const pageConfig = {
     whyChooseUs: { enabled: false, variant: "variant3", order: 12, props: {} },
     integrations: { enabled: false, variant: "variant3", order: 13, props: {} },
     news: { enabled: false, variant: "variant3", order: 14, props: {} },
-    news: { enabled: false, variant: "variant3", order: 15, props: {} },
-    partner: { enabled: false, variant: "variant3", order: 16, props: {} },
-    globalPresence: { enabled: false, variant: "variant3", order: 17, props: {} },
-    career: { enabled: false, variant: "variant3", order: 18, props: {} },
-    trustSignal: { enabled: false, variant: "variant3", order: 19, props: {} },
-    newsletter: { enabled: false, variant: "variant3", order: 20, props: {} },
-    mobileApp: { enabled: true, variant: "variant1", order: 21, props: {} },
+    partner: { enabled: false, variant: "variant3", order: 15, props: {} },
+    globalPresence: { enabled: false, variant: "variant3", order: 16, props: {} },
+    career: { enabled: false, variant: "variant3", order: 17, props: {} },
+    trustSignal: { enabled: false, variant: "variant3", order: 18, props: {} },
+    newsletter: { enabled: false, variant: "variant3", order: 19, props: {} },
+    mobileApp: { enabled: false, variant: "variant3", order: 20, props: {} },
+    event: { enabled: true, variant: "variant3", order: 21, props: {} },
   },
 
   global: {
