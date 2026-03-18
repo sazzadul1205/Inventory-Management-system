@@ -1,6 +1,6 @@
 // Page/frontend/Home/skeletonRegistry.js
 
-// Components
+// Components Skeleton
 import FAQSectionSkeleton from './FAQSection/FAQSectionSkeleton';
 import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
 import BlogSectionSkeleton from './BlogSection/BlogSectionSkeleton';
@@ -8,6 +8,7 @@ import NewsSectionSkeleton from './NewsSection/NewsSectionSkeleton';
 import ContactSectionSkeleton from './ContactSection/ContactSectionSkeleton';
 import ServicesSectionSkeleton from './ServicesSection/ServicesSectionSkeleton';
 import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
+import PartnersSectionSkeleton from './PartnersSection/PartnersSectionSkeleton';
 import HowItWorksSectionSkeleton from './HowItWorksSection/HowItWorksSectionSkeleton';
 import IndustriesSectionSkeleton from './IndustriesSection/IndustriesSectionSkeleton';
 import WhyChooseUsSectionSkeleton from './WhyChooseUsSection/WhyChooseUsSectionSkeleton';
@@ -16,14 +17,14 @@ import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSecti
 import IntegrationsSectionSkeleton from './IntegrationsSection/IntegrationsSectionSkeleton';
 import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStoriesSectionSkeleton';
 
-
-// Export
+// Export Skeleton
 export const skeletonRegistry = {
     faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,
     news: NewsSectionSkeleton,
     blog: BlogSectionSkeleton,
     contact: ContactSectionSkeleton,
+    partner: PartnersSectionSkeleton,
     services: ServicesSectionSkeleton,
     features: FeaturesSectionSkeleton,
     howItWorks: HowItWorksSectionSkeleton,

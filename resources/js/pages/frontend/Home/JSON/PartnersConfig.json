@@ -1,0 +1,1905 @@
+{
+    "partnerSection1": {
+        "badge": {
+            "show": true,
+            "text": "✦ OUR PARTNERS",
+            "backgroundColor": "bg-indigo-100 dark:bg-indigo-900/30",
+            "borderColor": "border-indigo-200 dark:border-indigo-800",
+            "textColor": "text-indigo-800 dark:text-indigo-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Trusted by",
+            "highlightedText": "Industry Leaders",
+            "highlightColor": "text-indigo-600 dark:text-indigo-400",
+            "suffix": ""
+        },
+        "description": "We collaborate with the best-in-class technology providers, consultants, and logistics experts to deliver comprehensive solutions to our customers.",
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "50+",
+                    "label": "Global Partners"
+                },
+                {
+                    "value": "25+",
+                    "label": "Integration Partners"
+                },
+                {
+                    "value": "15+",
+                    "label": "Countries"
+                },
+                {
+                    "value": "98%",
+                    "label": "Partner Satisfaction"
+                }
+            ]
+        },
+        "featured": {
+            "show": true,
+            "name": "Microsoft",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+            "type": "Strategic",
+            "description": "As a Microsoft Gold Partner, we deliver integrated solutions that leverage Azure cloud infrastructure and AI capabilities to power next-generation inventory management.",
+            "badges": ["Gold Partner", "Azure Expert", "ISV Partner"],
+            "link": "/partners/microsoft",
+            "metrics": [
+                {
+                    "value": "150+",
+                    "label": "Joint Customers"
+                },
+                {
+                    "value": "99.9%",
+                    "label": "Uptime SLA"
+                },
+                {
+                    "value": "3x",
+                    "label": "Faster Deployment"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Premium Support"
+                }
+            ]
+        },
+        "partners": [
+            {
+                "id": "partner-1",
+                "name": "Microsoft",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+                "type": "Strategic Partner",
+                "description": "Cloud infrastructure and AI capabilities for scalable inventory management.",
+                "link": "/partners/microsoft"
+            },
+            {
+                "id": "partner-2",
+                "name": "AWS",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+                "type": "Technology Partner",
+                "description": "Secure and reliable cloud hosting with global reach.",
+                "link": "/partners/aws"
+            },
+            {
+                "id": "partner-3",
+                "name": "Salesforce",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+                "type": "Integration Partner",
+                "description": "Seamless CRM integration for customer-centric supply chains.",
+                "link": "/partners/salesforce"
+            },
+            {
+                "id": "partner-4",
+                "name": "Shopify",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+                "type": "Commerce Partner",
+                "description": "Native integration for e-commerce inventory synchronization.",
+                "link": "/partners/shopify"
+            },
+            {
+                "id": "partner-5",
+                "name": "DHL",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a4/DHL_Logo.svg",
+                "type": "Logistics Partner",
+                "description": "Global shipping and tracking integration for end-to-end visibility.",
+                "link": "/partners/dhl"
+            },
+            {
+                "id": "partner-6",
+                "name": "Oracle",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+                "type": "Technology Partner",
+                "description": "Enterprise database integration for large-scale deployments.",
+                "link": "/partners/oracle"
+            },
+            {
+                "id": "partner-7",
+                "name": "SAP",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg",
+                "type": "Strategic Partner",
+                "description": "Deep integration with SAP ERP systems for seamless data flow.",
+                "link": "/partners/sap"
+            },
+            {
+                "id": "partner-8",
+                "name": "Accenture",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
+                "type": "Consulting Partner",
+                "description": "Global system integration and implementation services.",
+                "link": "/partners/accenture"
+            }
+        ],
+        "cta": {
+            "show": true,
+            "title": "Become a Partner",
+            "description": "Join our partner ecosystem and help businesses transform their supply chain operations.",
+            "primaryButton": {
+                "text": "Apply for Partnership",
+                "url": "/partners/apply"
+            },
+            "secondaryButton": {
+                "show": true,
+                "text": "Learn More",
+                "url": "/partners"
+            },
+            "note": "No minimum requirements. All partnership levels welcome."
+        },
+        "testimonials": {
+            "show": true,
+            "items": [
+                {
+                    "partner": "Tech Solutions Inc.",
+                    "logo": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&q=80",
+                    "author": "John Smith, CTO",
+                    "quote": "Working with Sazzad has been transformative for our business. Their platform and support team are exceptional.",
+                    "rating": 5
+                },
+                {
+                    "partner": "Global Logistics Co.",
+                    "logo": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&q=80",
+                    "author": "Maria Garcia, VP Operations",
+                    "quote": "The integration was seamless and our customers love the real-time tracking capabilities.",
+                    "rating": 5
+                },
+                {
+                    "partner": "InnovateTech",
+                    "logo": "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=200&q=80",
+                    "author": "David Lee, Product Manager",
+                    "quote": "Sazzad's API is well-documented and their developer support is top-notch.",
+                    "rating": 4
+                }
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "partnerSection2": {
+        "badge": {
+            "text": "PARTNER ECOSYSTEM"
+        },
+        "heading": {
+            "line1": "Our",
+            "highlighted": "Global Partners"
+        },
+        "description": "We collaborate with industry-leading technology providers, consultants, and logistics experts to deliver comprehensive solutions to our customers.",
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "50+",
+                    "label": "Global Partners"
+                },
+                {
+                    "value": "25+",
+                    "label": "Integrations"
+                },
+                {
+                    "value": "15+",
+                    "label": "Countries"
+                },
+                {
+                    "value": "98%",
+                    "label": "Satisfaction"
+                }
+            ]
+        },
+        "search": {
+            "placeholder": "Search partners by name, type, or technology..."
+        },
+        "pagination": {
+            "perPage": 8
+        },
+        "partners": [
+            {
+                "id": "partner-1",
+                "name": "Microsoft",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+                "type": "Strategic",
+                "description": "Cloud infrastructure and AI capabilities for scalable inventory management.",
+                "featured": true,
+                "tags": ["Azure", "AI", "Cloud"],
+                "link": "/partners/microsoft"
+            },
+            {
+                "id": "partner-2",
+                "name": "AWS",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+                "type": "Technology",
+                "description": "Secure and reliable cloud hosting with global reach.",
+                "featured": true,
+                "tags": ["Cloud", "Infrastructure", "Global"],
+                "link": "/partners/aws"
+            },
+            {
+                "id": "partner-3",
+                "name": "Salesforce",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+                "type": "Integration",
+                "description": "Seamless CRM integration for customer-centric supply chains.",
+                "tags": ["CRM", "Integration", "Sales"],
+                "link": "/partners/salesforce"
+            },
+            {
+                "id": "partner-4",
+                "name": "Shopify",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+                "type": "Commerce",
+                "description": "Native integration for e-commerce inventory synchronization.",
+                "tags": ["E-commerce", "Integration", "Retail"],
+                "link": "/partners/shopify"
+            },
+            {
+                "id": "partner-5",
+                "name": "DHL",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a4/DHL_Logo.svg",
+                "type": "Logistics",
+                "description": "Global shipping and tracking integration for end-to-end visibility.",
+                "tags": ["Shipping", "Tracking", "Global"],
+                "link": "/partners/dhl"
+            },
+            {
+                "id": "partner-6",
+                "name": "Oracle",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+                "type": "Technology",
+                "description": "Enterprise database integration for large-scale deployments.",
+                "tags": ["Database", "ERP", "Enterprise"],
+                "link": "/partners/oracle"
+            },
+            {
+                "id": "partner-7",
+                "name": "SAP",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg",
+                "type": "Strategic",
+                "description": "Deep integration with SAP ERP systems for seamless data flow.",
+                "featured": true,
+                "tags": ["ERP", "Enterprise", "Integration"],
+                "link": "/partners/sap"
+            },
+            {
+                "id": "partner-8",
+                "name": "Accenture",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
+                "type": "Consulting",
+                "description": "Global system integration and implementation services.",
+                "tags": ["Consulting", "Implementation", "Services"],
+                "link": "/partners/accenture"
+            },
+            {
+                "id": "partner-9",
+                "name": "Google Cloud",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+                "type": "Technology",
+                "description": "Scalable cloud infrastructure and machine learning capabilities.",
+                "tags": ["Cloud", "AI", "ML"],
+                "link": "/partners/google-cloud"
+            },
+            {
+                "id": "partner-10",
+                "name": "IBM",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+                "type": "Technology",
+                "description": "Enterprise solutions and AI-powered analytics.",
+                "tags": ["AI", "Analytics", "Enterprise"],
+                "link": "/partners/ibm"
+            },
+            {
+                "id": "partner-11",
+                "name": "FedEx",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b4/FedEx_Logo.svg",
+                "type": "Logistics",
+                "description": "Global shipping and freight solutions.",
+                "tags": ["Shipping", "Freight", "Global"],
+                "link": "/partners/fedex"
+            },
+            {
+                "id": "partner-12",
+                "name": "Deloitte",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Deloitte_Logo.svg",
+                "type": "Consulting",
+                "description": "Digital transformation and supply chain consulting.",
+                "tags": ["Consulting", "Strategy", "Transformation"],
+                "link": "/partners/deloitte"
+            }
+        ],
+        "programCta": {
+            "show": true,
+            "title": "Join Our Partner Program",
+            "description": "Grow your business with Sazzad's industry-leading inventory and logistics platform. Access resources, training, and support to help you succeed.",
+            "primaryButton": {
+                "text": "Become a Partner",
+                "url": "/partners/apply"
+            },
+            "secondaryButton": {
+                "text": "Learn More",
+                "url": "/partners/program"
+            },
+            "benefits": [
+                "Revenue sharing up to 30%",
+                "Dedicated partner manager",
+                "Technical training & certification",
+                "Co-marketing opportunities",
+                "Early access to new features",
+                "Partner portal & resources"
+            ]
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "partnerSection3": {
+        "badge": {
+            "show": true,
+            "text": "✦ PARTNER TIERS",
+            "backgroundColor": "bg-indigo-100 dark:bg-indigo-900/30",
+            "borderColor": "border-indigo-200 dark:border-indigo-800",
+            "textColor": "text-indigo-800 dark:text-indigo-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Our",
+            "highlightedText": "Partner Ecosystem",
+            "highlightColor": "text-indigo-600 dark:text-indigo-400",
+            "suffix": ""
+        },
+        "description": "We collaborate with industry-leading partners across multiple tiers to deliver comprehensive solutions to our customers worldwide.",
+        "featured": {
+            "show": true,
+            "name": "Microsoft",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+            "type": "Strategic",
+            "tier": "Platinum",
+            "region": "Global",
+            "description": "As a Microsoft Platinum Partner, we deliver integrated solutions that leverage Azure cloud infrastructure and AI capabilities to power next-generation inventory management for enterprise customers.",
+            "link": "/partners/microsoft",
+            "metrics": [
+                {
+                    "value": "150+",
+                    "label": "Joint Customers"
+                },
+                {
+                    "value": "99.9%",
+                    "label": "Uptime SLA"
+                },
+                {
+                    "value": "3x",
+                    "label": "Faster Deployment"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Support"
+                }
+            ]
+        },
+        "partners": [
+            {
+                "id": "partner-1",
+                "name": "Microsoft",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+                "type": "Strategic",
+                "tier": "Platinum",
+                "description": "Cloud infrastructure and AI capabilities for scalable inventory management.",
+                "tags": ["Azure", "AI", "Cloud"],
+                "link": "/partners/microsoft"
+            },
+            {
+                "id": "partner-2",
+                "name": "AWS",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+                "type": "Technology",
+                "tier": "Gold",
+                "description": "Secure and reliable cloud hosting with global reach and enterprise-grade security.",
+                "tags": ["Cloud", "Infrastructure", "Global"],
+                "link": "/partners/aws"
+            },
+            {
+                "id": "partner-3",
+                "name": "Salesforce",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+                "type": "Integration",
+                "tier": "Gold",
+                "description": "Seamless CRM integration for customer-centric supply chains and sales operations.",
+                "tags": ["CRM", "Integration", "Sales"],
+                "link": "/partners/salesforce"
+            },
+            {
+                "id": "partner-4",
+                "name": "Shopify",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+                "type": "Commerce",
+                "tier": "Silver",
+                "description": "Native integration for e-commerce inventory synchronization and order management.",
+                "tags": ["E-commerce", "Integration", "Retail"],
+                "link": "/partners/shopify"
+            },
+            {
+                "id": "partner-5",
+                "name": "DHL",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a4/DHL_Logo.svg",
+                "type": "Logistics",
+                "tier": "Gold",
+                "description": "Global shipping and tracking integration for end-to-end supply chain visibility.",
+                "tags": ["Shipping", "Tracking", "Global"],
+                "link": "/partners/dhl"
+            },
+            {
+                "id": "partner-6",
+                "name": "Oracle",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+                "type": "Technology",
+                "tier": "Silver",
+                "description": "Enterprise database integration for large-scale deployments and data management.",
+                "tags": ["Database", "ERP", "Enterprise"],
+                "link": "/partners/oracle"
+            },
+            {
+                "id": "partner-7",
+                "name": "SAP",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg",
+                "type": "Strategic",
+                "tier": "Platinum",
+                "description": "Deep integration with SAP ERP systems for seamless data flow and process automation.",
+                "tags": ["ERP", "Enterprise", "Integration"],
+                "link": "/partners/sap"
+            },
+            {
+                "id": "partner-8",
+                "name": "Accenture",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
+                "type": "Consulting",
+                "tier": "Platinum",
+                "description": "Global system integration and implementation services for enterprise customers.",
+                "tags": ["Consulting", "Implementation", "Services"],
+                "link": "/partners/accenture"
+            },
+            {
+                "id": "partner-9",
+                "name": "Google Cloud",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+                "type": "Technology",
+                "tier": "Gold",
+                "description": "Scalable cloud infrastructure and machine learning capabilities for advanced analytics.",
+                "tags": ["Cloud", "AI", "ML"],
+                "link": "/partners/google-cloud"
+            },
+            {
+                "id": "partner-10",
+                "name": "IBM",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+                "type": "Technology",
+                "tier": "Silver",
+                "description": "Enterprise solutions and AI-powered analytics for supply chain optimization.",
+                "tags": ["AI", "Analytics", "Enterprise"],
+                "link": "/partners/ibm"
+            },
+            {
+                "id": "partner-11",
+                "name": "FedEx",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b4/FedEx_Logo.svg",
+                "type": "Logistics",
+                "tier": "Bronze",
+                "description": "Global shipping and freight solutions with real-time tracking integration.",
+                "tags": ["Shipping", "Freight", "Global"],
+                "link": "/partners/fedex"
+            },
+            {
+                "id": "partner-12",
+                "name": "Deloitte",
+                "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Deloitte_Logo.svg",
+                "type": "Consulting",
+                "tier": "Gold",
+                "description": "Digital transformation and supply chain consulting for enterprise clients.",
+                "tags": ["Consulting", "Strategy", "Transformation"],
+                "link": "/partners/deloitte"
+            }
+        ],
+        "pagination": {
+            "perPage": 6
+        },
+        "testimonial": {
+            "show": true,
+            "partner": "Tech Solutions Inc.",
+            "logo": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&q=80",
+            "author": "John Smith, CTO",
+            "quote": "Working with Sazzad has been transformative for our business. Their platform and support team are exceptional, and the partner program provides us with the resources we need to succeed.",
+            "rating": 5
+        },
+        "viewAll": {
+            "show": true,
+            "text": "View All Partners",
+            "url": "/partners"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "partnerSectionCustom": {
+        "uid": "partners-section-custom-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-indigo-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Partners - Sazzad Inventory & Logistics",
+            "description": "Meet our global partners who help us deliver comprehensive inventory and logistics solutions to businesses worldwide.",
+            "keywords": "partners, technology partners, integration partners, logistics partners, strategic alliances",
+            "structuredData": {
+                "@type": "Organization",
+                "name": "Sazzad Partners",
+                "description": "Our partner ecosystem"
+            }
+        },
+        "children": [
+            {
+                "uid": "partners-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "partners-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ OUR PARTNERS",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200 border border-indigo-200 dark:border-indigo-800"
+                        },
+                        "showPulse": true,
+                        "pulse": true
+                    },
+                    {
+                        "uid": "partners-title-004",
+                        "component": "CMS_H2",
+                        "text": "Trusted by Industry Leaders",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 11,
+                                "end": 26,
+                                "class": "text-indigo-600 dark:text-indigo-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "partners-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "We collaborate with the best-in-class technology providers, consultants, and logistics experts to deliver comprehensive solutions to our customers.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "partners-stats-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid grid-cols-2 md:grid-cols-4 gap-8 px-4 mb-16"
+                },
+                "children": [
+                    {
+                        "uid": "stat-1-007",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-1-value-008",
+                                "component": "CMS_H3",
+                                "text": "50+",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-1-label-009",
+                                "component": "CMS_Span",
+                                "text": "Global Partners",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-2-010",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-2-value-011",
+                                "component": "CMS_H3",
+                                "text": "25+",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-2-label-012",
+                                "component": "CMS_Span",
+                                "text": "Integration Partners",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-3-013",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-3-value-014",
+                                "component": "CMS_H3",
+                                "text": "15+",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-3-label-015",
+                                "component": "CMS_Span",
+                                "text": "Countries",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "stat-4-016",
+                        "component": "CMS_Container",
+                        "classes": {
+                            "base": "text-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "stat-4-value-017",
+                                "component": "CMS_H3",
+                                "text": "98%",
+                                "classes": {
+                                    "base": "text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                }
+                            },
+                            {
+                                "uid": "stat-4-label-018",
+                                "component": "CMS_Span",
+                                "text": "Partner Satisfaction",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "featured-partner-019",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mb-20"
+                },
+                "children": [
+                    {
+                        "uid": "featured-card-020",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "lg",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl p-8 md:p-12 border border-indigo-100 dark:border-indigo-800/30"
+                        },
+                        "children": [
+                            {
+                                "uid": "featured-grid-021",
+                                "component": "CMS_Grid",
+                                "classes": {
+                                    "base": "grid",
+                                    "lg": "lg:grid-cols-2 lg:gap-12"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "featured-left-022",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "space-y-6"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "featured-logo-row-023",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center space-x-4"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "featured-logo-024",
+                                                        "component": "CMS_Media",
+                                                        "type": "image",
+                                                        "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+                                                        "alt": "Microsoft",
+                                                        "aspectRatio": "1/1",
+                                                        "classes": {
+                                                            "base": "w-20 h-20 bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden p-3",
+                                                            "media": "w-full h-full object-contain"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "featured-title-block-025",
+                                                        "component": "CMS_Container",
+                                                        "children": [
+                                                            {
+                                                                "uid": "featured-name-026",
+                                                                "component": "CMS_H3",
+                                                                "text": "Microsoft",
+                                                                "classes": {
+                                                                    "base": "text-2xl font-bold text-gray-900 dark:text-white"
+                                                                }
+                                                            },
+                                                            {
+                                                                "uid": "featured-type-027",
+                                                                "component": "CMS_Span",
+                                                                "text": "Strategic Partner",
+                                                                "classes": {
+                                                                    "base": "text-indigo-600 dark:text-indigo-400 font-medium"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "featured-description-028",
+                                                "component": "CMS_Paragraph",
+                                                "text": "As a Microsoft Gold Partner, we deliver integrated solutions that leverage Azure cloud infrastructure and AI capabilities to power next-generation inventory management.",
+                                                "classes": {
+                                                    "base": "text-lg text-gray-600 dark:text-gray-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "featured-badges-029",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "flex-wrap gap-4"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "badge-1-030",
+                                                        "component": "CMS_Badge",
+                                                        "text": "Gold Partner",
+                                                        "size": "md",
+                                                        "variant": "outline",
+                                                        "icon": "HiOutlineBadgeCheck",
+                                                        "iconLibrary": "hi",
+                                                        "classes": {
+                                                            "base": "inline-flex items-center bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-gray-700"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "badge-2-031",
+                                                        "component": "CMS_Badge",
+                                                        "text": "Azure Expert",
+                                                        "size": "md",
+                                                        "variant": "outline",
+                                                        "icon": "HiOutlineBadgeCheck",
+                                                        "iconLibrary": "hi",
+                                                        "classes": {
+                                                            "base": "inline-flex items-center bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-gray-700"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "badge-3-032",
+                                                        "component": "CMS_Badge",
+                                                        "text": "ISV Partner",
+                                                        "size": "md",
+                                                        "variant": "outline",
+                                                        "icon": "HiOutlineBadgeCheck",
+                                                        "iconLibrary": "hi",
+                                                        "classes": {
+                                                            "base": "inline-flex items-center bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-gray-700"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "featured-link-033",
+                                                "component": "CMS_Button",
+                                                "text": "Learn more about our partnership",
+                                                "size": "md",
+                                                "href": "/partners/microsoft",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "variant": "link",
+                                                "classes": {
+                                                    "base": "inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors group"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "featured-right-034",
+                                        "component": "CMS_Grid",
+                                        "classes": {
+                                            "base": "grid grid-cols-2 gap-6"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "metric-1-035",
+                                                "component": "CMS_Card",
+                                                "variant": "elevated",
+                                                "size": "sm",
+                                                "classes": {
+                                                    "container": "bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-1-value-036",
+                                                        "component": "CMS_H4",
+                                                        "text": "150+",
+                                                        "classes": {
+                                                            "base": "text-2xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-1-label-037",
+                                                        "component": "CMS_Span",
+                                                        "text": "Joint Customers",
+                                                        "classes": {
+                                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "metric-2-038",
+                                                "component": "CMS_Card",
+                                                "variant": "elevated",
+                                                "size": "sm",
+                                                "classes": {
+                                                    "container": "bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-2-value-039",
+                                                        "component": "CMS_H4",
+                                                        "text": "99.9%",
+                                                        "classes": {
+                                                            "base": "text-2xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-2-label-040",
+                                                        "component": "CMS_Span",
+                                                        "text": "Uptime SLA",
+                                                        "classes": {
+                                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "metric-3-041",
+                                                "component": "CMS_Card",
+                                                "variant": "elevated",
+                                                "size": "sm",
+                                                "classes": {
+                                                    "container": "bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-3-value-042",
+                                                        "component": "CMS_H4",
+                                                        "text": "3x",
+                                                        "classes": {
+                                                            "base": "text-2xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-3-label-043",
+                                                        "component": "CMS_Span",
+                                                        "text": "Faster Deployment",
+                                                        "classes": {
+                                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "metric-4-044",
+                                                "component": "CMS_Card",
+                                                "variant": "elevated",
+                                                "size": "sm",
+                                                "classes": {
+                                                    "container": "bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "metric-4-value-045",
+                                                        "component": "CMS_H4",
+                                                        "text": "24/7",
+                                                        "classes": {
+                                                            "base": "text-2xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "metric-4-label-046",
+                                                        "component": "CMS_Span",
+                                                        "text": "Premium Support",
+                                                        "classes": {
+                                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "partners-grid-047",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4"
+                },
+                "children": [
+                    {
+                        "uid": "partner-1-048",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "partner-1-logo-049",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_(2012).svg",
+                                "alt": "Microsoft",
+                                "aspectRatio": "16/9",
+                                "classes": {
+                                    "base": "h-24 flex items-center justify-center mb-4",
+                                    "media": "max-h-full w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                                }
+                            },
+                            {
+                                "uid": "partner-1-name-050",
+                                "component": "CMS_H4",
+                                "text": "Microsoft",
+                                "classes": {
+                                    "base": "text-lg font-bold text-gray-900 dark:text-white text-center mb-2"
+                                }
+                            },
+                            {
+                                "uid": "partner-1-type-051",
+                                "component": "CMS_Span",
+                                "text": "Strategic",
+                                "classes": {
+                                    "base": "text-sm text-indigo-600 dark:text-indigo-400 text-center block mb-3"
+                                }
+                            },
+                            {
+                                "uid": "partner-1-desc-052",
+                                "component": "CMS_Paragraph",
+                                "text": "Cloud infrastructure and AI capabilities for scalable inventory management.",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400 text-center line-clamp-2 mb-4"
+                                }
+                            },
+                            {
+                                "uid": "partner-1-link-053",
+                                "component": "CMS_Button",
+                                "text": "Learn More",
+                                "size": "sm",
+                                "href": "/partners/microsoft",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors mx-auto"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "partner-2-054",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "partner-2-logo-055",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+                                "alt": "AWS",
+                                "aspectRatio": "16/9",
+                                "classes": {
+                                    "base": "h-24 flex items-center justify-center mb-4",
+                                    "media": "max-h-full w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                                }
+                            },
+                            {
+                                "uid": "partner-2-name-056",
+                                "component": "CMS_H4",
+                                "text": "AWS",
+                                "classes": {
+                                    "base": "text-lg font-bold text-gray-900 dark:text-white text-center mb-2"
+                                }
+                            },
+                            {
+                                "uid": "partner-2-type-057",
+                                "component": "CMS_Span",
+                                "text": "Technology",
+                                "classes": {
+                                    "base": "text-sm text-indigo-600 dark:text-indigo-400 text-center block mb-3"
+                                }
+                            },
+                            {
+                                "uid": "partner-2-desc-058",
+                                "component": "CMS_Paragraph",
+                                "text": "Secure and reliable cloud hosting with global reach.",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400 text-center line-clamp-2 mb-4"
+                                }
+                            },
+                            {
+                                "uid": "partner-2-link-059",
+                                "component": "CMS_Button",
+                                "text": "Learn More",
+                                "size": "sm",
+                                "href": "/partners/aws",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors mx-auto"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "partner-3-060",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "partner-3-logo-061",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
+                                "alt": "Salesforce",
+                                "aspectRatio": "16/9",
+                                "classes": {
+                                    "base": "h-24 flex items-center justify-center mb-4",
+                                    "media": "max-h-full w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                                }
+                            },
+                            {
+                                "uid": "partner-3-name-062",
+                                "component": "CMS_H4",
+                                "text": "Salesforce",
+                                "classes": {
+                                    "base": "text-lg font-bold text-gray-900 dark:text-white text-center mb-2"
+                                }
+                            },
+                            {
+                                "uid": "partner-3-type-063",
+                                "component": "CMS_Span",
+                                "text": "Integration",
+                                "classes": {
+                                    "base": "text-sm text-indigo-600 dark:text-indigo-400 text-center block mb-3"
+                                }
+                            },
+                            {
+                                "uid": "partner-3-desc-064",
+                                "component": "CMS_Paragraph",
+                                "text": "Seamless CRM integration for customer-centric supply chains.",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400 text-center line-clamp-2 mb-4"
+                                }
+                            },
+                            {
+                                "uid": "partner-3-link-065",
+                                "component": "CMS_Button",
+                                "text": "Learn More",
+                                "size": "sm",
+                                "href": "/partners/salesforce",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors mx-auto"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "partner-4-066",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "partner-4-logo-067",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+                                "alt": "Shopify",
+                                "aspectRatio": "16/9",
+                                "classes": {
+                                    "base": "h-24 flex items-center justify-center mb-4",
+                                    "media": "max-h-full w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                                }
+                            },
+                            {
+                                "uid": "partner-4-name-068",
+                                "component": "CMS_H4",
+                                "text": "Shopify",
+                                "classes": {
+                                    "base": "text-lg font-bold text-gray-900 dark:text-white text-center mb-2"
+                                }
+                            },
+                            {
+                                "uid": "partner-4-type-069",
+                                "component": "CMS_Span",
+                                "text": "Commerce",
+                                "classes": {
+                                    "base": "text-sm text-indigo-600 dark:text-indigo-400 text-center block mb-3"
+                                }
+                            },
+                            {
+                                "uid": "partner-4-desc-070",
+                                "component": "CMS_Paragraph",
+                                "text": "Native integration for e-commerce inventory synchronization.",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400 text-center line-clamp-2 mb-4"
+                                }
+                            },
+                            {
+                                "uid": "partner-4-link-071",
+                                "component": "CMS_Button",
+                                "text": "Learn More",
+                                "size": "sm",
+                                "href": "/partners/shopify",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors mx-auto"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "partner-5-072",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "partner-5-logo-073",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://upload.wikimedia.org/wikipedia/commons/a/a4/DHL_Logo.svg",
+                                "alt": "DHL",
+                                "aspectRatio": "16/9",
+                                "classes": {
+                                    "base": "h-24 flex items-center justify-center mb-4",
+                                    "media": "max-h-full w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                                }
+                            },
+                            {
+                                "uid": "partner-5-name-074",
+                                "component": "CMS_H4",
+                                "text": "DHL",
+                                "classes": {
+                                    "base": "text-lg font-bold text-gray-900 dark:text-white text-center mb-2"
+                                }
+                            },
+                            {
+                                "uid": "partner-5-type-075",
+                                "component": "CMS_Span",
+                                "text": "Logistics",
+                                "classes": {
+                                    "base": "text-sm text-indigo-600 dark:text-indigo-400 text-center block mb-3"
+                                }
+                            },
+                            {
+                                "uid": "partner-5-desc-076",
+                                "component": "CMS_Paragraph",
+                                "text": "Global shipping and tracking integration for end-to-end visibility.",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400 text-center line-clamp-2 mb-4"
+                                }
+                            },
+                            {
+                                "uid": "partner-5-link-077",
+                                "component": "CMS_Button",
+                                "text": "Learn More",
+                                "size": "sm",
+                                "href": "/partners/dhl",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors mx-auto"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "partner-6-078",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "partner-6-logo-079",
+                                "component": "CMS_Media",
+                                "type": "image",
+                                "src": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+                                "alt": "Oracle",
+                                "aspectRatio": "16/9",
+                                "classes": {
+                                    "base": "h-24 flex items-center justify-center mb-4",
+                                    "media": "max-h-full w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                                }
+                            },
+                            {
+                                "uid": "partner-6-name-080",
+                                "component": "CMS_H4",
+                                "text": "Oracle",
+                                "classes": {
+                                    "base": "text-lg font-bold text-gray-900 dark:text-white text-center mb-2"
+                                }
+                            },
+                            {
+                                "uid": "partner-6-type-081",
+                                "component": "CMS_Span",
+                                "text": "Technology",
+                                "classes": {
+                                    "base": "text-sm text-indigo-600 dark:text-indigo-400 text-center block mb-3"
+                                }
+                            },
+                            {
+                                "uid": "partner-6-desc-082",
+                                "component": "CMS_Paragraph",
+                                "text": "Enterprise database integration for large-scale deployments.",
+                                "classes": {
+                                    "base": "text-sm text-gray-600 dark:text-gray-400 text-center line-clamp-2 mb-4"
+                                }
+                            },
+                            {
+                                "uid": "partner-6-link-083",
+                                "component": "CMS_Button",
+                                "text": "Learn More",
+                                "size": "sm",
+                                "href": "/partners/oracle",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors mx-auto"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "partners-cta-084",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-085",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "size": "lg",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-bg-086",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute inset-0 opacity-10"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-blob1-087",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-blob2-088",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "cta-content-089",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "relative max-w-3xl mx-auto text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-title-090",
+                                        "component": "CMS_H3",
+                                        "text": "Become a Partner",
+                                        "classes": {
+                                            "base": "text-3xl font-bold mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-description-091",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Join our partner ecosystem and help businesses transform their supply chain operations.",
+                                        "classes": {
+                                            "base": "text-indigo-100 mb-8 text-lg"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-buttons-092",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "flex flex-col sm:flex-row gap-4 justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "cta-primary-093",
+                                                "component": "CMS_Button",
+                                                "text": "Apply for Partnership",
+                                                "size": "lg",
+                                                "href": "/partners/apply",
+                                                "icon": "HiArrowRight",
+                                                "iconLibrary": "hi",
+                                                "iconPosition": "right",
+                                                "classes": {
+                                                    "base": "inline-flex items-center justify-center bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                                }
+                                            },
+                                            {
+                                                "uid": "cta-secondary-094",
+                                                "component": "CMS_Button",
+                                                "text": "Learn More",
+                                                "size": "lg",
+                                                "href": "/partners",
+                                                "classes": {
+                                                    "base": "inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "cta-note-095",
+                                        "component": "CMS_Paragraph",
+                                        "text": "No minimum requirements. All partnership levels welcome.",
+                                        "classes": {
+                                            "base": "text-sm text-indigo-200 mt-6"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "partners-testimonials-096",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "testimonials-title-097",
+                        "component": "CMS_H3",
+                        "text": "What Our Partners Say",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-12"
+                        }
+                    },
+                    {
+                        "uid": "testimonials-grid-098",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid gap-8",
+                            "md": "md:grid-cols-2",
+                            "lg": "lg:grid-cols-3"
+                        },
+                        "children": [
+                            {
+                                "uid": "testimonial-1-099",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "testimonial-1-header-100",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "testimonial-1-logo-101",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&q=80",
+                                                "alt": "Tech Solutions Inc.",
+                                                "aspectRatio": "1/1",
+                                                "classes": {
+                                                    "base": "w-12 h-12 bg-white dark:bg-gray-700 rounded-lg overflow-hidden p-2 mr-3",
+                                                    "media": "w-full h-full object-contain"
+                                                }
+                                            },
+                                            {
+                                                "uid": "testimonial-1-info-102",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "testimonial-1-partner-103",
+                                                        "component": "CMS_Span",
+                                                        "text": "Tech Solutions Inc.",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "testimonial-1-author-104",
+                                                        "component": "CMS_Span",
+                                                        "text": "John Smith, CTO",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "testimonial-1-quote-105",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Working with Sazzad has been transformative for our business. Their platform and support team are exceptional.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm italic mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "testimonial-1-rating-106",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "star1-1-107",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star1-2-108",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star1-3-109",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star1-4-110",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star1-5-111",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "testimonial-2-112",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "testimonial-2-header-113",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "testimonial-2-logo-114",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&q=80",
+                                                "alt": "Global Logistics Co.",
+                                                "aspectRatio": "1/1",
+                                                "classes": {
+                                                    "base": "w-12 h-12 bg-white dark:bg-gray-700 rounded-lg overflow-hidden p-2 mr-3",
+                                                    "media": "w-full h-full object-contain"
+                                                }
+                                            },
+                                            {
+                                                "uid": "testimonial-2-info-115",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "testimonial-2-partner-116",
+                                                        "component": "CMS_Span",
+                                                        "text": "Global Logistics Co.",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "testimonial-2-author-117",
+                                                        "component": "CMS_Span",
+                                                        "text": "Maria Garcia, VP Operations",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "testimonial-2-quote-118",
+                                        "component": "CMS_Paragraph",
+                                        "text": "The integration was seamless and our customers love the real-time tracking capabilities.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm italic mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "testimonial-2-rating-119",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "star2-1-120",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star2-2-121",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star2-3-122",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star2-4-123",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star2-5-124",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "testimonial-3-125",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "testimonial-3-header-126",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "testimonial-3-logo-127",
+                                                "component": "CMS_Media",
+                                                "type": "image",
+                                                "src": "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=200&q=80",
+                                                "alt": "InnovateTech",
+                                                "aspectRatio": "1/1",
+                                                "classes": {
+                                                    "base": "w-12 h-12 bg-white dark:bg-gray-700 rounded-lg overflow-hidden p-2 mr-3",
+                                                    "media": "w-full h-full object-contain"
+                                                }
+                                            },
+                                            {
+                                                "uid": "testimonial-3-info-128",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "testimonial-3-partner-129",
+                                                        "component": "CMS_Span",
+                                                        "text": "InnovateTech",
+                                                        "classes": {
+                                                            "base": "font-semibold text-gray-900 dark:text-white"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "testimonial-3-author-130",
+                                                        "component": "CMS_Span",
+                                                        "text": "David Lee, Product Manager",
+                                                        "classes": {
+                                                            "base": "text-xs text-gray-500 dark:text-gray-500 block"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "testimonial-3-quote-131",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Sazzad's API is well-documented and their developer support is top-notch.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm italic mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "testimonial-3-rating-132",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "star3-1-133",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star3-2-134",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star3-3-135",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star3-4-136",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                                }
+                                            },
+                                            {
+                                                "uid": "star3-5-137",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/star.svg",
+                                                "alt": "Star",
+                                                "classes": {
+                                                    "media": "w-4 h-4 text-gray-300"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "partners-divider-138",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "partners-links-139",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "justify-center space-x-4 px-4 mt-8"
+                },
+                "children": [
+                    {
+                        "uid": "privacy-link-140",
+                        "component": "CMS_Button",
+                        "text": "Privacy",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/privacy",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "terms-link-141",
+                        "component": "CMS_Button",
+                        "text": "Terms",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/terms",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "contact-link-142",
+                        "component": "CMS_Button",
+                        "text": "Contact",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/contact",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

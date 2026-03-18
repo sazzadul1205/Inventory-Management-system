@@ -109,4 +109,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./NewsSection/NewsSection2')),
         variant3: lazy(() => import('./NewsSection/NewsSection3')),
     },
+
+    // Partner
+    partner: {
+        variant1: lazy(() => import('./PartnersSection/PartnersSection1')),
+        variant2: lazy(() => import('./PartnersSection/PartnersSection2')),
+        variant3: lazy(() => import('.//PartnersSection/PartnersSection3')),
+    },
 };
