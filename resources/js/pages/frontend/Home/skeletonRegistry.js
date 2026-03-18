@@ -4,6 +4,7 @@
 import FAQSectionSkeleton from './FAQSection/FAQSectionSkeleton';
 import HeroSectionSkeleton from './HeroSection/HeroSectionSkeleton';
 import BlogSectionSkeleton from './BlogSection/BlogSectionSkeleton';
+import NewsSectionSkeleton from './NewsSection/NewsSectionSkeleton';
 import ContactSectionSkeleton from './ContactSection/ContactSectionSkeleton';
 import ServicesSectionSkeleton from './ServicesSection/ServicesSectionSkeleton';
 import FeaturesSectionSkeleton from './FeaturesSection/FeaturesSectionSkeleton';
@@ -15,10 +16,12 @@ import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSecti
 import IntegrationsSectionSkeleton from './IntegrationsSection/IntegrationsSectionSkeleton';
 import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStoriesSectionSkeleton';
 
+
 // Export
 export const skeletonRegistry = {
     faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,
+    news: NewsSectionSkeleton,
     blog: BlogSectionSkeleton,
     contact: ContactSectionSkeleton,
     services: ServicesSectionSkeleton,

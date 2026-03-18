@@ -27,6 +27,7 @@ import AboutUsConfig from "./JSON/AboutUsConfig.json";
 import WhyChooseUsConfig from "./JSON/WhyChooseUsConfig.json";
 import IntegrationsConfig from "./JSON/IntegrationsConfig.json";
 import BlogConfig from "./JSON/BlogConfig.json";
+import NewsConfig from "./JSON/NewsConfig.json";
 
 
 // Map section → JSON config
@@ -45,6 +46,7 @@ const configMap = {
   whyChooseUs: WhyChooseUsConfig,
   integrations: IntegrationsConfig,
   blog: BlogConfig,
+  news: NewsConfig,
 };
 
 // ============================================================================
@@ -66,7 +68,8 @@ const pageConfig = {
     aboutUs: { enabled: false, variant: "variant3", order: 11, props: {} },
     whyChooseUs: { enabled: false, variant: "variant3", order: 12, props: {} },
     integrations: { enabled: false, variant: "variant3", order: 13, props: {} },
-    blog: { enabled: true, variant: "variant3", order: 14, props: {} },
+    blog: { enabled: false, variant: "variant3", order: 14, props: {} },
+    news: { enabled: true, variant: "variant3", order: 15, props: {} },
   },
 
   global: {
