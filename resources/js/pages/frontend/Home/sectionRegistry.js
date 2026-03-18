@@ -116,4 +116,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./PartnersSection/PartnersSection2')),
         variant3: lazy(() => import('.//PartnersSection/PartnersSection3')),
     },
+
+    // global Presence
+    globalPresence: {
+        variant1: lazy(() => import('./GlobalPresenceSection/GlobalPresenceSection1')),
+        variant2: lazy(() => import('./GlobalPresenceSection/GlobalPresenceSection2')),
+        variant3: lazy(() => import('./GlobalPresenceSection/GlobalPresenceSection3')),
+    },
 };

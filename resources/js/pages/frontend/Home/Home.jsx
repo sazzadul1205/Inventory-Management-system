@@ -29,6 +29,7 @@ import IntegrationsConfig from "./JSON/IntegrationsConfig.json";
 import BlogConfig from "./JSON/BlogConfig.json";
 import NewsConfig from "./JSON/NewsConfig.json";
 import PartnersConfig from "./JSON/PartnersConfig.json";
+import GlobalPresenceConfig from "./JSON/GlobalPresenceConfig.json";
 
 
 // Map section → JSON config
@@ -49,6 +50,7 @@ const configMap = {
   blog: BlogConfig,
   news: NewsConfig,
   partner: PartnersConfig,
+  globalPresence: GlobalPresenceConfig,
 };
 
 // ============================================================================
@@ -72,7 +74,8 @@ const pageConfig = {
     integrations: { enabled: false, variant: "variant3", order: 13, props: {} },
     blog: { enabled: false, variant: "variant3", order: 14, props: {} },
     news: { enabled: false, variant: "variant3", order: 15, props: {} },
-    partner: { enabled: true, variant: "variant1", order: 16, props: {} },
+    partner: { enabled: false, variant: "variant3", order: 16, props: {} },
+    globalPresence: { enabled: true, variant: "variant3", order: 17, props: {} },
   },
 
   global: {
