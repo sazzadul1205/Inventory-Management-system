@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Notfound = () => {
+const Service = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Notfound = () => {
   );
 };
 
-export default Notfound;
+export default Service;

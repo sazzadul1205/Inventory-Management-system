@@ -55,6 +55,8 @@ const FrontEnd_Layout = ({ children }) => {
         </button>
       )}
 
+      <Footer />
+
     </div>
   );
 };

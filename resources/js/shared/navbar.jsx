@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from '@inertiajs/react';
 import {
   HiHome,
@@ -12,6 +12,7 @@ import {
 } from 'react-icons/hi';
 
 import Icon from '../../../public/Icon.png';
+import DarkIcon from '../../../public/DarkIcon.png';
 
 // Routes
 import { login, register } from '@/routes';
@@ -20,8 +21,39 @@ import { login, register } from '@/routes';
 import ThemeToggle from '@/components/ThemeToggle';
 import { HiPencil, HiQuestionMarkCircle, HiStar } from 'react-icons/hi2';
 
+const getIsDarkTheme = () => {
+  if (typeof window === 'undefined') return false;
+
+  if (document.documentElement.classList.contains('dark')) {
+    return true;
+  }
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    return savedTheme === 'dark';
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(getIsDarkTheme);
+
+  useEffect(() => {
+    const syncTheme = () => setDarkMode(getIsDarkTheme());
+    const root = document.documentElement;
+    const observer = new MutationObserver(syncTheme);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+    mediaQuery.addEventListener('change', syncTheme);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', syncTheme);
+    };
+  }, []);
 
   // Navigation items array with all links
   const navItems = [
@@ -48,9 +80,9 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center group">
               <img
-                src={Icon}
+                src={darkMode ? DarkIcon : Icon}
                 alt="Sazzadul Inventory and Logistics"
-                className="w-48 h-auto object-contain group-hover:opacity-90 transition-opacity duration-200"
+                className="w-48 h-auto object-contain group-hover:opacity-90 transition-opacity duration-200 dark:brightness-90"
               />
             </Link>
           </div>

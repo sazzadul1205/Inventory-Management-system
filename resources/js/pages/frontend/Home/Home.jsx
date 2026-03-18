@@ -11,6 +11,7 @@ import { sectionRegistry } from "./sectionRegistry";
 
 // Skeleton Imports
 import { skeletonRegistry } from "./skeletonRegistry";
+import SectionNavigation from "@/components/SectionNavigation";
 
 // JSON configs
 import homeConfig from "./JSON/HomeConfig.json";
@@ -33,9 +34,8 @@ import GlobalPresenceConfig from "./JSON/GlobalPresenceConfig.json";
 import CareerConfig from "./JSON/CareerConfig.json";
 import TrustSignalConfig from "./JSON/TrustSignalsConfig.json";
 import NewsletterConfig from "./JSON/NewsletterConfig.json";
-import MobileAppConfig from "./JSON/MobileAppConfig.json"
+import MobileAppConfig from "./JSON/MobileAppConfig.json";
 import EventsConfig from "./JSON/EventConfig.json";
-
 
 // Map section → JSON config
 const configMap = {
@@ -69,27 +69,27 @@ const configMap = {
 
 const pageConfig = {
   sections: {
-    hero: { enabled: false, variant: "variant3", order: 1, props: {} },
-    services: { enabled: false, variant: "variant3", order: 2, props: {} },
-    features: { enabled: false, variant: "variant3", order: 3, props: {} },
-    howItWorks: { enabled: false, variant: "variant3", order: 4, props: {} },
-    industries: { enabled: false, variant: "variant3", order: 5, props: {} },
-    successStories: { enabled: false, variant: "variant3", order: 6, props: {} },
-    testimonials: { enabled: false, variant: "variant3", order: 7, props: {} },
-    pricingPlans: { enabled: false, variant: "variant3", order: 8, props: {} },
-    faq: { enabled: false, variant: "variant3", order: 9, props: {} },
-    contact: { enabled: false, variant: "variant3", order: 10, props: {} },
-    aboutUs: { enabled: false, variant: "variant3", order: 11, props: {} },
-    whyChooseUs: { enabled: false, variant: "variant3", order: 12, props: {} },
-    integrations: { enabled: false, variant: "variant3", order: 13, props: {} },
-    news: { enabled: false, variant: "variant3", order: 14, props: {} },
-    partner: { enabled: false, variant: "variant3", order: 15, props: {} },
-    globalPresence: { enabled: false, variant: "variant3", order: 16, props: {} },
-    career: { enabled: false, variant: "variant3", order: 17, props: {} },
-    trustSignal: { enabled: false, variant: "variant3", order: 18, props: {} },
-    newsletter: { enabled: false, variant: "variant3", order: 19, props: {} },
-    mobileApp: { enabled: false, variant: "variant3", order: 20, props: {} },
-    event: { enabled: true, variant: "variant3", order: 21, props: {} },
+    hero: { enabled: true, variant: "variant3", order: 1, props: {}, displayName: "Hero" },
+    services: { enabled: true, variant: "variant3", order: 2, props: {}, displayName: "Services" },
+    features: { enabled: true, variant: "variant3", order: 3, props: {}, displayName: "Features" },
+    howItWorks: { enabled: true, variant: "variant3", order: 4, props: {}, displayName: "How It Works" },
+    industries: { enabled: true, variant: "variant3", order: 5, props: {}, displayName: "Industries" },
+    successStories: { enabled: true, variant: "variant3", order: 6, props: {}, displayName: "Success Stories" },
+    testimonials: { enabled: true, variant: "variant3", order: 7, props: {}, displayName: "Testimonials" },
+    pricingPlans: { enabled: true, variant: "variant3", order: 8, props: {}, displayName: "Pricing" },
+    faq: { enabled: true, variant: "variant3", order: 9, props: {}, displayName: "FAQ" },
+    contact: { enabled: true, variant: "variant3", order: 10, props: {}, displayName: "Contact" },
+    aboutUs: { enabled: true, variant: "variant3", order: 11, props: {}, displayName: "About Us" },
+    whyChooseUs: { enabled: true, variant: "variant3", order: 12, props: {}, displayName: "Why Choose Us" },
+    integrations: { enabled: true, variant: "variant3", order: 13, props: {}, displayName: "Integrations" },
+    news: { enabled: true, variant: "variant3", order: 14, props: {}, displayName: "News" },
+    partner: { enabled: true, variant: "variant3", order: 15, props: {}, displayName: "Partners" },
+    globalPresence: { enabled: true, variant: "variant3", order: 16, props: {}, displayName: "Global Presence" },
+    career: { enabled: true, variant: "variant3", order: 17, props: {}, displayName: "Careers" },
+    trustSignal: { enabled: true, variant: "variant3", order: 18, props: {}, displayName: "Trust Signals" },
+    newsletter: { enabled: true, variant: "variant3", order: 19, props: {}, displayName: "Newsletter" },
+    mobileApp: { enabled: true, variant: "variant3", order: 20, props: {}, displayName: "Mobile App" },
+    event: { enabled: true, variant: "variant3", order: 21, props: {}, displayName: "Events" },
   },
 
   global: {
@@ -121,16 +121,17 @@ const getOrderedSections = () => {
 // ============================================================================
 
 const Home = () => {
-
   // Get ordered sections
   const orderedSections = getOrderedSections();
 
   // Render
   return (
     <FrontEnd_Layout>
-      {/* Render sections */}
-      {orderedSections.map((section, index) => {
+      {/* Section Navigation */}
+      <SectionNavigation sections={orderedSections} />
 
+      {/* Render sections with IDs for navigation */}
+      {orderedSections.map((section, index) => {
         // Destructure
         const { type, variant, props } = section;
 
@@ -152,14 +153,16 @@ const Home = () => {
 
         // Render
         return (
-          <Suspense key={`${type}-${index}`} fallback={<Skeleton />}>
-            <SectionComponent
-              config={config}
-              {...pageConfig.global.defaultProps}
-              {...props}
-              pageConfig={pageConfig}
-            />
-          </Suspense>
+          <div key={`${type}-${index}`} id={`section-${type}`}>
+            <Suspense fallback={<Skeleton />}>
+              <SectionComponent
+                config={config}
+                {...pageConfig.global.defaultProps}
+                {...props}
+                pageConfig={pageConfig}
+              />
+            </Suspense>
+          </div>
         );
       })}
     </FrontEnd_Layout>
