@@ -16,6 +16,7 @@ import WhyChooseUsSectionSkeleton from './WhyChooseUsSection/WhyChooseUsSectionS
 import TestimonialsSectionSkeleton from './TestimonialsSection/TestimonialsSectionSkeleton';
 import PricingPlansSectionSkeleton from './PricingPlansSection/PricingPlansSectionSkeleton';
 import IntegrationsSectionSkeleton from './IntegrationsSection/IntegrationsSectionSkeleton';
+import TrustSignalsSectionSkeleton from './TrustSignalsSection/TrustSignalsSectionSkeleton';
 import GlobalPresenceSectionSkeleton from './GlobalPresenceSection/GlobalPresenceSectionSkeleton';
 import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStoriesSectionSkeleton';
 
@@ -36,6 +37,7 @@ export const skeletonRegistry = {
     testimonials: TestimonialsSectionSkeleton,
     pricingPlans: PricingPlansSectionSkeleton,
     integrations: IntegrationsSectionSkeleton,
+    trustSignals: TrustSignalsSectionSkeleton,
     globalPresence: GlobalPresenceSectionSkeleton,
     successStories: SuccessStoriesSectionSkeleton,
 };

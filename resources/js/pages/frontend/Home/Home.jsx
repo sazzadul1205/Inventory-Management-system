@@ -31,6 +31,7 @@ import NewsConfig from "./JSON/NewsConfig.json";
 import PartnersConfig from "./JSON/PartnersConfig.json";
 import GlobalPresenceConfig from "./JSON/GlobalPresenceConfig.json";
 import CareerConfig from "./JSON/CareerConfig.json";
+import TrustSignalConfig from "./JSON/TrustSignalsConfig.json";
 
 
 // Map section → JSON config
@@ -53,6 +54,7 @@ const configMap = {
   partner: PartnersConfig,
   globalPresence: GlobalPresenceConfig,
   career: CareerConfig,
+  trustSignal: TrustSignalConfig
 };
 
 // ============================================================================
@@ -79,6 +81,7 @@ const pageConfig = {
     partner: { enabled: false, variant: "variant3", order: 16, props: {} },
     globalPresence: { enabled: false, variant: "variant3", order: 17, props: {} },
     career: { enabled: true, variant: "variant3", order: 18, props: {} },
+    trustSignal: { enabled: false, variant: "variant3", order: 19, props: {} }, 
   },
 
   global: {

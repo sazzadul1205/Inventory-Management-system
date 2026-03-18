@@ -130,4 +130,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./CareerSection/CareerSection2')),
         variant3: lazy(() => import('./CareerSection/CareerSection3')),
     },
+
+    // trust signals
+    trustSignals: {
+        variant1: lazy(() => import('./TrustSignalsSection/TrustSignalsSection1')),
+        variant2: lazy(() => import('./TrustSignalsSection/TrustSignalsSection2')),
+        variant3: lazy(() => import('./TrustSignalsSection/TrustSignalsSection3')),
+    },
 };
