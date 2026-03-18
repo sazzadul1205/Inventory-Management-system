@@ -30,6 +30,7 @@ import BlogConfig from "./JSON/BlogConfig.json";
 import NewsConfig from "./JSON/NewsConfig.json";
 import PartnersConfig from "./JSON/PartnersConfig.json";
 import GlobalPresenceConfig from "./JSON/GlobalPresenceConfig.json";
+import CareerConfig from "./JSON/CareerConfig.json";
 
 
 // Map section → JSON config
@@ -51,6 +52,7 @@ const configMap = {
   news: NewsConfig,
   partner: PartnersConfig,
   globalPresence: GlobalPresenceConfig,
+  career: CareerConfig,
 };
 
 // ============================================================================
@@ -75,7 +77,8 @@ const pageConfig = {
     blog: { enabled: false, variant: "variant3", order: 14, props: {} },
     news: { enabled: false, variant: "variant3", order: 15, props: {} },
     partner: { enabled: false, variant: "variant3", order: 16, props: {} },
-    globalPresence: { enabled: true, variant: "variant3", order: 17, props: {} },
+    globalPresence: { enabled: false, variant: "variant3", order: 17, props: {} },
+    career: { enabled: true, variant: "variant3", order: 18, props: {} },
   },
 
   global: {

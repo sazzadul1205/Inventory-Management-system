@@ -1,0 +1,1939 @@
+{
+    "careerSection1": {
+        "badge": {
+            "show": true,
+            "text": "✦ JOIN OUR TEAM",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Build Your",
+            "highlightedText": "Career",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "With Us"
+        },
+        "description": "Join a team of passionate innovators dedicated to transforming supply chain management for businesses worldwide.",
+        "whyJoin": {
+            "show": true,
+            "title": "Why Join Sazzad?",
+            "items": [
+                {
+                    "icon": "users",
+                    "title": "Great Team",
+                    "description": "Work with talented, passionate people who support your growth."
+                },
+                {
+                    "icon": "lightning",
+                    "title": "Fast Growth",
+                    "description": "Be part of a rapidly growing company with endless opportunities."
+                },
+                {
+                    "icon": "heart",
+                    "title": "Work-Life Balance",
+                    "description": "Flexible hours, remote options, and a culture that cares."
+                },
+                {
+                    "icon": "academic",
+                    "title": "Learning & Development",
+                    "description": "Continuous learning opportunities and career development programs."
+                }
+            ]
+        },
+        "positions": {
+            "show": true,
+            "title": "Open Positions",
+            "viewAllUrl": "/careers",
+            "items": [
+                {
+                    "id": "job-1",
+                    "title": "Senior Frontend Engineer",
+                    "department": "Engineering",
+                    "location": "San Francisco, CA (Remote)",
+                    "type": "Full-time",
+                    "salary": "$120k - $160k",
+                    "description": "Build responsive and performant user interfaces for our inventory management platform.",
+                    "link": "/careers/senior-frontend-engineer",
+                    "isNew": true
+                },
+                {
+                    "id": "job-2",
+                    "title": "Product Manager",
+                    "department": "Product",
+                    "location": "New York, NY",
+                    "type": "Full-time",
+                    "salary": "$130k - $170k",
+                    "description": "Drive product strategy and roadmap for our core inventory management features.",
+                    "link": "/careers/product-manager",
+                    "isNew": false
+                },
+                {
+                    "id": "job-3",
+                    "title": "DevOps Engineer",
+                    "department": "Engineering",
+                    "location": "Remote (US)",
+                    "type": "Full-time",
+                    "salary": "$110k - $150k",
+                    "description": "Build and maintain our cloud infrastructure on AWS and Azure.",
+                    "link": "/careers/devops-engineer",
+                    "isNew": true
+                },
+                {
+                    "id": "job-4",
+                    "title": "UX/UI Designer",
+                    "department": "Design",
+                    "location": "London, UK",
+                    "type": "Full-time",
+                    "salary": "£60k - £80k",
+                    "description": "Create intuitive and beautiful experiences for our logistics platform.",
+                    "link": "/careers/ux-ui-designer",
+                    "isNew": false
+                },
+                {
+                    "id": "job-5",
+                    "title": "Customer Success Manager",
+                    "department": "Customer Success",
+                    "location": "Singapore",
+                    "type": "Full-time",
+                    "salary": "$70k - $90k",
+                    "description": "Help our customers get the most value from our platform.",
+                    "link": "/careers/customer-success-manager",
+                    "isNew": false
+                },
+                {
+                    "id": "job-6",
+                    "title": "Sales Development Representative",
+                    "department": "Sales",
+                    "location": "Remote (EMEA)",
+                    "type": "Full-time",
+                    "salary": "$50k - $70k + commission",
+                    "description": "Generate and qualify leads for our sales team.",
+                    "link": "/careers/sales-development-representative",
+                    "isNew": true
+                }
+            ]
+        },
+        "life": {
+            "show": true,
+            "companyName": "Sazzad",
+            "title": "Life at Sazzad",
+            "description": "We believe that great work happens when people feel valued, supported, and inspired. Our culture is built on collaboration, innovation, and a shared passion for solving complex challenges.",
+            "highlights": [
+                "Flexible remote work options",
+                "Regular team events and offsites",
+                "Open and transparent communication",
+                "Diversity and inclusion initiatives"
+            ],
+            "link": "/life-at-sazzad",
+            "images": [
+                "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            ]
+        },
+        "perks": {
+            "show": true,
+            "title": "Perks & Benefits",
+            "items": [
+                {
+                    "icon": "health",
+                    "title": "Health & Wellness",
+                    "description": "Comprehensive medical, dental, and vision coverage"
+                },
+                {
+                    "icon": "office",
+                    "title": "Remote-First",
+                    "description": "Work from anywhere with home office stipend"
+                },
+                {
+                    "icon": "clock",
+                    "title": "Flexible Hours",
+                    "description": "Create a schedule that works for you"
+                },
+                {
+                    "icon": "academic",
+                    "title": "Learning Budget",
+                    "description": "$2,000/year for courses and conferences"
+                }
+            ]
+        },
+        "cta": {
+            "show": true,
+            "title": "Ready to Make an Impact?",
+            "description": "Join us in transforming the future of supply chain management.",
+            "button": {
+                "text": "View All Openings",
+                "url": "/careers"
+            }
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "careerSection2": {
+        "badge": {
+            "text": "JOIN OUR TEAM"
+        },
+        "heading": {
+            "line1": "Build Your",
+            "highlighted": "Future"
+        },
+        "description": "Join a team of passionate innovators dedicated to transforming supply chain management for businesses worldwide.",
+        "stats": {
+            "show": true,
+            "items": [
+                {
+                    "value": "50+",
+                    "label": "Open Positions"
+                },
+                {
+                    "value": "15+",
+                    "label": "Departments"
+                },
+                {
+                    "value": "500+",
+                    "label": "Team Members"
+                },
+                {
+                    "value": "30+",
+                    "label": "Nationalities"
+                }
+            ]
+        },
+        "search": {
+            "placeholder": "Search jobs by title, department, or keyword..."
+        },
+        "pagination": {
+            "perPage": 6
+        },
+        "positions": {
+            "items": [
+                {
+                    "id": "job-1",
+                    "title": "Senior Frontend Engineer",
+                    "department": "Engineering",
+                    "location": "San Francisco, CA (Remote)",
+                    "type": "Full-time",
+                    "salary": "$120k - $160k",
+                    "description": "Build responsive and performant user interfaces for our inventory management platform using React and modern web technologies.",
+                    "tags": ["React", "TypeScript", "Tailwind"],
+                    "link": "/careers/senior-frontend-engineer",
+                    "isNew": true
+                },
+                {
+                    "id": "job-2",
+                    "title": "Product Manager",
+                    "department": "Product",
+                    "location": "New York, NY",
+                    "type": "Full-time",
+                    "salary": "$130k - $170k",
+                    "description": "Drive product strategy and roadmap for our core inventory management features, working closely with engineering and design.",
+                    "tags": ["SaaS", "B2B", "Agile"],
+                    "link": "/careers/product-manager",
+                    "isNew": false
+                },
+                {
+                    "id": "job-3",
+                    "title": "DevOps Engineer",
+                    "department": "Engineering",
+                    "location": "Remote (US)",
+                    "type": "Full-time",
+                    "salary": "$110k - $150k",
+                    "description": "Build and maintain our cloud infrastructure on AWS and Azure, ensuring high availability and scalability.",
+                    "tags": ["AWS", "Kubernetes", "Terraform"],
+                    "link": "/careers/devops-engineer",
+                    "isNew": true
+                },
+                {
+                    "id": "job-4",
+                    "title": "UX/UI Designer",
+                    "department": "Design",
+                    "location": "London, UK",
+                    "type": "Full-time",
+                    "salary": "£60k - £80k",
+                    "description": "Create intuitive and beautiful experiences for our logistics platform, from wireframes to high-fidelity prototypes.",
+                    "tags": ["Figma", "User Research", "Prototyping"],
+                    "link": "/careers/ux-ui-designer",
+                    "isNew": false
+                },
+                {
+                    "id": "job-5",
+                    "title": "Customer Success Manager",
+                    "department": "Customer Success",
+                    "location": "Singapore",
+                    "type": "Full-time",
+                    "salary": "$70k - $90k",
+                    "description": "Help our customers get the most value from our platform through onboarding, training, and ongoing support.",
+                    "tags": ["Customer Support", "Training", "SaaS"],
+                    "link": "/careers/customer-success-manager",
+                    "isNew": false
+                },
+                {
+                    "id": "job-6",
+                    "title": "Sales Development Representative",
+                    "department": "Sales",
+                    "location": "Remote (EMEA)",
+                    "type": "Full-time",
+                    "salary": "$50k - $70k + commission",
+                    "description": "Generate and qualify leads for our sales team through outbound prospecting and inbound follow-up.",
+                    "tags": ["Outbound", "B2B", "SaaS"],
+                    "link": "/careers/sales-development-representative",
+                    "isNew": true
+                },
+                {
+                    "id": "job-7",
+                    "title": "Backend Engineer",
+                    "department": "Engineering",
+                    "location": "Berlin, Germany",
+                    "type": "Full-time",
+                    "salary": "€70k - €90k",
+                    "description": "Design and implement scalable backend services for our inventory management platform.",
+                    "tags": ["Python", "Django", "PostgreSQL"],
+                    "link": "/careers/backend-engineer",
+                    "isNew": false
+                },
+                {
+                    "id": "job-8",
+                    "title": "Marketing Manager",
+                    "department": "Marketing",
+                    "location": "Remote (US)",
+                    "type": "Full-time",
+                    "salary": "$90k - $120k",
+                    "description": "Develop and execute marketing strategies to drive brand awareness and lead generation.",
+                    "tags": ["B2B", "Content", "Demand Gen"],
+                    "link": "/careers/marketing-manager",
+                    "isNew": true
+                },
+                {
+                    "id": "job-9",
+                    "title": "Data Scientist",
+                    "department": "Data",
+                    "location": "San Francisco, CA",
+                    "type": "Full-time",
+                    "salary": "$140k - $180k",
+                    "description": "Apply machine learning to optimize inventory forecasting and demand planning for our customers.",
+                    "tags": ["Python", "ML", "Forecasting"],
+                    "link": "/careers/data-scientist",
+                    "isNew": false
+                }
+            ]
+        },
+        "culture": {
+            "show": true,
+            "title": "Our Culture",
+            "items": [
+                {
+                    "icon": "users",
+                    "title": "Collaborative",
+                    "description": "We believe the best ideas come from working together across teams and disciplines."
+                },
+                {
+                    "icon": "globe",
+                    "title": "Global Mindset",
+                    "description": "Our team spans the globe, bringing diverse perspectives to everything we do."
+                },
+                {
+                    "icon": "trophy",
+                    "title": "Excellence",
+                    "description": "We strive for excellence in our work, our products, and our customer relationships."
+                }
+            ]
+        },
+        "cta": {
+            "show": true,
+            "title": "Don't See the Right Role?",
+            "description": "We're always looking for talented people to join our team. Send us your resume and we'll keep you in mind for future opportunities.",
+            "primaryButton": {
+                "text": "Send Your Resume",
+                "url": "/careers/contact"
+            },
+            "secondaryButton": {
+                "show": true,
+                "text": "Learn About Life at Sazzad",
+                "url": "/life-at-sazzad"
+            }
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "careerSection3": {
+        "badge": {
+            "show": true,
+            "text": "✦ CAREERS",
+            "backgroundColor": "bg-blue-100 dark:bg-blue-900/30",
+            "borderColor": "border-blue-200 dark:border-blue-800",
+            "textColor": "text-blue-800 dark:text-blue-200",
+            "showPulse": true
+        },
+        "heading": {
+            "prefix": "Shape the",
+            "highlightedText": "Future",
+            "highlightColor": "text-blue-600 dark:text-blue-400",
+            "suffix": "of Supply Chain"
+        },
+        "description": "Join a team of passionate innovators dedicated to transforming how businesses manage inventory and logistics worldwide.",
+        "featuredRole": {
+            "show": true,
+            "title": "Senior Product Manager - AI/ML",
+            "description": "Lead the development of our AI-powered inventory forecasting and demand planning features, working with a world-class team of engineers and data scientists.",
+            "department": "Product",
+            "location": "San Francisco, CA (Hybrid)",
+            "type": "Full-time",
+            "link": "/careers/senior-product-manager-ai",
+            "benefits": [
+                "Lead a high-impact product area",
+                "Work with cutting-edge AI technology",
+                "Competitive equity package",
+                "Direct impact on company strategy"
+            ]
+        },
+        "departments": [
+            {
+                "id": "dept-1",
+                "name": "Engineering",
+                "jobs": [
+                    {
+                        "id": "job-1",
+                        "title": "Senior Frontend Engineer",
+                        "location": "Remote (US)",
+                        "type": "Full-time",
+                        "salary": "$140k - $180k",
+                        "link": "/careers/senior-frontend-engineer"
+                    },
+                    {
+                        "id": "job-2",
+                        "title": "Backend Engineer - Python",
+                        "location": "New York, NY",
+                        "type": "Full-time",
+                        "salary": "$130k - $170k",
+                        "link": "/careers/backend-engineer-python"
+                    },
+                    {
+                        "id": "job-3",
+                        "title": "DevOps Engineer",
+                        "location": "Remote (EMEA)",
+                        "type": "Full-time",
+                        "salary": "€70k - €90k",
+                        "link": "/careers/devops-engineer"
+                    },
+                    {
+                        "id": "job-4",
+                        "title": "Engineering Manager",
+                        "location": "San Francisco, CA",
+                        "type": "Full-time",
+                        "salary": "$160k - $210k",
+                        "link": "/careers/engineering-manager"
+                    }
+                ]
+            },
+            {
+                "id": "dept-2",
+                "name": "Product & Design",
+                "jobs": [
+                    {
+                        "id": "job-5",
+                        "title": "Product Manager - Platform",
+                        "location": "Remote (US)",
+                        "type": "Full-time",
+                        "salary": "$130k - $170k",
+                        "link": "/careers/product-manager-platform"
+                    },
+                    {
+                        "id": "job-6",
+                        "title": "UX/UI Designer",
+                        "location": "London, UK",
+                        "type": "Full-time",
+                        "salary": "£60k - £80k",
+                        "link": "/careers/ux-ui-designer"
+                    },
+                    {
+                        "id": "job-7",
+                        "title": "Product Analyst",
+                        "location": "Remote",
+                        "type": "Full-time",
+                        "salary": "$90k - $120k",
+                        "link": "/careers/product-analyst"
+                    }
+                ]
+            },
+            {
+                "id": "dept-3",
+                "name": "Sales & Marketing",
+                "jobs": [
+                    {
+                        "id": "job-8",
+                        "title": "Enterprise Account Executive",
+                        "location": "New York, NY",
+                        "type": "Full-time",
+                        "salary": "$100k - $120k + commission",
+                        "link": "/careers/enterprise-account-executive"
+                    },
+                    {
+                        "id": "job-9",
+                        "title": "Marketing Manager",
+                        "location": "Remote (US)",
+                        "type": "Full-time",
+                        "salary": "$90k - $120k",
+                        "link": "/careers/marketing-manager"
+                    },
+                    {
+                        "id": "job-10",
+                        "title": "Sales Development Rep",
+                        "location": "Remote",
+                        "type": "Full-time",
+                        "salary": "$50k - $70k + commission",
+                        "link": "/careers/sales-development-rep"
+                    }
+                ]
+            },
+            {
+                "id": "dept-4",
+                "name": "Customer Success",
+                "jobs": [
+                    {
+                        "id": "job-11",
+                        "title": "Customer Success Manager",
+                        "location": "Singapore",
+                        "type": "Full-time",
+                        "salary": "$70k - $90k",
+                        "link": "/careers/customer-success-manager"
+                    },
+                    {
+                        "id": "job-12",
+                        "title": "Implementation Specialist",
+                        "location": "London, UK",
+                        "type": "Full-time",
+                        "salary": "£45k - £60k",
+                        "link": "/careers/implementation-specialist"
+                    },
+                    {
+                        "id": "job-13",
+                        "title": "Support Engineer",
+                        "location": "Remote",
+                        "type": "Full-time",
+                        "salary": "$60k - $80k",
+                        "link": "/careers/support-engineer"
+                    }
+                ]
+            }
+        ],
+        "whyJoin": {
+            "show": true,
+            "items": [
+                "Work with cutting-edge technology",
+                "Flat hierarchy and open communication",
+                "Real impact from day one",
+                "Global, diverse team",
+                "Continuous learning opportunities",
+                "Flexible remote work culture"
+            ]
+        },
+        "perks": {
+            "show": true,
+            "items": [
+                {
+                    "icon": "health",
+                    "title": "Comprehensive Health",
+                    "description": "Medical, dental, and vision coverage for you and your family"
+                },
+                {
+                    "icon": "remote",
+                    "title": "Remote-First",
+                    "description": "Work from anywhere with home office stipend"
+                },
+                {
+                    "icon": "flex",
+                    "title": "Flexible Hours",
+                    "description": "Create a schedule that works for your life"
+                },
+                {
+                    "icon": "learn",
+                    "title": "Learning Budget",
+                    "description": "$2,500/year for courses, books, and conferences"
+                },
+                {
+                    "icon": "food",
+                    "title": "Meal Stipend",
+                    "description": "Monthly credits for local restaurants"
+                },
+                {
+                    "icon": "cake",
+                    "title": "Celebrations",
+                    "description": "Birthday off and quarterly team events"
+                }
+            ]
+        },
+        "team": {
+            "show": true,
+            "members": [
+                {
+                    "name": "Sarah Chen",
+                    "role": "Lead Product Manager",
+                    "image": "https://images.unsplash.com/photo-1494790108777-406fdbf3524f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "quote": "The best part of working here is the collaborative culture. Everyone's ideas are valued, regardless of seniority."
+                },
+                {
+                    "name": "Michael Rodriguez",
+                    "role": "Senior Software Engineer",
+                    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "quote": "I've grown more here in one year than in five years at my previous job. The learning opportunities are incredible."
+                },
+                {
+                    "name": "Emma Watson",
+                    "role": "Customer Success Manager",
+                    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "quote": "Helping customers succeed and seeing their businesses grow is the most rewarding part of my job."
+                },
+                {
+                    "name": "James Kim",
+                    "role": "Data Scientist",
+                    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    "quote": "Working with real-world supply chain data to build ML models that actually make a difference - this is why I got into tech."
+                }
+            ]
+        },
+        "social": {
+            "show": true,
+            "linkedin": "https://linkedin.com/company/sazzad",
+            "twitter": "https://twitter.com/sazzad",
+            "facebook": "https://facebook.com/sazzad"
+        },
+        "viewAll": {
+            "show": true,
+            "text": "View All Open Positions",
+            "url": "/careers"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact"
+        }
+    },
+    "careerSectionCustom": {
+        "uid": "career-section-custom-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Careers - Sazzad Inventory & Logistics",
+            "description": "Join our team and help transform supply chain management for businesses worldwide.",
+            "keywords": "careers, jobs, employment, team, culture, benefits",
+            "structuredData": {
+                "@type": "JobPosting",
+                "name": "Sazzad Careers",
+                "description": "Career opportunities at Sazzad"
+            }
+        },
+        "children": [
+            {
+                "uid": "career-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "career-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ JOIN OUR TEAM",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800"
+                        },
+                        "showPulse": true,
+                        "pulse": true
+                    },
+                    {
+                        "uid": "career-title-004",
+                        "component": "CMS_H2",
+                        "text": "Build Your Career With Us",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 11,
+                                "end": 17,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "career-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "Join a team of passionate innovators dedicated to transforming supply chain management for businesses worldwide.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "why-join-section-006",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mb-20"
+                },
+                "children": [
+                    {
+                        "uid": "why-join-title-007",
+                        "component": "CMS_H3",
+                        "text": "Why Join Sazzad?",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-12"
+                        }
+                    },
+                    {
+                        "uid": "why-join-grid-008",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "why-join-1-009",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "why-join-1-icon-010",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-14 h-14 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "why-join-1-icon-svg-011",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/user-group.svg",
+                                                "alt": "Team",
+                                                "classes": {
+                                                    "media": "w-7 h-7 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "why-join-1-title-012",
+                                        "component": "CMS_H4",
+                                        "text": "Great Team",
+                                        "classes": {
+                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "why-join-1-desc-013",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Work with talented, passionate people who support your growth.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "why-join-2-014",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "why-join-2-icon-015",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-14 h-14 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "why-join-2-icon-svg-016",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/lightning-bolt.svg",
+                                                "alt": "Growth",
+                                                "classes": {
+                                                    "media": "w-7 h-7 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "why-join-2-title-017",
+                                        "component": "CMS_H4",
+                                        "text": "Fast Growth",
+                                        "classes": {
+                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "why-join-2-desc-018",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Be part of a rapidly growing company with endless opportunities.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "why-join-3-019",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "why-join-3-icon-020",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-14 h-14 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "why-join-3-icon-svg-021",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/heart.svg",
+                                                "alt": "Balance",
+                                                "classes": {
+                                                    "media": "w-7 h-7 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "why-join-3-title-022",
+                                        "component": "CMS_H4",
+                                        "text": "Work-Life Balance",
+                                        "classes": {
+                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "why-join-3-desc-023",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Flexible hours, remote options, and a culture that cares.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "why-join-4-024",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "why-join-4-icon-025",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-14 h-14 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "why-join-4-icon-svg-026",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/academic-cap.svg",
+                                                "alt": "Learning",
+                                                "classes": {
+                                                    "media": "w-7 h-7 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "why-join-4-title-027",
+                                        "component": "CMS_H4",
+                                        "text": "Learning & Development",
+                                        "classes": {
+                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "why-join-4-desc-028",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Continuous learning opportunities and career development programs.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "open-positions-section-029",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mb-20"
+                },
+                "children": [
+                    {
+                        "uid": "positions-header-030",
+                        "component": "CMS_Flex",
+                        "classes": {
+                            "base": "items-center justify-between mb-8"
+                        },
+                        "children": [
+                            {
+                                "uid": "positions-title-031",
+                                "component": "CMS_H3",
+                                "text": "Open Positions",
+                                "classes": {
+                                    "base": "text-2xl font-bold text-gray-900 dark:text-white"
+                                }
+                            },
+                            {
+                                "uid": "positions-view-all-032",
+                                "component": "CMS_Button",
+                                "text": "View All Positions",
+                                "size": "md",
+                                "href": "/careers",
+                                "icon": "HiArrowRight",
+                                "iconLibrary": "hi",
+                                "iconPosition": "right",
+                                "variant": "link",
+                                "classes": {
+                                    "base": "text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold flex items-center"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "positions-grid-033",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "position-1-034",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "position-1-header-035",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start justify-between mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "position-1-title-block-036",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "position-1-title-037",
+                                                        "component": "CMS_H4",
+                                                        "text": "Senior Frontend Engineer",
+                                                        "classes": {
+                                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-1"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "position-1-dept-038",
+                                                        "component": "CMS_Span",
+                                                        "text": "Engineering",
+                                                        "classes": {
+                                                            "base": "text-sm text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-1-new-039",
+                                                "component": "CMS_Badge",
+                                                "text": "New",
+                                                "size": "sm",
+                                                "variant": "success",
+                                                "icon": "HiOutlineSparkles",
+                                                "iconLibrary": "hi",
+                                                "classes": {
+                                                    "base": "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs px-2 py-1 rounded-full flex items-center"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "position-1-details-040",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "space-y-2 mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "position-1-location-041",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "location-icon-1-042",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/location-marker.svg",
+                                                        "alt": "Location",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "location-text-1-043",
+                                                        "component": "CMS_Span",
+                                                        "text": "San Francisco, CA (Remote)"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-1-type-044",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "type-icon-1-045",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/clock.svg",
+                                                        "alt": "Type",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "type-text-1-046",
+                                                        "component": "CMS_Span",
+                                                        "text": "Full-time"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-1-salary-047",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "salary-icon-1-048",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/currency-dollar.svg",
+                                                        "alt": "Salary",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "salary-text-1-049",
+                                                        "component": "CMS_Span",
+                                                        "text": "$120k - $160k"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "position-1-desc-050",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Build responsive and performant user interfaces for our inventory management platform.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "position-1-link-051",
+                                        "component": "CMS_Button",
+                                        "text": "Apply Now",
+                                        "size": "sm",
+                                        "href": "/careers/senior-frontend-engineer",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "position-2-052",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "position-2-header-053",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start justify-between mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "position-2-title-block-054",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "position-2-title-055",
+                                                        "component": "CMS_H4",
+                                                        "text": "Product Manager",
+                                                        "classes": {
+                                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-1"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "position-2-dept-056",
+                                                        "component": "CMS_Span",
+                                                        "text": "Product",
+                                                        "classes": {
+                                                            "base": "text-sm text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "position-2-details-057",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "space-y-2 mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "position-2-location-058",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "location-icon-2-059",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/location-marker.svg",
+                                                        "alt": "Location",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "location-text-2-060",
+                                                        "component": "CMS_Span",
+                                                        "text": "New York, NY"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-2-type-061",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "type-icon-2-062",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/clock.svg",
+                                                        "alt": "Type",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "type-text-2-063",
+                                                        "component": "CMS_Span",
+                                                        "text": "Full-time"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-2-salary-064",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "salary-icon-2-065",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/currency-dollar.svg",
+                                                        "alt": "Salary",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "salary-text-2-066",
+                                                        "component": "CMS_Span",
+                                                        "text": "$130k - $170k"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "position-2-desc-067",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Drive product strategy and roadmap for our core inventory management features.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "position-2-link-068",
+                                        "component": "CMS_Button",
+                                        "text": "Apply Now",
+                                        "size": "sm",
+                                        "href": "/careers/product-manager",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "position-3-069",
+                                "component": "CMS_Card",
+                                "variant": "elevated",
+                                "size": "md",
+                                "classes": {
+                                    "container": "group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "position-3-header-070",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "items-start justify-between mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "position-3-title-block-071",
+                                                "component": "CMS_Container",
+                                                "children": [
+                                                    {
+                                                        "uid": "position-3-title-072",
+                                                        "component": "CMS_H4",
+                                                        "text": "DevOps Engineer",
+                                                        "classes": {
+                                                            "base": "text-lg font-bold text-gray-900 dark:text-white mb-1"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "position-3-dept-073",
+                                                        "component": "CMS_Span",
+                                                        "text": "Engineering",
+                                                        "classes": {
+                                                            "base": "text-sm text-blue-600 dark:text-blue-400"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-3-new-074",
+                                                "component": "CMS_Badge",
+                                                "text": "New",
+                                                "size": "sm",
+                                                "variant": "success",
+                                                "icon": "HiOutlineSparkles",
+                                                "iconLibrary": "hi",
+                                                "classes": {
+                                                    "base": "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs px-2 py-1 rounded-full flex items-center"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "position-3-details-075",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "space-y-2 mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "position-3-location-076",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "location-icon-3-077",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/location-marker.svg",
+                                                        "alt": "Location",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "location-text-3-078",
+                                                        "component": "CMS_Span",
+                                                        "text": "Remote (US)"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-3-type-079",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "type-icon-3-080",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/clock.svg",
+                                                        "alt": "Type",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "type-text-3-081",
+                                                        "component": "CMS_Span",
+                                                        "text": "Full-time"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "position-3-salary-082",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-center text-sm text-gray-600 dark:text-gray-400"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "salary-icon-3-083",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/currency-dollar.svg",
+                                                        "alt": "Salary",
+                                                        "classes": {
+                                                            "media": "w-4 h-4 mr-2 text-blue-500"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "salary-text-3-084",
+                                                        "component": "CMS_Span",
+                                                        "text": "$110k - $150k"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "position-3-desc-085",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Build and maintain our cloud infrastructure on AWS and Azure.",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "position-3-link-086",
+                                        "component": "CMS_Button",
+                                        "text": "Apply Now",
+                                        "size": "sm",
+                                        "href": "/careers/devops-engineer",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "life-at-sazzad-087",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mb-20"
+                },
+                "children": [
+                    {
+                        "uid": "life-grid-088",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid lg:grid-cols-2 gap-12 items-center"
+                        },
+                        "children": [
+                            {
+                                "uid": "life-content-089",
+                                "component": "CMS_Container",
+                                "children": [
+                                    {
+                                        "uid": "life-title-090",
+                                        "component": "CMS_H3",
+                                        "text": "Life at Sazzad",
+                                        "classes": {
+                                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "life-desc-091",
+                                        "component": "CMS_Paragraph",
+                                        "text": "We believe that great work happens when people feel valued, supported, and inspired. Our culture is built on collaboration, innovation, and a shared passion for solving complex challenges.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 mb-6"
+                                        }
+                                    },
+                                    {
+                                        "uid": "life-highlights-092",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "space-y-4 mb-6"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "highlight-1-093",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-start"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "highlight-1-icon-094",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/badge-check.svg",
+                                                        "alt": "Check",
+                                                        "classes": {
+                                                            "media": "w-5 h-5 text-blue-500 mr-3 mt-0.5 shrink-0"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "highlight-1-text-095",
+                                                        "component": "CMS_Span",
+                                                        "text": "Flexible remote work options",
+                                                        "classes": {
+                                                            "base": "text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "highlight-2-096",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-start"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "highlight-2-icon-097",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/badge-check.svg",
+                                                        "alt": "Check",
+                                                        "classes": {
+                                                            "media": "w-5 h-5 text-blue-500 mr-3 mt-0.5 shrink-0"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "highlight-2-text-098",
+                                                        "component": "CMS_Span",
+                                                        "text": "Regular team events and offsites",
+                                                        "classes": {
+                                                            "base": "text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "highlight-3-099",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-start"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "highlight-3-icon-100",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/badge-check.svg",
+                                                        "alt": "Check",
+                                                        "classes": {
+                                                            "media": "w-5 h-5 text-blue-500 mr-3 mt-0.5 shrink-0"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "highlight-3-text-101",
+                                                        "component": "CMS_Span",
+                                                        "text": "Open and transparent communication",
+                                                        "classes": {
+                                                            "base": "text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "uid": "highlight-4-102",
+                                                "component": "CMS_Flex",
+                                                "classes": {
+                                                    "base": "items-start"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "uid": "highlight-4-icon-103",
+                                                        "component": "CMS_Image",
+                                                        "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/badge-check.svg",
+                                                        "alt": "Check",
+                                                        "classes": {
+                                                            "media": "w-5 h-5 text-blue-500 mr-3 mt-0.5 shrink-0"
+                                                        }
+                                                    },
+                                                    {
+                                                        "uid": "highlight-4-text-104",
+                                                        "component": "CMS_Span",
+                                                        "text": "Diversity and inclusion initiatives",
+                                                        "classes": {
+                                                            "base": "text-gray-700 dark:text-gray-300"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "life-link-105",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More About Our Culture",
+                                        "size": "lg",
+                                        "href": "/life-at-sazzad",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "life-images-106",
+                                "component": "CMS_Grid",
+                                "classes": {
+                                    "base": "grid grid-cols-2 gap-4"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "life-image-1-107",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                                        "alt": "Team meeting",
+                                        "aspectRatio": "4/3",
+                                        "classes": {
+                                            "base": "row-span-2 rounded-2xl overflow-hidden shadow-lg",
+                                            "media": "w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                        }
+                                    },
+                                    {
+                                        "uid": "life-image-2-108",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                                        "alt": "Office",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "rounded-2xl overflow-hidden shadow-lg",
+                                            "media": "w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                        }
+                                    },
+                                    {
+                                        "uid": "life-image-3-109",
+                                        "component": "CMS_Media",
+                                        "type": "image",
+                                        "src": "https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                                        "alt": "Collaboration",
+                                        "aspectRatio": "1/1",
+                                        "classes": {
+                                            "base": "rounded-2xl overflow-hidden shadow-lg",
+                                            "media": "w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "perks-section-110",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mb-20"
+                },
+                "children": [
+                    {
+                        "uid": "perks-title-111",
+                        "component": "CMS_H3",
+                        "text": "Perks & Benefits",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-2xl font-bold text-gray-900 dark:text-white mb-12"
+                        }
+                    },
+                    {
+                        "uid": "perks-grid-112",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                        },
+                        "children": [
+                            {
+                                "uid": "perk-1-113",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "perk-1-icon-114",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "perk-1-icon-svg-115",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/heart.svg",
+                                                "alt": "Health",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "perk-1-title-116",
+                                        "component": "CMS_H4",
+                                        "text": "Health & Wellness",
+                                        "classes": {
+                                            "base": "font-semibold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "perk-1-desc-117",
+                                        "component": "CMS_Span",
+                                        "text": "Comprehensive medical, dental, and vision coverage",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "perk-2-118",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "perk-2-icon-119",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "perk-2-icon-svg-120",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/office-building.svg",
+                                                "alt": "Remote",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "perk-2-title-121",
+                                        "component": "CMS_H4",
+                                        "text": "Remote-First",
+                                        "classes": {
+                                            "base": "font-semibold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "perk-2-desc-122",
+                                        "component": "CMS_Span",
+                                        "text": "Work from anywhere with home office stipend",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "perk-3-123",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "perk-3-icon-124",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "perk-3-icon-svg-125",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/clock.svg",
+                                                "alt": "Flexible",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "perk-3-title-126",
+                                        "component": "CMS_H4",
+                                        "text": "Flexible Hours",
+                                        "classes": {
+                                            "base": "font-semibold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "perk-3-desc-127",
+                                        "component": "CMS_Span",
+                                        "text": "Create a schedule that works for you",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "perk-4-128",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "perk-4-icon-129",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "perk-4-icon-svg-130",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/academic-cap.svg",
+                                                "alt": "Learning",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "perk-4-title-131",
+                                        "component": "CMS_H4",
+                                        "text": "Learning Budget",
+                                        "classes": {
+                                            "base": "font-semibold text-gray-900 dark:text-white mb-1"
+                                        }
+                                    },
+                                    {
+                                        "uid": "perk-4-desc-132",
+                                        "component": "CMS_Span",
+                                        "text": "$2,000/year for courses and conferences",
+                                        "classes": {
+                                            "base": "text-sm text-gray-600 dark:text-gray-400"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "career-cta-133",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-134",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "size": "lg",
+                        "classes": {
+                            "container": "bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-bg-135",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute inset-0 opacity-10"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-blob1-136",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-blob2-137",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "cta-content-138",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "relative text-center max-w-3xl mx-auto"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-title-139",
+                                        "component": "CMS_H3",
+                                        "text": "Ready to Make an Impact?",
+                                        "classes": {
+                                            "base": "text-3xl font-bold mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-desc-140",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Join us in transforming the future of supply chain management.",
+                                        "classes": {
+                                            "base": "text-blue-100 mb-8 text-lg"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-button-141",
+                                        "component": "CMS_Button",
+                                        "text": "View All Openings",
+                                        "size": "lg",
+                                        "href": "/careers",
+                                        "icon": "HiArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "career-divider-142",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "career-links-143",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "justify-center space-x-4 px-4 mt-8"
+                },
+                "children": [
+                    {
+                        "uid": "privacy-link-144",
+                        "component": "CMS_Button",
+                        "text": "Privacy",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/privacy",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "terms-link-145",
+                        "component": "CMS_Button",
+                        "text": "Terms",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/terms",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "contact-link-146",
+                        "component": "CMS_Button",
+                        "text": "Contact",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/contact",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
