@@ -2,6 +2,7 @@
 
 // Section Imports
 import AllServicesSectionSkeleton from './AllServicesSection/AllServicesSectionSkeleton';
+import CustomSolutionsSectionSkeleton from './CustomSolutionsSection/CustomSolutionsSectionSkeleton';
 import OrderFulfillmentSectionSkeleton from './OrderFulfillmentSection/OrderFulfillmentSectionSkeleton';
 import ReturnsManagementSectionSkeleton from './ReturnsManagementSection/ReturnsManagementSectionSkeleton';
 import WarehouseManagementSectionSkeleton from './WarehouseManagementSection/WarehouseManagementSectionSkeleton';
@@ -11,6 +12,7 @@ import TransportationManagementSectionSkeleton from './TransportationManagementS
 // Skeleton Imports
 export const skeletonRegistry = {
     allServices: AllServicesSectionSkeleton,
+    customSolutions: CustomSolutionsSectionSkeleton,
     orderFulfillment: OrderFulfillmentSectionSkeleton,
     returnManagement: ReturnsManagementSectionSkeleton,
     warehouseManagement: WarehouseManagementSectionSkeleton,

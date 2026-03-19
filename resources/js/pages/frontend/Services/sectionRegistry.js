@@ -46,4 +46,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./ReturnsManagementSection/ReturnsManagementSection2')),
         variant3: lazy(() => import('./ReturnsManagementSection/ReturnsManagementSection3')),
     },
+
+    // customSolutions
+    customSolution: {
+        variant1: lazy(() => import('./CustomSolutionsSection/CustomSolutionsSection1')),
+        variant2: lazy(() => import('./CustomSolutionsSection/CustomSolutionsSection2')),
+        variant3: lazy(() => import('./CustomSolutionsSection/CustomSolutionsSection3')),
+    },
 };
