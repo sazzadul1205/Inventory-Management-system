@@ -39,4 +39,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./TransportationManagementSection/TransportationManagementSection2')),
         variant3: lazy(() => import('./TransportationManagementSection/TransportationManagementSection3')),
     },
+
+    // returnManagement
+    returnManagement: {
+        variant1: lazy(() => import('./ReturnsManagementSection/ReturnsManagementSection1')),
+        variant2: lazy(() => import('./ReturnsManagementSection/ReturnsManagementSection2')),
+        variant3: lazy(() => import('./ReturnsManagementSection/ReturnsManagementSection3')),
+    },
 };
