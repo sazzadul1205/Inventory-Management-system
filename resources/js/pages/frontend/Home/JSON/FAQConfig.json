@@ -592,16 +592,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Frequently Asked Questions - Sazzad Inventory & Logistics",
-            "description": "Find answers to common questions about Sazzad's inventory management and logistics solutions.",
-            "keywords": "faq, frequently asked questions, help, support, inventory questions, logistics questions",
-            "structuredData": {
-                "@type": "FAQPage",
-                "name": "Frequently Asked Questions",
-                "description": "Common questions about our platform"
-            }
-        },
         "children": [
             {
                 "uid": "faq-header-002",

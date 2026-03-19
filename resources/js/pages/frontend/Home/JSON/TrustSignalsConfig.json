@@ -676,16 +676,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Trust & Security - Sazzad Inventory & Logistics",
-            "description": "Learn why thousands of businesses trust us with their inventory and logistics operations.",
-            "keywords": "trust, security, certifications, compliance, reliability",
-            "structuredData": {
-                "@type": "Organization",
-                "name": "Sazzad Trust Center",
-                "description": "Our commitment to security and reliability"
-            }
-        },
         "children": [
             {
                 "uid": "trust-header-002",

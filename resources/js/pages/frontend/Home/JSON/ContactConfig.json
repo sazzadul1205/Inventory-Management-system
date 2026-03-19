@@ -285,16 +285,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Contact Us - Sazzad Inventory & Logistics",
-            "description": "Get in touch with our team. We're here to answer your questions about inventory management and logistics solutions.",
-            "keywords": "contact, support, customer service, get in touch, help, sales inquiries",
-            "structuredData": {
-                "@type": "ContactPage",
-                "name": "Contact Us",
-                "description": "Get in touch with our team"
-            }
-        },
         "children": [
             {
                 "uid": "contact-header-002",

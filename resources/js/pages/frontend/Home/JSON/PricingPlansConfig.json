@@ -573,16 +573,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Pricing Plans - Sazzad Inventory & Logistics",
-            "description": "Choose the perfect plan for your business. Simple, transparent pricing with no hidden fees.",
-            "keywords": "pricing, plans, subscription, inventory management cost, logistics pricing, saas pricing",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Pricing Plans",
-                "description": "Simple and transparent pricing for all businesses"
-            }
-        },
         "children": [
             {
                 "uid": "pricing-header-002",

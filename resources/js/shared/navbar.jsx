@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import {
   HiHome,
   HiInformationCircle,
@@ -19,8 +19,8 @@ import { login, register } from '@/routes';
 
 // Components
 import ThemeToggle from '@/components/ThemeToggle';
-import { HiPencil, HiQuestionMarkCircle, HiStar } from 'react-icons/hi2';
 
+// Determine current theme (used to swap logo)
 const getIsDarkTheme = () => {
   if (typeof window === 'undefined') return false;
 
@@ -39,8 +39,10 @@ const getIsDarkTheme = () => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(getIsDarkTheme);
+  const { url } = usePage();
 
   useEffect(() => {
+    // Keep logo updated when theme changes
     const syncTheme = () => setDarkMode(getIsDarkTheme());
     const root = document.documentElement;
     const observer = new MutationObserver(syncTheme);
@@ -55,22 +57,78 @@ const Navbar = () => {
     };
   }, []);
 
-  // Navigation items array with all links
+  // Check if a nav link matches the current URL
+  const isActive = (path) => {
+    if (path === '/') {
+      return url === '/' || url === '';
+    }
+    return url.startsWith(path);
+  };
+
+  // Main navigation links
   const navItems = [
     { name: 'Home', path: '/', icon: HiHome },
-    { name: 'About', path: '/about', icon: HiInformationCircle },
     { name: 'Services', path: '/services', icon: HiBriefcase },
-    { name: 'Testimonials', path: '/testimonials', icon: HiStar }, // You'll need to import HiStar
-    { name: 'FAQ', path: '/faq', icon: HiQuestionMarkCircle }, // You'll need to import HiQuestionMarkCircle
-    { name: 'Blog', path: '/blog', icon: HiPencil }, // You'll need to import HiPencil
-    { name: 'Contact', path: '/contact', icon: HiMail },
   ];
 
-  // Auth buttons array
+  // Auth buttons
   const authButtons = [
     { name: 'Login', path: login.url(), icon: HiLogin, primary: false },
     { name: 'Register', path: register.url(), icon: HiUserAdd, primary: true },
   ];
+
+  // Active state styles for desktop items
+  const getNavItemClasses = (path) => {
+    const active = isActive(path);
+    return `flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${active
+        ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-500 dark:border-indigo-400'
+        : 'text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700 dark:hover:text-indigo-400'
+      }`;
+  };
+
+  // Active state styles for mobile items
+  const getMobileNavItemClasses = (path) => {
+    const active = isActive(path);
+    return `flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium transition-all duration-200 ${active
+        ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border-l-4 border-indigo-500 dark:border-indigo-400'
+        : 'text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700 dark:hover:text-indigo-400'
+      }`;
+  };
+
+  // Active state styles for auth buttons (desktop)
+  const getAuthButtonClasses = (button, isMobile = false) => {
+    const active = isActive(button.path);
+
+    if (button.primary) {
+      return `flex items-center space-x-1 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${active
+          ? 'bg-indigo-700 dark:bg-indigo-800 text-white shadow-lg ring-2 ring-indigo-300 dark:ring-indigo-700'
+          : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg dark:bg-indigo-700 dark:hover:bg-indigo-800'
+        }`;
+    }
+
+    // Non-primary auth buttons (Login)
+    return `flex items-center space-x-1 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${active
+        ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700'
+        : 'text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700 dark:hover:text-indigo-400'
+      }`;
+  };
+
+  // Active state styles for auth buttons (mobile)
+  const getMobileAuthButtonClasses = (button) => {
+    const active = isActive(button.path);
+
+    if (button.primary) {
+      return `flex items-center justify-center space-x-2 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${active
+          ? 'bg-indigo-700 dark:bg-indigo-800 text-white shadow-lg ring-2 ring-indigo-300 dark:ring-indigo-700'
+          : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md dark:bg-indigo-700 dark:hover:bg-indigo-800'
+        }`;
+    }
+
+    return `flex items-center justify-center space-x-2 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${active
+        ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700'
+        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400'
+      }`;
+  };
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-50">
@@ -87,29 +145,26 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Menu */}
+          {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
-                className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200"
+                className={getNavItemClasses(item.path)}
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.name}</span>
               </Link>
             ))}
 
-            {/* Auth Buttons */}
+            {/* Auth buttons */}
             <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
               {authButtons.map((button) => (
                 <Link
                   key={button.name}
                   href={button.path}
-                  className={`flex items-center space-x-1 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${button.primary
-                    ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg'
-                    : 'text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700'
-                    }`}
+                  className={getAuthButtonClasses(button)}
                 >
                   <button.icon className="h-4 w-4" />
                   <span>{button.name}</span>
@@ -117,7 +172,7 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Theme Toggle Inline in Navbar */}
+            {/* Theme toggle */}
             <ThemeToggle floating={false} />
           </div>
 
@@ -142,7 +197,7 @@ const Navbar = () => {
             <Link
               key={item.path}
               href={item.path}
-              className="flex items-center space-x-3 text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700 px-3 py-3 rounded-md text-base font-medium transition-all duration-200"
+              className={getMobileNavItemClasses(item.path)}
               onClick={() => setIsOpen(false)}
             >
               <item.icon className="h-5 w-5" />
@@ -156,10 +211,7 @@ const Navbar = () => {
               <Link
                 key={button.name}
                 href={button.path}
-                className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${button.primary
-                  ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600'
-                  }`}
+                className={getMobileAuthButtonClasses(button)}
                 onClick={() => setIsOpen(false)}
               >
                 <button.icon className="h-4 w-4" />

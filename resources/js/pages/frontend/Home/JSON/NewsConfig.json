@@ -485,16 +485,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Newsroom - Sazzad Inventory & Logistics",
-            "description": "Stay updated with the latest company news, product updates, and industry announcements from Sazzad.",
-            "keywords": "news, press releases, announcements, company updates, industry news",
-            "structuredData": {
-                "@type": "NewsMediaOrganization",
-                "name": "Sazzad Newsroom",
-                "description": "Official news and updates from Sazzad"
-            }
-        },
         "children": [
             {
                 "uid": "news-header-002",

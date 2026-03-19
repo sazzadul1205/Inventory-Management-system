@@ -1,16 +1,5 @@
 {
     "successStoriesSection1": {
-        "seo": {
-            "title": "Success Stories - Sazzad Inventory & Logistics",
-            "description": "Read real success stories from businesses that transformed their supply chain with Sazzad's inventory and logistics solutions.",
-            "keywords": "success stories, case studies, customer stories, logistics success, inventory management results",
-            "ogImage": "/images/success-stories-og.jpg",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Customer Success Stories",
-                "description": "Real results from real businesses"
-            }
-        },
         "badge": {
             "show": true,
             "text": "✦ SUCCESS STORIES",
@@ -186,17 +175,6 @@
         }
     },
     "successStoriesSection2": {
-        "seo": {
-            "title": "Customer Success Stories - Sazzad Inventory & Logistics",
-            "description": "Explore detailed case studies from businesses that achieved remarkable results with Sazzad's supply chain solutions.",
-            "keywords": "case studies, customer success, logistics results, inventory management success, business transformation",
-            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Customer Success Stories",
-                "description": "Detailed case studies of business transformation"
-            }
-        },
         "badge": {
             "text": "CASE STUDIES"
         },
@@ -388,17 +366,6 @@
         }
     },
     "successStoriesSection3": {
-        "seo": {
-            "title": "Customer Success Stories - Sazzad Inventory & Logistics",
-            "description": "Watch video testimonials and read success stories from businesses that transformed their supply chain with Sazzad.",
-            "keywords": "video testimonials, customer stories, success stories, logistics results, inventory management success",
-            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Customer Success Stories",
-                "description": "Video testimonials and success stories"
-            }
-        },
         "badge": {
             "text": "CUSTOMER LOVE"
         },
@@ -648,16 +615,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Success Stories - Sazzad Inventory & Logistics",
-            "description": "Read real success stories from businesses that transformed their supply chain with Sazzad's inventory and logistics solutions.",
-            "keywords": "success stories, case studies, customer stories, logistics success, inventory management results",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Customer Success Stories",
-                "description": "Real results from real businesses"
-            }
-        },
         "children": [
             {
                 "uid": "stories-header-002",

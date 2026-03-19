@@ -281,16 +281,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Mobile App - Sazzad Inventory & Logistics",
-            "description": "Manage your inventory on the go with our powerful mobile app for iOS and Android.",
-            "keywords": "mobile app, inventory app, barcode scanner, warehouse management",
-            "structuredData": {
-                "@type": "MobileApplication",
-                "name": "Sazzad Mobile App",
-                "description": "Inventory management on the go"
-            }
-        },
         "children": [
             {
                 "uid": "mobile-header-002",

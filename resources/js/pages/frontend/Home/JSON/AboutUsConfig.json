@@ -1,16 +1,5 @@
 {
     "aboutUsSection1": {
-        "seo": {
-            "title": "About Us - Sazzad Inventory & Logistics",
-            "description": "Learn about Sazzad's mission, values, and the team behind our innovative inventory and logistics solutions.",
-            "keywords": "about us, our story, company mission, team, values, logistics company",
-            "ogImage": "/images/about-us-og.jpg",
-            "structuredData": {
-                "@type": "AboutPage",
-                "name": "About Sazzad",
-                "description": "Learn about our company"
-            }
-        },
         "badge": {
             "show": true,
             "text": "✦ ABOUT US",
@@ -171,17 +160,6 @@
         }
     },
     "aboutUsSection2": {
-        "seo": {
-            "title": "About Us - Sazzad Inventory & Logistics",
-            "description": "Learn about Sazzad's mission, vision, and the team behind our innovative inventory and logistics solutions.",
-            "keywords": "about us, our story, company mission, vision, team, values, logistics company",
-            "ogImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "AboutPage",
-                "name": "About Sazzad",
-                "description": "Learn about our company"
-            }
-        },
         "badge": {
             "text": "ABOUT US"
         },
@@ -379,17 +357,6 @@
         }
     },
     "aboutUsSection3": {
-        "seo": {
-            "title": "About Us - Sazzad Inventory & Logistics",
-            "description": "Learn about Sazzad's story, mission, and the passionate team behind our innovative inventory and logistics solutions.",
-            "keywords": "about us, our story, company mission, team, values, logistics company, founders",
-            "ogImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "AboutPage",
-                "name": "About Sazzad",
-                "description": "Learn about our company story and mission"
-            }
-        },
         "badge": {
             "text": "ABOUT US"
         },
@@ -588,16 +555,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "About Us - Sazzad Inventory & Logistics",
-            "description": "Learn about Sazzad's mission, values, and the team behind our innovative inventory and logistics solutions.",
-            "keywords": "about us, our story, company mission, team, values, logistics company",
-            "structuredData": {
-                "@type": "AboutPage",
-                "name": "About Sazzad",
-                "description": "Learn about our company"
-            }
-        },
         "children": [
             {
                 "uid": "about-header-002",

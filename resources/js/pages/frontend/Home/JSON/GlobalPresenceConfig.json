@@ -596,16 +596,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Global Presence - Sazzad Inventory & Logistics",
-            "description": "With offices across four continents, we provide seamless inventory and logistics solutions to businesses worldwide.",
-            "keywords": "global presence, international offices, worldwide locations, global operations",
-            "structuredData": {
-                "@type": "Organization",
-                "name": "Sazzad Global",
-                "description": "Our worldwide operations"
-            }
-        },
         "children": [
             {
                 "uid": "global-header-002",

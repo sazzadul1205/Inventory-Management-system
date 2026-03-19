@@ -628,16 +628,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Careers - Sazzad Inventory & Logistics",
-            "description": "Join our team and help transform supply chain management for businesses worldwide.",
-            "keywords": "careers, jobs, employment, team, culture, benefits",
-            "structuredData": {
-                "@type": "JobPosting",
-                "name": "Sazzad Careers",
-                "description": "Career opportunities at Sazzad"
-            }
-        },
         "children": [
             {
                 "uid": "career-header-002",

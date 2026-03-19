@@ -507,16 +507,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Blog - Sazzad Inventory & Logistics",
-            "description": "Stay updated with the latest trends, tips, and best practices in inventory management and logistics.",
-            "keywords": "blog, inventory management, logistics, supply chain, articles",
-            "structuredData": {
-                "@type": "Blog",
-                "name": "Sazzad Blog",
-                "description": "Industry insights and updates"
-            }
-        },
         "children": [
             {
                 "uid": "blog-header-002",

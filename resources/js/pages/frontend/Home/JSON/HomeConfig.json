@@ -62,21 +62,6 @@
             "privacy": "/privacy",
             "terms": "/terms",
             "contact": "/contact"
-        },
-        "seo": {
-            "title": "Sazzad Inventory & Logistics - Streamline Your Supply Chain",
-            "description": "End-to-end inventory management and logistics solutions that drive efficiency, reduce costs, and accelerate your business growth.",
-            "keywords": "inventory management, logistics, supply chain, warehouse management, real-time tracking",
-            "ogImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80",
-            "structuredData": {
-                "@type": "Product",
-                "name": "Sazzad Inventory & Logistics",
-                "brand": "Sazzad",
-                "aggregateRating": {
-                    "ratingValue": "4.9",
-                    "ratingCount": "500"
-                }
-            }
         }
     },
     "heroSection2": {
@@ -156,23 +141,6 @@
             "terms": "/terms",
             "contact": "/contact",
             "blog": "/blog"
-        },
-        "seo": {
-            "title": "Smart Logistics for Modern Business | Sazzad Logistics",
-            "description": "Transform your supply chain with AI-powered inventory management and real-time tracking. Experience logistics like never before.",
-            "keywords": "AI logistics, supply chain, inventory management, real-time tracking, global logistics, express delivery",
-            "structuredData": {
-                "@type": "Organization",
-                "name": "Sazzad Logistics",
-                "slogan": "Smart Logistics for Modern Business",
-                "areaServed": "Worldwide",
-                "numberOfEmployees": "500+",
-                "foundingDate": "2020",
-                "aggregateRating": {
-                    "ratingValue": "4.8",
-                    "ratingCount": "1500"
-                }
-            }
         }
     },
     "heroSection3": {
@@ -270,28 +238,6 @@
             "contact": "/contact",
             "about": "/about",
             "careers": "/careers"
-        },
-        "seo": {
-            "title": "Sazzad Inventory & Logistics - Your Partner in Precision Logistics",
-            "description": "Streamline your operations with comprehensive inventory and logistics solutions. From warehouse management to last-mile delivery.",
-            "keywords": "inventory management, logistics, warehouse, supply chain, last-mile delivery, real-time tracking",
-            "ogImage": "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80",
-            "structuredData": {
-                "@type": "Product",
-                "name": "Sazzad Inventory & Logistics",
-                "brand": "Sazzad",
-                "aggregateRating": {
-                    "ratingValue": "4.9",
-                    "ratingCount": "1000"
-                }
-            },
-            "videoStructuredData": {
-                "name": "Company Overview Video",
-                "thumbnailUrl": "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-                "uploadDate": "2024-01-01",
-                "embedUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                "contentUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            }
         }
     },
     "heroSectionCustom": {
@@ -307,18 +253,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Dynamic CMS Page Builder - Sazzad Inventory & Logistics",
-            "description": "Dynamic page builder for inventory and logistics solutions. Build custom pages with our flexible CMS components.",
-            "keywords": "CMS builder, dynamic page, inventory management, logistics, page builder",
-            "structuredData": {
-                "@type": "SoftwareApplication",
-                "name": "Sazzad CMS Page Builder",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web",
-                "description": "Dynamic page builder for inventory and logistics solutions"
-            }
-        },
         "children": [
             {
                 "uid": "hero-grid-002",

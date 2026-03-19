@@ -445,16 +445,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Events - Sazzad Inventory & Logistics",
-            "description": "Join us at our upcoming events, webinars, and conferences to connect with industry experts and stay ahead of the curve.",
-            "keywords": "events, conferences, webinars, workshops, networking",
-            "structuredData": {
-                "@type": "EventSeries",
-                "name": "Sazzad Events",
-                "description": "Industry events and gatherings"
-            }
-        },
         "children": [
             {
                 "uid": "events-header-002",

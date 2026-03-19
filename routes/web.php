@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\FrontEndController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -8,7 +8,8 @@ use Laravel\Fortify\Features;
 //     'canRegister' => Features::enabled(Features::registration()),
 // ])->name('home');
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [FrontEndController::class, 'home'])->name('home.index');
+Route::get('/services', [FrontEndController::class, 'services'])->name('services.index');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

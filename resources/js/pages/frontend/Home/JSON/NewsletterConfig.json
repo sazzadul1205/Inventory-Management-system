@@ -235,16 +235,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Newsletter - Sazzad Inventory & Logistics",
-            "description": "Subscribe to our newsletter for the latest insights on inventory management and logistics.",
-            "keywords": "newsletter, email subscription, updates, insights",
-            "structuredData": {
-                "@type": "Newsletter",
-                "name": "Sazzad Newsletter",
-                "description": "Weekly insights for supply chain professionals"
-            }
-        },
         "children": [
             {
                 "uid": "newsletter-header-002",

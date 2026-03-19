@@ -472,22 +472,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "How It Works - Sazzad Inventory & Logistics",
-            "description": "Follow our simple step-by-step process to transform your supply chain management with Sazzad's powerful platform.",
-            "keywords": "how it works, step by step guide, logistics process, inventory workflow, supply chain journey",
-            "structuredData": {
-                "@type": "HowTo",
-                "name": "Sazzad Platform Guide",
-                "description": "Complete guide to using Sazzad platform",
-                "totalTime": "PT15M",
-                "estimatedCost": {
-                    "@type": "MonetaryAmount",
-                    "value": "0",
-                    "currency": "USD"
-                }
-            }
-        },
         "children": [
             {
                 "uid": "how-header-002",

@@ -611,16 +611,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Why Choose Us - Sazzad Inventory & Logistics",
-            "description": "Discover why businesses choose Sazzad for their inventory management and logistics needs. Reliable, innovative, and customer-focused.",
-            "keywords": "why choose us, benefits, advantages, reliability, innovation, customer support",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Why Choose Us",
-                "description": "Key reasons to choose our platform"
-            }
-        },
         "children": [
             {
                 "uid": "why-header-002",

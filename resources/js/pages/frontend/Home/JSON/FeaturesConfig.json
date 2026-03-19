@@ -1,16 +1,5 @@
 {
     "featuresSection1": {
-        "seo": {
-            "title": "Powerful Features for Modern Logistics - Sazzad",
-            "description": "Discover the powerful features that make our inventory and logistics platform the choice of leading businesses worldwide.",
-            "keywords": "inventory features, logistics features, real-time tracking, demand forecasting, warehouse automation, supply chain analytics",
-            "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Platform Features",
-                "description": "Key features of our inventory and logistics platform"
-            }
-        },
         "badge": {
             "show": true,
             "text": "✦ POWERFUL FEATURES",
@@ -129,17 +118,6 @@
         }
     },
     "featuresSection2": {
-        "seo": {
-            "title": "Powerful Platform Features - Sazzad Inventory & Logistics",
-            "description": "Explore our comprehensive platform features including inventory management, real-time tracking, analytics, and automation tools.",
-            "keywords": "platform features, inventory features, logistics features, supply chain tools, warehouse automation, real-time tracking",
-            "ogImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Platform Features",
-                "description": "Comprehensive supply chain platform features"
-            }
-        },
         "badge": {
             "text": "POWERFUL PLATFORM"
         },
@@ -377,17 +355,6 @@
         }
     },
     "featuresSection3": {
-        "seo": {
-            "title": "Comprehensive Platform Capabilities - Sazzad",
-            "description": "Explore our extensive range of features and capabilities designed to optimize every aspect of your supply chain operations.",
-            "keywords": "platform capabilities, inventory features, logistics features, supply chain tools, warehouse management, tracking features",
-            "ogImage": "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Platform Capabilities",
-                "description": "Complete supply chain platform features"
-            }
-        },
         "badge": {
             "icon": "star",
             "text": "PLATFORM CAPABILITIES"
@@ -960,16 +927,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Powerful Platform Features - Sazzad Inventory & Logistics",
-            "description": "Discover our comprehensive suite of features designed to optimize your inventory management, streamline logistics, and transform your supply chain operations.",
-            "keywords": "inventory features, logistics features, supply chain tools, warehouse automation, real-time tracking, demand forecasting",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Platform Features",
-                "description": "Complete supply chain management features"
-            }
-        },
         "children": [
             {
                 "uid": "features-header-002",

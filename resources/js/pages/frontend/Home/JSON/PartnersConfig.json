@@ -553,16 +553,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Partners - Sazzad Inventory & Logistics",
-            "description": "Meet our global partners who help us deliver comprehensive inventory and logistics solutions to businesses worldwide.",
-            "keywords": "partners, technology partners, integration partners, logistics partners, strategic alliances",
-            "structuredData": {
-                "@type": "Organization",
-                "name": "Sazzad Partners",
-                "description": "Our partner ecosystem"
-            }
-        },
         "children": [
             {
                 "uid": "partners-header-002",

@@ -1,0 +1,1626 @@
+{
+    "allServicesSection1": {
+        "badge": {
+            "text": "WHAT WE OFFER",
+            "showPulse": true,
+            "backgroundColor": "bg-blue-50 dark:bg-gray-800/50",
+            "borderColor": "border-blue-100 dark:border-gray-700",
+            "textColor": "text-blue-700 dark:text-blue-300"
+        },
+        "title": {
+            "prefix": "Comprehensive",
+            "highlightedText": "Supply Chain",
+            "suffix": "Solutions",
+            "highlightGradient": "from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400"
+        },
+        "description": "End-to-end inventory and logistics services designed to streamline your operations, reduce costs, and improve efficiency across your entire supply chain.",
+        "services": [
+            {
+                "id": 1,
+                "icon": "cube",
+                "title": "Inventory Management",
+                "description": "Real-time tracking and optimization of your inventory levels across multiple warehouses with automated reordering.",
+                "features": [
+                    "Real-time stock tracking",
+                    "Automated reordering",
+                    "Multi-warehouse sync",
+                    "Low stock alerts"
+                ],
+                "link": "/services/inventory-management"
+            },
+            {
+                "id": 2,
+                "icon": "truck",
+                "title": "Warehouse Operations",
+                "description": "Efficient warehouse management with optimized layouts, picking strategies, and labor management systems.",
+                "features": [
+                    "Smart picking routes",
+                    "Space optimization",
+                    "Labor tracking",
+                    "Cycle counting"
+                ],
+                "link": "/services/warehouse-operations"
+            },
+            {
+                "id": 3,
+                "icon": "globe",
+                "title": "Global Logistics",
+                "description": "International shipping and freight forwarding with customs clearance and door-to-door tracking.",
+                "features": [
+                    "Freight forwarding",
+                    "Customs brokerage",
+                    "Multi-modal transport",
+                    "Global tracking"
+                ],
+                "link": "/services/global-logistics"
+            },
+            {
+                "id": 4,
+                "icon": "clock",
+                "title": "Express Delivery",
+                "description": "Fast and reliable last-mile delivery solutions with real-time tracking and delivery confirmation.",
+                "features": [
+                    "Same-day delivery",
+                    "Route optimization",
+                    "Live tracking",
+                    "Proof of delivery"
+                ],
+                "link": "/services/express-delivery"
+            },
+            {
+                "id": 5,
+                "icon": "chart",
+                "title": "Demand Forecasting",
+                "description": "AI-powered demand prediction to optimize stock levels and reduce carrying costs.",
+                "features": [
+                    "Predictive analytics",
+                    "Seasonal trends",
+                    "Demand planning",
+                    "Stock optimization"
+                ],
+                "link": "/services/demand-forecasting"
+            },
+            {
+                "id": 6,
+                "icon": "shield",
+                "title": "Supply Chain Security",
+                "description": "Comprehensive security solutions to protect your goods throughout the supply chain journey.",
+                "features": [
+                    "Cargo insurance",
+                    "Tamper-proof seals",
+                    "GPS tracking",
+                    "Risk assessment"
+                ],
+                "link": "/services/security"
+            }
+        ],
+        "showCta": true,
+        "ctaText": "Ready to optimize your supply chain?",
+        "ctaLink": "/contact",
+        "ctaButton": {
+            "text": "Get Started",
+            "backgroundColor": "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500",
+            "textColor": "text-white"
+        },
+        "links": {
+            "privacy": "/privacy",
+            "terms": "/terms",
+            "contact": "/contact",
+            "services": "/services"
+        }
+    },
+    "allServicesSection2": {
+        "badge": "COMPREHENSIVE SOLUTIONS",
+        "title": "End-to-End Supply Chain Services",
+        "description": "From warehouse management to last-mile delivery, we provide everything you need to optimize your supply chain operations.",
+        "services": [
+            {
+                "id": 1,
+                "icon": "cube",
+                "category": "INVENTORY",
+                "title": "Smart Inventory Management",
+                "description": "Real-time inventory tracking with AI-powered forecasting and automated replenishment systems.",
+                "bgColor": "bg-blue-600",
+                "textColor": "text-blue-600 dark:text-blue-400",
+                "overlayGradient": "from-blue-600/30 to-transparent",
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Real-time stock visibility across all locations",
+                    "AI-powered demand forecasting",
+                    "Automated reorder points and purchase orders",
+                    "Batch and serial number tracking"
+                ],
+                "stats": [
+                    { "value": "99.9%", "label": "Accuracy Rate" },
+                    { "value": "40%", "label": "Cost Reduction" }
+                ],
+                "link": "/services/inventory-management"
+            },
+            {
+                "id": 2,
+                "icon": "truck",
+                "category": "LOGISTICS",
+                "title": "Global Logistics Network",
+                "description": "Seamless international shipping with customs clearance and end-to-end visibility.",
+                "bgColor": "bg-purple-600",
+                "textColor": "text-purple-600 dark:text-purple-400",
+                "overlayGradient": "from-purple-600/30 to-transparent",
+                "image": "https://images.unsplash.com/photo-1566576912328-109e7d6b1e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Multi-modal transport (air, sea, land)",
+                    "Customs brokerage and documentation",
+                    "Real-time shipment tracking",
+                    "Warehouse-to-doorstep delivery"
+                ],
+                "stats": [
+                    { "value": "150+", "label": "Countries" },
+                    { "value": "48h", "label": "Avg Delivery" }
+                ],
+                "link": "/services/global-logistics"
+            },
+            {
+                "id": 3,
+                "icon": "clock",
+                "category": "DELIVERY",
+                "title": "Express Last-Mile Delivery",
+                "description": "Fast and flexible delivery options with real-time tracking and instant notifications.",
+                "bgColor": "bg-green-600",
+                "textColor": "text-green-600 dark:text-green-400",
+                "overlayGradient": "from-green-600/30 to-transparent",
+                "image": "https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Same-day and next-day delivery",
+                    "Real-time driver tracking",
+                    "SMS and email notifications",
+                    "Flexible delivery windows"
+                ],
+                "stats": [
+                    { "value": "98%", "label": "On-Time Rate" },
+                    { "value": "30min", "label": "Avg Response" }
+                ],
+                "link": "/services/express-delivery"
+            },
+            {
+                "id": 4,
+                "icon": "chart",
+                "category": "ANALYTICS",
+                "title": "Supply Chain Analytics",
+                "description": "Data-driven insights to optimize your supply chain performance and reduce costs.",
+                "bgColor": "bg-orange-600",
+                "textColor": "text-orange-600 dark:text-orange-400",
+                "overlayGradient": "from-orange-600/30 to-transparent",
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "features": [
+                    "Custom dashboards and KPIs",
+                    "Predictive analytics",
+                    "Cost optimization insights",
+                    "Performance benchmarking"
+                ],
+                "stats": [
+                    { "value": "30%", "label": "Cost Savings" },
+                    { "value": "24/7", "label": "Monitoring" }
+                ],
+                "link": "/services/analytics"
+            }
+        ],
+        "showCta": true,
+        "ctaText": "Looking for a customized solution?",
+        "ctaLink": "/contact",
+        "ctaButtonText": "Talk to an Expert",
+        "links": {
+            "services": "/services",
+            "contact": "/contact"
+        }
+    },
+    "allServicesSection3": {
+        "badge": "OUR SERVICES",
+        "title": "Integrated Supply Chain Solutions",
+        "description": "Choose from our comprehensive range of services designed to work together seamlessly for your business.",
+        "tabs": [
+            {
+                "id": 1,
+                "label": "All Services"
+            },
+            {
+                "id": 2,
+                "label": "Warehousing"
+            },
+            {
+                "id": 3,
+                "label": "Transportation"
+            },
+            {
+                "id": 4,
+                "label": "Technology"
+            }
+        ],
+        "services": [
+            {
+                "id": 1,
+                "tabId": 1,
+                "icon": "cube",
+                "title": "Warehouse Management",
+                "description": "Smart warehouse solutions with real-time inventory tracking and optimized space utilization.",
+                "gradient": "from-blue-500 to-blue-600",
+                "features": [
+                    "Real-time inventory tracking",
+                    "Smart picking systems",
+                    "Space optimization",
+                    "Temperature monitoring"
+                ],
+                "price": "Custom",
+                "priceUnit": "",
+                "link": "/services/warehouse"
+            },
+            {
+                "id": 2,
+                "tabId": 1,
+                "icon": "truck",
+                "title": "Freight Management",
+                "description": "End-to-end freight solutions with multi-modal transport options and real-time tracking.",
+                "gradient": "from-purple-500 to-purple-600",
+                "features": [
+                    "Multi-modal transport",
+                    "Real-time tracking",
+                    "Customs clearance",
+                    "Consolidation services"
+                ],
+                "price": "From $299",
+                "priceUnit": "/shipment",
+                "link": "/services/freight"
+            },
+            {
+                "id": 3,
+                "tabId": 1,
+                "icon": "clock",
+                "title": "Express Delivery",
+                "description": "Fast and reliable last-mile delivery with real-time tracking and instant notifications.",
+                "gradient": "from-green-500 to-green-600",
+                "features": [
+                    "Same-day delivery",
+                    "Live tracking",
+                    "SMS notifications",
+                    "Proof of delivery"
+                ],
+                "price": "From $9.99",
+                "priceUnit": "/delivery",
+                "link": "/services/express"
+            },
+            {
+                "id": 4,
+                "tabId": 2,
+                "icon": "cube",
+                "title": "Bulk Storage",
+                "description": "Secure bulk storage solutions with climate control options and 24/7 monitoring.",
+                "gradient": "from-blue-500 to-blue-600",
+                "features": [
+                    "Climate controlled units",
+                    "24/7 security",
+                    "Inventory management",
+                    "Flexible terms"
+                ],
+                "price": "$0.50",
+                "priceUnit": "/sqft/month",
+                "link": "/services/bulk-storage"
+            },
+            {
+                "id": 5,
+                "tabId": 2,
+                "icon": "refresh",
+                "title": "Cross-Docking",
+                "description": "Efficient cross-docking services to reduce storage time and accelerate delivery.",
+                "gradient": "from-indigo-500 to-indigo-600",
+                "features": [
+                    "Same-day transfer",
+                    "Inventory sorting",
+                    "Consolidation",
+                    "Quality checks"
+                ],
+                "price": "$150",
+                "priceUnit": "/pallet",
+                "link": "/services/cross-docking"
+            },
+            {
+                "id": 6,
+                "tabId": 2,
+                "icon": "shield",
+                "title": "Secure Vault Storage",
+                "description": "High-security vault storage for valuable items with biometric access.",
+                "gradient": "from-amber-500 to-amber-600",
+                "features": [
+                    "Biometric access",
+                    "24/7 surveillance",
+                    "Insurance included",
+                    "Audit trails"
+                ],
+                "price": "$199",
+                "priceUnit": "/month",
+                "link": "/services/vault"
+            },
+            {
+                "id": 7,
+                "tabId": 3,
+                "icon": "truck",
+                "title": "FTL Services",
+                "description": "Full truckload services for large shipments with dedicated vehicles.",
+                "gradient": "from-purple-500 to-purple-600",
+                "features": [
+                    "Dedicated trucks",
+                    "Nationwide coverage",
+                    "Live tracking",
+                    "Priority handling"
+                ],
+                "price": "$899",
+                "priceUnit": "/truck",
+                "link": "/services/ftl"
+            },
+            {
+                "id": 8,
+                "tabId": 3,
+                "icon": "globe",
+                "title": "International Shipping",
+                "description": "Global shipping solutions with customs brokerage and door-to-door delivery.",
+                "gradient": "from-cyan-500 to-cyan-600",
+                "features": [
+                    "Air & sea freight",
+                    "Customs brokerage",
+                    "Insurance options",
+                    "Track & trace"
+                ],
+                "price": "Custom",
+                "priceUnit": "",
+                "link": "/services/international"
+            },
+            {
+                "id": 9,
+                "tabId": 3,
+                "icon": "clock",
+                "title": "Express Parcel",
+                "description": "Fast parcel delivery for e-commerce and small business shipments.",
+                "gradient": "from-green-500 to-green-600",
+                "features": [
+                    "Next-day delivery",
+                    "Online tracking",
+                    "Flexible pickup",
+                    "Returns management"
+                ],
+                "price": "$5.99",
+                "priceUnit": "/parcel",
+                "link": "/services/parcel"
+            },
+            {
+                "id": 10,
+                "tabId": 4,
+                "icon": "chart",
+                "title": "Analytics Dashboard",
+                "description": "Real-time analytics and reporting for complete supply chain visibility.",
+                "gradient": "from-orange-500 to-orange-600",
+                "features": [
+                    "Custom dashboards",
+                    "KPI tracking",
+                    "Predictive insights",
+                    "Export reports"
+                ],
+                "price": "$49",
+                "priceUnit": "/month",
+                "link": "/services/analytics"
+            },
+            {
+                "id": 11,
+                "tabId": 4,
+                "icon": "cog",
+                "title": "API Integration",
+                "description": "Seamless API integration with your existing systems and platforms.",
+                "gradient": "from-red-500 to-red-600",
+                "features": [
+                    "RESTful APIs",
+                    "Webhook support",
+                    "Documentation",
+                    "Developer support"
+                ],
+                "price": "Custom",
+                "priceUnit": "",
+                "link": "/services/api"
+            },
+            {
+                "id": 12,
+                "tabId": 4,
+                "icon": "sparkles",
+                "title": "AI Optimization",
+                "description": "AI-powered route optimization and demand forecasting tools.",
+                "gradient": "from-violet-500 to-violet-600",
+                "features": [
+                    "Route optimization",
+                    "Demand forecasting",
+                    "Cost reduction",
+                    "Performance insights"
+                ],
+                "price": "$199",
+                "priceUnit": "/month",
+                "link": "/services/ai"
+            }
+        ],
+        "showFeatured": true,
+        "featuredTitle": "Need a Custom Solution?",
+        "featuredDescription": "We'll create a tailored package that perfectly fits your business requirements.",
+        "featuredLink": "/contact",
+        "featuredButtonText": "Get Custom Quote",
+        "showTrust": true,
+        "trustItems": [
+            {
+                "icon": "users",
+                "text": "500+ Happy Clients",
+                "gradient": "from-blue-500 to-blue-600"
+            },
+            {
+                "icon": "globe",
+                "text": "25+ Countries",
+                "gradient": "from-purple-500 to-purple-600"
+            },
+            {
+                "icon": "clock",
+                "text": "99.9% Uptime",
+                "gradient": "from-green-500 to-green-600"
+            },
+            {
+                "icon": "shield",
+                "text": "100% Secure",
+                "gradient": "from-orange-500 to-orange-600"
+            }
+        ],
+        "links": {
+            "services": "/services",
+            "contact": "/contact",
+            "quote": "/get-quote"
+        }
+    },
+    "allServicesCustomSection": {
+        "uid": "all-services-section-001",
+        "component": "CMS_Section",
+        "classes": {
+            "base": "min-h-screen max-w-7xl mx-auto bg-gradient-to-br from-blue-50 via-white to-purple-50",
+            "dark": "dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
+            "sm": "sm:py-12",
+            "md": "md:py-16",
+            "lg": "lg:py-20",
+            "xl": "xl:py-24",
+            "2xl": "2xl:py-28"
+        },
+        "fullWidth": false,
+        "seo": {
+            "title": "Our Services - Sazzad Inventory & Logistics",
+            "description": "Discover our comprehensive range of inventory and logistics services designed to streamline your supply chain operations.",
+            "keywords": "inventory management, logistics services, supply chain solutions, warehouse management, freight services",
+            "structuredData": {
+                "@type": "Service",
+                "name": "Sazzad Services",
+                "description": "Comprehensive inventory and logistics solutions"
+            }
+        },
+        "children": [
+            {
+                "uid": "services-header-002",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "text-center max-w-3xl mx-auto px-4",
+                    "sm": "sm:px-6",
+                    "md": "md:px-8 md:mb-16",
+                    "lg": "lg:mb-20",
+                    "xl": "xl:mb-24"
+                },
+                "children": [
+                    {
+                        "uid": "services-badge-003",
+                        "component": "CMS_Badge",
+                        "text": "✦ OUR SERVICES",
+                        "size": "md",
+                        "variant": "primary",
+                        "shape": "pill",
+                        "classes": {
+                            "base": "mb-6 inline-block"
+                        }
+                    },
+                    {
+                        "uid": "services-title-004",
+                        "component": "CMS_H2",
+                        "text": "Comprehensive Solutions for Your Business",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-900 dark:text-white font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
+                        },
+                        "highlightClasses": [
+                            {
+                                "start": 13,
+                                "end": 23,
+                                "class": "text-blue-600 dark:text-blue-400"
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "services-description-005",
+                        "component": "CMS_Paragraph",
+                        "text": "End-to-end inventory and logistics solutions tailored to optimize your supply chain, reduce costs, and drive business growth.",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
+                        }
+                    }
+                ]
+            },
+            {
+                "uid": "services-grid-006",
+                "component": "CMS_Grid",
+                "classes": {
+                    "base": "grid gap-8 px-4",
+                    "md": "md:grid-cols-2",
+                    "lg": "lg:grid-cols-3"
+                },
+                "children": [
+                    {
+                        "uid": "service-card-1-007",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "service-card-1-header-008",
+                                "component": "CMS_CardHeader",
+                                "classes": {
+                                    "header": "p-6 bg-gradient-to-r from-blue-500 to-cyan-500"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-1-icon-009",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "service-card-1-icon-svg-010",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/cube.svg",
+                                                "alt": "Inventory Management",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-1-body-011",
+                                "component": "CMS_CardBody",
+                                "classes": {
+                                    "body": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-1-title-012",
+                                        "component": "CMS_H3",
+                                        "text": "Inventory Management",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-1-desc-013",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Real-time tracking, automated reordering, and intelligent stock optimization to prevent overstocking and stockouts.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-1-features-014",
+                                        "component": "CMS_List",
+                                        "type": "ul",
+                                        "style": "none",
+                                        "items": [
+                                            {
+                                                "text": "Real-time inventory tracking",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Automated reorder points",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Stock optimization algorithms",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-1-footer-015",
+                                "component": "CMS_CardFooter",
+                                "classes": {
+                                    "footer": "p-6 pt-0"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-1-cta-016",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More",
+                                        "size": "sm",
+                                        "href": "/services/inventory-management",
+                                        "icon": "HiOutlineArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-semibold hover:gap-2 transition-all group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-2-017",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "service-card-2-header-018",
+                                "component": "CMS_CardHeader",
+                                "classes": {
+                                    "header": "p-6 bg-gradient-to-r from-purple-500 to-pink-500"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-2-icon-019",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "service-card-2-icon-svg-020",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/office-building.svg",
+                                                "alt": "Warehouse Management",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-2-body-021",
+                                "component": "CMS_CardBody",
+                                "classes": {
+                                    "body": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-2-title-022",
+                                        "component": "CMS_H3",
+                                        "text": "Warehouse Management",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-2-desc-023",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Optimize warehouse operations with smart layout planning, efficient picking strategies, and automated workflows.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-2-features-024",
+                                        "component": "CMS_List",
+                                        "type": "ul",
+                                        "style": "none",
+                                        "items": [
+                                            {
+                                                "text": "Smart layout optimization",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Pick/pack/ship automation",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Cross-docking support",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-2-footer-025",
+                                "component": "CMS_CardFooter",
+                                "classes": {
+                                    "footer": "p-6 pt-0"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-2-cta-026",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More",
+                                        "size": "sm",
+                                        "href": "/services/warehouse-management",
+                                        "icon": "HiOutlineArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-semibold hover:gap-2 transition-all group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-3-027",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "service-card-3-header-028",
+                                "component": "CMS_CardHeader",
+                                "classes": {
+                                    "header": "p-6 bg-gradient-to-r from-green-500 to-emerald-500"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-3-icon-029",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "service-card-3-icon-svg-030",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/truck.svg",
+                                                "alt": "Order Fulfillment",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-3-body-031",
+                                "component": "CMS_CardBody",
+                                "classes": {
+                                    "body": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-3-title-032",
+                                        "component": "CMS_H3",
+                                        "text": "Order Fulfillment",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-3-desc-033",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Seamless order processing from capture to delivery with real-time tracking and customer notifications.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-3-features-034",
+                                        "component": "CMS_List",
+                                        "type": "ul",
+                                        "style": "none",
+                                        "items": [
+                                            {
+                                                "text": "Automated order processing",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Multi-channel integration",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Real-time tracking",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-3-footer-035",
+                                "component": "CMS_CardFooter",
+                                "classes": {
+                                    "footer": "p-6 pt-0"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-3-cta-036",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More",
+                                        "size": "sm",
+                                        "href": "/services/order-fulfillment",
+                                        "icon": "HiOutlineArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-semibold hover:gap-2 transition-all group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-4-037",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "service-card-4-header-038",
+                                "component": "CMS_CardHeader",
+                                "classes": {
+                                    "header": "p-6 bg-gradient-to-r from-orange-500 to-red-500"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-4-icon-039",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "service-card-4-icon-svg-040",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/globe-alt.svg",
+                                                "alt": "Freight & Shipping",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-4-body-041",
+                                "component": "CMS_CardBody",
+                                "classes": {
+                                    "body": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-4-title-042",
+                                        "component": "CMS_H3",
+                                        "text": "Freight & Shipping",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-4-desc-043",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Multi-carrier shipping solutions with rate comparison, label generation, and comprehensive tracking.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-4-features-044",
+                                        "component": "CMS_List",
+                                        "type": "ul",
+                                        "style": "none",
+                                        "items": [
+                                            {
+                                                "text": "Multi-carrier integration",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Rate shopping optimization",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Shipment tracking",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-4-footer-045",
+                                "component": "CMS_CardFooter",
+                                "classes": {
+                                    "footer": "p-6 pt-0"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-4-cta-046",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More",
+                                        "size": "sm",
+                                        "href": "/services/freight-shipping",
+                                        "icon": "HiOutlineArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-semibold hover:gap-2 transition-all group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-5-047",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "service-card-5-header-048",
+                                "component": "CMS_CardHeader",
+                                "classes": {
+                                    "header": "p-6 bg-gradient-to-r from-indigo-500 to-purple-500"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-5-icon-049",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "service-card-5-icon-svg-050",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/chart-bar.svg",
+                                                "alt": "Supply Chain Analytics",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-5-body-051",
+                                "component": "CMS_CardBody",
+                                "classes": {
+                                    "body": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-5-title-052",
+                                        "component": "CMS_H3",
+                                        "text": "Supply Chain Analytics",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-5-desc-053",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Data-driven insights and predictive analytics to optimize your entire supply chain performance.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-5-features-054",
+                                        "component": "CMS_List",
+                                        "type": "ul",
+                                        "style": "none",
+                                        "items": [
+                                            {
+                                                "text": "Real-time dashboards",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Predictive analytics",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "Cost analysis",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-5-footer-055",
+                                "component": "CMS_CardFooter",
+                                "classes": {
+                                    "footer": "p-6 pt-0"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-5-cta-056",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More",
+                                        "size": "sm",
+                                        "href": "/services/supply-chain-analytics",
+                                        "icon": "HiOutlineArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-semibold hover:gap-2 transition-all group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uid": "service-card-6-057",
+                        "component": "CMS_Card",
+                        "variant": "elevated",
+                        "size": "md",
+                        "classes": {
+                            "container": "group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                        },
+                        "children": [
+                            {
+                                "uid": "service-card-6-header-058",
+                                "component": "CMS_CardHeader",
+                                "classes": {
+                                    "header": "p-6 bg-gradient-to-r from-pink-500 to-rose-500"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-6-icon-059",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "service-card-6-icon-svg-060",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/lightning-bolt.svg",
+                                                "alt": "Integration Services",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-white filter brightness-0 invert"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-6-body-061",
+                                "component": "CMS_CardBody",
+                                "classes": {
+                                    "body": "p-6"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-6-title-062",
+                                        "component": "CMS_H3",
+                                        "text": "Integration Services",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-3"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-6-desc-063",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Seamless integration with your existing ERP, CRM, e-commerce platforms, and business tools.",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "service-card-6-features-064",
+                                        "component": "CMS_List",
+                                        "type": "ul",
+                                        "style": "none",
+                                        "items": [
+                                            {
+                                                "text": "ERP integration",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "E-commerce platform sync",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            },
+                                            {
+                                                "text": "API access",
+                                                "icon": "HiOutlineCheckCircle",
+                                                "iconLibrary": "hi",
+                                                "iconColor": "text-green-500 dark:text-green-400",
+                                                "classes": {
+                                                    "item": "flex items-start text-sm mb-2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "service-card-6-footer-065",
+                                "component": "CMS_CardFooter",
+                                "classes": {
+                                    "footer": "p-6 pt-0"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "service-card-6-cta-066",
+                                        "component": "CMS_Button",
+                                        "text": "Learn More",
+                                        "size": "sm",
+                                        "href": "/services/integration",
+                                        "icon": "HiOutlineArrowRight",
+                                        "iconLibrary": "hi",
+                                        "iconPosition": "right",
+                                        "classes": {
+                                            "base": "text-blue-600 dark:text-blue-400 font-semibold hover:gap-2 transition-all group/link"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "services-features-067",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "features-title-068",
+                        "component": "CMS_H3",
+                        "text": "Why Choose Our Services",
+                        "alignment": "center",
+                        "classes": {
+                            "base": "text-3xl font-bold text-gray-900 dark:text-white mb-12"
+                        }
+                    },
+                    {
+                        "uid": "features-grid-069",
+                        "component": "CMS_Grid",
+                        "classes": {
+                            "base": "grid gap-8",
+                            "md": "md:grid-cols-2",
+                            "lg": "lg:grid-cols-4"
+                        },
+                        "children": [
+                            {
+                                "uid": "feature-1-070",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center group"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-1-icon-071",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-1-icon-svg-072",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/shield-check.svg",
+                                                "alt": "Shield",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-1-title-073",
+                                        "component": "CMS_H4",
+                                        "text": "99.9% Uptime",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "feature-1-desc-074",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Enterprise-grade reliability with guaranteed performance",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "feature-2-075",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center group"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-2-icon-076",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-2-icon-svg-077",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/user-group.svg",
+                                                "alt": "Users",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-2-title-078",
+                                        "component": "CMS_H4",
+                                        "text": "24/7 Support",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "feature-2-desc-079",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Round-the-clock expert support for your business",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "feature-3-080",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center group"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-3-icon-081",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-3-icon-svg-082",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/rocket-launch.svg",
+                                                "alt": "Rocket",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-3-title-083",
+                                        "component": "CMS_H4",
+                                        "text": "Fast Implementation",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "feature-3-desc-084",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Get up and running in days, not months",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "feature-4-085",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "text-center group"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "feature-4-icon-086",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "feature-4-icon-svg-087",
+                                                "component": "CMS_Image",
+                                                "src": "https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline/chart-bar.svg",
+                                                "alt": "Chart",
+                                                "classes": {
+                                                    "media": "w-8 h-8 text-blue-600 dark:text-blue-400"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uid": "feature-4-title-088",
+                                        "component": "CMS_H4",
+                                        "text": "Scalable Solutions",
+                                        "classes": {
+                                            "base": "text-xl font-bold text-gray-900 dark:text-white mb-2"
+                                        }
+                                    },
+                                    {
+                                        "uid": "feature-4-desc-089",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Grow from startup to enterprise with ease",
+                                        "classes": {
+                                            "base": "text-gray-600 dark:text-gray-400 text-sm"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "services-cta-090",
+                "component": "CMS_Container",
+                "classes": {
+                    "base": "px-4 mt-20"
+                },
+                "children": [
+                    {
+                        "uid": "cta-card-091",
+                        "component": "CMS_Card",
+                        "variant": "gradient",
+                        "classes": {
+                            "container": "bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center relative overflow-hidden"
+                        },
+                        "children": [
+                            {
+                                "uid": "cta-pattern-092",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "absolute inset-0 opacity-10"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-pattern-bg-093",
+                                        "component": "CMS_Container",
+                                        "classes": {
+                                            "base": "absolute inset-0",
+                                            "custom": "bg-pattern-dots"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "uid": "cta-content-094",
+                                "component": "CMS_Container",
+                                "classes": {
+                                    "base": "relative"
+                                },
+                                "children": [
+                                    {
+                                        "uid": "cta-title-095",
+                                        "component": "CMS_H3",
+                                        "text": "Ready to Transform Your Supply Chain?",
+                                        "alignment": "center",
+                                        "classes": {
+                                            "base": "text-3xl md:text-4xl font-bold text-white mb-4"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-description-096",
+                                        "component": "CMS_Paragraph",
+                                        "text": "Get started with our comprehensive inventory and logistics solutions today.",
+                                        "alignment": "center",
+                                        "classes": {
+                                            "base": "text-blue-100 text-lg mb-8 max-w-2xl mx-auto"
+                                        }
+                                    },
+                                    {
+                                        "uid": "cta-buttons-097",
+                                        "component": "CMS_Flex",
+                                        "classes": {
+                                            "base": "justify-center gap-4"
+                                        },
+                                        "children": [
+                                            {
+                                                "uid": "cta-primary-098",
+                                                "component": "CMS_Button",
+                                                "text": "Get Started",
+                                                "size": "lg",
+                                                "href": "/contact",
+                                                "classes": {
+                                                    "base": "bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                                                }
+                                            },
+                                            {
+                                                "uid": "cta-secondary-099",
+                                                "component": "CMS_Button",
+                                                "text": "Contact Sales",
+                                                "size": "lg",
+                                                "href": "/contact/sales",
+                                                "classes": {
+                                                    "base": "bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "uid": "services-divider-100",
+                "component": "CMS_GradientDivider",
+                "classes": {
+                    "base": "px-4 mt-16"
+                },
+                "thickness": "thin"
+            },
+            {
+                "uid": "services-links-101",
+                "component": "CMS_Flex",
+                "classes": {
+                    "base": "justify-center space-x-4 px-4 mt-8"
+                },
+                "children": [
+                    {
+                        "uid": "privacy-link-102",
+                        "component": "CMS_Button",
+                        "text": "Privacy",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/privacy",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "terms-link-103",
+                        "component": "CMS_Button",
+                        "text": "Terms",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/terms",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    },
+                    {
+                        "uid": "contact-link-104",
+                        "component": "CMS_Button",
+                        "text": "Contact",
+                        "size": "sm",
+                        "variant": "link",
+                        "href": "/contact",
+                        "classes": {
+                            "base": "text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

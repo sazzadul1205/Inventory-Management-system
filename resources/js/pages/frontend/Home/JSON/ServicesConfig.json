@@ -1,16 +1,5 @@
 {
     "servicesSection1": {
-        "seo": {
-            "title": "Our Comprehensive Services - Sazzad Inventory & Logistics",
-            "description": "Discover our full range of inventory management and logistics services designed to streamline your supply chain operations.",
-            "keywords": "inventory management services, logistics solutions, supply chain services, warehouse management, freight forwarding, order fulfillment",
-            "ogImage": "/images/services-og.jpg",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Logistics Services",
-                "description": "Complete supply chain and inventory management solutions"
-            }
-        },
         "badge": {
             "show": true,
             "text": "✦ Our Services",
@@ -154,17 +143,6 @@
         }
     },
     "servicesSection2": {
-        "seo": {
-            "title": "End-to-End Logistics Solutions - Sazzad Inventory & Logistics",
-            "description": "Comprehensive logistics solutions including inventory management, freight forwarding, warehouse automation, and supply chain optimization.",
-            "keywords": "logistics solutions, supply chain management, freight forwarding, warehouse automation, inventory optimization, 3PL services",
-            "ogImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-            "structuredData": {
-                "@type": "Service",
-                "name": "Sazzad Logistics Solutions",
-                "description": "Complete supply chain and logistics services"
-            }
-        },
         "badge": {
             "text": "END-TO-END SOLUTIONS"
         },
@@ -301,17 +279,6 @@
         }
     },
     "servicesSection3": {
-        "seo": {
-            "title": "Service Categories - Sazzad Inventory & Logistics Solutions",
-            "description": "Browse our comprehensive service categories including inventory management, transportation, warehouse automation, and supply chain analytics.",
-            "keywords": "service categories, inventory services, transportation solutions, warehouse automation, supply chain analytics, logistics categories",
-            "ogImage": "/images/service-categories-og.jpg",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Service Categories",
-                "description": "Organized service offerings by category"
-            }
-        },
         "badge": {
             "text": "✦ CATEGORIZED SERVICES"
         },
@@ -553,16 +520,6 @@
             "2xl": "2xl:py-28"
         },
         "fullWidth": false,
-        "seo": {
-            "title": "Our Services - Sazzad Inventory & Logistics",
-            "description": "Comprehensive logistics and inventory management solutions including smart inventory, global freight, warehouse automation, and last-mile delivery.",
-            "keywords": "logistics services, inventory management, freight forwarding, warehouse automation, supply chain solutions",
-            "structuredData": {
-                "@type": "ItemList",
-                "name": "Sazzad Logistics Services",
-                "description": "End-to-end supply chain solutions"
-            }
-        },
         "children": [
             {
                 "uid": "services-header-002",
