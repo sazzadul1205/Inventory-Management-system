@@ -17,11 +17,13 @@ import SectionNavigation from "@/components/SectionNavigation";
 
 // JSON configs
 import AllServicesConfig from "./JSON/AllServicesConfig.json";
+import WarehouseManagementConfig from "./JSON/WarehouseManagementConfig.json";
 
 
 // Map section -> JSON config
 const configMap = {
   allServices: AllServicesConfig,
+  warehouseManagement: WarehouseManagementConfig,
 };
 
 // ============================================================================
@@ -30,7 +32,8 @@ const configMap = {
 
 const pageConfig = {
   sections: {
-    allServices: { enabled: true, variant: "variant2", order: 2, props: {}, displayName: "All Services" },
+    allServices: { enabled: false, variant: "variant2", order: 2, props: {}, displayName: "All Services" },
+    warehouseManagement: { enabled: true, variant: "variant2", order: 3, props: {}, displayName: "Warehouse Management" },
 
   },
 

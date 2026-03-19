@@ -1,0 +1,446 @@
+{
+    "warehouseManagementSection1": {
+        "badge": "WAREHOUSE MANAGEMENT SYSTEM",
+        "title": "Complete Control Over Your Warehouse Operations",
+        "description": "Streamline your inventory, optimize space utilization, and improve accuracy with our comprehensive warehouse management solution.",
+        "features": {
+            "title": "Everything you need to manage your warehouse efficiently",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "cube",
+                    "title": "Real-time Inventory Tracking",
+                    "description": "Track stock levels, locations, and movements in real-time with barcode and RFID integration.",
+                    "bgColor": "bg-blue-600"
+                },
+                {
+                    "id": 2,
+                    "icon": "location",
+                    "title": "Smart Slotting",
+                    "description": "Optimize product placement based on velocity, size, and category for maximum efficiency.",
+                    "bgColor": "bg-purple-600"
+                },
+                {
+                    "id": 3,
+                    "icon": "refresh",
+                    "title": "Automated Replenishment",
+                    "description": "Set automated reorder points and generate purchase orders when stock reaches threshold.",
+                    "bgColor": "bg-green-600"
+                },
+                {
+                    "id": 4,
+                    "icon": "search",
+                    "title": "Cycle Counting",
+                    "description": "Maintain inventory accuracy with regular cycle counts without disrupting operations.",
+                    "bgColor": "bg-orange-600"
+                }
+            ]
+        },
+        "image": {
+            "src": "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "alt": "Modern warehouse with automated systems"
+        },
+        "stats": [
+            {
+                "id": 1,
+                "label": "Current Inventory",
+                "value": "45,892",
+                "trend": "+12% vs yesterday",
+                "trendColor": "text-green-600 dark:text-green-400"
+            },
+            {
+                "id": 2,
+                "label": "Orders Picking",
+                "value": "1,247",
+                "trend": "On schedule",
+                "trendColor": "text-blue-600 dark:text-blue-400"
+            }
+        ],
+        "floatingBadge": "LIVE DASHBOARD",
+        "metrics": [
+            {
+                "id": 1,
+                "value": "99.9%",
+                "label": "Inventory Accuracy"
+            },
+            {
+                "id": 2,
+                "value": "40%",
+                "label": "Space Optimization"
+            },
+            {
+                "id": 3,
+                "value": "3x",
+                "label": "Picking Speed"
+            },
+            {
+                "id": 4,
+                "value": "24/7",
+                "label": "Operations"
+            }
+        ],
+        "techStack": {
+            "title": "Powered by Modern Technology",
+            "description": "Our warehouse management system integrates with the latest technologies to ensure seamless operations.",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "cube",
+                    "name": "Barcode Scanning"
+                },
+                {
+                    "id": 2,
+                    "icon": "refresh",
+                    "name": "RFID Integration"
+                },
+                {
+                    "id": 3,
+                    "icon": "chart",
+                    "name": "IoT Sensors"
+                },
+                {
+                    "id": 4,
+                    "icon": "report",
+                    "name": "AI Analytics"
+                }
+            ]
+        },
+        "ctaText": "Schedule a Demo",
+        "ctaLink": "/warehouse-demo",
+        "links": {
+            "learnMore": "/warehouse-management",
+            "demo": "/warehouse-demo",
+            "contact": "/contact"
+        }
+    },
+    "warehouseManagementSection2": {
+        "badge": "WAREHOUSE AUTOMATION",
+        "title": "Intelligent Warehouse Management System",
+        "description": "Transform your warehouse operations with AI-powered automation, real-time visibility, and predictive analytics.",
+        "features": [
+            {
+                "id": 1,
+                "icon": "cube",
+                "title": "Smart Inventory Control",
+                "shortDesc": "Real-time tracking with automated reordering",
+                "description": "Our intelligent inventory system uses AI algorithms to predict demand, optimize stock levels, and automatically trigger reorders when inventory reaches threshold levels.",
+                "badge": "AI-POWERED",
+                "badgeColor": "bg-purple-500 text-white",
+                "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "benefits": [
+                    "Reduce stockouts by up to 95%",
+                    "Optimize safety stock levels",
+                    "Automated purchase order generation",
+                    "Multi-location inventory visibility"
+                ],
+                "stats": [
+                    { "value": "99.9%", "label": "Accuracy" },
+                    { "value": "40%", "label": "Less Stock" },
+                    { "value": "24/7", "label": "Monitoring" }
+                ],
+                "link": "/features/inventory-control"
+            },
+            {
+                "id": 2,
+                "icon": "location",
+                "title": "Dynamic Slotting",
+                "shortDesc": "Optimize product placement automatically",
+                "description": "Our dynamic slotting algorithm continuously analyzes product velocity, size, and seasonality to suggest optimal storage locations, reducing travel time and increasing picking efficiency.",
+                "badge": "SPACE OPTIMIZED",
+                "badgeColor": "bg-green-500 text-white",
+                "image": "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "benefits": [
+                    "30% reduction in travel time",
+                    "Maximize storage utilization",
+                    "Seasonal product regrouping",
+                    "ABC analysis integration"
+                ],
+                "stats": [
+                    { "value": "40%", "label": "Space Saved" },
+                    { "value": "2x", "label": "Pick Speed" },
+                    { "value": "100%", "label": "Utilization" }
+                ],
+                "link": "/features/dynamic-slotting"
+            },
+            {
+                "id": 3,
+                "icon": "refresh",
+                "title": "Automated Replenishment",
+                "shortDesc": "Never run out of stock again",
+                "description": "Set intelligent reorder points based on historical data, lead times, and seasonal trends. Our system automatically generates and sends purchase orders to suppliers when needed.",
+                "badge": "AUTOMATED",
+                "badgeColor": "bg-blue-500 text-white",
+                "image": "https://images.unsplash.com/photo-1566576912328-109e7d6b1e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "benefits": [
+                    "Prevent stockouts automatically",
+                    "Reduce manual ordering time",
+                    "Supplier performance tracking",
+                    "Bulk order optimization"
+                ],
+                "stats": [
+                    { "value": "0", "label": "Stockouts" },
+                    { "value": "80%", "label": "Less Manual" },
+                    { "value": "15%", "label": "Cost Save" }
+                ],
+                "link": "/features/replenishment"
+            },
+            {
+                "id": 4,
+                "icon": "trending",
+                "title": "Predictive Analytics",
+                "shortDesc": "Forecast demand with AI accuracy",
+                "description": "Leverage machine learning algorithms to predict future demand, identify trends, and make data-driven decisions about inventory purchasing and warehouse capacity planning.",
+                "badge": "PREDICTIVE",
+                "badgeColor": "bg-orange-500 text-white",
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "benefits": [
+                    "95% demand forecast accuracy",
+                    "Seasonal trend identification",
+                    "Capacity planning insights",
+                    "Risk mitigation strategies"
+                ],
+                "stats": [
+                    { "value": "95%", "label": "Accuracy" },
+                    { "value": "30%", "label": "Waste Reduction" },
+                    { "value": "24h", "label": "Forecast Updates" }
+                ],
+                "link": "/features/analytics"
+            }
+        ],
+        "integrations": {
+            "title": "Seamlessly Integrates With",
+            "partners": [
+                { "icon": "cube", "name": "SAP" },
+                { "icon": "refresh", "name": "Oracle" },
+                { "icon": "chart", "name": "Microsoft Dynamics" },
+                { "icon": "cog", "name": "Shopify" },
+                { "icon": "users", "name": "Salesforce" }
+            ]
+        },
+        "roi": {
+            "title": "Calculate Your Warehouse ROI",
+            "description": "See how much you can save with our intelligent warehouse management system.",
+            "buttonText": "Calculate ROI",
+            "link": "/roi-calculator",
+            "stats": [
+                { "value": "40%", "label": "Avg Cost Reduction" },
+                { "value": "3-6", "label": "Months ROI" },
+                { "value": "50%", "label": "Productivity Gain" },
+                { "value": "99.9%", "label": "Accuracy" }
+            ]
+        },
+        "ctaText": "Explore All Features",
+        "ctaLink": "/warehouse-features",
+        "links": {
+            "features": "/warehouse-features",
+            "roi": "/roi-calculator",
+            "demo": "/warehouse-demo"
+        }
+    },
+    "warehouseManagementSection3": {
+        "badge": "WAREHOUSE 4.0",
+        "title": "The Future of Warehouse Management",
+        "description": "AI-driven automation, real-time visibility, and predictive analytics to transform your warehouse into a competitive advantage.",
+        "headerStats": [
+            {
+                "value": "99.9%",
+                "label": "Inventory Accuracy"
+            },
+            {
+                "value": "40%",
+                "label": "Cost Reduction"
+            },
+            {
+                "value": "3x",
+                "label": "Faster Picking"
+            },
+            {
+                "value": "24/7",
+                "label": "Operations"
+            }
+        ],
+        "dashboardImage": "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        "process": {
+            "title": "How It Works",
+            "steps": [
+                {
+                    "id": 1,
+                    "icon": "cloud",
+                    "number": "01",
+                    "title": "Connect",
+                    "description": "Connect your warehouse systems to our platform",
+                    "bgColor": "bg-blue-600"
+                },
+                {
+                    "id": 2,
+                    "icon": "refresh",
+                    "number": "02",
+                    "title": "Sync",
+                    "description": "Real-time sync of inventory and operations",
+                    "bgColor": "bg-purple-600"
+                },
+                {
+                    "id": 3,
+                    "icon": "chart",
+                    "number": "03",
+                    "title": "Analyze",
+                    "description": "AI analyzes patterns and predicts demand",
+                    "bgColor": "bg-green-600"
+                },
+                {
+                    "id": 4,
+                    "icon": "bolt",
+                    "number": "04",
+                    "title": "Optimize",
+                    "description": "Automated optimization recommendations",
+                    "bgColor": "bg-orange-600"
+                }
+            ]
+        },
+        "featureCards": [
+            {
+                "id": 1,
+                "icon": "cube",
+                "title": "Smart Inventory",
+                "description": "AI-powered inventory optimization with real-time tracking and automated replenishment.",
+                "bgColor": "bg-blue-600",
+                "features": [
+                    "Real-time tracking",
+                    "Auto reorder",
+                    "Demand forecasting"
+                ]
+            },
+            {
+                "id": 2,
+                "icon": "location",
+                "title": "Space Optimization",
+                "description": "Dynamic slotting and space utilization algorithms to maximize warehouse capacity.",
+                "bgColor": "bg-purple-600",
+                "features": [
+                    "Dynamic slotting",
+                    "Space analytics",
+                    "3D planning"
+                ]
+            },
+            {
+                "id": 3,
+                "icon": "users",
+                "title": "Labor Management",
+                "description": "Optimize workforce productivity with task interleaving and performance tracking.",
+                "bgColor": "bg-green-600",
+                "features": [
+                    "Task optimization",
+                    "Performance metrics",
+                    "Training tools"
+                ]
+            },
+            {
+                "id": 4,
+                "icon": "trending",
+                "title": "Predictive Analytics",
+                "description": "Forecast demand, identify trends, and make data-driven decisions.",
+                "bgColor": "bg-orange-600",
+                "features": [
+                    "Demand forecasting",
+                    "Trend analysis",
+                    "What-if scenarios"
+                ]
+            },
+            {
+                "id": 5,
+                "icon": "mobile",
+                "title": "Mobile WMS",
+                "description": "Full warehouse functionality on mobile devices for floor operations.",
+                "bgColor": "bg-indigo-600",
+                "features": [
+                    "Barcode scanning",
+                    "Pick confirmation",
+                    "Cycle counts"
+                ]
+            },
+            {
+                "id": 6,
+                "icon": "shield",
+                "title": "Security & Compliance",
+                "description": "Role-based access, audit trails, and compliance reporting.",
+                "bgColor": "bg-red-600",
+                "features": ["Access control", "Audit trails", "GDPR compliant"]
+            }
+        ],
+        "capabilities": {
+            "title": "Advanced Capabilities",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "cube",
+                    "title": "Multi-Warehouse",
+                    "description": "Manage multiple warehouses from one dashboard",
+                    "bgColor": "bg-blue-600"
+                },
+                {
+                    "id": 2,
+                    "icon": "refresh",
+                    "title": "Cross-Docking",
+                    "description": "Automated cross-docking workflows",
+                    "bgColor": "bg-purple-600"
+                },
+                {
+                    "id": 3,
+                    "icon": "search",
+                    "title": "Cycle Counting",
+                    "description": "Automated cycle counting schedules",
+                    "bgColor": "bg-green-600"
+                },
+                {
+                    "id": 4,
+                    "icon": "report",
+                    "title": "Custom Reports",
+                    "description": "Build custom reports and dashboards",
+                    "bgColor": "bg-orange-600"
+                },
+                {
+                    "id": 5,
+                    "icon": "cog",
+                    "title": "API Access",
+                    "description": "Full API access for custom integrations",
+                    "bgColor": "bg-indigo-600"
+                },
+                {
+                    "id": 6,
+                    "icon": "clock",
+                    "title": "Batch Tracking",
+                    "description": "Complete batch and lot traceability",
+                    "bgColor": "bg-red-600"
+                }
+            ]
+        },
+        "quickStats": [
+            {
+                "label": "System Uptime",
+                "value": "99.99%",
+                "percentage": "99.99%"
+            },
+            {
+                "label": "Data Accuracy",
+                "value": "99.9%",
+                "percentage": "99.9%"
+            },
+            {
+                "label": "Customer Satisfaction",
+                "value": "98%",
+                "percentage": "98%"
+            }
+        ],
+        "statsLink": "/warehouse-reports",
+        "ctaText": "Join 500+ warehouses already using our system",
+        "ctaButtonText": "Start Free Trial",
+        "ctaLink": "/warehouse-trial",
+        "links": {
+            "features": "/warehouse-features",
+            "reports": "/warehouse-reports",
+            "trial": "/warehouse-trial",
+            "demo": "/warehouse-demo"
+        }
+    },
+    "WarehouseManagementCustomSection": {}
+}
