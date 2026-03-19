@@ -1,0 +1,762 @@
+{
+    "transportationManagementSection1": {
+        "badge": "TRANSPORTATION MANAGEMENT SYSTEM",
+        "title": "Smart Transportation Management for Modern Logistics",
+        "description": "Optimize routes, reduce costs, and improve delivery performance with our comprehensive TMS solution.",
+        "stats": [
+            {
+                "id": 1,
+                "value": "50K+",
+                "label": "Shipments Daily"
+            },
+            {
+                "id": 2,
+                "value": "98%",
+                "label": "On-Time Delivery"
+            },
+            {
+                "id": 3,
+                "value": "25%",
+                "label": "Cost Reduction"
+            },
+            {
+                "id": 4,
+                "value": "150+",
+                "label": "Carriers"
+            }
+        ],
+        "features": {
+            "title": "Complete Transportation Control",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "truck",
+                    "title": "Route Optimization",
+                    "description": "AI-powered route planning that considers traffic, weather, and delivery windows.",
+                    "bgColor": "bg-blue-600"
+                },
+                {
+                    "id": 2,
+                    "icon": "dollar",
+                    "title": "Cost Management",
+                    "description": "Real-time cost tracking and optimization across all transportation modes.",
+                    "bgColor": "bg-green-600"
+                },
+                {
+                    "id": 3,
+                    "icon": "clock",
+                    "title": "Real-Time Tracking",
+                    "description": "End-to-end visibility with live GPS tracking and ETA updates.",
+                    "bgColor": "bg-purple-600"
+                },
+                {
+                    "id": 4,
+                    "icon": "scale",
+                    "title": "Carrier Selection",
+                    "description": "Smart carrier allocation based on cost, service level, and capacity.",
+                    "bgColor": "bg-orange-600"
+                }
+            ]
+        },
+        "mapImage": "https://images.unsplash.com/photo-1524668951403-d44b28200ce9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        "liveTracking": "LIVE TRACKING • 247 Vehicles Active",
+        "routeOptimized": "Route Optimized",
+        "vehicleStats": [
+            {
+                "id": 1,
+                "label": "Active Vehicles",
+                "value": "247"
+            },
+            {
+                "id": 2,
+                "label": "On-Time Rate",
+                "value": "98.5%"
+            },
+            {
+                "id": 3,
+                "label": "Avg. Speed",
+                "value": "45 mph"
+            },
+            {
+                "id": 4,
+                "label": "Fuel Efficiency",
+                "value": "8.2 mpg"
+            }
+        ],
+        "modes": {
+            "title": "Multi-Modal Transportation",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "truck",
+                    "title": "FTL",
+                    "description": "Full Truckload for large shipments",
+                    "bgColor": "bg-blue-600"
+                },
+                {
+                    "id": 2,
+                    "icon": "truck",
+                    "title": "LTL",
+                    "description": "Less than Truckload for smaller loads",
+                    "bgColor": "bg-green-600"
+                },
+                {
+                    "id": 3,
+                    "icon": "globe",
+                    "title": "Intermodal",
+                    "description": "Rail & truck combined shipping",
+                    "bgColor": "bg-purple-600"
+                },
+                {
+                    "id": 4,
+                    "icon": "clock",
+                    "title": "Express",
+                    "description": "Time-critical urgent deliveries",
+                    "bgColor": "bg-orange-600"
+                }
+            ]
+        },
+        "keyFeatures": [
+            {
+                "id": 1,
+                "icon": "chart",
+                "title": "Dynamic Routing",
+                "description": "Real-time route adjustments based on traffic and weather conditions.",
+                "benefit": "30% faster deliveries",
+                "bgColor": "bg-blue-600"
+            },
+            {
+                "id": 2,
+                "icon": "shield",
+                "title": "Compliance Management",
+                "description": "Automated hours of service and regulatory compliance tracking.",
+                "benefit": "100% compliant",
+                "bgColor": "bg-green-600"
+            },
+            {
+                "id": 3,
+                "icon": "report",
+                "title": "Performance Analytics",
+                "description": "Comprehensive reporting on costs, times, and carrier performance.",
+                "benefit": "Data-driven decisions",
+                "bgColor": "bg-purple-600"
+            },
+            {
+                "id": 4,
+                "icon": "users",
+                "title": "Driver Management",
+                "description": "Driver assignment, performance tracking, and electronic logs.",
+                "benefit": "Optimized workforce",
+                "bgColor": "bg-orange-600"
+            },
+            {
+                "id": 5,
+                "icon": "dollar",
+                "title": "Freight Audit",
+                "description": "Automated invoice verification and payment processing.",
+                "benefit": "99.9% accuracy",
+                "bgColor": "bg-red-600"
+            },
+            {
+                "id": 6,
+                "icon": "refresh",
+                "title": "Load Optimization",
+                "description": "Maximize trailer utilization and minimize empty miles.",
+                "benefit": "15% capacity increase",
+                "bgColor": "bg-indigo-600"
+            }
+        ],
+        "network": {
+            "title": "Extensive Carrier Network",
+            "description": "Access to 150+ vetted carriers for competitive rates and reliable service.",
+            "stats": [
+                {
+                    "value": "150+",
+                    "label": "Carriers"
+                },
+                {
+                    "value": "50K+",
+                    "label": "Trucks"
+                },
+                {
+                    "value": "48",
+                    "label": "States"
+                }
+            ],
+            "carriers": [
+                {
+                    "icon": "truck",
+                    "name": "Swift Transport"
+                },
+                {
+                    "icon": "truck",
+                    "name": "J.B. Hunt"
+                },
+                {
+                    "icon": "truck",
+                    "name": "Schneider"
+                },
+                {
+                    "icon": "truck",
+                    "name": "UPS Freight"
+                },
+                {
+                    "icon": "truck",
+                    "name": "FedEx Freight"
+                },
+                {
+                    "icon": "truck",
+                    "name": "XPO Logistics"
+                }
+            ]
+        },
+        "ctaText": "Optimize Your Fleet",
+        "ctaLink": "/transportation-demo",
+        "links": {
+            "demo": "/transportation-demo",
+            "features": "/transportation-features",
+            "contact": "/contact"
+        }
+    },
+    "transportationManagementSection2": {
+        "badge": "FLEET MANAGEMENT",
+        "liveStatus": "LIVE FLEET TRACKING",
+        "title": "Real-Time Fleet Visibility & Optimization",
+        "description": "Monitor, manage, and optimize your entire fleet with real-time tracking and AI-powered insights.",
+        "fleetCounter": {
+            "label": "Active Fleet",
+            "value": "247",
+            "additional": "12"
+        },
+        "fleet": {
+            "title": "Active Vehicles",
+            "vehicles": [
+                {
+                    "id": "TRK-8421",
+                    "driver": "Michael Chen",
+                    "type": "Semi-Trailer",
+                    "status": "Active",
+                    "location": "I-95, Mile 142",
+                    "origin": "Chicago, IL",
+                    "destination": "Miami, FL",
+                    "progress": "65%",
+                    "mapImage": "https://images.unsplash.com/photo-1524668951403-d44b28200ce9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "stats": [
+                        { "label": "Speed", "value": "62 mph" },
+                        { "label": "Fuel", "value": "8.2 mpg" },
+                        { "label": "Distance", "value": "842 mi" },
+                        { "label": "ETA", "value": "4.5 hrs" }
+                    ],
+                    "events": [
+                        {
+                            "description": "Refueling stop - Pilot Flying J",
+                            "time": "1 hour ago",
+                            "color": "bg-blue-500"
+                        },
+                        {
+                            "description": "Border crossing cleared",
+                            "time": "3 hours ago",
+                            "color": "bg-green-500"
+                        },
+                        {
+                            "description": "Departure from Chicago DC",
+                            "time": "8 hours ago",
+                            "color": "bg-purple-500"
+                        }
+                    ]
+                },
+                {
+                    "id": "TRK-8422",
+                    "driver": "Sarah Johnson",
+                    "type": "Box Truck",
+                    "status": "Active",
+                    "location": "I-75, Mile 68",
+                    "origin": "Atlanta, GA",
+                    "destination": "Nashville, TN",
+                    "progress": "42%",
+                    "mapImage": "https://images.unsplash.com/photo-1524668951403-d44b28200ce9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "stats": [
+                        { "label": "Speed", "value": "55 mph" },
+                        { "label": "Fuel", "value": "9.4 mpg" },
+                        { "label": "Distance", "value": "156 mi" },
+                        { "label": "ETA", "value": "2.2 hrs" }
+                    ],
+                    "events": [
+                        {
+                            "description": "Delivery stop #2 completed",
+                            "time": "45 min ago",
+                            "color": "bg-green-500"
+                        },
+                        {
+                            "description": "Traffic delay - 15 minutes",
+                            "time": "2 hours ago",
+                            "color": "bg-yellow-500"
+                        },
+                        {
+                            "description": "Pickup at Atlanta DC",
+                            "time": "5 hours ago",
+                            "color": "bg-blue-500"
+                        }
+                    ]
+                },
+                {
+                    "id": "TRK-8423",
+                    "driver": "Robert Martinez",
+                    "type": "Refrigerated",
+                    "status": "Idle",
+                    "location": "Dallas, TX",
+                    "origin": "Dallas, TX",
+                    "destination": "Houston, TX",
+                    "progress": "0%",
+                    "mapImage": "https://images.unsplash.com/photo-1524668951403-d44b28200ce9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "stats": [
+                        { "label": "Speed", "value": "0 mph" },
+                        { "label": "Fuel", "value": "0 mpg" },
+                        { "label": "Distance", "value": "0 mi" },
+                        { "label": "ETA", "value": "3.0 hrs" }
+                    ],
+                    "events": [
+                        {
+                            "description": "Loading in progress",
+                            "time": "30 min ago",
+                            "color": "bg-blue-500"
+                        },
+                        {
+                            "description": "Pre-trip inspection completed",
+                            "time": "1 hour ago",
+                            "color": "bg-green-500"
+                        },
+                        {
+                            "description": "Arrived at Dallas facility",
+                            "time": "2 hours ago",
+                            "color": "bg-purple-500"
+                        }
+                    ]
+                },
+                {
+                    "id": "TRK-8424",
+                    "driver": "Emily Wong",
+                    "type": "Semi-Trailer",
+                    "status": "Active",
+                    "location": "I-80, Mile 210",
+                    "origin": "Denver, CO",
+                    "destination": "Salt Lake City, UT",
+                    "progress": "78%",
+                    "mapImage": "https://images.unsplash.com/photo-1524668951403-d44b28200ce9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "stats": [
+                        { "label": "Speed", "value": "58 mph" },
+                        { "label": "Fuel", "value": "7.8 mpg" },
+                        { "label": "Distance", "value": "384 mi" },
+                        { "label": "ETA", "value": "2.8 hrs" }
+                    ],
+                    "events": [
+                        {
+                            "description": "Mountain pass - light snow",
+                            "time": "30 min ago",
+                            "color": "bg-yellow-500"
+                        },
+                        {
+                            "description": "Rest stop - 30 minutes",
+                            "time": "3 hours ago",
+                            "color": "bg-blue-500"
+                        },
+                        {
+                            "description": "Departed Denver",
+                            "time": "6 hours ago",
+                            "color": "bg-green-500"
+                        }
+                    ]
+                }
+            ]
+        },
+        "metrics": [
+            {
+                "id": 1,
+                "icon": "clock",
+                "label": "Avg Transit Time",
+                "value": "4.2 hrs",
+                "trend": "-12%",
+                "trendColor": "text-green-600 dark:text-green-400",
+                "bgColor": "bg-blue-600"
+            },
+            {
+                "id": 2,
+                "icon": "dollar",
+                "label": "Cost per Mile",
+                "value": "$1.84",
+                "trend": "-8%",
+                "trendColor": "text-green-600 dark:text-green-400",
+                "bgColor": "bg-green-600"
+            },
+            {
+                "id": 3,
+                "icon": "refresh",
+                "label": "Empty Miles",
+                "value": "12.4%",
+                "trend": "-5%",
+                "trendColor": "text-green-600 dark:text-green-400",
+                "bgColor": "bg-purple-600"
+            },
+            {
+                "id": 4,
+                "icon": "chart",
+                "label": "Fuel Efficiency",
+                "value": "8.2 mpg",
+                "trend": "+3%",
+                "trendColor": "text-green-600 dark:text-green-400",
+                "bgColor": "bg-orange-600"
+            }
+        ],
+        "tools": [
+            {
+                "id": 1,
+                "icon": "bolt",
+                "title": "Route Optimization",
+                "description": "AI-powered routing that considers traffic, weather, and delivery windows.",
+                "bgColor": "bg-blue-600",
+                "features": [
+                    "Real-time traffic avoidance",
+                    "Weather integration",
+                    "Multi-stop optimization"
+                ],
+                "link": "/features/route-optimization"
+            },
+            {
+                "id": 2,
+                "icon": "cloud",
+                "title": "Predictive Maintenance",
+                "description": "Prevent breakdowns with AI-driven maintenance predictions.",
+                "bgColor": "bg-green-600",
+                "features": [
+                    "Engine diagnostics",
+                    "Service scheduling",
+                    "Parts inventory"
+                ],
+                "link": "/features/maintenance"
+            },
+            {
+                "id": 3,
+                "icon": "users",
+                "title": "Driver Management",
+                "description": "Optimize driver performance and ensure compliance.",
+                "bgColor": "bg-purple-600",
+                "features": [
+                    "Hours of service",
+                    "Performance scoring",
+                    "Training tracking"
+                ],
+                "link": "/features/driver-management"
+            },
+            {
+                "id": 4,
+                "icon": "chart",
+                "title": "Fuel Management",
+                "description": "Reduce fuel costs with smart routing and driver coaching.",
+                "bgColor": "bg-orange-600",
+                "features": [
+                    "Fuel card integration",
+                    "Idle monitoring",
+                    "Efficiency reports"
+                ],
+                "link": "/features/fuel-management"
+            },
+            {
+                "id": 5,
+                "icon": "shield",
+                "title": "Safety & Compliance",
+                "description": "Stay compliant with automated logs and safety monitoring.",
+                "bgColor": "bg-red-600",
+                "features": [
+                    "ELD integration",
+                    "IFTA reporting",
+                    "Safety scoring"
+                ],
+                "link": "/features/safety"
+            },
+            {
+                "id": 6,
+                "icon": "cog",
+                "title": "Load Optimization",
+                "description": "Maximize trailer utilization and minimize empty miles.",
+                "bgColor": "bg-indigo-600",
+                "features": [
+                    "Cube optimization",
+                    "Backhaul matching",
+                    "Consolidation"
+                ],
+                "link": "/features/load-optimization"
+            }
+        ],
+        "network": {
+            "title": "Integrated Carrier Network",
+            "description": "Connect with 500+ vetted carriers for additional capacity when you need it.",
+            "carriers": [
+                { "icon": "truck", "name": "J.B. Hunt" },
+                { "icon": "truck", "name": "Schneider" },
+                { "icon": "truck", "name": "Swift" },
+                { "icon": "truck", "name": "Werner" },
+                { "icon": "truck", "name": "Knight-Swift" },
+                { "icon": "truck", "name": "UPS Freight" }
+            ]
+        },
+        "links": {
+            "features": "/transportation-features",
+            "demo": "/transportation-demo",
+            "network": "/carrier-network"
+        }
+    },
+    "transportationManagementSection3": {
+        "badge": "AI-POWERED TRANSPORTATION",
+        "backgroundImage": "https://images.unsplash.com/photo-1524668951403-d44b28200ce9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+        "hero": {
+            "title": {
+                "prefix": "Intelligent",
+                "highlight": "Transportation Management"
+            },
+            "description": "Transform your logistics with AI-driven optimization, real-time visibility, and predictive analytics.",
+            "primaryCta": {
+                "text": "Start Free Trial",
+                "link": "/transportation/trial"
+            },
+            "secondaryCta": {
+                "text": "Watch Demo",
+                "link": "/transportation/demo"
+            }
+        },
+        "trustText": "Trusted by 1,000+ logistics companies",
+        "ratingText": "4.9/5 from 2,500+ reviews",
+        "stats": [
+            {
+                "id": 1,
+                "value": "50M+",
+                "label": "Miles Driven",
+                "description": "Annual fleet distance"
+            },
+            {
+                "id": 2,
+                "value": "98.5%",
+                "label": "On-Time Delivery",
+                "description": "Across all routes"
+            },
+            {
+                "id": 3,
+                "value": "25%",
+                "label": "Cost Reduction",
+                "description": "Average client savings"
+            },
+            {
+                "id": 4,
+                "value": "24/7",
+                "label": "Real-Time Tracking",
+                "description": "Live fleet monitoring"
+            }
+        ],
+        "intelligence": {
+            "title": "AI-Powered Intelligence Platform",
+            "description": "Our machine learning algorithms continuously optimize routes, predict delays, and reduce costs.",
+            "features": [
+                {
+                    "id": 1,
+                    "icon": "bolt",
+                    "title": "Dynamic Routing",
+                    "description": "Real-time route adjustments based on traffic, weather, and delivery windows.",
+                    "bgColor": "bg-blue-600"
+                },
+                {
+                    "id": 2,
+                    "icon": "cloud",
+                    "title": "Predictive ETAs",
+                    "description": "AI-powered arrival predictions with 95% accuracy.",
+                    "bgColor": "bg-cyan-600"
+                },
+                {
+                    "id": 3,
+                    "icon": "chart",
+                    "title": "Cost Optimization",
+                    "description": "Smart mode selection and carrier allocation to minimize costs.",
+                    "bgColor": "bg-green-600"
+                }
+            ],
+            "insights": [
+                {
+                    "label": "Route Efficiency",
+                    "value": "+24%"
+                },
+                {
+                    "label": "Fuel Savings",
+                    "value": "18%"
+                },
+                {
+                    "label": "On-Time Performance",
+                    "value": "98.5%"
+                },
+                {
+                    "label": "Empty Miles Reduced",
+                    "value": "32%"
+                }
+            ],
+            "lastUpdated": "2 minutes ago",
+            "link": "/ai-capabilities"
+        },
+        "solutions": [
+            {
+                "id": 1,
+                "icon": "truck",
+                "title": "Fleet Management",
+                "description": "Complete visibility and control over your entire fleet with real-time tracking.",
+                "gradient": "from-blue-600 to-cyan-600",
+                "benefits": [
+                    "Live GPS tracking",
+                    "Driver performance monitoring",
+                    "Maintenance alerts",
+                    "Fuel efficiency tracking"
+                ],
+                "link": "/solutions/fleet"
+            },
+            {
+                "id": 2,
+                "icon": "globe",
+                "title": "Global TMS",
+                "description": "International transportation management with multi-modal support.",
+                "gradient": "from-purple-600 to-pink-600",
+                "benefits": [
+                    "Multi-modal planning",
+                    "Customs documentation",
+                    "Cross-border optimization",
+                    "Global carrier network"
+                ],
+                "link": "/solutions/global"
+            },
+            {
+                "id": 3,
+                "icon": "chart",
+                "title": "Analytics Suite",
+                "description": "Comprehensive analytics and reporting for data-driven decisions.",
+                "gradient": "from-green-600 to-teal-600",
+                "benefits": [
+                    "Cost analysis",
+                    "Performance dashboards",
+                    "Trend identification",
+                    "ROI tracking"
+                ],
+                "link": "/solutions/analytics"
+            },
+            {
+                "id": 4,
+                "icon": "shield",
+                "title": "Compliance Management",
+                "description": "Automated compliance with Hours of Service and regulatory requirements.",
+                "gradient": "from-orange-600 to-red-600",
+                "benefits": [
+                    "ELD integration",
+                    "IFTA reporting",
+                    "DOT compliance",
+                    "Audit trails"
+                ],
+                "link": "/solutions/compliance"
+            },
+            {
+                "id": 5,
+                "icon": "refresh",
+                "title": "Load Optimization",
+                "description": "Maximize trailer utilization and minimize empty miles.",
+                "gradient": "from-indigo-600 to-purple-600",
+                "benefits": [
+                    "Cube optimization",
+                    "Backhaul matching",
+                    "Consolidation",
+                    "Rate optimization"
+                ],
+                "link": "/solutions/load-optimization"
+            },
+            {
+                "id": 6,
+                "icon": "users",
+                "title": "Driver Network",
+                "description": "Access to vetted drivers and carriers for scalable capacity.",
+                "gradient": "from-pink-600 to-rose-600",
+                "benefits": [
+                    "10,000+ drivers",
+                    "Vetted carriers",
+                    "Instant matching",
+                    "Performance ratings"
+                ],
+                "link": "/solutions/network"
+            }
+        ],
+        "network": {
+            "title": "Global Transportation Network",
+            "description": "Connect with carriers and drivers across North America for seamless capacity management.",
+            "stats": [
+                {
+                    "value": "10K+",
+                    "label": "Active Drivers"
+                },
+                {
+                    "value": "500+",
+                    "label": "Carrier Partners"
+                },
+                {
+                    "value": "48",
+                    "label": "States Covered"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Support"
+                }
+            ],
+            "regions": [
+                {
+                    "name": "Northeast",
+                    "percentage": "28%"
+                },
+                {
+                    "name": "Southeast",
+                    "percentage": "24%"
+                },
+                {
+                    "name": "Midwest",
+                    "percentage": "22%"
+                },
+                {
+                    "name": "Southwest",
+                    "percentage": "16%"
+                },
+                {
+                    "name": "West",
+                    "percentage": "10%"
+                }
+            ],
+            "link": "/network-map"
+        },
+        "testimonials": [
+            {
+                "id": 1,
+                "name": "David Thompson",
+                "role": "Logistics Director, Global Freight",
+                "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "quote": "The AI-powered routing has reduced our fuel costs by 18% while improving on-time delivery to 98.5%."
+            },
+            {
+                "id": 2,
+                "name": "Maria Garcia",
+                "role": "Fleet Manager, Swift Transport",
+                "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "quote": "Real-time visibility into our entire fleet has transformed how we manage operations. The ROI was incredible."
+            }
+        ],
+        "footerCta": {
+            "title": "Ready to Transform Your Transportation Operations?",
+            "description": "Join industry leaders who trust our platform to optimize their fleets.",
+            "buttonText": "Schedule a Demo",
+            "link": "/transportation/demo"
+        },
+        "links": {
+            "trial": "/transportation/trial",
+            "demo": "/transportation/demo",
+            "solutions": "/transportation/solutions",
+            "network": "/network-map"
+        }
+    },
+    "transportationManagementCustomSection": {}
+}

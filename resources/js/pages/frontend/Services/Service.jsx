@@ -20,6 +20,7 @@ import AllServicesConfig from "./JSON/AllServicesConfig.json";
 import WarehouseManagementConfig from "./JSON/WarehouseManagementConfig.json";
 import OrderFulfillmentConfig from "./JSON/OrderFulfillmentConfig.json";
 import SupplyChainConsultingConfig from "./JSON/SupplyChainConsultingConfig.json";
+import TransportationManagementConfig from "./JSON/TransportationManagementConfig.json";
 
 
 // Map section -> JSON config
@@ -27,7 +28,8 @@ const configMap = {
   allServices: AllServicesConfig,
   warehouseManagement: WarehouseManagementConfig,
   orderFulfillment: OrderFulfillmentConfig,
-  supplyChainConsulting: SupplyChainConsultingConfig
+  supplyChainConsulting: SupplyChainConsultingConfig,
+  transportationManagement: TransportationManagementConfig,
 };
 
 // ============================================================================
@@ -39,7 +41,8 @@ const pageConfig = {
     allServices: { enabled: false, variant: "variant2", order: 2, props: {}, displayName: "All Services" },
     warehouseManagement: { enabled: false, variant: "variant2", order: 3, props: {}, displayName: "Warehouse Management" },
     orderFulfillment: { enabled: false, variant: "variant2", order: 4, props: {}, displayName: "Order Fulfillment" },
-    supplyChainConsulting: { enabled: true, variant: "variant3", order: 5, props: {}, displayName: "Supply Chain Consulting" },
+    supplyChainConsulting: { enabled: false, variant: "variant2", order: 5, props: {}, displayName: "Supply Chain Consulting" },
+    transportationManagement: { enabled: true, variant: "variant2", order: 6, props: {}, displayName: "Transportation Management" },
 
   },
 
