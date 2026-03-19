@@ -1,0 +1,621 @@
+{
+    "supplyChainConsultingSection1": {
+        "badge": "STRATEGIC CONSULTING",
+        "title": "Transform Your Supply Chain into a Competitive Advantage",
+        "description": "Expert consulting services to optimize your supply chain operations, reduce costs, and build resilience for the future.",
+        "valueProps": [
+            {
+                "id": 1,
+                "icon": "trending",
+                "title": "Cost Reduction",
+                "description": "Identify and eliminate inefficiencies to reduce supply chain costs by 20-30%.",
+                "bgColor": "bg-blue-600"
+            },
+            {
+                "id": 2,
+                "icon": "shield",
+                "title": "Risk Mitigation",
+                "description": "Build resilient supply chains that can withstand disruptions and market volatility.",
+                "bgColor": "bg-green-600"
+            },
+            {
+                "id": 3,
+                "icon": "bolt",
+                "title": "Digital Transformation",
+                "description": "Leverage AI, IoT, and automation to create a smart, connected supply chain.",
+                "bgColor": "bg-purple-600"
+            }
+        ],
+        "consultingAreas": {
+            "title": "Our Consulting Expertise",
+            "areas": [
+                {
+                    "id": 1,
+                    "icon": "chart",
+                    "title": "Supply Chain Strategy",
+                    "description": "End-to-end supply chain design and optimization for maximum efficiency.",
+                    "bgColor": "bg-blue-600",
+                    "subAreas": [
+                        "Network Design",
+                        "Inventory Optimization",
+                        "Sourcing Strategy"
+                    ]
+                },
+                {
+                    "id": 2,
+                    "icon": "cog",
+                    "title": "Operations Excellence",
+                    "description": "Lean methodologies and process improvement for warehouse and logistics.",
+                    "bgColor": "bg-green-600",
+                    "subAreas": [
+                        "Process Optimization",
+                        "Lean Six Sigma",
+                        "Automation"
+                    ]
+                },
+                {
+                    "id": 3,
+                    "icon": "globe",
+                    "title": "Global Logistics",
+                    "description": "International supply chain management and trade compliance.",
+                    "bgColor": "bg-purple-600",
+                    "subAreas": [
+                        "Freight Optimization",
+                        "Customs Compliance",
+                        "Carrier Management"
+                    ]
+                },
+                {
+                    "id": 4,
+                    "icon": "trending",
+                    "title": "Demand Planning",
+                    "description": "Advanced forecasting and inventory planning to reduce stockouts.",
+                    "bgColor": "bg-orange-600",
+                    "subAreas": [
+                        "Demand Sensing",
+                        "S&OP",
+                        "Inventory Optimization"
+                    ]
+                }
+            ]
+        },
+        "results": {
+            "title": "Typical Client Results",
+            "metrics": [
+                {
+                    "id": 1,
+                    "label": "Cost Reduction",
+                    "value": "25%",
+                    "percentage": "75%"
+                },
+                {
+                    "id": 2,
+                    "label": "Service Level Improvement",
+                    "value": "35%",
+                    "percentage": "85%"
+                },
+                {
+                    "id": 3,
+                    "label": "Inventory Reduction",
+                    "value": "30%",
+                    "percentage": "70%"
+                }
+            ],
+            "stats": [
+                {
+                    "value": "3-6",
+                    "label": "Months to ROI"
+                },
+                {
+                    "value": "95%",
+                    "label": "Client Retention"
+                }
+            ]
+        },
+        "testimonial": {
+            "name": "David Chen",
+            "role": "COO, Global Manufacturing Co.",
+            "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+            "quote": "Their consulting team transformed our supply chain operations, delivering $5M in annual savings within 6 months."
+        },
+        "methodology": {
+            "title": "Our Consulting Approach",
+            "steps": [
+                {
+                    "id": 1,
+                    "number": "1",
+                    "title": "Assessment",
+                    "description": "Comprehensive audit of current operations and pain points"
+                },
+                {
+                    "id": 2,
+                    "number": "2",
+                    "title": "Strategy",
+                    "description": "Data-driven roadmap for optimization and growth"
+                },
+                {
+                    "id": 3,
+                    "number": "3",
+                    "title": "Implementation",
+                    "description": "Hands-on execution with your team"
+                },
+                {
+                    "id": 4,
+                    "number": "4",
+                    "title": "Continuous Improvement",
+                    "description": "Ongoing optimization and performance monitoring"
+                }
+            ]
+        },
+        "industries": {
+            "title": "Industries We Serve",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "briefcase",
+                    "name": "Manufacturing"
+                },
+                {
+                    "id": 2,
+                    "icon": "globe",
+                    "name": "Retail & E-commerce"
+                },
+                {
+                    "id": 3,
+                    "icon": "truck",
+                    "name": "Logistics"
+                },
+                {
+                    "id": 4,
+                    "icon": "academic",
+                    "name": "Healthcare"
+                },
+                {
+                    "id": 5,
+                    "icon": "cog",
+                    "name": "Automotive"
+                },
+                {
+                    "id": 6,
+                    "icon": "chart",
+                    "name": "Food & Beverage"
+                },
+                {
+                    "id": 7,
+                    "icon": "bolt",
+                    "name": "Technology"
+                },
+                {
+                    "id": 8,
+                    "icon": "shield",
+                    "name": "Aerospace"
+                }
+            ]
+        },
+        "ctaText": "Schedule a Free Consultation",
+        "ctaLink": "/consulting",
+        "links": {
+            "consulting": "/consulting",
+            "caseStudies": "/case-studies",
+            "contact": "/contact"
+        }
+    },
+    "supplyChainConsultingSection2": {
+        "badge": "PROVEN RESULTS",
+        "experience": "15+ Years Experience",
+        "title": "Data-Driven Supply Chain Consulting",
+        "description": "We combine industry expertise with advanced analytics to deliver measurable results for our clients.",
+        "quickStats": [
+            {
+                "value": "200+",
+                "label": "Projects Completed"
+            },
+            {
+                "value": "$500M+",
+                "label": "Client Savings"
+            },
+            {
+                "value": "98%",
+                "label": "Client Satisfaction"
+            },
+            {
+                "value": "25+",
+                "label": "Expert Consultants"
+            }
+        ],
+        "caseStudies": {
+            "title": "Success Stories",
+            "studies": [
+                {
+                    "id": 1,
+                    "title": "Global Manufacturer Digital Transformation",
+                    "company": "TechManufacture Co.",
+                    "initials": "TM",
+                    "industry": "Manufacturing",
+                    "size": "10,000+ employees",
+                    "description": "Complete supply chain overhaul resulting in 35% cost reduction.",
+                    "timeline": "8 months",
+                    "savings": "$8.5M saved",
+                    "challenge": "Fragmented systems, high inventory costs, and poor visibility across 12 global facilities led to frequent stockouts and excess inventory.",
+                    "solution": "Implemented integrated WMS, demand forecasting AI, and centralized control tower. Redesigned network layout and optimized inventory policies.",
+                    "results": [
+                        { "label": "Cost Reduction", "value": "35%" },
+                        { "label": "Inventory Drop", "value": "42%" },
+                        { "label": "Service Level", "value": "99.5%" }
+                    ],
+                    "testimonial": {
+                        "name": "Robert Chen",
+                        "role": "VP of Operations",
+                        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                        "quote": "They didn't just give us recommendations - they helped us implement every change. Our supply chain is now our competitive advantage."
+                    }
+                },
+                {
+                    "id": 2,
+                    "title": "Retail Chain Inventory Optimization",
+                    "company": "FashionRetail Group",
+                    "initials": "FR",
+                    "industry": "Retail",
+                    "size": "500+ stores",
+                    "description": "Inventory optimization across 500+ stores reduced stockouts by 60%.",
+                    "timeline": "6 months",
+                    "savings": "$12M saved",
+                    "challenge": "Seasonal demand volatility and poor forecast accuracy caused either stockouts during peak seasons or massive discounts to clear excess.",
+                    "solution": "Implemented machine learning demand forecasting, automated replenishment, and store-specific inventory policies.",
+                    "results": [
+                        { "label": "Stockout Reduction", "value": "60%" },
+                        { "label": "Forecast Accuracy", "value": "94%" },
+                        { "label": "Margin Improvement", "value": "8%" }
+                    ],
+                    "testimonial": {
+                        "name": "Sarah Williams",
+                        "role": "Supply Chain Director",
+                        "avatar": "https://images.unsplash.com/photo-1494790108777-383fd5c0a4e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                        "quote": "Our forecast accuracy went from 65% to 94% in just 6 months. The ROI was incredible."
+                    }
+                },
+                {
+                    "id": 3,
+                    "title": "Logistics Provider Network Optimization",
+                    "company": "GlobalLogistics Inc.",
+                    "initials": "GL",
+                    "industry": "Logistics",
+                    "size": "50+ warehouses",
+                    "description": "Network redesign reduced transit times by 40% and costs by 25%.",
+                    "timeline": "10 months",
+                    "savings": "$15M saved",
+                    "challenge": "Outdated hub-and-spoke model caused long transit times and high operating costs across North American network.",
+                    "solution": "Complete network redesign with strategic hub locations, route optimization algorithms, and cross-docking implementation.",
+                    "results": [
+                        { "label": "Transit Time", "value": "-40%" },
+                        { "label": "Cost Reduction", "value": "25%" },
+                        { "label": "Network Capacity", "value": "+60%" }
+                    ],
+                    "testimonial": {
+                        "name": "Michael Torres",
+                        "role": "CEO",
+                        "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                        "quote": "They transformed our entire network. We're now the fastest in our key markets."
+                    }
+                }
+            ]
+        },
+        "services": {
+            "title": "Our Consulting Services",
+            "items": [
+                {
+                    "id": 1,
+                    "icon": "chart",
+                    "title": "Supply Chain Strategy",
+                    "description": "End-to-end supply chain design and optimization",
+                    "bgColor": "bg-indigo-600",
+                    "highlights": [
+                        "Network design",
+                        "Sourcing strategy",
+                        "Risk management"
+                    ],
+                    "link": "/services/strategy"
+                },
+                {
+                    "id": 2,
+                    "icon": "cube",
+                    "title": "Inventory Optimization",
+                    "description": "Right-size inventory across your entire network",
+                    "bgColor": "bg-purple-600",
+                    "highlights": [
+                        "Demand forecasting",
+                        "Safety stock",
+                        "SKU rationalization"
+                    ],
+                    "link": "/services/inventory"
+                },
+                {
+                    "id": 3,
+                    "icon": "cog",
+                    "title": "Warehouse Excellence",
+                    "description": "Optimize layouts, processes, and automation",
+                    "bgColor": "bg-pink-600",
+                    "highlights": [
+                        "Layout design",
+                        "Process improvement",
+                        "Automation ROI"
+                    ],
+                    "link": "/services/warehouse"
+                },
+                {
+                    "id": 4,
+                    "icon": "truck",
+                    "title": "Transportation Management",
+                    "description": "Reduce freight costs and improve service",
+                    "bgColor": "bg-orange-600",
+                    "highlights": [
+                        "Carrier optimization",
+                        "Route planning",
+                        "Mode selection"
+                    ],
+                    "link": "/services/transportation"
+                },
+                {
+                    "id": 5,
+                    "icon": "trending",
+                    "title": "Demand Planning",
+                    "description": "Advanced forecasting and S&OP processes",
+                    "bgColor": "bg-green-600",
+                    "highlights": [
+                        "Demand sensing",
+                        "S&OP facilitation",
+                        "Collaborative planning"
+                    ],
+                    "link": "/services/demand-planning"
+                },
+                {
+                    "id": 6,
+                    "icon": "shield",
+                    "title": "Supply Chain Resilience",
+                    "description": "Build robust, risk-resistant supply chains",
+                    "bgColor": "bg-red-600",
+                    "highlights": [
+                        "Risk assessment",
+                        "Business continuity",
+                        "Dual sourcing"
+                    ],
+                    "link": "/services/resilience"
+                }
+            ]
+        },
+        "methodology": {
+            "title": "Our Consulting Methodology",
+            "steps": [
+                {
+                    "id": 1,
+                    "number": "01",
+                    "title": "Discovery",
+                    "description": "Deep dive into your operations and challenges",
+                    "duration": "2-3 weeks"
+                },
+                {
+                    "id": 2,
+                    "number": "02",
+                    "title": "Analysis",
+                    "description": "Data modeling and opportunity identification",
+                    "duration": "3-4 weeks"
+                },
+                {
+                    "id": 3,
+                    "number": "03",
+                    "title": "Strategy",
+                    "description": "Develop roadmap and implementation plan",
+                    "duration": "4-6 weeks"
+                },
+                {
+                    "id": 4,
+                    "number": "04",
+                    "title": "Implementation",
+                    "description": "Hands-on execution with your team",
+                    "duration": "3-9 months"
+                }
+            ]
+        },
+        "cta": {
+            "title": "Ready to Transform Your Supply Chain?",
+            "description": "Schedule a free consultation with our experts to discuss your challenges and opportunities.",
+            "primaryText": "Book a Consultation",
+            "primaryLink": "/consultation",
+            "secondaryText": "View Case Studies",
+            "secondaryLink": "/case-studies"
+        },
+        "links": {
+            "services": "/consulting-services",
+            "caseStudies": "/case-studies",
+            "consultation": "/consultation"
+        }
+    },
+    "supplyChainConsultingSection3": {
+        "badge": "ELITE CONSULTING PARTNER",
+        "backgroundImage": "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+        "hero": {
+            "title": {
+                "prefix": "Redefine Your",
+                "highlight": "Supply Chain Potential"
+            },
+            "description": "Strategic consulting that transforms complex supply chains into resilient, efficient, and competitive advantages.",
+            "primaryCta": {
+                "text": "Schedule Strategy Session",
+                "link": "/consulting/schedule"
+            },
+            "secondaryCta": {
+                "text": "View Success Stories",
+                "link": "/case-studies"
+            }
+        },
+        "trustText": "Trusted by Fortune 500 companies",
+        "ratingText": "4.9/5 from 500+ executive reviews",
+        "expertise": [
+            {
+                "id": 1,
+                "icon": "presentation",
+                "title": "Strategic Advisory",
+                "description": "C-level guidance for supply chain transformation and competitive positioning.",
+                "gradient": "from-blue-600 to-indigo-600",
+                "capabilities": [
+                    "Supply chain strategy",
+                    "Operating model design",
+                    "Digital roadmap",
+                    "M&A due diligence"
+                ]
+            },
+            {
+                "id": 2,
+                "icon": "chart",
+                "title": "Performance Improvement",
+                "description": "Data-driven optimization to reduce costs and improve service levels.",
+                "gradient": "from-purple-600 to-pink-600",
+                "capabilities": [
+                    "Cost reduction programs",
+                    "Working capital optimization",
+                    "Service level improvement",
+                    "Process excellence"
+                ]
+            },
+            {
+                "id": 3,
+                "icon": "shield",
+                "title": "Risk & Resilience",
+                "description": "Build robust supply chains that withstand disruptions and volatility.",
+                "gradient": "from-green-600 to-teal-600",
+                "capabilities": [
+                    "Risk assessment",
+                    "Scenario planning",
+                    "Business continuity",
+                    "Supplier diversification"
+                ]
+            }
+        ],
+        "roi": {
+            "title": "Calculate Your Potential Savings",
+            "description": "See how much value our consulting expertise can unlock for your supply chain.",
+            "buttonText": "Get Custom ROI Analysis",
+            "link": "/roi-calculator",
+            "stats": [
+                {
+                    "value": "20-40%",
+                    "label": "Cost Reduction"
+                },
+                {
+                    "value": "30-50%",
+                    "label": "Inventory Reduction"
+                },
+                {
+                    "value": "3-6x",
+                    "label": "ROI Multiple"
+                },
+                {
+                    "value": "6-12",
+                    "label": "Months to Payback"
+                }
+            ]
+        },
+        "approach": {
+            "title": "Our Consulting Approach",
+            "steps": [
+                {
+                    "id": 1,
+                    "number": "01",
+                    "title": "Discovery & Assessment",
+                    "description": "Deep dive into your operations, data, and challenges",
+                    "duration": "2-4 weeks"
+                },
+                {
+                    "id": 2,
+                    "number": "02",
+                    "title": "Strategic Roadmap",
+                    "description": "Data-backed strategy with clear milestones and KPIs",
+                    "duration": "4-6 weeks"
+                },
+                {
+                    "id": 3,
+                    "number": "03",
+                    "title": "Accelerated Implementation",
+                    "description": "Hands-on execution with your team and our experts",
+                    "duration": "3-9 months"
+                },
+                {
+                    "id": 4,
+                    "number": "04",
+                    "title": "Continuous Evolution",
+                    "description": "Ongoing optimization and capability building",
+                    "duration": "Ongoing"
+                }
+            ]
+        },
+        "caseStudies": {
+            "title": "Client Success Stories",
+            "viewAllLink": "/case-studies",
+            "studies": [
+                {
+                    "id": 1,
+                    "title": "Global Pharma",
+                    "industry": "Healthcare",
+                    "description": "Supply chain transformation for top 5 pharmaceutical company.",
+                    "results": [
+                        { "value": "35%", "label": "Cost Reduction" },
+                        { "value": "42%", "label": "Inventory Drop" },
+                        { "value": "99.5%", "label": "Service Level" }
+                    ],
+                    "link": "/case-studies/pharma"
+                },
+                {
+                    "id": 2,
+                    "title": "Auto Manufacturer",
+                    "industry": "Automotive",
+                    "description": "Just-in-time optimization for major automotive manufacturer.",
+                    "results": [
+                        { "value": "45%", "label": "Lead Time" },
+                        { "value": "28%", "label": "Cost Savings" },
+                        { "value": "100%", "label": "On-Time" }
+                    ],
+                    "link": "/case-studies/automotive"
+                },
+                {
+                    "id": 3,
+                    "title": "Retail Giant",
+                    "industry": "Retail",
+                    "description": "Omnichannel supply chain transformation for national retailer.",
+                    "results": [
+                        { "value": "60%", "label": "Stockout Reduction" },
+                        { "value": "94%", "label": "Forecast Accuracy" },
+                        { "value": "8%", "label": "Margin Improvement" }
+                    ],
+                    "link": "/case-studies/retail"
+                }
+            ]
+        },
+        "testimonials": [
+            {
+                "id": 1,
+                "name": "Jennifer Lawrence",
+                "role": "CPO, Global Manufacturing Corp",
+                "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "quote": "They didn't just deliver a report - they transformed how we think about supply chain. Our board was impressed by the results."
+            },
+            {
+                "id": 2,
+                "name": "Robert Martinez",
+                "role": "CEO, TechLogistics Inc.",
+                "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
+                "quote": "The strategic roadmap they provided gave us clarity and confidence. We're now ahead of competitors by 18 months."
+            }
+        ],
+        "footerCta": {
+            "title": "Ready to Transform Your Supply Chain?",
+            "description": "Schedule a confidential consultation with our senior advisors.",
+            "buttonText": "Book Your Strategy Session",
+            "link": "/consulting/schedule"
+        },
+        "links": {
+            "schedule": "/consulting/schedule",
+            "caseStudies": "/case-studies",
+            "roi": "/roi-calculator"
+        }
+    }
+}

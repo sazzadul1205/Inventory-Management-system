@@ -25,4 +25,11 @@ export const sectionRegistry = {
         variant2: lazy(() => import('./OrderFulfillmentSection/OrderFulfillmentSection2')),
         variant3: lazy(() => import('./OrderFulfillmentSection/OrderFulfillmentSection3')),
     },
+
+    // supplyChainConsulting
+    supplyChainConsulting: {
+        variant1: lazy(() => import('./SupplyChainConsultingSection/SupplyChainConsultingSection1')),
+        variant2: lazy(() => import('./SupplyChainConsultingSection/SupplyChainConsultingSection2')),
+        variant3: lazy(() => import('./SupplyChainConsultingSection/SupplyChainConsultingSection3')),
+    },
 };
