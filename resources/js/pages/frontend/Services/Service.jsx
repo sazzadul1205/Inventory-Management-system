@@ -15,55 +15,21 @@ import { skeletonRegistry } from "./skeletonRegistry";
 // Section Navigation
 import SectionNavigation from "@/components/SectionNavigation";
 
-// JSON configs
-import AllServicesConfig from "./JSON/AllServicesConfig.json";
-import WarehouseManagementConfig from "./JSON/WarehouseManagementConfig.json";
-import OrderFulfillmentConfig from "./JSON/OrderFulfillmentConfig.json";
-import SupplyChainConsultingConfig from "./JSON/SupplyChainConsultingConfig.json";
-import TransportationManagementConfig from "./JSON/TransportationManagementConfig.json";
-import ReturnsManagementConfig from "./JSON/ReturnsManagementConfig.json";
-import CustomSolutionsConfig from "./JSON/CustomSolutionsConfig.json";
-
-// Map section -> JSON config
-const configMap = {
-  allServices: AllServicesConfig,
-  warehouseManagement: WarehouseManagementConfig,
-  orderFulfillment: OrderFulfillmentConfig,
-  supplyChainConsulting: SupplyChainConsultingConfig,
-  transportationManagement: TransportationManagementConfig,
-  returnManagement: ReturnsManagementConfig,
-  customSolution: CustomSolutionsConfig,
-};
-
-// ============================================================================
-// Page Config
-// ============================================================================
-
-const pageConfig = {
-  sections: {
-    allServices: { enabled: true, variant: "variant2", order: 2, props: {}, displayName: "All Services" },
-    warehouseManagement: { enabled: true, variant: "variant2", order: 3, props: {}, displayName: "Warehouse Management" },
-    orderFulfillment: { enabled: true, variant: "variant2", order: 4, props: {}, displayName: "Order Fulfillment" },
-    supplyChainConsulting: { enabled: true, variant: "variant2", order: 5, props: {}, displayName: "Supply Chain Consulting" },
-    transportationManagement: { enabled: true, variant: "variant2", order: 6, props: {}, displayName: "Transportation Management" },
-    returnManagement: { enabled: true, variant: "variant2", order: 7, props: {}, displayName: "Returns Management" },
-    customSolution: { enabled: true, variant: "variant2", order: 8, props: {}, displayName: "Custom Solutions" },
-  },
-
-  global: {
-    siteName: "Sazzad Inventory & Logistics",
-    defaultProps: {
-      showAnimation: true,
-      lazyLoad: true,
-    },
-  },
-};
-
 // ============================================================================
 // Custom Page Hero Component
 // ============================================================================
 
-const PageHero = () => {
+const PageHero = ({ heroData }) => {
+  // Provide default values if heroData is null/undefined
+  const title = heroData?.title || 'Our';
+  const highlightedText = heroData?.highlightedText || 'Services';
+  const description = heroData?.description || 'Comprehensive inventory and logistics solutions tailored to streamline your business operations and drive growth.';
+  const stats = heroData?.stats || [
+    { value: '500+', label: 'Happy Clients' },
+    { value: '50K+', label: 'Shipments Handled' },
+    { value: '24/7', label: 'Support Available' }
+  ];
+
   return (
     <section className="relative bg-linear-to-r from-blue-600 to-blue-800 dark:from-blue-900 dark:to-blue-950 text-white overflow-hidden">
       {/* Background Pattern */}
@@ -73,18 +39,15 @@ const PageHero = () => {
         }} />
       </div>
 
-      {/* Animated shapes - adjusted for dark mode */}
+      {/* Animated shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 dark:bg-white/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 dark:bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      {/* Dark mode overlay gradient for better contrast if needed */}
-      <div className="absolute inset-0 bg-linear-to-t from-transparent to-transparent dark:from-blue-950/20 dark:to-blue-900/20 pointer-events-none"></div>
-
       <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Breadcrumb - dark mode adjusted */}
+          {/* Breadcrumb */}
           <div className="flex items-center justify-center gap-2 text-sm text-blue-100 dark:text-blue-200 mb-6">
             <a href="/" className="hover:text-white dark:hover:text-blue-100 transition-colors">Home</a>
             <span>•</span>
@@ -93,31 +56,28 @@ const PageHero = () => {
 
           {/* Main Title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
-            Our <span className="text-yellow-300 dark:text-yellow-400">Services</span>
+            {title}{' '}
+            <span className="text-yellow-300 dark:text-yellow-400">
+              {highlightedText}
+            </span>
           </h1>
 
-          {/* Description - dark mode adjusted */}
+          {/* Description */}
           <p className="text-lg md:text-xl text-blue-100 dark:text-blue-200 mb-8 max-w-2xl mx-auto">
-            Comprehensive inventory and logistics solutions tailored to streamline your business operations and drive growth.
+            {description}
           </p>
 
-          {/* Stats/Highlights - dark mode adjusted */}
+          {/* Stats/Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 dark:border-white/5">
-              <div className="text-3xl font-bold text-yellow-300 dark:text-yellow-400 mb-1">500+</div>
-              <div className="text-sm text-blue-100 dark:text-blue-200">Happy Clients</div>
-            </div>
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 dark:border-white/5">
-              <div className="text-3xl font-bold text-yellow-300 dark:text-yellow-400 mb-1">50K+</div>
-              <div className="text-sm text-blue-100 dark:text-blue-200">Shipments Handled</div>
-            </div>
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 dark:border-white/5">
-              <div className="text-3xl font-bold text-yellow-300 dark:text-yellow-400 mb-1">24/7</div>
-              <div className="text-sm text-blue-100 dark:text-blue-200">Support Available</div>
-            </div>
+            {stats.map((stat, index) => (
+              <div key={index} className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 dark:border-white/5">
+                <div className="text-3xl font-bold text-yellow-300 dark:text-yellow-400 mb-1">{stat.value}</div>
+                <div className="text-sm text-blue-100 dark:text-blue-200">{stat.label}</div>
+              </div>
+            ))}
           </div>
 
-          {/* CTA Buttons - dark mode adjusted */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <button className="px-8 py-3 bg-yellow-400 dark:bg-yellow-500 text-blue-900 dark:text-blue-950 font-semibold rounded-lg hover:bg-yellow-300 dark:hover:bg-yellow-400 transition-colors transform hover:scale-105 duration-200">
               Explore Services
@@ -129,7 +89,7 @@ const PageHero = () => {
         </div>
       </div>
 
-      {/* Bottom wave decoration - made dark mode friendly */}
+      {/* Bottom wave decoration */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-auto">
           <path
@@ -143,57 +103,69 @@ const PageHero = () => {
     </section>
   );
 };
+
 // ============================================================================
-// Helpers
+// Main Service Component
 // ============================================================================
 
-const getOrderedSections = () => {
-  return Object.entries(pageConfig.sections)
-    .filter(([_, section]) => section.enabled)
-    .map(([type, section]) => ({
-      type,
+const Service = ({ pageData = { meta: {}, sections: [] } }) => {
+  const { meta = {}, sections = [] } = pageData;
+
+  // Prepare sections for navigation
+  const sectionsWithDisplayName = sections.map(section => {
+    const displayNames = {
+      allServices: 'All Services',
+      warehouseManagement: 'Warehouse Management',
+      orderFulfillment: 'Order Fulfillment',
+      supplyChainConsulting: 'Supply Chain Consulting',
+      transportationManagement: 'Transportation Management',
+      returnManagement: 'Returns Management',
+      customSolution: 'Custom Solutions'
+    };
+
+    return {
       ...section,
-    }))
-    .sort((a, b) => a.order - b.order);
-};
-
-const Service = () => {
-  const orderedSections = getOrderedSections();
+      displayName: displayNames[section.type] || section.type
+    };
+  });
 
   return (
     <FrontEnd_Layout>
-      {/* Custom Page Hero - Always shown */}
-      <PageHero />
+      {/* Page Hero */}
+      <PageHero heroData={meta?.hero} />
 
       {/* Section Navigation */}
-      {orderedSections.length > 0 && (
-        <SectionNavigation sections={orderedSections} />
+      {sectionsWithDisplayName?.length > 0 && (
+        <SectionNavigation sections={sectionsWithDisplayName} />
       )}
 
-      {/* Render remaining sections */}
-      {orderedSections.map((section, index) => {
-        const { type, variant, props } = section;
+      {/* Render sections */}
+      {sections?.map((section, index) => {
+        const { type, variant, props, config } = section;
 
-        const SectionComponent =
-          sectionRegistry?.[type]?.[variant] ||
-          sectionRegistry?.[type]?.variant1;
-
+        // Get the component from registry
+        const SectionComponent = sectionRegistry[type]?.[variant];
         const Skeleton =
-          skeletonRegistry?.[type] ||
+          skeletonRegistry[type] ||
           (() => <div className="animate-pulse h-96 bg-gray-200" />);
 
-        const config = configMap[type]?.[`${type}Section${variant.replace("variant", "")}`];
-
-        if (!SectionComponent) return null;
+        // If component doesn't exist, show error
+        if (!SectionComponent) {
+          return (
+            <div key={`${type}-${index}`} className="p-8 bg-red-100 border-2 border-red-500 rounded-lg m-4">
+              <h3 className="text-red-700 font-bold">Error: Section not found</h3>
+              <p className="text-red-600">Type: {type}, Variant: {variant}</p>
+              <p className="text-red-600">Available types: {Object.keys(sectionRegistry).join(', ')}</p>
+            </div>
+          );
+        }
 
         return (
           <div key={`${type}-${index}`} id={`section-${type}`}>
             <Suspense fallback={<Skeleton />}>
               <SectionComponent
                 config={config}
-                {...pageConfig.global.defaultProps}
                 {...props}
-                pageConfig={pageConfig}
               />
             </Suspense>
           </div>
