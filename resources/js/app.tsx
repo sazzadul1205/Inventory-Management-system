@@ -1,9 +1,10 @@
-// App.tsx
+// app.tsx
 
 // React
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Styles
 import '../css/app.css';
@@ -13,6 +14,18 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 // Hooks
 import { initializeTheme } from '@/hooks/use-appearance';
+
+// Create a client
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 5 * 60 * 1000, // 5 minutes
+            gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+            retry: 1,
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
 // App name from environment variable or fallback
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -50,10 +63,12 @@ createInertiaApp({
         // Create React root
         const root = createRoot(el);
 
-        // Render the Inertia App inside StrictMode
+        // Render the Inertia App inside StrictMode with QueryClientProvider
         root.render(
             <StrictMode>
-                <App {...props} />
+                <QueryClientProvider client={queryClient}>
+                    <App {...props} />
+                </QueryClientProvider>
             </StrictMode>,
         );
     },
