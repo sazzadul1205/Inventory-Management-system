@@ -5,6 +5,13 @@ import { lazy } from 'react';
 
 // Components Registry
 export const sectionRegistry = {
+    // Home (alias for hero)
+    home: {
+        variant1: lazy(() => import('./HeroSection/HeroSection1')),
+        variant2: lazy(() => import('./HeroSection/HeroSection2')),
+        variant3: lazy(() => import('./HeroSection/HeroSection3')),
+    },
+
     // Hero
     hero: {
         variant1: lazy(() => import('./HeroSection/HeroSection1')),

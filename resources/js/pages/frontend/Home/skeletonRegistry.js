@@ -25,6 +25,7 @@ import SuccessStoriesSectionSkeleton from './SuccessStoriesSection/SuccessStorie
 
 // Export Skeleton
 export const skeletonRegistry = {
+    home: HeroSectionSkeleton,
     faq: FAQSectionSkeleton,
     hero: HeroSectionSkeleton,
     news: NewsSectionSkeleton,
