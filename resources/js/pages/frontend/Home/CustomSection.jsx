@@ -11,7 +11,7 @@ import React, { Suspense, lazy } from "react";
 
 const load = (path, exportName = "default") =>
   lazy(() =>
-    import(`../../../components/${path}`).then((m) => ({
+    import(`../../../components/CMS_Items/${path}`).then((m) => ({
       default: exportName === "default" ? m.default : m[exportName],
     }))
   );

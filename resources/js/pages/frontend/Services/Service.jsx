@@ -4,7 +4,7 @@
 import { Suspense } from "react";
 
 // Layout
-import FrontEnd_Layout from "../Layout/FrontEnd_Layout";
+import FrontEnd_Layout from "../../../layouts/FrontEnd_Layout";
 
 // Section Imports
 import { sectionRegistry } from "./sectionRegistry";

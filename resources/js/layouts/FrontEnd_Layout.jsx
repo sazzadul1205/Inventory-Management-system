@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 // Shared Components
-import Navbar from "../../../shared/navbar";
-import Footer from "../../../shared/Footer";
+import Navbar from "../shared/navbar";
+import Footer from "../shared/Footer";
 
 // Icon
 import { HiArrowUp } from "react-icons/hi2";
