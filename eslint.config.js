@@ -1,61 +1,96 @@
-import js from '@eslint/js';
-import prettier from 'eslint-config-prettier/flat';
-import importPlugin from 'eslint-plugin-import';
-import unusedImports from 'eslint-plugin-unused-imports';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import globals from 'globals';
-import typescript from 'typescript-eslint';
+// eslint.config.js
 
-/** @type {import('eslint').Linter.Config[]} */
+// Js configs
+import js from '@eslint/js';
+
+// Globals
+import globals from 'globals';
+
+// TypeScript
+import tseslint from 'typescript-eslint';
+
+// Eslint plugins
+import react from 'eslint-plugin-react';
+import importPlugin from 'eslint-plugin-import';
+import prettier from 'eslint-config-prettier/flat';
+import reactHooks from 'eslint-plugin-react-hooks';
+import unusedImports from 'eslint-plugin-unused-imports';
+
 export default [
+    // -------------------------
+    // Base
+    // -------------------------
     js.configs.recommended,
-    reactHooks.configs.flat['recommended-latest'],
-    ...typescript.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
+
+    // -------------------------
+    // React
+    // -------------------------
+    react.configs.flat.recommended,
+    reactHooks.configs['recommended-latest'],
+
+    // -------------------------
+    // Main Config
+    // -------------------------
     {
-        ...react.configs.flat.recommended,
-        ...react.configs.flat['jsx-runtime'],
         languageOptions: {
+            parser: tseslint.parser,
+            parserOptions: {
+                project: './tsconfig.json',
+                tsconfigRootDir: import.meta.dirname,
+            },
             globals: {
                 ...globals.browser,
+                ...globals.node,
             },
         },
-        rules: {
-            'react/react-in-jsx-scope': 'off',
-            'react/prop-types': 'off',
-            'react/no-unescaped-entities': 'off',
-        },
+
         settings: {
             react: {
                 version: 'detect',
             },
         },
-    },
-    {
+
         plugins: {
             import: importPlugin,
             'unused-imports': unusedImports,
         },
-        settings: {
-            'import/resolver': {
-                typescript: {
-                    alwaysTryTypes: true,
-                    project: './tsconfig.json',
-                },
-                node: true,
-            },
-        },
+
         rules: {
-            '@typescript-eslint/no-explicit-any': 'off',
+            // -------------------------
+            // TypeScript (strict but practical)
+            // -------------------------
+            '@typescript-eslint/no-explicit-any': 'warn',
+            '@typescript-eslint/no-unsafe-assignment': 'warn',
+            '@typescript-eslint/no-unsafe-call': 'warn',
+            '@typescript-eslint/no-unsafe-member-access': 'warn',
+            '@typescript-eslint/no-unsafe-return': 'warn',
 
             '@typescript-eslint/consistent-type-imports': [
                 'error',
-                {
-                    prefer: 'type-imports',
-                    fixStyle: 'separate-type-imports',
-                },
+                { prefer: 'type-imports' },
             ],
 
+            // -------------------------
+            // React
+            // -------------------------
+            'react/react-in-jsx-scope': 'off',
+            'react/prop-types': 'off',
+            'react/jsx-no-useless-fragment': 'error',
+            'react/self-closing-comp': 'warn',
+            'react/jsx-curly-brace-presence': [
+                'error',
+                { props: 'never', children: 'never' },
+            ],
+
+            // -------------------------
+            // Hooks (critical)
+            // -------------------------
+            'react-hooks/exhaustive-deps': 'warn',
+
+            // -------------------------
+            // Imports
+            // -------------------------
             'import/order': [
                 'error',
                 {
@@ -71,18 +106,18 @@ export default [
                         order: 'asc',
                         caseInsensitive: true,
                     },
+                    'newlines-between': 'always',
                 },
             ],
 
-            'import/consistent-type-specifier-style': [
-                'error',
-                'prefer-top-level',
-            ],
+            'import/no-cycle': 'error',
+            'import/no-duplicates': 'error',
 
-            // 🔴 Detect unused imports
+            // -------------------------
+            // Unused
+            // -------------------------
             'unused-imports/no-unused-imports': 'error',
 
-            // 🔴 Detect unused variables
             'unused-imports/no-unused-vars': [
                 'warn',
                 {
@@ -93,27 +128,38 @@ export default [
                 },
             ],
 
-            // 🔴 Detect unused exported modules (unused components/files)
-            'import/no-unused-modules': [
-                'warn',
-                {
-                    unusedExports: true,
-                },
-            ],
+            // -------------------------
+            // Code quality
+            // -------------------------
+            eqeqeq: ['error', 'always'],
+            curly: ['error', 'all'],
+            'no-console': ['warn', { allow: ['warn', 'error'] }],
+            'no-debugger': 'error',
+            'prefer-const': 'error',
+            'no-var': 'error',
+            'prefer-template': 'error',
+            'object-shorthand': 'error',
         },
     },
+
+    // -------------------------
+    // Ignore
+    // -------------------------
     {
         ignores: [
-            'vendor',
-            'node_modules',
-            'public',
-            'bootstrap/ssr',
-            'tailwind.config.js',
-            'vite.config.ts',
-            'resources/js/actions/**',
-            'resources/js/components/ui/*',
-            'resources/js/routes/**',
+            '**/node_modules/**',
+            '**/vendor/**',
+            '**/public/**',
+            '**/build/**',
+            '**/dist/**',
+            '**/*.min.*',
+            'vite.config.*',
+            'tailwind.config.*',
         ],
     },
+
+    // -------------------------
+    // Prettier LAST
+    // -------------------------
     prettier,
 ];

@@ -1,9 +1,15 @@
 {
     "semi": true,
     "singleQuote": true,
+    "jsxSingleQuote": false,
     "singleAttributePerLine": false,
     "htmlWhitespaceSensitivity": "css",
-    "printWidth": 80,
+    "printWidth": 100,
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "endOfLine": "lf",
     "plugins": [
         "prettier-plugin-tailwindcss"
     ],
@@ -13,8 +19,37 @@
         "cva"
     ],
     "tailwindStylesheet": "resources/css/app.css",
-    "tabWidth": 4,
     "overrides": [
+        {
+            "files": "**/*.ts",
+            "options": {
+                "parser": "typescript"
+            }
+        },
+        {
+            "files": "**/*.tsx",
+            "options": {
+                "parser": "typescript"
+            }
+        },
+        {
+            "files": "**/*.js",
+            "options": {
+                "parser": "babel"
+            }
+        },
+        {
+            "files": "**/*.jsx",
+            "options": {
+                "parser": "babel"
+            }
+        },
+        {
+            "files": "**/*.json",
+            "options": {
+                "tabWidth": 2
+            }
+        },
         {
             "files": "**/*.yml",
             "options": {
