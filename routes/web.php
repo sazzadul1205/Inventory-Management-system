@@ -11,6 +11,7 @@ use Laravel\Fortify\Features;
 
 Route::get('/', [FrontEndController::class, 'home'])->name('home.index');
 Route::get('/services', [FrontEndController::class, 'services'])->name('services.index');
+Route::get('/features', [FrontEndController::class, 'features'])->name('features.index');
 
 Route::get('/page-broken', function () {
     return Inertia::render('Errors/PageBroken');

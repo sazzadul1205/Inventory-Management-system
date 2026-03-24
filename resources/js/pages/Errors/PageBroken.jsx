@@ -1,14 +1,18 @@
-import React from 'react';
+// resources/js/pages/Errors/PageBroken.jsx
+
+// React
 import { Link } from '@inertiajs/react';
-import {
-  WiDayThunderstorm,
-  FiHome,
-  FiRefreshCw,
-  FiMail,
-  FiArrowLeft
-} from 'react-icons/all';
+
+// Icons
+import { WiDayThunderstorm } from 'react-icons/wi';
+import { FiHome, FiRefreshCw, FiMail, FiArrowLeft } from 'react-icons/fi';
 
 const PageBroken = () => {
+  const errorId = `ERR_PAGE_BROKEN_${Math.random()
+    .toString(36)
+    .substring(2, 8)
+    .toUpperCase()}`;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 px-4 sm:px-6 py-8">
       <div className="max-w-xl w-full text-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-xl dark:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl">
@@ -79,9 +83,9 @@ const PageBroken = () => {
           </a>
         </div>
 
-        {/* Error ID (optional) */}
+        {/* Error ID */}
         <p className="text-xs text-gray-400 dark:text-gray-500 mt-4 font-mono">
-          Error Reference: ERR_PAGE_BROKEN_{Math.random().toString(36).substring(7).toUpperCase()}
+          Error Reference: {errorId}
         </p>
       </div>
     </div>
