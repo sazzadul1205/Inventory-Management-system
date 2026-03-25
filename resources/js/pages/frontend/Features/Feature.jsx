@@ -9,8 +9,8 @@ import FrontEnd_Layout from "../../../layouts/FrontEnd_Layout";
 // Section Imports
 import { sectionRegistry } from "./sectionRegistry";
 
-// Skeleton Imports
-import { skeletonRegistry } from "./skeletonRegistry";
+// Skeleton
+import SectionSkeleton from "@/components/SectionSkeleton";
 
 // Section Navigation
 import SectionNavigation from "@/components/SectionNavigation";
@@ -153,9 +153,7 @@ const Feature = ({ pageData = { meta: {}, sections: [] } }) => {
 
         // Get the component from registry
         const SectionComponent = sectionRegistry[type]?.[variant];
-        const Skeleton =
-          skeletonRegistry[type] ||
-          (() => <div className="animate-pulse h-96 bg-gray-200 rounded-lg" />);
+        const Skeleton = SectionSkeleton;
 
         // If component doesn't exist, show error
         if (!SectionComponent) {

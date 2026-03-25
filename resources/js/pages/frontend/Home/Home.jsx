@@ -9,8 +9,8 @@ import FrontEnd_Layout from "../../../layouts/FrontEnd_Layout";
 // Section Imports
 import { sectionRegistry } from "./sectionRegistry";
 
-// Skeleton Imports
-import { skeletonRegistry } from "./skeletonRegistry";
+// Skeleton Registry
+import { skeletonRegistry, getSkeletonProps } from "./skeletonRegistry";
 
 // Section Navigation
 import SectionNavigation from "@/components/SectionNavigation";
@@ -46,6 +46,12 @@ const Home = ({ pageData = { meta: {}, sections: [] } }) => {
       newsletter: 'Newsletter',
       mobileApp: 'Mobile App',
       event: 'Events',
+      customSolutions: 'Custom Solutions',
+      orderFulfillment: 'Order Fulfillment',
+      returnsManagement: 'Returns Management',
+      supplyChainConsulting: 'Supply Chain Consulting',
+      transportationManagement: 'Transportation Management',
+      warehouseManagement: 'Warehouse Management',
     };
 
     return {
@@ -56,45 +62,109 @@ const Home = ({ pageData = { meta: {}, sections: [] } }) => {
 
   return (
     <FrontEnd_Layout>
+      {/* Section Navigation - Skip to content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-gray-900 focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        Skip to main content
+      </a>
+
       {/* Section Navigation */}
       {sectionsWithDisplayName?.length > 0 && (
-        <SectionNavigation sections={sectionsWithDisplayName} />
+        <nav aria-label="Section navigation" className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+          <SectionNavigation sections={sectionsWithDisplayName} />
+        </nav>
       )}
 
-      {/* Render sections - Data from server */}
-      {sections?.map((section, index) => {
-        const { type, variant, props, config } = section;
+      {/* Main content wrapper with landmark */}
+      <main id="main-content" role="main" tabIndex={-1} className="focus:outline-none">
+        {/* Render sections - Data from server */}
+        {sections?.map((section, index) => {
+          const { type, variant, props, config, _id } = section;
+          const sectionId = `${type}-${_id || index}`;
 
-        // Get the component from registry
-        const SectionComponent =
-          sectionRegistry[type]?.[variant] ||
-          sectionRegistry[type]?.variant1;
-        const Skeleton =
-          skeletonRegistry[type] ||
-          (() => <div className="animate-pulse h-96 bg-gray-200" />);
+          // Get the component from registry
+          const SectionComponent = sectionRegistry[type]?.[variant] || sectionRegistry[type]?.variant1;
 
-        // If component doesn't exist, show error
-        if (!SectionComponent) {
+          // Get skeleton component and props based on section type
+          const SkeletonComponent = skeletonRegistry[type] || skeletonRegistry.default;
+          const skeletonProps = getSkeletonProps(type, variant, config);
+
+          // If component doesn't exist, show error with proper accessibility
+          if (!SectionComponent) {
+            return (
+              <section
+                key={sectionId}
+                id={`section-${type}`}
+                className="p-8 bg-red-100 dark:bg-red-900/20 border-2 border-red-500 dark:border-red-700 rounded-lg m-4"
+                role="alert"
+                aria-label={`Error: Section ${type} not found`}
+              >
+                <h3 className="text-red-700 dark:text-red-400 font-bold">Error: Section not found</h3>
+                <p className="text-red-600 dark:text-red-300">Type: {type}, Variant: {variant || 'default'}</p>
+                <p className="text-red-600 dark:text-red-300 text-sm mt-2">
+                  Available types: {Object.keys(sectionRegistry).join(', ')}
+                </p>
+              </section>
+            );
+          }
+
           return (
-            <div key={`${type}-${index}`} className="p-8 bg-red-100 border-2 border-red-500 rounded-lg m-4">
-              <h3 className="text-red-700 font-bold">Error: Section not found</h3>
-              <p className="text-red-600">Type: {type}, Variant: {variant}</p>
-              <p className="text-red-600">Available types: {Object.keys(sectionRegistry).join(', ')}</p>
-            </div>
+            <section
+              key={sectionId}
+              id={`section-${type}`}
+              aria-label={`${type.replace(/([A-Z])/g, ' $1').trim()} section`}
+              data-section-type={type}
+              data-section-variant={variant}
+            >
+              <Suspense
+                fallback={
+                  <SkeletonComponent
+                    {...skeletonProps}
+                    aria-label={`Loading ${type} section content`}
+                  />
+                }
+              >
+                <SectionComponent
+                  config={config}
+                  {...props}
+                />
+              </Suspense>
+            </section>
           );
-        }
+        })}
+      </main>
 
-        return (
-          <div key={`${type}-${index}`} id={`section-${type}`}>
-            <Suspense fallback={<Skeleton />}>
-              <SectionComponent
-                config={config}
-                {...props}
-              />
-            </Suspense>
-          </div>
-        );
-      })}
+      {/* Back to top button - Accessibility feature */}
+      <button
+        onClick={() => document.getElementById('main-content')?.scrollIntoView({ behavior: 'smooth' })}
+        className="fixed bottom-6 right-6 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
+        aria-label="Back to top"
+        id="back-to-top"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
+
+      {/* Show back to top button on scroll */}
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          const backToTop = document.getElementById('back-to-top');
+          if (backToTop) {
+            window.addEventListener('scroll', () => {
+              if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+              } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+              }
+            });
+          }
+        `
+      }} />
     </FrontEnd_Layout>
   );
 };
