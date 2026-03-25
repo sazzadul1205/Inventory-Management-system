@@ -10,12 +10,12 @@ import {
   HiArrowRight,
   HiOutlineUsers,
   HiOutlineChartPie,
-  HiOutlineTarget,
   HiOutlineFlag,
   HiOutlineGift,
   HiOutlineSparkles,
   HiOutlineChip,
 } from 'react-icons/hi';
+import { FiTarget } from "react-icons/fi";
 
 const SuccessMetricsSection3 = ({ config }) => {
   const [selectedSegment, setSelectedSegment] = useState('all');
@@ -121,8 +121,8 @@ const SuccessMetricsSection3 = ({ config }) => {
               <button
                 onClick={() => setSelectedSegment('all')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedSegment === 'all'
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-green-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 All Customers
@@ -132,8 +132,8 @@ const SuccessMetricsSection3 = ({ config }) => {
                   key={segment.id}
                   onClick={() => setSelectedSegment(segment.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedSegment === segment.id
-                      ? 'bg-green-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                    ? 'bg-green-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                     }`}
                 >
                   {segment.icon} {segment.name}
@@ -170,8 +170,8 @@ const SuccessMetricsSection3 = ({ config }) => {
                       key={pred}
                       onClick={() => setSelectedPrediction(pred)}
                       className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-all ${selectedPrediction === pred
-                          ? 'bg-green-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                         }`}
                     >
                       {pred === 'inventory' && '📦 Inventory'}
@@ -218,7 +218,7 @@ const SuccessMetricsSection3 = ({ config }) => {
 
               {/* Impact Calculator */}
               <div className="bg-linear-to-br from-green-600 to-emerald-600 rounded-2xl p-6 text-white">
-                <HiOutlineTarget className="w-8 h-8 mb-3" />
+                <FiTarget className="w-8 h-8 mb-3" />
                 <h4 className="text-lg font-bold mb-2">Impact Calculator</h4>
                 <p className="text-sm text-green-100 mb-4">
                   See how implementing recommended actions could impact your business.

@@ -13,11 +13,11 @@ import {
   HiOutlineMail,
   HiOutlinePhone,
   HiOutlineFlag,
-  HiOutlineTrophy,
   HiOutlineUsers,
   HiOutlineChat,
   HiOutlineBell
 } from 'react-icons/hi';
+import { HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const ImplementationTimelineSection3 = ({ config }) => {
   const [completedMilestones, setCompletedMilestones] = useState([]);
@@ -144,7 +144,7 @@ const ImplementationTimelineSection3 = ({ config }) => {
         {showCelebration && (
           <div className="fixed top-4 right-4 z-50 animate-slideIn">
             <div className="bg-green-500 text-white rounded-lg shadow-xl p-4 flex items-center gap-3">
-              <HiOutlineTrophy className="w-6 h-6" />
+              <HiOutlineRocketLaunch className="w-6 h-6" />
               <div>
                 <div className="font-semibold">Congratulations!</div>
                 <div className="text-sm">You've completed all implementation milestones! 🎉</div>
@@ -331,7 +331,7 @@ const ImplementationTimelineSection3 = ({ config }) => {
         {completedMilestones.length === milestones.length && milestones.length > 0 && (
           <div className="mt-12 text-center">
             <div className="bg-linear-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8">
-              <HiOutlineTrophy className="w-16 h-16 text-green-500 mx-auto mb-4" />
+              <HiOutlineRocketLaunch className="w-16 h-16 text-green-500 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 Implementation Complete! 🎉
               </h3>

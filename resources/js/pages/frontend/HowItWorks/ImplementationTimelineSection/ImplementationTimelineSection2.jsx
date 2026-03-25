@@ -2,28 +2,17 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 // Icons
 import {
   HiOutlineCalendar,
-  HiOutlineClock,
   HiOutlineCheckCircle,
   HiOutlineArrowRight,
-  HiOutlineUserGroup,
-  HiOutlineDatabase,
-  HiOutlineCog,
-  HiOutlineRocket,
-  HiOutlineChartBar,
-  HiOutlineDocumentText,
-  HiOutlineMail,
-  HiOutlinePhone,
-  HiOutlinePlay,
   HiOutlineZoomIn,
   HiOutlineZoomOut,
   HiOutlineDownload
 } from 'react-icons/hi';
-
 const ImplementationTimelineSection2 = ({ config }) => {
   const [selectedPhase, setSelectedPhase] = useState(null);
   const [zoom, setZoom] = useState(1);

@@ -323,4 +323,106 @@ class FrontEndController extends Controller
          return redirect()->route('page.broken')->with('error_reason', $errorReason);
       }
    }
+
+   /**
+    * Show the How It Works page with data from database.
+    */
+   public function howItWorks()
+   {
+      try {
+         $errorReason = null;
+
+         // Fetch the How It Works page from database with its sections and configs
+         $page = Page::where('slug', 'howItWorks')
+            ->where('is_active', true)
+            ->with([
+               'sections' => function ($query) {
+                  $query->where('enabled', true)
+                     ->orderBy('order');
+               }
+            ])
+            ->first();
+
+         // If page not found → redirect with reason
+         if (!$page) {
+            $errorReason = 'How It Works page not found or inactive.';
+            Log::error($errorReason);
+            return redirect()->route('page.broken')->with('error_reason', $errorReason);
+         }
+
+         // Load all variants once (NO N+1)
+         $allVariants = PageSectionVariant::all()->groupBy('section_key');
+         $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
+            return [$this->normalizeSectionKey($key) => $value];
+         });
+
+         // Transform sections safely
+         $sections = $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
+            $normalizedKey = $this->normalizeSectionKey($section->section_key);
+            // Find matching variant config
+            $variantConfig = $allVariantsNormalized[$normalizedKey]
+               ?? $allVariants[$section->section_key]
+               ?? collect();
+            $matchedVariant = $variantConfig->firstWhere('variant', $section->variant);
+
+            // Fallback to variant1 if specific variant missing
+            if (!$matchedVariant) {
+               $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
+            }
+            // Final fallback: use any available variant for this section
+            if (!$matchedVariant) {
+               $matchedVariant = $variantConfig->first();
+            }
+
+            // Still no config → skip section and record reason
+            if (!$matchedVariant) {
+               $errorReason = "No variant config for section key: {$section->section_key}, variant: {$section->variant}";
+               Log::warning($errorReason);
+               return null;
+            }
+
+            return [
+               'type' => $normalizedKey ?: $section->section_key,
+               'variant' => $section->variant,
+               'order' => $section->order,
+               'enabled' => $section->enabled,
+               'props' => $section->props ?? [],
+               'config' => $matchedVariant->config,
+            ];
+         })
+            ->filter()
+            ->sortBy('order')
+            ->values()
+            ->toArray();
+
+         // If no valid sections → redirect with reason
+         if (empty($sections)) {
+            $errorReason = $errorReason ?: 'No valid sections found for How It Works page.';
+            Log::error($errorReason);
+            return redirect()->route('page.broken')->with('error_reason', $errorReason);
+         }
+
+         // Normalize order to start at 2 for How It Works (hero is built-in)
+         foreach ($sections as $index => $section) {
+            $sections[$index]['order'] = $index + 2;
+         }
+
+         // Prepare final data
+         $pageData = [
+            'id' => $page->id,
+            'name' => $page->name,
+            'slug' => $page->slug,
+            'meta' => $page->meta,
+            'sections' => $sections,
+         ];
+
+         return Inertia::render('frontend/HowItWorks/HowItWorks', [
+            'pageData' => $pageData
+         ]);
+      } catch (\Exception $e) {
+         $errorReason = 'Database error: ' . $e->getMessage();
+         Log::error($errorReason, ['trace' => $e->getTraceAsString()]);
+         return redirect()->route('page.broken')->with('error_reason', $errorReason);
+      }
+   }
 }

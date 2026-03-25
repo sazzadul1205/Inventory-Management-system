@@ -13,9 +13,9 @@ import {
   HiOutlineUserGroup,
   HiOutlineDatabase,
   HiOutlineCog,
-  HiOutlineRocket,
   HiOutlineChartBar,
 } from 'react-icons/hi';
+import { HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const ImplementationTimelineSection1 = ({ config }) => {
   const [expandedPhase, setExpandedPhase] = useState(null);
@@ -33,7 +33,7 @@ const ImplementationTimelineSection1 = ({ config }) => {
       case 'configuration':
         return <HiOutlineCog className="w-8 h-8" />;
       case 'launch':
-        return <HiOutlineRocket className="w-8 h-8" />;
+        return <HiOutlineRocketLaunch className="w-8 h-8" />;
       case 'optimization':
         return <HiOutlineChartBar className="w-8 h-8" />;
       default:

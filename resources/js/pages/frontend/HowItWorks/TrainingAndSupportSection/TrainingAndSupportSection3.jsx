@@ -11,13 +11,13 @@ import {
   HiOutlineCheckCircle,
   HiArrowRight,
   HiOutlineBookOpen,
-  HiOutlineTrophy,
   HiOutlineStar,
   HiOutlinePlay,
   HiOutlineSearch,
   HiOutlineBadgeCheck,
   HiOutlineLightBulb
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const TrainingAndSupportSection3 = ({ config }) => {
   const [activePath, setActivePath] = useState('beginner');

@@ -18,8 +18,8 @@ import {
   HiOutlineSparkles,
   HiOutlineDownload,
   HiOutlineExternalLink,
-  HiOutlineTrophy
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const OnboardingGuideSection3 = ({ config }) => {
   const [activeVideo, setActiveVideo] = useState(null);
