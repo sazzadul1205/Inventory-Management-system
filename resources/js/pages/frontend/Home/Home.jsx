@@ -72,13 +72,13 @@ const Home = ({ pageData = { meta: {}, sections: [] } }) => {
 
       {/* Section Navigation */}
       {sectionsWithDisplayName?.length > 0 && (
-        <nav aria-label="Section navigation" className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-          <SectionNavigation sections={sectionsWithDisplayName} />
-        </nav>
+        <SectionNavigation sections={sectionsWithDisplayName} />
       )}
 
       {/* Main content wrapper with landmark */}
-      <main id="main-content" role="main" tabIndex={-1} className="focus:outline-none">
+      <main 
+      id="main-content" 
+      role="main" tabIndex={-1} className="focus:outline-none">
         {/* Render sections - Data from server */}
         {sections?.map((section, index) => {
           const { type, variant, props, config, _id } = section;
@@ -135,36 +135,6 @@ const Home = ({ pageData = { meta: {}, sections: [] } }) => {
           );
         })}
       </main>
-
-      {/* Back to top button - Accessibility feature */}
-      <button
-        onClick={() => document.getElementById('main-content')?.scrollIntoView({ behavior: 'smooth' })}
-        className="fixed bottom-6 right-6 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
-        aria-label="Back to top"
-        id="back-to-top"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-      </button>
-
-      {/* Show back to top button on scroll */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          const backToTop = document.getElementById('back-to-top');
-          if (backToTop) {
-            window.addEventListener('scroll', () => {
-              if (window.scrollY > 300) {
-                backToTop.classList.remove('opacity-0', 'invisible');
-                backToTop.classList.add('opacity-100', 'visible');
-              } else {
-                backToTop.classList.add('opacity-0', 'invisible');
-                backToTop.classList.remove('opacity-100', 'visible');
-              }
-            });
-          }
-        `
-      }} />
     </FrontEnd_Layout>
   );
 };
