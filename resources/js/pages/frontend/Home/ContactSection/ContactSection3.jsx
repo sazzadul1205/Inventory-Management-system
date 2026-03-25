@@ -21,6 +21,20 @@ import {
   HiOutlineLockClosed,
 } from 'react-icons/hi';
 
+const resolveOnClick = (handler) => {
+  if (typeof handler === "function") return handler;
+  if (typeof handler === "string") {
+    return () => {
+      const fnName = handler.replace(/\(\s*\)$/, "");
+      const fn = typeof window !== "undefined" ? window[fnName] : undefined;
+      if (typeof fn === "function") {
+        fn();
+      }
+    };
+  }
+  return undefined;
+};
+
 const ContactSection3 = ({ config }) => {
   // State for form submission
   const [formData, setFormData] = useState({
@@ -225,7 +239,7 @@ const ContactSection3 = ({ config }) => {
                 Average response: 2 min
               </p>
               <button
-                onClick={config?.contactInfo?.chat?.onClick}
+                onClick={resolveOnClick(config?.contactInfo?.chat?.onClick)}
                 className="inline-flex items-center text-purple-600 dark:text-purple-400 font-medium hover:text-purple-700 dark:hover:text-purple-300"
               >
                 Start chat now

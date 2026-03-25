@@ -16,6 +16,20 @@ import {
   HiOutlineSearch
 } from 'react-icons/hi';
 
+const resolveOnClick = (handler) => {
+  if (typeof handler === "function") return handler;
+  if (typeof handler === "string") {
+    return () => {
+      const fnName = handler.replace(/\(\s*\)$/, "");
+      const fn = typeof window !== "undefined" ? window[fnName] : undefined;
+      if (typeof fn === "function") {
+        fn();
+      }
+    };
+  }
+  return undefined;
+};
+
 const FAQSection1 = ({ config }) => {
   // State for active FAQ accordion
   const [openItems, setOpenItems] = useState([]);
@@ -260,7 +274,7 @@ const FAQSection1 = ({ config }) => {
                 {/* Live Chat */}
                 {config.contact.chat && (
                   <button
-                    onClick={config.contact.chat.onClick}
+                    onClick={resolveOnClick(config.contact.chat.onClick)}
                     className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors group"
                   >
                     <HiOutlineChat className="w-5 h-5 mr-2" />

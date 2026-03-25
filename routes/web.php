@@ -1,21 +1,22 @@
 <?php
 
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Laravel\Fortify\Features;
+
 
 // Route::inertia('/', 'welcome', [
 //     'canRegister' => Features::enabled(Features::registration()),
 // ])->name('home');
 
+// Public routes
 Route::get('/', [FrontEndController::class, 'home'])->name('home.index');
 Route::get('/services', [FrontEndController::class, 'services'])->name('services.index');
 Route::get('/features', [FrontEndController::class, 'features'])->name('features.index');
 
-Route::get('/page-broken', function () {
-    return Inertia::render('Errors/PageBroken');
-})->name('page.broken');
+// Error pages
+Route::get('/page-broken', [PageController::class, 'broken'])->name('page.broken');
+
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

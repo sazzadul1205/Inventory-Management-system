@@ -111,8 +111,13 @@ const PageHero = ({ heroData }) => {
 const Feature = ({ pageData = { meta: {}, sections: [] } }) => {
   const { meta = {}, sections = [] } = pageData;
 
+  const normalizeSectionKey = (key = "") => (
+    key ? `${key.charAt(0).toLowerCase()}${key.slice(1)}` : key
+  );
+
   // Prepare sections for navigation with updated feature categories
   const sectionsWithDisplayName = sections.map(section => {
+    const normalizedType = normalizeSectionKey(section.type);
     const displayNames = {
       // Core Features
       realTimeTracking: 'Real-time Tracking',
@@ -127,7 +132,8 @@ const Feature = ({ pageData = { meta: {}, sections: [] } }) => {
 
     return {
       ...section,
-      displayName: displayNames[section.type] || section.type.replace(/([A-Z])/g, ' $1').trim()
+      type: normalizedType,
+      displayName: displayNames[normalizedType] || normalizedType.replace(/([A-Z])/g, ' $1').trim()
     };
   });
 
@@ -150,9 +156,10 @@ const Feature = ({ pageData = { meta: {}, sections: [] } }) => {
       {/* Render sections */}
       {sections?.map((section, index) => {
         const { type, variant, props, config } = section;
+        const normalizedType = normalizeSectionKey(type);
 
         // Get the component from registry
-        const SectionComponent = sectionRegistry[type]?.[variant];
+        const SectionComponent = sectionRegistry[normalizedType]?.[variant];
         const Skeleton = SectionSkeleton;
 
         // If component doesn't exist, show error
@@ -169,8 +176,8 @@ const Feature = ({ pageData = { meta: {}, sections: [] } }) => {
 
         return (
           <div
-            key={`${type}-${index}`}
-            id={`section-${type}`}
+            key={`${normalizedType}-${index}`}
+            id={`section-${normalizedType}`}
             className="scroll-mt-20" // Adds offset for sticky navigation
           >
             <Suspense fallback={<Skeleton />}>

@@ -7,7 +7,7 @@ import { Link } from '@inertiajs/react';
 import { WiDayThunderstorm } from 'react-icons/wi';
 import { FiHome, FiRefreshCw, FiMail, FiArrowLeft } from 'react-icons/fi';
 
-const PageBroken = () => {
+const PageBroken = ({ reason }) => {
   const errorId = `ERR_PAGE_BROKEN_${Math.random()
     .toString(36)
     .substring(2, 8)
@@ -36,10 +36,18 @@ const PageBroken = () => {
         </h1>
 
         {/* Description */}
-        <p className="text-gray-600 dark:text-gray-300 mb-8 text-sm sm:text-base leading-relaxed max-w-md mx-auto">
+        <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm sm:text-base leading-relaxed max-w-md mx-auto">
           This page is not configured properly or is currently unavailable.
           It might be missing data or broken in the system.
         </p>
+
+        {/* Error Reason Display (if available) */}
+        {reason && (
+          <div className="mb-6 mx-auto max-w-md bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-md text-left">
+            <p className="text-sm text-red-800 dark:text-red-200 font-medium mb-1">Error details:</p>
+            <p className="text-xs font-mono text-red-700 dark:text-red-300 wrap-break-word">{reason}</p>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8">

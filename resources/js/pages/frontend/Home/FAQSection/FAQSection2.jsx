@@ -21,6 +21,20 @@ import {
   HiOutlineSupport
 } from 'react-icons/hi';
 
+const resolveOnClick = (handler) => {
+  if (typeof handler === "function") return handler;
+  if (typeof handler === "string") {
+    return () => {
+      const fnName = handler.replace(/\(\s*\)$/, "");
+      const fn = typeof window !== "undefined" ? window[fnName] : undefined;
+      if (typeof fn === "function") {
+        fn();
+      }
+    };
+  }
+  return undefined;
+};
+
 const FAQSection2 = ({ config }) => {
   // State for active category
   const [activeCategory, setActiveCategory] = useState('all');
@@ -334,7 +348,7 @@ const FAQSection2 = ({ config }) => {
                   {config.contact.chatHours || "24/7 support"}
                 </p>
                 <button
-                  onClick={config.contact.chat.onClick}
+                  onClick={resolveOnClick(config.contact.chat.onClick)}
                   className="inline-flex items-center text-green-600 dark:text-green-400 font-medium hover:text-green-700 dark:hover:text-green-300"
                 >
                   Start chat

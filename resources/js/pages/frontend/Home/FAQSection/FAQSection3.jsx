@@ -27,6 +27,20 @@ import {
   HiOutlineFlag
 } from 'react-icons/hi';
 
+const resolveOnClick = (handler) => {
+  if (typeof handler === "function") return handler;
+  if (typeof handler === "string") {
+    return () => {
+      const fnName = handler.replace(/\(\s*\)$/, "");
+      const fn = typeof window !== "undefined" ? window[fnName] : undefined;
+      if (typeof fn === "function") {
+        fn();
+      }
+    };
+  }
+  return undefined;
+};
+
 const FAQSection3 = ({ config }) => {
   // State for active category
   const [activeCategory, setActiveCategory] = useState('all');
@@ -455,7 +469,7 @@ const FAQSection3 = ({ config }) => {
                     24/7 support
                   </p>
                   <button
-                    onClick={config.contact.chat.onClick}
+                    onClick={resolveOnClick(config.contact.chat.onClick)}
                     className="inline-flex items-center text-purple-600 dark:text-purple-400 font-medium hover:text-purple-700 dark:hover:text-purple-300"
                   >
                     Start chat
