@@ -19,8 +19,6 @@ import {
   HiOutlineFingerPrint,
   HiOutlineMail,
   HiOutlineGlobeAlt,
-  HiOutlineRefresh,
-  HiOutlineAlertTriangle,
   HiOutlineClock,
   HiOutlineSparkles,
   HiOutlineStar,
@@ -28,6 +26,7 @@ import {
   HiOutlineDatabase,
   HiOutlineCode
 } from 'react-icons/hi';
+import { FiAlertTriangle } from "react-icons/fi";
 
 const SecurityFeaturesSection3 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('compliance');
@@ -58,7 +57,7 @@ const SecurityFeaturesSection3 = ({ config }) => {
       case 'globe':
         return <HiOutlineGlobeAlt className={className} />;
       case 'alert':
-        return <HiOutlineAlertTriangle className={className} />;
+        return <FiAlertTriangle className={className} />;
       case 'clock':
         return <HiOutlineClock className={className} />;
       case 'sparkles':

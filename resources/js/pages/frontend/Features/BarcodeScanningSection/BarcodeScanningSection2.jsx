@@ -16,11 +16,11 @@ import {
   HiOutlineDeviceMobile,
   HiArrowRight,
   HiOutlineCheckCircle,
-  HiOutlineScanner,
   HiOutlineClipboardList,
   HiOutlineTruck,
   HiOutlineLightBulb
 } from 'react-icons/hi';
+import { MdOutlineScanner } from "react-icons/md";
 
 const BarcodeScanningSection2 = ({ config }) => {
   const [selectedFeature, setSelectedFeature] = useState('camera');
@@ -47,7 +47,7 @@ const BarcodeScanningSection2 = ({ config }) => {
       case 'mobile':
         return <HiOutlineDeviceMobile className={className} />;
       case 'scanner':
-        return <HiOutlineScanner className={className} />;
+        return <MdOutlineScanner className={className} />;
       case 'inventory':
         return <HiOutlineClipboardList className={className} />;
       case 'truck':
@@ -174,8 +174,8 @@ const BarcodeScanningSection2 = ({ config }) => {
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${selectedFeature === feature.id
-                    ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-cyan-500 dark:border-cyan-400'
-                    : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-cyan-500 dark:border-cyan-400'
+                  : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
                 onClick={() => setSelectedFeature(feature.id)}
                 onKeyDown={(e) => e.key === 'Enter' && setSelectedFeature(feature.id)}
@@ -186,8 +186,8 @@ const BarcodeScanningSection2 = ({ config }) => {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${selectedFeature === feature.id
-                      ? 'bg-cyan-500 text-white'
-                      : 'bg-cyan-100 dark:bg-gray-700 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-200 dark:group-hover:bg-gray-600'
+                    ? 'bg-cyan-500 text-white'
+                    : 'bg-cyan-100 dark:bg-gray-700 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-200 dark:group-hover:bg-gray-600'
                     }`}>
                     {getFeatureIcon(feature.icon)}
                   </div>
@@ -301,8 +301,8 @@ const BarcodeScanningSection2 = ({ config }) => {
                 {/* Scan Result Display */}
                 {scanResult && (
                   <div className={`p-4 rounded-lg ${scanResult.success
-                      ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                      : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
+                    ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                    : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
                     }`}>
                     <div className="flex items-start gap-3">
                       {scanResult.success ? (

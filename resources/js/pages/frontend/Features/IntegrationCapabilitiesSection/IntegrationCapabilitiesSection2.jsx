@@ -16,14 +16,13 @@ import {
   HiOutlineBell,
   HiArrowRight,
   HiOutlineCheckCircle,
-  HiOutlinePlug,
   HiOutlineServer,
   HiOutlineShare,
   HiOutlineDocumentText,
   HiOutlineTerminal,
   HiOutlinePlay,
-  HiOutlineClipboard
 } from 'react-icons/hi';
+import { FaPlug } from "react-icons/fa";
 
 const IntegrationCapabilitiesSection2 = ({ config }) => {
   const [selectedFeature, setSelectedFeature] = useState('api');
@@ -51,7 +50,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
       case 'bell':
         return <HiOutlineBell className={className} />;
       case 'plug':
-        return <HiOutlinePlug className={className} />;
+        return <FaPlug className={className} />;
       case 'server':
         return <HiOutlineServer className={className} />;
       case 'share':
@@ -61,7 +60,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
       case 'terminal':
         return <HiOutlineTerminal className={className} />;
       default:
-        return <HiOutlinePlug className={className} />;
+        return <FaPlug className={className} />;
     }
   };
 
@@ -175,8 +174,8 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${selectedFeature === feature.id
-                    ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-teal-500 dark:border-teal-400'
-                    : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-teal-500 dark:border-teal-400'
+                  : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
                 onClick={() => setSelectedFeature(feature.id)}
                 onKeyDown={(e) => e.key === 'Enter' && setSelectedFeature(feature.id)}
@@ -187,8 +186,8 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${selectedFeature === feature.id
-                      ? 'bg-teal-500 text-white'
-                      : 'bg-teal-100 dark:bg-gray-700 text-teal-600 dark:text-teal-400 group-hover:bg-teal-200 dark:group-hover:bg-gray-600'
+                    ? 'bg-teal-500 text-white'
+                    : 'bg-teal-100 dark:bg-gray-700 text-teal-600 dark:text-teal-400 group-hover:bg-teal-200 dark:group-hover:bg-gray-600'
                     }`}>
                     {getFeatureIcon(feature.icon)}
                   </div>
@@ -305,8 +304,8 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                         Response
                       </span>
                       <span className={`text-xs px-2 py-1 rounded-full ${apiResponse.status === 200
-                          ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                          : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                        : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
                         }`}>
                         Status: {apiResponse.status}
                       </span>

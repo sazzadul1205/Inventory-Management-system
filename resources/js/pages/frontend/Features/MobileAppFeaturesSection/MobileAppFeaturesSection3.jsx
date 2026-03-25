@@ -3,6 +3,7 @@
 // React
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
+import { FaApple, FaGooglePlay, FaStar } from 'react-icons/fa';
 
 // Icons
 import {
@@ -26,7 +27,6 @@ import {
   HiOutlineClock,
   HiOutlineChip,
   HiOutlineWifi,
-  HiOutlineBatteryFull
 } from 'react-icons/hi';
 
 const MobileAppFeaturesSection3 = ({ config }) => {
@@ -150,8 +150,8 @@ const MobileAppFeaturesSection3 = ({ config }) => {
             <button
               onClick={() => setActivePlatform('ios')}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${activePlatform === 'ios'
-                  ? 'bg-orange-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                ? 'bg-orange-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
             >
               <HiOutlineDeviceMobile className="w-5 h-5" />
@@ -160,8 +160,8 @@ const MobileAppFeaturesSection3 = ({ config }) => {
             <button
               onClick={() => setActivePlatform('android')}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${activePlatform === 'android'
-                  ? 'bg-orange-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                ? 'bg-orange-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
             >
               <HiOutlineDeviceMobile className="w-5 h-5" />
@@ -231,10 +231,10 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                 {feature.platform && (
                   <div className="mb-4">
                     <span className={`text-xs px-2 py-1 rounded-full ${feature.platform === 'both'
-                        ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
-                        : feature.platform === 'ios'
-                          ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
-                          : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                      ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
+                      : feature.platform === 'ios'
+                        ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                        : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
                       }`}>
                       {feature.platform === 'both' ? 'iOS + Android' : feature.platform === 'ios' ? 'iOS Only' : 'Android Only'}
                     </span>
@@ -366,21 +366,43 @@ const MobileAppFeaturesSection3 = ({ config }) => {
         {/* App Store Badges with Ratings */}
         {config?.showAppBadges && (
           <div className="flex flex-col items-center gap-4 mb-12">
+
+            {/* Buttons */}
             <div className="flex gap-4">
-              <Link href={config?.iosLink || "/app-store"} className="transition-transform hover:scale-105">
-                <img src="/images/app-store-badge.svg" alt="Download on App Store" className="h-12" />
+
+              <Link
+                href={config?.iosLink || "/app-store"}
+                className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg transition-transform hover:scale-105"
+              >
+                <FaApple className="text-xl" />
+                <span className="text-xs leading-tight">
+                  Download on the <br /> <strong>App Store</strong>
+                </span>
               </Link>
-              <Link href={config?.androidLink || "/play-store"} className="transition-transform hover:scale-105">
-                <img src="/images/google-play-badge.svg" alt="Get it on Google Play" className="h-12" />
+
+              <Link
+                href={config?.androidLink || "/play-store"}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg transition-transform hover:scale-105"
+              >
+                <FaGooglePlay className="text-xl" />
+                <span className="text-xs leading-tight">
+                  Get it on <br /> <strong>Google Play</strong>
+                </span>
               </Link>
+
             </div>
+
+            {/* Ratings */}
             <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+
               <div className="flex text-yellow-500">
                 {[...Array(5)].map((_, i) => (
-                  <span key={i}>★</span>
+                  <FaStar key={i} />
                 ))}
               </div>
+
               <span>4.9 (15,000+ reviews)</span>
+
             </div>
           </div>
         )}

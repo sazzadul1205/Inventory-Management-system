@@ -21,6 +21,7 @@ import {
   HiOutlineSearch,
   HiOutlineDownload
 } from 'react-icons/hi';
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
 const MobileAppFeaturesSection1 = ({ config }) => {
   // Icon mapping function
@@ -113,12 +114,23 @@ const MobileAppFeaturesSection1 = ({ config }) => {
         {/* App Store Badges */}
         {config?.showAppBadges && (
           <div className="flex justify-center gap-4 mb-12">
-            <Link href={config?.iosLink || "/app-store"} className="transition-transform hover:scale-105">
-              <img src="/images/app-store-badge.svg" alt="Download on App Store" className="h-12" />
+
+            <Link
+              href={config?.iosLink || "/app-store"}
+              className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg transition-transform hover:scale-105"
+            >
+              <FaApple className="text-xl" />
+              <span className="text-sm font-medium">App Store</span>
             </Link>
-            <Link href={config?.androidLink || "/play-store"} className="transition-transform hover:scale-105">
-              <img src="/images/google-play-badge.svg" alt="Get it on Google Play" className="h-12" />
+
+            <Link
+              href={config?.androidLink || "/play-store"}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg transition-transform hover:scale-105"
+            >
+              <FaGooglePlay className="text-xl" />
+              <span className="text-sm font-medium">Google Play</span>
             </Link>
+
           </div>
         )}
 

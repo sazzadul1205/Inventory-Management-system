@@ -14,11 +14,10 @@ import {
   HiOutlineChip,
   HiOutlineDeviceMobile,
   HiArrowRight,
-  HiOutlineCheckCircle,
-  HiOutlineScanner,
   HiOutlineClipboardList,
   HiOutlineTruck
 } from 'react-icons/hi';
+import { MdOutlineScanner } from "react-icons/md";
 
 const BarcodeScanningSection1 = ({ config }) => {
   // Icon mapping function
@@ -41,7 +40,7 @@ const BarcodeScanningSection1 = ({ config }) => {
       case 'mobile':
         return <HiOutlineDeviceMobile className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
       case 'scanner':
-        return <HiOutlineScanner className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <MdOutlineScanner className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
       case 'inventory':
         return <HiOutlineClipboardList className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
       case 'truck':

@@ -20,9 +20,9 @@ import {
   HiOutlineMail,
   HiOutlineGlobeAlt,
   HiOutlineRefresh,
-  HiOutlineAlertTriangle,
   HiOutlineClock
 } from 'react-icons/hi';
+import { FiAlertTriangle } from "react-icons/fi";
 
 const SecurityFeaturesSection2 = ({ config }) => {
   const [selectedFeature, setSelectedFeature] = useState('encryption');
@@ -56,7 +56,7 @@ const SecurityFeaturesSection2 = ({ config }) => {
       case 'globe':
         return <HiOutlineGlobeAlt className={className} />;
       case 'alert':
-        return <HiOutlineAlertTriangle className={className} />;
+        return <FiAlertTriangle className={className} />;
       case 'clock':
         return <HiOutlineClock className={className} />;
       default:
@@ -139,8 +139,8 @@ const SecurityFeaturesSection2 = ({ config }) => {
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${selectedFeature === feature.id
-                    ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-emerald-500 dark:border-emerald-400'
-                    : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-emerald-500 dark:border-emerald-400'
+                  : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
                 onClick={() => setSelectedFeature(feature.id)}
                 onKeyDown={(e) => e.key === 'Enter' && setSelectedFeature(feature.id)}
@@ -151,8 +151,8 @@ const SecurityFeaturesSection2 = ({ config }) => {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${selectedFeature === feature.id
-                      ? 'bg-emerald-500 text-white'
-                      : 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-200 dark:group-hover:bg-gray-600'
+                    ? 'bg-emerald-500 text-white'
+                    : 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-200 dark:group-hover:bg-gray-600'
                     }`}>
                     {getFeatureIcon(feature.icon)}
                   </div>
@@ -334,8 +334,8 @@ const SecurityFeaturesSection2 = ({ config }) => {
                           <div className="flex items-center justify-between mb-2">
                             <span className="font-semibold text-gray-900 dark:text-white">{role}</span>
                             <span className={`text-xs px-2 py-1 rounded-full ${role === 'Admin' ? 'bg-purple-100 text-purple-700' :
-                                role === 'Manager' ? 'bg-blue-100 text-blue-700' :
-                                  'bg-gray-100 text-gray-700'
+                              role === 'Manager' ? 'bg-blue-100 text-blue-700' :
+                                'bg-gray-100 text-gray-700'
                               }`}>
                               {role === 'Admin' ? 'Full Access' : role === 'Manager' ? 'Edit Access' : 'Read Only'}
                             </span>

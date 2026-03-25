@@ -16,7 +16,6 @@ import {
   HiOutlineBell,
   HiArrowRight,
   HiOutlineCheckCircle,
-  HiOutlinePlug,
   HiOutlineServer,
   HiOutlineShare,
   HiOutlineDocumentText,
@@ -28,6 +27,7 @@ import {
   HiOutlineCreditCard,
   HiOutlineMail
 } from 'react-icons/hi';
+import { FaPlug } from "react-icons/fa";
 
 const IntegrationCapabilitiesSection3 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -53,7 +53,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
       case 'bell':
         return <HiOutlineBell className={className} />;
       case 'plug':
-        return <HiOutlinePlug className={className} />;
+        return <FaPlug className={className} />;
       case 'server':
         return <HiOutlineServer className={className} />;
       case 'share':
@@ -73,7 +73,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
       case 'mail':
         return <HiOutlineMail className={className} />;
       default:
-        return <HiOutlinePlug className={className} />;
+        return <FaPlug className={className} />;
     }
   };
 

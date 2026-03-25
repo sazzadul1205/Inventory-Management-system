@@ -14,12 +14,11 @@ import {
   HiOutlineChartBar,
   HiOutlineBell,
   HiArrowRight,
-  HiOutlineCheckCircle,
-  HiOutlinePlug,
   HiOutlineServer,
   HiOutlineShare,
   HiOutlineDocumentText
 } from 'react-icons/hi';
+import { FaPlug } from "react-icons/fa";
 
 const IntegrationCapabilitiesSection1 = ({ config }) => {
   // Icon mapping function
@@ -42,7 +41,7 @@ const IntegrationCapabilitiesSection1 = ({ config }) => {
       case 'bell':
         return <HiOutlineBell className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
       case 'plug':
-        return <HiOutlinePlug className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
+        return <FaPlug className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
       case 'server':
         return <HiOutlineServer className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
       case 'share':
@@ -50,7 +49,7 @@ const IntegrationCapabilitiesSection1 = ({ config }) => {
       case 'document':
         return <HiOutlineDocumentText className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
       default:
-        return <HiOutlinePlug className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
+        return <FaPlug className={`${className} text-teal-600 dark:text-teal-400`} aria-hidden="true" />;
     }
   };
 

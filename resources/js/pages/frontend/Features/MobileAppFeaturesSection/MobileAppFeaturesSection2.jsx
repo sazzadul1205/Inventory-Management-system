@@ -26,6 +26,7 @@ import {
   HiOutlineUser,
   HiOutlineMenu
 } from 'react-icons/hi';
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
 const MobileAppFeaturesSection2 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -160,8 +161,8 @@ const MobileAppFeaturesSection2 = ({ config }) => {
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${activeTab === feature.id
-                    ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-orange-500 dark:border-orange-400'
-                    : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-orange-500 dark:border-orange-400'
+                  : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
                 onClick={() => setActiveTab(feature.id)}
                 onKeyDown={(e) => e.key === 'Enter' && setActiveTab(feature.id)}
@@ -172,8 +173,8 @@ const MobileAppFeaturesSection2 = ({ config }) => {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${activeTab === feature.id
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-orange-100 dark:bg-gray-700 text-orange-600 dark:text-orange-400 group-hover:bg-orange-200 dark:group-hover:bg-gray-600'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-orange-100 dark:bg-gray-700 text-orange-600 dark:text-orange-400 group-hover:bg-orange-200 dark:group-hover:bg-gray-600'
                     }`}>
                     {getFeatureIcon(feature.icon)}
                   </div>
@@ -317,8 +318,8 @@ const MobileAppFeaturesSection2 = ({ config }) => {
                             <div className="flex justify-between">
                               <span className="font-medium">{order.id}</span>
                               <span className={`text-xs px-2 py-1 rounded-full ${order.status === 'Shipped' ? 'bg-blue-100 text-blue-800' :
-                                  order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-green-100 text-green-800'
+                                order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800' :
+                                  'bg-green-100 text-green-800'
                                 }`}>{order.status}</span>
                             </div>
                             <div className="flex justify-between mt-1 text-sm text-gray-600">
@@ -376,12 +377,27 @@ const MobileAppFeaturesSection2 = ({ config }) => {
         {/* App Store Badges */}
         {config?.showAppBadges && (
           <div className="flex justify-center gap-4 mt-12">
-            <Link href={config?.iosLink || "/app-store"} className="transition-transform hover:scale-105">
-              <img src="/images/app-store-badge.svg" alt="Download on App Store" className="h-12" />
+
+            <Link
+              href={config?.iosLink || "/app-store"}
+              className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg transition-transform hover:scale-105"
+            >
+              <FaApple className="text-xl" />
+              <span className="text-xs leading-tight">
+                Download on the <br /> <strong>App Store</strong>
+              </span>
             </Link>
-            <Link href={config?.androidLink || "/play-store"} className="transition-transform hover:scale-105">
-              <img src="/images/google-play-badge.svg" alt="Get it on Google Play" className="h-12" />
+
+            <Link
+              href={config?.androidLink || "/play-store"}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg transition-transform hover:scale-105"
+            >
+              <FaGooglePlay className="text-xl" />
+              <span className="text-xs leading-tight">
+                Get it on <br /> <strong>Google Play</strong>
+              </span>
             </Link>
+
           </div>
         )}
 

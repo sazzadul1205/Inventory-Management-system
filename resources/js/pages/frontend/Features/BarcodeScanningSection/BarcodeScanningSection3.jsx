@@ -16,7 +16,6 @@ import {
   HiOutlineDeviceMobile,
   HiArrowRight,
   HiOutlineCheckCircle,
-  HiOutlineScanner,
   HiOutlineClipboardList,
   HiOutlineTruck,
   HiOutlineLightBulb,
@@ -27,6 +26,7 @@ import {
   HiOutlineDesktopComputer,
   HiOutlinePrinter
 } from 'react-icons/hi';
+import { MdOutlineScanner } from "react-icons/md";
 
 const BarcodeScanningSection3 = ({ config }) => {
   const [activeIntegration, setActiveIntegration] = useState(0);
@@ -51,7 +51,7 @@ const BarcodeScanningSection3 = ({ config }) => {
       case 'mobile':
         return <HiOutlineDeviceMobile className={className} />;
       case 'scanner':
-        return <HiOutlineScanner className={className} />;
+        return <MdOutlineScanner className={className} />;
       case 'inventory':
         return <HiOutlineClipboardList className={className} />;
       case 'truck':
@@ -303,8 +303,8 @@ const BarcodeScanningSection3 = ({ config }) => {
                     key={index}
                     onClick={() => setActiveIntegration(index)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeIntegration === index
-                        ? 'bg-cyan-600 text-white shadow-lg'
-                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      ? 'bg-cyan-600 text-white shadow-lg'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                       }`}
                   >
                     {category.name}
