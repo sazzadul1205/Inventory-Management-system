@@ -13,12 +13,13 @@ import axios from 'axios';
 // Icons
 import {
   HiHome,
-  HiBriefcase,
   HiLogin,
   HiUserAdd,
+  HiBriefcase,
   HiOutlineCog,
-  HiOutlineOfficeBuilding,
   HiOutlineViewGrid,
+  HiOutlineSparkles,
+  HiOutlineOfficeBuilding,
 } from 'react-icons/hi';
 
 // Logo
@@ -49,6 +50,7 @@ const iconMap = {
   features: HiOutlineViewGrid,
   "how it works": HiOutlineCog,
   industries: HiOutlineOfficeBuilding,
+  "success stories": HiOutlineSparkles,
 };
 
 const getIconForPage = (name = '') => {

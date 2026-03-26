@@ -8,9 +8,9 @@ import { useState, useEffect, useRef } from 'react';
 import {
   HiArrowRight,
   HiOutlineCalculator,
-  HiOutlinePieChart,
-  HiOutlineChartLine
 } from 'react-icons/hi';
+import { FaChartLine } from "react-icons/fa";
+import { MdOutlinePieChart } from "react-icons/md";
 
 const ROICalculationsSection2 = ({ config }) => {
   const [selectedScenario, setSelectedScenario] = useState('retail');
@@ -191,8 +191,8 @@ const ROICalculationsSection2 = ({ config }) => {
                     key={key}
                     onClick={() => setSelectedScenario(key)}
                     className={`p-3 rounded-xl text-center transition-all ${selectedScenario === key
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                       }`}
                   >
                     <div className="text-2xl mb-1">{scenarios[key].icon}</div>
@@ -308,7 +308,7 @@ const ROICalculationsSection2 = ({ config }) => {
             {roiData && (
               <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6">
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                  <HiOutlineChartLine className="w-5 h-5 text-blue-600" />
+                  <FaChartLine className="w-5 h-5 text-blue-600" />
                   Cumulative Savings Projection
                 </h3>
                 <div className="relative h-64">
@@ -343,7 +343,7 @@ const ROICalculationsSection2 = ({ config }) => {
             {roiData && (
               <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6">
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                  <HiOutlinePieChart className="w-5 h-5 text-blue-600" />
+                  <MdOutlinePieChart className="w-5 h-5 text-blue-600" />
                   ROI by Year
                 </h3>
                 <div className="space-y-3">

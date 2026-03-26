@@ -35,19 +35,19 @@ class FrontEndController extends Controller
     {
         return $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
             $normalizedKey = $this->normalizeSectionKey($section->section_key);
-            
+
             // Find matching variant config
             $variantConfig = $allVariantsNormalized[$normalizedKey]
                 ?? $allVariants[$section->section_key]
                 ?? collect();
-            
+
             $matchedVariant = $variantConfig->firstWhere('variant', $section->variant);
 
             // Fallback to variant1 if specific variant missing
             if (!$matchedVariant) {
                 $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
             }
-            
+
             // Final fallback: use any available variant for this section
             if (!$matchedVariant) {
                 $matchedVariant = $variantConfig->first();
@@ -83,11 +83,11 @@ class FrontEndController extends Controller
     private function getAllVariants()
     {
         $allVariants = PageSectionVariant::all()->groupBy('section_key');
-        
+
         $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
             return [$this->normalizeSectionKey($key) => $value];
         });
-        
+
         return [$allVariants, $allVariantsNormalized];
     }
 
@@ -197,5 +197,13 @@ class FrontEndController extends Controller
     public function industries()
     {
         return $this->renderPage('industries', 'frontend/Industries/Industries', 2);
+    }
+
+    /**
+     * Show the SuccessStories page with data from database.
+     */
+    public function successStories()
+    {
+        return $this->renderPage('successStories', 'frontend/SuccessStories/SuccessStories', 2);
     }
 }

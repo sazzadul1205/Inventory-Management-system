@@ -17,7 +17,6 @@ import {
 
 const IndustrySpecificExamplesSection3 = ({ config }) => {
   const [selectedIndustry, setSelectedIndustry] = useState('all');
-  const [selectedUseCase, setSelectedUseCase] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedDetail, setExpandedDetail] = useState(null);
   const [savedExamples, setSavedExamples] = useState([]);
