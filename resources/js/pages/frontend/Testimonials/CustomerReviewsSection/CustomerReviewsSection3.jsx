@@ -13,9 +13,9 @@ import {
   HiArrowRight,
   HiOutlinePlay,
   HiOutlineThumbUp,
-  HiOutlineAward,
   HiOutlineBadgeCheck
 } from 'react-icons/hi';
+import { FaAward } from "react-icons/fa";
 
 const CustomerReviewsSection3 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -199,7 +199,7 @@ const CustomerReviewsSection3 = ({ config }) => {
               >
                 {index === 0 && (
                   <div className="absolute top-0 right-0 w-16 h-16 bg-yellow-400 rounded-bl-2xl flex items-center justify-center">
-                    <HiOutlineAward className="w-6 h-6 text-white" />
+                    <FaAward className="w-6 h-6 text-white" />
                   </div>
                 )}
                 <div className="p-6">

@@ -20,6 +20,7 @@ import {
   HiOutlineViewGrid,
   HiOutlineSparkles,
   HiOutlineOfficeBuilding,
+  HiOutlineChatAlt2,
 } from 'react-icons/hi';
 
 // Logo
@@ -51,6 +52,7 @@ const iconMap = {
   "how it works": HiOutlineCog,
   industries: HiOutlineOfficeBuilding,
   "success stories": HiOutlineSparkles,
+  testimonials: HiOutlineChatAlt2,
 };
 
 const getIconForPage = (name = '') => {

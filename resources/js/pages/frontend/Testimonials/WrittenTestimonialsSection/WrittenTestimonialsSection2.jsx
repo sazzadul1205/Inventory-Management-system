@@ -11,12 +11,12 @@ import {
   HiOutlineCalendar,
   HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineQuote,
   HiOutlineShare,
   HiOutlineBookmark,
   HiOutlineSearch,
   HiOutlineThumbUp
 } from 'react-icons/hi';
+import { FaQuoteLeft } from "react-icons/fa";
 
 const WrittenTestimonialsSection2 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -165,7 +165,7 @@ const WrittenTestimonialsSection2 = ({ config }) => {
                   {renderStars(featuredTestimonial.rating)}
                   <span className="text-sm text-gray-500 ml-2">{featuredTestimonial.rating}.0</span>
                 </div>
-                <HiOutlineQuote className="w-10 h-10 text-blue-300 dark:text-blue-700 mb-3" />
+                <FaQuoteLeft className="w-10 h-10 text-blue-300 dark:text-blue-700 mb-3" />
                 <p className="text-xl text-gray-700 dark:text-gray-300 italic leading-relaxed mb-6">
                   "{featuredTestimonial.quote}"
                 </p>

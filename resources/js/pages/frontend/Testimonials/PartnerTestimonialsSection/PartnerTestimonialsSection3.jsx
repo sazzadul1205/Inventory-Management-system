@@ -10,9 +10,7 @@ import {
   HiOutlineCalendar,
   HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineQuote,
   HiOutlineBookmark,
-  HiOutlineHandshake,
   HiOutlineBadgeCheck,
   HiOutlineTrendingUp,
   HiOutlineSearch,
@@ -22,6 +20,8 @@ import {
   HiOutlineChartPie,
   HiOutlineCurrencyDollar
 } from 'react-icons/hi';
+import { FaQuoteLeft } from "react-icons/fa";
+import { MdOutlineHandshake } from "react-icons/md";
 
 const PartnerTestimonialsSection3 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('testimonials');
@@ -179,7 +179,7 @@ const PartnerTestimonialsSection3 = ({ config }) => {
                 : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
               }`}
           >
-            <HiOutlineQuote className="w-4 h-4" />
+            <FaQuoteLeft className="w-4 h-4" />
             Partner Testimonials
           </button>
           <button
@@ -461,7 +461,7 @@ const PartnerTestimonialsSection3 = ({ config }) => {
         {/* Partner Program CTA */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+            <MdOutlineHandshake className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700 dark:text-gray-300 font-medium">
               {config?.partnerCtaText || "Ready to join our partner ecosystem?"}
             </span>

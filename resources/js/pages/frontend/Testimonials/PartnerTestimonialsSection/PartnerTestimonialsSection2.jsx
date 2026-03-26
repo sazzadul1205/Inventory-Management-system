@@ -11,7 +11,6 @@ import {
   HiOutlineCheckCircle,
   HiArrowRight,
   HiOutlineBookmark,
-  HiOutlineHandshake,
   HiOutlineBadgeCheck,
   HiOutlineTrendingUp,
   HiOutlineSearch,
@@ -20,13 +19,13 @@ import {
   HiOutlineChevronLeft,
   HiOutlineChevronRight
 } from 'react-icons/hi';
+import { MdOutlineHandshake } from "react-icons/md";
 
 const PartnerTestimonialsSection2 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [savedTestimonials, setSavedTestimonials] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
 
@@ -339,7 +338,7 @@ const PartnerTestimonialsSection2 = ({ config }) => {
                     {testimonial.collaboration && (
                       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
                         <div className="text-xs font-semibold text-blue-700 dark:text-blue-400 mb-2 flex items-center gap-1">
-                          <HiOutlineHandshake className="w-3 h-3" />
+                          <MdOutlineHandshake className="w-3 h-3" />
                           Collaboration Highlights
                         </div>
                         <ul className="space-y-1">
@@ -397,7 +396,7 @@ const PartnerTestimonialsSection2 = ({ config }) => {
         {config?.showPartnerProgram && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+              <MdOutlineHandshake className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.partnerCtaText || "Join our growing partner ecosystem"}
               </span>

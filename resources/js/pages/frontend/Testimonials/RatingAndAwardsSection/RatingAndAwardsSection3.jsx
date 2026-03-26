@@ -10,9 +10,9 @@ import {
   HiArrowRight,
   HiOutlineBadgeCheck,
   HiOutlineChartPie,
-  HiOutlineTrophy,
   HiOutlineSparkles
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const RatingAndAwardsSection3 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');

@@ -10,7 +10,6 @@ import {
   HiOutlineCalendar,
   HiOutlineCheckCircle,
   HiOutlineBookmark,
-  HiOutlineAward,
   HiOutlineExternalLink,
   HiOutlineNewspaper,
   HiOutlineTrendingUp,
@@ -18,6 +17,7 @@ import {
   HiOutlineDownload,
   HiOutlineDocumentReport,
 } from 'react-icons/hi';
+import { FaAward } from "react-icons/fa";
 
 const IndustryExpertReviewsSection3 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('reviews');
@@ -226,7 +226,7 @@ const IndustryExpertReviewsSection3 = ({ config }) => {
                 : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
               }`}
           >
-            <HiOutlineAward className="w-4 h-4" />
+            <FaAward className="w-4 h-4" />
             Awards & Recognition
           </button>
         </div>

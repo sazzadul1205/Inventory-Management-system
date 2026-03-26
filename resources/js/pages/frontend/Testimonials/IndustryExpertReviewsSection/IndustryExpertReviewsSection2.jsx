@@ -12,7 +12,6 @@ import {
   HiArrowRight,
   HiOutlineLightBulb,
   HiOutlineBookmark,
-  HiOutlineAward,
   HiOutlineExternalLink,
   HiOutlineNewspaper,
   HiOutlineTrendingUp,
@@ -20,6 +19,7 @@ import {
   HiOutlineSearch,
   HiOutlineDownload
 } from 'react-icons/hi';
+import { FaAward } from "react-icons/fa";
 
 const IndustryExpertReviewsSection2 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -171,7 +171,7 @@ const IndustryExpertReviewsSection2 = ({ config }) => {
                 <div key={review.id} className="bg-linear-to-r from-purple-600 to-indigo-600 rounded-2xl overflow-hidden shadow-xl">
                   <div className="p-6 text-white">
                     <div className="flex items-center gap-2 mb-3">
-                      <HiOutlineAward className="w-6 h-6 text-yellow-400" />
+                      <FaAward className="w-6 h-6 text-yellow-400" />
                       <span className="text-sm text-white/80">Featured Recognition</span>
                     </div>
                     <div className="text-4xl mb-3">{getCategoryIcon(review.category)}</div>

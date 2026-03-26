@@ -10,12 +10,12 @@ import {
   HiOutlineCalendar,
   HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineQuote,
   HiOutlineBookmark,
   HiOutlineBadgeCheck,
   HiOutlineExternalLink,
   HiOutlineNewspaper,
 } from 'react-icons/hi';
+import { FaQuoteLeft } from "react-icons/fa";
 
 const IndustryExpertReviewsSection1 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -144,7 +144,7 @@ const IndustryExpertReviewsSection1 = ({ config }) => {
                   <HiOutlineBadgeCheck className="w-6 h-6 text-yellow-400" />
                   <span className="text-sm text-white/80">Featured Review</span>
                 </div>
-                <HiOutlineQuote className="w-10 h-10 text-white/30 mb-3" />
+                <FaQuoteLeft className="w-10 h-10 text-white/30 mb-3" />
                 <p className="text-xl md:text-2xl leading-relaxed mb-6">
                   "{featuredReview.quote}"
                 </p>

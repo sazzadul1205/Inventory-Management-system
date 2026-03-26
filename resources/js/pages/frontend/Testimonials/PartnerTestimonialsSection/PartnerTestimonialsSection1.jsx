@@ -10,11 +10,11 @@ import {
   HiOutlineCalendar,
   HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineQuote,
   HiOutlineBookmark,
-  HiOutlineHandshake,
   HiOutlineBadgeCheck
 } from 'react-icons/hi';
+import { MdOutlineHandshake } from "react-icons/md";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const PartnerTestimonialsSection1 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -73,8 +73,8 @@ const PartnerTestimonialsSection1 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -141,8 +141,8 @@ const PartnerTestimonialsSection1 = ({ config }) => {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${activeCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                 }`}
             >
               <span>{getCategoryIcon(category)}</span>
@@ -160,7 +160,7 @@ const PartnerTestimonialsSection1 = ({ config }) => {
                   <HiOutlineBadgeCheck className="w-6 h-6 text-yellow-400" />
                   <span className="text-sm text-white/80">Featured Partner</span>
                 </div>
-                <HiOutlineQuote className="w-10 h-10 text-white/30 mb-3" />
+                <FaQuoteLeft className="w-10 h-10 text-white/30 mb-3" />
                 <p className="text-xl md:text-2xl leading-relaxed mb-6">
                   "{featuredTestimonial.quote}"
                 </p>
@@ -293,7 +293,7 @@ const PartnerTestimonialsSection1 = ({ config }) => {
         {config?.showPartnerProgram && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+              <MdOutlineHandshake className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.partnerCtaText || "Ready to become a partner?"}
               </span>

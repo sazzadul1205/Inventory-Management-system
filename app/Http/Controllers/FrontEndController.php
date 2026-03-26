@@ -206,4 +206,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('successStories', 'frontend/SuccessStories/SuccessStories', 2);
     }
+
+    /**
+     * Show the Testimonials page with data from database.
+     */
+    public function testimonials()
+    {
+        return $this->renderPage('testimonials', 'frontend/Testimonials/Testimonials', 2);
+    }
 }

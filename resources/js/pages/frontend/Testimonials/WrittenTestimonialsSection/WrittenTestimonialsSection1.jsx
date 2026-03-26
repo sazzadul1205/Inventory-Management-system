@@ -11,11 +11,11 @@ import {
   HiOutlineCalendar,
   HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineQuote,
   HiOutlineHeart,
   HiOutlineShare,
   HiOutlineBookmark
 } from 'react-icons/hi';
+import { FaQuoteLeft } from "react-icons/fa";
 
 const WrittenTestimonialsSection1 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -53,8 +53,8 @@ const WrittenTestimonialsSection1 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -149,8 +149,8 @@ const WrittenTestimonialsSection1 = ({ config }) => {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
             >
               {category === 'all' ? 'All Industries' : category.charAt(0).toUpperCase() + category.slice(1)}
@@ -206,7 +206,7 @@ const WrittenTestimonialsSection1 = ({ config }) => {
                 </span>
 
                 <div className="relative">
-                  <HiOutlineQuote className="absolute -top-2 -left-2 w-6 h-6 text-blue-200 dark:text-blue-800 opacity-50" />
+                  <FaQuoteLeft className="absolute -top-2 -left-2 w-6 h-6 text-blue-200 dark:text-blue-800 opacity-50" />
                   <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed pl-4 line-clamp-4">
                     "{testimonial.quote}"
                   </p>

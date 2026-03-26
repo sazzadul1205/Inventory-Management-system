@@ -10,7 +10,6 @@ import {
   HiOutlineChatAlt,
   HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineQuote,
   HiOutlineBookmark,
   HiOutlineFilter,
   HiOutlineSearch,
@@ -18,10 +17,11 @@ import {
   HiOutlineDownload,
   HiOutlinePrinter,
   HiOutlineTrendingUp,
-  HiOutlineAward,
   HiOutlineBadgeCheck,
   HiOutlineExternalLink
 } from 'react-icons/hi';
+import { FaQuoteLeft } from "react-icons/fa";
+import { FaAward } from "react-icons/fa";
 
 const WrittenTestimonialsSection3 = ({ config }) => {
   const [activeView, setActiveView] = useState('grid');
@@ -182,7 +182,7 @@ const WrittenTestimonialsSection3 = ({ config }) => {
                   <span className="text-sm text-white/80 ml-2">{featuredTestimonial.rating}.0</span>
                   <HiOutlineBadgeCheck className="w-5 h-5 text-yellow-400 ml-2" />
                 </div>
-                <HiOutlineQuote className="w-10 h-10 text-white/30 mb-3" />
+                <FaQuoteLeft className="w-10 h-10 text-white/30 mb-3" />
                 <p className="text-xl md:text-2xl leading-relaxed mb-6">
                   "{featuredTestimonial.quote}"
                 </p>
@@ -201,7 +201,7 @@ const WrittenTestimonialsSection3 = ({ config }) => {
                 <div className="text-white font-bold text-3xl mb-1">{featuredTestimonial.keyMetric}</div>
                 <div className="text-white/80 text-sm">improvement achieved</div>
                 <div className="mt-6 flex gap-2">
-                  <HiOutlineAward className="w-5 h-5 text-yellow-400" />
+                  <FaAward className="w-5 h-5 text-yellow-400" />
                   <span className="text-white text-sm">Featured Success Story</span>
                 </div>
               </div>
@@ -258,8 +258,8 @@ const WrittenTestimonialsSection3 = ({ config }) => {
                       key={category}
                       onClick={() => setActiveCategory(category)}
                       className={`px-3 py-1 rounded-full text-sm transition-all ${activeCategory === category
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                         }`}
                     >
                       {category === 'all' ? 'All' : category}

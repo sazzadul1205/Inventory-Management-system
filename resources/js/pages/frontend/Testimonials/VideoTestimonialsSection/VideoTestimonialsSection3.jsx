@@ -15,12 +15,12 @@ import {
   HiOutlineStar,
   HiOutlineCalendar,
   HiOutlineCheckCircle,
-  HiOutlinePlayCircle,
   HiOutlineSearch,
   HiOutlineClock,
   HiOutlineChartBar,
   HiOutlineLightBulb
 } from 'react-icons/hi';
+import { HiOutlinePlayCircle } from "react-icons/hi2";
 
 const VideoTestimonialsSection3 = ({ config }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);

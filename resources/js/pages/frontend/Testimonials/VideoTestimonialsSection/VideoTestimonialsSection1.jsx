@@ -13,8 +13,8 @@ import {
   HiOutlineX,
   HiArrowRight,
   HiOutlineStar,
-  HiOutlinePlayCircle
 } from 'react-icons/hi';
+import { HiOutlinePlayCircle } from "react-icons/hi2";
 
 const VideoTestimonialsSection1 = ({ config }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
