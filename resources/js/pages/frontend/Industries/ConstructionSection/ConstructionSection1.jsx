@@ -6,13 +6,13 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineBuildingOffice,
   HiOutlineChartBar,
   HiOutlineCheckCircle,
   HiArrowRight,
   HiOutlineLightBulb,
   HiOutlineShieldCheck,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const ConstructionSection1 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');

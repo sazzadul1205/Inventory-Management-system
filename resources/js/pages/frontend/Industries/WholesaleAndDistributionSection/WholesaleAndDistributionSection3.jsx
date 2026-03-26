@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineWarehouse,
   HiOutlineCheckCircle,
   HiArrowRight,
 } from 'react-icons/hi';
+import { MdOutlineWarehouse } from "react-icons/md";
 
 const WholesaleAndDistributionSection3 = ({ config }) => {
   const [selectedFeature, setSelectedFeature] = useState(0);
@@ -295,7 +295,7 @@ const WholesaleAndDistributionSection3 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-cyan-50 to-teal-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineWarehouse className="w-6 h-6 text-cyan-600" />
+              <MdOutlineWarehouse className="w-6 h-6 text-cyan-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to transform your wholesale & distribution operations?"}
               </span>

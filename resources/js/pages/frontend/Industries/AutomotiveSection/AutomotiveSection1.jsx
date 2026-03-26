@@ -11,8 +11,8 @@ import {
   HiArrowRight,
   HiOutlineLightBulb,
   HiOutlineShieldCheck,
-  HiOutlineCar,
 } from 'react-icons/hi';
+import { FaCar } from "react-icons/fa";
 
 const AutomotiveSection1 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -86,13 +86,13 @@ const AutomotiveSection1 = ({ config }) => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-6 py-3 text-sm font-medium transition-all capitalize ${activeTab === tab
-                  ? 'text-blue-600 border-b-2 border-blue-600'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+                ? 'text-blue-600 border-b-2 border-blue-600'
+                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
             >
               {tab === 'overview' && (
                 <span className="flex items-center gap-2">
-                  <HiOutlineCar className="w-4 h-4" />
+                  <FaCar className="w-4 h-4" />
                   Overview
                 </span>
               )}
@@ -233,7 +233,7 @@ const AutomotiveSection1 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-slate-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineCar className="w-6 h-6 text-blue-600" />
+              <FaCar className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to transform your automotive operations?"}
               </span>

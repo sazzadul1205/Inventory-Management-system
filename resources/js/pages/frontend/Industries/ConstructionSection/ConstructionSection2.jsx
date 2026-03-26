@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineBuildingOffice,
   HiOutlineChartBar,
   HiOutlineCurrencyDollar,
   HiArrowRight,
@@ -16,6 +15,7 @@ import {
   HiOutlineDownload,
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const ConstructionSection2 = ({ config }) => {
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);

@@ -9,420 +9,193 @@ use Illuminate\Support\Facades\Log;
 
 class FrontEndController extends Controller
 {
-   private function normalizeSectionKey($key)
-   {
-      $key = trim((string) $key);
-      if ($key === '') {
-         return $key;
-      }
-      $key = str_replace(' ', '', $key);
-      return lcfirst($key);
-   }
-   /**
-    * Show the Home page with data from database.
-    */
-   public function home()
-   {
-      try {
-         $errorReason = null;
+    /**
+     * Normalize section key by removing spaces and converting to lowercase.
+     */
+    private function normalizeSectionKey($key)
+    {
+        $key = trim((string) $key);
+        if ($key === '') {
+            return $key;
+        }
+        $key = str_replace(' ', '', $key);
+        return lcfirst($key);
+    }
 
-         // Fetch the Home page from database with its sections and configs
-         $page = Page::where('slug', 'home')
-            ->where('is_active', true)
-            ->with([
-               'sections' => function ($query) {
-                  $query->where('enabled', true)
-                     ->orderBy('order');
-               }
-            ])
-            ->first();
-
-         // If page not found → redirect with reason
-         if (!$page) {
-            $errorReason = 'Home page not found or inactive.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Load all variants once (NO N+1)
-         $allVariants = PageSectionVariant::all()->groupBy('section_key');
-         $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
-            return [$this->normalizeSectionKey($key) => $value];
-         });
-
-         // Transform sections safely
-         $sections = $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
+    /**
+     * Load and transform page sections with their variants.
+     * 
+     * @param Page $page
+     * @param array $allVariants
+     * @param array $allVariantsNormalized
+     * @param string|null &$errorReason
+     * @return array
+     */
+    private function loadPageSections($page, $allVariants, $allVariantsNormalized, &$errorReason = null)
+    {
+        return $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
             $normalizedKey = $this->normalizeSectionKey($section->section_key);
+            
             // Find matching variant config
             $variantConfig = $allVariantsNormalized[$normalizedKey]
-               ?? $allVariants[$section->section_key]
-               ?? collect();
+                ?? $allVariants[$section->section_key]
+                ?? collect();
+            
             $matchedVariant = $variantConfig->firstWhere('variant', $section->variant);
 
             // Fallback to variant1 if specific variant missing
             if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
+                $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
             }
+            
             // Final fallback: use any available variant for this section
             if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->first();
+                $matchedVariant = $variantConfig->first();
             }
 
             // Still no config → skip section and record reason
             if (!$matchedVariant) {
-               $errorReason = "No variant config for section key: {$section->section_key}, variant: {$section->variant}";
-               Log::warning($errorReason);
-               return null;
+                $errorReason = "No variant config for section key: {$section->section_key}, variant: {$section->variant}";
+                Log::warning($errorReason);
+                return null;
             }
 
             return [
-               'type' => $normalizedKey ?: $section->section_key,
-               'variant' => $section->variant,
-               'order' => $section->order,
-               'enabled' => $section->enabled,
-               'props' => $section->props ?? [],
-               'config' => $matchedVariant->config,
+                'type' => $normalizedKey ?: $section->section_key,
+                'variant' => $section->variant,
+                'order' => $section->order,
+                'enabled' => $section->enabled,
+                'props' => $section->props ?? [],
+                'config' => $matchedVariant->config,
             ];
-         })
+        })
             ->filter()
             ->sortBy('order')
             ->values()
             ->toArray();
+    }
 
-         // If no valid sections → redirect with reason
-         if (empty($sections)) {
-            $errorReason = $errorReason ?: 'No valid sections found for Home page.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Normalize order to start at 1 for Home page
-         foreach ($sections as $index => $section) {
-            $sections[$index]['order'] = $index + 1;
-         }
-
-         // Prepare final data
-         $pageData = [
-            'id' => $page->id,
-            'name' => $page->name,
-            'slug' => $page->slug,
-            'meta' => $page->meta,
-            'sections' => $sections,
-         ];
-
-         return Inertia::render('frontend/Home/Home', [
-            'pageData' => $pageData
-         ]);
-      } catch (\Exception $e) {
-         $errorReason = 'Database error: ' . $e->getMessage();
-         Log::error($errorReason, ['trace' => $e->getTraceAsString()]);
-         return redirect()->route('page.broken')->with('error_reason', $errorReason);
-      }
-   }
-
-   /**
-    * Show the Services page with data from database.
-    */
-   public function services()
-   {
-      try {
-         $errorReason = null;
-
-         // Fetch the Services page from database with its sections and configs
-         $page = Page::where('slug', 'services')
-            ->where('is_active', true)
-            ->with([
-               'sections' => function ($query) {
-                  $query->where('enabled', true)
-                     ->orderBy('order');
-               }
-            ])
-            ->first();
-
-         // If page not found → redirect with reason
-         if (!$page) {
-            $errorReason = 'Services page not found or inactive.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Load all variants once (NO N+1)
-         $allVariants = PageSectionVariant::all()->groupBy('section_key');
-         $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
+    /**
+     * Get all page variants grouped by section key.
+     * 
+     * @return array
+     */
+    private function getAllVariants()
+    {
+        $allVariants = PageSectionVariant::all()->groupBy('section_key');
+        
+        $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
             return [$this->normalizeSectionKey($key) => $value];
-         });
+        });
+        
+        return [$allVariants, $allVariantsNormalized];
+    }
 
-         // Transform sections safely
-         $sections = $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
-            $normalizedKey = $this->normalizeSectionKey($section->section_key);
-            // Find matching variant config
-            $variantConfig = $allVariantsNormalized[$normalizedKey]
-               ?? $allVariants[$section->section_key]
-               ?? collect();
-            $matchedVariant = $variantConfig->firstWhere('variant', $section->variant);
+    /**
+     * Generic method to render a page by slug.
+     * 
+     * @param string $slug Page slug (home, services, features, howItWorks, industries)
+     * @param string $componentPath Inertia component path
+     * @param int $orderOffset Order offset for sections (0 for home, 2 for pages with hero)
+     * @return \Inertia\Response|\Illuminate\Http\RedirectResponse
+     */
+    private function renderPage($slug, $componentPath, $orderOffset = 0)
+    {
+        try {
+            $errorReason = null;
 
-            // Fallback to variant1 if specific variant missing
-            if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
+            // Fetch the page from database with its sections
+            $page = Page::where('slug', $slug)
+                ->where('is_active', true)
+                ->with([
+                    'sections' => function ($query) {
+                        $query->where('enabled', true)
+                            ->orderBy('order');
+                    }
+                ])
+                ->first();
+
+            // If page not found → redirect with reason
+            if (!$page) {
+                $errorReason = ucfirst($slug) . ' page not found or inactive.';
+                Log::error($errorReason);
+                return redirect()->route('page.broken')->with('error_reason', $errorReason);
             }
-            // Final fallback: use any available variant for this section
-            if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->first();
+
+            // Get all variants
+            [$allVariants, $allVariantsNormalized] = $this->getAllVariants();
+
+            // Load and transform sections
+            $sections = $this->loadPageSections($page, $allVariants, $allVariantsNormalized, $errorReason);
+
+            // If no valid sections → redirect with reason
+            if (empty($sections)) {
+                $errorReason = $errorReason ?: "No valid sections found for " . ucfirst($slug) . " page.";
+                Log::error($errorReason);
+                return redirect()->route('page.broken')->with('error_reason', $errorReason);
             }
 
-            // Still no config → skip section and record reason
-            if (!$matchedVariant) {
-               $errorReason = "No variant config for section key: {$section->section_key}, variant: {$section->variant}";
-               Log::warning($errorReason);
-               return null;
+            // Normalize order with offset
+            foreach ($sections as $index => $section) {
+                $sections[$index]['order'] = $index + $orderOffset;
             }
 
-            return [
-               'type' => $normalizedKey ?: $section->section_key,
-               'variant' => $section->variant,
-               'order' => $section->order,
-               'enabled' => $section->enabled,
-               'props' => $section->props ?? [],
-               'config' => $matchedVariant->config,
+            // Prepare final data
+            $pageData = [
+                'id' => $page->id,
+                'name' => $page->name,
+                'slug' => $page->slug,
+                'meta' => $page->meta,
+                'sections' => $sections,
             ];
-         })
-            ->filter()
-            ->sortBy('order')
-            ->values()
-            ->toArray();
 
-         // If no valid sections → redirect with reason
-         if (empty($sections)) {
-            $errorReason = $errorReason ?: 'No valid sections found for Services page.';
-            Log::error($errorReason);
+            return Inertia::render($componentPath, [
+                'pageData' => $pageData
+            ]);
+        } catch (\Exception $e) {
+            $errorReason = 'Database error: ' . $e->getMessage();
+            Log::error($errorReason, ['trace' => $e->getTraceAsString()]);
             return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
+        }
+    }
 
-         // Normalize order to start at 2 for Services (hero is built-in)
-         foreach ($sections as $index => $section) {
-            $sections[$index]['order'] = $index + 2;
-         }
+    /**
+     * Show the Home page with data from database.
+     */
+    public function home()
+    {
+        return $this->renderPage('home', 'frontend/Home/Home', 0);
+    }
 
-         // Prepare final data
-         $pageData = [
-            'id' => $page->id,
-            'name' => $page->name,
-            'slug' => $page->slug,
-            'meta' => $page->meta,
-            'sections' => $sections,
-         ];
+    /**
+     * Show the Services page with data from database.
+     */
+    public function services()
+    {
+        return $this->renderPage('services', 'frontend/Services/Service', 2);
+    }
 
-         return Inertia::render('frontend/Services/Service', [
-            'pageData' => $pageData
-         ]);
-      } catch (\Exception $e) {
-         $errorReason = 'Database error: ' . $e->getMessage();
-         Log::error($errorReason, ['trace' => $e->getTraceAsString()]);
-         return redirect()->route('page.broken')->with('error_reason', $errorReason);
-      }
-   }
+    /**
+     * Show the Features page with data from database.
+     */
+    public function features()
+    {
+        return $this->renderPage('features', 'frontend/Features/Feature', 2);
+    }
 
-   /**
-    * Show the Features page with data from database.
-    */
-   public function features()
-   {
-      try {
-         $errorReason = null;
+    /**
+     * Show the How It Works page with data from database.
+     */
+    public function howItWorks()
+    {
+        return $this->renderPage('howItWorks', 'frontend/HowItWorks/HowItWorks', 2);
+    }
 
-         // Fetch the Features page from database with its sections and configs
-         $page = Page::where('slug', 'features')
-            ->where('is_active', true)
-            ->with([
-               'sections' => function ($query) {
-                  $query->where('enabled', true)
-                     ->orderBy('order');
-               }
-            ])
-            ->first();
-
-         // If page not found → redirect with reason
-         if (!$page) {
-            $errorReason = 'Features page not found or inactive.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Load all variants once (NO N+1)
-         $allVariants = PageSectionVariant::all()->groupBy('section_key');
-         $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
-            return [$this->normalizeSectionKey($key) => $value];
-         });
-
-         // Transform sections safely
-         $sections = $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
-            $normalizedKey = $this->normalizeSectionKey($section->section_key);
-            // Find matching variant config
-            $variantConfig = $allVariantsNormalized[$normalizedKey]
-               ?? $allVariants[$section->section_key]
-               ?? collect();
-            $matchedVariant = $variantConfig->firstWhere('variant', $section->variant);
-
-            // Fallback to variant1 if specific variant missing
-            if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
-            }
-            // Final fallback: use any available variant for this section
-            if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->first();
-            }
-
-            // Still no config → skip section and record reason
-            if (!$matchedVariant) {
-               $errorReason = "No variant config for section key: {$section->section_key}, variant: {$section->variant}";
-               Log::warning($errorReason);
-               return null;
-            }
-
-            return [
-               'type' => $normalizedKey ?: $section->section_key,
-               'variant' => $section->variant,
-               'order' => $section->order,
-               'enabled' => $section->enabled,
-               'props' => $section->props ?? [],
-               'config' => $matchedVariant->config,
-            ];
-         })
-            ->filter()
-            ->sortBy('order')
-            ->values()
-            ->toArray();
-
-         // If no valid sections → redirect with reason
-         if (empty($sections)) {
-            $errorReason = $errorReason ?: 'No valid sections found for Features page.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Normalize order to start at 2 for Features (hero is built-in)
-         foreach ($sections as $index => $section) {
-            $sections[$index]['order'] = $index + 2;
-         }
-
-         // Prepare final data
-         $pageData = [
-            'id' => $page->id,
-            'name' => $page->name,
-            'slug' => $page->slug,
-            'meta' => $page->meta,
-            'sections' => $sections,
-         ];
-
-         return Inertia::render('frontend/Features/Feature', [
-            'pageData' => $pageData
-         ]);
-      } catch (\Exception $e) {
-         $errorReason = 'Database error: ' . $e->getMessage();
-         Log::error($errorReason, ['trace' => $e->getTraceAsString()]);
-         return redirect()->route('page.broken')->with('error_reason', $errorReason);
-      }
-   }
-
-   /**
-    * Show the How It Works page with data from database.
-    */
-   public function howItWorks()
-   {
-      try {
-         $errorReason = null;
-
-         // Fetch the How It Works page from database with its sections and configs
-         $page = Page::where('slug', 'howItWorks')
-            ->where('is_active', true)
-            ->with([
-               'sections' => function ($query) {
-                  $query->where('enabled', true)
-                     ->orderBy('order');
-               }
-            ])
-            ->first();
-
-         // If page not found → redirect with reason
-         if (!$page) {
-            $errorReason = 'How It Works page not found or inactive.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Load all variants once (NO N+1)
-         $allVariants = PageSectionVariant::all()->groupBy('section_key');
-         $allVariantsNormalized = $allVariants->mapWithKeys(function ($value, $key) {
-            return [$this->normalizeSectionKey($key) => $value];
-         });
-
-         // Transform sections safely
-         $sections = $page->sections->map(function ($section) use ($allVariants, $allVariantsNormalized, &$errorReason) {
-            $normalizedKey = $this->normalizeSectionKey($section->section_key);
-            // Find matching variant config
-            $variantConfig = $allVariantsNormalized[$normalizedKey]
-               ?? $allVariants[$section->section_key]
-               ?? collect();
-            $matchedVariant = $variantConfig->firstWhere('variant', $section->variant);
-
-            // Fallback to variant1 if specific variant missing
-            if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->firstWhere('variant', 'variant1');
-            }
-            // Final fallback: use any available variant for this section
-            if (!$matchedVariant) {
-               $matchedVariant = $variantConfig->first();
-            }
-
-            // Still no config → skip section and record reason
-            if (!$matchedVariant) {
-               $errorReason = "No variant config for section key: {$section->section_key}, variant: {$section->variant}";
-               Log::warning($errorReason);
-               return null;
-            }
-
-            return [
-               'type' => $normalizedKey ?: $section->section_key,
-               'variant' => $section->variant,
-               'order' => $section->order,
-               'enabled' => $section->enabled,
-               'props' => $section->props ?? [],
-               'config' => $matchedVariant->config,
-            ];
-         })
-            ->filter()
-            ->sortBy('order')
-            ->values()
-            ->toArray();
-
-         // If no valid sections → redirect with reason
-         if (empty($sections)) {
-            $errorReason = $errorReason ?: 'No valid sections found for How It Works page.';
-            Log::error($errorReason);
-            return redirect()->route('page.broken')->with('error_reason', $errorReason);
-         }
-
-         // Normalize order to start at 2 for How It Works (hero is built-in)
-         foreach ($sections as $index => $section) {
-            $sections[$index]['order'] = $index + 2;
-         }
-
-         // Prepare final data
-         $pageData = [
-            'id' => $page->id,
-            'name' => $page->name,
-            'slug' => $page->slug,
-            'meta' => $page->meta,
-            'sections' => $sections,
-         ];
-
-         return Inertia::render('frontend/HowItWorks/HowItWorks', [
-            'pageData' => $pageData
-         ]);
-      } catch (\Exception $e) {
-         $errorReason = 'Database error: ' . $e->getMessage();
-         Log::error($errorReason, ['trace' => $e->getTraceAsString()]);
-         return redirect()->route('page.broken')->with('error_reason', $errorReason);
-      }
-   }
+    /**
+     * Show the Industries page with data from database.
+     */
+    public function industries()
+    {
+        return $this->renderPage('industries', 'frontend/Industries/Industries', 2);
+    }
 }

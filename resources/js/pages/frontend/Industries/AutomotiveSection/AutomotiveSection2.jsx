@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineCar,
   HiOutlineChartBar,
   HiOutlineCurrencyDollar,
   HiArrowRight,
@@ -16,6 +15,7 @@ import {
   HiOutlineDownload,
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
+import { FaCar } from "react-icons/fa";
 
 const AutomotiveSection2 = ({ config }) => {
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
@@ -305,7 +305,7 @@ const AutomotiveSection2 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-slate-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineCar className="w-6 h-6 text-blue-600" />
+              <FaCar className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to write your own success story?"}
               </span>

@@ -17,6 +17,8 @@ import {
   HiLogin,
   HiUserAdd,
   HiOutlineCog,
+  HiOutlineOfficeBuilding,
+  HiOutlineViewGrid,
 } from 'react-icons/hi';
 
 // Logo
@@ -44,7 +46,9 @@ const toKebabCase = (str = '') =>
 const iconMap = {
   home: HiHome,
   services: HiBriefcase,
-  'how it works': HiOutlineCog,
+  features: HiOutlineViewGrid,
+  "how it works": HiOutlineCog,
+  industries: HiOutlineOfficeBuilding,
 };
 
 const getIconForPage = (name = '') => {

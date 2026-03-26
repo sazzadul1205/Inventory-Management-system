@@ -6,12 +6,12 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineFactory,
   HiOutlineChartBar,
   HiOutlineCheckCircle,
   HiArrowRight,
   HiOutlineLightBulb,
 } from 'react-icons/hi';
+import { MdOutlineFactory } from "react-icons/md";
 
 const ManufacturingSection1 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -91,7 +91,7 @@ const ManufacturingSection1 = ({ config }) => {
             >
               {tab === 'overview' && (
                 <span className="flex items-center gap-2">
-                  <HiOutlineFactory className="w-4 h-4" />
+                  <MdOutlineFactory className="w-4 h-4" />
                   Overview
                 </span>
               )}
@@ -222,7 +222,7 @@ const ManufacturingSection1 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineFactory className="w-6 h-6 text-blue-600" />
+              <MdOutlineFactory className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to transform your manufacturing operations?"}
               </span>

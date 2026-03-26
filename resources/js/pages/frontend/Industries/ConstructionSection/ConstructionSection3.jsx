@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineBuildingOffice,
   HiOutlineCheckCircle,
   HiArrowRight,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const ConstructionSection3 = ({ config }) => {
   const [selectedFeature, setSelectedFeature] = useState(0);

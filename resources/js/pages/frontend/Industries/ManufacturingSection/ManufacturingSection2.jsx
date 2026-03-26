@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineFactory,
   HiOutlineChartBar,
   HiOutlineCurrencyDollar,
   HiArrowRight,
@@ -16,6 +15,7 @@ import {
   HiOutlineDownload,
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
+import { MdOutlineFactory } from "react-icons/md";
 
 const ManufacturingSection2 = ({ config }) => {
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
@@ -182,8 +182,8 @@ const ManufacturingSection2 = ({ config }) => {
                 key={idx}
                 onClick={() => setActiveCaseStudy(idx)}
                 className={`w-2 h-2 rounded-full transition-all ${activeCaseStudy === idx
-                    ? 'w-6 bg-blue-600'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                  ? 'w-6 bg-blue-600'
+                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
                   }`}
               />
             ))}
@@ -294,7 +294,7 @@ const ManufacturingSection2 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineFactory className="w-6 h-6 text-blue-600" />
+              <MdOutlineFactory className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to write your own success story?"}
               </span>

@@ -6,13 +6,13 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineWarehouse,
   HiOutlineChartBar,
   HiOutlineCheckCircle,
   HiArrowRight,
   HiOutlineLightBulb,
   HiOutlineShieldCheck,
 } from 'react-icons/hi';
+import { MdOutlineWarehouse } from "react-icons/md";
 
 const WholesaleAndDistributionSection1 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -86,13 +86,13 @@ const WholesaleAndDistributionSection1 = ({ config }) => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-6 py-3 text-sm font-medium transition-all capitalize ${activeTab === tab
-                  ? 'text-cyan-600 border-b-2 border-cyan-600'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+                ? 'text-cyan-600 border-b-2 border-cyan-600'
+                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
             >
               {tab === 'overview' && (
                 <span className="flex items-center gap-2">
-                  <HiOutlineWarehouse className="w-4 h-4" />
+                  <MdOutlineWarehouse className="w-4 h-4" />
                   Overview
                 </span>
               )}
@@ -233,7 +233,7 @@ const WholesaleAndDistributionSection1 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-cyan-50 to-teal-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineWarehouse className="w-6 h-6 text-cyan-600" />
+              <MdOutlineWarehouse className="w-6 h-6 text-cyan-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to transform your wholesale & distribution operations?"}
               </span>

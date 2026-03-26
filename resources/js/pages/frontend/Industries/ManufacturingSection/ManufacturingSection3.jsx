@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 // Icons
 import {
-  HiOutlineFactory,
   HiOutlineCheckCircle,
   HiArrowRight,
 } from 'react-icons/hi';
+import { MdOutlineFactory } from "react-icons/md";
 
 const ManufacturingSection3 = ({ config }) => {
   const [selectedFeature, setSelectedFeature] = useState(0);
@@ -91,8 +91,8 @@ const ManufacturingSection3 = ({ config }) => {
                   key={index}
                   onClick={() => setSelectedFeature(index)}
                   className={`w-full text-left p-4 rounded-xl transition-all ${selectedFeature === index
-                      ? 'bg-linear-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-l-4 border-blue-500 shadow-md'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    ? 'bg-linear-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-l-4 border-blue-500 shadow-md'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
                     }`}
                 >
                   <div className="flex items-center gap-3">
@@ -284,7 +284,7 @@ const ManufacturingSection3 = ({ config }) => {
         {config?.showCta && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineFactory className="w-6 h-6 text-blue-600" />
+              <MdOutlineFactory className="w-6 h-6 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to transform your manufacturing operations?"}
               </span>
