@@ -149,7 +149,7 @@ const FAQ = ({ pageData = { meta: {}, sections: [] } }) => {
       billingPricing: 'Billing & Pricing',
       technicalSupport: 'Technical Support',
       implementation: 'Implementation',
-      integrations: 'Integrations',
+      integrationsFAQ: 'Integrations',
       dataSecurity: 'Data Security',
       accountManagement: 'Account Management'
     };
