@@ -1,8 +1,8 @@
 // frontend/PricingPlans/FeatureComparisonTableSection/FeatureComparisonTableSection2.jsx
 
 // React
+import React, { useState } from 'react';
 import { Link } from '@inertiajs/react';
-import { useState } from 'react';
 
 // Icons
 import {
@@ -105,8 +105,8 @@ const FeatureComparisonTableSection2 = ({ config }) => {
                   setCompareMode(false);
                 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${!compareMode && activePlan === plan.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 {plan.icon} {plan.name}
@@ -121,8 +121,8 @@ const FeatureComparisonTableSection2 = ({ config }) => {
               }
             }}
             className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${compareMode
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
               }`}
           >
             <HiOutlineSwitchHorizontal className="w-4 h-4" />
@@ -140,8 +140,8 @@ const FeatureComparisonTableSection2 = ({ config }) => {
                   key={plan.id}
                   onClick={() => togglePlanSelection(plan.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${selectedPlans.includes(plan.id)
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100'
                     }`}
                 >
                   {plan.icon} {plan.name}

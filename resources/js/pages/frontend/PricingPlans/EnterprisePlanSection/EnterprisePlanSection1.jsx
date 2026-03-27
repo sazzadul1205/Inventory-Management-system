@@ -8,8 +8,8 @@ import { useState } from 'react';
 import {
   HiOutlineCheck,
   HiArrowRight,
-  HiOutlineBuildingOffice,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const EnterprisePlanSection1 = ({ config }) => {
   const [selectedIndustry, setSelectedIndustry] = useState('all');

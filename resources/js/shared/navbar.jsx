@@ -21,6 +21,7 @@ import {
   HiOutlineSparkles,
   HiOutlineOfficeBuilding,
   HiOutlineChatAlt2,
+  HiOutlineCurrencyDollar,
 } from 'react-icons/hi';
 
 // Logo
@@ -53,6 +54,7 @@ const iconMap = {
   industries: HiOutlineOfficeBuilding,
   "success stories": HiOutlineSparkles,
   testimonials: HiOutlineChatAlt2,
+  "pricing plans": HiOutlineCurrencyDollar,
 };
 
 const getIconForPage = (name = '') => {

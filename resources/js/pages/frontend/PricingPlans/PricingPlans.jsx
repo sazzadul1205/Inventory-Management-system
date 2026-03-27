@@ -148,10 +148,10 @@ const PricingPlans = ({ pageData = { meta: {}, sections: [] } }) => {
       starterPlan: 'Starter Plan',
       professionalPlan: 'Professional Plan',
       enterprisePlan: 'Enterprise Plan',  
-      customPricingPlan: 'Custom PricingPlan',
+      CustomPricing: 'Custom Pricing',
       freeTrial: 'Free Trial',
       featureComparisonTable: 'Feature Comparison',
-      faqAboutPricingPlan: 'FAQ'
+      faqAboutPricing: 'FAQ'
     };
 
     return {

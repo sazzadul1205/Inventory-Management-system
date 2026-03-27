@@ -11,12 +11,12 @@ import {
   HiOutlineDocumentText,
   HiOutlineCog,
   HiOutlineStar,
-  HiOutlineBuildingOffice,
   HiOutlinePlay,
   HiOutlinePause,
   HiOutlineChevronLeft,
   HiOutlineChevronRight
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const EnterprisePlanSection2 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');

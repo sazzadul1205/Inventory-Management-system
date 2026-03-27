@@ -8,8 +8,8 @@ import {
   HiOutlineCheck,
   HiOutlineX,
   HiArrowRight,
-  HiOutlineBuildingOffice,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const EnterprisePlanSection3 = ({ config }) => {
   const [selectedComparison, setSelectedComparison] = useState('plans');

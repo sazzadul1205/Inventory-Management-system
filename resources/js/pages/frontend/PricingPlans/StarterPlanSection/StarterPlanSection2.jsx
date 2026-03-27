@@ -12,6 +12,7 @@ import {
   HiOutlineUsers,
   HiOutlineSparkles,
   HiOutlineShieldCheck,
+  HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const StarterPlanSection2 = ({ config }) => {

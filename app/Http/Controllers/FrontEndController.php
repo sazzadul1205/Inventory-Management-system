@@ -214,4 +214,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('testimonials', 'frontend/Testimonials/Testimonials', 2);
     }
+
+    /**
+     * Show the PricingPlans page with data from database.
+     */
+    public function pricingPlans()
+    {
+        return $this->renderPage('pricingPlans', 'frontend/PricingPlans/PricingPlans', 2);
+    }
 }
