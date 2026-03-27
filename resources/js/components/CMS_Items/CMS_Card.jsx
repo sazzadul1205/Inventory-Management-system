@@ -206,7 +206,7 @@ const variantPresets = {
     containerHover: 'hover:shadow-lg',
   },
   gradient: {
-    container: 'bg-gradient-to-br from-blue-500 to-purple-600 text-white',
+    container: 'bg-linear-to-br from-blue-500 to-purple-600 text-white',
     containerDark: 'dark:from-blue-600 dark:to-purple-700',
   },
   outline: {

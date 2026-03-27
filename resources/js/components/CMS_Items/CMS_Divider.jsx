@@ -424,7 +424,7 @@ const CMS_Divider = forwardRef(({
       variantPresets[variant],
       variant !== 'gradient' && `border-${color}`,
       variant !== 'gradient' && `dark:border-${darkColor}`,
-      variant === 'gradient' && `bg-gradient-${gradientDirection} ${gradient}`,
+      variant === 'gradient' && `bg-linear-${gradientDirection} ${gradient}`,
       variant === 'gradient' && darkGradient && `dark:${darkGradient}`,
       classes.line,
       position === 'left' && classes.lineLeft,

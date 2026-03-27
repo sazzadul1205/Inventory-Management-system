@@ -535,7 +535,7 @@ export const CMS_GradientButton = forwardRef((props, ref) => (
   <CMS_Button
     ref={ref}
     classes={{
-      base: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700',
+      base: 'bg-linear-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700',
       dark: 'dark:from-blue-500 dark:to-purple-500',
       ...props.classes
     }}

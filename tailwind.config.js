@@ -129,13 +129,13 @@ module.exports = {
         'bg-blue-900',
         'bg-blue-800',
         'dark:bg-gray-900',
-        'bg-gradient-to-r',
-        'bg-gradient-to-br',
+        'bg-linear-to-r',
+        'bg-linear-to-br',
         'from-blue-900',
         'via-blue-800',
         'to-blue-900',
         {
-            pattern: /bg-gradient-to-(t|tr|r|br|b|bl|l|tl)/,
+            pattern: /bg-linear-to-(t|tr|r|br|b|bl|l|tl)/,
         },
         {
             pattern: /(from|via|to)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900|950)/,
