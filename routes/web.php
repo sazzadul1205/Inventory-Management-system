@@ -18,6 +18,7 @@ Route::get('/industries', [FrontEndController::class, 'industries'])->name('indu
 Route::get('/success-stories', [FrontEndController::class, 'successStories'])->name('success-stories.index');
 Route::get('/testimonials', [FrontEndController::class, 'testimonials'])->name('testimonials.index');
 Route::get('/pricing-plans', [FrontEndController::class, 'pricingPlans'])->name('pricing-plans.index');
+Route::get('/faq', [FrontEndController::class, 'faq'])->name('faq.index');
 
 // Error pages
 Route::get('/page-broken', [PageController::class, 'broken'])->name('page.broken');

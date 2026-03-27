@@ -33,6 +33,7 @@ import { login, register } from '@/routes';
 
 // Components
 import ThemeToggle from '@/components/ThemeToggle';
+import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
 
 // =====================================================
 // Utility: Convert slug to kebab-case (IMPORTANT FIX)
@@ -55,6 +56,7 @@ const iconMap = {
   "success stories": HiOutlineSparkles,
   testimonials: HiOutlineChatAlt2,
   "pricing plans": HiOutlineCurrencyDollar,
+  faq: HiOutlineQuestionMarkCircle,
 };
 
 const getIconForPage = (name = '') => {

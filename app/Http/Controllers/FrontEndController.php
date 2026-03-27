@@ -99,7 +99,7 @@ class FrontEndController extends Controller
      * @param int $orderOffset Order offset for sections (0 for home, 2 for pages with hero)
      * @return \Inertia\Response|\Illuminate\Http\RedirectResponse
      */
-    private function renderPage($slug, $componentPath, $orderOffset = 0)
+    private function renderPage($slug, $componentPath, $orderOffset = 0, $allowEmptySections = false)
     {
         try {
             $errorReason = null;
@@ -130,9 +130,13 @@ class FrontEndController extends Controller
 
             // If no valid sections → redirect with reason
             if (empty($sections)) {
-                $errorReason = $errorReason ?: "No valid sections found for " . ucfirst($slug) . " page.";
-                Log::error($errorReason);
-                return redirect()->route('page.broken')->with('error_reason', $errorReason);
+                if ($allowEmptySections) {
+                    $sections = [];
+                } else {
+                    $errorReason = $errorReason ?: "No valid sections found for " . ucfirst($slug) . " page.";
+                    Log::error($errorReason);
+                    return redirect()->route('page.broken')->with('error_reason', $errorReason);
+                }
             }
 
             // Normalize order with offset
@@ -221,5 +225,13 @@ class FrontEndController extends Controller
     public function pricingPlans()
     {
         return $this->renderPage('pricingPlans', 'frontend/PricingPlans/PricingPlans', 2);
+    }
+
+    /**
+     * Show the FAQ page with data from database.
+     */
+    public function faq()
+    {
+        return $this->renderPage('faq', 'frontend/FAQ/FAQ', 2, true);
     }
 }

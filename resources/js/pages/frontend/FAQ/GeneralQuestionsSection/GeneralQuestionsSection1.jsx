@@ -10,6 +10,7 @@ import {
   HiOutlineChevronUp,
   HiOutlineSearch,
   HiOutlineQuestionMarkCircle,
+  HiOutlineArrowRight,
 } from 'react-icons/hi';
 
 const GeneralQuestionsSection1 = ({ config }) => {
