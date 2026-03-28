@@ -11,11 +11,10 @@ import {
   HiOutlineCheckCircle,
   HiOutlineArrowRight,
   HiOutlineUser,
-  HiOutlineBuildingOffice,
   HiOutlineDocumentText,
   HiOutlinePaperAirplane,
-  HiOutlineExclamationTriangle,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice, HiOutlineExclamationTriangle } from "react-icons/hi2";
 
 const ContactFormSection2 = ({ config }) => {
   const [formData, setFormData] = useState({

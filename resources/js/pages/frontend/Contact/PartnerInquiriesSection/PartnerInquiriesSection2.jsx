@@ -13,8 +13,6 @@ import {
   HiOutlineArrowRight,
   HiOutlineDownload,
   HiOutlineGlobeAlt,
-  HiOutlineTrophy,
-  HiOutlineHandshake,
   HiOutlineThumbUp,
   HiOutlineThumbDown,
   HiOutlineExternalLink,
@@ -23,6 +21,8 @@ import {
   HiOutlinePrinter,
   HiOutlineX,
 } from 'react-icons/hi';
+import { MdOutlineHandshake } from "react-icons/md";
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const PartnerInquiriesSection2 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -313,7 +313,7 @@ const PartnerInquiriesSection2 = ({ config }) => {
             onClick={() => setShowApplicationForm(true)}
             className="mx-auto block px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all items-center gap-2"
           >
-            <HiOutlineHandshake className="w-5 h-5" />
+            <MdOutlineHandshake className="w-5 h-5" />
             Apply to Become a Partner
           </button>
         </div>
@@ -836,7 +836,7 @@ const PartnerInquiriesSection2 = ({ config }) => {
         {/* Partner CTA */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+            <MdOutlineHandshake className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700 dark:text-gray-300 font-medium">
               {config?.contactText || "Ready to become a partner? Join our growing network of partners today."}
             </span>

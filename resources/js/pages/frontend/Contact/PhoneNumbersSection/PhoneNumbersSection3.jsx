@@ -25,9 +25,9 @@ import {
   HiOutlineDownload,
   HiOutlineFlag,
   HiOutlineMicrophone,
-  HiOutlineHeadphones,
   HiOutlineCalendar,
 } from 'react-icons/hi';
+import { MdOutlineHeadphones } from "react-icons/md";
 
 const PhoneNumbersSection3 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -180,7 +180,7 @@ const PhoneNumbersSection3 = ({ config }) => {
   };
 
   const getTypeColor = (type) => {
-    switch(type) {
+    switch (type) {
       case 'support': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       case 'sales': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
       case 'billing': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
@@ -264,33 +264,30 @@ const PhoneNumbersSection3 = ({ config }) => {
         <div className="flex justify-center gap-4 mb-8">
           <button
             onClick={() => setActiveTab('numbers')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'numbers'
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'numbers'
                 ? 'bg-blue-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+              }`}
           >
             <HiOutlinePhone className="inline w-4 h-4 mr-2" />
             Phone Numbers
           </button>
           <button
             onClick={() => setActiveTab('callback')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'callback'
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'callback'
                 ? 'bg-blue-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+              }`}
           >
             <HiOutlineCalendar className="inline w-4 h-4 mr-2" />
             Schedule Callback
           </button>
           <button
             onClick={() => setActiveTab('faq')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'faq'
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'faq'
                 ? 'bg-blue-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+              }`}
           >
             <HiOutlineQuestionMarkCircle className="inline w-4 h-4 mr-2" />
             FAQs
@@ -306,11 +303,10 @@ const PhoneNumbersSection3 = ({ config }) => {
                 <button
                   key={dept.type}
                   onClick={() => setActiveType(dept.type === activeType ? 'all' : dept.type)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
-                    activeType === dept.type
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${activeType === dept.type
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
-                  }`}
+                    }`}
                 >
                   <span>{dept.icon}</span>
                   {dept.name}
@@ -323,8 +319,8 @@ const PhoneNumbersSection3 = ({ config }) => {
               <button
                 onClick={() => setActiveRegion('all')}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeRegion === 'all'
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 All Regions
@@ -334,8 +330,8 @@ const PhoneNumbersSection3 = ({ config }) => {
                   key={region.id}
                   onClick={() => setActiveRegion(region.id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeRegion === region.id
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                     }`}
                 >
                   <span>{region.icon}</span>
@@ -349,8 +345,8 @@ const PhoneNumbersSection3 = ({ config }) => {
               <button
                 onClick={() => setActiveLanguage('all')}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeLanguage === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                   }`}
               >
                 All Languages
@@ -360,8 +356,8 @@ const PhoneNumbersSection3 = ({ config }) => {
                   key={lang.code}
                   onClick={() => setActiveLanguage(lang.code)}
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeLanguage === lang.code
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                     }`}
                 >
                   {lang.name}
@@ -432,8 +428,8 @@ const PhoneNumbersSection3 = ({ config }) => {
                       <button
                         onClick={() => setActiveType('all')}
                         className={`px-3 py-1 rounded-full text-sm transition-all ${activeType === 'all'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                           }`}
                       >
                         All
@@ -443,8 +439,8 @@ const PhoneNumbersSection3 = ({ config }) => {
                           key={dept.type}
                           onClick={() => setActiveType(dept.type)}
                           className={`px-3 py-1 rounded-full text-sm transition-all ${activeType === dept.type
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                             }`}
                         >
                           {dept.name}
@@ -543,7 +539,7 @@ const PhoneNumbersSection3 = ({ config }) => {
                     )}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1 text-xs text-gray-500">
-                        <HiOutlineHeadphones className="w-3 h-3" />
+                        <MdOutlineHeadphones className="w-3 h-3" />
                         <span>Available now</span>
                       </div>
                       <button className="text-blue-600 text-sm font-semibold hover:underline">
@@ -879,8 +875,8 @@ const PhoneNumbersSection3 = ({ config }) => {
                                     <button
                                       onClick={() => handleHelpful(faq.id, true)}
                                       className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                                          ? 'text-green-600'
-                                          : 'text-gray-400 hover:text-green-600'
+                                        ? 'text-green-600'
+                                        : 'text-gray-400 hover:text-green-600'
                                         }`}
                                     >
                                       <HiOutlineThumbUp className="w-4 h-4" />
@@ -889,8 +885,8 @@ const PhoneNumbersSection3 = ({ config }) => {
                                     <button
                                       onClick={() => handleHelpful(faq.id, false)}
                                       className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                                          ? 'text-red-600'
-                                          : 'text-gray-400 hover:text-red-600'
+                                        ? 'text-red-600'
+                                        : 'text-gray-400 hover:text-red-600'
                                         }`}
                                     >
                                       <HiOutlineThumbDown className="w-4 h-4" />

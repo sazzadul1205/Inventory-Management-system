@@ -24,11 +24,12 @@ import {
   HiOutlinePrinter,
   HiOutlineDownload,
   HiOutlineUserGroup,
-  HiOutlineBuildingOffice,
   HiOutlineMap,
   HiOutlineSparkles,
   HiOutlineTruck,
+  HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const OfficeLocationsSection3 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);

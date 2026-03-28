@@ -25,8 +25,8 @@ import {
   HiOutlinePrinter,
   HiOutlineDownload,
   HiOutlineUserGroup,
-  HiOutlineBuildingOffice,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const OfficeLocationsSection2 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);

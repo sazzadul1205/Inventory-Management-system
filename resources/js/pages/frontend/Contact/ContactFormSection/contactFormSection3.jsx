@@ -11,10 +11,8 @@ import {
   HiOutlineCheckCircle,
   HiOutlineArrowRight,
   HiOutlineUser,
-  HiOutlineBuildingOffice,
   HiOutlineDocumentText,
   HiOutlinePaperAirplane,
-  HiOutlineExclamationTriangle,
   HiOutlineGlobeAlt,
   HiOutlineClipboardList,
   HiOutlineExternalLink,
@@ -24,6 +22,7 @@ import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice, HiOutlineExclamationTriangle } from "react-icons/hi2";
 
 const ContactFormSection3 = ({ config }) => {
   const [formData, setFormData] = useState({

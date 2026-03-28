@@ -22,6 +22,7 @@ import {
   HiOutlineOfficeBuilding,
   HiOutlineChatAlt2,
   HiOutlineCurrencyDollar,
+  HiOutlineMail,
 } from 'react-icons/hi';
 
 // Logo
@@ -34,6 +35,7 @@ import { login, register } from '@/routes';
 // Components
 import ThemeToggle from '@/components/ThemeToggle';
 import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
+import { Contact } from 'lucide-react';
 
 // =====================================================
 // Utility: Convert slug to kebab-case (IMPORTANT FIX)
@@ -57,6 +59,7 @@ const iconMap = {
   testimonials: HiOutlineChatAlt2,
   "pricing plans": HiOutlineCurrencyDollar,
   faq: HiOutlineQuestionMarkCircle,
+  contact: HiOutlineMail,
 };
 
 const getIconForPage = (name = '') => {

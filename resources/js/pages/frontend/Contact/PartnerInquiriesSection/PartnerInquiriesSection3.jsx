@@ -13,8 +13,6 @@ import {
   HiOutlineArrowRight,
   HiOutlineDownload,
   HiOutlineGlobeAlt,
-  HiOutlineTrophy,
-  HiOutlineHandshake,
   HiOutlineThumbUp,
   HiOutlineThumbDown,
   HiOutlineExternalLink,
@@ -26,6 +24,8 @@ import {
   HiOutlineCalendar,
   HiOutlineSparkles,
 } from 'react-icons/hi';
+import { MdOutlineHandshake } from "react-icons/md";
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const PartnerInquiriesSection3 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -1017,7 +1017,7 @@ const PartnerInquiriesSection3 = ({ config }) => {
         {/* Partner CTA */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+            <MdOutlineHandshake className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700 dark:text-gray-300 font-medium">
               {config?.contactText || "Ready to become a partner? Join our growing network of partners today."}
             </span>
