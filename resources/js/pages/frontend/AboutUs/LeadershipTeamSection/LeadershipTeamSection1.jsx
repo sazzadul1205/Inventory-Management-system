@@ -117,7 +117,7 @@ const LeadershipTeamSection1 = ({ config }) => {
                         >
                             <span>{dept.icon}</span>
                             {dept.name}
-                        </button>
+                        </span>
                     ))}
                 </div>
 
@@ -160,7 +160,7 @@ const LeadershipTeamSection1 = ({ config }) => {
                                             <a
                                                 href={leader.linkedin}
                                                 className="text-gray-400 hover:text-blue-600 transition-colors"
-                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
+                                                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 <AiOutlineLinkedin className="w-4 h-4" />
@@ -238,7 +238,7 @@ const LeadershipTeamSection1 = ({ config }) => {
                                         <HiOutlineChevronDown className="w-5 h-5" />
                                     )}
                                 </div>
-                            </span>
+                            </button>
                             {openFaq === index && (
                                 <div className="px-6 pb-6 pt-2 border-t border-gray-100 dark:border-gray-700">
                                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">

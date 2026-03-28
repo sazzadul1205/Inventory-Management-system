@@ -293,7 +293,7 @@ const LeadershipTeamSection2 = ({ config }) => {
                                         >
                                             <span>{dept.icon}</span>
                                             {dept.name}
-                                        </button>
+                                        </span>
                                     ))}
                                 </div>
                             </div>
@@ -413,7 +413,7 @@ const LeadershipTeamSection2 = ({ config }) => {
                                 }`}
                         >
                             All
-                        </span>
+                        </button>
                         {categories.map((category) => (
                             <button
                                 key={category.id}

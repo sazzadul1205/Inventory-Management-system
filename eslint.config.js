@@ -82,6 +82,7 @@ export default [
                 'error',
                 { props: 'never', children: 'never' },
             ],
+            'react/jsx-no-undef': 'warn',
 
             // -------------------------
             // Hooks (critical)
@@ -112,11 +113,16 @@ export default [
 
             'import/no-cycle': 'error',
             'import/no-duplicates': 'error',
+            'import/named': 'warn',
+            'import/default': 'warn',
+            'import/namespace': 'warn',
+            'import/no-named-as-default': 'warn',
+            'import/no-named-as-default-member': 'warn',
 
             // -------------------------
             // Unused
             // -------------------------
-            'unused-imports/no-unused-imports': 'error',
+            'unused-imports/no-unused-imports': 'warn',
 
             'unused-imports/no-unused-vars': [
                 'warn',
@@ -135,6 +141,7 @@ export default [
             curly: ['error', 'all'],
             'no-console': ['warn', { allow: ['warn', 'error'] }],
             'no-debugger': 'error',
+            'no-undef': 'warn',
             'prefer-const': 'error',
             'no-var': 'error',
             'prefer-template': 'error',

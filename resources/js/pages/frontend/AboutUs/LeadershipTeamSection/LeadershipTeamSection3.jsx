@@ -322,7 +322,7 @@ const LeadershipTeamSection3 = ({ config }) => {
                                     className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
                                 >
                                     <HiOutlineFilter className="w-4 h-4" />
-                                </button>
+                                </span>
                                 <select
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value)}
@@ -567,7 +567,7 @@ const LeadershipTeamSection3 = ({ config }) => {
                                         className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                                     >
                                         ✕
-                                    </span>
+                                    </button>
                                 )}
                             </div>
                             <div className="flex gap-2">
