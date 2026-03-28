@@ -1,4 +1,4 @@
-// frontend/FAQ/PartnerInquiriesSection/PartnerInquiriesSection3.jsx
+// frontend/Contact/PartnerInquiriesSection/PartnerInquiriesSection3.jsx
 
 // React
 import { Link } from '@inertiajs/react';

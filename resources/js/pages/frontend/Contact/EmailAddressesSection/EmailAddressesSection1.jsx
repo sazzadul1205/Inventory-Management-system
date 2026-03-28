@@ -1,4 +1,4 @@
-// frontend/Contact/PartnerInquiriesSection/PartnerInquiriesSection1.jsx
+// frontend/Contact/EmailAddressesSection/EmailAddressesSection1.jsx
 
 // React
 import { Link } from '@inertiajs/react';
@@ -9,24 +9,24 @@ import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
   HiOutlineSearch,
-  HiOutlineCheckCircle,
-  HiOutlineArrowRight,
-  HiOutlineDownload,
+  HiOutlineMail,
+  HiOutlineClock,
   HiOutlineGlobeAlt,
-  HiOutlineTrophy,
-  HiOutlineHandshake,
+  HiOutlineArrowRight,
+  HiOutlineQuestionMarkCircle,
+  HiOutlineShieldCheck,
+  HiOutlineDocumentText,
 } from 'react-icons/hi';
 
-const PartnerInquiriesSection1 = ({ config }) => {
+const EmailAddressesSection1 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
 
   const faqs = config?.faqs || [];
   const categories = config?.categories || [];
+  const emailAddresses = config?.emailAddresses || [];
   const stats = config?.stats || [];
-  const partnerTypes = config?.partnerTypes || [];
-  const benefits = config?.benefits || [];
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -41,11 +41,19 @@ const PartnerInquiriesSection1 = ({ config }) => {
     return matchesCategory && matchesSearch;
   });
 
+  const filteredEmails = emailAddresses.filter(email => {
+    const matchesSearch = searchQuery === '' ||
+      email.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      email.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      email.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesSearch;
+  });
+
   return (
     <section
       className="relative py-20 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden"
       role="region"
-      aria-label="Partner Inquiries"
+      aria-label="Email Addresses"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
@@ -91,52 +99,52 @@ const PartnerInquiriesSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Partner Types */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
-            Partner Programs
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {partnerTypes.map((type, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 text-center">
-                <div className="text-5xl mb-4">{type.icon}</div>
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{type.name}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{type.description}</p>
-                <ul className="space-y-2 mb-6 text-left">
-                  {type.features.slice(0, 3).map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={type.ctaLink}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
+        {/* Email Addresses Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {filteredEmails.map((email, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden"
+            >
+              <div className={`h-1 ${email.type === 'support' ? 'bg-blue-500' : email.type === 'sales' ? 'bg-green-500' : email.type === 'billing' ? 'bg-purple-500' : email.type === 'security' ? 'bg-red-500' : 'bg-orange-500'}`}></div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-3xl">{email.icon}</div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">{email.department}</h3>
+                    <div className="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
+                      <HiOutlineGlobeAlt className="w-3 h-3" />
+                      {email.region || 'Global'}
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <a
+                    href={`mailto:${email.email}`}
+                    className="text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline break-all"
+                  >
+                    {email.email}
+                  </a>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  {email.description}
+                </p>
+                <div className="flex items-start gap-2 mb-4">
+                  <HiOutlineClock className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
+                  <div className="text-xs text-gray-600 dark:text-gray-400">
+                    {email.responseTime || 'Response within 24 hours'}
+                  </div>
+                </div>
+                <a
+                  href={`mailto:${email.email}`}
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
                 >
-                  {type.ctaText}
-                  <HiOutlineArrowRight className="w-4 h-4" />
-                </Link>
+                  <HiOutlineMail className="w-4 h-4" />
+                  Send Email
+                </a>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Partner Benefits */}
-        <div className="mb-12 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Partner Benefits</h3>
-            <p className="text-gray-600 dark:text-gray-400">What you get when you join our partner network</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl mb-3">{benefit.icon}</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{benefit.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Search Bar */}
@@ -145,7 +153,7 @@ const PartnerInquiriesSection1 = ({ config }) => {
             <HiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search partner questions..."
+              placeholder="Search email addresses or FAQs..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
@@ -153,24 +161,24 @@ const PartnerInquiriesSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Category Filters */}
+        {/* Category Filters for FAQs */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           <button
             onClick={() => setActiveCategory('all')}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === 'all'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
               }`}
           >
-            All Questions
+            All FAQs
           </button>
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeCategory === category.id
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                 }`}
             >
               <span>{category.icon}</span>
@@ -243,86 +251,59 @@ const PartnerInquiriesSection1 = ({ config }) => {
         </div>
 
         {/* Empty State */}
-        {filteredFaqs.length === 0 && (
+        {filteredFaqs.length === 0 && searchQuery && (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🤝</div>
+            <div className="text-6xl mb-4">📧</div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No questions found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+            <p className="text-gray-500">Try adjusting your search to find what you're looking for.</p>
           </div>
         )}
 
-        {/* Partner Resources Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
-            <div className="text-4xl mb-3">📘</div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Partner Program Guide</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Download our comprehensive partner program guide
-            </p>
-            <Link
-              href="/downloads/partner-guide.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              <HiOutlineDownload className="w-4 h-4" />
-              Download Guide
-            </Link>
+        {/* Email Security Note */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-12 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <HiOutlineShieldCheck className="w-6 h-6 text-green-600" />
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white">Email Security</h3>
           </div>
-
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
-            <div className="text-4xl mb-3">📊</div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Partner Portal</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Access resources, training, and support materials
-            </p>
-            <Link
-              href="/partner-portal"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              <HiOutlineGlobeAlt className="w-4 h-4" />
-              Access Portal
-            </Link>
-          </div>
-
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
-            <div className="text-4xl mb-3">🏆</div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Success Stories</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              See how partners are succeeding with our program
-            </p>
-            <Link
-              href="/partner-success-stories"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              <HiOutlineTrophy className="w-4 h-4" />
-              Read Stories
-            </Link>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            We take your security seriously. Our emails are encrypted and we will never ask for passwords or sensitive information via email.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <div className="flex items-center gap-2">
+              <HiOutlineDocumentText className="w-4 h-4 text-blue-600" />
+              <span>PGP Encryption Available</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <HiOutlineMail className="w-4 h-4 text-blue-600" />
+              <span>SPF/DKIM/DMARC Protected</span>
+            </div>
           </div>
         </div>
 
-        {/* Partner CTA */}
+        {/* Contact CTA */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+            <HiOutlineQuestionMarkCircle className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700 dark:text-gray-300 font-medium">
-              {config?.contactText || "Ready to become a partner? Join our growing network of partners today."}
+              {config?.contactText || "Need help finding the right email address? Contact our support team."}
             </span>
             <Link
-              href={config?.contactLink || "/partner/apply"}
+              href={config?.contactLink || "/contact"}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
             >
-              {config?.contactButtonText || "Apply Now"}
+              {config?.contactButtonText || "Contact Us"}
               <HiOutlineArrowRight aria-hidden="true" />
             </Link>
           </div>
         </div>
 
-        {/* Partner Guarantee */}
+        {/* Response Guarantee */}
         {config?.showGuarantee && (
           <div className="text-center mt-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 rounded-full">
-              <HiOutlineCheckCircle className="w-4 h-4 text-green-600" />
+              <HiOutlineShieldCheck className="w-4 h-4 text-green-600" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
-                {config?.guaranteeText || "Join our partner network and receive dedicated support, training, and competitive commission rates"}
+                {config?.guaranteeText || "All emails receive a response within 24 hours. Enterprise customers get priority response within 4 hours."}
               </span>
             </div>
           </div>
@@ -340,4 +321,4 @@ const PartnerInquiriesSection1 = ({ config }) => {
   );
 };
 
-export default PartnerInquiriesSection1;
+export default EmailAddressesSection1;

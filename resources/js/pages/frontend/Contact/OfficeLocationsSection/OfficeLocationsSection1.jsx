@@ -1,4 +1,4 @@
-// frontend/Contact/PartnerInquiriesSection/PartnerInquiriesSection1.jsx
+// frontend/Contact/OfficeLocationsSection/OfficeLocationsSection1.jsx
 
 // React
 import { Link } from '@inertiajs/react';
@@ -9,43 +9,44 @@ import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
   HiOutlineSearch,
-  HiOutlineCheckCircle,
-  HiOutlineArrowRight,
-  HiOutlineDownload,
+  HiOutlineLocationMarker,
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineClock,
   HiOutlineGlobeAlt,
-  HiOutlineTrophy,
-  HiOutlineHandshake,
+  HiOutlineArrowRight,
 } from 'react-icons/hi';
 
-const PartnerInquiriesSection1 = ({ config }) => {
+const OfficeLocationsSection1 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeRegion, setActiveRegion] = useState('all');
 
   const faqs = config?.faqs || [];
-  const categories = config?.categories || [];
+  const offices = config?.offices || [];
+  const regions = config?.regions || [];
   const stats = config?.stats || [];
-  const partnerTypes = config?.partnerTypes || [];
-  const benefits = config?.benefits || [];
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
   const filteredFaqs = faqs.filter(faq => {
-    const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
     const matchesSearch = searchQuery === '' ||
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (faq.tags && faq.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
-    return matchesCategory && matchesSearch;
+      faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesSearch;
+  });
+
+  const filteredOffices = offices.filter(office => {
+    return activeRegion === 'all' || office.region === activeRegion;
   });
 
   return (
     <section
       className="relative py-20 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden"
       role="region"
-      aria-label="Partner Inquiries"
+      aria-label="Office Locations"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
@@ -91,52 +92,83 @@ const PartnerInquiriesSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Partner Types */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
-            Partner Programs
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {partnerTypes.map((type, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 text-center">
-                <div className="text-5xl mb-4">{type.icon}</div>
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{type.name}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{type.description}</p>
-                <ul className="space-y-2 mb-6 text-left">
-                  {type.features.slice(0, 3).map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={type.ctaLink}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-                >
-                  {type.ctaText}
-                  <HiOutlineArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            ))}
-          </div>
+        {/* Region Filters */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <button
+            onClick={() => setActiveRegion('all')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeRegion === 'all'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+              }`}
+          >
+            All Locations
+          </button>
+          {regions.map((region) => (
+            <button
+              key={region.id}
+              onClick={() => setActiveRegion(region.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeRegion === region.id
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                }`}
+            >
+              <span>{region.icon}</span>
+              {region.name}
+            </button>
+          ))}
         </div>
 
-        {/* Partner Benefits */}
-        <div className="mb-12 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Partner Benefits</h3>
-            <p className="text-gray-600 dark:text-gray-400">What you get when you join our partner network</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl mb-3">{benefit.icon}</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{benefit.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{benefit.description}</p>
+        {/* Offices Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {filteredOffices.map((office, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden"
+            >
+              <div className="h-32 bg-linear-to-r from-blue-500 to-indigo-600 relative">
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <div className="text-2xl font-bold">{office.city}</div>
+                  <div className="text-sm opacity-90">{office.country}</div>
+                </div>
               </div>
-            ))}
-          </div>
+              <div className="p-6">
+                <div className="flex items-start gap-3 mb-3">
+                  <HiOutlineLocationMarker className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {office.address}
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 mb-3">
+                  <HiOutlinePhone className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {office.phone}
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 mb-4">
+                  <HiOutlineMail className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {office.email}
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 mb-4">
+                  <HiOutlineClock className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {office.hours}
+                  </div>
+                </div>
+                {office.mapLink && (
+                  <Link
+                    href={office.mapLink}
+                    className="inline-flex items-center gap-1 text-blue-600 text-sm font-semibold hover:gap-2 transition-all"
+                  >
+                    View on Map
+                    <HiOutlineArrowRight className="w-3 h-3" />
+                  </Link>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Search Bar */}
@@ -145,38 +177,12 @@ const PartnerInquiriesSection1 = ({ config }) => {
             <HiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search partner questions..."
+              placeholder="Search office locations or FAQs..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
             />
           </div>
-        </div>
-
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          <button
-            onClick={() => setActiveCategory('all')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === 'all'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
-              }`}
-          >
-            All Questions
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeCategory === category.id
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
-                }`}
-            >
-              <span>{category.icon}</span>
-              {category.name}
-            </button>
-          ))}
         </div>
 
         {/* Results Count */}
@@ -245,88 +251,45 @@ const PartnerInquiriesSection1 = ({ config }) => {
         {/* Empty State */}
         {filteredFaqs.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🤝</div>
+            <div className="text-6xl mb-4">📍</div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No questions found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+            <p className="text-gray-500">Try adjusting your search to find what you're looking for.</p>
           </div>
         )}
 
-        {/* Partner Resources Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
-            <div className="text-4xl mb-3">📘</div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Partner Program Guide</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Download our comprehensive partner program guide
-            </p>
-            <Link
-              href="/downloads/partner-guide.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              <HiOutlineDownload className="w-4 h-4" />
-              Download Guide
-            </Link>
+        {/* Global Presence Map */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-12">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Our Global Presence</h3>
+            <p className="text-gray-600 dark:text-gray-400">Serving customers worldwide from our strategic locations</p>
           </div>
-
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
-            <div className="text-4xl mb-3">📊</div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Partner Portal</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Access resources, training, and support materials
-            </p>
-            <Link
-              href="/partner-portal"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              <HiOutlineGlobeAlt className="w-4 h-4" />
-              Access Portal
-            </Link>
-          </div>
-
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
-            <div className="text-4xl mb-3">🏆</div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Success Stories</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              See how partners are succeeding with our program
-            </p>
-            <Link
-              href="/partner-success-stories"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              <HiOutlineTrophy className="w-4 h-4" />
-              Read Stories
-            </Link>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {regions.map((region) => (
+              <div key={region.id} className="text-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                <div className="text-3xl mb-2">{region.icon}</div>
+                <div className="font-semibold text-gray-900 dark:text-white">{region.name}</div>
+                <div className="text-xs text-gray-500 mt-1">{region.officeCount} offices</div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Partner CTA */}
+        {/* Contact CTA */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+            <HiOutlineGlobeAlt className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700 dark:text-gray-300 font-medium">
-              {config?.contactText || "Ready to become a partner? Join our growing network of partners today."}
+              {config?.contactText || "Can't find what you're looking for? Contact our global support team."}
             </span>
             <Link
-              href={config?.contactLink || "/partner/apply"}
+              href={config?.contactLink || "/contact"}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
             >
-              {config?.contactButtonText || "Apply Now"}
+              {config?.contactButtonText || "Contact Us"}
               <HiOutlineArrowRight aria-hidden="true" />
             </Link>
           </div>
         </div>
-
-        {/* Partner Guarantee */}
-        {config?.showGuarantee && (
-          <div className="text-center mt-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 rounded-full">
-              <HiOutlineCheckCircle className="w-4 h-4 text-green-600" />
-              <span className="text-xs text-gray-600 dark:text-gray-400">
-                {config?.guaranteeText || "Join our partner network and receive dedicated support, training, and competitive commission rates"}
-              </span>
-            </div>
-          </div>
-        )}
       </div>
 
       <style>{`
@@ -340,4 +303,4 @@ const PartnerInquiriesSection1 = ({ config }) => {
   );
 };
 
-export default PartnerInquiriesSection1;
+export default OfficeLocationsSection1;
