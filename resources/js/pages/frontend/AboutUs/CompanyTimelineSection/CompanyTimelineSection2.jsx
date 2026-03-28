@@ -12,15 +12,15 @@ import {
     HiOutlineStar,
     HiOutlineChartBar,
     HiOutlineArrowRight,
-    HiOutlineTrophy,
-    HiOutlineRocket,
     HiOutlineX,
     HiOutlinePlay,
     HiOutlinePause,
     HiOutlineFilter,
     HiOutlinePrinter,
     HiOutlineDownload,
+    HiOutlineSearch,
 } from 'react-icons/hi';
+import { HiOutlineTrophy, HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const CompanyTimelineSection2 = ({ config }) => {
     const [openYear, setOpenYear] = useState(null);
@@ -486,7 +486,7 @@ const CompanyTimelineSection2 = ({ config }) => {
                 {/* CTA Section */}
                 <div className="text-center">
                     <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-                        <HiOutlineRocket className="w-6 h-6 text-blue-600" />
+                        <HiOutlineRocketLaunch className="w-6 h-6 text-blue-600" />
                         <span className="text-gray-700 dark:text-gray-300 font-medium">
                             {config?.contactText || "Be part of our journey. Join us as we shape the future of inventory management."}
                         </span>

@@ -12,6 +12,8 @@ import {
     HiOutlineHeart,
     HiOutlineArrowRight,
     HiOutlineCheckCircle,
+    HiOutlineBookOpen,
+    HiOutlineDownload,
 } from 'react-icons/hi';
 
 const CoreValuesSection1 = ({ config }) => {

@@ -9,10 +9,10 @@ import {
     HiOutlineChevronDown,
     HiOutlineChevronUp,
     HiOutlineSearch,
-    HiOutlineTrophy,
     HiOutlineArrowRight,
     HiOutlineCalendar,
 } from 'react-icons/hi';
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const AwardsAndRecognitionSection1 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);

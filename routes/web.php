@@ -20,6 +20,7 @@ Route::get('/testimonials', [FrontEndController::class, 'testimonials'])->name('
 Route::get('/pricing-plans', [FrontEndController::class, 'pricingPlans'])->name('pricing-plans.index');
 Route::get('/faq', [FrontEndController::class, 'faq'])->name('faq.index');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact.index');
+Route::get('/about-us', [FrontEndController::class, 'aboutUs'])->name('about-us.index');
 
 // Error pages
 Route::get('/page-broken', [PageController::class, 'broken'])->name('page.broken');

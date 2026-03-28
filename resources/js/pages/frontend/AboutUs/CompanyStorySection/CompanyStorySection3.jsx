@@ -17,10 +17,10 @@ import {
   HiOutlineX,
   HiOutlineMail,
   HiOutlineLocationMarker,
-  HiOutlineTrophy,
   HiOutlineSparkles,
-  HiOutlineHandshake,
 } from 'react-icons/hi';
+import { MdOutlineHandshake } from "react-icons/md";
+import { HiOutlineTrophy } from "react-icons/hi2";
 
 const CompanyStorySection3 = ({ config }) => {
   const [activeTimelineIndex, setActiveTimelineIndex] = useState(null);
@@ -148,33 +148,30 @@ const CompanyStorySection3 = ({ config }) => {
         <div className="flex justify-center gap-4 mb-12">
           <button
             onClick={() => setActiveTab('story')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'story'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'story'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
           >
             <HiOutlineSparkles className="inline w-4 h-4 mr-2" />
             Our Story
           </button>
           <button
             onClick={() => setActiveTab('values')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'values'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'values'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
           >
             <HiOutlineHeart className="inline w-4 h-4 mr-2" />
             Values & Culture
           </button>
           <button
             onClick={() => setActiveTab('impact')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'impact'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'impact'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
           >
             <HiOutlineTrophy className="inline w-4 h-4 mr-2" />
             Our Impact
@@ -632,7 +629,7 @@ const CompanyStorySection3 = ({ config }) => {
         {/* CTA Section */}
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineHandshake className="w-6 h-6 text-blue-600" />
+            <MdOutlineHandshake className="w-6 h-6 text-blue-600" />
             <span className="text-gray-700 dark:text-gray-300 font-medium">
               {config?.contactText || "Want to be part of our story? Join our team or partner with us."}
             </span>

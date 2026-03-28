@@ -8,13 +8,14 @@ import { useState } from 'react';
 import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
-  HiOutlineTarget,
   HiOutlineEye,
   HiOutlineHeart,
   HiOutlineArrowRight,
   HiOutlineCheckCircle,
   HiOutlineGlobeAlt,
+  HiOutlineSearch,
 } from 'react-icons/hi';
+import { FiTarget } from "react-icons/fi";
 
 const MissionAndVision1 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -94,7 +95,7 @@ const MissionAndVision1 = ({ config }) => {
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
             <div className="bg-linear-to-r from-blue-500 to-indigo-600 p-6 text-white">
               <div className="flex items-center gap-3">
-                <HiOutlineTarget className="w-8 h-8" />
+                <FiTarget className="w-8 h-8" />
                 <h3 className="text-2xl font-bold">Our Mission</h3>
               </div>
             </div>

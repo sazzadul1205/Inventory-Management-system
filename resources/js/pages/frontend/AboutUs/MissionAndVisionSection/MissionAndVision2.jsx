@@ -8,7 +8,6 @@ import { useState, useRef, useEffect } from 'react';
 import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
-  HiOutlineTarget,
   HiOutlineEye,
   HiOutlineHeart,
   HiOutlineArrowRight,
@@ -26,7 +25,10 @@ import {
   HiOutlineBookmark,
   HiOutlinePrinter,
   HiOutlineDownload,
+  HiOutlineSearch,
+  HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
+import { FiTarget } from "react-icons/fi";
 
 const MissionAndVision2 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -194,7 +196,7 @@ const MissionAndVision2 = ({ config }) => {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
             }`}
           >
-            <HiOutlineTarget className="inline w-4 h-4 mr-2" />
+            <FiTarget className="inline w-4 h-4 mr-2" />
             Overview
           </button>
           <button
@@ -240,7 +242,7 @@ const MissionAndVision2 = ({ config }) => {
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
                 <div className="bg-linear-to-r from-blue-500 to-indigo-600 p-6 text-white">
                   <div className="flex items-center gap-3">
-                    <HiOutlineTarget className="w-8 h-8" />
+                    <FiTarget className="w-8 h-8" />
                     <h3 className="text-2xl font-bold">Our Mission</h3>
                   </div>
                 </div>
@@ -579,15 +581,16 @@ const MissionAndVision2 = ({ config }) => {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button
+                      <span role="button" tabIndex={0}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleSaveFaq(faq.id);
                         }}
                         className="text-gray-400 hover:text-blue-600 transition-colors"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                       >
                         <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                      </button>
+                      </span>
                       <div className="text-blue-500">
                         {openFaq === index ? (
                           <HiOutlineChevronUp className="w-5 h-5" />
@@ -678,12 +681,13 @@ const MissionAndVision2 = ({ config }) => {
                             View in {categories.find(c => c.id === faq.category)?.name}
                           </button>
                         </div>
-                        <button
+                        <span role="button" tabIndex={0}
                           onClick={() => handleSaveFaq(faq.id)}
                           className="text-gray-400 hover:text-red-600"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                         >
                           <HiOutlineX className="w-4 h-4" />
-                        </button>
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -741,3 +745,4 @@ const MissionAndVision2 = ({ config }) => {
 };
 
 export default MissionAndVision2;
+

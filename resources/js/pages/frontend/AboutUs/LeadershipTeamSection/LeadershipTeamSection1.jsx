@@ -10,13 +10,12 @@ import {
     HiOutlineChevronUp,
     HiOutlineSearch,
     HiOutlineMail,
-    HiOutlineLinkedin,
-    HiOutlineTwitter,
     HiOutlineArrowRight,
     HiOutlineBriefcase,
     HiOutlineAcademicCap,
     HiOutlineGlobeAlt,
 } from 'react-icons/hi';
+import { AiOutlineLinkedin, AiOutlineTwitter } from "react-icons/ai";
 
 const LeadershipTeamSection1 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);
@@ -108,7 +107,7 @@ const LeadershipTeamSection1 = ({ config }) => {
                         All Leaders
                     </button>
                     {departments.map((dept) => (
-                        <button
+                        <span role="button" tabIndex={0}
                             key={dept.id}
                             onClick={() => setActiveDepartment(dept.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeDepartment === dept.id
@@ -161,9 +160,10 @@ const LeadershipTeamSection1 = ({ config }) => {
                                             <a
                                                 href={leader.linkedin}
                                                 className="text-gray-400 hover:text-blue-600 transition-colors"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                 onClick={(e) => e.stopPropagation()}
                                             >
-                                                <HiOutlineLinkedin className="w-4 h-4" />
+                                                <AiOutlineLinkedin className="w-4 h-4" />
                                             </a>
                                         )}
                                         {leader.twitter && (
@@ -172,7 +172,7 @@ const LeadershipTeamSection1 = ({ config }) => {
                                                 className="text-gray-400 hover:text-blue-400 transition-colors"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
-                                                <HiOutlineTwitter className="w-4 h-4" />
+                                                <AiOutlineTwitter className="w-4 h-4" />
                                             </a>
                                         )}
                                     </div>
@@ -238,7 +238,7 @@ const LeadershipTeamSection1 = ({ config }) => {
                                         <HiOutlineChevronDown className="w-5 h-5" />
                                     )}
                                 </div>
-                            </button>
+                            </span>
                             {openFaq === index && (
                                 <div className="px-6 pb-6 pt-2 border-t border-gray-100 dark:border-gray-700">
                                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -321,12 +321,12 @@ const LeadershipTeamSection1 = ({ config }) => {
                                     <div className="flex gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
                                         {selectedLeader.linkedin && (
                                             <a href={selectedLeader.linkedin} className="text-gray-500 hover:text-blue-600 transition-colors">
-                                                <HiOutlineLinkedin className="w-5 h-5" />
+                                                <AiOutlineLinkedin className="w-5 h-5" />
                                             </a>
                                         )}
                                         {selectedLeader.twitter && (
                                             <a href={selectedLeader.twitter} className="text-gray-500 hover:text-blue-400 transition-colors">
-                                                <HiOutlineTwitter className="w-5 h-5" />
+                                                <AiOutlineTwitter className="w-5 h-5" />
                                             </a>
                                         )}
                                         {selectedLeader.email && (
@@ -377,3 +377,4 @@ const LeadershipTeamSection1 = ({ config }) => {
 };
 
 export default LeadershipTeamSection1;
+

@@ -24,6 +24,7 @@ import {
     HiOutlineDownload,
     HiOutlinePlay,
     HiOutlineStar,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const CultureAndCareersSection3 = ({ config }) => {
@@ -782,15 +783,16 @@ const CultureAndCareersSection3 = ({ config }) => {
                                                                 </div>
                                                             </div>
                                                             <div className="flex items-center gap-2">
-                                                                <button
+                                                                <span role="button" tabIndex={0}
                                                                     onClick={(e) => {
                                                                         e.stopPropagation();
                                                                         handleSaveFaq(faq.id);
                                                                     }}
                                                                     className="text-gray-400 hover:text-blue-600 transition-colors"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                                 >
                                                                     <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                                                                </button>
+                                                                </span>
                                                                 <div className="text-blue-500">
                                                                     {openFaq === `${category.id}-${idx}` ? (
                                                                         <HiOutlineChevronUp className="w-5 h-5" />
@@ -887,12 +889,13 @@ const CultureAndCareersSection3 = ({ config }) => {
                                                         View Answer
                                                     </button>
                                                 </div>
-                                                <button
+                                                <span role="button" tabIndex={0}
                                                     onClick={() => handleSaveFaq(faq.id)}
                                                     className="text-gray-400 hover:text-red-600"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                 >
                                                     <HiOutlineX className="w-4 h-4" />
-                                                </button>
+                                                </span>
                                             </div>
                                         </div>
                                     ))}
@@ -1101,3 +1104,4 @@ const CultureAndCareersSection3 = ({ config }) => {
 };
 
 export default CultureAndCareersSection3;
+

@@ -242,4 +242,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('contact', 'frontend/Contact/Contact', 2, true);
     }
+
+    /**
+     * Show the AboutUs page with data from database.
+     */
+    public function aboutUs()
+    {
+        return $this->renderPage('aboutUs', 'frontend/AboutUs/AboutUs', 2, true);
+    }
 }

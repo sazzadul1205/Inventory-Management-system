@@ -10,8 +10,6 @@ import {
     HiOutlineChevronUp,
     HiOutlineSearch,
     HiOutlineMail,
-    HiOutlineLinkedin,
-    HiOutlineTwitter,
     HiOutlineArrowRight,
     HiOutlineBriefcase,
     HiOutlineAcademicCap,
@@ -28,7 +26,9 @@ import {
     HiOutlineUserGroup,
     HiOutlineHeart,
     HiOutlinePlay,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
+import { AiOutlineLinkedin, AiOutlineTwitter } from "react-icons/ai";
 
 const LeadershipTeamSection3 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);
@@ -317,7 +317,7 @@ const LeadershipTeamSection3 = ({ config }) => {
                                 )}
                             </div>
                             <div className="flex gap-2">
-                                <button
+                                <span role="button" tabIndex={0}
                                     onClick={() => setShowFilters(!showFilters)}
                                     className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
                                 >
@@ -415,9 +415,10 @@ const LeadershipTeamSection3 = ({ config }) => {
                                                         <a
                                                             href={leader.linkedin}
                                                             className="text-gray-400 hover:text-blue-600 transition-colors"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                             onClick={(e) => e.stopPropagation()}
                                                         >
-                                                            <HiOutlineLinkedin className="w-4 h-4" />
+                                                            <AiOutlineLinkedin className="w-4 h-4" />
                                                         </a>
                                                     )}
                                                     {leader.twitter && (
@@ -426,7 +427,7 @@ const LeadershipTeamSection3 = ({ config }) => {
                                                             className="text-gray-400 hover:text-blue-400 transition-colors"
                                                             onClick={(e) => e.stopPropagation()}
                                                         >
-                                                            <HiOutlineTwitter className="w-4 h-4" />
+                                                            <AiOutlineTwitter className="w-4 h-4" />
                                                         </a>
                                                     )}
                                                 </div>
@@ -566,7 +567,7 @@ const LeadershipTeamSection3 = ({ config }) => {
                                         className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                                     >
                                         ✕
-                                    </button>
+                                    </span>
                                 )}
                             </div>
                             <div className="flex gap-2">
@@ -713,15 +714,16 @@ const LeadershipTeamSection3 = ({ config }) => {
                                                                 </div>
                                                             </div>
                                                             <div className="flex items-center gap-2">
-                                                                <button
+                                                                <span role="button" tabIndex={0}
                                                                     onClick={(e) => {
                                                                         e.stopPropagation();
                                                                         handleSaveFaq(faq.id);
                                                                     }}
                                                                     className="text-gray-400 hover:text-blue-600 transition-colors"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                                 >
                                                                     <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                                                                </button>
+                                                                </span>
                                                                 <div className="text-blue-500">
                                                                     {openFaq === `${category.id}-${idx}` ? (
                                                                         <HiOutlineChevronUp className="w-5 h-5" />
@@ -818,12 +820,13 @@ const LeadershipTeamSection3 = ({ config }) => {
                                                         View Answer
                                                     </button>
                                                 </div>
-                                                <button
+                                                <span role="button" tabIndex={0}
                                                     onClick={() => handleSaveFaq(faq.id)}
                                                     className="text-gray-400 hover:text-red-600"
+                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } }}
                                                 >
                                                     <HiOutlineX className="w-4 h-4" />
-                                                </button>
+                                                </span>
                                             </div>
                                         </div>
                                     ))}
@@ -905,12 +908,12 @@ const LeadershipTeamSection3 = ({ config }) => {
                                     <div className="flex gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
                                         {selectedLeader.linkedin && (
                                             <a href={selectedLeader.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
-                                                <HiOutlineLinkedin className="w-5 h-5" />
+                                                <AiOutlineLinkedin className="w-5 h-5" />
                                             </a>
                                         )}
                                         {selectedLeader.twitter && (
                                             <a href={selectedLeader.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-400 transition-colors">
-                                                <HiOutlineTwitter className="w-5 h-5" />
+                                                <AiOutlineTwitter className="w-5 h-5" />
                                             </a>
                                         )}
                                         {selectedLeader.email && (
@@ -1014,3 +1017,4 @@ const LeadershipTeamSection3 = ({ config }) => {
 };
 
 export default LeadershipTeamSection3;
+
