@@ -511,15 +511,23 @@ const TechnologyInnovationSection2 = ({ config }) => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <button
+                                    <span
+                                        role="button"
+                                        tabIndex={0}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleSaveFaq(faq.id);
                                         }}
                                         className="text-gray-400 hover:text-blue-600 transition-colors"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                e.currentTarget.click();
+                                            }
+                                        }}
                                     >
                                         <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                                    </button>
+                                    </span>
                                     <div className="text-blue-500">
                                         {openFaq === index ? (
                                             <HiOutlineChevronUp className="w-5 h-5" />

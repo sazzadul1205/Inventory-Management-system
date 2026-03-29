@@ -27,11 +27,13 @@ import {
     HiOutlineTruck,
     HiOutlinePlay,
     HiOutlineCalendar,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const GlobalReachSection3 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [activeCategory, setActiveCategory] = useState('all');
     const [activeRegion, setActiveRegion] = useState('all');
     const [sortBy, setSortBy] = useState('recent');
     const [showFilters, setShowFilters] = useState(false);

@@ -232,7 +232,7 @@ class FrontEndController extends Controller
      */
     public function faq()
     {
-        return $this->renderPage('faq', 'frontend/FAQ/FAQ', 2, true);
+        return $this->renderPage('faq', 'frontend/FAQ/FAQ', 2);
     }
 
     /**
@@ -240,7 +240,7 @@ class FrontEndController extends Controller
      */
     public function contact()
     {
-        return $this->renderPage('contact', 'frontend/Contact/Contact', 2, true);
+        return $this->renderPage('contact', 'frontend/Contact/Contact', 2);
     }
 
     /**
@@ -248,6 +248,14 @@ class FrontEndController extends Controller
      */
     public function aboutUs()
     {
-        return $this->renderPage('aboutUs', 'frontend/AboutUs/AboutUs', 2, true);
+        return $this->renderPage('aboutUs', 'frontend/AboutUs/AboutUs', 2);
+    }
+
+    /**
+     * Show the WhyChooseUs page with data from database.
+     */
+    public function whyChooseUs()
+    {
+        return $this->renderPage('whyChooseUs', 'frontend/WhyChooseUs/WhyChooseUs', 2);
     }
 }

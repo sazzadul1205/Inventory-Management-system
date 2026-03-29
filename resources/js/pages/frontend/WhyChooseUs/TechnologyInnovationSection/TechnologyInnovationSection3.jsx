@@ -27,6 +27,7 @@ import {
     HiOutlinePlay,
     HiOutlineCalendar,
     HiOutlineLightBulb,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const TechnologyInnovationSection3 = ({ config }) => {

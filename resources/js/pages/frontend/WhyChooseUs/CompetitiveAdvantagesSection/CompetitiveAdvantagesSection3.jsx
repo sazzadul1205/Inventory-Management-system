@@ -25,6 +25,7 @@ import {
     HiOutlineStar,
     HiOutlineChip,
     HiOutlinePlay,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const CompetitiveAdvantagesSection3 = ({ config }) => {

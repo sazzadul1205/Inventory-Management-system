@@ -25,6 +25,7 @@ import {
     HiOutlineDownload,
     HiOutlineStar,
     HiOutlinePlay,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const UniqueSellingPointsSection3 = ({ config }) => {

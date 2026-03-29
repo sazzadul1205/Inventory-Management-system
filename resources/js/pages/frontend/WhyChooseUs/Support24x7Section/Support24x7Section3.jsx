@@ -25,6 +25,7 @@ import {
     HiOutlinePaperAirplane,
     HiOutlineChartBar,
     HiOutlineSparkles,
+    HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
 
 const Support24x7Section3 = ({ config }) => {

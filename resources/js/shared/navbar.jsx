@@ -19,6 +19,7 @@ import {
   HiOutlineMail,
   HiOutlineUserGroup,
   HiChevronDown,
+  HiOutlineBadgeCheck,
 } from 'react-icons/hi';
 
 import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
@@ -37,6 +38,11 @@ const toKebabCase = (str = '') =>
     .replace(/\s+/g, '-')
     .toLowerCase();
 
+const toTitleFromCamel = (str = '') =>
+  str
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\s+/g, ' ')
+    .trim();
 const iconMap = {
   home: HiHome,
   services: HiBriefcase,
@@ -49,6 +55,7 @@ const iconMap = {
   faq: HiOutlineQuestionMarkCircle,
   contact: HiOutlineMail,
   aboutus: HiOutlineUserGroup,
+  whychooseus: HiOutlineBadgeCheck,
 };
 
 const getIconForPage = (name = '') =>
@@ -59,6 +66,7 @@ const fetchNavItems = async () => {
 
   const items = res.data.map((page) => ({
     name: page.name,
+    label: toTitleFromCamel(page.name),
     path: page.slug === 'home' ? '/' : `/${toKebabCase(page.slug)}`,
     icon: getIconForPage(page.name),
     order: page.order,
@@ -160,12 +168,12 @@ const Navbar = () => {
               key={item.path}
               href={item.path}
               className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive(item.path)
-                  ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700'
+                ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-500'
+                : 'text-gray-700 dark:text-gray-200 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-gray-700'
                 }`}
             >
               <item.icon className="h-4 w-4" />
-              <span>{item.name}</span>
+              <span>{item.label || item.name}</span>
             </Link>
           ))}
 
@@ -199,7 +207,7 @@ const Navbar = () => {
                     className="flex items-center px-4 py-2 text-sm hover:bg-indigo-50 dark:hover:bg-gray-700"
                   >
                     <item.icon className="h-4 w-4 mr-2" />
-                    {item.name}
+                    {item.label || item.name}
                   </Link>
                 ))}
               </div>
