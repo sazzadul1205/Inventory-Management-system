@@ -408,7 +408,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                         {/* Results Count */}
                         {searchQuery && (
                             <div className="text-center mb-4 text-sm text-gray-500">
-                                Found {filteredAwards.length} awards for "{searchQuery}"
+                                Found {filteredAwards.length} awards for &quot;{searchQuery}&quot;
                             </div>
                         )}
 
@@ -455,7 +455,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                             <div className="text-center py-12">
                                 <div className="text-6xl mb-4">🏆</div>
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No awards found</h3>
-                                <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                                <p className="text-gray-500">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                             </div>
                         )}
                     </>
@@ -503,7 +503,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                                 <div className="text-center py-12">
                                     <div className="text-6xl mb-4">📅</div>
                                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No awards found</h3>
-                                    <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                                    <p className="text-gray-500">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                                 </div>
                             )}
                         </div>
@@ -519,7 +519,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                                     <div className="flex items-start gap-3 mb-3">
                                         <div className="text-3xl">{testimonial.icon}</div>
                                         <div>
-                                            <p className="text-gray-600 dark:text-gray-400 italic">"{testimonial.quote}"</p>
+                                            <p className="text-gray-600 dark:text-gray-400 italic">&quot;{testimonial.quote}&quot;</p>
                                             <div className="mt-3">
                                                 <div className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</div>
                                                 <div className="text-xs text-gray-500">{testimonial.title}, {testimonial.company}</div>
@@ -641,7 +641,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                         {/* Results Count */}
                         {searchQuery && (
                             <div className="text-center mb-4 text-sm text-gray-500">
-                                Found {filteredFaqs.length} results for "{searchQuery}"
+                                Found {filteredFaqs.length} results for &quot;{searchQuery}&quot;
                             </div>
                         )}
 
@@ -779,7 +779,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                             <div className="text-center py-12">
                                 <div className="text-6xl mb-4">🏆</div>
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No questions found</h3>
-                                <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                                <p className="text-gray-500">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                             </div>
                         )}
 

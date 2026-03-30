@@ -80,7 +80,7 @@ const CompanyStorySection1 = ({ config }) => {
                             <div className="bg-linear-to-br from-blue-500 to-indigo-600 p-8 md:p-10 flex items-center justify-center">
                                 <div className="text-center text-white">
                                     <div className="text-5xl mb-3">✨</div>
-                                    <p className="text-lg font-semibold mb-2">"Making inventory management simple"</p>
+                                    <p className="text-lg font-semibold mb-2">&quot;Making inventory management simple&quot;</p>
                                     <p className="text-sm opacity-90">— Our founding principle</p>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@ const CompanyStorySection1 = ({ config }) => {
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-8 text-center mb-12">
                     <div className="text-4xl mb-3">💭</div>
                     <p className="text-xl text-gray-600 dark:text-gray-300 italic mb-4">
-                        "{config?.quote || "Our team is passionate about solving real-world problems. Every day, we work to make inventory management simpler, smarter, and more accessible for businesses everywhere."}"
+                        &quot;{config?.quote || "Our team is passionate about solving real-world problems. Every day, we work to make inventory management simpler, smarter, and more accessible for businesses everywhere."}&quot;
                     </p>
                     <div className="font-semibold text-gray-900 dark:text-white">
                         {config?.quoteAuthor || "— Alex Chen, CEO & Co-founder"}

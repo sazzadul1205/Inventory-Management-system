@@ -11,6 +11,7 @@
  * - Play button for videos
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useRef, useState } from 'react';
 
@@ -275,9 +276,6 @@ const CMS_Media = forwardRef(({
 
   // Events
   onClick,
-
-  // Debug
-  debug = false,
 
   // Extra
   className,

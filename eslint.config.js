@@ -72,6 +72,7 @@ export default [
             // -------------------------
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
+            'react/no-unescaped-entities': 'off',
             'react/jsx-no-useless-fragment': 'error',
             'react/self-closing-comp': 'warn',
             'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
@@ -183,6 +184,7 @@ export default [
             // -------------------------
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
+            'react/no-unescaped-entities': 'off',
             'react/jsx-no-useless-fragment': 'error',
             'react/self-closing-comp': 'warn',
             'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],

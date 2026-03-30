@@ -1,16 +1,18 @@
 // app.tsx
 
-// React
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+// React Inertia
 import { createInertiaApp } from '@inertiajs/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// Styles
-import '../css/app.css';
-
 // Helpers
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+
+// React
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+// Styles
+import '../css/app.css';
 
 // Hooks
 import { initializeTheme } from '@/hooks/use-appearance';
@@ -28,6 +30,7 @@ const queryClient = new QueryClient({
 });
 
 // App name from environment variable or fallback
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 // Import all page files in the pages folder (TSX and JSX)
@@ -42,11 +45,7 @@ const resolvePage = (name: string) => {
     const jsxPath = `./pages/${name}.jsx`;
 
     // Determine which file exists
-    const pagePath = pageFiles[tsxPath]
-        ? tsxPath
-        : pageFiles[jsxPath]
-          ? jsxPath
-          : null;
+    const pagePath = pageFiles[tsxPath] ? tsxPath : pageFiles[jsxPath] ? jsxPath : null;
 
     if (!pagePath) {
         throw new Error(`Page not found: ${tsxPath} or ${jsxPath}`);
@@ -56,7 +55,8 @@ const resolvePage = (name: string) => {
 };
 
 // Initialize Inertia app
-createInertiaApp({
+void createInertiaApp({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     title: (title) => (title ? `${title} - ${appName}` : appName),
     resolve: resolvePage,
     setup({ el, App, props }) {

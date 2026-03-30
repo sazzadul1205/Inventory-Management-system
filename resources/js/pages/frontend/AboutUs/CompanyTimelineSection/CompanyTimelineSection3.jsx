@@ -28,7 +28,7 @@ import { HiOutlineRocketLaunch } from "react-icons/hi2";
 const CompanyTimelineSection3 = ({ config }) => {
     const [openYear, setOpenYear] = useState(null);
     const [activeEra, setActiveEra] = useState('all');
-    const [activeView, setActiveView] = useState('timeline');
+    const [activeView] = useState('timeline');
     const [searchQuery, setSearchQuery] = useState('');
     const [showFilters, setShowFilters] = useState(false);
     const [currentMilestone, setCurrentMilestone] = useState(0);

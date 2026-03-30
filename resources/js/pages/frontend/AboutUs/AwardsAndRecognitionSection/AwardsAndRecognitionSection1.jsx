@@ -205,7 +205,7 @@ const AwardsAndRecognitionSection1 = ({ config }) => {
                 {/* Results Count */}
                 {searchQuery && (
                     <div className="text-center mb-4 text-sm text-gray-500">
-                        Found {filteredFaqs.length} results for "{searchQuery}"
+                        Found {filteredFaqs.length} results for &quot;{searchQuery}&quot;
                     </div>
                 )}
 
@@ -270,7 +270,7 @@ const AwardsAndRecognitionSection1 = ({ config }) => {
                     <div className="text-center py-12">
                         <div className="text-6xl mb-4">🏆</div>
                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No questions found</h3>
-                        <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                        <p className="text-gray-500">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                     </div>
                 )}
 

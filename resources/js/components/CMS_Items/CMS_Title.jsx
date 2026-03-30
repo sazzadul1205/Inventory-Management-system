@@ -10,6 +10,7 @@
  * - Responsive breakpoints
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo } from 'react';
 
@@ -142,9 +143,6 @@ const CMS_Title = forwardRef(({
 
   // Highlights array - each item is { start, end, class: "text-red-500 font-bold" }
   highlightClasses = [],
-
-  // Debug
-  debug = false,
 
   // Extra
   className,

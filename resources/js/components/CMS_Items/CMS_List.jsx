@@ -13,6 +13,7 @@
  * - Dark mode support
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
@@ -265,7 +266,7 @@ const getIconComponent = (iconName, libraryPrefix) => {
 };
 
 const normalizeText = (value) => {
-  if (value == null) return '';
+  if (value === null) return '';
   if (typeof value === 'string' || typeof value === 'number') return value;
   if (typeof value === 'object') {
     return value.label ?? value.text ?? value.name ?? '';
@@ -292,7 +293,6 @@ const CMS_ListItem = forwardRef(({
   active = false,
   marker,
   nested = false,
-  nestedLevel = 0,
   classes = {},
   className,
   style,
@@ -421,10 +421,8 @@ const CMS_IconList = forwardRef(({
   columns = 4,
   gap = 'gap-4',
   showLabel = true,
-  labelPosition = 'bottom',
   centered = true,
   iconSize = 'w-8 h-8',
-  clickable = false,
   onItemClick,
   classes = {},
   className,
@@ -534,7 +532,6 @@ const CMS_List = forwardRef(({
 
   // Extra
   className,
-  style: externalStyle,
   children,
   ...props
 }, ref) => {

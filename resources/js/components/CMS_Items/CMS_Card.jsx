@@ -14,6 +14,7 @@
  * - Icon support from 16+ libraries
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
@@ -264,63 +265,6 @@ const componentMetadata = {
 // ============================================================================
 // Helper Functions
 // ============================================================================
-
-/**
- * Build final class string from config
- */
-const buildClasses = (classes = {}, extraClassName) => {
-  return clsx(
-    // Base styles
-    classes.container,
-    classes.header,
-    classes.body,
-    classes.footer,
-    classes.media,
-    classes.badge,
-    classes.overlay,
-    classes.title,
-    classes.subtitle,
-    classes.icon,
-    classes.actions,
-
-    // Interactive states
-    classes.containerHover,
-    classes.headerHover,
-    classes.bodyHover,
-    classes.footerHover,
-    classes.overlayHover,
-
-    // Theme states
-    classes.containerDark,
-    classes.headerDark,
-    classes.bodyDark,
-    classes.footerDark,
-
-    // Position specific
-    classes.mediaTop,
-    classes.mediaBottom,
-    classes.mediaCover,
-    classes.badgeTopLeft,
-    classes.badgeTopRight,
-    classes.badgeBottomLeft,
-    classes.badgeBottomRight,
-    classes.iconLeft,
-    classes.iconRight,
-
-    // Responsive
-    classes.sm,
-    classes.md,
-    classes.lg,
-    classes.xl,
-    classes['2xl'],
-
-    // Custom override
-    classes.custom,
-
-    // Emergency override
-    extraClassName
-  );
-};
 
 /**
  * Get icon component from library

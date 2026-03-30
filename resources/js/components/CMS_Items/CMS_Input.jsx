@@ -14,6 +14,7 @@
  * - Input group and addon components
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useState, useEffect, useRef, useImperativeHandle } from 'react';
 import * as AiIcons from 'react-icons/ai';
@@ -418,7 +419,7 @@ const CMS_Input = forwardRef(({
       classes.md,
       classes.lg,
     );
-  }, [sizePreset, variantPreset, error, success, warning, leftIcon, rightIcon, clearable, showPasswordToggle, loading, classes, isHovered, isFocused, disabled]);
+  }, [sizePreset.input, variantPreset.input, variantPreset.inputFocus, variantPreset.inputDark, disabled, classes.inputDisabled, classes.inputError, classes.inputSuccess, classes.inputWarning, classes.input, classes.inputHover, classes.inputFocus, classes.inputDark, classes.sm, classes.md, classes.lg, readOnly, error, success, warning, leftIcon, rightIcon, clearable, showPasswordToggle, loading, isHovered, isFocused]);
 
   // Handle change
   const handleChange = (e) => {

@@ -336,7 +336,7 @@ const AwardsAndRecognitionSection2 = ({ config }) => {
                 {/* Results Count */}
                 {searchQuery && (
                     <div className="text-center mb-4 text-sm text-gray-500">
-                        Found {filteredAwards.length} awards for "{searchQuery}"
+                        Found {filteredAwards.length} awards for &quot;{searchQuery}&quot;
                     </div>
                 )}
 
@@ -383,7 +383,7 @@ const AwardsAndRecognitionSection2 = ({ config }) => {
                     <div className="text-center py-12">
                         <div className="text-6xl mb-4">🏆</div>
                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No awards found</h3>
-                        <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                        <p className="text-gray-500">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                     </div>
                 )}
 
@@ -516,7 +516,7 @@ const AwardsAndRecognitionSection2 = ({ config }) => {
                     {/* FAQ Empty State */}
                     {filteredFaqs.length === 0 && searchQuery && (
                         <div className="text-center py-8">
-                            <p className="text-gray-500">No FAQs found for "{searchQuery}"</p>
+                            <p className="text-gray-500">No FAQs found for &quot;{searchQuery}&quot;</p>
                         </div>
                     )}
 

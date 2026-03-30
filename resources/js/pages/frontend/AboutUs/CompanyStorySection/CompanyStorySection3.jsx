@@ -239,7 +239,7 @@ const CompanyStorySection3 = ({ config }) => {
                   <div className="bg-linear-to-br from-blue-500 to-indigo-600 p-8 md:p-10 flex items-center justify-center">
                     <div className="text-center text-white">
                       <div className="text-5xl mb-3">✨</div>
-                      <p className="text-lg font-semibold mb-2">"Making inventory management simple"</p>
+                      <p className="text-lg font-semibold mb-2">&quot;Making inventory management simple&quot;</p>
                       <p className="text-sm opacity-90">— Our founding principle</p>
                     </div>
                   </div>

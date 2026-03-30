@@ -10,6 +10,7 @@
  * - Debug overlay for development
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo } from 'react';
 
@@ -132,7 +133,7 @@ export const updateClassValue = (classString, prefix, newValue) => {
 // Debug Overlay Component
 // ============================================================================
 
-const DebugOverlay = ({ children, classes, uid, componentName }) => {
+const DebugOverlay = ({ children, uid, componentName }) => {
   if (process.env.NODE_ENV !== 'development') return children;
 
   return (

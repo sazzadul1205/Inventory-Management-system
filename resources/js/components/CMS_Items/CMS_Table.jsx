@@ -14,6 +14,7 @@
  * - Dark mode support
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
@@ -840,7 +841,7 @@ const CMS_Table = forwardRef(({
     );
   }, [sizePreset, classes]);
 
-  // Merge classes for subcomponents
+  // Merge classes for SubComponents
   const headerClasses = {
     ...classes,
     headerCell: headerCellClasses,

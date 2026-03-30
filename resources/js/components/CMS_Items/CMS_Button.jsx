@@ -12,6 +12,7 @@
  */
 
 import { Link } from '@inertiajs/react';
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
@@ -279,9 +280,6 @@ const CMS_Button = forwardRef(({
   ariaExpanded,
   ariaControls,
 
-  // Debug
-  debug = false,
-
   // Extra
   className,
   style,
@@ -384,11 +382,11 @@ const CMS_Button = forwardRef(({
     onLeave?.(e);
   };
 
-  const handleFocus = (e) => {
+  const handleFocus = () => {
     setIsFocused(true);
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = () => {
     setIsFocused(false);
   };
 

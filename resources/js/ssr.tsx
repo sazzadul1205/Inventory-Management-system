@@ -9,6 +9,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import ReactDOMServer from 'react-dom/server';
 
 // App name from environment variable or fallback
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 // Glob all page files (TSX and JSX)
@@ -43,6 +44,7 @@ createServer((page) =>
     createInertiaApp({
         page, // SSR page object
         render: ReactDOMServer.renderToString, // Server render method
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         title: (title) => (title ? `${title} - ${appName}` : appName), // Page title
         resolve: resolvePage, // Page resolver
         setup: ({ App, props }) => {

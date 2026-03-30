@@ -12,6 +12,7 @@
  * - Dark mode support
  */
 
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx';
 import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
@@ -339,9 +340,6 @@ const CMS_Badge = forwardRef(({
   onHover,
   onLeave,
 
-  // Debug
-  debug = false,
-
   // Extra
   className,
   style,
@@ -404,14 +402,6 @@ const CMS_Badge = forwardRef(({
     );
   }, [dotSize, sizePreset.dot, classes.dot, classes.dotPulse, pulse]);
 
-  // Build count classes
-  const countClasses = useMemo(() => {
-    return clsx(
-      sizePreset.count,
-      classes.count
-    );
-  }, [sizePreset.count, classes.count]);
-
   // Render icon
   const renderIcon = () => {
     if (!IconComponent) return null;
@@ -473,11 +463,11 @@ const CMS_Badge = forwardRef(({
     onLeave?.(e);
   };
 
-  const handleFocus = (e) => {
+  const handleFocus = () => {
     setIsFocused(true);
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = () => {
     setIsFocused(false);
   };
 
