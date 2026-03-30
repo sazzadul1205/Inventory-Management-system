@@ -61,8 +61,8 @@ const AllServicesSection3 = ({ config }) => {
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,7 +130,7 @@ const AllServicesSection3 = ({ config }) => {
                 <div className="space-y-2 mb-6">
                   {service.features?.map((feature, idx) => (
                     <div key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                      <div className={`w-1.5 h-1.5 rounded-full bg-linear-to-r ${service.gradient} mr-2`}></div>
+                      <div className={`w-1.5 h-1.5 rounded-full bg-linear-to-r ${service.gradient} mr-2`} />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -158,7 +158,7 @@ const AllServicesSection3 = ({ config }) => {
                 </div>
 
                 {/* Hover Effect Overlay */}
-                <div className={`absolute inset-0 rounded-3xl bg-linear-to-r ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`} aria-hidden="true"></div>
+                <div className={`absolute inset-0 rounded-3xl bg-linear-to-r ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`} aria-hidden="true" />
               </div>
             ))}
         </div>

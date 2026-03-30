@@ -56,11 +56,11 @@ const AboutUsSection1 = ({ config }) => {
       itemType="https://schema.org/AboutPage"
     >
       {/* Background Pattern - decorative */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Gradient Orbs - decorative */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -73,8 +73,8 @@ const AboutUsSection1 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
               )}
               <span className={`text-sm font-medium ${config.badge.textColor}`}>
@@ -129,7 +129,7 @@ const AboutUsSection1 = ({ config }) => {
                 className="w-full h-auto object-cover"
               />
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay" />
             </div>
 
             {/* Experience Badge */}
@@ -257,7 +257,7 @@ const AboutUsSection1 = ({ config }) => {
                       alt={member.name}
                       className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                     {/* Social Links - appear on hover */}
                     <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity">

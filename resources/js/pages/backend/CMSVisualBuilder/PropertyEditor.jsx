@@ -2,8 +2,8 @@
  * Property Editor - Right sidebar for editing component properties
  */
 
-import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
+import React, { useState, useEffect, useRef } from 'react';
 
 const PropertyEditor = ({ component, onUpdate, onClose }) => {
   const [activeTab, setActiveTab] = useState('classes');

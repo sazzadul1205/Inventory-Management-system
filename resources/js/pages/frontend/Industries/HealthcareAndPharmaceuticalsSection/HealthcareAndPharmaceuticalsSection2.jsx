@@ -40,9 +40,9 @@ const HealthcareAndPharmaceuticalsSection2 = ({ config }) => {
       aria-label="Healthcare & Pharmaceuticals Success Stories Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -54,8 +54,8 @@ const HealthcareAndPharmaceuticalsSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>

@@ -11,13 +11,13 @@
  * - Dark mode support
  */
 
-import React, { forwardRef, useMemo } from 'react';
 import clsx from 'clsx';
+import React, { forwardRef, useMemo } from 'react';
+import * as AiIcons from 'react-icons/ai';
+import * as BiIcons from 'react-icons/bi';
 import * as FaIcons from 'react-icons/fa';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
-import * as AiIcons from 'react-icons/ai';
-import * as BiIcons from 'react-icons/bi';
 
 // ============================================================================
 // Icon Libraries Registry

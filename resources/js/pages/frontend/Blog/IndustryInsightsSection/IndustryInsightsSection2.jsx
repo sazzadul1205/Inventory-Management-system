@@ -154,11 +154,11 @@ const IndustryInsightsSection2 = ({ config }) => {
             aria-label="Industry Insights Section"
         >
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
             {/* Animated Gradient Orbs */}
-            <div className="absolute top-20 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-20 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute top-20 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-20 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Hero Section with Search */}
@@ -252,7 +252,7 @@ const IndustryInsightsSection2 = ({ config }) => {
                     {/* Main Featured Article */}
                     {config?.featuredArticle && (
                         <div className="relative group">
-                            <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+                            <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
                             <div className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
                                 <div className="relative h-80 overflow-hidden">
                                     <img
@@ -261,7 +261,7 @@ const IndustryInsightsSection2 = ({ config }) => {
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         loading="lazy"
                                     />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent"></div>
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                                     <div className="absolute top-4 left-4">
                                         <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
                                             Featured
@@ -483,7 +483,7 @@ const IndustryInsightsSection2 = ({ config }) => {
                                             alt={contributor.name}
                                             className="w-20 h-20 mx-auto rounded-full object-cover border-2 border-gray-200 dark:border-gray-700 group-hover:border-blue-600 dark:group-hover:border-blue-500 transition-all duration-300"
                                         />
-                                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white dark:border-gray-800"></div>
+                                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white dark:border-gray-800" />
                                     </div>
                                     <p className="font-medium text-gray-900 dark:text-white mt-3 text-sm">{contributor.name}</p>
                                     <p className="text-xs text-gray-500 dark:text-gray-400">{contributor.role}</p>

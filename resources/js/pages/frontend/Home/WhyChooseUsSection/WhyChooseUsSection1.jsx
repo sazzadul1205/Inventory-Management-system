@@ -57,11 +57,11 @@ const WhyChooseUsSection1 = ({ config }) => {
       aria-label="Why Choose Us section"
     >
       {/* Background Pattern - decorative */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Gradient Orbs - decorative */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -74,8 +74,8 @@ const WhyChooseUsSection1 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
               )}
               <span className={`text-sm font-medium ${config.badge.textColor}`}>
@@ -156,7 +156,7 @@ const WhyChooseUsSection1 = ({ config }) => {
               )}
 
               {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10 dark:ring-white/10 group-hover:ring-blue-500/50 dark:group-hover:ring-blue-400/50 transition-all duration-300 pointer-events-none" aria-hidden="true"></div>
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10 dark:ring-white/10 group-hover:ring-blue-500/50 dark:group-hover:ring-blue-400/50 transition-all duration-300 pointer-events-none" aria-hidden="true" />
             </div>
           ))}
         </div>

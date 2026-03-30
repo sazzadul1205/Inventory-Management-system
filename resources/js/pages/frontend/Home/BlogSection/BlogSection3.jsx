@@ -1,10 +1,11 @@
 // page/frontend/Home/BlogSection/BlogSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
+import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import {
   HiOutlineCalendar,
   HiOutlineClock,
@@ -17,7 +18,6 @@ import {
   HiOutlineSparkles,
   HiOutlineEye,
 } from 'react-icons/hi';
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 const BlogSection3 = ({ config }) => {
   // State for active category
@@ -71,11 +71,11 @@ const BlogSection3 = ({ config }) => {
       aria-label="Blog section"
     >
       {/* Background Pattern - Magazine Style */}
-      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-64 h-64 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-amber-200 dark:bg-amber-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
+      <div className="absolute top-20 left-0 w-64 h-64 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
+      <div className="absolute bottom-20 right-0 w-64 h-64 bg-amber-200 dark:bg-amber-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Magazine Style */}
@@ -88,8 +88,8 @@ const BlogSection3 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
               )}
               <span className={`text-sm font-medium ${config.badge.textColor}`}>
@@ -173,7 +173,7 @@ const BlogSection3 = ({ config }) => {
                       alt={featuredPost.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent md:bg-linear-to-r"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent md:bg-linear-to-r" />
 
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
@@ -465,7 +465,7 @@ const BlogSection3 = ({ config }) => {
             {config?.sidebar?.newsletter?.show && (
               <div className="bg-linear-to-br from-emerald-600 to-teal-600 rounded-2xl p-6 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
                 </div>
 
                 <div className="relative">

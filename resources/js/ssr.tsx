@@ -1,12 +1,12 @@
 // Ssr.tsx
 
 // React
-import ReactDOMServer from 'react-dom/server';
-import createServer from '@inertiajs/react/server';
 import { createInertiaApp } from '@inertiajs/react';
+import createServer from '@inertiajs/react/server';
 
 // Helpers
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import ReactDOMServer from 'react-dom/server';
 
 // App name from environment variable or fallback
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';

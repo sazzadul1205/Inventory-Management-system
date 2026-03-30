@@ -10,19 +10,19 @@ const WhyChooseUsSectionSkeleton = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           {/* Badge Skeleton */}
           <div className="flex justify-center mb-6">
-            <div className="h-8 w-40 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"></div>
+            <div className="h-8 w-40 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
           </div>
 
           {/* Title Skeleton */}
           <div className="space-y-3 mb-6">
-            <div className="h-12 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto"></div>
-            <div className="h-12 w-2/3 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto"></div>
+            <div className="h-12 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto" />
+            <div className="h-12 w-2/3 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto" />
           </div>
 
           {/* Description Skeleton */}
           <div className="space-y-2">
-            <div className="h-5 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-5 w-5/6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mx-auto"></div>
+            <div className="h-5 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            <div className="h-5 w-5/6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mx-auto" />
           </div>
         </div>
 
@@ -34,22 +34,22 @@ const WhyChooseUsSectionSkeleton = () => {
               className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 border border-gray-100 dark:border-gray-700"
             >
               {/* Icon Skeleton */}
-              <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-xl mb-6 animate-pulse"></div>
+              <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-xl mb-6 animate-pulse" />
 
               {/* Title Skeleton */}
-              <div className="h-7 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-lg mb-3 animate-pulse"></div>
+              <div className="h-7 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-lg mb-3 animate-pulse" />
 
               {/* Description Skeleton */}
               <div className="space-y-2 mb-4">
-                <div className="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-                <div className="h-4 w-5/6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+                <div className="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+                <div className="h-4 w-5/6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
               </div>
 
               {/* Stats Skeleton */}
               <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
-                  <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-                  <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+                  <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+                  <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@ const WhyChooseUsSectionSkeleton = () => {
 
         {/* Bottom CTA Skeleton */}
         <div className="text-center mt-16">
-          <div className="h-14 w-48 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto"></div>
+          <div className="h-14 w-48 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto" />
         </div>
       </div>
     </section>

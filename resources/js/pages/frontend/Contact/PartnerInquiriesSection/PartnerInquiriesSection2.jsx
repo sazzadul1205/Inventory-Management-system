@@ -21,8 +21,8 @@ import {
   HiOutlinePrinter,
   HiOutlineX,
 } from 'react-icons/hi';
-import { MdOutlineHandshake } from "react-icons/md";
 import { HiOutlineTrophy } from "react-icons/hi2";
+import { MdOutlineHandshake } from "react-icons/md";
 
 const PartnerInquiriesSection2 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -124,7 +124,7 @@ const PartnerInquiriesSection2 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'partner-faq-export.json');
@@ -172,9 +172,9 @@ const PartnerInquiriesSection2 = ({ config }) => {
       aria-label="Partner Inquiries Help Center"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -184,8 +184,8 @@ const PartnerInquiriesSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>

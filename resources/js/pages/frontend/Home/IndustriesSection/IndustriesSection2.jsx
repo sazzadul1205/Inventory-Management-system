@@ -1,8 +1,8 @@
 // page/frontend/Home/IndustriesSection/IndustriesSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -112,11 +112,11 @@ const IndustriesSection2 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Lines */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -206,7 +206,7 @@ const IndustriesSection2 = ({ config }) => {
                   alt={industry.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
 
                 {/* Icon Overlay */}
                 <div className="absolute bottom-4 left-4 flex items-center space-x-3">

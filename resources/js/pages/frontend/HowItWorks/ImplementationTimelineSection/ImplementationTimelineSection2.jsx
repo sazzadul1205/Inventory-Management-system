@@ -46,9 +46,9 @@ const ImplementationTimelineSection2 = ({ config }) => {
       aria-label="Implementation Timeline Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -60,8 +60,8 @@ const ImplementationTimelineSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -117,7 +117,7 @@ const ImplementationTimelineSection2 = ({ config }) => {
         {/* Gantt Chart */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
           <div className="overflow-x-auto" ref={timelineRef}>
-            <div className="min-w-200" style={{ zoom: zoom }}>
+            <div className="min-w-200" style={{ zoom }}>
               {/* Week Headers */}
               <div className="border-b border-gray-200 dark:border-gray-700">
                 <div className="flex">
@@ -213,7 +213,7 @@ const ImplementationTimelineSection2 = ({ config }) => {
                     {/* Expanded Phase Details */}
                     {selectedPhase === phase.id && (
                       <div className="flex border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/30">
-                        <div className="w-48 shrink-0 p-4 border-r border-gray-200 dark:border-gray-700"></div>
+                        <div className="w-48 shrink-0 p-4 border-r border-gray-200 dark:border-gray-700" />
                         <div className="flex-1 p-4">
                           <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
                             {phase.fullDescription}

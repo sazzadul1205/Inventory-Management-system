@@ -1,8 +1,8 @@
 // page/frontend/Home/AboutUsSection/AboutUsSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -69,11 +69,11 @@ const AboutUsSection2 = ({ config }) => {
       itemType="https://schema.org/AboutPage"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Lines */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       {/* Video Modal */}
       {isVideoOpen && (
@@ -100,7 +100,7 @@ const AboutUsSection2 = ({ config }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={config?.video?.title || "About Sazzad"}
-              ></iframe>
+               />
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@ const AboutUsSection2 = ({ config }) => {
 
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-blue-500 to-purple-600 rounded-full hidden lg:block"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-blue-500 to-purple-600 rounded-full hidden lg:block" />
 
               <div className="space-y-12">
                 {config.timeline.events.map((event, index) => (
@@ -240,7 +240,7 @@ const AboutUsSection2 = ({ config }) => {
                     </div>
 
                     {/* Empty space for alignment */}
-                    <div className="flex-1 hidden lg:block"></div>
+                    <div className="flex-1 hidden lg:block" />
                   </div>
                 ))}
               </div>
@@ -322,7 +322,7 @@ const AboutUsSection2 = ({ config }) => {
                       alt={member.name}
                       className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                     {/* Social Links */}
                     <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity">

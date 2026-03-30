@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
+import { FaQuoteLeft } from "react-icons/fa";
 import {
     HiOutlineUser,
     HiOutlineCalendar,
@@ -19,8 +20,6 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -57,11 +56,10 @@ import {
     HiOutlineLink,
     HiOutlineCreditCard,
     HiOutlineChartPie,
-    HiOutlineQuote,
     HiOutlineAtSymbol,
-    HiOutlineBuildingOffice,
     HiOutlineNewspaper
 } from 'react-icons/hi';
+import { HiOutlineBuildingOffice, HiOutlineRocketLaunch, HiOutlineTrophy } from "react-icons/hi2";
 
 const ExpertArticlesSection1 = ({ config }) => {
     const [selectedExpert, setSelectedExpert] = useState(null);
@@ -85,7 +83,7 @@ const ExpertArticlesSection1 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineRocketLaunch className={className} />,
             trophy: <HiOutlineTrophy className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
@@ -122,7 +120,7 @@ const ExpertArticlesSection1 = ({ config }) => {
             link: <HiOutlineLink className={className} />,
             credit: <HiOutlineCreditCard className={className} />,
             pie: <HiOutlineChartPie className={className} />,
-            quote: <HiOutlineQuote className={className} />,
+            quote: <FaQuoteLeft className={className} />,
             at: <HiOutlineAtSymbol className={className} />,
             building: <HiOutlineBuildingOffice className={className} />,
             newspaper: <HiOutlineNewspaper className={className} />
@@ -220,9 +218,9 @@ const ExpertArticlesSection1 = ({ config }) => {
             itemType="https://schema.org/Blog"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -268,8 +266,8 @@ const ExpertArticlesSection1 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === category.id
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                 }`}
                             aria-label={`Show ${category.label} articles`}
                         >
@@ -283,7 +281,7 @@ const ExpertArticlesSection1 = ({ config }) => {
                 {featuredArticle && (
                     <div className="mb-16">
                         <div className="relative bg-linear-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
                             <div className="relative p-8 md:p-10">
                                 <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -344,8 +342,8 @@ const ExpertArticlesSection1 = ({ config }) => {
                                             <button
                                                 onClick={() => handleSaveArticle(featuredArticle.id)}
                                                 className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 border ${savedArticles.includes(featuredArticle.id)
-                                                        ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 text-yellow-700 dark:text-yellow-400'
-                                                        : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-600'
+                                                    ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 text-yellow-700 dark:text-yellow-400'
+                                                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-600'
                                                     }`}
                                             >
                                                 <HiOutlineBookmark className="w-4 h-4" />
@@ -356,7 +354,7 @@ const ExpertArticlesSection1 = ({ config }) => {
 
                                     {/* Featured Image */}
                                     <div className="relative">
-                                        <div className="absolute -inset-4 bg-blue-600/20 rounded-2xl blur-2xl" aria-hidden="true"></div>
+                                        <div className="absolute -inset-4 bg-blue-600/20 rounded-2xl blur-2xl" aria-hidden="true" />
                                         <img
                                             src={featuredArticle.image}
                                             alt={featuredArticle.title}
@@ -388,8 +386,8 @@ const ExpertArticlesSection1 = ({ config }) => {
                                     key={expert.id}
                                     onClick={() => setSelectedExpert(selectedExpert === expert.id ? null : expert.id)}
                                     className={`flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 ${selectedExpert === expert.id
-                                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                            : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300'
+                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                        : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300'
                                         }`}
                                 >
                                     <img

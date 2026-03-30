@@ -76,12 +76,12 @@ const CustomSolutionsSection1 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L20 10 L20 20 L10 20 Z M30 10 L40 10 L40 20 L30 20 Z M50 10 L60 10 L60 20 L50 20 Z' stroke='%239CA3AF' fill='none' stroke-width='0.5'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px'
-        }}></div>
+        }} />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-20 right-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -231,7 +231,7 @@ const CustomSolutionsSection1 = ({ config }) => {
             {config?.process?.steps?.map((step, idx) => (
               <div key={step.id} className="relative">
                 {idx < config.process.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-indigo-200 dark:bg-indigo-900/30" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-indigo-200 dark:bg-indigo-900/30" aria-hidden="true" />
                 )}
                 <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 text-center border border-gray-200 dark:border-gray-700 shadow-lg">
                   <div className="w-12 h-12 mx-auto mb-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xl">
@@ -273,7 +273,7 @@ const CustomSolutionsSection1 = ({ config }) => {
               className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700"
             >
               <div className="h-48 bg-linear-to-br from-indigo-600 to-purple-600 relative">
-                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <p className="text-sm font-medium opacity-90">{study.industry}</p>
                   <p className="text-xl font-bold">{study.title}</p>

@@ -60,9 +60,9 @@ const StepByStepProcessSection1 = ({ config }) => {
       itemType="https://schema.org/HowTo"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -74,8 +74,8 @@ const StepByStepProcessSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -160,7 +160,7 @@ const StepByStepProcessSection1 = ({ config }) => {
               {/* Connector Line (desktop only) */}
               {index < config?.steps?.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-linear-to-r from-blue-300 to-transparent">
-                  <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-400 rounded-full" />
                 </div>
               )}
             </div>
@@ -185,7 +185,7 @@ const StepByStepProcessSection1 = ({ config }) => {
                 <div
                   className="bg-linear-to-r from-blue-500 to-indigo-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${((activeStep + 1) / (config?.steps?.length || 1)) * 100}%` }}
-                ></div>
+                 />
               </div>
               <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
                 {activeStep >= 0 && config?.steps?.[activeStep]?.progressTip}

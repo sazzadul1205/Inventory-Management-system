@@ -44,9 +44,9 @@ const OnboardingGuideSection1 = ({ config }) => {
       aria-label="Onboarding Guide Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-40 left-0 w-72 h-72 bg-teal-200 dark:bg-teal-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-cyan-200 dark:bg-cyan-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-40 left-0 w-72 h-72 bg-teal-200 dark:bg-teal-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-cyan-200 dark:bg-cyan-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -58,8 +58,8 @@ const OnboardingGuideSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -219,7 +219,7 @@ const OnboardingGuideSection1 = ({ config }) => {
                   <div
                     className="bg-linear-to-r from-teal-500 to-cyan-500 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${getProgressPercentage()}%` }}
-                  ></div>
+                   />
                 </div>
               </div>
 
@@ -238,7 +238,7 @@ const OnboardingGuideSection1 = ({ config }) => {
                       {completedItems.includes(item.id) ? (
                         <HiOutlineCheckCircle className="w-6 h-6 text-green-500" />
                       ) : (
-                        <div className="w-6 h-6 border-2 border-gray-300 dark:border-gray-600 rounded-full"></div>
+                        <div className="w-6 h-6 border-2 border-gray-300 dark:border-gray-600 rounded-full" />
                       )}
                     </div>
                     <div className="flex-1">

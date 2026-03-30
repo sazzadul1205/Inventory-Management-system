@@ -2,10 +2,11 @@
  * Canvas Area - Center workspace with components (Lazy Loading Version)
  */
 
-import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import clsx from 'clsx';
-import DroppableCanvas from './DroppableCanvas';
+import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
+
 import ComponentWrapper from './ComponentWrapper';
+import DroppableCanvas from './DroppableCanvas';
 import { Breakpoints } from './types';
 
 // ============================================================================
@@ -231,8 +232,8 @@ const loadComponent = (componentType) => {
  */
 const ComponentSkeleton = ({ type }) => (
   <div className="animate-pulse">
-    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
-    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2" />
+    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
   </div>
 );
 

@@ -30,11 +30,11 @@ const EventsSection1 = ({ config }) => {
       aria-label="Events section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200 dark:bg-pink-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200 dark:bg-pink-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -47,8 +47,8 @@ const EventsSection1 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
                 </span>
               )}
               <HiOutlineCalendar className={`w-4 h-4 mr-2 ${config.badge.textColor}`} />
@@ -98,8 +98,8 @@ const EventsSection1 = ({ config }) => {
           <div className="mb-20">
             <div className="bg-linear-to-br from-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
               </div>
 
               <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -153,7 +153,7 @@ const EventsSection1 = ({ config }) => {
                       <div
                         className="bg-white h-2 rounded-full"
                         style={{ width: config.featured.capacity }}
-                      ></div>
+                       />
                     </div>
                     <p className="text-xs text-purple-100">{config.featured.spotsLeft} spots left</p>
                   </div>

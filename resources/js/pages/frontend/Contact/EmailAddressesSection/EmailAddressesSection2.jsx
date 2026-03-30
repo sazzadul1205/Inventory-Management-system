@@ -133,7 +133,7 @@ const EmailAddressesSection2 = ({ config }) => {
       responseTime: email.responseTime,
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'email-addresses-export.json');
@@ -200,9 +200,9 @@ const EmailAddressesSection2 = ({ config }) => {
       aria-label="Email Addresses Help Center"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -212,8 +212,8 @@ const EmailAddressesSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -380,7 +380,7 @@ const EmailAddressesSection2 = ({ config }) => {
               key={index}
               className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden cursor-pointer group"
             >
-              <div className={`h-1 ${email.type === 'support' ? 'bg-blue-500' : email.type === 'sales' ? 'bg-green-500' : email.type === 'billing' ? 'bg-purple-500' : email.type === 'security' ? 'bg-red-500' : 'bg-orange-500'}`}></div>
+              <div className={`h-1 ${email.type === 'support' ? 'bg-blue-500' : email.type === 'sales' ? 'bg-green-500' : email.type === 'billing' ? 'bg-purple-500' : email.type === 'security' ? 'bg-red-500' : 'bg-orange-500'}`} />
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">

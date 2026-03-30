@@ -1,8 +1,8 @@
 // page/frontend/Home/WhyChooseUsSection/WhyChooseUsSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -68,11 +68,11 @@ const WhyChooseUsSection2 = ({ config }) => {
       aria-label="Why Choose Us section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Lines */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -131,7 +131,7 @@ const WhyChooseUsSection2 = ({ config }) => {
               />
 
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay" />
 
               {/* Floating Stats Card */}
               {config?.floatingStats?.show && (
@@ -152,8 +152,8 @@ const WhyChooseUsSection2 = ({ config }) => {
             </div>
 
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
           </div>
 
           {/* Right Side - Content with Tabs */}
@@ -244,8 +244,8 @@ const WhyChooseUsSection2 = ({ config }) => {
         {config?.testimonial?.show && (
           <div className="mt-20 bg-linear-to-br from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
 
             <div className="relative max-w-3xl mx-auto text-center">
@@ -256,7 +256,7 @@ const WhyChooseUsSection2 = ({ config }) => {
                 "{config.testimonial.quote}"
               </p>
               <div className="flex items-center justify-center">
-                <div className="w-12 h-12 bg-white/20 rounded-full mr-3"></div>
+                <div className="w-12 h-12 bg-white/20 rounded-full mr-3" />
                 <div className="text-left">
                   <p className="font-semibold">{config.testimonial.author}</p>
                   <p className="text-sm text-blue-200">{config.testimonial.position}</p>

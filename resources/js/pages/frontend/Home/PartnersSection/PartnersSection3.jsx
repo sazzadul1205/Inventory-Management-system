@@ -1,8 +1,8 @@
 // page/frontend/Home/PartnersSection/PartnersSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -90,11 +90,11 @@ const PartnersSection3 = ({ config }) => {
       aria-label="Partners section"
     >
       {/* Background Pattern - Magazine Style */}
-      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-64 h-64 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
+      <div className="absolute top-20 left-0 w-64 h-64 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
+      <div className="absolute bottom-20 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Magazine Style */}
@@ -107,8 +107,8 @@ const PartnersSection3 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500" />
                 </span>
               )}
               <span className={`text-sm font-medium ${config.badge.textColor}`}>
@@ -381,7 +381,7 @@ const PartnersSection3 = ({ config }) => {
             {/* Partner Program Overview */}
             <div className="bg-linear-to-br from-indigo-600 to-purple-600 rounded-2xl p-6 text-white relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
               </div>
 
               <div className="relative">
@@ -409,28 +409,28 @@ const PartnersSection3 = ({ config }) => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className={`w-3 h-3 rounded-full bg-linear-to-r from-slate-300 to-slate-400 mt-1 mr-3`}></div>
+                  <div className="w-3 h-3 rounded-full bg-linear-to-r from-slate-300 to-slate-400 mt-1 mr-3" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">Platinum</p>
                     <p className="text-xs text-gray-500 dark:text-gray-500">Strategic global partners with deepest integration</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className={`w-3 h-3 rounded-full bg-linear-to-r from-yellow-400 to-amber-500 mt-1 mr-3`}></div>
+                  <div className="w-3 h-3 rounded-full bg-linear-to-r from-yellow-400 to-amber-500 mt-1 mr-3" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">Gold</p>
                     <p className="text-xs text-gray-500 dark:text-gray-500">Premium partners with proven expertise</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className={`w-3 h-3 rounded-full bg-linear-to-r from-gray-300 to-gray-400 mt-1 mr-3`}></div>
+                  <div className="w-3 h-3 rounded-full bg-linear-to-r from-gray-300 to-gray-400 mt-1 mr-3" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">Silver</p>
                     <p className="text-xs text-gray-500 dark:text-gray-500">Established partners with growing practices</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className={`w-3 h-3 rounded-full bg-linear-to-r from-amber-600 to-amber-700 mt-1 mr-3`}></div>
+                  <div className="w-3 h-3 rounded-full bg-linear-to-r from-amber-600 to-amber-700 mt-1 mr-3" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">Bronze</p>
                     <p className="text-xs text-gray-500 dark:text-gray-500">Emerging partners building their business</p>

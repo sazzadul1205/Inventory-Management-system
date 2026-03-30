@@ -31,9 +31,9 @@ const HealthcareAndPharmaceuticalsSection3 = ({ config }) => {
       aria-label="Healthcare & Pharmaceuticals Features Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-teal-100 dark:bg-teal-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-100 dark:bg-emerald-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-teal-100 dark:bg-teal-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-100 dark:bg-emerald-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -45,8 +45,8 @@ const HealthcareAndPharmaceuticalsSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -221,7 +221,7 @@ const HealthcareAndPharmaceuticalsSection3 = ({ config }) => {
               {config?.steps?.map((step, index) => (
                 <div key={index} className="text-center relative">
                   {index < config?.steps?.length - 1 && (
-                    <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-linear-to-r from-teal-200 to-emerald-200 dark:from-teal-800 dark:to-emerald-800" aria-hidden="true"></div>
+                    <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-linear-to-r from-teal-200 to-emerald-200 dark:from-teal-800 dark:to-emerald-800" aria-hidden="true" />
                   )}
                   <div className="relative z-10 w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-teal-600 mx-auto mb-4">
                     {index + 1}

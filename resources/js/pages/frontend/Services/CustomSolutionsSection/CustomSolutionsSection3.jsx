@@ -90,7 +90,7 @@ const CustomSolutionsSection3 = ({ config }) => {
           alt=""
           className="w-full h-full object-cover opacity-5 dark:opacity-10"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-white to-white dark:via-gray-900 dark:to-gray-900"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-white to-white dark:via-gray-900 dark:to-gray-900" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +137,7 @@ const CustomSolutionsSection3 = ({ config }) => {
                 <div
                   key={i}
                   className="w-8 h-8 rounded-full bg-linear-to-br from-indigo-400 to-purple-600 border-2 border-white dark:border-gray-800"
-                ></div>
+                 />
               ))}
             </div>
             <span className="text-sm text-gray-600 dark:text-gray-400">{config?.trustText}</span>
@@ -215,7 +215,7 @@ const CustomSolutionsSection3 = ({ config }) => {
             </div>
 
             {/* Floating Element */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-indigo-400/30 rounded-full blur-2xl"></div>
+            <div className="absolute -top-4 -right-4 w-20 h-20 bg-indigo-400/30 rounded-full blur-2xl" />
           </div>
         </div>
 

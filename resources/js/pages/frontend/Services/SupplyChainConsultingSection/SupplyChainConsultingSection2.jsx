@@ -72,7 +72,7 @@ const SupplyChainConsultingSection2 = ({ config }) => {
       aria-label="Supply Chain Consulting Services"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-consulting-pattern opacity-5" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-consulting-pattern opacity-5" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Stats */}
@@ -174,14 +174,14 @@ const SupplyChainConsultingSection2 = ({ config }) => {
                   <div className="space-y-6 mb-8">
                     <div>
                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full" />
                         Challenge
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400">{study.challenge}</p>
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
                         Solution
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400">{study.solution}</p>
@@ -264,7 +264,7 @@ const SupplyChainConsultingSection2 = ({ config }) => {
             {config?.methodology?.steps?.map((step, idx) => (
               <div key={step.id} className="relative">
                 {idx < config.methodology.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-indigo-200 dark:bg-indigo-900/30" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-indigo-200 dark:bg-indigo-900/30" aria-hidden="true" />
                 )}
                 <div className="relative text-center">
                   <div className="w-16 h-16 mx-auto mb-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-2xl">

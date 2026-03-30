@@ -4,8 +4,8 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
-import { WiDayThunderstorm } from 'react-icons/wi';
 import { FiHome, FiRefreshCw, FiMail, FiArrowLeft } from 'react-icons/fi';
+import { WiDayThunderstorm } from 'react-icons/wi';
 
 const PageBroken = ({ reason }) => {
   const errorId = `ERR_PAGE_BROKEN_${Math.random()

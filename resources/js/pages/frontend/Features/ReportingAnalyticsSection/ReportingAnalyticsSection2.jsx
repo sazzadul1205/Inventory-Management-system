@@ -97,9 +97,9 @@ const ReportingAnalyticsSection2 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -111,8 +111,8 @@ const ReportingAnalyticsSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -208,9 +208,9 @@ const ReportingAnalyticsSection2 = ({ config }) => {
               {/* Dashboard Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-red-500 rounded-full" />
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                  <div className="w-3 h-3 bg-green-500 rounded-full" />
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400">Analytics Dashboard</span>
                 <button className="text-gray-400 hover:text-purple-600 transition-colors">
@@ -270,7 +270,7 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                         <div
                           className="w-full bg-linear-to-t from-purple-500 to-indigo-500 rounded-t transition-all duration-300 hover:from-purple-600 hover:to-indigo-600"
                           style={{ height: `${(value / 100) * 200}px` }}
-                        ></div>
+                         />
                         <span className="text-xs text-gray-500 dark:text-gray-400">{i + 1}</span>
                       </div>
                     ))}
@@ -315,7 +315,7 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                         <div
                           className="w-full bg-purple-500 rounded-t transition-all duration-300 hover:bg-purple-600"
                           style={{ height: `${(value / 150) * 200}px` }}
-                        ></div>
+                         />
                         <span className="text-xs text-gray-500 dark:text-gray-400">{i + 1}</span>
                       </div>
                     ))}

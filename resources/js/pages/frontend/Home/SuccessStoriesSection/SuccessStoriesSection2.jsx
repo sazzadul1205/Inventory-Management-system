@@ -1,8 +1,8 @@
 // page/frontend/Home/SuccessStoriesSection/SuccessStoriesSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -76,11 +76,11 @@ const SuccessStoriesSection2 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Lines */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -230,7 +230,7 @@ const SuccessStoriesSection2 = ({ config }) => {
                   {/* Challenge */}
                   <div className="bg-red-50 dark:bg-red-900/10 rounded-xl p-5">
                     <h4 className="font-semibold text-red-600 dark:text-red-400 mb-3 flex items-center">
-                      <span className="w-1 h-4 bg-red-500 rounded-full mr-2"></span>
+                      <span className="w-1 h-4 bg-red-500 rounded-full mr-2" />
                       The Challenge
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -241,7 +241,7 @@ const SuccessStoriesSection2 = ({ config }) => {
                   {/* Solution */}
                   <div className="bg-green-50 dark:bg-green-900/10 rounded-xl p-5">
                     <h4 className="font-semibold text-green-600 dark:text-green-400 mb-3 flex items-center">
-                      <span className="w-1 h-4 bg-green-500 rounded-full mr-2"></span>
+                      <span className="w-1 h-4 bg-green-500 rounded-full mr-2" />
                       The Solution
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">

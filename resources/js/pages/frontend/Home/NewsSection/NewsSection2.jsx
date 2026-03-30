@@ -1,10 +1,11 @@
 // page/frontend/Home/NewsSection/NewsSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
+import { FaRegNewspaper, FaRegFileAlt } from 'react-icons/fa';
 import {
   HiOutlineCalendar,
   HiOutlineClock,
@@ -20,7 +21,6 @@ import {
   HiOutlineBriefcase,
   HiOutlineUsers,
 } from 'react-icons/hi';
-import { FaRegNewspaper, FaRegFileAlt } from 'react-icons/fa';
 import { HiOutlineMegaphone, HiOutlineTrophy } from "react-icons/hi2";
 
 const NewsSection2 = ({ config }) => {
@@ -93,11 +93,11 @@ const NewsSection2 = ({ config }) => {
       aria-label="News section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Blobs */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-amber-200 dark:bg-amber-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-orange-200 dark:bg-orange-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-amber-200 dark:bg-amber-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-orange-200 dark:bg-orange-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -232,8 +232,8 @@ const NewsSection2 = ({ config }) => {
           <div className="mb-12">
             <div className="bg-linear-to-br from-amber-500 to-orange-500 rounded-3xl p-8 text-white relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
               </div>
 
               <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">

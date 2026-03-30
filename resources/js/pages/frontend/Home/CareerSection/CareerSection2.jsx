@@ -1,8 +1,8 @@
 // page/frontend/Home/CareerSection/CareerSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -65,11 +65,11 @@ const CareerSection2 = ({ config }) => {
       aria-label="Careers section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Blobs */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -366,8 +366,8 @@ const CareerSection2 = ({ config }) => {
         {config?.cta?.show && (
           <div className="bg-linear-to-br from-blue-600 to-indigo-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
 
             <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -402,7 +402,7 @@ const CareerSection2 = ({ config }) => {
                 <div className="text-center">
                   <div className="text-3xl font-bold">{config.stats?.items?.[0]?.value || '50+'}</div>
                   <div className="text-sm text-blue-100">Open Positions</div>
-                  <div className="border-t border-white/20 my-4"></div>
+                  <div className="border-t border-white/20 my-4" />
                   <div className="text-3xl font-bold">{config.stats?.items?.[2]?.value || '500+'}</div>
                   <div className="text-sm text-blue-100">Team Members</div>
                 </div>

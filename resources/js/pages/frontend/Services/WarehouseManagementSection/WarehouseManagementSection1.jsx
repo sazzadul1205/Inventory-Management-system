@@ -53,11 +53,11 @@ const WarehouseManagementSection1 = ({ config }) => {
       itemType="https://schema.org/Service"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-warehouse-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-warehouse-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -127,7 +127,7 @@ const WarehouseManagementSection1 = ({ config }) => {
               />
 
               {/* Overlay Stats Cards */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" aria-hidden="true" />
 
               <div className="absolute bottom-6 left-6 right-6 grid grid-cols-2 gap-4">
                 {config?.stats?.map((stat) => (

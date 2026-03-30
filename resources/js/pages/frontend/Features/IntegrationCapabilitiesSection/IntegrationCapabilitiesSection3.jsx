@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
+import { FaPlug } from "react-icons/fa";
 import {
   HiOutlineCloud,
   HiOutlineDatabase,
@@ -27,7 +28,6 @@ import {
   HiOutlineCreditCard,
   HiOutlineMail
 } from 'react-icons/hi';
-import { FaPlug } from "react-icons/fa";
 
 const IntegrationCapabilitiesSection3 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -91,9 +91,9 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-teal-50/50 to-transparent dark:from-teal-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-cyan-50/50 to-transparent dark:from-cyan-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-teal-50/50 to-transparent dark:from-teal-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-cyan-50/50 to-transparent dark:from-cyan-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -105,8 +105,8 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -162,15 +162,15 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
               className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
             >
               {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-teal-600/0 via-teal-600/0 to-teal-600/5 dark:from-teal-400/0 dark:via-teal-400/0 dark:to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-teal-600/0 via-teal-600/0 to-teal-600/5 dark:from-teal-400/0 dark:via-teal-400/0 dark:to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-teal-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-teal-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
               <div className="p-8">
                 {/* Icon with animated background */}
                 <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-teal-500/10 dark:bg-teal-400/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-teal-500/10 dark:bg-teal-400/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative w-16 h-16 bg-linear-to-br from-teal-50 to-cyan-50 dark:from-gray-700 dark:to-gray-700 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <div className="text-teal-600 dark:text-teal-400">
                       {getFeatureIcon(feature.icon)}
@@ -234,7 +234,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
               </div>
 
               {/* Bottom decorative element */}
-              <div className="absolute bottom-0 right-0 w-20 h-20 bg-linear-to-tl from-teal-500/5 to-transparent rounded-tl-full pointer-events-none"></div>
+              <div className="absolute bottom-0 right-0 w-20 h-20 bg-linear-to-tl from-teal-500/5 to-transparent rounded-tl-full pointer-events-none" />
             </div>
           ))}
         </div>
@@ -301,7 +301,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   </div>
 
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-teal-600/5 dark:bg-teal-400/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-teal-600/5 dark:bg-teal-400/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 </div>
               ))}
             </div>

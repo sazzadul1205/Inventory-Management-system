@@ -84,7 +84,7 @@ const SupplyChainConsultingSection3 = ({ config }) => {
           alt=""
           className="w-full h-full object-cover opacity-5 dark:opacity-10"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-white to-white dark:via-gray-900 dark:to-gray-900"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-white to-white dark:via-gray-900 dark:to-gray-900" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -131,7 +131,7 @@ const SupplyChainConsultingSection3 = ({ config }) => {
                 <div
                   key={i}
                   className="w-8 h-8 rounded-full bg-linear-to-br from-blue-400 to-indigo-600 border-2 border-white dark:border-gray-800"
-                ></div>
+                 />
               ))}
             </div>
             <span className="text-sm text-gray-600 dark:text-gray-400">{config?.trustText}</span>
@@ -204,7 +204,7 @@ const SupplyChainConsultingSection3 = ({ config }) => {
             {config?.approach?.steps?.map((step, idx) => (
               <div key={step.id} className="relative">
                 {idx < config.approach.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-linear-to-r from-blue-600 to-indigo-600" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-linear-to-r from-blue-600 to-indigo-600" aria-hidden="true" />
                 )}
                 <div className="relative text-center">
                   <div className="w-24 h-24 mx-auto mb-6 bg-linear-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl">
@@ -234,7 +234,7 @@ const SupplyChainConsultingSection3 = ({ config }) => {
                 className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
               >
                 <div className="h-48 bg-linear-to-br from-blue-600 to-indigo-600 relative">
-                  <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="absolute inset-0 bg-black/20" />
                   <div className="absolute bottom-4 left-4 text-white">
                     <p className="text-sm font-medium opacity-90">{study.industry}</p>
                     <p className="text-xl font-bold">{study.title}</p>

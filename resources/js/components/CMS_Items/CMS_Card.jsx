@@ -14,19 +14,19 @@
  * - Icon support from 16+ libraries
  */
 
-import React, { forwardRef, useMemo, useState } from 'react';
 import clsx from 'clsx';
-import * as FaIcons from 'react-icons/fa';
-import * as HiIcons from 'react-icons/hi';
-import * as MdIcons from 'react-icons/md';
+import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
+import * as BiIcons from 'react-icons/bi';
 import * as BsIcons from 'react-icons/bs';
+import * as FaIcons from 'react-icons/fa';
+import * as FiIcons from 'react-icons/fi';
+import * as GiIcons from 'react-icons/gi';
+import * as HiIcons from 'react-icons/hi';
+import * as IoIcons from 'react-icons/io5';
+import * as MdIcons from 'react-icons/md';
 import * as RiIcons from 'react-icons/ri';
 import * as TbIcons from 'react-icons/tb';
-import * as GiIcons from 'react-icons/gi';
-import * as FiIcons from 'react-icons/fi';
-import * as IoIcons from 'react-icons/io5';
-import * as BiIcons from 'react-icons/bi';
 
 // ============================================================================
 // Icon Libraries Registry
@@ -712,7 +712,7 @@ const CMS_Card = forwardRef(({
     'data-component': component,
     'data-hovered': isHovered ? 'true' : undefined,
     'aria-label': ariaLabel,
-    'role': role,
+    role,
     'aria-disabled': disabled,
     ...props,
   };

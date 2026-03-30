@@ -4,6 +4,7 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
+import { GoPackage } from "react-icons/go";
 import {
   HiOutlineShoppingBag,
   HiOutlineTruck,
@@ -22,7 +23,6 @@ import {
   HiOutlineStar,
   HiOutlineBell
 } from 'react-icons/hi';
-import { GoPackage } from "react-icons/go";
 
 const OrderFulfillmentSection3 = ({ config }) => {
   // Icon mapping function
@@ -78,7 +78,7 @@ const OrderFulfillmentSection3 = ({ config }) => {
           alt=""
           className="w-full h-full object-cover opacity-5 dark:opacity-10"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-white to-white dark:via-gray-900 dark:to-gray-900"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-white to-white dark:via-gray-900 dark:to-gray-900" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,7 +127,7 @@ const OrderFulfillmentSection3 = ({ config }) => {
                   <div
                     key={i}
                     className="w-8 h-8 rounded-full bg-linear-to-br from-blue-400 to-indigo-600 border-2 border-white dark:border-gray-800"
-                  ></div>
+                   />
                 ))}
               </div>
               <span className="text-sm text-gray-600 dark:text-gray-400">{config?.trustText}</span>
@@ -144,8 +144,8 @@ const OrderFulfillmentSection3 = ({ config }) => {
         {/* Main Dashboard Preview */}
         <div className="relative mb-32">
           {/* Decorative Elements */}
-          <div className="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-          <div className="absolute -bottom-6 -right-6 w-64 h-64 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+          <div className="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
+          <div className="absolute -bottom-6 -right-6 w-64 h-64 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
           {/* Dashboard Image */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800">

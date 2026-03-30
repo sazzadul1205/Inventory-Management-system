@@ -54,8 +54,8 @@ const BeforeAfterScenariosSection2 = ({ config }) => {
       aria-label="Before & After Transformation Showcase"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-green-50/50 to-transparent dark:from-green-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-green-50/50 to-transparent dark:from-green-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -65,8 +65,8 @@ const BeforeAfterScenariosSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -284,12 +284,12 @@ const BeforeAfterScenariosSection2 = ({ config }) => {
               {config?.timelineTitle || "Transformation Journey"}
             </h3>
             <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-green-500 to-emerald-500" aria-hidden="true"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-green-500 to-emerald-500" aria-hidden="true" />
               <div className="space-y-8">
                 {currentScenario?.timeline?.map((event, idx) => (
                   <div key={idx} className={`relative flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <div className="w-1/2"></div>
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
+                    <div className="w-1/2" />
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg" />
                     <div className={`w-1/2 ${idx % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
                       <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
                         <div className="text-sm font-semibold text-green-600">{event.period}</div>

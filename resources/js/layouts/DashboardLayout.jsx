@@ -18,19 +18,10 @@
  * @param {React.ReactNode} props.children - Child components to render in main content area
  */
 
-import React, { useState, useEffect } from 'react';
 import { Link, usePage } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react';
 
 // Import Logo
-import Icon from '../../../public/Icon.png';
-import DarkIcon from '../../../public/DarkIcon.png';
-
-// Import ThemeToggle component
-import ThemeToggle from '@/components/ThemeToggle';
-
-// ============================================================================
-// ICON IMPORTS
-// ============================================================================
 import {
   // Navigation Icons
   HiMenu,                 // Menu toggle
@@ -60,6 +51,16 @@ import {
   HiExclamationCircle,    // Warning
   HiInformationCircle,    // Info
 } from 'react-icons/hi';
+
+import DarkIcon from '../../../public/DarkIcon.png';
+import Icon from '../../../public/Icon.png';
+
+// Import ThemeToggle component
+import ThemeToggle from '@/components/ThemeToggle';
+
+// ============================================================================
+// ICON IMPORTS
+// ============================================================================
 
 // ============================================================================
 // CONFIGURATION ARRAYS
@@ -555,7 +556,7 @@ const DashboardLayout = ({ children }) => {
                           {notification.time}
                         </p>
                         {!notification.read && (
-                          <span className="ml-2 w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+                          <span className="ml-2 w-1.5 h-1.5 bg-blue-500 rounded-full" />
                         )}
                       </div>
                     </div>

@@ -1,7 +1,7 @@
 // page/frontend/Home/ServicesSection/ServicesSection2.jsx
 
 // React
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 // Icons
 import {
@@ -66,9 +66,9 @@ const ServicesSection2 = ({ config }) => {
     >
       {/* Background Elements - decorative */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
       </div>
 
       {/* Header Image Section */}
@@ -80,7 +80,7 @@ const ServicesSection2 = ({ config }) => {
             className="w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 to-purple-900/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 to-purple-900/90 mix-blend-multiply" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white max-w-4xl px-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -200,7 +200,7 @@ const ServicesSection2 = ({ config }) => {
                     />
 
                     {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay"></div>
+                    <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay" />
 
                     {/* Floating Stats Card */}
                     {service.stats && (
@@ -222,8 +222,8 @@ const ServicesSection2 = ({ config }) => {
                   </div>
 
                   {/* Decorative Elements */}
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
-                  <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
+                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
+                  <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
                 </div>
               </div>
             </article>
@@ -233,9 +233,9 @@ const ServicesSection2 = ({ config }) => {
         {/* Bottom CTA Card */}
         {config?.bottomCta?.show && (
           <div className="mt-24 relative">
-            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-30" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-30" aria-hidden="true" />
             <div className="relative bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-grid-pattern-white opacity-10" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-grid-pattern-white opacity-10" aria-hidden="true" />
               <div className="relative px-8 py-12 md:py-16 md:px-12 text-center">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   {config.bottomCta.title}

@@ -34,7 +34,6 @@ import {
     HiOutlineCalendar,
     HiOutlineTag,
     HiOutlineSparkles,
-    HiOutlineRocket,
     HiOutlineTrendingUp,
     HiOutlineQuestionMarkCircle,
     HiOutlineClipboardList,
@@ -143,7 +142,7 @@ const HowToGuidesSection3 = ({ config }) => {
             calendar: <HiOutlineCalendar className={className} />,
             tag: <HiOutlineTag className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
             trending: <HiOutlineTrendingUp className={className} />,
             question: <HiOutlineQuestionMarkCircle className={className} />,
             clipboard: <HiOutlineClipboardList className={className} />,
@@ -449,7 +448,7 @@ const HowToGuidesSection3 = ({ config }) => {
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <div className="w-20 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${course.progress || 0}%` }}></div>
+                                                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${course.progress || 0}%` }} />
                                                 </div>
                                                 <span className="text-xs text-gray-500 dark:text-gray-400">{course.progress || 0}%</span>
                                             </div>
@@ -468,16 +467,16 @@ const HowToGuidesSection3 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${selectedCategory === category.id
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                                 }`}
                         >
                             {getIcon(category.icon, "w-4 h-4")}
                             {category.label}
                             {category.count !== undefined && (
                                 <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${selectedCategory === category.id
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                    ? 'bg-white/20 text-white'
+                                    : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                                     }`}>
                                     {category.count}
                                 </span>
@@ -533,7 +532,7 @@ const HowToGuidesSection3 = ({ config }) => {
                                         </button>
                                         {progress > 0 && (
                                             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-700">
-                                                <div className="h-full bg-green-500 rounded-full" style={{ width: `${progress}%` }}></div>
+                                                <div className="h-full bg-green-500 rounded-full" style={{ width: `${progress}%` }} />
                                             </div>
                                         )}
                                     </div>
@@ -587,7 +586,7 @@ const HowToGuidesSection3 = ({ config }) => {
                                 alt={activeGuide.title}
                                 className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
                             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryConfig(activeGuide.category).color}`}>
@@ -638,8 +637,8 @@ const HowToGuidesSection3 = ({ config }) => {
                                         key={tab}
                                         onClick={() => setActiveTab(tab)}
                                         className={`px-6 py-3 font-medium transition-all duration-300 capitalize ${activeTab === tab
-                                                ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600'
-                                                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                                            ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600'
+                                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                                             }`}
                                     >
                                         {tab === 'overview' && 'Overview'}
@@ -702,8 +701,8 @@ const HowToGuidesSection3 = ({ config }) => {
                                         <button
                                             onClick={() => toggleBookmark(activeGuide.id)}
                                             className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 border ${bookmarkedGuides.includes(activeGuide.id)
-                                                    ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 text-yellow-700'
-                                                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-600'
+                                                ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 text-yellow-700'
+                                                : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-600'
                                                 }`}
                                         >
                                             <HiOutlineBookmark className="w-4 h-4 inline mr-2" />
@@ -726,7 +725,7 @@ const HowToGuidesSection3 = ({ config }) => {
                                                 <div
                                                     className="h-full bg-green-500 rounded-full transition-all duration-300"
                                                     style={{ width: `${progressTracking[activeGuide.id] || 0}%` }}
-                                                ></div>
+                                                 />
                                             </div>
                                         </div>
                                     </div>
@@ -738,8 +737,8 @@ const HowToGuidesSection3 = ({ config }) => {
                                                 <div
                                                     key={idx}
                                                     className={`p-5 rounded-xl border transition-all duration-300 ${isCompleted
-                                                            ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800'
-                                                            : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700'
+                                                        ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800'
+                                                        : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700'
                                                         }`}
                                                 >
                                                     <div className="flex items-start gap-4">
@@ -747,8 +746,8 @@ const HowToGuidesSection3 = ({ config }) => {
                                                             <button
                                                                 onClick={() => handleStepComplete(activeGuide.id, idx)}
                                                                 className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isCompleted
-                                                                        ? 'bg-green-500 text-white'
-                                                                        : 'bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 hover:border-green-500'
+                                                                    ? 'bg-green-500 text-white'
+                                                                    : 'bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 hover:border-green-500'
                                                                     }`}
                                                             >
                                                                 {isCompleted ? <HiOutlineCheckCircle className="w-5 h-5" /> : <span className="text-sm font-medium">{idx + 1}</span>}
@@ -873,8 +872,8 @@ const HowToGuidesSection3 = ({ config }) => {
                                                 </div>
                                                 {showQuizResults && (
                                                     <div className={`mt-3 text-sm ${quizAnswers[`${activeGuide.id}_${qIdx}`] === question.correctAnswer
-                                                            ? 'text-green-600'
-                                                            : 'text-red-600'
+                                                        ? 'text-green-600'
+                                                        : 'text-red-600'
                                                         }`}>
                                                         {quizAnswers[`${activeGuide.id}_${qIdx}`] === question.correctAnswer
                                                             ? '✓ Correct!'
@@ -1006,3 +1005,4 @@ const HowToGuidesSection3 = ({ config }) => {
 };
 
 export default HowToGuidesSection3;
+

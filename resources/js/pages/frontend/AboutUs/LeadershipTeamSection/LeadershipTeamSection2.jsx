@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useRef, useEffect } from 'react';
 
 // Icons
+import { AiOutlineLinkedin, AiOutlineTwitter } from "react-icons/ai";
 import {
     HiOutlineChevronDown,
     HiOutlineChevronUp,
@@ -25,7 +26,6 @@ import {
     HiOutlineCalendar,
     HiOutlineStar,
 } from 'react-icons/hi';
-import { AiOutlineLinkedin, AiOutlineTwitter } from "react-icons/ai";
 
 const LeadershipTeamSection2 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);
@@ -87,7 +87,7 @@ const LeadershipTeamSection2 = ({ config }) => {
             tags: faq.tags
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'leadership-faq-export.json');
@@ -144,9 +144,9 @@ const LeadershipTeamSection2 = ({ config }) => {
             aria-label="Leadership Team Help Center"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -156,8 +156,8 @@ const LeadershipTeamSection2 = ({ config }) => {
                     >
                         {config?.badge?.showPulse && (
                             <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                             </span>
                         )}
                         <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -339,7 +339,7 @@ const LeadershipTeamSection2 = ({ config }) => {
                                         <div className="text-8xl group-hover:scale-110 transition-transform">{leader.icon}</div>
                                     </div>
                                 )}
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all"></div>
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
                                     <h3 className="text-xl font-bold">{leader.name}</h3>
                                     <p className="text-sm opacity-90">{leader.title}</p>
@@ -575,7 +575,7 @@ const LeadershipTeamSection2 = ({ config }) => {
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowModal(false)}>
                         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
                             <div className="relative h-48 bg-linear-to-r from-blue-500 to-indigo-600 rounded-t-3xl">
-                                <div className="absolute inset-0 bg-black/20 rounded-t-3xl"></div>
+                                <div className="absolute inset-0 bg-black/20 rounded-t-3xl" />
                                 <button
                                     onClick={() => setShowModal(false)}
                                     className="absolute top-4 right-4 text-white hover:text-gray-200"

@@ -66,12 +66,12 @@ const TransportationManagementSection1 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L90 90 M90 10 L10 90' stroke='%239CA3AF' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E")`,
           backgroundSize: '50px 50px'
-        }}></div>
+        }} />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -154,8 +154,8 @@ const TransportationManagementSection1 = ({ config }) => {
               <div className="absolute top-4 left-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-xl p-3 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                   </span>
                   <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{config?.liveTracking}</span>
                 </div>

@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 
 // Shared Components
-import Navbar from "../shared/navbar";
+import { HiArrowUp } from "react-icons/hi2";
+
 import Footer from "../shared/Footer";
+import Navbar from "../shared/navbar";
 
 // Icon
-import { HiArrowUp } from "react-icons/hi2";
 
 const FrontEnd_Layout = ({ children }) => {
   const [showTopBtn, setShowTopBtn] = useState(false);

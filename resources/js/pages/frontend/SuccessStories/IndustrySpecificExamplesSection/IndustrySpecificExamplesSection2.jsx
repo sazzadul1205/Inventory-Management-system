@@ -76,9 +76,9 @@ const IndustrySpecificExamplesSection2 = ({ config }) => {
       aria-label="Industry Success Showcase"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -88,8 +88,8 @@ const IndustrySpecificExamplesSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -190,13 +190,13 @@ const IndustrySpecificExamplesSection2 = ({ config }) => {
                               </div>
 
                               <div className="grid grid-cols-2 gap-4 mb-6">
-                                <div className={`p-4 rounded-xl bg-red-50 dark:bg-red-900/20`}>
+                                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
                                   <div className="text-xs text-gray-500 mb-1">Before</div>
                                   <div className="text-sm font-semibold text-red-600">
                                     {story.before}
                                   </div>
                                 </div>
-                                <div className={`p-4 rounded-xl bg-green-50 dark:bg-green-900/20`}>
+                                <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
                                   <div className="text-xs text-gray-500 mb-1">After</div>
                                   <div className="text-sm font-semibold text-green-600">
                                     {story.after}
@@ -311,7 +311,7 @@ const IndustrySpecificExamplesSection2 = ({ config }) => {
 
             {/* Industry Solutions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className={`p-6 rounded-2xl bg-red-50 dark:bg-red-900/20`}>
+              <div className="p-6 rounded-2xl bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">⚠️</span>
                   <h4 className="text-lg font-bold text-red-700 dark:text-red-400">

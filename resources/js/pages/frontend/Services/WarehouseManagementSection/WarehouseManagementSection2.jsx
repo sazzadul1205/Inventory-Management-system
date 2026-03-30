@@ -64,7 +64,7 @@ const WarehouseManagementSection2 = ({ config }) => {
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/50 to-transparent dark:from-blue-900/10"></div>
+        <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/50 to-transparent dark:from-blue-900/10" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,7 +150,7 @@ const WarehouseManagementSection2 = ({ config }) => {
                       className="w-full h-64 object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" aria-hidden="true"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" aria-hidden="true" />
                     <div className={`absolute bottom-4 left-4 px-3 py-1 rounded-full text-sm font-medium ${feature.badgeColor}`}>
                       {feature.badge}
                     </div>

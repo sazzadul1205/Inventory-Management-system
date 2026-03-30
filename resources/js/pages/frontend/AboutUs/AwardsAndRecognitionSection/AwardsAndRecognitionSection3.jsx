@@ -99,7 +99,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
             description: award.description,
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'awards-export.json');
@@ -197,9 +197,9 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
             aria-label="Awards & Recognition Knowledge Base"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -209,8 +209,8 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                     >
                         {config?.badge?.showPulse && (
                             <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                             </span>
                         )}
                         <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -465,7 +465,7 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
                 {activeTab === 'timeline' && (
                     <div className="mb-16">
                         <div className="relative max-w-4xl mx-auto">
-                            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-blue-500 to-indigo-500 hidden md:block" aria-hidden="true"></div>
+                            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-blue-500 to-indigo-500 hidden md:block" aria-hidden="true" />
                             <div className="space-y-12">
                                 {yearTimeline.map((year, yearIndex) => {
                                     const yearAwards = groupedAwards[year] || [];
@@ -474,8 +474,8 @@ const AwardsAndRecognitionSection3 = ({ config }) => {
 
                                     return (
                                         <div key={year} className={`relative flex flex-col md:flex-row items-center ${yearIndex % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                                            <div className="hidden md:block w-1/2"></div>
-                                            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10 hidden md:block"></div>
+                                            <div className="hidden md:block w-1/2" />
+                                            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10 hidden md:block" />
                                             <div className={`w-full md:w-1/2 ${yearIndex % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
                                                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all p-6">
                                                     <div className="text-2xl font-bold text-blue-600 mb-3">{year}</div>

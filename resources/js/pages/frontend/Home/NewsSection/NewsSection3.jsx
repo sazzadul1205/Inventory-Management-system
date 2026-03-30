@@ -1,10 +1,11 @@
 // page/frontend/Home/NewsSection/NewsSection3.jsx
 
 // React
-import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
+import { FaRegNewspaper, FaRegFileAlt, FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import {
   HiOutlineCalendar,
   HiOutlineClock,
@@ -23,7 +24,6 @@ import {
   HiOutlineChevronLeft,
   HiOutlineChevronRight,
 } from 'react-icons/hi';
-import { FaRegNewspaper, FaRegFileAlt, FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import { HiOutlineMegaphone, HiOutlineTrophy } from "react-icons/hi2";
 
 const NewsSection3 = ({ config }) => {
@@ -131,11 +131,11 @@ const NewsSection3 = ({ config }) => {
       aria-label="News section"
     >
       {/* Background Pattern - Magazine Style */}
-      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
+      <div className="absolute top-20 left-0 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
+      <div className="absolute bottom-20 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Magazine Style */}
@@ -148,8 +148,8 @@ const NewsSection3 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                 </span>
               )}
               <span className={`text-sm font-medium ${config.badge.textColor}`}>
@@ -217,7 +217,7 @@ const NewsSection3 = ({ config }) => {
                       alt={featuredNews.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent md:bg-linear-to-r"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent md:bg-linear-to-r" />
 
                     {/* Type Badge */}
                     <div className="absolute top-4 left-4">
@@ -491,7 +491,7 @@ const NewsSection3 = ({ config }) => {
                         }`}
                     >
                       <span className="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                        <span className={`w-2 h-2 rounded-full ${getNewsTypeColor(category)} mr-2`}></span>
+                        <span className={`w-2 h-2 rounded-full ${getNewsTypeColor(category)} mr-2`} />
                         <span className="group-hover:text-blue-600 dark:group-hover:text-blue-400">
                           {category}
                         </span>
@@ -535,7 +535,7 @@ const NewsSection3 = ({ config }) => {
             {/* Press Kit */}
             <div className="bg-linear-to-br from-blue-600 to-purple-600 rounded-2xl p-6 text-white relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
               </div>
 
               <div className="relative">

@@ -6,7 +6,6 @@ import { useState, useEffect, useRef } from 'react';
 
 // Icons
 import {
-    HiOutlineRocket,
     HiOutlineSparkles,
     HiOutlineChip,
     HiOutlineCloudUpload,
@@ -42,14 +41,15 @@ import {
     HiOutlineShare,
     HiOutlineTrendingUp,
     HiOutlineChartPie,
-    HiOutlineBarChart,
     HiOutlineFire,
     HiOutlineBookmark,
     HiOutlineZoomIn,
     HiOutlineMenu,
     HiOutlineViewGrid,
-    HiOutlineViewList
+    HiOutlineViewList,
+    HiOutlineSearch
 } from 'react-icons/hi';
+import { MdOutlineBarChart } from "react-icons/md";
 
 const ProductUpdatesSection3 = ({ config }) => {
     const [selectedRelease, setSelectedRelease] = useState(null);
@@ -65,7 +65,7 @@ const ProductUpdatesSection3 = ({ config }) => {
     // Icon mapping function
     const getIcon = (iconName, className = "w-5 h-5") => {
         const icons = {
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineTrendingUp       className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
             chip: <HiOutlineChip className={className} />,
             cloud: <HiOutlineCloudUpload className={className} />,
@@ -100,7 +100,7 @@ const ProductUpdatesSection3 = ({ config }) => {
             share: <HiOutlineShare className={className} />,
             trending: <HiOutlineTrendingUp className={className} />,
             pie: <HiOutlineChartPie className={className} />,
-            bar: <HiOutlineBarChart className={className} />,
+            bar: <MdOutlineBarChart className={className} />,
             fire: <HiOutlineFire className={className} />,
             bookmark: <HiOutlineBookmark className={className} />,
             zoom: <HiOutlineZoomIn className={className} />,
@@ -349,8 +349,8 @@ const ProductUpdatesSection3 = ({ config }) => {
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 capitalize flex items-center gap-1 ${selectedCategory === cat
-                                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                                         }`}
                                 >
                                     {cat !== 'all' && getIcon(catConfig.icon, "w-4 h-4")}
@@ -412,7 +412,7 @@ const ProductUpdatesSection3 = ({ config }) => {
                 {viewMode === 'timeline' && (
                     <div ref={timelineRef} className="relative mb-12">
                         {/* Timeline Line */}
-                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-blue-600 via-purple-600 to-blue-600 hidden md:block" aria-hidden="true"></div>
+                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-blue-600 via-purple-600 to-blue-600 hidden md:block" aria-hidden="true" />
 
                         <div className="space-y-12">
                             {filteredUpdates.map((update, index) => {
@@ -431,7 +431,7 @@ const ProductUpdatesSection3 = ({ config }) => {
                                     >
                                         {/* Timeline Dot */}
                                         <div className="absolute left-4 md:left-1/2 top-6 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2 hidden md:flex items-center justify-center shadow-lg">
-                                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                                            <div className="w-2 h-2 bg-white rounded-full" />
                                         </div>
 
                                         {/* Date Badge (Mobile) */}
@@ -557,7 +557,7 @@ const ProductUpdatesSection3 = ({ config }) => {
                                         </div>
 
                                         {/* Empty spacer */}
-                                        <div className="hidden md:block md:w-1/2"></div>
+                                        <div className="hidden md:block md:w-1/2" />
                                     </div>
                                 );
                             })}
@@ -771,3 +771,4 @@ const ProductUpdatesSection3 = ({ config }) => {
 };
 
 export default ProductUpdatesSection3;
+

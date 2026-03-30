@@ -3,8 +3,8 @@
  * Pure React drag and drop implementation
  */
 
-import React, { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import React, { useRef, useEffect } from 'react';
 
 const DroppableCanvas = ({
   onDrop,

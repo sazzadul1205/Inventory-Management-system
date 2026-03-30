@@ -1,15 +1,15 @@
 // resources/js/shared/Footer.jsx
-import React from 'react';
 import { Link } from '@inertiajs/react';
+import React from 'react';
 
 // Icons
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import {
   HiMapPin,
   HiPhone,
   HiEnvelope,
   HiClock,
 } from 'react-icons/hi2';
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
 
@@ -94,7 +94,7 @@ const Footer = () => {
                     href={link.path}
                     className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 text-sm flex items-center group"
                   >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-indigo-600 dark:bg-indigo-400 mr-0 group-hover:mr-2 transition-all duration-200"></span>
+                    <span className="w-0 group-hover:w-2 h-0.5 bg-indigo-600 dark:bg-indigo-400 mr-0 group-hover:mr-2 transition-all duration-200" />
                     {link.name}
                   </Link>
                 </li>
@@ -112,7 +112,7 @@ const Footer = () => {
                     href={service.path}
                     className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 text-sm flex items-center group"
                   >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-indigo-600 dark:bg-indigo-400 mr-0 group-hover:mr-2 transition-all duration-200"></span>
+                    <span className="w-0 group-hover:w-2 h-0.5 bg-indigo-600 dark:bg-indigo-400 mr-0 group-hover:mr-2 transition-all duration-200" />
                     {service.name}
                   </Link>
                 </li>
@@ -190,7 +190,7 @@ const Footer = () => {
       </div>
 
       {/* Decorative gradient line at top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500" />
     </footer>
   );
 };

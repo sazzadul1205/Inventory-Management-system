@@ -1,10 +1,11 @@
 // page/frontend/Home/EventsSection/EventsSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
+import { FaLinkedinIn, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import {
   HiOutlineCalendar,
   HiOutlineLocationMarker,
@@ -17,7 +18,6 @@ import {
   HiOutlineChevronRight,
   HiOutlineBookmark,
 } from 'react-icons/hi';
-import { FaLinkedinIn, FaTwitter, FaFacebookF } from 'react-icons/fa';
 
 const EventsSection3 = ({ config }) => {
   const [activeMonth, setActiveMonth] = useState('all');
@@ -81,11 +81,11 @@ const EventsSection3 = ({ config }) => {
       aria-label="Events section"
     >
       {/* Background Pattern - Magazine Style */}
-      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-pink-200 dark:bg-pink-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true"></div>
+      <div className="absolute top-20 left-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
+      <div className="absolute bottom-20 right-0 w-64 h-64 bg-pink-200 dark:bg-pink-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Magazine Style */}
@@ -98,8 +98,8 @@ const EventsSection3 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
                 </span>
               )}
               <span className={`text-sm font-medium ${config.badge.textColor}`}>
@@ -209,7 +209,7 @@ const EventsSection3 = ({ config }) => {
                             alt={event.title}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+                          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
                           {/* Content Overlay */}
                           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -335,7 +335,7 @@ const EventsSection3 = ({ config }) => {
             {config?.thisMonth?.show && (
               <div className="bg-linear-to-br from-purple-600 to-pink-600 rounded-2xl p-6 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
                 </div>
 
                 <div className="relative">

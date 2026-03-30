@@ -109,7 +109,7 @@ const TechnologyInnovationSection3 = ({ config }) => {
             tags: faq.tags
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'tech-faq-export.json');
@@ -184,9 +184,9 @@ const TechnologyInnovationSection3 = ({ config }) => {
             aria-label="Technology & Innovation Knowledge Base"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -196,8 +196,8 @@ const TechnologyInnovationSection3 = ({ config }) => {
                     >
                         {config?.badge?.showPulse && (
                             <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                             </span>
                         )}
                         <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -414,7 +414,7 @@ const TechnologyInnovationSection3 = ({ config }) => {
                                             <span className="font-semibold text-green-600">99.99%</span>
                                         </div>
                                         <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                            <div className="h-full bg-green-500 rounded-full" style={{ width: '99.99%' }}></div>
+                                            <div className="h-full bg-green-500 rounded-full" style={{ width: '99.99%' }} />
                                         </div>
                                     </div>
                                 ))}
@@ -601,7 +601,7 @@ const TechnologyInnovationSection3 = ({ config }) => {
                                             <div className="bg-gray-900 rounded-lg p-4 min-h-75">
                                                 {isLoading ? (
                                                     <div className="flex items-center justify-center h-full">
-                                                        <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent"></div>
+                                                        <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent" />
                                                     </div>
                                                 ) : (
                                                     <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap overflow-x-auto">

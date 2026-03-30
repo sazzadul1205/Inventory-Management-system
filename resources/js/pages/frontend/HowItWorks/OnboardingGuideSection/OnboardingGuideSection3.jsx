@@ -57,9 +57,9 @@ const OnboardingGuideSection3 = ({ config }) => {
       aria-label="Onboarding Guide Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-teal-50/50 to-transparent dark:from-teal-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-cyan-50/50 to-transparent dark:from-cyan-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-teal-50/50 to-transparent dark:from-teal-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-cyan-50/50 to-transparent dark:from-cyan-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -71,8 +71,8 @@ const OnboardingGuideSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -112,7 +112,7 @@ const OnboardingGuideSection3 = ({ config }) => {
               <div
                 className="bg-teal-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${getVideoProgress()}%` }}
-              ></div>
+               />
             </div>
           </div>
 
@@ -129,7 +129,7 @@ const OnboardingGuideSection3 = ({ config }) => {
               <div
                 className="bg-teal-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${getMilestoneProgress()}%` }}
-              ></div>
+               />
             </div>
           </div>
 
@@ -292,7 +292,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                         {completedMilestones.includes(milestone.id) ? (
                           <HiOutlineCheckCircle className="w-6 h-6 text-green-500" />
                         ) : (
-                          <div className="w-6 h-6 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
+                          <div className="w-6 h-6 rounded-full border-2 border-gray-300 dark:border-gray-600" />
                         )}
                       </div>
                       <div className="flex-1">

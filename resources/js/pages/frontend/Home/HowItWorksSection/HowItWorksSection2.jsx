@@ -1,8 +1,8 @@
 // page/frontend/Home/HowItWorksSection/HowItWorksSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -77,11 +77,11 @@ const HowItWorksSection2 = ({ config }) => {
       itemType="https://schema.org/HowTo"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Lines */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -123,7 +123,7 @@ const HowItWorksSection2 = ({ config }) => {
                 <div
                   className="h-full bg-linear-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-500"
                   style={{ width: `${((activeStep + 1) / (config?.steps?.length || 4)) * 100}%` }}
-                ></div>
+                 />
               </div>
 
               <div className="relative flex justify-between">
@@ -275,9 +275,9 @@ const HowItWorksSection2 = ({ config }) => {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-red-500 rounded-full" />
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                    <div className="w-3 h-3 bg-green-500 rounded-full" />
                   </div>
                   <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
                     Step {activeStep + 1}: {config?.steps?.[activeStep]?.title}
@@ -318,7 +318,7 @@ const HowItWorksSection2 = ({ config }) => {
                     <div
                       className="h-full bg-linear-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-500"
                       style={{ width: `${((activeStep + 1) / (config?.steps?.length || 4)) * 100}%` }}
-                    ></div>
+                     />
                   </div>
                 </div>
               </div>
@@ -336,8 +336,8 @@ const HowItWorksSection2 = ({ config }) => {
             </div>
 
             {/* Decorative Elements */}
-            <div className="absolute -top-6 -left-6 w-20 h-20 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
+            <div className="absolute -top-6 -left-6 w-20 h-20 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
           </div>
         </div>
 

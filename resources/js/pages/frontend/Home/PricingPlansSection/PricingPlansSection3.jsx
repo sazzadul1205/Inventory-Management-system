@@ -1,10 +1,11 @@
 // page/frontend/Home/PricingPlansSection/PricingPlansSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
+import { AiOutlineCrown } from "react-icons/ai";
 import {
   HiOutlineCheckCircle,
   HiOutlineXCircle,
@@ -18,7 +19,6 @@ import {
   HiOutlineHeart,
   HiOutlineFire
 } from 'react-icons/hi';
-import { AiOutlineCrown } from "react-icons/ai";
 
 const PricingPlansSection3 = ({ config }) => {
   // State for billing cycle
@@ -58,7 +58,7 @@ const PricingPlansSection3 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -191,10 +191,10 @@ const PricingPlansSection3 = ({ config }) => {
                   <div
                     className={`absolute inset-0 bg-linear-to-br from-amber-50 to-pink-50 dark:from-amber-900/10 dark:to-pink-900/10 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
                       }`}
-                  ></div>
+                   />
 
                   {/* Decorative Circles */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-amber-200 to-pink-200 dark:from-amber-800/20 dark:to-pink-800/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-amber-200 to-pink-200 dark:from-amber-800/20 dark:to-pink-800/20 rounded-full blur-3xl -mr-16 -mt-16" />
 
                   {/* Content */}
                   <div className="relative z-10">
@@ -262,7 +262,7 @@ const PricingPlansSection3 = ({ config }) => {
                             <div className="relative">
                               <HiOutlineCheckCircle className="w-5 h-5 text-green-500 dark:text-green-400 shrink-0 mr-3" />
                               {isHovered && (
-                                <span className="absolute -inset-1 bg-green-500/20 rounded-full animate-ping"></span>
+                                <span className="absolute -inset-1 bg-green-500/20 rounded-full animate-ping" />
                               )}
                             </div>
                           ) : (
@@ -291,7 +291,7 @@ const PricingPlansSection3 = ({ config }) => {
                     >
                       <span className="relative z-10">{plan.ctaText || 'Get Started'}</span>
                       {isHovered && (
-                        <span className="absolute inset-0 bg-white/20 transform -skew-x-12 animate-shimmer"></span>
+                        <span className="absolute inset-0 bg-white/20 transform -skew-x-12 animate-shimmer" />
                       )}
                     </Link>
 
@@ -312,9 +312,9 @@ const PricingPlansSection3 = ({ config }) => {
         {/* Enterprise Callout */}
         {config?.enterprise?.show && (
           <div className="mt-20 relative">
-            <div className="absolute inset-0 bg-linear-to-r from-amber-500 to-pink-500 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-amber-500 to-pink-500 rounded-3xl blur-2xl opacity-30 animate-pulse" />
             <div className="relative bg-linear-to-r from-amber-500 to-pink-500 rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-grid-pattern-white opacity-10"></div>
+              <div className="absolute inset-0 bg-grid-pattern-white opacity-10" />
               <div className="relative px-8 py-12 md:px-12 text-center">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   {config.enterprise.title}

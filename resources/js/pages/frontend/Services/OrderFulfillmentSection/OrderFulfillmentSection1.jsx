@@ -4,6 +4,7 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
+import { GoPackage } from "react-icons/go";
 import {
   HiOutlineShoppingBag,
   HiOutlineTruck,
@@ -17,7 +18,6 @@ import {
   HiOutlineCash,
   HiOutlineDeviceMobile
 } from 'react-icons/hi';
-import { GoPackage } from "react-icons/go";
 
 const OrderFulfillmentSection1 = ({ config }) => {
   // Icon mapping function
@@ -63,12 +63,12 @@ const OrderFulfillmentSection1 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 20 L55 40 L30 55 L5 40 L5 20 Z' stroke='%239CA3AF' fill='none' stroke-width='0.5'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px'
-        }}></div>
+        }} />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-20 left-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -119,7 +119,7 @@ const OrderFulfillmentSection1 = ({ config }) => {
                       {index + 1}
                     </div>
                     {index < config.process.steps.length - 1 && (
-                      <div className="absolute top-12 left-6 w-0.5 h-12 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></div>
+                      <div className="absolute top-12 left-6 w-0.5 h-12 bg-gray-200 dark:bg-gray-700" aria-hidden="true" />
                     )}
                   </div>
                   <div className="flex-1 pb-6">

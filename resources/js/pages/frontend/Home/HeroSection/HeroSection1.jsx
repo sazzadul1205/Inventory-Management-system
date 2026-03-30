@@ -29,8 +29,8 @@ const HeroSection1 = ({ config }) => {
     >
       {/* Background Pattern - decorative only, hidden from screen readers */}
       <div className="absolute inset-0 opacity-10 dark:opacity-5" aria-hidden="true">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400 dark:bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600 dark:bg-blue-700 rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400 dark:bg-blue-500 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600 dark:bg-blue-700 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -44,8 +44,8 @@ const HeroSection1 = ({ config }) => {
             >
               {config?.trustBadge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
               )}
               <span className="text-sm font-medium text-white dark:text-gray-200">
@@ -129,7 +129,7 @@ const HeroSection1 = ({ config }) => {
                     className="w-8 h-8 rounded-full bg-linear-to-br from-yellow-300 to-yellow-500 dark:from-yellow-400 dark:to-yellow-600 border-2 border-blue-800 dark:border-gray-700"
                     role="img"
                     aria-label="Customer avatar"
-                  ></div>
+                   />
                 ))}
               </div>
               <p className="text-sm text-blue-200 dark:text-gray-400">
@@ -151,7 +151,7 @@ const HeroSection1 = ({ config }) => {
                 loading="lazy"
                 itemProp="image"
               />
-              <div className="absolute inset-0 bg-linear-to-tr from-blue-900/50 dark:from-gray-900/70 to-transparent" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-blue-900/50 dark:from-gray-900/70 to-transparent" aria-hidden="true" />
 
               {/* Floating Stats Card */}
               <div
@@ -189,8 +189,8 @@ const HeroSection1 = ({ config }) => {
             </div>
 
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 dark:bg-yellow-600 rounded-full opacity-20 animate-pulse" aria-hidden="true"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 animate-pulse delay-700" aria-hidden="true"></div>
+            <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 dark:bg-yellow-600 rounded-full opacity-20 animate-pulse" aria-hidden="true" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 animate-pulse delay-700" aria-hidden="true" />
           </div>
         </div>
 
@@ -198,7 +198,7 @@ const HeroSection1 = ({ config }) => {
         <div className="absolute bottom-0 left-0 right-0" aria-hidden="true">
           <svg className="w-full h-auto" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-              className="fill-white dark:fill-gray-900"></path>
+              className="fill-white dark:fill-gray-900" />
           </svg>
         </div>
       </div>

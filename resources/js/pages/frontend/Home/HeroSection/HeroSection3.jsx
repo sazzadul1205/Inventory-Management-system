@@ -1,8 +1,8 @@
 // Pages/frontend/Home/HeroSection/HeroSection3.jsx
 
 // React
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
 
 // Icons
 import {
@@ -75,7 +75,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={config?.video.title}
-              ></iframe>
+               />
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
                     className="w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 dark:from-blue-500 dark:to-blue-700 border-2 border-white dark:border-gray-800"
                     role="img"
                     aria-label="Customer avatar"
-                  ></div>
+                   />
                 ))}
               </div>
               <div>
@@ -198,7 +198,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
               />
 
               {/* Overlay Stats - decorative */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent dark:from-gray-900/80" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent dark:from-gray-900/80" aria-hidden="true" />
 
               {/* Live Stats Cards */}
               <div
@@ -225,7 +225,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
                         <div
                           className="bg-green-600 dark:bg-green-500 h-1.5 rounded-full"
                           style={{ width: `${stat.progressValue}%` }}
-                        ></div>
+                         />
                       </div>
                     )}
                   </div>
@@ -243,8 +243,8 @@ const HeroSection3 = ({ config, pageConfig }) => {
             </div>
 
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-yellow-400 dark:bg-yellow-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-yellow-400 dark:bg-yellow-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
 // Icons
+import { FaQuoteLeft } from "react-icons/fa";
 import {
   HiOutlineStar,
   HiOutlineCalendar,
@@ -20,7 +21,6 @@ import {
   HiOutlineChartPie,
   HiOutlineCurrencyDollar
 } from 'react-icons/hi';
-import { FaQuoteLeft } from "react-icons/fa";
 import { MdOutlineHandshake } from "react-icons/md";
 
 const PartnerTestimonialsSection3 = ({ config }) => {
@@ -122,8 +122,8 @@ const PartnerTestimonialsSection3 = ({ config }) => {
       aria-label="Partner Testimonials Hub"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -133,8 +133,8 @@ const PartnerTestimonialsSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -381,7 +381,7 @@ const PartnerTestimonialsSection3 = ({ config }) => {
               <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
                 <div className="relative h-48">
                   <img src={spotlight.image} alt={spotlight.company} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-2xl mb-1">{spotlight.icon}</div>
                     <div className="text-xl font-bold">{spotlight.company}</div>

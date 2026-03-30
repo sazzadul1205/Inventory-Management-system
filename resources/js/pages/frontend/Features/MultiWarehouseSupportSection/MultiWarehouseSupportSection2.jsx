@@ -70,9 +70,9 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -84,8 +84,8 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -181,9 +181,9 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
               {/* Demo Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-red-500 rounded-full" />
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                  <div className="w-3 h-3 bg-green-500 rounded-full" />
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400">Warehouse Network Simulator</span>
               </div>
@@ -251,7 +251,7 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
                         <div
                           className="bg-purple-500 h-2 rounded-full transition-all duration-500"
                           style={{ width: config.warehouses[activeWarehouse]?.utilizationPercent || '75%' }}
-                        ></div>
+                         />
                       </div>
                     </div>
 
@@ -302,8 +302,8 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
               <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                   </span>
                   Real-time synchronization across all warehouses
                 </div>
@@ -347,7 +347,7 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
                       style={{ left: item.x, top: item.y }}
                     >
                       <div className="relative">
-                        <div className="w-4 h-4 bg-purple-500 rounded-full animate-pulse"></div>
+                        <div className="w-4 h-4 bg-purple-500 rounded-full animate-pulse" />
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                           {item.location}: {item.stock} units
                         </div>

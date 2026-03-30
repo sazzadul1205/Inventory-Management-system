@@ -11,8 +11,8 @@
  * - Play button for videos
  */
 
-import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 
 // ============================================================================
 // Types & Defaults

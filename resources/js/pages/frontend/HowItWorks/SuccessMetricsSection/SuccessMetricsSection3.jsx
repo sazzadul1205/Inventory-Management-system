@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
 // Icons
+import { FiTarget } from "react-icons/fi";
 import {
   HiOutlineClock,
   HiArrowRight,
@@ -15,7 +16,6 @@ import {
   HiOutlineSparkles,
   HiOutlineChip,
 } from 'react-icons/hi';
-import { FiTarget } from "react-icons/fi";
 
 const SuccessMetricsSection3 = ({ config }) => {
   const [selectedSegment, setSelectedSegment] = useState('all');
@@ -50,9 +50,9 @@ const SuccessMetricsSection3 = ({ config }) => {
       aria-label="Success Metrics Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-green-50/50 to-transparent dark:from-green-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-emerald-50/50 to-transparent dark:from-emerald-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-green-50/50 to-transparent dark:from-green-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-emerald-50/50 to-transparent dark:from-emerald-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -64,8 +64,8 @@ const SuccessMetricsSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -191,8 +191,8 @@ const SuccessMetricsSection3 = ({ config }) => {
                           <div
                             className="w-full bg-linear-to-t from-green-500 to-emerald-500 rounded-t-lg transition-all duration-500"
                             style={{ height: `${(item.predicted / 100) * 160}px` }}
-                          ></div>
-                          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-t-lg" style={{ height: `${(item.actual / 100) * 160}px` }}></div>
+                           />
+                          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-t-lg" style={{ height: `${(item.actual / 100) * 160}px` }} />
                           <span className="text-xs text-gray-500">{item.month}</span>
                         </div>
                       ))}
@@ -200,11 +200,11 @@ const SuccessMetricsSection3 = ({ config }) => {
                   </div>
                   <div className="flex justify-center gap-4 text-xs">
                     <div className="flex items-center gap-1">
-                      <div className="w-3 h-3 bg-green-500 rounded"></div>
+                      <div className="w-3 h-3 bg-green-500 rounded" />
                       <span>Predicted</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <div className="w-3 h-3 bg-gray-300 rounded"></div>
+                      <div className="w-3 h-3 bg-gray-300 rounded" />
                       <span>Current Trend</span>
                     </div>
                   </div>
@@ -230,7 +230,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                       <span>{predictions[selectedPrediction]?.current || "78"}%</span>
                     </div>
                     <div className="w-full bg-white/20 rounded-full h-2">
-                      <div className="bg-white h-2 rounded-full" style={{ width: `${predictions[selectedPrediction]?.current || 78}%` }}></div>
+                      <div className="bg-white h-2 rounded-full" style={{ width: `${predictions[selectedPrediction]?.current || 78}%` }} />
                     </div>
                   </div>
                   <div>
@@ -239,7 +239,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                       <span>{predictions[selectedPrediction]?.potential || "95"}%</span>
                     </div>
                     <div className="w-full bg-white/20 rounded-full h-2">
-                      <div className="bg-yellow-300 h-2 rounded-full" style={{ width: `${predictions[selectedPrediction]?.potential || 95}%` }}></div>
+                      <div className="bg-yellow-300 h-2 rounded-full" style={{ width: `${predictions[selectedPrediction]?.potential || 95}%` }} />
                     </div>
                   </div>
                 </div>
@@ -277,7 +277,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                     <div
                       className="bg-green-500 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${goalProgress[goal.id] || 0}%` }}
-                    ></div>
+                     />
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Current: {goal.current}</span>
@@ -316,7 +316,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                       <div
                         className="bg-linear-to-r from-green-500 to-emerald-500 h-2 rounded-full"
                         style={{ width: `${dept.roi}%` }}
-                      ></div>
+                       />
                     </div>
                   </div>
                 ))}

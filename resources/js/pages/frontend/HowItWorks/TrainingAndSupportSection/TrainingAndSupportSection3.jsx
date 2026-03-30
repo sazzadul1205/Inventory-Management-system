@@ -66,9 +66,9 @@ const TrainingAndSupportSection3 = ({ config }) => {
       aria-label="Training & Support Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-purple-50/50 to-transparent dark:from-purple-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-pink-50/50 to-transparent dark:from-pink-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-purple-50/50 to-transparent dark:from-purple-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-pink-50/50 to-transparent dark:from-pink-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -80,8 +80,8 @@ const TrainingAndSupportSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -161,7 +161,7 @@ const TrainingAndSupportSection3 = ({ config }) => {
                     <div
                       className="bg-white h-2 rounded-full transition-all duration-500"
                       style={{ width: `${progress}%` }}
-                    ></div>
+                     />
                   </div>
                   <div className="text-sm text-purple-100 mt-2">
                     {completedCount} of {totalLessons} lessons completed
@@ -185,7 +185,7 @@ const TrainingAndSupportSection3 = ({ config }) => {
                         {completedLessons.includes(lesson.id) ? (
                           <HiOutlineCheckCircle className="w-6 h-6 text-green-500" />
                         ) : (
-                          <div className="w-6 h-6 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
+                          <div className="w-6 h-6 rounded-full border-2 border-gray-300 dark:border-gray-600" />
                         )}
                       </div>
                       <div className="flex-1">
@@ -244,7 +244,7 @@ const TrainingAndSupportSection3 = ({ config }) => {
               Get instant help from our support team
             </p>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
               <span className="text-sm">5 agents online</span>
             </div>
             <Link

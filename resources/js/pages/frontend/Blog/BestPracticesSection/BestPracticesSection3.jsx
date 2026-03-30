@@ -28,7 +28,6 @@ import {
     HiOutlineShare,
     HiOutlineBookmark,
     HiOutlineSparkles,
-    HiOutlineRocket,
     HiOutlineFire,
     HiOutlineAcademicCap,
     HiOutlineDocumentText,
@@ -70,6 +69,7 @@ import {
     HiOutlineWifi,
     HiOutlineCreditCard
 } from 'react-icons/hi';
+
 
 const BestPracticesSection3 = ({ config }) => {
     const [activeTab, setActiveTab] = useState('practices');
@@ -120,7 +120,7 @@ const BestPracticesSection3 = ({ config }) => {
             share: <HiOutlineShare className={className} />,
             bookmark: <HiOutlineBookmark className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
             fire: <HiOutlineFire className={className} />,
             academic: <HiOutlineAcademicCap className={className} />,
             document: <HiOutlineDocumentText className={className} />,
@@ -538,7 +538,7 @@ const BestPracticesSection3 = ({ config }) => {
                                         <div
                                             className="bg-linear-to-r from-blue-500 to-purple-600 h-4 rounded-full transition-all duration-500"
                                             style={{ width: `${assessmentResult.percentage}%` }}
-                                        ></div>
+                                         />
                                     </div>
 
                                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
@@ -774,3 +774,4 @@ const BestPracticesSection3 = ({ config }) => {
 };
 
 export default BestPracticesSection3;
+

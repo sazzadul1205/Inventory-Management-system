@@ -1,10 +1,11 @@
 // page/frontend/Home/AboutUsSection/AboutUsSection3.jsx
 
 // React
-import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState, useEffect } from 'react';
 
 // Icons
+import { FaAward } from "react-icons/fa";
 import {
   HiOutlineUserGroup,
   HiOutlineTruck,
@@ -20,7 +21,6 @@ import {
   HiOutlineFlag,
   HiOutlineBookOpen,
 } from 'react-icons/hi';
-import { FaAward } from "react-icons/fa";
 import { HiOutlineBuildingOffice, HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const AboutUsSection3 = ({ config }) => {
@@ -104,7 +104,7 @@ const AboutUsSection3 = ({ config }) => {
       itemType="https://schema.org/AboutPage"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -168,7 +168,7 @@ const AboutUsSection3 = ({ config }) => {
               alt={config?.hero?.alt || "About Sazzad"}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-linear-to-r from-amber-900/90 to-pink-900/90 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-amber-900/90 to-pink-900/90 mix-blend-multiply" />
 
             {/* Hero Content */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -232,7 +232,7 @@ const AboutUsSection3 = ({ config }) => {
                   "{config.story.quote.text}"
                 </p>
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-pink-500 rounded-full mr-3"></div>
+                  <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-pink-500 rounded-full mr-3" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">
                       {config.story.quote.author}
@@ -293,7 +293,7 @@ const AboutUsSection3 = ({ config }) => {
           {/* Mission Card */}
           <div className="bg-linear-to-br from-amber-500 to-pink-600 rounded-3xl p-8 text-white relative overflow-hidden group">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
             <div className="relative">
               <HiOutlineRocketLaunch className="w-12 h-12 mb-4" />
@@ -309,7 +309,7 @@ const AboutUsSection3 = ({ config }) => {
           {/* Vision Card */}
           <div className="bg-linear-to-br from-purple-500 to-pink-500 rounded-3xl p-8 text-white relative overflow-hidden group">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
             <div className="relative">
               <HiOutlineGlobeAlt className="w-12 h-12 mb-4" />
@@ -325,7 +325,7 @@ const AboutUsSection3 = ({ config }) => {
           {/* Values Card */}
           <div className="bg-linear-to-br from-pink-500 to-rose-500 rounded-3xl p-8 text-white relative overflow-hidden group">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
             <div className="relative">
               <HiOutlineHeart className="w-12 h-12 mb-4" />
@@ -348,7 +348,7 @@ const AboutUsSection3 = ({ config }) => {
 
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-amber-500 via-pink-500 to-purple-500 rounded-full"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-amber-500 via-pink-500 to-purple-500 rounded-full" />
 
               {config.timeline.events.map((event, index) => (
                 <div
@@ -379,7 +379,7 @@ const AboutUsSection3 = ({ config }) => {
                   </div>
 
                   {/* Empty space */}
-                  <div className="flex-1 hidden md:block"></div>
+                  <div className="flex-1 hidden md:block" />
                 </div>
               ))}
             </div>

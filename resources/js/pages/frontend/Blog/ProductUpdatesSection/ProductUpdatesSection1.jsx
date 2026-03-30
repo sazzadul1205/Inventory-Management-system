@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 // Icons
 import {
-    HiOutlineRocket,
     HiOutlineSparkles,
     HiOutlineChip,
     HiOutlineCloudUpload,
@@ -31,6 +30,7 @@ import {
     HiOutlineStar,
     HiOutlineFlag,
     HiOutlineGift
+    HiOutlineTrendingUp,
 } from 'react-icons/hi';
 
 const ProductUpdatesSection1 = ({ config }) => {
@@ -42,7 +42,7 @@ const ProductUpdatesSection1 = ({ config }) => {
     const getIcon = (iconName, className = "w-5 h-5") => {
         switch (iconName) {
             case 'rocket':
-                return <HiOutlineRocket className={className} />;
+                return <HiOutlineTrendingUp className={className} />;
             case 'sparkles':
                 return <HiOutlineSparkles className={className} />;
             case 'chip':
@@ -500,3 +500,5 @@ const ProductUpdatesSection1 = ({ config }) => {
 };
 
 export default ProductUpdatesSection1;
+
+

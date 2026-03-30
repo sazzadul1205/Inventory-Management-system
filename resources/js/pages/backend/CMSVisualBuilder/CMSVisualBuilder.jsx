@@ -3,14 +3,15 @@
  * Integrates all builder components
  */
 
-import React, { useState } from "react";
 import clsx from "clsx";
+import React, { useState } from "react";
+
+import CanvasArea from "./CanvasArea";
 import ComponentPalette from "./ComponentPalette";
 import ComponentTree from "./ComponentTree";
-import CanvasArea from "./CanvasArea";
-import PropertyEditor from "./PropertyEditor";
-import PreviewControls from "./PreviewControls";
 import JsonModal from "./JsonModal";
+import PreviewControls from "./PreviewControls";
+import PropertyEditor from "./PropertyEditor";
 import { generateId, updateComponentById, deleteComponentById, findComponentById, findParentById, addChildById } from "./utils";
 
 const CMSVisualBuilder = () => {

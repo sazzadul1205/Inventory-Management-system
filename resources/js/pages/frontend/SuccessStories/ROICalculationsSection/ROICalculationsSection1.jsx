@@ -73,16 +73,16 @@ const ROICalculationsSection1 = ({ config }) => {
             setAnimatedValues(prev => ({
               ...prev,
               [key]: key === 'paybackMonths' ? target.toFixed(1) :
-                key === 'roiPercentage' ? Math.floor(current) + '%' :
-                  '$' + Math.floor(current / 1000) + 'K'
+                key === 'roiPercentage' ? `${Math.floor(current)  }%` :
+                  `$${  Math.floor(current / 1000)  }K`
             }));
             clearInterval(interval);
           } else {
             setAnimatedValues(prev => ({
               ...prev,
               [key]: key === 'paybackMonths' ? current.toFixed(1) :
-                key === 'roiPercentage' ? Math.floor(current) + '%' :
-                  '$' + Math.floor(current / 1000) + 'K'
+                key === 'roiPercentage' ? `${Math.floor(current)  }%` :
+                  `$${  Math.floor(current / 1000)  }K`
             }));
           }
         }, 30);
@@ -110,9 +110,9 @@ const ROICalculationsSection1 = ({ config }) => {
       aria-label="ROI Calculator"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-50/30 to-transparent dark:from-blue-900/5 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/30 to-transparent dark:from-indigo-900/5 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-50/30 to-transparent dark:from-blue-900/5 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/30 to-transparent dark:from-indigo-900/5 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -122,8 +122,8 @@ const ROICalculationsSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>

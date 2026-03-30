@@ -28,7 +28,6 @@ import {
     HiOutlineShare,
     HiOutlineBookmark,
     HiOutlineSparkles,
-    HiOutlineRocket,
     HiOutlineFire,
     HiOutlineAcademicCap,
     HiOutlineDocumentText,
@@ -55,8 +54,13 @@ import {
     HiOutlineCode,
     HiOutlineCloudUpload,
     HiOutlineDatabase,
-    HiOutlineServer
+    HiOutlineServer,
+    HiOutlineViewGrid,
+    HiOutlineViewList,
+    HiOutlineChevronDown,
+    HiOutlineMail
 } from 'react-icons/hi';
+
 
 const BestPracticesSection2 = ({ config }) => {
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -94,7 +98,7 @@ const BestPracticesSection2 = ({ config }) => {
             share: <HiOutlineShare className={className} />,
             bookmark: <HiOutlineBookmark className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
             fire: <HiOutlineFire className={className} />,
             academic: <HiOutlineAcademicCap className={className} />,
             document: <HiOutlineDocumentText className={className} />,
@@ -211,11 +215,11 @@ const BestPracticesSection2 = ({ config }) => {
             aria-label="Best Practices & Case Studies"
         >
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
             {/* Animated Gradient Orbs */}
-            <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-20 left-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-20 left-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header with Stats */}
@@ -298,16 +302,16 @@ const BestPracticesSection2 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${selectedCategory === category.id
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                                 }`}
                         >
                             {getIcon(category.icon, "w-4 h-4")}
                             {category.label}
                             {category.count !== undefined && (
                                 <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${selectedCategory === category.id
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                    ? 'bg-white/20 text-white'
+                                    : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                                     }`}>
                                     {category.count}
                                 </span>
@@ -467,8 +471,8 @@ const BestPracticesSection2 = ({ config }) => {
 
                 {/* Practices Grid/List View */}
                 <div className={`grid gap-6 mb-12 ${viewMode === 'grid'
-                        ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-                        : 'grid-cols-1'
+                    ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                    : 'grid-cols-1'
                     }`}>
                     {filteredPractices.map((practice) => {
                         const categoryConfig = getCategoryConfig(practice.category);
@@ -721,3 +725,4 @@ const BestPracticesSection2 = ({ config }) => {
 };
 
 export default BestPracticesSection2;
+

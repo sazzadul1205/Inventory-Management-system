@@ -2,8 +2,8 @@
  * Component Tree - hierarchical selector for canvas components
  */
 
-import React, { useMemo, useState } from 'react';
 import clsx from 'clsx';
+import React, { useMemo, useState } from 'react';
 
 const getNodeLabel = (node) => {
   if (!node) return 'Unknown';

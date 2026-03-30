@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useRef, useEffect } from 'react';
 
 // Icons
+import { FiTarget } from "react-icons/fi";
 import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
@@ -28,7 +29,6 @@ import {
   HiOutlineSearch,
   HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
-import { FiTarget } from "react-icons/fi";
 
 const MissionAndVision2 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -95,7 +95,7 @@ const MissionAndVision2 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'mission-faq-export.json');
@@ -143,9 +143,9 @@ const MissionAndVision2 = ({ config }) => {
       aria-label="Mission & Vision Help Center"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -155,8 +155,8 @@ const MissionAndVision2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -323,7 +323,7 @@ const MissionAndVision2 = ({ config }) => {
                           <div className="mt-2">
                             <div className="text-xs text-blue-600 font-semibold">Target: {goal.target}</div>
                             <div className="mt-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
-                              <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${goal.progress || 0}%` }}></div>
+                              <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${goal.progress || 0}%` }} />
                             </div>
                             <div className="text-xs text-gray-400 mt-1">{goal.progress || 0}% complete</div>
                           </div>
@@ -405,8 +405,7 @@ const MissionAndVision2 = ({ config }) => {
 
         {/* Initiatives Tab */}
         {activeTab === 'initiatives' && (
-          <>
-            <div className="mb-16">
+          <div className="mb-16">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
                 Our Key Initiatives
               </h3>
@@ -422,7 +421,7 @@ const MissionAndVision2 = ({ config }) => {
                           <div className="flex items-center gap-2">
                             <span className="text-xs text-blue-600 font-semibold">Status: {initiative.status}</span>
                             <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
-                              <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${initiative.progress}%` }}></div>
+                              <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${initiative.progress}%` }} />
                             </div>
                             <span className="text-xs text-gray-500">{initiative.progress}%</span>
                           </div>
@@ -439,7 +438,6 @@ const MissionAndVision2 = ({ config }) => {
                 ))}
               </div>
             </div>
-          </>
         )}
 
         {/* FAQ Tab */}

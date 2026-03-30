@@ -20,11 +20,11 @@ const GlobalPresenceSection1 = ({ config }) => {
       aria-label="Global presence section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-world-map-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-world-map-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -37,8 +37,8 @@ const GlobalPresenceSection1 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
               )}
               <HiOutlineGlobeAlt className={`w-4 h-4 mr-2 ${config.badge.textColor}`} />
@@ -104,8 +104,8 @@ const GlobalPresenceSection1 = ({ config }) => {
                   }}
                 >
                   <div className="relative">
-                    <div className="w-4 h-4 bg-emerald-500 rounded-full animate-ping absolute opacity-75"></div>
-                    <div className="w-4 h-4 bg-emerald-600 rounded-full relative"></div>
+                    <div className="w-4 h-4 bg-emerald-500 rounded-full animate-ping absolute opacity-75" />
+                    <div className="w-4 h-4 bg-emerald-600 rounded-full relative" />
 
                     {/* Tooltip */}
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -113,7 +113,7 @@ const GlobalPresenceSection1 = ({ config }) => {
                         <p className="font-semibold">{location.city}</p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">{location.country}</p>
                       </div>
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-white dark:border-t-gray-800"></div>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-white dark:border-t-gray-800" />
                     </div>
                   </div>
                 </div>
@@ -235,8 +235,8 @@ const GlobalPresenceSection1 = ({ config }) => {
         {config?.cta?.show && (
           <div className="bg-linear-to-br from-emerald-600 to-teal-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
 
             <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">

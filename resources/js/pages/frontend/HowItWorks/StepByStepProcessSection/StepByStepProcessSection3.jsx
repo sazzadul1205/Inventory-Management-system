@@ -95,9 +95,9 @@ const StepByStepProcessSection3 = ({ config }) => {
       itemType="https://schema.org/HowTo"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-50/50 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/50 to-transparent dark:from-indigo-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-50/50 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/50 to-transparent dark:from-indigo-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -109,8 +109,8 @@ const StepByStepProcessSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -187,7 +187,7 @@ const StepByStepProcessSection3 = ({ config }) => {
                       <div
                         className={`h-full bg-linear-to-r from-blue-500 to-green-500 transition-all duration-500 ${isStepCompleted(step.number) ? 'w-full' : 'w-0'
                           }`}
-                      ></div>
+                       />
                     </div>
                   )}
                 </div>
@@ -342,7 +342,7 @@ const StepByStepProcessSection3 = ({ config }) => {
                 <div
                   className="bg-linear-to-r from-blue-500 to-indigo-500 h-3 rounded-full transition-all duration-500"
                   style={{ width: `${(completedSteps.length / (config?.steps?.length || 1)) * 100}%` }}
-                ></div>
+                 />
               </div>
               <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
                 {completedSteps.length} of {config?.steps?.length} steps completed

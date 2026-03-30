@@ -22,6 +22,7 @@ Route::get('/faq', [FrontEndController::class, 'faq'])->name('faq.index');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact.index');
 Route::get('/about-us', [FrontEndController::class, 'aboutUs'])->name('about-us.index');
 Route::get('/why-choose-us', [FrontEndController::class, 'whyChooseUs'])->name('why-choose-us.index');
+Route::get('/blog', [FrontEndController::class, 'blog'])->name('blog.index');
 
 // Error pages
 Route::get('/page-broken', [PageController::class, 'broken'])->name('page.broken');

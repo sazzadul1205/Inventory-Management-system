@@ -63,10 +63,10 @@ const ProfessionalPlanSection1 = ({ config }) => {
       aria-label="Professional Plan Pricing"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-purple-50/30 to-transparent dark:from-purple-900/5 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/30 to-transparent dark:from-indigo-900/5 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-100 dark:bg-purple-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-purple-50/30 to-transparent dark:from-purple-900/5 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/30 to-transparent dark:from-indigo-900/5 pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-100 dark:bg-purple-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -76,8 +76,8 @@ const ProfessionalPlanSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -123,8 +123,8 @@ const ProfessionalPlanSection1 = ({ config }) => {
         {/* Professional Plan Card */}
         <div className="max-w-4xl mx-auto mb-12">
           <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden ring-2 ring-purple-500">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500 rounded-bl-full opacity-10"></div>
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500 rounded-full opacity-5"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500 rounded-bl-full opacity-10" />
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500 rounded-full opacity-5" />
 
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Left Column - Pricing */}

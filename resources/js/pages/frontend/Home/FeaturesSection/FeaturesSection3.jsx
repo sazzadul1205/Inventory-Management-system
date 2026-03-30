@@ -92,7 +92,7 @@ const FeaturesSection3 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -166,10 +166,10 @@ const FeaturesSection3 = ({ config }) => {
               role="listitem"
             >
               {/* Background Gradient on Hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 to-purple-600/0 group-hover:from-blue-600/5 group-hover:to-purple-600/5 transition-all duration-500" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 to-purple-600/0 group-hover:from-blue-600/5 group-hover:to-purple-600/5 transition-all duration-500" aria-hidden="true" />
 
               {/* Top Accent Bar */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${feature.accentColor} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} aria-hidden="true"></div>
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${feature.accentColor} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} aria-hidden="true" />
 
               {/* Icon Container */}
               <div className={`w-16 h-16 ${feature.iconBg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10`}>
@@ -257,7 +257,7 @@ const FeaturesSection3 = ({ config }) => {
               </div>
 
               {/* Decorative Corner */}
-              <div className="absolute bottom-0 right-0 w-24 h-24 bg-linear-to-tl from-blue-500/5 to-purple-500/5 rounded-tl-3xl group-hover:scale-150 transition-transform duration-500" aria-hidden="true"></div>
+              <div className="absolute bottom-0 right-0 w-24 h-24 bg-linear-to-tl from-blue-500/5 to-purple-500/5 rounded-tl-3xl group-hover:scale-150 transition-transform duration-500" aria-hidden="true" />
             </div>
           ))}
         </div>
@@ -265,9 +265,9 @@ const FeaturesSection3 = ({ config }) => {
         {/* Bottom Feature Highlight */}
         {config?.bottomHighlight?.show && (
           <div className="mt-20 relative">
-            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-20" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-20" aria-hidden="true" />
             <div className="relative bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-grid-pattern-white opacity-10" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-grid-pattern-white opacity-10" aria-hidden="true" />
               <div className="relative px-8 py-12 md:py-16 text-center">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   {config.bottomHighlight.title}

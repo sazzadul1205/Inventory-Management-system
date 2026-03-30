@@ -258,4 +258,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('whyChooseUs', 'frontend/WhyChooseUs/WhyChooseUs', 2);
     }
+
+    /**
+     * Show the Blog page with data from database.
+     */
+    public function blog()
+    {
+        return $this->renderPage('blog', 'frontend/Blog/Blog', 2);
+    }
 }

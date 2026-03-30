@@ -4,6 +4,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 // Icons
+import { FaQuoteLeft, FaCertificate } from "react-icons/fa";
 import {
     HiOutlinePlay,
     HiOutlineVideoCamera,
@@ -19,8 +20,7 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
+    HiOutlineStar,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -30,7 +30,6 @@ import {
     HiOutlineMicrophone,
     HiOutlineDocumentText,
     HiOutlinePresentationChartLine,
-    HiOutlineStar,
     HiOutlineTrendingUp,
     HiOutlineFire,
     HiOutlineAcademicCap,
@@ -55,15 +54,13 @@ import {
     HiOutlineLink,
     HiOutlineCreditCard,
     HiOutlineChartPie,
-    HiOutlineQuote,
     HiOutlineAtSymbol,
-    HiOutlineBuildingOffice,
+    HiOutlineOfficeBuilding,
     HiOutlineNewspaper,
     HiOutlineQuestionMarkCircle,
     HiOutlinePencil,
     HiOutlineBookOpen,
     HiOutlineBadgeCheck,
-    HiOutlineCertificate,
     HiOutlineClipboardList,
     HiOutlineTemplate,
     HiOutlineCode,
@@ -76,15 +73,12 @@ import {
     HiOutlineDownload,
     HiOutlineCalendar as HiOutlineCalendarIcon,
     HiOutlineVolumeUp,
-    HiOutlineClosedCaption,
-    HiOutlineQuality,
-    HiOutlineFullscreen,
     HiOutlineChevronLeft,
     HiOutlineChevronRight,
     HiOutlinePlus,
-    HiOutlineHeart,
-    HiOutlinePlayCircle
+    HiOutlineHeart
 } from 'react-icons/hi';
+import { HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const VideoContentSection2 = ({ config }) => {
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -94,7 +88,7 @@ const VideoContentSection2 = ({ config }) => {
     const [activeVideo, setActiveVideo] = useState(null);
     const [showPlayer, setShowPlayer] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [watchHistory, setWatchHistory] = useState([]);
+    const [, setWatchHistory] = useState([]);
     const [continueWatching, setContinueWatching] = useState([]);
     const carouselRef = useRef(null);
     const videoRef = useRef(null);
@@ -151,8 +145,8 @@ const VideoContentSection2 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
+            rocket: <HiOutlineRocketLaunch className={className} />,
+            trophy: <HiOutlineStar className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
             chart: <HiOutlineChartBar className={className} />,
@@ -187,15 +181,15 @@ const VideoContentSection2 = ({ config }) => {
             link: <HiOutlineLink className={className} />,
             credit: <HiOutlineCreditCard className={className} />,
             pie: <HiOutlineChartPie className={className} />,
-            quote: <HiOutlineQuote className={className} />,
+            quote: <FaQuoteLeft className={className} />,
             at: <HiOutlineAtSymbol className={className} />,
-            building: <HiOutlineBuildingOffice className={className} />,
+            building: <HiOutlineOfficeBuilding className={className} />,
             newspaper: <HiOutlineNewspaper className={className} />,
             question: <HiOutlineQuestionMarkCircle className={className} />,
             pencil: <HiOutlinePencil className={className} />,
             book: <HiOutlineBookOpen className={className} />,
             badge: <HiOutlineBadgeCheck className={className} />,
-            certificate: <HiOutlineCertificate className={className} />,
+            certificate: <FaCertificate className={className} />,
             clipboard: <HiOutlineClipboardList className={className} />,
             template: <HiOutlineTemplate className={className} />,
             code: <HiOutlineCode className={className} />,
@@ -208,14 +202,14 @@ const VideoContentSection2 = ({ config }) => {
             download: <HiOutlineDownload className={className} />,
             calendarIcon: <HiOutlineCalendarIcon className={className} />,
             volume: <HiOutlineVolumeUp className={className} />,
-            caption: <HiOutlineClosedCaption className={className} />,
-            quality: <HiOutlineQuality className={className} />,
-            fullscreen: <HiOutlineFullscreen className={className} />,
+            caption: <HiOutlineChat className={className} />,
+            quality: <HiOutlineStar className={className} />,
+            fullscreen: <HiOutlineZoomIn className={className} />,
             'chevron-left': <HiOutlineChevronLeft className={className} />,
             'chevron-right': <HiOutlineChevronRight className={className} />,
             plus: <HiOutlinePlus className={className} />,
             heart: <HiOutlineHeart className={className} />,
-            playCircle: <HiOutlinePlayCircle className={className} />
+            playCircle: <HiOutlinePlay className={className} />
         };
         return icons[iconName] || <HiOutlineVideoCamera className={className} />;
     };
@@ -315,9 +309,9 @@ const VideoContentSection2 = ({ config }) => {
     };
 
     // Carousel navigation
-    const nextSlide = () => {
+    const nextSlide = useCallback(() => {
         setCurrentSlide((prev) => (prev + 1) % (config?.heroVideos?.length || 1));
-    };
+    }, [config?.heroVideos?.length]);
 
     // Carousel navigation
     const prevSlide = () => {
@@ -332,7 +326,7 @@ const VideoContentSection2 = ({ config }) => {
             }, 6000);
             return () => clearInterval(interval);
         }
-    }, [config?.autoPlayCarousel, config?.heroVideos?.length]);
+    }, [config?.autoPlayCarousel, config?.heroVideos?.length, nextSlide]);
 
     // Filter videos
     const getFilteredVideos = useCallback(() => {
@@ -384,11 +378,11 @@ const VideoContentSection2 = ({ config }) => {
             aria-label="Video Content Hub"
         >
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
             {/* Animated Gradient Orbs */}
-            <div className="absolute top-20 right-0 w-96 h-96 bg-red-200 dark:bg-red-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute top-20 right-0 w-96 h-96 bg-red-200 dark:bg-red-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -447,8 +441,8 @@ const VideoContentSection2 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${selectedCategory === category.id
-                                    ? 'bg-red-600 text-white shadow-lg shadow-red-600/25'
-                                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                                ? 'bg-red-600 text-white shadow-lg shadow-red-600/25'
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                                 }`}
                         >
                             {getIcon(category.icon, "w-4 h-4")}
@@ -474,7 +468,7 @@ const VideoContentSection2 = ({ config }) => {
                                                 alt={video.title}
                                                 className="w-full h-full object-cover"
                                             />
-                                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
                                             <div className="absolute inset-0 flex items-center justify-center">
                                                 <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-2xl">
                                                     <HiOutlinePlay className="w-10 h-10 text-red-600 ml-1" />
@@ -534,7 +528,7 @@ const VideoContentSection2 = ({ config }) => {
                 {continueWatchingVideos.length > 0 && (
                     <div className="mb-12">
                         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                            <HiOutlinePlayCircle className="w-5 h-5 text-red-600" />
+                            <HiOutlinePlay className="w-5 h-5 text-red-600" />
                             Continue Watching
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -552,7 +546,7 @@ const VideoContentSection2 = ({ config }) => {
                                             </div>
                                         </div>
                                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600">
-                                            <div className="h-full bg-red-600 rounded-full" style={{ width: `${video.progress || 0}%` }}></div>
+                                            <div className="h-full bg-red-600 rounded-full" style={{ width: `${video.progress || 0}%` }} />
                                         </div>
                                     </div>
                                     <p className="text-xs font-medium text-gray-900 dark:text-white mt-2 line-clamp-2">{video.title}</p>

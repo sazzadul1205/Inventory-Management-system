@@ -568,7 +568,7 @@ const IndustryInsightsSection3 = ({ config }) => {
                 {isLoading && (
                     <div className="text-center py-8">
                         <div className="inline-flex items-center gap-3">
-                            <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                            <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
                             <span className="text-gray-500 dark:text-gray-400">Loading more articles...</span>
                         </div>
                     </div>

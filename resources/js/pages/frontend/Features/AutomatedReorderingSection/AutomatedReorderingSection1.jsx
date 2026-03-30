@@ -56,9 +56,9 @@ const AutomatedReorderingSection1 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-40 left-0 w-72 h-72 bg-green-200 dark:bg-green-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-emerald-200 dark:bg-emerald-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-40 left-0 w-72 h-72 bg-green-200 dark:bg-green-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-emerald-200 dark:bg-emerald-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -70,8 +70,8 @@ const AutomatedReorderingSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -186,7 +186,7 @@ const AutomatedReorderingSection1 = ({ config }) => {
               </Link>
 
               {/* Decorative corner gradient */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-green-600/0 via-green-600/0 to-green-600/5 dark:from-green-400/0 dark:via-green-400/0 dark:to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-green-600/0 via-green-600/0 to-green-600/5 dark:from-green-400/0 dark:via-green-400/0 dark:to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true" />
             </div>
           ))}
         </div>
@@ -214,7 +214,7 @@ const AutomatedReorderingSection1 = ({ config }) => {
                   </div>
                   {index < config.workflowSteps.length - 1 && (
                     <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-green-200 dark:bg-green-800/50">
-                      <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-green-500 rounded-full" />
                     </div>
                   )}
                 </div>

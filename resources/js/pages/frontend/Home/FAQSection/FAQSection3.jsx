@@ -1,8 +1,8 @@
 // page/frontend/Home/FAQSection/FAQSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -109,7 +109,7 @@ const FAQSection3 = ({ config }) => {
       itemType="https://schema.org/FAQPage"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

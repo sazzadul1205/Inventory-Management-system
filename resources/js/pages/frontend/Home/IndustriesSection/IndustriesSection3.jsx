@@ -1,8 +1,8 @@
 // page/frontend/Home/IndustriesSection/IndustriesSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -89,7 +89,7 @@ const IndustriesSection3 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -240,13 +240,13 @@ const IndustriesSection3 = ({ config }) => {
                   {/* Challenges */}
                   <div className="bg-red-50 dark:bg-red-900/10 rounded-xl p-5">
                     <h4 className="font-semibold text-red-600 dark:text-red-400 mb-3 flex items-center">
-                      <span className="w-1 h-4 bg-red-500 rounded-full mr-2"></span>
+                      <span className="w-1 h-4 bg-red-500 rounded-full mr-2" />
                       Key Challenges
                     </h4>
                     <ul className="space-y-2">
                       {activeIndustryData.challenges?.map((challenge, idx) => (
                         <li key={idx} className="flex items-start text-sm">
-                          <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 mr-2"></span>
+                          <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 mr-2" />
                           <span className="text-gray-600 dark:text-white">{challenge}</span>
                         </li>
                       ))}
@@ -256,7 +256,7 @@ const IndustriesSection3 = ({ config }) => {
                   {/* Solutions */}
                   <div className="bg-green-50 dark:bg-green-900/10 rounded-xl p-5">
                     <h4 className="font-semibold text-green-600 dark:text-green-400 mb-3 flex items-center">
-                      <span className="w-1 h-4 bg-green-500 rounded-full mr-2"></span>
+                      <span className="w-1 h-4 bg-green-500 rounded-full mr-2" />
                       Our Solutions
                     </h4>
                     <ul className="space-y-2">

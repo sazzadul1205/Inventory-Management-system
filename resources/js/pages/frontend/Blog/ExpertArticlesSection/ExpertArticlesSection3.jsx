@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useCallback, useRef } from 'react';
 
 // Icons
+import { FaQuoteLeft, FaCertificate } from "react-icons/fa";
 import {
     HiOutlineUser,
     HiOutlineCalendar,
@@ -19,8 +20,7 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
+    HiOutlineStar,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -32,7 +32,6 @@ import {
     HiOutlineMicrophone,
     HiOutlineDocumentText,
     HiOutlinePresentationChartLine,
-    HiOutlineStar,
     HiOutlineTrendingUp,
     HiOutlineFire,
     HiOutlineAcademicCap,
@@ -57,15 +56,12 @@ import {
     HiOutlineLink,
     HiOutlineCreditCard,
     HiOutlineChartPie,
-    HiOutlineQuote,
     HiOutlineAtSymbol,
-    HiOutlineBuildingOffice,
     HiOutlineNewspaper,
     HiOutlineQuestionMarkCircle,
     HiOutlinePencil,
     HiOutlineBookOpen,
     HiOutlineBadgeCheck,
-    HiOutlineCertificate,
     HiOutlineClipboardList,
     HiOutlineTemplate,
     HiOutlineCode,
@@ -76,8 +72,10 @@ import {
     HiOutlineWifi,
     HiOutlineZoomIn,
     HiOutlineDownload,
-    HiOutlineCalendar as HiOutlineCalendarIcon
+    HiOutlineCalendar as HiOutlineCalendarIcon,
+    HiOutlineOfficeBuilding,
 } from 'react-icons/hi';
+import { HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const ExpertArticlesSection3 = ({ config }) => {
     const [selectedExpert, setSelectedExpert] = useState(null);
@@ -104,8 +102,8 @@ const ExpertArticlesSection3 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
+            rocket: <HiOutlineRocketLaunch className={className} />,
+            trophy: <HiOutlineStar className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
             chart: <HiOutlineChartBar className={className} />,
@@ -141,15 +139,15 @@ const ExpertArticlesSection3 = ({ config }) => {
             link: <HiOutlineLink className={className} />,
             credit: <HiOutlineCreditCard className={className} />,
             pie: <HiOutlineChartPie className={className} />,
-            quote: <HiOutlineQuote className={className} />,
+            quote: <FaQuoteLeft className={className} />,
             at: <HiOutlineAtSymbol className={className} />,
-            building: <HiOutlineBuildingOffice className={className} />,
+            building: <HiOutlineOfficeBuilding className={className} />,
             newspaper: <HiOutlineNewspaper className={className} />,
             question: <HiOutlineQuestionMarkCircle className={className} />,
             pencil: <HiOutlinePencil className={className} />,
             book: <HiOutlineBookOpen className={className} />,
             badge: <HiOutlineBadgeCheck className={className} />,
-            certificate: <HiOutlineCertificate className={className} />,
+            certificate: <FaCertificate className={className} />,
             clipboard: <HiOutlineClipboardList className={className} />,
             template: <HiOutlineTemplate className={className} />,
             code: <HiOutlineCode className={className} />,
@@ -354,7 +352,7 @@ const ExpertArticlesSection3 = ({ config }) => {
                                             className="rounded-2xl shadow-xl w-full object-cover h-64"
                                         />
                                         <div className="absolute -bottom-4 -right-4 bg-yellow-500 rounded-full p-3 shadow-lg">
-                                            <HiOutlineCertificate className="w-8 h-8 text-white" />
+                                            <FaCertificate className="w-8 h-8 text-white" />
                                         </div>
                                     </div>
                                 </div>
@@ -778,3 +776,5 @@ const ExpertArticlesSection3 = ({ config }) => {
 };
 
 export default ExpertArticlesSection3;
+
+

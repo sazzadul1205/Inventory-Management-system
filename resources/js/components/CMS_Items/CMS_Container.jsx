@@ -10,8 +10,8 @@
  * - Debug overlay for development
  */
 
-import React, { forwardRef, useMemo } from 'react';
 import clsx from 'clsx';
+import React, { forwardRef, useMemo } from 'react';
 
 // ============================================================================
 // Types & Defaults

@@ -66,12 +66,12 @@ const SupplyChainConsultingSection1 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'linear-gradient(45deg, #e5e7eb 1px, transparent 1px)',
           backgroundSize: '50px 50px'
-        }}></div>
+        }} />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -167,7 +167,7 @@ const SupplyChainConsultingSection1 = ({ config }) => {
                       <div
                         className="h-full bg-white rounded-full"
                         style={{ width: metric.percentage }}
-                      ></div>
+                       />
                     </div>
                   </div>
                 ))}
@@ -183,7 +183,7 @@ const SupplyChainConsultingSection1 = ({ config }) => {
               </div>
 
               {/* Decorative Element */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl" aria-hidden="true"></div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl" aria-hidden="true" />
             </div>
 
             {/* Floating Testimonial */}
@@ -214,7 +214,7 @@ const SupplyChainConsultingSection1 = ({ config }) => {
             {config?.methodology?.steps?.map((step, idx) => (
               <div key={step.id} className="relative">
                 {idx < config.methodology.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true" />
                 )}
                 <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 text-center border border-gray-200 dark:border-gray-700 shadow-lg">
                   <div className="w-12 h-12 mx-auto mb-4 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xl">

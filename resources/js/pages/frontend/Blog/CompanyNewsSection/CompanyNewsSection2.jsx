@@ -20,8 +20,6 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -53,6 +51,7 @@ import {
     HiOutlineGift
 } from 'react-icons/hi';
 
+
 const CompanyNewsSection2 = ({ config }) => {
     const [selectedYear, setSelectedYear] = useState('all');
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -78,8 +77,8 @@ const CompanyNewsSection2 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
+            trophy: <HiOutlineStar className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
             chart: <HiOutlineChartBar className={className} />,
@@ -228,11 +227,11 @@ const CompanyNewsSection2 = ({ config }) => {
             aria-label="Company News & Press Releases"
         >
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
             {/* Animated Gradient Orbs */}
-            <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Hero Section */}
@@ -317,8 +316,8 @@ const CompanyNewsSection2 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${selectedCategory === category.id
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                                 }`}
                         >
                             {getIcon(category.icon, "w-4 h-4")}
@@ -430,15 +429,15 @@ const CompanyNewsSection2 = ({ config }) => {
                 {viewMode === 'timeline' && (
                     <div className="relative mb-12">
                         {/* Timeline Line */}
-                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-blue-600 to-purple-600 hidden md:block" aria-hidden="true"></div>
+                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-blue-600 to-purple-600 hidden md:block" aria-hidden="true" />
 
                         <div className="space-y-12">
                             {Object.entries(groupedNews).map(([monthYear, newsItems]) => (
                                 <div key={monthYear}>
                                     <div className="flex items-center gap-4 mb-6">
-                                        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+                                        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
                                         <h3 className="text-lg font-bold text-gray-900 dark:text-white px-4">{monthYear}</h3>
-                                        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+                                        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
                                     </div>
 
                                     <div className="space-y-8">
@@ -453,7 +452,7 @@ const CompanyNewsSection2 = ({ config }) => {
                                                     className={`relative flex flex-col md:flex-row gap-4 md:gap-8 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                                                 >
                                                     {/* Timeline Dot */}
-                                                    <div className="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-blue-600 rounded-full transform -translate-x-1/2 hidden md:block" aria-hidden="true"></div>
+                                                    <div className="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-blue-600 rounded-full transform -translate-x-1/2 hidden md:block" aria-hidden="true" />
 
                                                     {/* Date Badge (Mobile) */}
                                                     <div className="md:hidden flex items-center gap-2 mb-2">
@@ -541,7 +540,7 @@ const CompanyNewsSection2 = ({ config }) => {
                                                     </div>
 
                                                     {/* Empty spacer */}
-                                                    <div className="hidden md:block md:w-1/2"></div>
+                                                    <div className="hidden md:block md:w-1/2" />
                                                 </div>
                                             );
                                         })}
@@ -658,3 +657,4 @@ const CompanyNewsSection2 = ({ config }) => {
 };
 
 export default CompanyNewsSection2;
+

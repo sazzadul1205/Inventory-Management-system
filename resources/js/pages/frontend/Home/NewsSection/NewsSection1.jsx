@@ -46,11 +46,11 @@ const NewsSection1 = ({ config }) => {
       aria-label="News section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-news-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-news-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-amber-200 dark:bg-amber-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-amber-200 dark:bg-amber-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -63,8 +63,8 @@ const NewsSection1 = ({ config }) => {
             >
               {config.badge.showPulse && (
                 <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
                 </span>
               )}
               <HiOutlineNewspaper className={`w-4 h-4 mr-2 ${config.badge.textColor}`} />
@@ -137,7 +137,7 @@ const NewsSection1 = ({ config }) => {
                     alt={config.featured.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
                   {/* News Type Badge */}
                   <div className="absolute top-4 left-4">
@@ -342,8 +342,8 @@ const NewsSection1 = ({ config }) => {
         {config?.newsletter?.show && (
           <div className="mt-20 bg-linear-to-br from-amber-600 to-orange-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
 
             <div className="relative max-w-2xl mx-auto text-center">

@@ -73,11 +73,11 @@ const WarehouseManagementSection3 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'repeating-linear-gradient(90deg, #e5e7eb 0px, #e5e7eb 2px, transparent 2px, transparent 30px)',
           backgroundSize: '30px 100%'
-        }}></div>
+        }} />
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'repeating-linear-gradient(0deg, #e5e7eb 0px, #e5e7eb 2px, transparent 2px, transparent 30px)',
           backgroundSize: '100% 30px'
-        }}></div>
+        }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,12 +107,12 @@ const WarehouseManagementSection3 = ({ config }) => {
 
         {/* Main Dashboard Preview */}
         <div className="relative mb-20">
-          <div className="absolute -inset-4 bg-linear-to-r from-blue-600/20 to-purple-600/20 rounded-3xl blur-2xl" aria-hidden="true"></div>
+          <div className="absolute -inset-4 bg-linear-to-r from-blue-600/20 to-purple-600/20 rounded-3xl blur-2xl" aria-hidden="true" />
           <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
             <div className="p-4 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
               <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">Warehouse Dashboard • Live View</span>
             </div>
             <img
@@ -158,7 +158,7 @@ const WarehouseManagementSection3 = ({ config }) => {
             {config?.process?.steps?.map((step, idx) => (
               <div key={step.id} className="relative">
                 {idx < config.process.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -z-10" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -z-10" aria-hidden="true" />
                 )}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center border border-gray-200 dark:border-gray-700">
                   <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl ${step.bgColor} flex items-center justify-center`}>
@@ -226,7 +226,7 @@ const WarehouseManagementSection3 = ({ config }) => {
                     <div
                       className="h-full bg-white rounded-full"
                       style={{ width: stat.percentage }}
-                    ></div>
+                     />
                   </div>
                 </div>
               ))}
@@ -251,7 +251,7 @@ const WarehouseManagementSection3 = ({ config }) => {
                 <div
                   key={i}
                   className="w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 border-2 border-white dark:border-gray-800"
-                ></div>
+                 />
               ))}
             </div>
             <span className="text-gray-700 dark:text-gray-300">{config?.ctaText}</span>

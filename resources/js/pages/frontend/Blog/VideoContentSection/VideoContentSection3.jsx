@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 // Icons
+import { FaQuoteLeft, FaCertificate, FaAward as HiOutlineAward } from "react-icons/fa";
 import {
     HiOutlinePlay,
     HiOutlineVideoCamera,
@@ -20,8 +21,7 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
+    HiOutlineStar,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -31,7 +31,6 @@ import {
     HiOutlineMicrophone,
     HiOutlineDocumentText,
     HiOutlinePresentationChartLine,
-    HiOutlineStar,
     HiOutlineTrendingUp,
     HiOutlineFire,
     HiOutlineAcademicCap,
@@ -56,15 +55,13 @@ import {
     HiOutlineLink,
     HiOutlineCreditCard,
     HiOutlineChartPie,
-    HiOutlineQuote,
     HiOutlineAtSymbol,
-    HiOutlineBuildingOffice,
+    HiOutlineOfficeBuilding,
     HiOutlineNewspaper,
     HiOutlineQuestionMarkCircle,
     HiOutlinePencil,
     HiOutlineBookOpen,
     HiOutlineBadgeCheck,
-    HiOutlineCertificate,
     HiOutlineClipboardList,
     HiOutlineTemplate,
     HiOutlineCode,
@@ -77,21 +74,22 @@ import {
     HiOutlineDownload,
     HiOutlineCalendar as HiOutlineCalendarIcon,
     HiOutlineVolumeUp,
-    HiOutlineClosedCaption,
-    HiOutlineQuality,
-    HiOutlineFullscreen,
     HiOutlineChevronLeft,
     HiOutlineChevronRight,
     HiOutlinePlus,
     HiOutlineHeart,
-    HiOutlinePlayCircle,
     HiOutlineRefresh,
     HiOutlineClipboardCheck,
-    HiOutlineAward,
     HiOutlineLibrary,
-    HiOutlineLiveTv,
     HiOutlineVideoCamera as HiOutlineVideoCameraAlt
 } from 'react-icons/hi';
+import { HiOutlineRocketLaunch, HiOutlinePlayCircle } from "react-icons/hi2";
+import {
+    MdOutlineClosedCaption as HiOutlineClosedCaption,
+    MdHighQuality as HiOutlineQuality,
+    MdOutlineFullscreen as HiOutlineFullscreen,
+    MdOutlineLiveTv as HiOutlineLiveTv
+} from "react-icons/md";
 
 const VideoContentSection3 = ({ config }) => {
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -109,7 +107,7 @@ const VideoContentSection3 = ({ config }) => {
     const [courseProgress, setCourseProgress] = useState({});
     const [showTranscript, setShowTranscript] = useState(false);
     const [transcriptTime, setTranscriptTime] = useState(0);
-    const [liveStreamActive, setLiveStreamActive] = useState(true);
+    const [liveStreamActive] = useState(true);
     const videoRef = useRef(null);
     const transcriptRef = useRef(null);
 
@@ -162,8 +160,8 @@ const VideoContentSection3 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
+            rocket: <HiOutlineRocketLaunch className={className} />,
+            trophy: <HiOutlineStar className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
             chart: <HiOutlineChartBar className={className} />,
@@ -198,15 +196,15 @@ const VideoContentSection3 = ({ config }) => {
             link: <HiOutlineLink className={className} />,
             credit: <HiOutlineCreditCard className={className} />,
             pie: <HiOutlineChartPie className={className} />,
-            quote: <HiOutlineQuote className={className} />,
+            quote: <FaQuoteLeft className={className} />,
             at: <HiOutlineAtSymbol className={className} />,
-            building: <HiOutlineBuildingOffice className={className} />,
+            building: <HiOutlineOfficeBuilding className={className} />,
             newspaper: <HiOutlineNewspaper className={className} />,
             question: <HiOutlineQuestionMarkCircle className={className} />,
             pencil: <HiOutlinePencil className={className} />,
             book: <HiOutlineBookOpen className={className} />,
             badge: <HiOutlineBadgeCheck className={className} />,
-            certificate: <HiOutlineCertificate className={className} />,
+            certificate: <FaCertificate className={className} />,
             clipboard: <HiOutlineClipboardList className={className} />,
             template: <HiOutlineTemplate className={className} />,
             code: <HiOutlineCode className={className} />,
@@ -435,12 +433,12 @@ const VideoContentSection3 = ({ config }) => {
                                                 />
                                                 {hasCertificate && (
                                                     <div className="absolute top-3 right-3 bg-yellow-500 rounded-full p-2">
-                                                        <HiOutlineCertificate className="w-4 h-4 text-white" />
+                                                        <FaCertificate className="w-4 h-4 text-white" />
                                                     </div>
                                                 )}
                                                 <div className="absolute bottom-0 left-0 right-0">
                                                     <div className="h-1 bg-gray-700">
-                                                        <div className="h-full bg-blue-600 rounded-full" style={{ width: `${progress}%` }}></div>
+                                                        <div className="h-full bg-blue-600 rounded-full" style={{ width: `${progress}%` }} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -500,8 +498,8 @@ const VideoContentSection3 = ({ config }) => {
                                         </div>
                                         <div className="absolute top-4 left-4 flex items-center gap-2">
                                             <span className="relative flex h-3 w-3">
-                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
                                             </span>
                                             <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">LIVE NOW</span>
                                         </div>
@@ -543,7 +541,7 @@ const VideoContentSection3 = ({ config }) => {
                             <div key={cert.id} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                                 <div className="flex items-start gap-4">
                                     <div className="w-16 h-16 bg-linear-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center">
-                                        <HiOutlineCertificate className="w-8 h-8 text-white" />
+                                        <FaCertificate className="w-8 h-8 text-white" />
                                     </div>
                                     <div className="flex-1">
                                         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{cert.title}</h3>
@@ -561,7 +559,7 @@ const VideoContentSection3 = ({ config }) => {
                                         <div className="mt-3 flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <div className="w-32 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                                    <div className="h-full bg-yellow-500 rounded-full" style={{ width: `${cert.popularity}%` }}></div>
+                                                    <div className="h-full bg-yellow-500 rounded-full" style={{ width: `${cert.popularity}%` }} />
                                                 </div>
                                                 <span className="text-xs text-gray-500">{cert.students}+ students</span>
                                             </div>
@@ -640,7 +638,7 @@ const VideoContentSection3 = ({ config }) => {
                                             </div>
                                             {progress > 0 && (
                                                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-700">
-                                                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${progress}%` }}></div>
+                                                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${progress}%` }} />
                                                 </div>
                                             )}
                                         </div>

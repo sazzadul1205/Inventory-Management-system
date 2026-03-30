@@ -3,8 +3,8 @@
  * No external dependencies - pure React drag and drop
  */
 
-import React, { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import React, { useRef, useEffect, useState } from 'react';
 
 const DraggableItem = ({
   component,

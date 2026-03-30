@@ -51,7 +51,7 @@ const AllServicesSection2 = ({ config }) => {
       aria-label="Our Services Section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -129,7 +129,7 @@ const AllServicesSection2 = ({ config }) => {
               {/* Image Side */}
               <div style={index % 2 === 1 ? { direction: 'ltr' } : {}}>
                 <div className="relative">
-                  <div className={`absolute -inset-4 ${service.bgColor} bg-opacity-10 dark:bg-opacity-20 rounded-3xl blur-2xl`} aria-hidden="true"></div>
+                  <div className={`absolute -inset-4 ${service.bgColor} bg-opacity-10 dark:bg-opacity-20 rounded-3xl blur-2xl`} aria-hidden="true" />
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                     <img
                       src={service.image}
@@ -137,7 +137,7 @@ const AllServicesSection2 = ({ config }) => {
                       className="w-full h-100 object-cover"
                       loading="lazy"
                     />
-                    <div className={`absolute inset-0 bg-linear-to-tr ${service.overlayGradient}`} aria-hidden="true"></div>
+                    <div className={`absolute inset-0 bg-linear-to-tr ${service.overlayGradient}`} aria-hidden="true" />
 
                     {/* Floating Stats Card */}
                     {service.stats && (

@@ -20,8 +20,6 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -40,7 +38,8 @@ import {
     HiOutlineLocationMarker,
     HiOutlineUsers,
     HiOutlineChip,
-    HiOutlineCloudUpload
+    HiOutlineCloudUpload,
+    HiArrowRight
 } from 'react-icons/hi';
 
 const CompanyNewsSection1 = ({ config }) => {
@@ -66,8 +65,8 @@ const CompanyNewsSection1 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
+            trophy: <HiOutlineStar className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
             chart: <HiOutlineChartBar className={className} />,
@@ -176,9 +175,9 @@ const CompanyNewsSection1 = ({ config }) => {
             itemType="https://schema.org/NewsArticle"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -224,8 +223,8 @@ const CompanyNewsSection1 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === category.id
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                 }`}
                             aria-label={`Show ${category.label} news`}
                         >
@@ -239,7 +238,7 @@ const CompanyNewsSection1 = ({ config }) => {
                 {featuredNews && (
                     <div className="mb-16">
                         <div className="relative bg-linear-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
                             <div className="relative p-8 md:p-10">
                                 <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -291,8 +290,8 @@ const CompanyNewsSection1 = ({ config }) => {
                                             <button
                                                 onClick={() => handleSaveNews(featuredNews.id)}
                                                 className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 border ${savedNews.includes(featuredNews.id)
-                                                        ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 text-yellow-700 dark:text-yellow-400'
-                                                        : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-600'
+                                                    ? 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-300 text-yellow-700 dark:text-yellow-400'
+                                                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-600'
                                                     }`}
                                             >
                                                 <HiOutlineBookmark className="w-4 h-4" />
@@ -303,7 +302,7 @@ const CompanyNewsSection1 = ({ config }) => {
 
                                     {/* Featured Image */}
                                     <div className="relative">
-                                        <div className="absolute -inset-4 bg-blue-600/20 rounded-2xl blur-2xl" aria-hidden="true"></div>
+                                        <div className="absolute -inset-4 bg-blue-600/20 rounded-2xl blur-2xl" aria-hidden="true" />
                                         <img
                                             src={featuredNews.image}
                                             alt={featuredNews.title}
@@ -573,3 +572,4 @@ const CompanyNewsSection1 = ({ config }) => {
 };
 
 export default CompanyNewsSection1;
+

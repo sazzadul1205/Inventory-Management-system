@@ -1,8 +1,8 @@
 // page/frontend/Home/IntegrationsSection/IntegrationsSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -99,7 +99,7 @@ const IntegrationsSection3 = ({ config }) => {
       aria-label="Integrations section"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -360,8 +360,8 @@ const IntegrationsSection3 = ({ config }) => {
         {config?.api?.show && (
           <div className="mt-20 bg-linear-to-br from-amber-500 to-pink-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
 
             <div className="relative grid md:grid-cols-2 gap-8 items-center">

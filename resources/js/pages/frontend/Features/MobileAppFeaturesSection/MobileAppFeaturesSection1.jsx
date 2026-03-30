@@ -4,6 +4,7 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import {
   HiOutlineDeviceMobile,
   HiOutlineQrcode,
@@ -21,7 +22,6 @@ import {
   HiOutlineSearch,
   HiOutlineDownload
 } from 'react-icons/hi';
-import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
 const MobileAppFeaturesSection1 = ({ config }) => {
   // Icon mapping function
@@ -67,9 +67,9 @@ const MobileAppFeaturesSection1 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-40 left-0 w-72 h-72 bg-orange-200 dark:bg-orange-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-amber-200 dark:bg-amber-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-40 left-0 w-72 h-72 bg-orange-200 dark:bg-orange-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-amber-200 dark:bg-amber-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -81,8 +81,8 @@ const MobileAppFeaturesSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -220,7 +220,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
               </Link>
 
               {/* Decorative corner gradient */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-orange-600/0 via-orange-600/0 to-orange-600/5 dark:from-orange-400/0 dark:via-orange-400/0 dark:to-orange-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-orange-600/0 via-orange-600/0 to-orange-600/5 dark:from-orange-400/0 dark:via-orange-400/0 dark:to-orange-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true" />
             </div>
           ))}
         </div>

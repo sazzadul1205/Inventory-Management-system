@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import {
   HiOutlineDeviceMobile,
   HiOutlineQrcode,
@@ -26,7 +27,6 @@ import {
   HiOutlineUser,
   HiOutlineMenu
 } from 'react-icons/hi';
-import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
 const MobileAppFeaturesSection2 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -86,7 +86,7 @@ const MobileAppFeaturesSection2 = ({ config }) => {
       if (product) {
         setScanResult({
           success: true,
-          product: product,
+          product,
           barcode: scannedBarcode
         });
       } else {
@@ -109,9 +109,9 @@ const MobileAppFeaturesSection2 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-amber-200 dark:bg-amber-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-amber-200 dark:bg-amber-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -123,8 +123,8 @@ const MobileAppFeaturesSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -218,7 +218,7 @@ const MobileAppFeaturesSection2 = ({ config }) => {
           <div className="sticky top-24 flex justify-center">
             <div className="relative w-[320px] bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
               {/* Phone Frame */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-xl z-10"></div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-xl z-10" />
 
               {/* Screen Content */}
               <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden m-1">
@@ -258,7 +258,7 @@ const MobileAppFeaturesSection2 = ({ config }) => {
                           <span className="font-bold text-orange-600">$1,245</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-orange-500 h-2 rounded-full w-3/4"></div>
+                          <div className="bg-orange-500 h-2 rounded-full w-3/4" />
                         </div>
                       </div>
                     </div>

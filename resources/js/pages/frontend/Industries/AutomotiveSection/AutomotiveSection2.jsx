@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
+import { FaCar } from "react-icons/fa";
 import {
   HiOutlineChartBar,
   HiOutlineCurrencyDollar,
@@ -15,7 +16,6 @@ import {
   HiOutlineDownload,
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
-import { FaCar } from "react-icons/fa";
 
 const AutomotiveSection2 = ({ config }) => {
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
@@ -39,9 +39,9 @@ const AutomotiveSection2 = ({ config }) => {
       aria-label="Automotive Success Stories Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-slate-200 dark:bg-slate-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-slate-200 dark:bg-slate-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -53,8 +53,8 @@ const AutomotiveSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>

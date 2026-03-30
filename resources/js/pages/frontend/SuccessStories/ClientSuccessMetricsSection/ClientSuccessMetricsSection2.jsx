@@ -78,9 +78,9 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
       aria-label="Client Success Metrics Dashboard"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-5" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-500/5 to-transparent pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-500/5 to-transparent pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-5" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-500/5 to-transparent pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-500/5 to-transparent pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -304,7 +304,7 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
           {/* Timeline Tab - Journey Timeline */}
           {activeTab === 'timeline' && (
             <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-blue-500 via-indigo-500 to-purple-500" aria-hidden="true"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-blue-500 via-indigo-500 to-purple-500" aria-hidden="true" />
               <div className="space-y-12">
                 {timelineEvents.map((event, index) => (
                   <div
@@ -312,8 +312,8 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
                     className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                       }`}
                   >
-                    <div className="w-1/2"></div>
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10"></div>
+                    <div className="w-1/2" />
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10" />
                     <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
                       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all">
                         <div className="text-3xl mb-2">{event.icon}</div>

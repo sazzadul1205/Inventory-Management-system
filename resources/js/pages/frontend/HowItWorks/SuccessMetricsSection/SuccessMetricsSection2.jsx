@@ -6,19 +6,9 @@ import { useState, useEffect } from 'react';
 
 // Icons
 import {
-  HiOutlineTrendingUp,
   HiOutlineChartBar,
   HiOutlineCurrencyDollar,
-  HiOutlineClock,
-  HiOutlineCheckCircle,
   HiArrowRight,
-  HiOutlineUsers,
-  HiOutlineTruck,
-  HiOutlineDatabase,
-  HiOutlineStar,
-  HiOutlineChartPie,
-  HiOutlineLightBulb,
-  HiOutlineFilter,
   HiOutlineDownload,
   HiOutlineCalendar,
   HiOutlineRefresh
@@ -65,9 +55,9 @@ const SuccessMetricsSection2 = ({ config }) => {
       aria-label="Success Metrics Section"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dots-pattern opacity-30 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -79,8 +69,8 @@ const SuccessMetricsSection2 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -192,11 +182,11 @@ const SuccessMetricsSection2 = ({ config }) => {
           {/* Chart Legend */}
           <div className="flex justify-center gap-6 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded"></div>
+              <div className="w-3 h-3 bg-green-500 rounded" />
               <span className="text-xs text-gray-600">Current Period</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-gray-300 rounded"></div>
+              <div className="w-3 h-3 bg-gray-300 rounded" />
               <span className="text-xs text-gray-600">Previous Period</span>
             </div>
           </div>
@@ -222,11 +212,11 @@ const SuccessMetricsSection2 = ({ config }) => {
                     <div
                       className="absolute h-full bg-green-500 rounded-full"
                       style={{ width: `${(benchmark.yourScore / benchmark.industryAvg) * 100}%` }}
-                    ></div>
+                     />
                     <div
                       className="absolute h-full bg-gray-400 rounded-full opacity-50"
                       style={{ width: `${(benchmark.industryAvg / benchmark.industryAvg) * 100}%` }}
-                    ></div>
+                     />
                   </div>
                   <div className="flex justify-between text-xs mt-1">
                     <span className="text-green-600">Your Score</span>
@@ -262,7 +252,7 @@ const SuccessMetricsSection2 = ({ config }) => {
                 <div
                   className="bg-white h-2 rounded-full"
                   style={{ width: `${(4.2 / 12) * 100}%` }}
-                ></div>
+                 />
               </div>
             </div>
             <Link
@@ -282,7 +272,7 @@ const SuccessMetricsSection2 = ({ config }) => {
               <h3 className="font-bold text-gray-900 dark:text-white">Success Timeline</h3>
             </div>
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-green-500 to-emerald-500"></div>
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-green-500 to-emerald-500" />
               {config?.timeline?.map((item, index) => (
                 <div key={index} className="relative flex gap-4 mb-6 last:mb-0">
                   <div className="shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center z-10">

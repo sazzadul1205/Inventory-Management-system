@@ -91,9 +91,9 @@ const IndustryInsightsSection1 = ({ config }) => {
             itemType="https://schema.org/Blog"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -105,8 +105,8 @@ const IndustryInsightsSection1 = ({ config }) => {
                     >
                         {config?.badge?.showPulse && (
                             <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                             </span>
                         )}
                         {config?.badge?.icon && (
@@ -188,7 +188,7 @@ const IndustryInsightsSection1 = ({ config }) => {
                                         <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
                                             {config.featuredArticle.category}
                                         </span>
-                                        <span className="w-1 h-1 bg-gray-300 dark:bg-gray-600 rounded-full"></span>
+                                        <span className="w-1 h-1 bg-gray-300 dark:bg-gray-600 rounded-full" />
                                         <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
                                             <HiOutlineCalendar className="w-4 h-4" />
                                             <span>{formatDate(config.featuredArticle.publishDate)}</span>

@@ -2,10 +2,11 @@
  * Component Palette - Left sidebar with draggable components
  */
 
-import React, { useState } from 'react';
 import clsx from 'clsx';
-import DraggableItem from './DraggableItem';
+import React, { useState } from 'react';
+
 import { componentPalette } from './constants';
+import DraggableItem from './DraggableItem';
 
 const ComponentPalette = ({ onDragStart }) => {
   const [searchTerm, setSearchTerm] = useState('');

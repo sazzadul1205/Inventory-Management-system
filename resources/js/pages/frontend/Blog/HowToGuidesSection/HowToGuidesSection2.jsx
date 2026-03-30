@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -35,7 +35,6 @@ import {
     HiOutlineCalendar,
     HiOutlineTag,
     HiOutlineSparkles,
-    HiOutlineRocket,
     HiOutlineTrendingUp,
     HiOutlineQuestionMarkCircle,
     HiOutlineClipboardList,
@@ -94,7 +93,7 @@ const HowToGuidesSection2 = ({ config }) => {
             calendar: <HiOutlineCalendar className={className} />,
             tag: <HiOutlineTag className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
             trending: <HiOutlineTrendingUp className={className} />,
             question: <HiOutlineQuestionMarkCircle className={className} />,
             clipboard: <HiOutlineClipboardList className={className} />,
@@ -217,11 +216,11 @@ const HowToGuidesSection2 = ({ config }) => {
             aria-label="How-to Guides Section"
         >
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
             {/* Animated Gradient Orbs */}
-            <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header with Stats */}
@@ -352,7 +351,7 @@ const HowToGuidesSection2 = ({ config }) => {
                                             <span className="text-blue-600 dark:text-blue-400">{path.progress}%</span>
                                         </div>
                                         <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                            <div className="h-full bg-blue-600 rounded-full" style={{ width: `${path.progress}%` }}></div>
+                                            <div className="h-full bg-blue-600 rounded-full" style={{ width: `${path.progress}%` }} />
                                         </div>
                                     </div>
                                     <Link
@@ -413,7 +412,7 @@ const HowToGuidesSection2 = ({ config }) => {
                                         </div>
                                         {progress > 0 && (
                                             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-700">
-                                                <div className="h-full bg-green-500 rounded-full" style={{ width: `${progress}%` }}></div>
+                                                <div className="h-full bg-green-500 rounded-full" style={{ width: `${progress}%` }} />
                                             </div>
                                         )}
                                     </div>
@@ -456,7 +455,7 @@ const HowToGuidesSection2 = ({ config }) => {
                                                 <span className="text-blue-600 dark:text-blue-400">{progress}% complete</span>
                                             </div>
                                             <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                                <div className="h-full bg-blue-600 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+                                                <div className="h-full bg-blue-600 rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
                                             </div>
                                             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                                                 {completedCount} of {totalSteps} steps completed
@@ -642,3 +641,4 @@ const HowToGuidesSection2 = ({ config }) => {
 };
 
 export default HowToGuidesSection2;
+

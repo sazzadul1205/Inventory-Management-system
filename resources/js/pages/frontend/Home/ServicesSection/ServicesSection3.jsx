@@ -1,8 +1,8 @@
 // page/frontend/Home/ServicesSection/ServicesSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -100,7 +100,7 @@ const ServicesSection3 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -184,10 +184,10 @@ const ServicesSection3 = ({ config }) => {
               itemType="https://schema.org/Service"
             >
               {/* Gradient Overlay on Hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 to-purple-600/0 group-hover:from-blue-600/10 group-hover:to-purple-600/10 transition-all duration-300" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 to-purple-600/0 group-hover:from-blue-600/10 group-hover:to-purple-600/10 transition-all duration-300" aria-hidden="true" />
 
               {/* Top Accent Bar */}
-              <div className={`h-2 bg-linear-to-r ${service.accentColor} w-full`} aria-hidden="true"></div>
+              <div className={`h-2 bg-linear-to-r ${service.accentColor} w-full`} aria-hidden="true" />
 
               <div className="p-8">
                 {/* Icon */}
@@ -245,7 +245,7 @@ const ServicesSection3 = ({ config }) => {
               </div>
 
               {/* Decorative Corner */}
-              <div className="absolute top-4 right-4 w-20 h-20 bg-blue-500/5 dark:bg-blue-400/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+              <div className="absolute top-4 right-4 w-20 h-20 bg-blue-500/5 dark:bg-blue-400/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
             </div>
           ))}
         </div>

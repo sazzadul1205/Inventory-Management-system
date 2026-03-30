@@ -61,7 +61,7 @@ const HowItWorksSection3 = ({ config }) => {
       itemType="https://schema.org/HowTo"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -122,7 +122,7 @@ const HowItWorksSection3 = ({ config }) => {
         {/* Main Content - Vertical Timeline */}
         <div className="relative">
           {/* Central Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-amber-500 via-pink-500 to-purple-500 rounded-full hidden lg:block" aria-hidden="true"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-amber-500 via-pink-500 to-purple-500 rounded-full hidden lg:block" aria-hidden="true" />
 
           {/* Steps */}
           <div className="space-y-16 lg:space-y-24">
@@ -208,7 +208,7 @@ const HowItWorksSection3 = ({ config }) => {
                       />
 
                       {/* Overlay Gradient */}
-                      <div className={`absolute inset-0 bg-linear-to-tr ${step.overlayColor} opacity-20`} aria-hidden="true"></div>
+                      <div className={`absolute inset-0 bg-linear-to-tr ${step.overlayColor} opacity-20`} aria-hidden="true" />
 
                       {/* Floating Card */}
                       {step.floatingCard && (
@@ -231,8 +231,8 @@ const HowItWorksSection3 = ({ config }) => {
                     </div>
 
                     {/* Decorative Elements */}
-                    <div className="absolute -top-4 -right-4 w-20 h-20 bg-amber-400 dark:bg-amber-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
-                    <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-pink-400 dark:bg-pink-600 rounded-full opacity-20 blur-2xl" aria-hidden="true"></div>
+                    <div className="absolute -top-4 -right-4 w-20 h-20 bg-amber-400 dark:bg-amber-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
+                    <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-pink-400 dark:bg-pink-600 rounded-full opacity-20 blur-2xl" aria-hidden="true" />
                   </div>
                 </div>
               </div>

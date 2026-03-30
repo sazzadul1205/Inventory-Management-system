@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useEffect, useRef } from 'react';
 
 // Icons
+import { FaAward } from "react-icons/fa";
 import {
   HiOutlineStar,
   HiOutlineChatAlt,
@@ -15,7 +16,6 @@ import {
   HiOutlineThumbUp,
   HiOutlineBadgeCheck
 } from 'react-icons/hi';
-import { FaAward } from "react-icons/fa";
 
 const CustomerReviewsSection3 = ({ config }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -111,9 +111,9 @@ const CustomerReviewsSection3 = ({ config }) => {
       aria-label="Customer Reviews Showcase"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -123,8 +123,8 @@ const CustomerReviewsSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>

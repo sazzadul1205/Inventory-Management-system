@@ -1,10 +1,9 @@
 // shared/navbar.jsx
 
-import { useEffect, useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-
+import { useEffect, useState } from 'react';
 import {
   HiHome,
   HiLogin,
@@ -20,15 +19,15 @@ import {
   HiOutlineUserGroup,
   HiChevronDown,
   HiOutlineBadgeCheck,
+  HiOutlineNewspaper,
 } from 'react-icons/hi';
-
 import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
 
-import Icon from '../../../public/Icon.png';
 import DarkIcon from '../../../public/DarkIcon.png';
+import Icon from '../../../public/Icon.png';
 
-import { login, register } from '@/routes';
 import ThemeToggle from '@/components/ThemeToggle';
+import { login, register } from '@/routes';
 
 // =====================================================
 
@@ -56,6 +55,7 @@ const iconMap = {
   contact: HiOutlineMail,
   aboutus: HiOutlineUserGroup,
   whychooseus: HiOutlineBadgeCheck,
+  blog: HiOutlineNewspaper,
 };
 
 const getIconForPage = (name = '') =>
@@ -117,7 +117,7 @@ const Navbar = () => {
   const activeOverflowItem =
     activeOverflowIndex !== -1 ? overflowItems[activeOverflowIndex] : null;
 
-  let finalVisibleItems = [...visibleItems];
+  const finalVisibleItems = [...visibleItems];
   let finalOverflowItems = [...overflowItems];
 
   if (activeOverflowItem) {

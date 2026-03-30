@@ -10,31 +10,31 @@ const FAQSectionSkeleton = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           {/* Badge Skeleton */}
           <div className="flex justify-center mb-6">
-            <div className="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"></div>
+            <div className="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
           </div>
 
           {/* Title Skeleton */}
           <div className="space-y-3 mb-6">
-            <div className="h-12 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto"></div>
-            <div className="h-12 w-2/3 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto"></div>
+            <div className="h-12 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto" />
+            <div className="h-12 w-2/3 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mx-auto" />
           </div>
 
           {/* Description Skeleton */}
           <div className="space-y-2">
-            <div className="h-5 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-5 w-5/6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mx-auto"></div>
+            <div className="h-5 w-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            <div className="h-5 w-5/6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mx-auto" />
           </div>
         </div>
 
         {/* Search Bar Skeleton */}
         <div className="max-w-xl mx-auto mb-12">
-          <div className="h-14 w-full bg-gray-200 dark:bg-gray-700 rounded-xl animate-pulse"></div>
+          <div className="h-14 w-full bg-gray-200 dark:bg-gray-700 rounded-xl animate-pulse" />
         </div>
 
         {/* Category Tabs Skeleton */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {[1, 2, 3, 4, 5].map((item) => (
-            <div key={item} className="h-10 w-24 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"></div>
+            <div key={item} className="h-10 w-24 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
           ))}
         </div>
 
@@ -48,9 +48,9 @@ const FAQSectionSkeleton = () => {
               {/* Question Skeleton */}
               <div className="px-6 py-5 flex items-center justify-between">
                 <div className="flex-1 pr-4">
-                  <div className="h-5 w-3/4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+                  <div className="h-5 w-3/4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
                 </div>
-                <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"></div>
+                <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
               </div>
             </div>
           ))}
@@ -59,16 +59,16 @@ const FAQSectionSkeleton = () => {
         {/* Still Have Questions Skeleton */}
         <div className="mt-16 text-center">
           <div className="bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8">
-            <div className="h-8 w-64 bg-gray-300 dark:bg-gray-700 rounded-lg mx-auto mb-4 animate-pulse"></div>
-            <div className="h-5 w-96 bg-gray-300 dark:bg-gray-700 rounded mx-auto mb-8 animate-pulse"></div>
+            <div className="h-8 w-64 bg-gray-300 dark:bg-gray-700 rounded-lg mx-auto mb-4 animate-pulse" />
+            <div className="h-5 w-96 bg-gray-300 dark:bg-gray-700 rounded mx-auto mb-8 animate-pulse" />
 
             <div className="flex flex-wrap justify-center gap-4">
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded-xl animate-pulse"></div>
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded-xl animate-pulse"></div>
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded-xl animate-pulse"></div>
+              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded-xl animate-pulse" />
+              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded-xl animate-pulse" />
+              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded-xl animate-pulse" />
             </div>
 
-            <div className="h-4 w-48 bg-gray-300 dark:bg-gray-700 rounded mx-auto mt-4 animate-pulse"></div>
+            <div className="h-4 w-48 bg-gray-300 dark:bg-gray-700 rounded mx-auto mt-4 animate-pulse" />
           </div>
         </div>
       </div>

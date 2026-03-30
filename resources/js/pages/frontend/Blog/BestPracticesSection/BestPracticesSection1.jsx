@@ -28,7 +28,6 @@ import {
     HiOutlineShare,
     HiOutlineBookmark,
     HiOutlineSparkles,
-    HiOutlineRocket,
     HiOutlineFire,
     HiOutlineAcademicCap,
     HiOutlineDocumentText,
@@ -37,7 +36,8 @@ import {
     HiOutlineScale,
     HiOutlineCurrencyDollar,
     HiOutlineRefresh,
-    HiOutlineCog
+    HiOutlineCog,
+    HiArrowRight
 } from 'react-icons/hi';
 
 const BestPracticesSection1 = ({ config }) => {
@@ -70,7 +70,7 @@ const BestPracticesSection1 = ({ config }) => {
             share: <HiOutlineShare className={className} />,
             bookmark: <HiOutlineBookmark className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
+            rocket: <HiOutlineTrendingUp className={className} />,
             fire: <HiOutlineFire className={className} />,
             academic: <HiOutlineAcademicCap className={className} />,
             document: <HiOutlineDocumentText className={className} />,
@@ -171,9 +171,9 @@ const BestPracticesSection1 = ({ config }) => {
             itemType="https://schema.org/Article"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-40 left-0 w-72 h-72 bg-green-200 dark:bg-green-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-40 left-0 w-72 h-72 bg-green-200 dark:bg-green-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-40 right-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -234,7 +234,7 @@ const BestPracticesSection1 = ({ config }) => {
                 {featuredPractice && (
                     <div className="mb-16">
                         <div className="relative bg-linear-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
                             <div className="relative p-8 md:p-10">
                                 <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -314,7 +314,7 @@ const BestPracticesSection1 = ({ config }) => {
 
                                     {/* Featured Image */}
                                     <div className="relative">
-                                        <div className="absolute -inset-4 bg-green-600/20 rounded-2xl blur-2xl" aria-hidden="true"></div>
+                                        <div className="absolute -inset-4 bg-green-600/20 rounded-2xl blur-2xl" aria-hidden="true" />
                                         <img
                                             src={featuredPractice.image}
                                             alt={featuredPractice.title}
@@ -561,3 +561,4 @@ const BestPracticesSection1 = ({ config }) => {
 };
 
 export default BestPracticesSection1;
+

@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 // Icons
 import {
-    HiOutlineRocket,
     HiOutlineSparkles,
     HiOutlineChip,
     HiOutlineCloudUpload,
@@ -40,6 +39,7 @@ import {
     HiOutlineThumbUp,
     HiOutlineChat,
     HiOutlineShare
+    HiOutlineTrendingUp,
 } from 'react-icons/hi';
 
 const ProductUpdatesSection2 = ({ config }) => {
@@ -52,7 +52,7 @@ const ProductUpdatesSection2 = ({ config }) => {
     // Icon mapping function
     const getIcon = (iconName, className = "w-5 h-5") => {
         switch (iconName) {
-            case 'rocket': return <HiOutlineRocket className={className} />;
+            case 'rocket': return <HiOutlineTrendingUp className={className} />;
             case 'sparkles': return <HiOutlineSparkles className={className} />;
             case 'chip': return <HiOutlineChip className={className} />;
             case 'cloud': return <HiOutlineCloudUpload className={className} />;
@@ -523,3 +523,5 @@ const ProductUpdatesSection2 = ({ config }) => {
 };
 
 export default ProductUpdatesSection2;
+
+

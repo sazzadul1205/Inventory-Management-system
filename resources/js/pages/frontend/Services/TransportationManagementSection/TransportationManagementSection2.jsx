@@ -76,7 +76,7 @@ const TransportationManagementSection2 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'radial-gradient(circle at 1px 1px, #e5e7eb 1px, transparent 0)',
           backgroundSize: '30px 30px'
-        }}></div>
+        }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,8 +89,8 @@ const TransportationManagementSection2 = ({ config }) => {
               </span>
               <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full flex items-center gap-1">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
                 {config?.liveStatus}
               </span>
@@ -110,7 +110,7 @@ const TransportationManagementSection2 = ({ config }) => {
               <span className="text-4xl font-bold text-gray-900 dark:text-white">{config?.fleetCounter?.value}</span>
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-linear-to-br from-green-400 to-blue-500 border-2 border-white dark:border-gray-800"></div>
+                  <div key={i} className="w-8 h-8 rounded-full bg-linear-to-br from-green-400 to-blue-500 border-2 border-white dark:border-gray-800" />
                 ))}
                 <span className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 border-2 border-white dark:border-gray-800 flex items-center justify-center text-xs font-medium text-gray-600 dark:text-gray-300">
                   +{config?.fleetCounter?.additional}
@@ -191,7 +191,7 @@ const TransportationManagementSection2 = ({ config }) => {
                       <div
                         className="h-full bg-linear-to-r from-green-500 to-green-600 rounded-full"
                         style={{ width: vehicle.progress }}
-                      ></div>
+                       />
                     </div>
                     <p className="text-right text-sm text-green-600 dark:text-green-400 mt-1">{vehicle.progress} completed</p>
                   </div>
@@ -213,7 +213,7 @@ const TransportationManagementSection2 = ({ config }) => {
                       alt={`Route for ${vehicle.id}`}
                       className="w-full h-48 object-cover"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3 flex justify-between text-white text-sm">
                       <span>{vehicle.origin}</span>
                       <span>{vehicle.destination}</span>
@@ -226,7 +226,7 @@ const TransportationManagementSection2 = ({ config }) => {
                     <div className="space-y-2">
                       {vehicle.events?.map((event, idx) => (
                         <div key={idx} className="flex items-center gap-3 text-sm">
-                          <div className={`w-2 h-2 rounded-full ${event.color}`}></div>
+                          <div className={`w-2 h-2 rounded-full ${event.color}`} />
                           <span className="text-gray-600 dark:text-gray-400">{event.description}</span>
                           <span className="text-xs text-gray-500 ml-auto">{event.time}</span>
                         </div>

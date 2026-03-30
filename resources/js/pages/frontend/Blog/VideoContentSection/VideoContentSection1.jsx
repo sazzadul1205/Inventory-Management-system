@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState, useCallback, useRef } from 'react';
 
 // Icons
+import { FaQuoteLeft, FaCertificate } from "react-icons/fa";
 import {
     HiOutlinePlay,
     HiOutlineVideoCamera,
@@ -20,8 +21,7 @@ import {
     HiOutlineMail,
     HiOutlineBell,
     HiOutlineSparkles,
-    HiOutlineRocket,
-    HiOutlineTrophy,
+    HiOutlineStar,
     HiOutlineUserGroup,
     HiOutlineGlobe,
     HiOutlineChartBar,
@@ -31,7 +31,6 @@ import {
     HiOutlineMicrophone,
     HiOutlineDocumentText,
     HiOutlinePresentationChartLine,
-    HiOutlineStar,
     HiOutlineTrendingUp,
     HiOutlineFire,
     HiOutlineAcademicCap,
@@ -56,15 +55,13 @@ import {
     HiOutlineLink,
     HiOutlineCreditCard,
     HiOutlineChartPie,
-    HiOutlineQuote,
     HiOutlineAtSymbol,
-    HiOutlineBuildingOffice,
+    HiOutlineOfficeBuilding,
     HiOutlineNewspaper,
     HiOutlineQuestionMarkCircle,
     HiOutlinePencil,
     HiOutlineBookOpen,
     HiOutlineBadgeCheck,
-    HiOutlineCertificate,
     HiOutlineClipboardList,
     HiOutlineTemplate,
     HiOutlineCode,
@@ -77,10 +74,9 @@ import {
     HiOutlineDownload,
     HiOutlineCalendar as HiOutlineCalendarIcon,
     HiOutlineVolumeUp,
-    HiOutlineClosedCaption,
-    HiOutlineQuality,
-    HiOutlineFullscreen
 } from 'react-icons/hi';
+import { HiOutlineListBullet, HiOutlineRocketLaunch } from "react-icons/hi2";
+import { MdOutlineClosedCaption, MdHighQuality, MdOutlineFullscreen } from "react-icons/md";
 
 const VideoContentSection1 = ({ config }) => {
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -88,7 +84,7 @@ const VideoContentSection1 = ({ config }) => {
     const [savedVideos, setSavedVideos] = useState([]);
     const [activeVideo, setActiveVideo] = useState(null);
     const [showPlayer, setShowPlayer] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
     // Icon mapping function
@@ -108,8 +104,8 @@ const VideoContentSection1 = ({ config }) => {
             mail: <HiOutlineMail className={className} />,
             bell: <HiOutlineBell className={className} />,
             sparkles: <HiOutlineSparkles className={className} />,
-            rocket: <HiOutlineRocket className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
+            rocket: <HiOutlineRocketLaunch className={className} />,
+            trophy: <HiOutlineStar className={className} />,
             users: <HiOutlineUserGroup className={className} />,
             globe: <HiOutlineGlobe className={className} />,
             chart: <HiOutlineChartBar className={className} />,
@@ -144,15 +140,15 @@ const VideoContentSection1 = ({ config }) => {
             link: <HiOutlineLink className={className} />,
             credit: <HiOutlineCreditCard className={className} />,
             pie: <HiOutlineChartPie className={className} />,
-            quote: <HiOutlineQuote className={className} />,
+            quote: <FaQuoteLeft className={className} />,
             at: <HiOutlineAtSymbol className={className} />,
-            building: <HiOutlineBuildingOffice className={className} />,
+            building: <HiOutlineOfficeBuilding className={className} />,
             newspaper: <HiOutlineNewspaper className={className} />,
             question: <HiOutlineQuestionMarkCircle className={className} />,
             pencil: <HiOutlinePencil className={className} />,
             book: <HiOutlineBookOpen className={className} />,
             badge: <HiOutlineBadgeCheck className={className} />,
-            certificate: <HiOutlineCertificate className={className} />,
+            certificate: <FaCertificate className={className} />,
             clipboard: <HiOutlineClipboardList className={className} />,
             template: <HiOutlineTemplate className={className} />,
             code: <HiOutlineCode className={className} />,
@@ -165,9 +161,9 @@ const VideoContentSection1 = ({ config }) => {
             download: <HiOutlineDownload className={className} />,
             calendarIcon: <HiOutlineCalendarIcon className={className} />,
             volume: <HiOutlineVolumeUp className={className} />,
-            caption: <HiOutlineClosedCaption className={className} />,
-            quality: <HiOutlineQuality className={className} />,
-            fullscreen: <HiOutlineFullscreen className={className} />
+            caption: <MdOutlineClosedCaption className={className} />,
+            quality: <MdHighQuality className={className} />,
+            fullscreen: <MdOutlineFullscreen className={className} />
         };
         return icons[iconName] || <HiOutlineVideoCamera className={className} />;
     };
@@ -282,9 +278,9 @@ const VideoContentSection1 = ({ config }) => {
             itemType="https://schema.org/VideoGallery"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -330,8 +326,8 @@ const VideoContentSection1 = ({ config }) => {
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === category.id
-                                    ? 'bg-red-600 text-white shadow-lg shadow-red-600/25'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                ? 'bg-red-600 text-white shadow-lg shadow-red-600/25'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                 }`}
                             aria-label={`Show ${category.label} videos`}
                         >
@@ -402,7 +398,7 @@ const VideoContentSection1 = ({ config }) => {
                 {playlists.length > 0 && (
                     <div className="mb-12">
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                            <HiOutlineList className="w-5 h-5 text-red-600" />
+                            <HiOutlineListBullet className="w-5 h-5 text-red-600" />
                             Featured Playlists
                         </h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

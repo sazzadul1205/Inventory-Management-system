@@ -1,10 +1,11 @@
 // page/frontend/Home/WhyChooseUsSection/WhyChooseUsSection3.jsx
 
 // React
-import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState, useEffect } from 'react';
 
 // Icons
+import { FaAward } from "react-icons/fa";
 import {
   HiOutlineCheckCircle,
   HiOutlineShieldCheck,
@@ -25,7 +26,6 @@ import {
   HiOutlineEmojiHappy,
   HiOutlineTrendingUp
 } from 'react-icons/hi';
-import { FaAward } from "react-icons/fa";
 
 const WhyChooseUsSection3 = ({ config }) => {
   // State for active feature
@@ -113,7 +113,7 @@ const WhyChooseUsSection3 = ({ config }) => {
       aria-label="Why Choose Us section"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -181,7 +181,7 @@ const WhyChooseUsSection3 = ({ config }) => {
                 <ul className="space-y-3">
                   {config.comparison.traditional.points.map((point, idx) => (
                     <li key={idx} className="flex items-start text-gray-500 dark:text-gray-500">
-                      <span className="w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 mr-3 shrink-0 mt-0.5"></span>
+                      <span className="w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 mr-3 shrink-0 mt-0.5" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -221,7 +221,7 @@ const WhyChooseUsSection3 = ({ config }) => {
               onClick={() => setActiveFeature(index)}
             >
               {/* Background Gradient on Hover */}
-              <div className={`absolute inset-0 bg-linear-to-br from-amber-500/0 to-pink-500/0 group-hover:from-amber-500/5 group-hover:to-pink-500/5 rounded-2xl transition-all duration-500`}></div>
+              <div className="absolute inset-0 bg-linear-to-br from-amber-500/0 to-pink-500/0 group-hover:from-amber-500/5 group-hover:to-pink-500/5 rounded-2xl transition-all duration-500" />
 
               {/* Icon */}
               <div className="relative mb-6">
@@ -231,8 +231,8 @@ const WhyChooseUsSection3 = ({ config }) => {
                 {feature.popular && (
                   <div className="absolute -top-2 -right-2">
                     <span className="flex h-4 w-4">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-4 w-4 bg-amber-500"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-4 w-4 bg-amber-500" />
                     </span>
                   </div>
                 )}
@@ -262,7 +262,7 @@ const WhyChooseUsSection3 = ({ config }) => {
 
               {/* Active Indicator */}
               {activeFeature === index && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-amber-500 to-pink-500 rounded-b-2xl"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-amber-500 to-pink-500 rounded-b-2xl" />
               )}
             </div>
           ))}

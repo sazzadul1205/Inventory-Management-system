@@ -85,7 +85,7 @@ const CustomSolutionsSection2 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'radial-gradient(circle at 1px 1px, #e5e7eb 1px, transparent 0)',
           backgroundSize: '30px 30px'
-        }}></div>
+        }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,8 +115,8 @@ const CustomSolutionsSection2 = ({ config }) => {
               <span className="text-4xl font-bold text-gray-900 dark:text-white">{config?.projectCounter?.value}</span>
               <span className="flex items-center gap-1 text-green-600 dark:text-green-400 text-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
                 {config?.projectCounter?.trend}
               </span>
@@ -229,7 +229,7 @@ const CustomSolutionsSection2 = ({ config }) => {
                       </div>
                     </div>
                     {idx < config.architecture.layers.length - 1 && (
-                      <div className="absolute left-4 -bottom-4 w-0.5 h-4 bg-white/20" aria-hidden="true"></div>
+                      <div className="absolute left-4 -bottom-4 w-0.5 h-4 bg-white/20" aria-hidden="true" />
                     )}
                   </div>
                 ))}
@@ -237,8 +237,8 @@ const CustomSolutionsSection2 = ({ config }) => {
             </div>
 
             {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-indigo-400/30 rounded-full blur-2xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-purple-400/30 rounded-full blur-2xl"></div>
+            <div className="absolute -top-4 -right-4 w-20 h-20 bg-indigo-400/30 rounded-full blur-2xl" />
+            <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-purple-400/30 rounded-full blur-2xl" />
           </div>
         </div>
 
@@ -265,7 +265,7 @@ const CustomSolutionsSection2 = ({ config }) => {
             {config?.timeline?.phases?.map((phase, idx) => (
               <div key={phase.id} className="relative">
                 {idx < config.timeline.phases.length - 1 && (
-                  <div className="hidden md:block absolute top-6 left-1/2 w-full h-0.5 bg-indigo-200 dark:bg-indigo-900/30" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-6 left-1/2 w-full h-0.5 bg-indigo-200 dark:bg-indigo-900/30" aria-hidden="true" />
                 )}
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-3">

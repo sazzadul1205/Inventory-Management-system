@@ -2,8 +2,9 @@
  * Preview Controls - Top bar with preview mode toggles
  */
 
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
+
 import { Breakpoints } from './types';
 
 const PreviewControls = ({

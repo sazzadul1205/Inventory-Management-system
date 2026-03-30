@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
+import { GoPackage } from "react-icons/go";
 import {
   HiOutlineRefresh,
   HiOutlineCheckCircle,
@@ -22,7 +23,6 @@ import {
   HiOutlinePhotograph,
   HiOutlineCash
 } from 'react-icons/hi';
-import { GoPackage } from "react-icons/go";
 
 const ReturnsManagementSection2 = ({ config }) => {
   const [activeReturn, setActiveReturn] = useState(config?.recentReturns?.[0]?.id || 1);
@@ -76,7 +76,7 @@ const ReturnsManagementSection2 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'radial-gradient(circle at 1px 1px, #e5e7eb 1px, transparent 0)',
           backgroundSize: '30px 30px'
-        }}></div>
+        }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,8 +89,8 @@ const ReturnsManagementSection2 = ({ config }) => {
               </span>
               <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-full flex items-center gap-1">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
                 </span>
                 {config?.liveStatus}
               </span>
@@ -110,8 +110,8 @@ const ReturnsManagementSection2 = ({ config }) => {
               <span className="text-4xl font-bold text-gray-900 dark:text-white">{config?.returnCounter?.value}</span>
               <span className="flex items-center gap-1 text-orange-600 dark:text-orange-400 text-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
                 </span>
                 {config?.returnCounter?.trend}
               </span>
@@ -281,7 +281,7 @@ const ReturnsManagementSection2 = ({ config }) => {
                     <div
                       className={`h-full ${reason.color} rounded-full`}
                       style={{ width: reason.percentage }}
-                    ></div>
+                     />
                   </div>
                 </div>
               ))}
@@ -305,7 +305,7 @@ const ReturnsManagementSection2 = ({ config }) => {
                       <div
                         className={`h-full ${stage.barColor} rounded-full`}
                         style={{ width: stage.progress }}
-                      ></div>
+                       />
                     </div>
                   </div>
                 </div>

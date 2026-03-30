@@ -1,10 +1,11 @@
 // page/frontend/Home/NewsletterSection/NewsletterSection2.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
+import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import {
   HiOutlineSparkles,
   HiOutlineArrowRight,
@@ -12,7 +13,6 @@ import {
   HiOutlineUser,
 } from 'react-icons/hi';
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 
 const NewsletterSection2 = ({ config }) => {
   const [email, setEmail] = useState('');
@@ -68,11 +68,11 @@ const NewsletterSection2 = ({ config }) => {
       aria-label="Newsletter section"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       {/* Animated Blobs */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">

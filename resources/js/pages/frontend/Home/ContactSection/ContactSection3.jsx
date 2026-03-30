@@ -1,8 +1,8 @@
 // page/frontend/Home/ContactSection/ContactSection3.jsx
 
 // React
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 // Icons
 import {
@@ -78,7 +78,7 @@ const ContactSection3 = ({ config }) => {
       aria-label="Contact section"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -138,8 +138,8 @@ const ContactSection3 = ({ config }) => {
         <div className="bg-linear-to-br from-amber-500 to-pink-600 rounded-3xl p-8 md:p-12 mb-16 text-white relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
           </div>
 
           <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
@@ -187,7 +187,7 @@ const ContactSection3 = ({ config }) => {
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {/* Email Option */}
           <div className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all hover:-translate-y-2 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-br from-amber-500/0 to-pink-500/0 group-hover:from-amber-500/5 group-hover:to-pink-500/5 transition-all"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-amber-500/0 to-pink-500/0 group-hover:from-amber-500/5 group-hover:to-pink-500/5 transition-all" />
             <div className="relative">
               <div className="w-20 h-20 bg-linear-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <HiOutlineMail className="w-10 h-10 text-amber-600 dark:text-amber-400" />
@@ -208,7 +208,7 @@ const ContactSection3 = ({ config }) => {
 
           {/* Phone Option */}
           <div className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all hover:-translate-y-2 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-br from-pink-500/0 to-purple-500/0 group-hover:from-pink-500/5 group-hover:to-purple-500/5 transition-all"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-pink-500/0 to-purple-500/0 group-hover:from-pink-500/5 group-hover:to-purple-500/5 transition-all" />
             <div className="relative">
               <div className="w-20 h-20 bg-linear-to-br from-pink-100 to-pink-200 dark:from-pink-900/30 dark:to-pink-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <HiOutlinePhone className="w-10 h-10 text-pink-600 dark:text-pink-400" />
@@ -229,7 +229,7 @@ const ContactSection3 = ({ config }) => {
 
           {/* Chat Option */}
           <div className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all hover:-translate-y-2 text-center relative overflow-hidden cursor-pointer">
-            <div className="absolute inset-0 bg-linear-to-br from-purple-500/0 to-indigo-500/0 group-hover:from-purple-500/5 group-hover:to-indigo-500/5 transition-all"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-purple-500/0 to-indigo-500/0 group-hover:from-purple-500/5 group-hover:to-indigo-500/5 transition-all" />
             <div className="relative">
               <div className="w-20 h-20 bg-linear-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <HiOutlineChat className="w-10 h-10 text-purple-600 dark:text-purple-400" />
@@ -275,7 +275,7 @@ const ContactSection3 = ({ config }) => {
                       style={{ border: 0 }}
                       loading="lazy"
                       title="Office location"
-                    ></iframe>
+                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400 text-sm">
                       Map preview
@@ -502,7 +502,7 @@ const ContactSection3 = ({ config }) => {
                     required
                     placeholder="How can we help you?"
                     className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
-                  ></textarea>
+                   />
                 </div>
 
                 {/* Priority Selection for Support Tab */}
@@ -541,8 +541,8 @@ const ContactSection3 = ({ config }) => {
                   {isSubmitting ? (
                     <>
                       <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
                       Sending...
                     </>
@@ -575,12 +575,12 @@ const ContactSection3 = ({ config }) => {
                 <HiOutlineShieldCheck className="w-5 h-5 text-amber-500 mr-2" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">SSL Secure</span>
               </div>
-              <div className="w-px h-4 bg-gray-300 dark:bg-gray-700"></div>
+              <div className="w-px h-4 bg-gray-300 dark:bg-gray-700" />
               <div className="flex items-center">
                 <HiOutlineLockClosed className="w-5 h-5 text-amber-500 mr-2" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">Privacy Protected</span>
               </div>
-              <div className="w-px h-4 bg-gray-300 dark:bg-gray-700"></div>
+              <div className="w-px h-4 bg-gray-300 dark:bg-gray-700" />
               <div className="flex items-center">
                 <HiOutlineCheckCircle className="w-5 h-5 text-amber-500 mr-2" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">24/7 Support</span>

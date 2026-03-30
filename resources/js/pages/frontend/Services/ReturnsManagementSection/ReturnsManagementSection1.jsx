@@ -4,6 +4,7 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
+import { GoPackage } from "react-icons/go";
 import {
   HiOutlineRefresh,
   HiOutlineCheckCircle,
@@ -18,7 +19,6 @@ import {
   HiOutlineChartBar,
   HiOutlineCube
 } from 'react-icons/hi';
-import { GoPackage } from "react-icons/go";
 
 const ReturnsManagementSection1 = ({ config }) => {
   // Icon mapping function
@@ -66,12 +66,12 @@ const ReturnsManagementSection1 = ({ config }) => {
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20 L40 20 L40 40 L20 40 Z' stroke='%239CA3AF' fill='none' stroke-width='0.5'/%3E%3Cpath d='M15 25 L20 20 L15 15' stroke='%239CA3AF' fill='none' stroke-width='0.5'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px'
-        }}></div>
+        }} />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-20 right-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -116,7 +116,7 @@ const ReturnsManagementSection1 = ({ config }) => {
             {config?.process?.steps?.map((step, idx) => (
               <div key={step.id} className="relative">
                 {idx < config.process.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></div>
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true" />
                 )}
                 <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 text-center border border-gray-200 dark:border-gray-700 shadow-lg">
                   <div className={`w-12 h-12 mx-auto mb-4 rounded-full ${step.bgColor} flex items-center justify-center text-white font-bold text-lg`}>

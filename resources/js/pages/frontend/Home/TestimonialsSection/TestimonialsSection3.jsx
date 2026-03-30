@@ -1,8 +1,8 @@
 // page/frontend/Home/TestimonialsSection/TestimonialsSection3.jsx
 
 // React
-import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
+import { useState, useEffect } from 'react';
 
 // Icons
 import {
@@ -65,7 +65,7 @@ const TestimonialsSection3 = ({ config }) => {
       itemType="https://schema.org/ItemList"
     >
       {/* Background Pattern - Dots */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-dot-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -135,8 +135,8 @@ const TestimonialsSection3 = ({ config }) => {
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl" />
               </div>
 
               {/* Content */}
@@ -197,7 +197,7 @@ const TestimonialsSection3 = ({ config }) => {
               </div>
 
               {/* Decorative Corner */}
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-tl-3xl"></div>
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-tl-3xl" />
             </div>
           )}
 
@@ -335,14 +335,14 @@ const TestimonialsSection3 = ({ config }) => {
                   {config.trustSignals.satisfiedCustomers}+ Satisfied Customers
                 </span>
               </div>
-              <div className="w-px h-6 bg-gray-300 dark:bg-gray-700"></div>
+              <div className="w-px h-6 bg-gray-300 dark:bg-gray-700" />
               <div className="flex items-center space-x-2">
                 <HiOutlineTrendingUp className="w-5 h-5 text-amber-500" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   {config.trustSignals.netPromoterScore} NPS Score
                 </span>
               </div>
-              <div className="w-px h-6 bg-gray-300 dark:bg-gray-700"></div>
+              <div className="w-px h-6 bg-gray-300 dark:bg-gray-700" />
               <div className="flex items-center space-x-2">
                 <HiOutlineChat className="w-5 h-5 text-amber-500" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">

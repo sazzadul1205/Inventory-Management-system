@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
+import { GoPackage } from "react-icons/go";
 import {
   HiOutlineShoppingBag,
   HiOutlineTruck,
@@ -22,7 +23,6 @@ import {
   HiOutlineBan,
   HiOutlineMail
 } from 'react-icons/hi';
-import { GoPackage } from "react-icons/go";
 
 const OrderFulfillmentSection2 = ({ config }) => {
   const [activeOrderType, setActiveOrderType] = useState(config?.orderTypes?.[0]?.id || 1);
@@ -72,7 +72,7 @@ const OrderFulfillmentSection2 = ({ config }) => {
       aria-label="Order Fulfillment Solutions"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Toggle */}
@@ -101,8 +101,8 @@ const OrderFulfillmentSection2 = ({ config }) => {
               <span className="text-4xl font-bold text-gray-900 dark:text-white">{config?.liveCounter?.value}</span>
               <span className="flex items-center gap-1 text-green-600 dark:text-green-400 text-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
                 {config?.liveCounter?.trend}
               </span>
@@ -179,7 +179,7 @@ const OrderFulfillmentSection2 = ({ config }) => {
 
               {/* Progress Steps */}
               <div className="relative mb-8">
-                <div className="absolute top-5 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></div>
+                <div className="absolute top-5 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true" />
                 <div className="relative flex justify-between">
                   {config?.fulfillmentCenter?.steps?.map((step, idx) => (
                     <div key={step.id} className="text-center">

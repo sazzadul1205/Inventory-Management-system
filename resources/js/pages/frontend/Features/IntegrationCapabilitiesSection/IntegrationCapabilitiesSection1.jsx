@@ -4,6 +4,7 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
+import { FaPlug } from "react-icons/fa";
 import {
   HiOutlineCloud,
   HiOutlineDatabase,
@@ -18,7 +19,6 @@ import {
   HiOutlineShare,
   HiOutlineDocumentText
 } from 'react-icons/hi';
-import { FaPlug } from "react-icons/fa";
 
 const IntegrationCapabilitiesSection1 = ({ config }) => {
   // Icon mapping function
@@ -62,9 +62,9 @@ const IntegrationCapabilitiesSection1 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-40 left-0 w-72 h-72 bg-teal-200 dark:bg-teal-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-      <div className="absolute bottom-40 right-0 w-72 h-72 bg-cyan-200 dark:bg-cyan-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-40 left-0 w-72 h-72 bg-teal-200 dark:bg-teal-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+      <div className="absolute bottom-40 right-0 w-72 h-72 bg-cyan-200 dark:bg-cyan-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -76,8 +76,8 @@ const IntegrationCapabilitiesSection1 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -192,7 +192,7 @@ const IntegrationCapabilitiesSection1 = ({ config }) => {
               </Link>
 
               {/* Decorative corner gradient */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-teal-600/0 via-teal-600/0 to-teal-600/5 dark:from-teal-400/0 dark:via-teal-400/0 dark:to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-teal-600/0 via-teal-600/0 to-teal-600/5 dark:from-teal-400/0 dark:via-teal-400/0 dark:to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true" />
             </div>
           ))}
         </div>

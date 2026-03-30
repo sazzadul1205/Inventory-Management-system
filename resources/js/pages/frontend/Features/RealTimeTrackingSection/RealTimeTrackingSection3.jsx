@@ -61,9 +61,9 @@ const RealTimeTrackingSection3 = ({ config }) => {
       itemType="https://schema.org/Product"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-50/50 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/50 to-transparent dark:from-indigo-900/10 pointer-events-none" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-blue-50/50 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-linear-to-r from-indigo-50/50 to-transparent dark:from-indigo-900/10 pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -75,8 +75,8 @@ const RealTimeTrackingSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -132,15 +132,15 @@ const RealTimeTrackingSection3 = ({ config }) => {
               className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
             >
               {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 via-blue-600/0 to-blue-600/5 dark:from-blue-400/0 dark:via-blue-400/0 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 via-blue-600/0 to-blue-600/5 dark:from-blue-400/0 dark:via-blue-400/0 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
               <div className="p-8">
                 {/* Icon with animated background */}
                 <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-blue-500/10 dark:bg-blue-400/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-blue-500/10 dark:bg-blue-400/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative w-16 h-16 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-700 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <div className="text-blue-600 dark:text-blue-400">
                       {getFeatureIcon(feature.icon)}
@@ -192,7 +192,7 @@ const RealTimeTrackingSection3 = ({ config }) => {
               </div>
 
               {/* Bottom decorative element */}
-              <div className="absolute bottom-0 right-0 w-20 h-20 bg-linear-to-tl from-blue-500/5 to-transparent rounded-tl-full pointer-events-none"></div>
+              <div className="absolute bottom-0 right-0 w-20 h-20 bg-linear-to-tl from-blue-500/5 to-transparent rounded-tl-full pointer-events-none" />
             </div>
           ))}
         </div>
@@ -233,8 +233,8 @@ const RealTimeTrackingSection3 = ({ config }) => {
           <div className="mt-20">
             <div className="relative bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 rounded-3xl overflow-hidden">
               {/* Background pattern */}
-              <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-              <div className="absolute inset-0 bg-linear-to-r from-white/10 to-transparent"></div>
+              <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+              <div className="absolute inset-0 bg-linear-to-r from-white/10 to-transparent" />
 
               <div className="relative px-8 py-12 md:px-12 md:py-16 text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">

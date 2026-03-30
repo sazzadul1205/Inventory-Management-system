@@ -114,10 +114,10 @@ const RatingAndAwardsSection3 = ({ config }) => {
       aria-label="Ratings & Awards Showcase"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-yellow-50/30 to-transparent dark:from-yellow-900/10 pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-100 dark:bg-yellow-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-amber-100 dark:bg-amber-900/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-yellow-50/30 to-transparent dark:from-yellow-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-100 dark:bg-yellow-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-amber-100 dark:bg-amber-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -127,8 +127,8 @@ const RatingAndAwardsSection3 = ({ config }) => {
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500" />
               </span>
             )}
             <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
@@ -282,7 +282,7 @@ const RatingAndAwardsSection3 = ({ config }) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {featuredAwards.map((award, index) => (
                   <div key={index} className="relative bg-linear-to-br from-yellow-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center shadow-lg overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-yellow-200 dark:bg-yellow-900/30 rounded-bl-full opacity-50"></div>
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-yellow-200 dark:bg-yellow-900/30 rounded-bl-full opacity-50" />
                     <div className="text-5xl mb-3 relative z-10">{award.icon}</div>
                     <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">{award.title}</h4>
                     <p className="text-sm text-gray-500 mb-2">{award.presentedBy}</p>
@@ -369,12 +369,12 @@ const RatingAndAwardsSection3 = ({ config }) => {
                 Award Timeline
               </h3>
               <div className="relative">
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-yellow-500 to-amber-500"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-yellow-500 to-amber-500" />
                 <div className="space-y-8">
                   {awards.slice(0, 6).map((award, index) => (
                     <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                      <div className="w-1/2"></div>
-                      <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-yellow-500 rounded-full border-2 border-white shadow-lg"></div>
+                      <div className="w-1/2" />
+                      <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-yellow-500 rounded-full border-2 border-white shadow-lg" />
                       <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
                         <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
                           <div className="text-xs text-yellow-600 font-semibold mb-1">{award.year}</div>
