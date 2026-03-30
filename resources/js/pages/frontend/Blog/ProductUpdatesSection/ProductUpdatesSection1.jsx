@@ -29,7 +29,7 @@ import {
     HiOutlineRefresh,
     HiOutlineStar,
     HiOutlineFlag,
-    HiOutlineGift
+    HiOutlineGift,
     HiOutlineTrendingUp,
 } from 'react-icons/hi';
 
@@ -148,9 +148,9 @@ const ProductUpdatesSection1 = ({ config }) => {
             itemType="https://schema.org/Product"
         >
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true"></div>
-            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true"></div>
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+            <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
+            <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -162,8 +162,8 @@ const ProductUpdatesSection1 = ({ config }) => {
                     >
                         {config?.badge?.showPulse && (
                             <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                             </span>
                         )}
                         <span className={`text-sm font-medium ${config?.badge?.textColor || 'text-blue-700 dark:text-blue-300'}`}>
@@ -282,7 +282,7 @@ const ProductUpdatesSection1 = ({ config }) => {
                 {/* Timeline Updates */}
                 <div className="relative mb-12">
                     {/* Timeline Line */}
-                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2 hidden md:block" aria-hidden="true"></div>
+                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2 hidden md:block" aria-hidden="true" />
 
                     <div className="space-y-8">
                         {filteredUpdates.map((update, index) => (
@@ -292,7 +292,7 @@ const ProductUpdatesSection1 = ({ config }) => {
                                     }`}
                             >
                                 {/* Timeline Dot */}
-                                <div className="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-blue-600 rounded-full transform -translate-x-1/2 hidden md:block" aria-hidden="true"></div>
+                                <div className="absolute left-4 md:left-1/2 top-6 w-3 h-3 bg-blue-600 rounded-full transform -translate-x-1/2 hidden md:block" aria-hidden="true" />
 
                                 {/* Date Badge (Mobile) */}
                                 <div className="md:hidden flex items-center gap-2 mb-2">
@@ -387,7 +387,7 @@ const ProductUpdatesSection1 = ({ config }) => {
                                 </div>
 
                                 {/* Empty spacer for alignment */}
-                                <div className="hidden md:block md:w-1/2"></div>
+                                <div className="hidden md:block md:w-1/2" />
                             </div>
                         ))}
                     </div>
@@ -436,7 +436,7 @@ const ProductUpdatesSection1 = ({ config }) => {
                                     <div className="space-y-3">
                                         {quarter.items?.map((item, itemIdx) => (
                                             <div key={itemIdx} className="flex items-start gap-2">
-                                                <div className={`w-2 h-2 rounded-full mt-1.5 ${item.status === 'in-progress' ? 'bg-yellow-500' : item.status === 'completed' ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                                                <div className={`w-2 h-2 rounded-full mt-1.5 ${item.status === 'in-progress' ? 'bg-yellow-500' : item.status === 'completed' ? 'bg-green-500' : 'bg-gray-400'}`} />
                                                 <div>
                                                     <p className="text-sm font-medium text-gray-900 dark:text-white">{item.title}</p>
                                                     <p className="text-xs text-gray-500 dark:text-gray-400">{item.status}</p>

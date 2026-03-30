@@ -9,24 +9,12 @@ import {
     HiOutlineDocumentText,
     HiOutlineCalendar,
     HiOutlineClock,
-    HiOutlineUser,
-    HiOutlineTag,
     HiOutlineChartBar,
-    HiOutlineLightningBolt,
-    HiOutlineTrendingUp,
     HiOutlineEye,
     HiArrowRight,
-    HiOutlineBookOpen,
-    HiOutlineNewspaper,
-    HiOutlineAcademicCap,
-    HiOutlineShare,
     HiOutlineBookmark,
-    HiOutlineChatAlt,
     HiOutlineFire,
     HiOutlineSparkles,
-    HiOutlineHeart,
-    HiOutlineGlobe,
-    HiOutlineDownload,
     HiOutlineMail,
     HiOutlineSearch,
     HiOutlineFilter,
@@ -34,10 +22,7 @@ import {
     HiOutlinePlay,
     HiOutlineVolumeUp,
     HiOutlineMicrophone,
-    HiOutlineChartPie,
     HiOutlineTemplate,
-    HiOutlineChip,
-    HiOutlineCloudUpload
 } from 'react-icons/hi';
 
 const IndustryInsightsSection3 = ({ config }) => {
@@ -52,44 +37,6 @@ const IndustryInsightsSection3 = ({ config }) => {
     const [savedArticles, setSavedArticles] = useState([]);
     const [viewMode, setViewMode] = useState(config?.defaultViewMode || 'grid'); // grid, list, compact
     const loadMoreRef = useRef(null);
-
-    // Icon mapping function
-    const getIcon = (iconName, className = "w-5 h-5") => {
-        switch (iconName) {
-            case 'document': return <HiOutlineDocumentText className={className} />;
-            case 'calendar': return <HiOutlineCalendar className={className} />;
-            case 'clock': return <HiOutlineClock className={className} />;
-            case 'user': return <HiOutlineUser className={className} />;
-            case 'tag': return <HiOutlineTag className={className} />;
-            case 'chart': return <HiOutlineChartBar className={className} />;
-            case 'bolt': return <HiOutlineLightningBolt className={className} />;
-            case 'trending': return <HiOutlineTrendingUp className={className} />;
-            case 'eye': return <HiOutlineEye className={className} />;
-            case 'book': return <HiOutlineBookOpen className={className} />;
-            case 'newspaper': return <HiOutlineNewspaper className={className} />;
-            case 'academic': return <HiOutlineAcademicCap className={className} />;
-            case 'share': return <HiOutlineShare className={className} />;
-            case 'bookmark': return <HiOutlineBookmark className={className} />;
-            case 'chat': return <HiOutlineChatAlt className={className} />;
-            case 'fire': return <HiOutlineFire className={className} />;
-            case 'sparkles': return <HiOutlineSparkles className={className} />;
-            case 'heart': return <HiOutlineHeart className={className} />;
-            case 'globe': return <HiOutlineGlobe className={className} />;
-            case 'download': return <HiOutlineDownload className={className} />;
-            case 'mail': return <HiOutlineMail className={className} />;
-            case 'search': return <HiOutlineSearch className={className} />;
-            case 'filter': return <HiOutlineFilter className={className} />;
-            case 'x': return <HiOutlineX className={className} />;
-            case 'play': return <HiOutlinePlay className={className} />;
-            case 'volume': return <HiOutlineVolumeUp className={className} />;
-            case 'microphone': return <HiOutlineMicrophone className={className} />;
-            case 'pie': return <HiOutlineChartPie className={className} />;
-            case 'template': return <HiOutlineTemplate className={className} />;
-            case 'chip': return <HiOutlineChip className={className} />;
-            case 'cloud': return <HiOutlineCloudUpload className={className} />;
-            default: return <HiOutlineDocumentText className={className} />;
-        }
-    };
 
     // Format date helper
     const formatDate = (dateString) => {
@@ -217,12 +164,12 @@ const IndustryInsightsSection3 = ({ config }) => {
         }
 
         return () => observer.disconnect();
-    }, [displayCount, isLoading, getFilteredArticles]);
+    }, [displayCount, isLoading, getFilteredArticles, config?.loadMoreCount]);
 
     // Reset display count when filters change
     useEffect(() => {
         setDisplayCount(config?.initialDisplayCount || 9);
-    }, [searchQuery, selectedCategory, selectedAuthor, selectedDateRange, activeFilter]);
+    }, [searchQuery, selectedCategory, selectedAuthor, selectedDateRange, activeFilter, config?.initialDisplayCount]);
 
     const filteredArticles = getFilteredArticles();
     const displayArticles = filteredArticles.slice(0, displayCount);
@@ -464,7 +411,7 @@ const IndustryInsightsSection3 = ({ config }) => {
                             ? 'grid-cols-1'
                             : 'grid-cols-1 md:grid-cols-2'
                     }`}>
-                    {displayArticles.map((article, index) => (
+                    {displayArticles.map((article) => (
                         <article
                             key={article.id}
                             className={`group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 ${viewMode === 'list' ? 'flex flex-col md:flex-row' : ''

@@ -303,7 +303,7 @@ const IndustryInsightsSection2 = ({ config }) => {
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                                 <HiOutlineFire className="w-5 h-5 text-orange-500" />
-                                Editor's Picks
+                                Editor&apos;s Picks
                             </h3>
                             <Link href={config?.editorsPickLink || "/blog/editors-picks"} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
                                 View all
@@ -445,7 +445,7 @@ const IndustryInsightsSection2 = ({ config }) => {
                         <div className="col-span-full text-center py-12">
                             <HiOutlineBookOpen className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
                             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No articles found</h3>
-                            <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you're looking for.</p>
+                            <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                         </div>
                     )}
                 </div>

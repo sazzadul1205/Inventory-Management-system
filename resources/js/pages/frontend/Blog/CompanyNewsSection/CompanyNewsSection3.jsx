@@ -168,9 +168,10 @@ const CompanyNewsSection3 = ({ config }) => {
     };
 
     // Carousel navigation
-    const nextSlide = () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const nextSlide = useCallback(() => {
         setCurrentSlide((prev) => (prev + 1) % (config?.featuredNews?.length || 1));
-    };
+    });
 
     const prevSlide = () => {
         setCurrentSlide((prev) => (prev - 1 + (config?.featuredNews?.length || 1)) % (config?.featuredNews?.length || 1));
@@ -184,7 +185,7 @@ const CompanyNewsSection3 = ({ config }) => {
             }, 5000);
             return () => clearInterval(interval);
         }
-    }, [config?.autoPlayCarousel]);
+    }, [config?.autoPlayCarousel, nextSlide]);
 
     // Filter news
     const getFilteredNews = useCallback(() => {
@@ -299,7 +300,7 @@ const CompanyNewsSection3 = ({ config }) => {
                                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                                 ref={carouselRef}
                             >
-                                {config.featuredNews.map((news, idx) => {
+                                {config.featuredNews.map((news) => {
                                     const categoryConfig = getCategoryConfig(news.category);
                                     return (
                                         <div key={news.id} className="w-full shrink-0">

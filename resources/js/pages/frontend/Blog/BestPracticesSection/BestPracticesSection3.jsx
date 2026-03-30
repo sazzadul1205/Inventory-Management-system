@@ -75,13 +75,13 @@ const BestPracticesSection3 = ({ config }) => {
     const [activeTab, setActiveTab] = useState('practices');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
-    const [viewMode, setViewMode] = useState(config?.defaultViewMode || 'grid');
+    const [viewMode] = useState(config?.defaultViewMode || 'grid');
     const [savedPractices, setSavedPractices] = useState([]);
     const [assessmentAnswers, setAssessmentAnswers] = useState({});
     const [assessmentResult, setAssessmentResult] = useState(null);
     const [showVideoModal, setShowVideoModal] = useState(false);
     const [currentVideo, setCurrentVideo] = useState(null);
-    const [maturityLevel, setMaturityLevel] = useState(null);
+    const [, setMaturityLevel] = useState(null);
     const videoRef = useRef(null);
 
     // Load saved data from localStorage
@@ -475,7 +475,7 @@ const BestPracticesSection3 = ({ config }) => {
                                     Supply Chain Maturity Assessment
                                 </h2>
                                 <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                                    Answer the following questions to assess your organization's supply chain maturity level and get personalized recommendations.
+                                    Answer the following questions to assess your organization&apos;s supply chain maturity level and get personalized recommendations.
                                 </p>
                             </div>
 

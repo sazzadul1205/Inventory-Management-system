@@ -66,6 +66,7 @@ import {
     HiOutlineClipboardCheck,
     HiOutlineBadgeCheck
 } from 'react-icons/hi';
+import { HiOutlineArrowRight } from 'react-icons/hi2';
 
 const HowToGuidesSection3 = ({ config }) => {
     const [activeGuide, setActiveGuide] = useState(null);
@@ -77,7 +78,7 @@ const HowToGuidesSection3 = ({ config }) => {
     const [quizAnswers, setQuizAnswers] = useState({});
     const [showQuizResults, setShowQuizResults] = useState(false);
     const [bookmarkedGuides, setBookmarkedGuides] = useState([]);
-    const [userRating, setUserRating] = useState(null);
+    const [, setUserRating] = useState(null);
     const [showCodeEditor, setShowCodeEditor] = useState(false);
     const [codeOutput, setCodeOutput] = useState('');
     const videoRef = useRef(null);
@@ -656,7 +657,7 @@ const HowToGuidesSection3 = ({ config }) => {
                             {activeTab === 'overview' && (
                                 <div className="space-y-6">
                                     <div>
-                                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What You'll Learn</h2>
+                                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What You&apos;ll Learn</h2>
                                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                                             {activeGuide.description}
                                         </p>
@@ -911,7 +912,7 @@ const HowToGuidesSection3 = ({ config }) => {
                                             <div>
                                                 <h4 className="font-semibold text-green-700 dark:text-green-400">Congratulations!</h4>
                                                 <p className="text-sm text-green-600 dark:text-green-300">
-                                                    You've mastered this guide! Consider moving on to the next topic in the series.
+                                                    You&apos;ve mastered this guide! Consider moving on to the next topic in the series.
                                                 </p>
                                             </div>
                                         </div>

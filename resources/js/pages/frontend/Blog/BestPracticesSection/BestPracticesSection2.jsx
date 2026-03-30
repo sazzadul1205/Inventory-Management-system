@@ -130,17 +130,6 @@ const BestPracticesSection2 = ({ config }) => {
         return icons[iconName] || <HiOutlineLightBulb className={className} />;
     };
 
-    // Format date helper
-    const formatDate = (dateString) => {
-        if (!dateString) return '';
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        }).format(date);
-    };
-
     // Get category configuration
     const getCategoryConfig = (category) => {
         const configs = {
