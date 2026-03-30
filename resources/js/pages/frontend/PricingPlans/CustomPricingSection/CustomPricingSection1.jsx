@@ -38,7 +38,7 @@ const CustomPricingSection1 = ({ config }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Form submitted:', formData);
+    
     setShowContactForm(false);
     alert('Thank you! Our team will contact you within 24 hours.');
   };

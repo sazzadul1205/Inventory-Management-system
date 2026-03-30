@@ -31,7 +31,6 @@ const VideoTestimonialsSection2 = ({ config }) => {
   const [savedVideos, setSavedVideos] = useState([]);
   const videoRef = useRef(null);
   const modalRef = useRef(null);
-  const carouselRef = useRef(null);
 
   const videos = config?.videos || [];
   const featuredVideo = config?.featuredVideo || videos[0];

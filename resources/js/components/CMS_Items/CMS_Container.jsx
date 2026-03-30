@@ -10,8 +10,8 @@
  * - Debug overlay for development
  */
 
-// eslint-disable-next-line import/no-named-as-default
-import clsx from 'clsx';
+
+import { clsx } from 'clsx';
 import React, { forwardRef, useMemo } from 'react';
 
 // ============================================================================

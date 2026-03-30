@@ -1,7 +1,7 @@
 // frontend/PricingPlans/EnterprisePlanSection/EnterprisePlanSection3.jsx
 
 // React
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import {
@@ -18,7 +18,7 @@ const EnterprisePlanSection3 = ({ config }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const comparisonData = config?.comparisonData || [];
-  const roiMetrics = config?.roiMetrics || [];
+  const roiMetrics = useMemo(() => config?.roiMetrics || [], [config]);
   const deploymentOptions = config?.deploymentOptions || [];
 
   useEffect(() => {
@@ -118,8 +118,8 @@ const EnterprisePlanSection3 = ({ config }) => {
           <button
             onClick={() => setSelectedComparison('plans')}
             className={`px-6 py-3 rounded-xl font-semibold transition-all ${selectedComparison === 'plans'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
               }`}
           >
             Plan Comparison
@@ -127,8 +127,8 @@ const EnterprisePlanSection3 = ({ config }) => {
           <button
             onClick={() => setSelectedComparison('vendors')}
             className={`px-6 py-3 rounded-xl font-semibold transition-all ${selectedComparison === 'vendors'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
               }`}
           >
             Vendor Comparison

@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 // Icons
 import {
@@ -14,10 +14,9 @@ const ClientSuccessMetricsSection3 = ({ config }) => {
   const [selectedMetric, setSelectedMetric] = useState(0);
   const [animatedValues, setAnimatedValues] = useState({});
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(0);
   const sectionRef = useRef(null);
 
-  const metrics = config?.metrics || [];
+  const metrics = useMemo(() => config?.metrics || [], [config]);
   const detailedMetrics = config?.detailedMetrics || [];
   const caseStudies = config?.caseStudies || [];
   const testimonials = config?.testimonials || [];
@@ -132,8 +131,8 @@ const ClientSuccessMetricsSection3 = ({ config }) => {
                 <div
                   key={index}
                   className={`p-4 rounded-xl cursor-pointer transition-all ${selectedMetric === index
-                      ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
                     }`}
                   onClick={() => setSelectedMetric(index)}
                 >

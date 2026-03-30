@@ -21,7 +21,7 @@ import {
   HiOutlinePrinter,
   HiOutlineX,
 } from 'react-icons/hi';
-import { HiOutlineTrophy } from "react-icons/hi2";
+import { HiOutlineDocumentText, HiOutlineTrophy } from "react-icons/hi2";
 import { MdOutlineHandshake } from "react-icons/md";
 
 const PartnerInquiriesSection2 = ({ config }) => {

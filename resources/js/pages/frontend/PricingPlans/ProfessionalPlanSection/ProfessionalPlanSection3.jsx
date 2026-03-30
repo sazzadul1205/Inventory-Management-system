@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 // Icons
 import {
@@ -24,7 +24,7 @@ const ProfessionalPlanSection3 = ({ config }) => {
   const plans = config?.plans || [];
   const professionalPlan = plans.find(p => p.id === 'professional') || plans[0];
   const starterPlan = plans.find(p => p.id === 'starter') || {};
-  const roiMetrics = config?.roiMetrics || [];
+  const roiMetrics = useMemo(() => config?.roiMetrics || [], [config]);
   const comparisonFeatures = config?.comparisonFeatures || [];
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const ProfessionalPlanSection3 = ({ config }) => {
         const suffix = metric.value.replace(/[0-9.-]/g, '');
         let current = 0;
         const increment = targetValue / 50;
-        
+
         const interval = setInterval(() => {
           current += increment;
           if (current >= targetValue) {
@@ -59,7 +59,7 @@ const ProfessionalPlanSection3 = ({ config }) => {
             setAnimatedValues(prev => ({ ...prev, [index]: Math.floor(current) + suffix }));
           }
         }, 30);
-        
+
         return () => clearInterval(interval);
       });
     }
@@ -231,9 +231,8 @@ const ProfessionalPlanSection3 = ({ config }) => {
             className="relative w-16 h-8 bg-linear-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-500 rounded-full transition-all focus:outline-none"
           >
             <span
-              className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform ${
-                billingPeriod === 'yearly' ? 'transform translate-x-9' : 'translate-x-1'
-              }`}
+              className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform ${billingPeriod === 'yearly' ? 'transform translate-x-9' : 'translate-x-1'
+                }`}
             />
           </button>
           <span className={`text-sm font-medium ${billingPeriod === 'yearly' ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>

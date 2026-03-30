@@ -46,7 +46,7 @@ const FreeTrialSection1 = ({ config }) => {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      console.log('Trial signup:', { email, plan: selectedPlan });
+
     }, 1500);
   };
 
@@ -152,8 +152,8 @@ const FreeTrialSection1 = ({ config }) => {
                       key={plan.id}
                       onClick={() => setSelectedPlan(plan.id)}
                       className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all ${selectedPlan === plan.id
-                          ? 'bg-blue-600 text-white shadow-md'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
                         }`}
                     >
                       {plan.name}

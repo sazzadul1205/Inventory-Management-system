@@ -45,7 +45,7 @@ const FreeTrialSection3 = ({ config }) => {
       setIsSubmitting(false);
       setSubmitted(true);
       setCountdown(14);
-      console.log('Trial signup:', { email, plan: selectedPlan });
+      
     }, 1500);
   };
 

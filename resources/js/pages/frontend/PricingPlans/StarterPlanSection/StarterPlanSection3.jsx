@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 // Icons
 import {
@@ -30,7 +30,7 @@ const StarterPlanSection3 = ({ config }) => {
 
   const plans = config?.plans || [];
   const testimonials = config?.testimonials || [];
-  const stats = config?.stats || [];
+  const stats = useMemo(() => config?.stats || [], [config]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -175,8 +175,8 @@ const StarterPlanSection3 = ({ config }) => {
               key={plan.id}
               onClick={() => setSelectedPlan(plan.id)}
               className={`px-6 py-3 rounded-xl font-semibold transition-all ${selectedPlan === plan.id
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
                 }`}
             >
               {plan.name}
@@ -242,8 +242,8 @@ const StarterPlanSection3 = ({ config }) => {
                 <Link
                   href={selectedPlanData.ctaLink || "/demo"}
                   className={`block text-center px-6 py-3 rounded-xl font-semibold transition-all ${selectedPlanData.popular
-                      ? 'bg-white text-blue-600 hover:shadow-lg transform hover:scale-105'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                    ? 'bg-white text-blue-600 hover:shadow-lg transform hover:scale-105'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
                     }`}
                 >
                   {selectedPlanData.ctaText || "Get Started"}

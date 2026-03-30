@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // Icons
 import {
@@ -21,7 +21,6 @@ const BeforeAfterScenariosSection2 = ({ config }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [hoveredMetric, setHoveredMetric] = useState(null);
-  const carouselRef = useRef(null);
 
   const scenarios = config?.scenarios || [];
 
@@ -250,8 +249,8 @@ const BeforeAfterScenariosSection2 = ({ config }) => {
                   setIsPlaying(false);
                 }}
                 className={`w-2 h-2 rounded-full transition-all ${currentSlide === idx
-                    ? 'w-6 bg-green-600'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                  ? 'w-6 bg-green-600'
+                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
                   }`}
               />
             ))}

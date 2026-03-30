@@ -113,8 +113,8 @@ const VideoTestimonialsSection3 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -190,8 +190,8 @@ const VideoTestimonialsSection3 = ({ config }) => {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === category
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 {category === 'all' ? 'All Industries' : category.charAt(0).toUpperCase() + category.slice(1)}
@@ -207,7 +207,7 @@ const VideoTestimonialsSection3 = ({ config }) => {
 
         {/* Video Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredVideos.map((video, index) => (
+          {filteredVideos.map((video) => (
             <div
               key={video.id}
               className="group bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden cursor-pointer"

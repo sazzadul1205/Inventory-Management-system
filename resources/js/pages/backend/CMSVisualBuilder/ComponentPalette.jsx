@@ -2,7 +2,8 @@
  * Component Palette - Left sidebar with draggable components
  */
 
-import clsx from 'clsx';
+
+import { clsx } from 'clsx';
 import React, { useState } from 'react';
 
 import { componentPalette } from './constants';

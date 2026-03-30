@@ -129,12 +129,6 @@ const CustomerSatisfactionStatsSection2 = ({ config }) => {
         );
     };
 
-    const getRatingColor = (rating) => {
-        if (rating >= 4.5) return 'text-green-600';
-        if (rating >= 4) return 'text-blue-600';
-        return 'text-yellow-600';
-    };
-
     return (
         <section
             className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"

@@ -3,7 +3,8 @@
  * No external dependencies - pure React drag and drop
  */
 
-import clsx from 'clsx';
+
+import { clsx } from 'clsx';
 import React, { useRef, useEffect, useState } from 'react';
 
 const DraggableItem = ({
@@ -52,7 +53,7 @@ const DraggableItem = ({
       });
     };
 
-    const handleDragEnd = (e) => {
+    const handleDragEnd = () => {
       setIsDragging(false);
       onDragEnd?.();
     };

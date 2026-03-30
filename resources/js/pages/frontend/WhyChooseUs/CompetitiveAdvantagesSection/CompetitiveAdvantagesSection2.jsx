@@ -87,7 +87,7 @@ const CompetitiveAdvantagesSection2 = ({ config }) => {
             tags: faq.tags
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+        const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'advantages-faq-export.json');
@@ -137,7 +137,7 @@ const CompetitiveAdvantagesSection2 = ({ config }) => {
         return '—';
     };
 
-    const getMetricColor = (metric, competitor) => {
+    const getMetricColor = (metric) => {
         const usValue = getMetricValue(metric, 'us');
         const compValue = getMetricValue(metric, 'competitor');
         if (typeof usValue === 'number' && typeof compValue === 'number') {
@@ -236,8 +236,8 @@ const CompetitiveAdvantagesSection2 = ({ config }) => {
                                         key={metric.id}
                                         onClick={() => setActiveComparisonMetric(metric.id)}
                                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeComparisonMetric === metric.id
-                                                ? 'bg-blue-600 text-white shadow-lg'
-                                                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                                            ? 'bg-blue-600 text-white shadow-lg'
+                                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                                             }`}
                                     >
                                         {metric.label}

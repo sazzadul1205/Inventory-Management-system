@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import { FaQuoteLeft } from "react-icons/fa";
@@ -27,7 +27,7 @@ const WrittenTestimonialsSection2 = ({ config }) => {
   const [likedTestimonials, setLikedTestimonials] = useState([]);
   const [testimonialsData, setTestimonialsData] = useState([]);
 
-  const testimonials = config?.testimonials || [];
+  const testimonials = useMemo(() => config?.testimonials || [], [config?.testimonials]);
   const categories = config?.categories || ['all', 'retail', 'manufacturing', 'logistics', 'healthcare', 'food', 'electronics'];
 
   useEffect(() => {
@@ -95,8 +95,8 @@ const WrittenTestimonialsSection2 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -220,8 +220,8 @@ const WrittenTestimonialsSection2 = ({ config }) => {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === category
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 {category === 'all' ? 'All Industries' : category.charAt(0).toUpperCase() + category.slice(1)}
@@ -311,8 +311,8 @@ const WrittenTestimonialsSection2 = ({ config }) => {
                     <button
                       onClick={() => handleLikeTestimonial(testimonial.id)}
                       className={`flex items-center gap-1 text-xs transition-colors ${likedTestimonials.includes(testimonial.id)
-                          ? 'text-blue-600'
-                          : 'text-gray-400 hover:text-blue-600'
+                        ? 'text-blue-600'
+                        : 'text-gray-400 hover:text-blue-600'
                         }`}
                     >
                       <HiOutlineThumbUp className="w-3 h-3" />

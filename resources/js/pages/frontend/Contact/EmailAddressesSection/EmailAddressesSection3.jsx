@@ -40,8 +40,8 @@ const EmailAddressesSection3 = ({ config }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [helpfulVotes, setHelpfulVotes] = useState({});
   const [savedFaqs, setSavedFaqs] = useState([]);
-  const [showEmailForm, setShowEmailForm] = useState(false);
-  const [selectedEmail, setSelectedEmail] = useState(null);
+  const [, setShowEmailForm] = useState(false);
+  const [, setSelectedEmail] = useState(null);
   const [activeTab, setActiveTab] = useState('addresses');
   const [expandedCategories, setExpandedCategories] = useState({});
   const [emailForm, setEmailForm] = useState({
@@ -155,7 +155,7 @@ const EmailAddressesSection3 = ({ config }) => {
       languages: email.languages,
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'email-addresses-export.json');
@@ -213,7 +213,7 @@ const EmailAddressesSection3 = ({ config }) => {
   };
 
   const getTypeColor = (type) => {
-    switch(type) {
+    switch (type) {
       case 'support': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       case 'sales': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
       case 'billing': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
@@ -277,33 +277,30 @@ const EmailAddressesSection3 = ({ config }) => {
         <div className="flex justify-center gap-4 mb-8">
           <button
             onClick={() => setActiveTab('addresses')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'addresses'
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'addresses'
                 ? 'bg-blue-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+              }`}
           >
             <HiOutlineMail className="inline w-4 h-4 mr-2" />
             Email Addresses
           </button>
           <button
             onClick={() => setActiveTab('compose')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'compose'
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'compose'
                 ? 'bg-blue-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+              }`}
           >
             <HiOutlinePaperAirplane className="inline w-4 h-4 mr-2" />
             Compose Email
           </button>
           <button
             onClick={() => setActiveTab('faq')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'faq'
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'faq'
                 ? 'bg-blue-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+              }`}
           >
             <HiOutlineQuestionMarkCircle className="inline w-4 h-4 mr-2" />
             FAQs
@@ -318,8 +315,8 @@ const EmailAddressesSection3 = ({ config }) => {
               <button
                 onClick={() => setActiveType('all')}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeType === 'all'
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 All Departments
@@ -329,8 +326,8 @@ const EmailAddressesSection3 = ({ config }) => {
                   key={type.value}
                   onClick={() => setActiveType(type.value)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${activeType === type.value
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                     }`}
                 >
                   <span>{type.icon}</span>
@@ -344,8 +341,8 @@ const EmailAddressesSection3 = ({ config }) => {
               <button
                 onClick={() => setActiveRegion('all')}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeRegion === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                   }`}
               >
                 All Regions
@@ -355,8 +352,8 @@ const EmailAddressesSection3 = ({ config }) => {
                   key={region.id}
                   onClick={() => setActiveRegion(region.id)}
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-all flex items-center gap-1 ${activeRegion === region.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                     }`}
                 >
                   <span>{region.icon}</span>
@@ -779,8 +776,8 @@ const EmailAddressesSection3 = ({ config }) => {
               <button
                 onClick={() => setActiveCategory('all')}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeCategory === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                   }`}
               >
                 All
@@ -790,8 +787,8 @@ const EmailAddressesSection3 = ({ config }) => {
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeCategory === category.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                     }`}
                 >
                   {category.name}
@@ -864,24 +861,24 @@ const EmailAddressesSection3 = ({ config }) => {
                               </div>
                               <div className="flex items-center gap-2">
                                 <span
-                    role="button"
-                    tabIndex={0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSaveFaq(faq.id);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleSaveFaq(faq.id);
-                      }
-                    }}
-                    className="text-gray-400 hover:text-blue-600 transition-colors"
-                    aria-label={savedFaqs.includes(faq.id) ? 'Remove bookmark' : 'Save bookmark'}
-                  >
-                    <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                  </span>
+                                  role="button"
+                                  tabIndex={0}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleSaveFaq(faq.id);
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      handleSaveFaq(faq.id);
+                                    }
+                                  }}
+                                  className="text-gray-400 hover:text-blue-600 transition-colors"
+                                  aria-label={savedFaqs.includes(faq.id) ? 'Remove bookmark' : 'Save bookmark'}
+                                >
+                                  <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
+                                </span>
                                 <div className="text-blue-500">
                                   {openFaq === `${category.id}-${idx}` ? (
                                     <HiOutlineChevronUp className="w-5 h-5" />
@@ -914,8 +911,8 @@ const EmailAddressesSection3 = ({ config }) => {
                                     <button
                                       onClick={() => handleHelpful(faq.id, true)}
                                       className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                                          ? 'text-green-600'
-                                          : 'text-gray-400 hover:text-green-600'
+                                        ? 'text-green-600'
+                                        : 'text-gray-400 hover:text-green-600'
                                         }`}
                                     >
                                       <HiOutlineThumbUp className="w-4 h-4" />
@@ -924,8 +921,8 @@ const EmailAddressesSection3 = ({ config }) => {
                                     <button
                                       onClick={() => handleHelpful(faq.id, false)}
                                       className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                                          ? 'text-red-600'
-                                          : 'text-gray-400 hover:text-red-600'
+                                        ? 'text-red-600'
+                                        : 'text-gray-400 hover:text-red-600'
                                         }`}
                                     >
                                       <HiOutlineThumbDown className="w-4 h-4" />

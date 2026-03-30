@@ -84,7 +84,7 @@ const CustomPricingSection3 = ({ config }) => {
       setIsSubmitting(false);
       setSubmitted(true);
       // In production, send data to your backend
-      console.log('Form submitted:', formData);
+      
     }, 1500);
   };
 

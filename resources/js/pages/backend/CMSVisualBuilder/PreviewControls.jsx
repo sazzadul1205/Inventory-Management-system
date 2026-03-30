@@ -2,7 +2,7 @@
  * Preview Controls - Top bar with preview mode toggles
  */
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import React from 'react';
 
 import { Breakpoints } from './types';

@@ -132,8 +132,8 @@ const ReturnsManagementSection2 = ({ config }) => {
                 key={returnItem.id}
                 onClick={() => setActiveReturn(returnItem.id)}
                 className={`w-full text-left p-4 rounded-xl transition-all duration-300 ${activeReturn === returnItem.id
-                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/25'
-                    : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white hover:shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/25'
+                  : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white hover:shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
               >
                 <div className="flex justify-between items-start mb-2">
@@ -142,8 +142,8 @@ const ReturnsManagementSection2 = ({ config }) => {
                     {returnItem.id}
                   </span>
                   <span className={`text-xs px-2 py-1 rounded-full ${activeReturn === returnItem.id
-                      ? 'bg-white/20 text-white'
-                      : returnItem.statusColor
+                    ? 'bg-white/20 text-white'
+                    : returnItem.statusColor
                     }`}>
                     {returnItem.status}
                   </span>
@@ -222,8 +222,8 @@ const ReturnsManagementSection2 = ({ config }) => {
                         <button
                           key={idx}
                           className={`p-3 rounded-xl text-sm font-medium transition-all duration-300 ${option.selected
-                              ? option.color
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            ? option.color
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                             }`}
                         >
                           {option.label}
@@ -281,7 +281,7 @@ const ReturnsManagementSection2 = ({ config }) => {
                     <div
                       className={`h-full ${reason.color} rounded-full`}
                       style={{ width: reason.percentage }}
-                     />
+                    />
                   </div>
                 </div>
               ))}
@@ -305,7 +305,7 @@ const ReturnsManagementSection2 = ({ config }) => {
                       <div
                         className={`h-full ${stage.barColor} rounded-full`}
                         style={{ width: stage.progress }}
-                       />
+                      />
                     </div>
                   </div>
                 </div>
@@ -318,7 +318,7 @@ const ReturnsManagementSection2 = ({ config }) => {
         <div className="bg-linear-to-r from-orange-600 to-yellow-600 dark:from-orange-500 dark:to-yellow-500 rounded-3xl p-12 text-white mb-20">
           <h3 className="text-2xl font-bold mb-8 text-center">{config?.workflow?.title}</h3>
           <div className="grid md:grid-cols-4 gap-6">
-            {config?.workflow?.steps?.map((step, idx) => (
+            {config?.workflow?.steps?.map((step) => (
               <div key={step.id} className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
                   {getIcon(step.icon, "w-8 h-8 text-white")}

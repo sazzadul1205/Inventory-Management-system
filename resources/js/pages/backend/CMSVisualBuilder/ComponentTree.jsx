@@ -2,8 +2,9 @@
  * Component Tree - hierarchical selector for canvas components
  */
 
-import clsx from 'clsx';
-import React, { useMemo, useState } from 'react';
+
+import { clsx } from 'clsx';
+import React, { useCallback, useMemo, useState } from 'react';
 
 const getNodeLabel = (node) => {
   if (!node) return 'Unknown';
@@ -26,7 +27,8 @@ const ComponentTree = ({ components = [], selectedId, onSelect, onClose, classNa
     });
   };
 
-  const renderNode = (node, depth = 0) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const renderNode = useCallback((node, depth = 0) => {
     const hasChildren = Array.isArray(node.children) && node.children.length > 0;
     const isCollapsed = collapsed.has(node.uid);
     const label = getNodeLabel(node);
@@ -73,7 +75,7 @@ const ComponentTree = ({ components = [], selectedId, onSelect, onClose, classNa
         )}
       </div>
     );
-  };
+  });
 
   const treeContent = useMemo(() => {
     if (!components.length) {
@@ -85,7 +87,7 @@ const ComponentTree = ({ components = [], selectedId, onSelect, onClose, classNa
     }
 
     return components.map((node) => renderNode(node, 0));
-  }, [components, selectedId, collapsed]);
+  }, [components, renderNode]);
 
   return (
     <div className={clsx('w-64 h-full flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg', className)}>

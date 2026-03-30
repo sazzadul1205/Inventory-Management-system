@@ -369,7 +369,7 @@ const DashboardLayout = ({ children }) => {
    * Handle quick action clicks
    */
   const handleQuickAction = (action) => {
-    console.log(`Quick action: ${action}`);
+    
     // Implement actual actions here
     switch (action) {
       case 'add-product':
@@ -399,7 +399,7 @@ const DashboardLayout = ({ children }) => {
   /**
    * Render sidebar navigation items from array
    */
-  const renderNavItems = (items, isMain = true) => {
+  const renderNavItems = (items) => {
     return items.map((item) => (
       <li key={item.path}>
         <Link

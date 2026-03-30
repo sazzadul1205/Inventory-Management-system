@@ -24,6 +24,7 @@ import {
     HiOutlineDownload,
     HiOutlinePaperAirplane,
 } from 'react-icons/hi';
+import { HiOutlineDocumentText } from 'react-icons/hi2';
 
 const Support24x7Section2 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);
@@ -145,7 +146,7 @@ const Support24x7Section2 = ({ config }) => {
             tags: faq.tags
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+        const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'support-faq-export.json');

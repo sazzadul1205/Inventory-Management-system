@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 // Icons
 import {
@@ -23,11 +23,10 @@ const ROICalculationsSection1 = ({ config }) => {
   const [animatedValues, setAnimatedValues] = useState({});
   const resultsRef = useRef(null);
 
-  const industries = config?.industries || [];
+  const industries = useMemo(() => config?.industries || [], [config?.industries]);
   const currentIndustry = industries[activeIndustry];
 
-  // Calculate ROI based on form inputs
-  const calculateROI = () => {
+  useEffect(() => {
     const inventoryReduction = formValues.currentInventoryValue * (currentIndustry?.inventoryReduction || 0.3);
     const laborSavings = formValues.currentLaborCost * (currentIndustry?.laborSavings || 0.25);
     const stockoutReduction = formValues.currentStockoutRate - (formValues.currentStockoutRate * (currentIndustry?.stockoutReduction || 0.9));
@@ -38,7 +37,7 @@ const ROICalculationsSection1 = ({ config }) => {
     const paybackMonths = (implementationCost / (annualSavings / 12)).toFixed(1);
     const roiPercentage = ((annualSavings - implementationCost) / implementationCost) * 100;
 
-    return {
+    setRoiResults({
       annualSavings,
       inventoryReduction,
       laborSavings,
@@ -46,13 +45,8 @@ const ROICalculationsSection1 = ({ config }) => {
       accuracyImprovement: accuracyImprovement.toFixed(1),
       paybackMonths,
       roiPercentage
-    };
-  };
-
-  useEffect(() => {
-    const results = calculateROI();
-    setRoiResults(results);
-  }, [formValues, activeIndustry]);
+    });
+  }, [currentIndustry, formValues]);
 
   useEffect(() => {
     if (roiResults) {

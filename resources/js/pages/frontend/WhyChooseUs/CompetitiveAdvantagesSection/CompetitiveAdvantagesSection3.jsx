@@ -122,7 +122,7 @@ const CompetitiveAdvantagesSection3 = ({ config }) => {
             tags: faq.tags
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+        const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'advantages-faq-export.json');
@@ -177,7 +177,7 @@ const CompetitiveAdvantagesSection3 = ({ config }) => {
         return '—';
     };
 
-    const getMetricColor = (metric, competitor) => {
+    const getMetricColor = (metric) => {
         const usValue = getMetricValue(metric, 'us');
         const compValue = getMetricValue(metric, 'competitor');
         if (typeof usValue === 'number' && typeof compValue === 'number') {

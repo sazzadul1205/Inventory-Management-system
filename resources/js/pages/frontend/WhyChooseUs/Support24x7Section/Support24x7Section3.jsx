@@ -27,6 +27,7 @@ import {
     HiOutlineSparkles,
     HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi';
+import { HiOutlineDocumentText, HiOutlineStar } from 'react-icons/hi2';
 
 const Support24x7Section3 = ({ config }) => {
     const [openFaq, setOpenFaq] = useState(null);
@@ -160,7 +161,7 @@ const Support24x7Section3 = ({ config }) => {
             tags: faq.tags
         }));
         const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+        const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', 'support-faq-export.json');
@@ -261,8 +262,8 @@ const Support24x7Section3 = ({ config }) => {
                     <button
                         onClick={() => setActiveTab('overview')}
                         className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'overview'
-                                ? 'bg-blue-600 text-white shadow-lg'
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                            ? 'bg-blue-600 text-white shadow-lg'
+                            : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                             }`}
                     >
                         <HiOutlineClock className="inline w-4 h-4 mr-2" />
@@ -271,8 +272,8 @@ const Support24x7Section3 = ({ config }) => {
                     <button
                         onClick={() => setActiveTab('metrics')}
                         className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'metrics'
-                                ? 'bg-blue-600 text-white shadow-lg'
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                            ? 'bg-blue-600 text-white shadow-lg'
+                            : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                             }`}
                     >
                         <HiOutlineChartBar className="inline w-4 h-4 mr-2" />
@@ -281,8 +282,8 @@ const Support24x7Section3 = ({ config }) => {
                     <button
                         onClick={() => setActiveTab('tickets')}
                         className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'tickets'
-                                ? 'bg-blue-600 text-white shadow-lg'
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                            ? 'bg-blue-600 text-white shadow-lg'
+                            : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                             }`}
                     >
                         <HiOutlinePaperAirplane className="inline w-4 h-4 mr-2" />
@@ -291,8 +292,8 @@ const Support24x7Section3 = ({ config }) => {
                     <button
                         onClick={() => setActiveTab('faq')}
                         className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'faq'
-                                ? 'bg-blue-600 text-white shadow-lg'
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                            ? 'bg-blue-600 text-white shadow-lg'
+                            : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                             }`}
                     >
                         <HiOutlineQuestionMarkCircle className="inline w-4 h-4 mr-2" />

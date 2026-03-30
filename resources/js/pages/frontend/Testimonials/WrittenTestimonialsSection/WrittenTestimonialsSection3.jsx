@@ -2,11 +2,10 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
-import { FaQuoteLeft } from "react-icons/fa";
-import { FaAward } from "react-icons/fa";
+import { FaQuoteLeft, FaAward } from "react-icons/fa";
 import {
   HiOutlineStar,
   HiOutlineChatAlt,
@@ -30,11 +29,11 @@ const WrittenTestimonialsSection3 = ({ config }) => {
   const [sortBy, setSortBy] = useState('recent');
   const [expandedId, setExpandedId] = useState(null);
   const [savedTestimonials, setSavedTestimonials] = useState([]);
-  const [likedTestimonials, setLikedTestimonials] = useState([]);
+  const [, setLikedTestimonials] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
   const [testimonialsData, setTestimonialsData] = useState([]);
 
-  const testimonials = config?.testimonials || [];
+  const testimonials = useMemo(() => config?.testimonials || [], [config?.testimonials]);
   const categories = config?.categories || ['all', 'retail', 'manufacturing', 'logistics', 'healthcare', 'food', 'electronics'];
   const stats = config?.stats || [];
 
@@ -112,7 +111,7 @@ const WrittenTestimonialsSection3 = ({ config }) => {
   const featuredTestimonial = filteredTestimonials.find(t => t.rating === 5 && (t.helpfulCount || 0) > 50);
 
   const handleExport = (format) => {
-    console.log(`Exporting as ${format}...`);
+
     // In production, implement actual export functionality
     alert(`Exporting as ${format}... (Would generate file in production)`);
   };

@@ -148,21 +148,6 @@ const TechnologyInnovationSection2 = ({ config }) => {
         );
     };
 
-    const getMetricValue = (metric) => {
-        const m = performanceMetrics.find(m => m.id === metric);
-        return m?.value || '—';
-    };
-
-    const getMetricLabel = (metric) => {
-        const m = performanceMetrics.find(m => m.id === metric);
-        return m?.label || '';
-    };
-
-    const getMetricUnit = (metric) => {
-        const m = performanceMetrics.find(m => m.id === metric);
-        return m?.unit || '';
-    };
-
     return (
         <section
             className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"

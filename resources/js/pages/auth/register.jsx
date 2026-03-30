@@ -133,7 +133,7 @@ const Register = ({ status }) => {
             hasUpperCase: /[A-Z]/.test(password),
             hasLowerCase: /[a-z]/.test(password),
             hasNumber: /[0-9]/.test(password),
-            hasSpecialChar: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password),
+            hasSpecialChar: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password),
         });
     }, [data.password]);
 
@@ -235,7 +235,7 @@ const Register = ({ status }) => {
                 hasUpperCase: /[A-Z]/.test(data.password),
                 hasLowerCase: /[a-z]/.test(data.password),
                 hasNumber: /[0-9]/.test(data.password),
-                hasSpecialChar: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(data.password),
+                hasSpecialChar: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(data.password),
             };
 
             if (!strength.hasMinLength) {

@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import {
@@ -14,7 +14,7 @@ const SuccessMetricsSection1 = ({ config }) => {
   const [animatedMetrics, setAnimatedMetrics] = useState({});
   const [activeTab, setActiveTab] = useState('overview');
 
-  const metrics = config?.metrics || [];
+  const metrics = useMemo(() => config?.metrics || [], [config]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -83,7 +83,7 @@ const SuccessMetricsSection1 = ({ config }) => {
 
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {metrics.map((metric, index) => (
+          {metrics.map((metric) => (
             <div
               key={metric.id}
               className="group bg-linear-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
@@ -93,8 +93,8 @@ const SuccessMetricsSection1 = ({ config }) => {
                   <span className="text-2xl">{metric.icon}</span>
                 </div>
                 <span className={`text-xs font-semibold px-2 py-1 rounded-full ${metric.trend === 'up' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
-                    metric.trend === 'down' ? 'bg-red-100 text-red-700' :
-                      'bg-gray-100 text-gray-700'
+                  metric.trend === 'down' ? 'bg-red-100 text-red-700' :
+                    'bg-gray-100 text-gray-700'
                   }`}>
                   {metric.trend === 'up' && '↑'}
                   {metric.trend === 'down' && '↓'}
@@ -144,8 +144,8 @@ const SuccessMetricsSection1 = ({ config }) => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  ? 'bg-green-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
               >
                 {tab === 'overview' && '📊 Overview'}

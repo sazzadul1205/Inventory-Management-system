@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import { FaChartLine } from "react-icons/fa";
@@ -18,9 +18,8 @@ const ROICalculationsSection2 = ({ config }) => {
   const [timeHorizon, setTimeHorizon] = useState(3);
   const [roiData, setRoiData] = useState(null);
   const [animatedValues, setAnimatedValues] = useState({});
-  const chartRef = useRef(null);
 
-  const scenarios = config?.scenarios || {
+  const scenarios = useMemo(() => (config?.scenarios || {
     retail: {
       name: "Retail",
       icon: "🏪",
@@ -57,9 +56,9 @@ const ROICalculationsSection2 = ({ config }) => {
       fiveYearROI: 350,
       description: "Inventory accuracy and cold chain compliance"
     }
-  };
+  }), [config?.scenarios]);
 
-  const calculateROI = () => {
+  useEffect(() => {
     const scenario = scenarios[selectedScenario];
     const annualSavings = investmentAmount * scenario.savingsRate;
     const totalSavings3Year = annualSavings * timeHorizon;
@@ -76,20 +75,15 @@ const ROICalculationsSection2 = ({ config }) => {
       });
     }
 
-    return {
+    setRoiData({
       annualSavings,
       totalSavings3Year,
       netROI3Year,
       paybackMonths,
       yearlyData,
       monthlySavings: annualSavings / 12
-    };
-  };
-
-  useEffect(() => {
-    const data = calculateROI();
-    setRoiData(data);
-  }, [selectedScenario, investmentAmount, timeHorizon]);
+    });
+  }, [investmentAmount, scenarios, selectedScenario, timeHorizon]);
 
   useEffect(() => {
     if (roiData) {

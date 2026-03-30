@@ -21,6 +21,8 @@ import {
   HiOutlineSearch,
   HiOutlineChevronDown,
   HiOutlineChevronUp,
+  HiOutlineThumbUp,
+  HiOutlineThumbDown,
 } from 'react-icons/hi';
 import { HiOutlineBuildingOffice, HiOutlineExclamationTriangle } from "react-icons/hi2";
 
@@ -242,8 +244,8 @@ const ContactFormSection3 = ({ config }) => {
           <button
             onClick={() => setShowFaq(false)}
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${!showFaq
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
               }`}
           >
             Contact Form
@@ -251,8 +253,8 @@ const ContactFormSection3 = ({ config }) => {
           <button
             onClick={() => setShowFaq(true)}
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${showFaq
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
               }`}
           >
             Frequently Asked Questions
@@ -289,8 +291,8 @@ const ContactFormSection3 = ({ config }) => {
               <button
                 onClick={() => setActiveFaqCategory('all')}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeFaqCategory === 'all'
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 All Questions
@@ -300,8 +302,8 @@ const ContactFormSection3 = ({ config }) => {
                   key={category.id}
                   onClick={() => setActiveFaqCategory(category.id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFaqCategory === category.id
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                     }`}
                 >
                   <span>{category.icon}</span>
@@ -347,24 +349,24 @@ const ContactFormSection3 = ({ config }) => {
                     </div>
                     <div className="flex items-center gap-2">
                       <span
-                    role="button"
-                    tabIndex={0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSaveFaq(faq.id);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleSaveFaq(faq.id);
-                      }
-                    }}
-                    className="text-gray-400 hover:text-blue-600 transition-colors"
-                    aria-label={savedFaqs.includes(faq.id) ? 'Remove bookmark' : 'Save bookmark'}
-                  >
-                    <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                  </span>
+                        role="button"
+                        tabIndex={0}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSaveFaq(faq.id);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleSaveFaq(faq.id);
+                          }
+                        }}
+                        className="text-gray-400 hover:text-blue-600 transition-colors"
+                        aria-label={savedFaqs.includes(faq.id) ? 'Remove bookmark' : 'Save bookmark'}
+                      >
+                        <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
+                      </span>
                       <div className="text-blue-500">
                         {openFaq === index ? (
                           <HiOutlineChevronUp className="w-5 h-5" />
@@ -396,8 +398,8 @@ const ContactFormSection3 = ({ config }) => {
                           <button
                             onClick={() => handleHelpful(faq.id, true)}
                             className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                                ? 'text-green-600'
-                                : 'text-gray-400 hover:text-green-600'
+                              ? 'text-green-600'
+                              : 'text-gray-400 hover:text-green-600'
                               }`}
                           >
                             <HiOutlineThumbUp className="w-4 h-4" />
@@ -406,8 +408,8 @@ const ContactFormSection3 = ({ config }) => {
                           <button
                             onClick={() => handleHelpful(faq.id, false)}
                             className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                                ? 'text-red-600'
-                                : 'text-gray-400 hover:text-red-600'
+                              ? 'text-red-600'
+                              : 'text-gray-400 hover:text-red-600'
                               }`}
                           >
                             <HiOutlineThumbDown className="w-4 h-4" />

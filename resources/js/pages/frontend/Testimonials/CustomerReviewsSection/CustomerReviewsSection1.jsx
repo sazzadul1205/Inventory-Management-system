@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 // Icons
 import {
@@ -19,8 +19,7 @@ import {
 const CustomerReviewsSection1 = ({ config }) => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [hoveredStar, setHoveredStar] = useState(null);
-  const carouselRef = useRef(null);
+  const [, setHoveredStar] = useState(null);
 
   const testimonials = config?.testimonials || [];
   const stats = config?.stats || [];
@@ -53,8 +52,8 @@ const CustomerReviewsSection1 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -189,8 +188,8 @@ const CustomerReviewsSection1 = ({ config }) => {
                         setIsPlaying(false);
                       }}
                       className={`w-2 h-2 rounded-full transition-all ${activeTestimonial === idx
-                          ? 'w-4 bg-blue-600'
-                          : 'bg-gray-300 dark:bg-gray-600'
+                        ? 'w-4 bg-blue-600'
+                        : 'bg-gray-300 dark:bg-gray-600'
                         }`}
                     />
                   ))}

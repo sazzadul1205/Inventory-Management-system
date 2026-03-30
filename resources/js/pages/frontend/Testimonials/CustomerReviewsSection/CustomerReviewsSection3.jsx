@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 // Icons
 import { FaAward } from "react-icons/fa";
@@ -26,7 +26,7 @@ const CustomerReviewsSection3 = ({ config }) => {
 
   const reviews = config?.reviews || [];
   const categories = config?.categories || ['all', '5-star', '4-star', '3-star', 'verified'];
-  const stats = config?.stats || [];
+  const stats = useMemo(() => config?.stats || [], [config]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,8 +82,8 @@ const CustomerReviewsSection3 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -176,8 +176,8 @@ const CustomerReviewsSection3 = ({ config }) => {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
             >
               <span>{getCategoryIcon(category)}</span>

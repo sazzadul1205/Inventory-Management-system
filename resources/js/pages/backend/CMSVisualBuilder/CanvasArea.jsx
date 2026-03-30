@@ -2,8 +2,9 @@
  * Canvas Area - Center workspace with components (Lazy Loading Version)
  */
 
-import clsx from 'clsx';
-import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
+
+import { clsx } from 'clsx';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 
 import ComponentWrapper from './ComponentWrapper';
 import DroppableCanvas from './DroppableCanvas';
@@ -230,7 +231,8 @@ const loadComponent = (componentType) => {
 /**
  * Skeleton loader for components while they're loading
  */
-const ComponentSkeleton = ({ type }) => (
+// eslint-disable-next-line no-empty-pattern
+const ComponentSkeleton = ({ }) => (
   <div className="animate-pulse">
     <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2" />
     <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
@@ -310,7 +312,6 @@ const CanvasArea = ({
   onDrop,
   onSelect,
   onDelete,
-  onUpdate,
   selectedId,
   previewMode,
 }) => {
@@ -359,12 +360,6 @@ const CanvasArea = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedId, onDelete]);
 
-  /**
-   * Handle component updates (for nested changes)
-   */
-  const handleComponentUpdate = useCallback((updatedComponent) => {
-    onUpdate?.(updatedComponent);
-  }, [onUpdate]);
 
   /**
    * Render component dynamically with lazy loading

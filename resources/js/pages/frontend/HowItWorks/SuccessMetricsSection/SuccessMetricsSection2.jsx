@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import {
@@ -19,7 +19,7 @@ const SuccessMetricsSection2 = ({ config }) => {
   const [timeRange, setTimeRange] = useState('6months');
   const [animatedValues, setAnimatedValues] = useState({});
 
-  const metrics = config?.metrics || [];
+  const metrics = useMemo(() => config?.metrics || [], [config]);
   const chartData = config?.chartData || {};
 
   useEffect(() => {
@@ -103,8 +103,8 @@ const SuccessMetricsSection2 = ({ config }) => {
                 key={range}
                 onClick={() => setTimeRange(range)}
                 className={`px-3 py-1 text-sm rounded-md transition-all ${timeRange === range
-                    ? 'bg-green-600 text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-green-600 text-white'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
               >
                 {range === '3months' ? '3 Months' : range === '6months' ? '6 Months' : '1 Year'}
@@ -115,7 +115,7 @@ const SuccessMetricsSection2 = ({ config }) => {
 
         {/* KPI Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {metrics.map((metric, index) => (
+          {metrics.map((metric) => (
             <div
               key={metric.id}
               className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer ${selectedMetric === metric.id ? 'ring-2 ring-green-500' : ''
@@ -212,11 +212,11 @@ const SuccessMetricsSection2 = ({ config }) => {
                     <div
                       className="absolute h-full bg-green-500 rounded-full"
                       style={{ width: `${(benchmark.yourScore / benchmark.industryAvg) * 100}%` }}
-                     />
+                    />
                     <div
                       className="absolute h-full bg-gray-400 rounded-full opacity-50"
                       style={{ width: `${(benchmark.industryAvg / benchmark.industryAvg) * 100}%` }}
-                     />
+                    />
                   </div>
                   <div className="flex justify-between text-xs mt-1">
                     <span className="text-green-600">Your Score</span>
@@ -252,7 +252,7 @@ const SuccessMetricsSection2 = ({ config }) => {
                 <div
                   className="bg-white h-2 rounded-full"
                   style={{ width: `${(4.2 / 12) * 100}%` }}
-                 />
+                />
               </div>
             </div>
             <Link

@@ -8,7 +8,7 @@ import SectionSkeleton from '@/components/SectionSkeleton';
  */
 
 // Helper function to get skeleton props based on section type and variant
-export const getSkeletonProps = (type, variant = 'default', config = {}) => {
+export const getSkeletonProps = (type, config = {}) => {
     const baseProps = {
         showHeader: true,
         showCta: true,

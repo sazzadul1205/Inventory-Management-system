@@ -45,9 +45,9 @@ const CustomerReviewsSection2 = ({ config }) => {
     });
   };
 
-  const handleLikeReview = (reviewId) => {
+  const handleLikeReview = () => {
     // In production, this would call an API
-    console.log('Liked review:', reviewId);
+
   };
 
   const filteredTestimonials = testimonials.filter(testimonial => {
@@ -71,8 +71,8 @@ const CustomerReviewsSection2 = ({ config }) => {
           <HiOutlineStar
             key={i}
             className={`w-4 h-4 ${i < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300 dark:text-gray-600'
+              ? 'text-yellow-400 fill-yellow-400'
+              : 'text-gray-300 dark:text-gray-600'
               }`}
           />
         ))}
@@ -177,8 +177,8 @@ const CustomerReviewsSection2 = ({ config }) => {
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeFilter === filter
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 {filter === 'all' ? 'All Industries' : filter.charAt(0).toUpperCase() + filter.slice(1)}

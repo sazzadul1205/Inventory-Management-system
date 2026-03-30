@@ -38,7 +38,6 @@ const LiveChatOptionSection1 = ({ config }) => {
   const [helpfulVotes, setHelpfulVotes] = useState({});
   const [savedFaqs, setSavedFaqs] = useState([]);
   const chatContainerRef = useRef(null);
-  const searchRef = useRef(null);
 
   const faqs = config?.faqs || [];
   const categories = config?.categories || [];

@@ -167,7 +167,7 @@ const IndustryExpertReviewsSection2 = ({ config }) => {
               Featured Recognition
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {featuredReviews.map((review, index) => (
+              {featuredReviews.map((review) => (
                 <div key={review.id} className="bg-linear-to-r from-purple-600 to-indigo-600 rounded-2xl overflow-hidden shadow-xl">
                   <div className="p-6 text-white">
                     <div className="flex items-center gap-2 mb-3">

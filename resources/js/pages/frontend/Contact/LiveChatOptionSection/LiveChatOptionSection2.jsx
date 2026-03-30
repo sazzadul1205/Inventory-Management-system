@@ -106,6 +106,7 @@ const LiveChatOptionSection2 = ({ config }) => {
 
   const playNotificationSound = () => {
     if (chatSound && audioRef.current) {
+      // eslint-disable-next-line no-console
       audioRef.current.play().catch(e => console.log('Audio play failed:', e));
     }
   };
@@ -116,7 +117,7 @@ const LiveChatOptionSection2 = ({ config }) => {
     setChatStarted(true);
     setChatQueue(true);
     setQueuePosition(3);
-    
+
     const interval = setInterval(() => {
       setQueuePosition(prev => {
         if (prev <= 1) {
@@ -156,7 +157,7 @@ const LiveChatOptionSection2 = ({ config }) => {
     setChatMessage('');
     setChatTyping(true);
     playNotificationSound();
-    
+
     setTimeout(() => {
       setChatTyping(false);
       const responses = [
@@ -191,7 +192,7 @@ const LiveChatOptionSection2 = ({ config }) => {
   };
 
   const downloadTranscript = () => {
-    const transcriptText = transcript.map(msg => 
+    const transcriptText = transcript.map(msg =>
       `[${msg.timestamp}] ${msg.type === 'user' ? chatName : agentName}: ${msg.message}`
     ).join('\n');
     const blob = new Blob([transcriptText], { type: 'text/plain' });
@@ -221,7 +222,7 @@ const LiveChatOptionSection2 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'chat-faq-export.json');
@@ -379,11 +380,10 @@ const LiveChatOptionSection2 = ({ config }) => {
                 <button
                   key={idx}
                   onClick={() => setSelectedLanguage(lang.code)}
-                  className={`px-3 py-2 rounded-lg text-sm transition-all ${
-                    selectedLanguage === lang.code
+                  className={`px-3 py-2 rounded-lg text-sm transition-all ${selectedLanguage === lang.code
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
-                  }`}
+                    }`}
                 >
                   {lang.name}
                 </button>
@@ -481,8 +481,8 @@ const LiveChatOptionSection2 = ({ config }) => {
                   <button
                     onClick={() => setActiveCategory('all')}
                     className={`px-3 py-1 rounded-full text-sm transition-all ${activeCategory === 'all'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                       }`}
                   >
                     All
@@ -492,8 +492,8 @@ const LiveChatOptionSection2 = ({ config }) => {
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
                       className={`px-3 py-1 rounded-full text-sm transition-all flex items-center gap-1 ${activeCategory === category.id
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                         }`}
                     >
                       <span>{category.icon}</span>
@@ -604,8 +604,8 @@ const LiveChatOptionSection2 = ({ config }) => {
                       <button
                         onClick={() => handleHelpful(faq.id, true)}
                         className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                            ? 'text-green-600'
-                            : 'text-gray-400 hover:text-green-600'
+                          ? 'text-green-600'
+                          : 'text-gray-400 hover:text-green-600'
                           }`}
                       >
                         <HiOutlineThumbUp className="w-4 h-4" />
@@ -614,8 +614,8 @@ const LiveChatOptionSection2 = ({ config }) => {
                       <button
                         onClick={() => handleHelpful(faq.id, false)}
                         className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                            ? 'text-red-600'
-                            : 'text-gray-400 hover:text-red-600'
+                          ? 'text-red-600'
+                          : 'text-gray-400 hover:text-red-600'
                           }`}
                       >
                         <HiOutlineThumbDown className="w-4 h-4" />
@@ -780,11 +780,10 @@ const LiveChatOptionSection2 = ({ config }) => {
                         className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div
-                          className={`max-w-[80%] p-3 rounded-2xl ${
-                            msg.type === 'user'
+                          className={`max-w-[80%] p-3 rounded-2xl ${msg.type === 'user'
                               ? 'bg-blue-600 text-white rounded-br-none'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-bl-none'
-                          }`}
+                            }`}
                         >
                           <p className="text-sm">{msg.message}</p>
                           <span className="text-xs opacity-70 mt-1 block">{msg.timestamp}</span>

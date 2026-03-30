@@ -56,7 +56,7 @@ const FreeTrialSection2 = ({ config }) => {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      console.log('Trial signup:', formData);
+      
     }, 1500);
   };
 

@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 // Icons
 import {
@@ -21,7 +21,7 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
   const [animatedMetrics, setAnimatedMetrics] = useState({});
   const carouselRef = useRef(null);
 
-  const metrics = config?.metrics || [];
+  const metrics = useMemo(() => config?.metrics || [], [config]);
   const successStories = config?.successStories || [];
   const timelineEvents = config?.timelineEvents || [];
 
@@ -110,8 +110,8 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-6 py-3 text-sm font-medium transition-all capitalize ${activeTab === tab
-                  ? 'text-blue-600 border-b-2 border-blue-600'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                ? 'text-blue-600 border-b-2 border-blue-600'
+                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
                 }`}
             >
               {tab === 'overview' && '📊 Key Metrics'}
@@ -137,8 +137,8 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
                       <div className="text-4xl">{metric.icon}</div>
                       {metric.trend && (
                         <span className={`text-xs font-semibold px-2 py-1 rounded-full ${metric.trendDirection === 'up'
-                            ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
-                            : 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400'
+                          ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
+                          : 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400'
                           }`}>
                           {metric.trend}
                         </span>
@@ -272,8 +272,8 @@ const ClientSuccessMetricsSection2 = ({ config }) => {
                         setIsPlaying(false);
                       }}
                       className={`w-2 h-2 rounded-full transition-all ${currentSlide === idx
-                          ? 'w-6 bg-blue-600'
-                          : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                        ? 'w-6 bg-blue-600'
+                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
                         }`}
                     />
                   ))}

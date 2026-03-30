@@ -19,7 +19,7 @@ import { MdOutlineRestaurant } from "react-icons/md";
 
 const FoodAndBeverageSection2 = ({ config }) => {
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [, setHoveredCard] = useState(null);
 
   const caseStudies = config?.caseStudies || [];
   const currentCase = caseStudies[activeCaseStudy];

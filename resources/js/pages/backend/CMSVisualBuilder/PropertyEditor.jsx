@@ -2,7 +2,7 @@
  * Property Editor - Right sidebar for editing component properties
  */
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import React, { useState, useEffect, useRef } from 'react';
 
 const PropertyEditor = ({ component, onUpdate, onClose }) => {
@@ -10,6 +10,7 @@ const PropertyEditor = ({ component, onUpdate, onClose }) => {
   const [localComponent, setLocalComponent] = useState(component ?? null);
   const [colorPickerOpen, setColorPickerOpen] = useState(false);
   const [currentColorField, setCurrentColorField] = useState(null);
+  const [hexInput, setHexInput] = useState('#000000');
 
   const prevUidRef = useRef(component?.uid ?? null);
 
@@ -125,6 +126,7 @@ const PropertyEditor = ({ component, onUpdate, onClose }) => {
     const currentHex = extractHexFromClass(currentValue, prefix);
 
     setCurrentColorField({ fieldKey, prefix, currentHex });
+    setHexInput(currentHex || '#000000');
     setColorPickerOpen(true);
   };
 
@@ -134,8 +136,7 @@ const PropertyEditor = ({ component, onUpdate, onClose }) => {
   const renderColorPicker = () => {
     if (!colorPickerOpen || !currentColorField) return null;
 
-    const { fieldKey, prefix, currentHex } = currentColorField;
-    const [hexInput, setHexInput] = useState(currentHex || '#000000');
+    const { fieldKey, prefix } = currentColorField;
 
     const handleColorApply = () => {
       handleClassChange(fieldKey, '', {
@@ -384,7 +385,7 @@ const PropertyEditor = ({ component, onUpdate, onClose }) => {
                       try {
                         handleChange(key, JSON.parse(e.target.value));
                       } catch (err) {
-                        // Invalid JSON - ignore
+                        console.error('Error :', err);
                       }
                     }}
                     className="w-full px-3 py-2 border rounded-md font-mono text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white"

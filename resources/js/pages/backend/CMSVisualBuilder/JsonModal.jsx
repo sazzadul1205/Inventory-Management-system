@@ -2,7 +2,8 @@
  * JSON Import/Export Modal
  */
 
-import clsx from 'clsx';
+
+import { clsx } from 'clsx';
 import React, { useState, useEffect } from 'react';
 
 const JsonModal = ({ isOpen, onClose, onImport, initialJson }) => {
@@ -98,7 +99,7 @@ const JsonModal = ({ isOpen, onClose, onImport, initialJson }) => {
       setJsonInput(JSON.stringify(parsed, null, 2));
       setError('');
     } catch (err) {
-      setError('Cannot prettify: Invalid JSON');
+      setError('Cannot prettify: Invalid JSON', err);
     }
   };
 
@@ -115,7 +116,7 @@ const JsonModal = ({ isOpen, onClose, onImport, initialJson }) => {
         setError('Invalid component structure. Check console for details.');
       }
     } catch (err) {
-      setError(`Invalid JSON format: ${  err.message}`);
+      setError(`Invalid JSON format: ${err.message}`);
     }
   };
 

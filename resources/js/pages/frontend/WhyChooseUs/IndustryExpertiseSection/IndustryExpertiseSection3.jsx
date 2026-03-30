@@ -25,6 +25,7 @@ import {
   HiOutlineCalendar,
   HiOutlinePlay,
   HiOutlineQuestionMarkCircle,
+  HiOutlineTrendingUp,
 } from 'react-icons/hi';
 
 const IndustryExpertiseSection3 = ({ config }) => {

@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import {
@@ -16,7 +16,7 @@ const ClientSuccessMetricsSection1 = ({ config }) => {
   const [animatedValues, setAnimatedValues] = useState({});
   const [isVisible, setIsVisible] = useState(false);
 
-  const metrics = config?.metrics || [];
+  const metrics = useMemo(() => config?.metrics || [], [config]);
   const testimonials = config?.testimonials || [];
 
   useEffect(() => {

@@ -75,7 +75,6 @@ const LiveChatOptionSection3 = ({ config }) => {
   const stats = config?.stats || [];
   const chatHours = config?.chatHours || [];
   const languages = config?.languages || [];
-  const quickResponses = config?.quickResponses || [];
   const emojis = ['😊', '👍', '❤️', '😂', '😮', '😢', '🙏', '🎉', '🔥', '✨'];
 
   useEffect(() => {
@@ -126,6 +125,7 @@ const LiveChatOptionSection3 = ({ config }) => {
 
   const playNotificationSound = () => {
     if (chatSound && audioRef.current) {
+      // eslint-disable-next-line no-console
       audioRef.current.play().catch(e => console.log('Audio play failed:', e));
     }
   };

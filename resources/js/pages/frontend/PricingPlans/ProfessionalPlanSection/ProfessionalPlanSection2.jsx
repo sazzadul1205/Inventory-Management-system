@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import {
@@ -25,7 +25,7 @@ const ProfessionalPlanSection2 = ({ config }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [animatedSavings, setAnimatedSavings] = useState(0);
 
-  const plans = config?.plans || [];
+  const plans = useMemo(() => config?.plans || [], [config?.plans]);
   const professionalPlan = plans.find(p => p.id === 'professional') || plans[0];
   const features = config?.features || [];
   const testimonials = config?.testimonials || [];
@@ -42,7 +42,9 @@ const ProfessionalPlanSection2 = ({ config }) => {
 
   useEffect(() => {
     if (billingPeriod === 'yearly') {
-      const target = getSavingsPercent();
+      const monthlyTotal = professionalPlan?.priceMonthly * 12;
+      const savingsAmount = monthlyTotal - professionalPlan?.priceYearly;
+      const target = Number(((savingsAmount / monthlyTotal) * 100).toFixed(0));
       let current = 0;
       const increment = target / 30;
       const interval = setInterval(() => {
@@ -56,7 +58,7 @@ const ProfessionalPlanSection2 = ({ config }) => {
       }, 30);
       return () => clearInterval(interval);
     }
-  }, [billingPeriod]);
+  }, [billingPeriod, professionalPlan]);
 
   const getPrice = () => {
     if (billingPeriod === 'monthly') {
@@ -76,15 +78,6 @@ const ProfessionalPlanSection2 = ({ config }) => {
     if (billingPeriod === 'yearly') {
       const monthlyTotal = professionalPlan?.priceMonthly * 12;
       return monthlyTotal - professionalPlan?.priceYearly;
-    }
-    return null;
-  };
-
-  const getSavingsPercent = () => {
-    if (billingPeriod === 'yearly') {
-      const monthlyTotal = professionalPlan?.priceMonthly * 12;
-      const savingsAmount = monthlyTotal - professionalPlan?.priceYearly;
-      return ((savingsAmount / monthlyTotal) * 100).toFixed(0);
     }
     return null;
   };
@@ -231,8 +224,8 @@ const ProfessionalPlanSection2 = ({ config }) => {
                 key={index}
                 onClick={() => setActiveFeatureTab(index)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeFeatureTab === index
-                    ? 'bg-purple-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  ? 'bg-purple-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   }`}
               >
                 {feature.icon} {feature.name}

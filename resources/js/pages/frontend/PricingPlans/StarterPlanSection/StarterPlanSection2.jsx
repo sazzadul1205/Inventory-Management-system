@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import {
@@ -17,10 +17,10 @@ import {
 
 const StarterPlanSection2 = ({ config }) => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');
-  const [isHovered, setIsHovered] = useState(null);
+  const [, setIsHovered] = useState(null);
   const [animatedSavings, setAnimatedSavings] = useState({});
 
-  const plans = config?.plans || [];
+  const plans = useMemo(() => config?.plans || [], [config?.plans]);
 
   useEffect(() => {
     // Animate savings percentages on load
@@ -43,7 +43,7 @@ const StarterPlanSection2 = ({ config }) => {
         return () => clearInterval(interval);
       }
     });
-  }, []);
+  }, [plans]);
 
   const getPrice = (plan) => {
     if (billingPeriod === 'monthly') {
@@ -193,8 +193,8 @@ const StarterPlanSection2 = ({ config }) => {
                   <Link
                     href={plan.ctaLink || "/demo"}
                     className={`block text-center px-6 py-3 rounded-xl font-semibold transition-all ${isPopular
-                        ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg transform hover:scale-105'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg transform hover:scale-105'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                   >
                     {plan.ctaText || "Get Started"}

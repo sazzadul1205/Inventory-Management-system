@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 // Icons
 import {
@@ -28,22 +28,22 @@ const ROICalculationsSection3 = ({ config }) => {
   });
   const [roiResults, setRoiResults] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
-  const [savedReport, setSavedReport] = useState(null);
+  const [, setSavedReport] = useState(null);
   const resultsRef = useRef(null);
 
-  const industries = config?.industries || {
+  const industries = useMemo(() => (config?.industries || {
     retail: { name: "Retail", icon: "🏪", multiplier: 1.0 },
     manufacturing: { name: "Manufacturing", icon: "🏭", multiplier: 0.95 },
     logistics: { name: "Logistics", icon: "🚚", multiplier: 1.05 },
     healthcare: { name: "Healthcare", icon: "🏥", multiplier: 0.9 },
     ecommerce: { name: "E-commerce", icon: "🛍️", multiplier: 1.1 },
     food: { name: "Food & Beverage", icon: "🍽️", multiplier: 0.92 }
-  };
+  }), [config?.industries]);
 
-  const calculateROI = () => {
+  useEffect(() => {
     setIsCalculating(true);
 
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       const industryMultiplier = industries[formData.industry]?.multiplier || 1.0;
 
       // Calculate savings components
@@ -86,12 +86,9 @@ const ROICalculationsSection3 = ({ config }) => {
 
       setIsCalculating(false);
     }, 800);
-  };
 
-  useEffect(() => {
-    calculateROI();
-  }, [formData.industry, formData.annualRevenue, formData.currentInventoryValue,
-  formData.currentLaborCost, formData.currentStockoutRate, formData.currentOrderAccuracy]);
+    return () => clearTimeout(timeoutId);
+  }, [formData, industries]);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -123,7 +120,7 @@ const ROICalculationsSection3 = ({ config }) => {
   };
 
   const formatPercentage = (value) => {
-    return `${value.toFixed(0)  }%`;
+    return `${value.toFixed(0)}%`;
   };
 
   return (
@@ -171,8 +168,8 @@ const ROICalculationsSection3 = ({ config }) => {
               <div className="flex flex-col items-center flex-1">
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${activeStep >= step
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
                     }`}
                 >
                   {activeStep > step ? <HiOutlineCheckCircle className="w-5 h-5" /> : step}

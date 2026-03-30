@@ -31,7 +31,6 @@ const GlobalReachSection2 = ({ config }) => {
   const [openFaq, setOpenFaq] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeRegion, setActiveRegion] = useState('all');
-  const [activeLanguage, setActiveLanguage] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [showFilters, setShowFilters] = useState(false);
   const [helpfulVotes, setHelpfulVotes] = useState({});
@@ -87,7 +86,7 @@ const GlobalReachSection2 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'global-faq-export.json');
@@ -115,10 +114,6 @@ const GlobalReachSection2 = ({ config }) => {
 
   const filteredOffices = offices.filter(office => {
     return activeRegion === 'all' || office.region === activeRegion;
-  });
-
-  const filteredLanguages = languages.filter(lang => {
-    return activeLanguage === 'all' || lang === activeLanguage;
   });
 
   const highlightedText = (text, query) => {
@@ -198,8 +193,8 @@ const GlobalReachSection2 = ({ config }) => {
                 key={index}
                 onClick={() => setActiveRegion(region.id)}
                 className={`text-center p-3 rounded-xl transition-all ${activeRegion === region.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                   }`}
               >
                 <div className="text-2xl mb-1">{region.icon}</div>
@@ -255,8 +250,8 @@ const GlobalReachSection2 = ({ config }) => {
           <button
             onClick={() => setActiveRegion('all')}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeRegion === 'all'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
               }`}
           >
             All Locations
@@ -266,8 +261,8 @@ const GlobalReachSection2 = ({ config }) => {
               key={region.id}
               onClick={() => setActiveRegion(region.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeRegion === region.id
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                 }`}
             >
               <span>{region.icon}</span>
@@ -497,8 +492,8 @@ const GlobalReachSection2 = ({ config }) => {
                       <button
                         onClick={() => handleHelpful(faq.id, true)}
                         className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                            ? 'text-green-600'
-                            : 'text-gray-400 hover:text-green-600'
+                          ? 'text-green-600'
+                          : 'text-gray-400 hover:text-green-600'
                           }`}
                       >
                         <HiOutlineThumbUp className="w-4 h-4" />
@@ -507,8 +502,8 @@ const GlobalReachSection2 = ({ config }) => {
                       <button
                         onClick={() => handleHelpful(faq.id, false)}
                         className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                            ? 'text-red-600'
-                            : 'text-gray-400 hover:text-red-600'
+                          ? 'text-red-600'
+                          : 'text-gray-400 hover:text-red-600'
                           }`}
                       >
                         <HiOutlineThumbDown className="w-4 h-4" />

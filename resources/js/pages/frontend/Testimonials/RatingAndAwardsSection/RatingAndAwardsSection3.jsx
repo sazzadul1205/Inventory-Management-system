@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 // Icons
 import {
@@ -12,7 +12,7 @@ import {
   HiOutlineChartPie,
   HiOutlineSparkles
 } from 'react-icons/hi';
-import { HiOutlineTrophy } from "react-icons/hi2";
+import { HiOutlineShieldCheck, HiOutlineTrophy } from "react-icons/hi2";
 
 const RatingAndAwardsSection3 = ({ config }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -24,7 +24,7 @@ const RatingAndAwardsSection3 = ({ config }) => {
   const ratings = config?.ratings || [];
   const awards = config?.awards || [];
   const certifications = config?.certifications || [];
-  const stats = config?.stats || [];
+  const stats = useMemo(() => config?.stats || [], [config?.stats]);
   const badges = config?.badges || [];
 
   useEffect(() => {
@@ -104,7 +104,6 @@ const RatingAndAwardsSection3 = ({ config }) => {
   };
 
   const featuredAwards = awards.filter(a => a.featured).slice(0, 3);
-  const recentAwards = awards.filter(a => a.year === '2024').slice(0, 4);
 
   return (
     <section
@@ -152,8 +151,8 @@ const RatingAndAwardsSection3 = ({ config }) => {
           <button
             onClick={() => setActiveTab('overview')}
             className={`px-6 py-3 text-sm font-medium transition-all flex items-center gap-2 ${activeTab === 'overview'
-                ? 'text-yellow-600 border-b-2 border-yellow-600'
-                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+              ? 'text-yellow-600 border-b-2 border-yellow-600'
+              : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
               }`}
           >
             <HiOutlineChartPie className="w-4 h-4" />
@@ -162,8 +161,8 @@ const RatingAndAwardsSection3 = ({ config }) => {
           <button
             onClick={() => setActiveTab('awards')}
             className={`px-6 py-3 text-sm font-medium transition-all flex items-center gap-2 ${activeTab === 'awards'
-                ? 'text-yellow-600 border-b-2 border-yellow-600'
-                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+              ? 'text-yellow-600 border-b-2 border-yellow-600'
+              : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
               }`}
           >
             <HiOutlineTrophy className="w-4 h-4" />
@@ -172,8 +171,8 @@ const RatingAndAwardsSection3 = ({ config }) => {
           <button
             onClick={() => setActiveTab('certifications')}
             className={`px-6 py-3 text-sm font-medium transition-all flex items-center gap-2 ${activeTab === 'certifications'
-                ? 'text-yellow-600 border-b-2 border-yellow-600'
-                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+              ? 'text-yellow-600 border-b-2 border-yellow-600'
+              : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
               }`}
           >
             <HiOutlineBadgeCheck className="w-4 h-4" />

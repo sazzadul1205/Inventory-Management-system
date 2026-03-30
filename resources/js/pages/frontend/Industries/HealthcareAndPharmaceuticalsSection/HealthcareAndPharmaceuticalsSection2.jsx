@@ -20,7 +20,7 @@ import {
 
 const HealthcareAndPharmaceuticalsSection2 = ({ config }) => {
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [, setHoveredCard] = useState(null);
 
   const caseStudies = config?.caseStudies || [];
   const currentCase = caseStudies[activeCaseStudy];
@@ -194,8 +194,8 @@ const HealthcareAndPharmaceuticalsSection2 = ({ config }) => {
                 key={idx}
                 onClick={() => setActiveCaseStudy(idx)}
                 className={`w-2 h-2 rounded-full transition-all ${activeCaseStudy === idx
-                    ? 'w-6 bg-teal-600'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                  ? 'w-6 bg-teal-600'
+                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
                   }`}
               />
             ))}

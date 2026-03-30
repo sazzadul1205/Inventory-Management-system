@@ -61,7 +61,7 @@ const OrderFulfillmentSection2 = ({ config }) => {
       case 'mail':
         return <HiOutlineMail className={className} />;
       default:
-        return <HiOutlinePackage className={className} />;
+        return <GoPackage className={className} />;
     }
   };
 
@@ -117,8 +117,8 @@ const OrderFulfillmentSection2 = ({ config }) => {
               key={type.id}
               onClick={() => setActiveOrderType(type.id)}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${activeOrderType === type.id
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                 }`}
               aria-label={`Show ${type.label} orders`}
               aria-pressed={activeOrderType === type.id}
@@ -127,8 +127,8 @@ const OrderFulfillmentSection2 = ({ config }) => {
                 {getIcon(type.icon, "w-4 h-4")}
                 {type.label}
                 <span className={`px-2 py-0.5 rounded-full text-xs ${activeOrderType === type.id
-                    ? 'bg-white/20 text-white'
-                    : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                  ? 'bg-white/20 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                   }`}>
                   {type.count}
                 </span>
@@ -184,10 +184,10 @@ const OrderFulfillmentSection2 = ({ config }) => {
                   {config?.fulfillmentCenter?.steps?.map((step, idx) => (
                     <div key={step.id} className="text-center">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 ${step.completed
-                          ? 'bg-green-600 text-white'
-                          : step.active
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+                        ? 'bg-green-600 text-white'
+                        : step.active
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
                         }`}>
                         {step.completed ? (
                           <HiOutlineCheckCircle className="w-5 h-5" />

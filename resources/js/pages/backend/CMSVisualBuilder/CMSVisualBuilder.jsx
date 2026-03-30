@@ -3,7 +3,8 @@
  * Integrates all builder components
  */
 
-import clsx from "clsx";
+
+import { clsx } from "clsx";
 import React, { useState } from "react";
 
 import CanvasArea from "./CanvasArea";

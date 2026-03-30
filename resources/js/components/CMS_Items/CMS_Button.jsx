@@ -12,8 +12,8 @@
  */
 
 import { Link } from '@inertiajs/react';
-// eslint-disable-next-line import/no-named-as-default
-import clsx from 'clsx';
+
+import { clsx } from 'clsx';
 import React, { forwardRef, useMemo, useState } from 'react';
 import * as AiIcons from 'react-icons/ai';
 import * as BiIcons from 'react-icons/bi';

@@ -2,7 +2,7 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Icons
 import { FiTarget } from "react-icons/fi";
@@ -24,7 +24,7 @@ const SuccessMetricsSection3 = ({ config }) => {
 
   const segments = config?.customerSegments || [];
   const predictions = config?.predictions || {};
-  const goals = config?.goals || [];
+  const goals = useMemo(() => config?.goals || [], [config]);
 
   useEffect(() => {
     const progress = {};
@@ -191,7 +191,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                           <div
                             className="w-full bg-linear-to-t from-green-500 to-emerald-500 rounded-t-lg transition-all duration-500"
                             style={{ height: `${(item.predicted / 100) * 160}px` }}
-                           />
+                          />
                           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-t-lg" style={{ height: `${(item.actual / 100) * 160}px` }} />
                           <span className="text-xs text-gray-500">{item.month}</span>
                         </div>
@@ -260,7 +260,7 @@ const SuccessMetricsSection3 = ({ config }) => {
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">Goal Progress Tracking</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {goals.map((goal, index) => (
+              {goals.map((goal) => (
                 <div key={goal.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div>
@@ -277,7 +277,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                     <div
                       className="bg-green-500 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${goalProgress[goal.id] || 0}%` }}
-                     />
+                    />
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Current: {goal.current}</span>
@@ -316,7 +316,7 @@ const SuccessMetricsSection3 = ({ config }) => {
                       <div
                         className="bg-linear-to-r from-green-500 to-emerald-500 h-2 rounded-full"
                         style={{ width: `${dept.roi}%` }}
-                       />
+                      />
                     </div>
                   </div>
                 ))}

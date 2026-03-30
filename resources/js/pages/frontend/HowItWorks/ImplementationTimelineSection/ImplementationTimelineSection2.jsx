@@ -16,7 +16,7 @@ import {
 const ImplementationTimelineSection2 = ({ config }) => {
   const [selectedPhase, setSelectedPhase] = useState(null);
   const [zoom, setZoom] = useState(1);
-  const [hoveredTask, setHoveredTask] = useState(null);
+  const [, setHoveredTask] = useState(null);
   const timelineRef = useRef(null);
 
   const phases = config?.phases || [];
@@ -114,7 +114,7 @@ const ImplementationTimelineSection2 = ({ config }) => {
           </Link>
         </div>
 
-        {/* Gantt Chart */}
+        {/* Grant Chart */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
           <div className="overflow-x-auto" ref={timelineRef}>
             <div className="min-w-200" style={{ zoom }}>

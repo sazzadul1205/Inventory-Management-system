@@ -119,7 +119,7 @@ const CaseStudiesSection3 = ({ config }) => {
 
         {/* Case Studies Grid - Testimonial Card Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredStudies.map((study, index) => (
+          {filteredStudies.map((study) => (
             <div
               key={study.id}
               className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"

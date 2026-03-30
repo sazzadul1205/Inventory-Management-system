@@ -1,7 +1,7 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head} from '@inertiajs/react';
 
+// eslint-disable-next-line no-empty-pattern
 export default function Welcome({}: { canRegister?: boolean }) {
-    const { auth } = usePage().props;
 
     return (
         <Head title="Welcome">
