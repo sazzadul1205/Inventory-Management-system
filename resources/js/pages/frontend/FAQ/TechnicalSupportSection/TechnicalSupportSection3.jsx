@@ -34,7 +34,7 @@ const TechnicalSupportSection3 = ({ config }) => {
   const [helpfulVotes, setHelpfulVotes] = useState({});
   const [savedFaqs, setSavedFaqs] = useState([]);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [showSystemStatus, setShowSystemStatus] = useState(true);
+  const [showSystemStatus] = useState(true);
   const [expandedCategories, setExpandedCategories] = useState({});
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -118,7 +118,7 @@ const TechnicalSupportSection3 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'technical-faq-export.json');
@@ -317,8 +317,8 @@ const TechnicalSupportSection3 = ({ config }) => {
                   <button
                     onClick={() => setActiveCategory('all')}
                     className={`px-3 py-1 rounded-full text-sm transition-all ${activeCategory === 'all'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                       }`}
                   >
                     All
@@ -328,8 +328,8 @@ const TechnicalSupportSection3 = ({ config }) => {
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
                       className={`px-3 py-1 rounded-full text-sm transition-all flex items-center gap-1 ${activeCategory === category.id
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                         }`}
                     >
                       <span>{category.icon}</span>
@@ -468,8 +468,8 @@ const TechnicalSupportSection3 = ({ config }) => {
                                 <button
                                   onClick={() => handleHelpful(faq.id, true)}
                                   className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                                      ? 'text-green-600'
-                                      : 'text-gray-400 hover:text-green-600'
+                                    ? 'text-green-600'
+                                    : 'text-gray-400 hover:text-green-600'
                                     }`}
                                 >
                                   <HiOutlineThumbUp className="w-4 h-4" />
@@ -478,8 +478,8 @@ const TechnicalSupportSection3 = ({ config }) => {
                                 <button
                                   onClick={() => handleHelpful(faq.id, false)}
                                   className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                                      ? 'text-red-600'
-                                      : 'text-gray-400 hover:text-red-600'
+                                    ? 'text-red-600'
+                                    : 'text-gray-400 hover:text-red-600'
                                     }`}
                                 >
                                   <HiOutlineThumbDown className="w-4 h-4" />

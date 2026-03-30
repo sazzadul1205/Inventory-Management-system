@@ -52,7 +52,6 @@ const BillingPricingSection3 = ({ config }) => {
   const categories = config?.categories || [];
   const popularQuestions = config?.popularQuestions || [];
   const stats = config?.stats || [];
-  const plans = config?.plans || [];
 
   useEffect(() => {
     const savedVotes = localStorage.getItem('billingFaqHelpfulVotes');

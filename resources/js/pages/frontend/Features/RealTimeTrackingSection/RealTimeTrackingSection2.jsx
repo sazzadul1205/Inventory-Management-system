@@ -106,8 +106,8 @@ const RealTimeTrackingSection2 = ({ config }) => {
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${activeTab === index
-                    ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-blue-500 dark:border-blue-400'
-                    : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-blue-500 dark:border-blue-400'
+                  : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
                 onClick={() => setActiveTab(index)}
                 onKeyDown={(e) => e.key === 'Enter' && setActiveTab(index)}
@@ -118,8 +118,8 @@ const RealTimeTrackingSection2 = ({ config }) => {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${activeTab === index
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-blue-100 dark:bg-gray-700 text-blue-600 dark:text-blue-400 group-hover:bg-blue-200 dark:group-hover:bg-gray-600'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-blue-100 dark:bg-gray-700 text-blue-600 dark:text-blue-400 group-hover:bg-blue-200 dark:group-hover:bg-gray-600'
                     }`}>
                     {getFeatureIcon(feature.icon)}
                   </div>

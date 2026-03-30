@@ -22,6 +22,7 @@ import {
   HiOutlinePrinter,
   HiOutlineDownload,
   HiOutlinePaperAirplane,
+  HiOutlineX,
 } from 'react-icons/hi';
 
 const SupportRequestsSection2 = ({ config }) => {

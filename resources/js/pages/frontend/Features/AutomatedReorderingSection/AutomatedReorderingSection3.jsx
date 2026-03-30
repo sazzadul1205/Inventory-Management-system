@@ -144,7 +144,7 @@ const AutomatedReorderingSection3 = ({ config }) => {
 
         {/* Features Grid - Enhanced Card Design */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {config?.features?.map((feature, index) => (
+         {config?.features?.map((feature) => (
             <div
               key={feature.id}
               className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"

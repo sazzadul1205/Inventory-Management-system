@@ -24,6 +24,7 @@ import {
   HiOutlineFilter,
   HiOutlineBookmark,
   HiOutlinePrinter,
+  HiOutlineX,
 } from 'react-icons/hi';
 
 const ImplementationSection3 = ({ config }) => {
@@ -116,7 +117,7 @@ const ImplementationSection3 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${ encodeURIComponent(dataStr)}`;
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'implementation-faq-export.json');
@@ -216,31 +217,28 @@ const ImplementationSection3 = ({ config }) => {
         <div className="flex justify-center gap-4 mb-8">
           <button
             onClick={() => setActiveTimelineView('standard')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTimelineView === 'standard'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTimelineView === 'standard'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
           >
             Standard Timeline
           </button>
           <button
             onClick={() => setActiveTimelineView('accelerated')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTimelineView === 'accelerated'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTimelineView === 'accelerated'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
           >
             Accelerated Timeline
           </button>
           <button
             onClick={() => setActiveTimelineView('enterprise')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTimelineView === 'enterprise'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTimelineView === 'enterprise'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
           >
             Enterprise Timeline
           </button>
@@ -426,11 +424,10 @@ const ImplementationSection3 = ({ config }) => {
                 <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => setActiveCategory('all')}
-                    className={`px-3 py-1 rounded-full text-sm transition-all ${
-                      activeCategory === 'all'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
-                    }`}
+                    className={`px-3 py-1 rounded-full text-sm transition-all ${activeCategory === 'all'
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      }`}
                   >
                     All
                   </button>
@@ -438,11 +435,10 @@ const ImplementationSection3 = ({ config }) => {
                     <button
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
-                      className={`px-3 py-1 rounded-full text-sm transition-all flex items-center gap-1 ${
-                        activeCategory === category.id
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
-                      }`}
+                      className={`px-3 py-1 rounded-full text-sm transition-all flex items-center gap-1 ${activeCategory === category.id
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                        }`}
                     >
                       <span>{category.icon}</span>
                       {category.name}
@@ -478,9 +474,9 @@ const ImplementationSection3 = ({ config }) => {
           {categories.map((category) => {
             const categoryFaqs = groupedFaqs[category.id] || [];
             if (categoryFaqs.length === 0 && searchQuery) return null;
-            
+
             const isExpanded = expandedCategories[category.id] || searchQuery !== '';
-            
+
             return (
               <div key={category.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
                 <button
@@ -503,7 +499,7 @@ const ImplementationSection3 = ({ config }) => {
                     )}
                   </div>
                 </button>
-                
+
                 {isExpanded && (
                   <div className="border-t border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700">
                     {categoryFaqs.map((faq, idx) => (
@@ -548,7 +544,7 @@ const ImplementationSection3 = ({ config }) => {
                             </div>
                           </div>
                         </button>
-                        
+
                         {openFaq === `${category.id}-${idx}` && (
                           <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -563,29 +559,27 @@ const ImplementationSection3 = ({ config }) => {
                                 <HiOutlineExternalLink className="w-3 h-3" />
                               </Link>
                             )}
-                            
+
                             {/* Helpful Section */}
                             <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                               <div className="flex items-center gap-4">
                                 <span className="text-xs text-gray-500">Was this helpful?</span>
                                 <button
                                   onClick={() => handleHelpful(faq.id, true)}
-                                  className={`flex items-center gap-1 text-xs transition-colors ${
-                                    helpfulVotes[faq.id] === true
-                                      ? 'text-green-600'
-                                      : 'text-gray-400 hover:text-green-600'
-                                  }`}
+                                  className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
+                                    ? 'text-green-600'
+                                    : 'text-gray-400 hover:text-green-600'
+                                    }`}
                                 >
                                   <HiOutlineThumbUp className="w-4 h-4" />
                                   Yes
                                 </button>
                                 <button
                                   onClick={() => handleHelpful(faq.id, false)}
-                                  className={`flex items-center gap-1 text-xs transition-colors ${
-                                    helpfulVotes[faq.id] === false
-                                      ? 'text-red-600'
-                                      : 'text-gray-400 hover:text-red-600'
-                                  }`}
+                                  className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
+                                    ? 'text-red-600'
+                                    : 'text-gray-400 hover:text-red-600'
+                                    }`}
                                 >
                                   <HiOutlineThumbDown className="w-4 h-4" />
                                   No
@@ -672,7 +666,7 @@ const ImplementationSection3 = ({ config }) => {
               Read Guide
             </Link>
           </div>
-          
+
           <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
             <div className="text-4xl mb-3">🎥</div>
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Video Tutorials</h3>
@@ -687,7 +681,7 @@ const ImplementationSection3 = ({ config }) => {
               Watch Videos
             </Link>
           </div>
-          
+
           <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 text-center">
             <div className="text-4xl mb-3">📋</div>
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Data Migration Template</h3>
