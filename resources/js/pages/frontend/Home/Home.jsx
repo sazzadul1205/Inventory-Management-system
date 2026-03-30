@@ -20,7 +20,7 @@ import SectionNavigation from "@/components/SectionNavigation";
 // ============================================================================
 
 const Home = ({ pageData = { meta: {}, sections: [] } }) => {
-  const { meta = {}, sections = [] } = pageData;
+  const { sections = [] } = pageData;
 
   // Prepare sections for navigation by adding displayName
   const sectionsWithDisplayName = sections.map(section => {
@@ -76,9 +76,9 @@ const Home = ({ pageData = { meta: {}, sections: [] } }) => {
       )}
 
       {/* Main content wrapper with landmark */}
-      <main 
-      id="main-content" 
-      role="main" tabIndex={-1} className="focus:outline-none">
+      <main
+        id="main-content"
+        role="main" tabIndex={-1} className="focus:outline-none">
         {/* Render sections - Data from server */}
         {sections?.map((section, index) => {
           const { type, variant, props, config, _id } = section;

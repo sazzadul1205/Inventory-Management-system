@@ -102,9 +102,6 @@ const NewsSection3 = ({ config }) => {
     ? config.featured
     : config?.news?.[0];
 
-  // Get latest news (excluding featured)
-  const latestNews = filteredNews.slice(1, 4) || [];
-
   // Get unique categories
   const categories = ['all', ...new Set(config?.news?.map(item => item.type) || [])];
 

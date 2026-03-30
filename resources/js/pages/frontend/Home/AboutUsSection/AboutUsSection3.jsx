@@ -55,7 +55,7 @@ const AboutUsSection3 = ({ config }) => {
 
       return () => intervals.forEach(interval => clearInterval(interval));
     }
-  }, []);
+  }, [config.stats.items, config.stats?.show]);
 
   // Icon mapping
   const getIcon = (iconName, className = "w-8 h-8") => {

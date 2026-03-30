@@ -147,7 +147,7 @@ const PricingPlansSection3 = ({ config }) => {
 
         {/* Pricing Cards - 3 Column with Hover Effects */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {config?.plans?.map((plan, index) => {
+          {config?.plans?.map((plan) => {
             const savings = calculateSavings(plan.priceMonthly, plan.priceAnnual);
             const isHovered = hoveredPlan === plan.id;
             const isSelected = selectedPlan === plan.id;
@@ -191,7 +191,7 @@ const PricingPlansSection3 = ({ config }) => {
                   <div
                     className={`absolute inset-0 bg-linear-to-br from-amber-50 to-pink-50 dark:from-amber-900/10 dark:to-pink-900/10 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
                       }`}
-                   />
+                  />
 
                   {/* Decorative Circles */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-amber-200 to-pink-200 dark:from-amber-800/20 dark:to-pink-800/20 rounded-full blur-3xl -mr-16 -mt-16" />

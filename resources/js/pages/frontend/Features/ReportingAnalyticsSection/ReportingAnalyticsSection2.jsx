@@ -145,12 +145,12 @@ const ReportingAnalyticsSection2 = ({ config }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Side - Features List */}
           <div className="space-y-6">
-            {config?.features?.map((feature, index) => (
+            {config?.features?.map((feature) => (
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${selectedMetric === feature.id
-                    ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-purple-500 dark:border-purple-400'
-                    : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
+                  ? 'bg-white dark:bg-gray-800 shadow-xl border-2 border-purple-500 dark:border-purple-400'
+                  : 'bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700'
                   }`}
                 onClick={() => setSelectedMetric(feature.id)}
                 onKeyDown={(e) => e.key === 'Enter' && setSelectedMetric(feature.id)}
@@ -161,8 +161,8 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${selectedMetric === feature.id
-                      ? 'bg-purple-500 text-white'
-                      : 'bg-purple-100 dark:bg-gray-700 text-purple-600 dark:text-purple-400 group-hover:bg-purple-200 dark:group-hover:bg-gray-600'
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-purple-100 dark:bg-gray-700 text-purple-600 dark:text-purple-400 group-hover:bg-purple-200 dark:group-hover:bg-gray-600'
                     }`}>
                     {getFeatureIcon(feature.icon)}
                   </div>
@@ -225,8 +225,8 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                     key={range}
                     onClick={() => setTimeRange(range)}
                     className={`px-3 py-1 text-sm rounded-lg transition-all duration-300 ${timeRange === range
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-gray-600'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-gray-600'
                       }`}
                   >
                     {range.charAt(0).toUpperCase() + range.slice(1)}
@@ -241,8 +241,8 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                     key={type}
                     onClick={() => setSelectedChart(type)}
                     className={`px-3 py-1 text-sm rounded-lg transition-all duration-300 ${selectedChart === type
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-gray-600'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-gray-600'
                       }`}
                   >
                     {type === 'trend' && '📈 Trend'}
@@ -270,7 +270,7 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                         <div
                           className="w-full bg-linear-to-t from-purple-500 to-indigo-500 rounded-t transition-all duration-300 hover:from-purple-600 hover:to-indigo-600"
                           style={{ height: `${(value / 100) * 200}px` }}
-                         />
+                        />
                         <span className="text-xs text-gray-500 dark:text-gray-400">{i + 1}</span>
                       </div>
                     ))}
@@ -315,7 +315,7 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                         <div
                           className="w-full bg-purple-500 rounded-t transition-all duration-300 hover:bg-purple-600"
                           style={{ height: `${(value / 150) * 200}px` }}
-                         />
+                        />
                         <span className="text-xs text-gray-500 dark:text-gray-400">{i + 1}</span>
                       </div>
                     ))}

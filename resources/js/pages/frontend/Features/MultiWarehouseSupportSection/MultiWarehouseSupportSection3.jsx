@@ -150,7 +150,7 @@ const MultiWarehouseSupportSection3 = ({ config }) => {
 
         {/* Features Grid - Enhanced Card Design */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {config?.features?.map((feature, index) => (
+          {config?.features?.map((feature) => (
             <div
               key={feature.id}
               className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
@@ -250,8 +250,8 @@ const MultiWarehouseSupportSection3 = ({ config }) => {
               <button
                 onClick={() => setSelectedRegion('all')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${selectedRegion === 'all'
-                    ? 'bg-purple-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  ? 'bg-purple-600 text-white shadow-lg'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
               >
                 All Regions
@@ -261,8 +261,8 @@ const MultiWarehouseSupportSection3 = ({ config }) => {
                   key={index}
                   onClick={() => setSelectedRegion(region.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${selectedRegion === region.id
-                      ? 'bg-purple-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                 >
                   {region.name}
@@ -299,7 +299,7 @@ const MultiWarehouseSupportSection3 = ({ config }) => {
                           <div
                             className="bg-purple-500 h-2 rounded-full transition-all duration-500"
                             style={{ width: warehouse.utilizationPercent || '75%' }}
-                           />
+                          />
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-3 pt-2">
@@ -376,8 +376,8 @@ const MultiWarehouseSupportSection3 = ({ config }) => {
                     key={index}
                     onClick={() => setActiveIntegration(index)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeIntegration === index
-                        ? 'bg-purple-600 text-white shadow-lg'
-                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      ? 'bg-purple-600 text-white shadow-lg'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                       }`}
                   >
                     {category.name}

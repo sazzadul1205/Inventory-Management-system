@@ -9,13 +9,8 @@ import {
   HiOutlineCheckCircle,
   HiOutlineXCircle,
   HiOutlineStar,
-  HiOutlineUsers,
-  HiOutlineCube,
-  HiOutlineTruck,
-  HiOutlineChartBar,
   HiOutlineShieldCheck,
   HiOutlineClock,
-  HiOutlineGlobeAlt,
   HiOutlineLightningBolt,
   HiOutlineCurrencyDollar,
   HiOutlineQuestionMarkCircle,
@@ -29,32 +24,6 @@ const PricingPlansSection2 = ({ config }) => {
 
   // State for FAQ accordion
   const [openFaq, setOpenFaq] = useState(null);
-
-  // Get feature icon
-  const getFeatureIcon = (iconName) => {
-    switch (iconName) {
-      case 'cube':
-        return <HiOutlineCube className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'truck':
-        return <HiOutlineTruck className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'chart':
-        return <HiOutlineChartBar className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'shield':
-        return <HiOutlineShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'clock':
-        return <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'globe':
-        return <HiOutlineGlobeAlt className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'users':
-        return <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'lightning':
-        return <HiOutlineLightningBolt className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      case 'currency':
-        return <HiOutlineCurrencyDollar className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-      default:
-        return <HiOutlineCheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />;
-    }
-  };
 
   // Calculate savings
   const calculateSavings = (monthly, annual) => {

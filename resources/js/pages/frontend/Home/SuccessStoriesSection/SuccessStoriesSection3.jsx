@@ -7,15 +7,8 @@ import { useState } from 'react';
 // Icons
 import {
   HiOutlineStar,
-  HiOutlineUserCircle,
-  HiOutlineCalendar,
-  HiOutlineChartBar,
-  HiOutlineTruck,
-  HiOutlineCube,
   HiOutlineArrowRight,
-  HiOutlineTrendingUp,
   HiOutlineClock,
-  HiOutlineLocationMarker,
   HiOutlinePlay,
   HiOutlinePause,
   HiOutlineHeart,
@@ -39,32 +32,6 @@ const SuccessStoriesSection3 = ({ config }) => {
 
   const stopAutoPlay = () => {
     setIsPlaying(false);
-  };
-
-  // Icon mapping
-  const getIcon = (iconName, className = "w-5 h-5") => {
-    const iconClasses = `${className} text-current`;
-
-    switch (iconName) {
-      case 'user':
-        return <HiOutlineUserCircle className={iconClasses} aria-hidden="true" />;
-      case 'calendar':
-        return <HiOutlineCalendar className={iconClasses} aria-hidden="true" />;
-      case 'chart':
-        return <HiOutlineChartBar className={iconClasses} aria-hidden="true" />;
-      case 'truck':
-        return <HiOutlineTruck className={iconClasses} aria-hidden="true" />;
-      case 'cube':
-        return <HiOutlineCube className={iconClasses} aria-hidden="true" />;
-      case 'trending':
-        return <HiOutlineTrendingUp className={iconClasses} aria-hidden="true" />;
-      case 'clock':
-        return <HiOutlineClock className={iconClasses} aria-hidden="true" />;
-      case 'location':
-        return <HiOutlineLocationMarker className={iconClasses} aria-hidden="true" />;
-      default:
-        return <HiOutlineUserCircle className={iconClasses} aria-hidden="true" />;
-    }
   };
 
   // Render stars for rating
@@ -183,8 +150,8 @@ const SuccessStoriesSection3 = ({ config }) => {
                         setIsPlaying(false);
                       }}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === activeStory
-                          ? 'w-8 bg-linear-to-r from-amber-500 to-pink-500'
-                          : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                        ? 'w-8 bg-linear-to-r from-amber-500 to-pink-500'
+                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                         }`}
                       aria-label={`Go to story ${idx + 1}`}
                     />
@@ -316,7 +283,7 @@ const SuccessStoriesSection3 = ({ config }) => {
 
         {/* Story Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {config?.stories?.map((story, index) => (
+          {config?.stories?.map((story) => (
             <div
               key={story.id}
               className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"

@@ -7,14 +7,8 @@ import { useState } from 'react';
 // Icons
 import {
   HiOutlineStar,
-  HiOutlineUserCircle,
-  HiOutlineCalendar,
-  HiOutlineChartBar,
-  HiOutlineTruck,
-  HiOutlineCube,
   HiOutlineArrowRight,
   HiOutlineTrendingUp,
-  HiOutlineClock,
   HiOutlineLocationMarker
 } from 'react-icons/hi';
 
@@ -28,32 +22,6 @@ const SuccessStoriesSection2 = ({ config }) => {
   const activeStoryData = config?.stories?.find(
     story => story.id === activeStory
   ) || config?.stories?.[0];
-
-  // Icon mapping
-  const getIcon = (iconName, className = "w-5 h-5") => {
-    const iconClasses = `${className} text-current`;
-
-    switch (iconName) {
-      case 'user':
-        return <HiOutlineUserCircle className={iconClasses} aria-hidden="true" />;
-      case 'calendar':
-        return <HiOutlineCalendar className={iconClasses} aria-hidden="true" />;
-      case 'chart':
-        return <HiOutlineChartBar className={iconClasses} aria-hidden="true" />;
-      case 'truck':
-        return <HiOutlineTruck className={iconClasses} aria-hidden="true" />;
-      case 'cube':
-        return <HiOutlineCube className={iconClasses} aria-hidden="true" />;
-      case 'trending':
-        return <HiOutlineTrendingUp className={iconClasses} aria-hidden="true" />;
-      case 'clock':
-        return <HiOutlineClock className={iconClasses} aria-hidden="true" />;
-      case 'location':
-        return <HiOutlineLocationMarker className={iconClasses} aria-hidden="true" />;
-      default:
-        return <HiOutlineUserCircle className={iconClasses} aria-hidden="true" />;
-    }
-  };
 
   // Render stars for rating
   const renderStars = (rating) => {

@@ -24,12 +24,6 @@ const EventsSection2 = ({ config }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = config?.pagination?.perPage || 4;
 
-  // Format date
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
   // Filter events
   const filteredEvents = config?.events?.filter(event => {
     const matchesType = activeType === 'all' || event.type === activeType;
@@ -141,8 +135,8 @@ const EventsSection2 = ({ config }) => {
                 setCurrentPage(1);
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeType === type
-                  ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30 scale-105'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30 scale-105'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                 }`}
             >
               {type === 'all' ? 'All Events' : type}
@@ -249,8 +243,8 @@ const EventsSection2 = ({ config }) => {
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               className={`p-2 rounded-lg border ${currentPage === 1
-                  ? 'border-gray-200 dark:border-gray-700 text-gray-400 cursor-not-allowed'
-                  : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                ? 'border-gray-200 dark:border-gray-700 text-gray-400 cursor-not-allowed'
+                : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
             >
               <HiOutlineChevronLeft className="w-5 h-5" />
@@ -261,8 +255,8 @@ const EventsSection2 = ({ config }) => {
                 key={page}
                 onClick={() => setCurrentPage(page)}
                 className={`w-10 h-10 rounded-lg font-medium ${currentPage === page
-                    ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                    : 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                  : 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
               >
                 {page}
@@ -273,8 +267,8 @@ const EventsSection2 = ({ config }) => {
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
               className={`p-2 rounded-lg border ${currentPage === totalPages
-                  ? 'border-gray-200 dark:border-gray-700 text-gray-400 cursor-not-allowed'
-                  : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                ? 'border-gray-200 dark:border-gray-700 text-gray-400 cursor-not-allowed'
+                : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
             >
               <HiOutlineChevronRight className="w-5 h-5" />

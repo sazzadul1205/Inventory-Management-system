@@ -12,7 +12,7 @@ import {
   HiLightningBolt
 } from 'react-icons/hi';
 
-const HeroSection3 = ({ config, pageConfig }) => {
+const HeroSection3 = ({ config }) => {
 
   // Video modal
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -75,7 +75,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={config?.video.title}
-               />
+              />
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
                     className="w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 dark:from-blue-500 dark:to-blue-700 border-2 border-white dark:border-gray-800"
                     role="img"
                     aria-label="Customer avatar"
-                   />
+                  />
                 ))}
               </div>
               <div>
@@ -225,7 +225,7 @@ const HeroSection3 = ({ config, pageConfig }) => {
                         <div
                           className="bg-green-600 dark:bg-green-500 h-1.5 rounded-full"
                           style={{ width: `${stat.progressValue}%` }}
-                         />
+                        />
                       </div>
                     )}
                   </div>

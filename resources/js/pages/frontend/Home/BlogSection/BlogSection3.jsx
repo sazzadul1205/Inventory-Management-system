@@ -33,11 +33,6 @@ const BlogSection3 = ({ config }) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // Filter posts based on category (for featured post selection)
-  const filteredPosts = config?.posts?.filter(post => {
-    return activeCategory === 'all' || post.category === activeCategory;
-  }) || [];
-
   // Get unique categories
   const categories = ['all', ...new Set(config?.posts?.map(post => post.category) || [])];
 
@@ -149,8 +144,8 @@ const BlogSection3 = ({ config }) => {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category
-                  ? 'bg-linear-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30 scale-105'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                ? 'bg-linear-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30 scale-105'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                 }`}
             >
               {category === 'all' ? 'All Articles' : category}

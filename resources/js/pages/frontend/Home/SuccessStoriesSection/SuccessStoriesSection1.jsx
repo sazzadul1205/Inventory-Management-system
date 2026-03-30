@@ -7,11 +7,6 @@ import { useState } from 'react';
 // Icons
 import {
   HiOutlineStar,
-  HiOutlineUserCircle,
-  HiOutlineCalendar,
-  HiOutlineChartBar,
-  HiOutlineTruck,
-  HiOutlineCube,
   HiOutlineArrowRight,
   HiOutlineChevronLeft,
   HiOutlineChevronRight
@@ -43,26 +38,6 @@ const SuccessStoriesSection1 = ({ config }) => {
 
   const prevSlide = () => {
     setActiveIndex((prev) => (prev - 1 + filteredStories.length) % filteredStories.length);
-  };
-
-  // Icon mapping
-  const getIcon = (iconName, className = "w-8 h-8") => {
-    const iconClasses = `${className} text-blue-600 dark:text-blue-400`;
-
-    switch (iconName) {
-      case 'user':
-        return <HiOutlineUserCircle className={iconClasses} aria-hidden="true" />;
-      case 'calendar':
-        return <HiOutlineCalendar className={iconClasses} aria-hidden="true" />;
-      case 'chart':
-        return <HiOutlineChartBar className={iconClasses} aria-hidden="true" />;
-      case 'truck':
-        return <HiOutlineTruck className={iconClasses} aria-hidden="true" />;
-      case 'cube':
-        return <HiOutlineCube className={iconClasses} aria-hidden="true" />;
-      default:
-        return <HiOutlineUserCircle className={iconClasses} aria-hidden="true" />;
-    }
   };
 
   // Render stars for rating

@@ -22,7 +22,7 @@ import {
 const TestimonialsSection3 = ({ config }) => {
   // State for active testimonial
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying] = useState(false);
   const [liked, setLiked] = useState({});
 
   // Auto-play effect
@@ -202,7 +202,7 @@ const TestimonialsSection3 = ({ config }) => {
           )}
 
           {/* Testimonial Cards Grid */}
-          {config?.testimonials?.slice(1).map((testimonial, index) => (
+          {config?.testimonials?.slice(1).map((testimonial) => (
             <div
               key={testimonial.id}
               className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group"

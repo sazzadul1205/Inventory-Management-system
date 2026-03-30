@@ -118,7 +118,7 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Side - Features List */}
           <div className="space-y-6">
-            {config?.features?.map((feature, index) => (
+            {config?.features?.map((feature) => (
               <div
                 key={feature.id}
                 className={`group cursor-pointer transition-all duration-300 p-6 rounded-2xl ${selectedFeature === feature.id
@@ -251,7 +251,7 @@ const MultiWarehouseSupportSection2 = ({ config }) => {
                         <div
                           className="bg-purple-500 h-2 rounded-full transition-all duration-500"
                           style={{ width: config.warehouses[activeWarehouse]?.utilizationPercent || '75%' }}
-                         />
+                        />
                       </div>
                     </div>
 
