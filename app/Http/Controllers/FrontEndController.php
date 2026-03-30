@@ -266,4 +266,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('blog', 'frontend/Blog/Blog', 2);
     }
+
+    /**
+     * Show the News page with data from database.
+     */
+    public function news()
+    {
+        return $this->renderPage('news', 'frontend/News/News', 2);
+    }
 }
