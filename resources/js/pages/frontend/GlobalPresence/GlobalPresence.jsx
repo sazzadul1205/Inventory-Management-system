@@ -45,7 +45,7 @@ const GlobalPresence = ({ pageData = { meta: {}, sections: [] } }) => {
       displayName: "Global Presence",
     },
     ...sections.map((section) => {
-      const displayNames = {
+      const displayNames = { 
         worldwideLocations: "Worldwide Locations",
         regionalOffices: "Regional Offices",
         globalCoverageMap: "Global Coverage Map",
