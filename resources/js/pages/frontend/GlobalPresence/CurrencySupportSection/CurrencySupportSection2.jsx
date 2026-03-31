@@ -177,6 +177,21 @@ const CurrencySupportSection2 = ({ config }) => {
         );
     };
 
+    // Define currenciesList first
+    const currenciesList = useMemo(() => config?.currencies || [
+        { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸', regions: ['north-america'], exchangeRate: 1.00, lastUpdated: '2024-03-15', isBase: true, popularity: 98, status: 'active' },
+        { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺', regions: ['europe'], exchangeRate: 0.92, lastUpdated: '2024-03-15', popularity: 95, status: 'active' },
+        { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧', regions: ['europe'], exchangeRate: 0.79, lastUpdated: '2024-03-15', popularity: 92, status: 'active' },
+        { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵', regions: ['asia-pacific'], exchangeRate: 149.50, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
+        { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳', regions: ['asia-pacific'], exchangeRate: 7.20, lastUpdated: '2024-03-15', popularity: 85, status: 'active' },
+        { code: 'CAD', name: 'Canadian Dollar', symbol: '$', flag: '🇨🇦', regions: ['north-america'], exchangeRate: 1.35, lastUpdated: '2024-03-15', popularity: 82, status: 'active' },
+        { code: 'AUD', name: 'Australian Dollar', symbol: '$', flag: '🇦🇺', regions: ['asia-pacific'], exchangeRate: 1.52, lastUpdated: '2024-03-15', popularity: 80, status: 'active' },
+        { code: 'CHF', name: 'Swiss Franc', symbol: 'Fr', flag: '🇨🇭', regions: ['europe'], exchangeRate: 0.88, lastUpdated: '2024-03-15', popularity: 78, status: 'active' },
+        { code: 'SGD', name: 'Singapore Dollar', symbol: '$', flag: '🇸🇬', regions: ['asia-pacific'], exchangeRate: 1.34, lastUpdated: '2024-03-15', popularity: 75, status: 'active' },
+        { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳', regions: ['asia-pacific'], exchangeRate: 83.10, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
+        { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷', regions: ['latin-america'], exchangeRate: 5.00, lastUpdated: '2024-03-15', popularity: 72, status: 'active' }
+    ], [config?.currencies]);
+
     // Handle currency conversion
     const handleConvert = useCallback(() => {
         const fromCurrency = currenciesList.find(c => c.code === converterFrom);
@@ -223,21 +238,6 @@ const CurrencySupportSection2 = ({ config }) => {
     }, [config?.currencies, searchQuery, selectedCurrency, selectedRegion, selectedStatus, sortBy]);
 
     const filteredCurrencies = getFilteredCurrencies();
-
-
-    const currenciesList = useMemo(() => config?.currencies || [
-        { code: 'USD', name: 'US Dollar', symbol: '$', regions: ['north-america'], exchangeRate: 1.00, lastUpdated: '2024-03-15', isBase: true, popularity: 98, status: 'active' },
-        { code: 'EUR', name: 'Euro', symbol: '€', regions: ['europe'], exchangeRate: 0.92, lastUpdated: '2024-03-15', popularity: 95, status: 'active' },
-        { code: 'GBP', name: 'British Pound', symbol: '£', regions: ['europe'], exchangeRate: 0.79, lastUpdated: '2024-03-15', popularity: 92, status: 'active' },
-        { code: 'JPY', name: 'Japanese Yen', symbol: '¥', regions: ['asia-pacific'], exchangeRate: 149.50, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
-        { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', regions: ['asia-pacific'], exchangeRate: 7.20, lastUpdated: '2024-03-15', popularity: 85, status: 'active' },
-        { code: 'CAD', name: 'Canadian Dollar', symbol: '$', regions: ['north-america'], exchangeRate: 1.35, lastUpdated: '2024-03-15', popularity: 82, status: 'active' },
-        { code: 'AUD', name: 'Australian Dollar', symbol: '$', regions: ['asia-pacific'], exchangeRate: 1.52, lastUpdated: '2024-03-15', popularity: 80, status: 'active' },
-        { code: 'CHF', name: 'Swiss Franc', symbol: 'Fr', regions: ['europe'], exchangeRate: 0.88, lastUpdated: '2024-03-15', popularity: 78, status: 'active' },
-        { code: 'SGD', name: 'Singapore Dollar', symbol: '$', regions: ['asia-pacific'], exchangeRate: 1.34, lastUpdated: '2024-03-15', popularity: 75, status: 'active' },
-        { code: 'INR', name: 'Indian Rupee', symbol: '₹', regions: ['asia-pacific'], exchangeRate: 83.10, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
-        { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', regions: ['latin-america'], exchangeRate: 5.00, lastUpdated: '2024-03-15', popularity: 72, status: 'active' }
-    ], [config?.currencies]);
 
     const regions = config?.regions || [
         { id: 'all', label: 'All Regions', icon: 'globe', count: currenciesList.length },

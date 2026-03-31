@@ -58,6 +58,7 @@ const iconMap = {
   blog: HiOutlineNewspaper,
   news: HiOutlineGlobeAlt,
   partners: HiOutlineUsers,
+  "global presence": HiOutlineGlobeAlt,
 };
 
 const getIconForPage = (name = '') =>

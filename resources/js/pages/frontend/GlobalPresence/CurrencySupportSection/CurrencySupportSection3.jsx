@@ -94,6 +94,21 @@ const CurrencySupportSection3 = ({ config }) => {
     const [historicalRates, setHistoricalRates] = useState([]);
     const carouselRef = useRef(null);
 
+    // Define currenciesList FIRST before it's used in useEffect
+    const currenciesList = useMemo(() => config?.currencies || [
+        { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸', regions: ['north-america'], exchangeRate: 1.00, lastUpdated: '2024-03-15', isBase: true, popularity: 98, status: 'active', isFeatured: true },
+        { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺', regions: ['europe'], exchangeRate: 0.92, lastUpdated: '2024-03-15', popularity: 95, status: 'active', isFeatured: true },
+        { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧', regions: ['europe'], exchangeRate: 0.79, lastUpdated: '2024-03-15', popularity: 92, status: 'active' },
+        { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵', regions: ['asia-pacific'], exchangeRate: 149.50, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
+        { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳', regions: ['asia-pacific'], exchangeRate: 7.20, lastUpdated: '2024-03-15', popularity: 85, status: 'active' },
+        { code: 'CAD', name: 'Canadian Dollar', symbol: '$', flag: '🇨🇦', regions: ['north-america'], exchangeRate: 1.35, lastUpdated: '2024-03-15', popularity: 82, status: 'active' },
+        { code: 'AUD', name: 'Australian Dollar', symbol: '$', flag: '🇦🇺', regions: ['asia-pacific'], exchangeRate: 1.52, lastUpdated: '2024-03-15', popularity: 80, status: 'active' },
+        { code: 'CHF', name: 'Swiss Franc', symbol: 'Fr', flag: '🇨🇭', regions: ['europe'], exchangeRate: 0.88, lastUpdated: '2024-03-15', popularity: 78, status: 'active' },
+        { code: 'SGD', name: 'Singapore Dollar', symbol: '$', flag: '🇸🇬', regions: ['asia-pacific'], exchangeRate: 1.34, lastUpdated: '2024-03-15', popularity: 75, status: 'active' },
+        { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳', regions: ['asia-pacific'], exchangeRate: 83.10, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
+        { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷', regions: ['latin-america'], exchangeRate: 5.00, lastUpdated: '2024-03-15', popularity: 72, status: 'active' }
+    ], [config?.currencies]);
+
     // Load saved data from localStorage
     useEffect(() => {
         const saved = localStorage.getItem('favoriteCurrencies');
@@ -104,7 +119,7 @@ const CurrencySupportSection3 = ({ config }) => {
         localStorage.setItem('favoriteCurrencies', JSON.stringify(favoriteCurrencies));
     }, [favoriteCurrencies]);
 
-    // Generate historical rates data
+    // Generate historical rates data (NOW currenciesList is defined)
     useEffect(() => {
         const generateHistoricalRates = () => {
             const rates = [];
@@ -290,21 +305,6 @@ const CurrencySupportSection3 = ({ config }) => {
 
     const filteredCurrencies = getFilteredCurrencies();
 
-
-    const currenciesList = useMemo(() => config?.currencies || [
-        { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸', regions: ['north-america'], exchangeRate: 1.00, lastUpdated: '2024-03-15', isBase: true, popularity: 98, status: 'active', isFeatured: true },
-        { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺', regions: ['europe'], exchangeRate: 0.92, lastUpdated: '2024-03-15', popularity: 95, status: 'active', isFeatured: true },
-        { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧', regions: ['europe'], exchangeRate: 0.79, lastUpdated: '2024-03-15', popularity: 92, status: 'active' },
-        { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵', regions: ['asia-pacific'], exchangeRate: 149.50, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
-        { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳', regions: ['asia-pacific'], exchangeRate: 7.20, lastUpdated: '2024-03-15', popularity: 85, status: 'active' },
-        { code: 'CAD', name: 'Canadian Dollar', symbol: '$', flag: '🇨🇦', regions: ['north-america'], exchangeRate: 1.35, lastUpdated: '2024-03-15', popularity: 82, status: 'active' },
-        { code: 'AUD', name: 'Australian Dollar', symbol: '$', flag: '🇦🇺', regions: ['asia-pacific'], exchangeRate: 1.52, lastUpdated: '2024-03-15', popularity: 80, status: 'active' },
-        { code: 'CHF', name: 'Swiss Franc', symbol: 'Fr', flag: '🇨🇭', regions: ['europe'], exchangeRate: 0.88, lastUpdated: '2024-03-15', popularity: 78, status: 'active' },
-        { code: 'SGD', name: 'Singapore Dollar', symbol: '$', flag: '🇸🇬', regions: ['asia-pacific'], exchangeRate: 1.34, lastUpdated: '2024-03-15', popularity: 75, status: 'active' },
-        { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳', regions: ['asia-pacific'], exchangeRate: 83.10, lastUpdated: '2024-03-15', popularity: 88, status: 'active' },
-        { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', flag: '🇧🇷', regions: ['latin-america'], exchangeRate: 5.00, lastUpdated: '2024-03-15', popularity: 72, status: 'active' }
-    ], [config?.currencies]);
-
     const regions = config?.regions || [
         { id: 'all', label: 'All Regions', icon: 'globe', count: currenciesList.length },
         { id: 'north-america', label: 'North America', icon: 'globe' },
@@ -352,7 +352,6 @@ const CurrencySupportSection3 = ({ config }) => {
         setSelectedCurrency('all');
         setSelectedRegion('all');
     };
-
     return (
         <section
             className="relative py-24 bg-white dark:bg-gray-900 overflow-hidden"

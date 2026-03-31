@@ -25,6 +25,7 @@ Route::get('/why-choose-us', [FrontEndController::class, 'whyChooseUs'])->name('
 Route::get('/blog', [FrontEndController::class, 'blog'])->name('blog.index');
 Route::get('/news', [FrontEndController::class, 'news'])->name('news.index');
 Route::get('/partners', [FrontEndController::class, 'partners'])->name('partners.index'); 
+Route::get('/global-presence', [FrontEndController::class, 'globalPresence'])->name('global-presence.index');
 
 // Error pages
 Route::get('/page-broken', [PageController::class, 'broken'])->name('page.broken');

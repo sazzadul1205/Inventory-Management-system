@@ -282,4 +282,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('partners', 'frontend/Partners/Partners', 2);
     }
+
+    /**
+     * Show the GlobalPresence page with data from database.
+     */
+    public function globalPresence()
+    {
+        return $this->renderPage('globalPresence', 'frontend/GlobalPresence/GlobalPresence', 2);
+    }
 }
