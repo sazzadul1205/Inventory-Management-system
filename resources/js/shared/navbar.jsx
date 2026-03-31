@@ -21,7 +21,7 @@ import {
   HiOutlineBadgeCheck,
   HiOutlineNewspaper,
 } from 'react-icons/hi';
-import { HiOutlineGlobeAlt, HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
+import { HiOutlineGlobeAlt, HiOutlineQuestionMarkCircle, HiOutlineUsers } from 'react-icons/hi2';
 
 import DarkIcon from '../../../public/DarkIcon.png';
 import Icon from '../../../public/Icon.png';
@@ -57,6 +57,7 @@ const iconMap = {
   whychooseus: HiOutlineBadgeCheck,
   blog: HiOutlineNewspaper,
   news: HiOutlineGlobeAlt,
+  partners: HiOutlineUsers,
 };
 
 const getIconForPage = (name = '') =>

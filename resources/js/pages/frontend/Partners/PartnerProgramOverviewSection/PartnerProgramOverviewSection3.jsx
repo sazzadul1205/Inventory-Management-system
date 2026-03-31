@@ -94,6 +94,7 @@ const PartnerProgramOverviewSection3 = ({ config }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [showPartnerModal, setShowPartnerModal] = useState(false);
     const [selectedPartner, setSelectedPartner] = useState(null);
+    const [favoritePartners, setFavoritePartners] = useState([]);
     const carouselRef = useRef(null);
     const videoRef = useRef(null);
 
@@ -107,8 +108,6 @@ const PartnerProgramOverviewSection3 = ({ config }) => {
     useEffect(() => {
         localStorage.setItem('favoritePartners', JSON.stringify(favoritePartners));
     }, [favoritePartners]);
-
-    const [favoritePartners, setFavoritePartners] = useState([]);
 
     // Icon mapping function
     const getIcon = (iconName, className = "w-5 h-5") => {
