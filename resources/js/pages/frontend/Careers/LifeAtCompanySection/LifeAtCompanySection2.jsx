@@ -67,8 +67,10 @@ import {
     HiOutlineChevronLeft,
     HiOutlineChevronRight
 } from 'react-icons/hi';
-import { HiOutlinePhone, HiOutlineBuildingOffice, HiOutlineTrophy, HiOutlineCamera } from 'react-icons/hi2';
-import { MdOutlineCoffee as HiOutlineCoffee, } from "react-icons/md";
+import { HiOutlinePhone, HiOutlineBuildingOffice, HiOutlineTrophy, HiOutlineCamera, } from 'react-icons/hi2';
+import {
+    MdOutlineCoffee as HiOutlineCoffee,
+} from "react-icons/md";
 
 const LifeAtCompanySection2 = ({ config }) => {
     const [selectedCategory, setSelectedCategory] = useState('all');

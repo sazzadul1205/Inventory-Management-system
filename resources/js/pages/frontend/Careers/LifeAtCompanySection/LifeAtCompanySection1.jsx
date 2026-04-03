@@ -56,10 +56,12 @@ import {
     HiOutlineWifi,
     HiOutlineHeart,
     HiOutlineEmojiHappy,
-    HiOutlineX
+    HiOutlineX,
 } from 'react-icons/hi';
-import { HiOutlinePhone, HiOutlineBuildingOffice, HiOutlineTrophy, HiOutlineCamera } from 'react-icons/hi2';
-import { MdOutlineCoffee as HiOutlineCoffee, } from "react-icons/md";
+import { HiOutlinePhone, HiOutlineBuildingOffice, HiOutlineTrophy, HiOutlineCamera, } from 'react-icons/hi2';
+import {
+    MdOutlineCoffee as HiOutlineCoffee,
+} from "react-icons/md";
 
 const LifeAtCompanySection1 = ({ config }) => {
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -215,7 +217,7 @@ const LifeAtCompanySection1 = ({ config }) => {
         { title: "Learning Stipend", description: "$2,000 annual budget for courses, conferences, and books.", icon: "academic" },
         { title: "Health & Wellness", description: "Comprehensive health coverage and gym reimbursement.", icon: "heart" },
         { title: "Parental Leave", description: "Generous parental leave for all new parents.", icon: "gift" },
-        { title: "Team Off sites", description: "Quarterly team retreats in amazing locations.", icon: "globe" },
+        { title: "Team Offsites", description: "Quarterly team retreats in amazing locations.", icon: "globe" },
         { title: "Stock Options", description: "Everyone is an owner with equity in the company.", icon: "chart" }
     ];
 

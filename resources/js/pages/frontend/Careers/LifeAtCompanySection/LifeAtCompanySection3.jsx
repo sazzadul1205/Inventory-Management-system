@@ -75,14 +75,11 @@ import {
     HiOutlineQrcode,
     HiOutlinePrinter
 } from 'react-icons/hi';
-import {
-    HiOutlinePhone, HiOutlineBuildingOffice, HiOutlineSparkles, HiOutlineTrophy,
-    HiOutlineCamera,
-} from 'react-icons/hi2';
+import { HiOutlinePhone, HiOutlineBuildingOffice, HiOutlineTrophy, HiOutlineCamera, HiOutlineSparkles, } from 'react-icons/hi2';
 import {
     MdOutlineCoffee as HiOutlineCoffee,
     MdOutlineFullscreen as HiOutlineFullscreen,
-    MdOutlineClosedCaption as HiOutlineClosedCaption,
+    MdOutlineClosedCaption as HiOutlineClosedCaption
 } from "react-icons/md";
 
 const LifeAtCompanySection3 = ({ config }) => {
