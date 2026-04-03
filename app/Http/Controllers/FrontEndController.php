@@ -290,4 +290,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('globalPresence', 'frontend/GlobalPresence/GlobalPresence', 2);
     }
+
+    /**
+     * Show the Careers page with data from database.
+     */
+    public function careers()
+    {
+        return $this->renderPage('careers', 'frontend/Careers/Careers', 2);
+    }
 }
