@@ -7,6 +7,7 @@ use App\Models\SalesOrderItem;
 use App\Models\SalesOrder;
 use App\Models\Product;
 use App\Models\ShipmentItem;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -38,6 +39,17 @@ class SalesOrderItemFactory extends Factory
         $discountPercent = $this->faker->optional(0.3)->randomFloat(2, 0, 15) ?? 0;
         $taxPercent = $this->faker->optional(0.8)->randomFloat(2, 5, 12) ?? 0;
 
+        // Safely generate updated_at
+        $createdAt = \Carbon\Carbon::instance($salesOrder->order_date);
+        $now = now();
+
+        try {
+            $updatedAt = $this->faker->dateTimeBetween($createdAt, $now);
+        } catch (\InvalidArgumentException $e) {
+            // If createdAt is after now, fallback to a safe date range
+            $updatedAt = $this->faker->dateTimeBetween($now->copy()->subDays(1), $now);
+        }
+
         return [
             'sales_order_id' => $salesOrder->id,
             'product_id' => $product->id,
@@ -49,7 +61,7 @@ class SalesOrderItemFactory extends Factory
             'status' => $this->determineStatus($quantityOrdered, $quantityShipped),
             'notes' => $this->faker->optional(0.2)->sentence(),
             'created_at' => $salesOrder->order_date,
-            'updated_at' => $this->faker->dateTimeBetween($salesOrder->order_date, 'now'),
+            'updated_at' => $updatedAt,
         ];
     }
 
