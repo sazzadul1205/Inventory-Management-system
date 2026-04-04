@@ -298,4 +298,12 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('careers', 'frontend/Careers/Careers', 2);
     }
+
+    /**
+     * Show the TrustSignals page with data from database.
+     */
+    public function trustSignals()
+    {
+        return $this->renderPage('trustSignals', 'frontend/TrustSignals/TrustSignals', 2);
+    }
 }

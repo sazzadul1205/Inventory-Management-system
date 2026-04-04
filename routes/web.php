@@ -9,27 +9,65 @@ use Illuminate\Support\Facades\Route;
 //     'canRegister' => Features::enabled(Features::registration()),
 // ])->name('home');
 
-// Public routes
-Route::get('/', [FrontEndController::class, 'home'])->name('home.index');
-Route::get('/services', [FrontEndController::class, 'services'])->name('services.index');
-Route::get('/features', [FrontEndController::class, 'features'])->name('features.index');
-Route::get('/how-it-works', [FrontEndController::class, 'howItWorks'])->name('how-it-works.index');
-Route::get('/industries', [FrontEndController::class, 'industries'])->name('industries.index');
-Route::get('/success-stories', [FrontEndController::class, 'successStories'])->name('success-stories.index');
-Route::get('/testimonials', [FrontEndController::class, 'testimonials'])->name('testimonials.index');
-Route::get('/pricing-plans', [FrontEndController::class, 'pricingPlans'])->name('pricing-plans.index');
-Route::get('/faq', [FrontEndController::class, 'faq'])->name('faq.index');
-Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact.index');
-Route::get('/about-us', [FrontEndController::class, 'aboutUs'])->name('about-us.index');
-Route::get('/why-choose-us', [FrontEndController::class, 'whyChooseUs'])->name('why-choose-us.index');
-Route::get('/blog', [FrontEndController::class, 'blog'])->name('blog.index');
-Route::get('/news', [FrontEndController::class, 'news'])->name('news.index');
-Route::get('/partners', [FrontEndController::class, 'partners'])->name('partners.index'); 
-Route::get('/global-presence', [FrontEndController::class, 'globalPresence'])->name('global-presence.index');
-Route::get('/careers', [FrontEndController::class, 'careers'])->name('careers.index');
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
 
-// Error pages
+Route::controller(FrontEndController::class)->group(function () {
+
+    // Home
+    Route::get('/', 'home')->name('home.index');
+
+    // Static Pages
+    $pages = [
+        'services',
+        'features',
+        'how-it-works' => 'howItWorks',
+        'industries',
+        'success-stories' => 'successStories',
+        'testimonials',
+        'pricing-plans' => 'pricingPlans',
+        'faq',
+        'contact',
+        'about-us' => 'aboutUs',
+        'why-choose-us' => 'whyChooseUs',
+        'blog',
+        'news',
+        'partners',
+        'global-presence' => 'globalPresence',
+        'careers',
+        'trust-signals' => 'trustSignals',
+    ];
+
+    foreach ($pages as $uri => $method) {
+
+        // Handle numeric keys (same name)
+        if (is_int($uri)) {
+            $uri = $method;
+        }
+
+        // Convert URI to route name
+        $routeName = str_replace('-', '.', $uri) . '.index';
+
+        Route::get("/{$uri}", $method)->name($routeName);
+    }
+});
+
+/*
+|--------------------------------------------------------------------------
+| Error Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/page-broken', [PageController::class, 'broken'])->name('page.broken');
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'backend/Dashboards/AdminDashboard')->name('dashboard');

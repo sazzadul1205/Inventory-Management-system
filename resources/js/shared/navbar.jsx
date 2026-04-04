@@ -1,34 +1,54 @@
 // shared/navbar.jsx
 
+// Inertia
 import { Link, usePage } from '@inertiajs/react';
+
+// React query
 import { useQuery } from '@tanstack/react-query';
+
+// Axios
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+
+// React
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
 import {
   HiHome,
   HiLogin,
   HiUserAdd,
   HiBriefcase,
   HiOutlineCog,
+  HiOutlineMail,
+  HiChevronDown,
   HiOutlineViewGrid,
   HiOutlineSparkles,
-  HiOutlineOfficeBuilding,
   HiOutlineChatAlt2,
-  HiOutlineCurrencyDollar,
-  HiOutlineMail,
   HiOutlineUserGroup,
-  HiChevronDown,
-  HiOutlineBadgeCheck,
   HiOutlineNewspaper,
+  HiOutlineBadgeCheck,
+  HiOutlineOfficeBuilding,
+  HiOutlineCurrencyDollar,
 } from 'react-icons/hi';
-import { HiOutlineGlobeAlt, HiOutlineQuestionMarkCircle, HiOutlineUsers } from 'react-icons/hi2';
 
+import {
+  HiOutlineUsers,
+  HiOutlineGlobeAlt,
+  HiOutlineShieldCheck,
+  HiOutlineQuestionMarkCircle,
+} from 'react-icons/hi2';
+
+// ICONS
 import DarkIcon from '../../../public/DarkIcon.png';
 import Icon from '../../../public/Icon.png';
 
+// Theme Toggle
 import ThemeToggle from '@/components/ThemeToggle';
+
+// Routes
 import { login, register } from '@/routes';
 
+// =====================================================
+// HELPERS
 // =====================================================
 
 const toKebabCase = (str = '') =>
@@ -42,15 +62,21 @@ const toTitleFromCamel = (str = '') =>
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/\s+/g, ' ')
     .trim();
+
+// KEY FIX: normalize everything
+const normalizeKey = (str = '') =>
+  str.toLowerCase().replace(/[^a-z]/g, '');
+
+// ICON MAP (normalized keys)
 const iconMap = {
   home: HiHome,
   services: HiBriefcase,
   features: HiOutlineViewGrid,
-  'how it works': HiOutlineCog,
+  howitworks: HiOutlineCog,
   industries: HiOutlineOfficeBuilding,
-  'success stories': HiOutlineSparkles,
+  successstories: HiOutlineSparkles,
   testimonials: HiOutlineChatAlt2,
-  'pricing plans': HiOutlineCurrencyDollar,
+  pricingplans: HiOutlineCurrencyDollar,
   faq: HiOutlineQuestionMarkCircle,
   contact: HiOutlineMail,
   aboutus: HiOutlineUserGroup,
@@ -58,29 +84,44 @@ const iconMap = {
   blog: HiOutlineNewspaper,
   news: HiOutlineGlobeAlt,
   partners: HiOutlineUsers,
-  "global presence": HiOutlineGlobeAlt,
+  globalpresence: HiOutlineGlobeAlt,
   careers: HiBriefcase,
+  trustsignals: HiOutlineShieldCheck,
 };
 
-const getIconForPage = (name = '') =>
-  iconMap[name.toLowerCase()] || HiHome;
+const getIconForPage = (key = '') =>
+  iconMap[normalizeKey(key)] || HiHome;
+
+// =====================================================
+// API
+// =====================================================
 
 const fetchNavItems = async () => {
-  const res = await axios.get('/api/pages');
+  try {
+    const { data } = await axios.get('/api/pages');
 
-  const items = res.data.map((page) => ({
-    name: page.name,
-    label: toTitleFromCamel(page.name),
-    path: page.slug === 'home' ? '/' : `/${toKebabCase(page.slug)}`,
-    icon: getIconForPage(page.name),
-    order: page.order,
-  }));
-
-  return items.sort((a, b) => a.order - b.order);
+    return data
+      .map((page) => ({
+        name: page.name,
+        label: toTitleFromCamel(page.name),
+        path: page.slug === 'home' ? '/' : `/${toKebabCase(page.slug)}`,
+        icon: getIconForPage(page.slug), // FIX: use slug, not name
+        order: page.order ?? 999,
+      }))
+      .sort((a, b) => a.order - b.order);
+  } catch (error) {
+    console.error('Navbar fetch failed:', error);
+    return [];
+  }
 };
+
+// =====================================================
+// THEME DETECTION
+// =====================================================
 
 const isDarkTheme = () => {
   if (typeof window === 'undefined') return false;
+
   if (document.documentElement.classList.contains('dark')) return true;
 
   const saved = localStorage.getItem('theme');
@@ -90,59 +131,68 @@ const isDarkTheme = () => {
 };
 
 // =====================================================
+// COMPONENT
+// =====================================================
 
 const Navbar = () => {
   const [darkMode] = useState(isDarkTheme);
   const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   const MAX_VISIBLE = 6;
   const { url } = usePage();
 
-  const { data: navItems = [] } = useQuery({
+  const { data: navItems = [], isLoading } = useQuery({
     queryKey: ['navItems'],
     queryFn: fetchNavItems,
   });
 
-  const isActive = (path) => {
+  const isActive = useCallback((path) => {
     if (path === '/') return url === '/';
     return url.startsWith(path);
-  };
+  }, [url]);
 
-  const visibleItems = navItems.slice(0, MAX_VISIBLE);
-  const overflowItems = navItems.slice(MAX_VISIBLE);
+  // 🔥 MEMOIZED LOGIC
+  const { finalVisibleItems, finalOverflowItems } = useMemo(() => {
+    const visible = navItems.slice(0, MAX_VISIBLE);
+    const overflow = navItems.slice(MAX_VISIBLE);
 
-  // ===============================
-  // SMART SWAP LOGIC
-  // ===============================
-  const activeOverflowIndex = overflowItems.findIndex((item) =>
-    isActive(item.path)
-  );
+    const activeOverflowIndex = overflow.findIndex((item) =>
+      isActive(item.path)
+    );
 
-  const activeOverflowItem =
-    activeOverflowIndex !== -1 ? overflowItems[activeOverflowIndex] : null;
+    if (activeOverflowIndex === -1) {
+      return { finalVisibleItems: visible, finalOverflowItems: overflow };
+    }
 
-  const finalVisibleItems = [...visibleItems];
-  let finalOverflowItems = [...overflowItems];
+    const activeItem = overflow[activeOverflowIndex];
+    const lastIndex = visible.length - 1;
+    const displacedItem = visible[lastIndex];
 
-  if (activeOverflowItem) {
-    const lastIndex = finalVisibleItems.length - 1;
+    const newVisible = [...visible];
+    newVisible[lastIndex] = activeItem;
 
-    const displacedItem = finalVisibleItems[lastIndex];
-
-    finalVisibleItems[lastIndex] = activeOverflowItem;
-
-    finalOverflowItems = [
-      ...overflowItems.filter((_, i) => i !== activeOverflowIndex),
+    const newOverflow = [
+      ...overflow.filter((_, i) => i !== activeOverflowIndex),
       displacedItem,
     ];
-  }
 
-  // ===============================
-  // Outside click close
-  // ===============================
+    return {
+      finalVisibleItems: newVisible,
+      finalOverflowItems: newOverflow,
+    };
+  }, [isActive, navItems]);
+
+  // Outside click handler
   useEffect(() => {
+    /*************  ✨ Windsurf Command ⭐  *************/
+    /**
+     * Handles outside clicks on the dropdown menu.
+     * If the target is not part of the dropdown menu, it will close the dropdown.
+     */
+    /*******  b32f0b61-49ad-46e4-acad-d962fea9e6e8  *******/
     const handleClick = (e) => {
-      if (!e.target.closest('.more-dropdown')) {
+      if (!dropdownRef.current?.contains(e.target)) {
         setOpenDropdown(false);
       }
     };
@@ -151,9 +201,10 @@ const Navbar = () => {
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
-  // ===============================
+  // =====================================================
   // RENDER
-  // ===============================
+  // =====================================================
+
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-50 px-10 py-1">
       <div className="px-6 flex justify-between items-center h-16">
@@ -165,6 +216,11 @@ const Navbar = () => {
 
         {/* MENU */}
         <div className="flex items-center gap-4">
+
+          {/* LOADING */}
+          {isLoading && (
+            <div className="text-sm text-gray-400 px-3">Loading...</div>
+          )}
 
           {/* MAIN LINKS */}
           {finalVisibleItems.map((item) => (
@@ -181,9 +237,9 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* MORE DROPDOWN */}
+          {/* DROPDOWN */}
           {finalOverflowItems.length > 0 && (
-            <div className="relative more-dropdown">
+            <div ref={dropdownRef} className="relative">
 
               <button
                 onClick={() => setOpenDropdown((s) => !s)}
@@ -194,14 +250,10 @@ const Navbar = () => {
               </button>
 
               <div
-                className={`
-                  absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 shadow-lg rounded-md py-2 z-50
-                  transform origin-top-right transition-all duration-200 ease-out
-                  ${openDropdown
-                    ? 'opacity-100 scale-100 visible'
-                    : 'opacity-0 scale-95 invisible pointer-events-none'
-                  }
-                `}
+                className={`absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 shadow-lg rounded-md py-2 z-50 transition-all duration-200 ${openDropdown
+                  ? 'opacity-100 scale-100 visible'
+                  : 'opacity-0 scale-95 invisible pointer-events-none'
+                  }`}
               >
                 {finalOverflowItems.map((item) => (
                   <Link
@@ -218,7 +270,7 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* AUTH (RESTORED ORIGINAL STYLE) */}
+          {/* AUTH */}
           <div className="flex items-center gap-2 border-l pl-4">
             {[
               { name: 'Login', path: login.url(), icon: HiLogin, primary: false },
