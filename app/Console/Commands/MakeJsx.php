@@ -44,7 +44,6 @@ class MakeJsx extends Command
 
     protected function getStub($name)
     {
-        // Extract only the file name (last part)
         $name = str_replace('\\', '/', $name);
         $componentName = basename($name);
 
@@ -52,11 +51,11 @@ class MakeJsx extends Command
 import React from 'react';
 
 const {$componentName} = () => {
-    return (
-        <div>
-            <h1>{$componentName} Component</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>{$componentName} Component</h1>
+    </div>
+  );
 };
 
 export default {$componentName};

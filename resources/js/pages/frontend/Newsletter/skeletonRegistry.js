@@ -1,9 +1,9 @@
-// page/frontend/News/skeletonRegistry.js
+// page/frontend/Newsletter/skeletonRegistry.js
 
 import SectionSkeleton from '@/components/SectionSkeleton';
 
 /**
- * Skeleton Registry for News Page
+ * Skeleton Registry for Newsletter Page
  * Maps section types to their appropriate skeleton configurations
  */
 
@@ -21,7 +21,7 @@ export const getSkeletonProps = (type, config = {}) => {
         industryCount: 8,
     };
 
-    // Type-specific skeleton configurations for News page
+    // Type-specific skeleton configurations for Newsletter page
     const typeConfigs = {
         // Subscribe Form - Email subscription form
         subscribeForm: {
@@ -35,7 +35,7 @@ export const getSkeletonProps = (type, config = {}) => {
             formFields: 3,
         },
 
-        // Newsletter Archive - Past newsletter listings
+        // Newsletterletter Archive - Past newsletter listings
         newsletterArchive: {
             showHeader: true,
             showStats: false,
@@ -126,7 +126,7 @@ export const skeletonRegistry = {
     // Subscribe Form
     subscribeForm: SectionSkeleton,
 
-    // Newsletter Archive
+    // Newsletterletter Archive
     newsletterArchive: SectionSkeleton,
 
     // Content Preview

@@ -1,4 +1,4 @@
-// page/frontend/PricingPlans/sectionRegistry.js
+// page/frontend/News/sectionRegistry.js
 
 // React
 import { lazy } from 'react';
