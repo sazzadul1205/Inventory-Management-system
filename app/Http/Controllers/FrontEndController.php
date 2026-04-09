@@ -306,4 +306,20 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('trustSignals', 'frontend/TrustSignals/TrustSignals', 2);
     }
+
+    /**
+     * Show the Newsletter page with data from database.
+     */
+    public function newsletter()
+    {
+        return $this->renderPage('newsletter', 'frontend/Newsletter/Newsletter', 2);
+    }
+
+    /**
+     * Show the MobileApp page with data from database.
+     */
+    public function mobileApp()
+    {
+        return $this->renderPage('mobileApp', 'frontend/MobileApp/MobileApp', 2);
+    }
 }

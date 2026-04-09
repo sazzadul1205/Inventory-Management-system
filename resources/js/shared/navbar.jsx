@@ -13,29 +13,34 @@ import axios from 'axios';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
+  FiHome,
+  FiStar,
+  FiInfo,
+  FiEdit,
+  FiMail,
+  FiUsers,
+  FiPhone,
+  FiGlobe,
+  FiShield,
+  FiLayers,
+  FiSettings,
+  FiBriefcase,
+  FiDollarSign,
+  FiHelpCircle,
+  FiSmartphone,
+  FiCheckCircle,
+} from "react-icons/fi";
+import {
   HiHome,
   HiLogin,
   HiUserAdd,
-  HiBriefcase,
-  HiOutlineCog,
-  HiOutlineMail,
   HiChevronDown,
-  HiOutlineViewGrid,
-  HiOutlineSparkles,
-  HiOutlineChatAlt2,
-  HiOutlineUserGroup,
+  HiOutlineLightBulb,
   HiOutlineNewspaper,
-  HiOutlineBadgeCheck,
-  HiOutlineOfficeBuilding,
-  HiOutlineCurrencyDollar,
 } from 'react-icons/hi';
 
-import {
-  HiOutlineUsers,
-  HiOutlineGlobeAlt,
-  HiOutlineShieldCheck,
-  HiOutlineQuestionMarkCircle,
-} from 'react-icons/hi2';
+
+import { MdOutlineBusinessCenter } from "react-icons/md";
 
 // ICONS
 import DarkIcon from '../../../public/DarkIcon.png';
@@ -69,25 +74,28 @@ const normalizeKey = (str = '') =>
 
 // ICON MAP (normalized keys)
 const iconMap = {
-  home: HiHome,
-  services: HiBriefcase,
-  features: HiOutlineViewGrid,
-  howitworks: HiOutlineCog,
-  industries: HiOutlineOfficeBuilding,
-  successstories: HiOutlineSparkles,
-  testimonials: HiOutlineChatAlt2,
-  pricingplans: HiOutlineCurrencyDollar,
-  faq: HiOutlineQuestionMarkCircle,
-  contact: HiOutlineMail,
-  aboutus: HiOutlineUserGroup,
-  whychooseus: HiOutlineBadgeCheck,
-  blog: HiOutlineNewspaper,
-  news: HiOutlineGlobeAlt,
-  partners: HiOutlineUsers,
-  globalpresence: HiOutlineGlobeAlt,
-  careers: HiBriefcase,
-  trustsignals: HiOutlineShieldCheck,
+  Home: FiHome,
+  Services: FiSettings,
+  Features: FiStar,
+  HowItWorks: HiOutlineLightBulb,
+  Industries: MdOutlineBusinessCenter,
+  SuccessStories: FiLayers,
+  Testimonials: FiUsers,
+  PricingPlans: FiDollarSign,
+  FAQ: FiHelpCircle,
+  Contact: FiPhone,
+  AboutUs: FiInfo,
+  WhyChooseUs: FiCheckCircle,
+  Blog: FiEdit,
+  News: HiOutlineNewspaper,
+  Partners: FiUsers,
+  GlobalPresence: FiGlobe,
+  Careers: FiBriefcase,
+  TrustSignals: FiShield,
+  Newsletter: FiMail,
+  MobileApp: FiSmartphone,
 };
+
 
 const getIconForPage = (key = '') =>
   iconMap[normalizeKey(key)] || HiHome;
