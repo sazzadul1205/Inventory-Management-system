@@ -23,87 +23,89 @@ export const getSkeletonProps = (type, config = {}) => {
 
     // Type-specific skeleton configurations for MobileApp page
     const typeConfigs = {
-        // App Features section - grid of feature cards
-        appFeatures: {
+        // Upcoming Webinars section - list of webinar cards
+        upcomingWebinars: {
             showHeader: true,
             showCards: true,
-            showCta: false,
-            cardType: 'feature',
+            showCta: true,
+            cardType: 'webinar',
+            cardCount: 4,
+            showDateTime: true,
+            showSpeakerInfo: true,
+            ctaLabel: 'View All Webinars',
+        },
+
+        // Industry Conferences section - conference cards with location
+        industryConferences: {
+            showHeader: true,
+            showCards: true,
+            showCta: true,
+            cardType: 'conference',
+            cardCount: 3,
+            showDateTime: true,
+            showLocation: true,
+            ctaLabel: 'Browse Conferences',
+        },
+
+        // User Groups section - community group cards
+        userGroups: {
+            showHeader: true,
+            showCards: true,
+            showCta: true,
+            cardType: 'user-group',
             cardCount: 6,
             gridCols: 3,
+            showMemberCount: true,
+            ctaLabel: 'Join a Group',
         },
 
-        // iOS App section - platform-specific showcase
-        iosApp: {
+        // Training Sessions section - training/workshop cards
+        trainingSessions: {
             showHeader: true,
             showCards: true,
             showCta: true,
-            cardType: 'ios-feature',
+            cardType: 'training',
             cardCount: 4,
-            showDeviceFrame: true,
+            showDateTime: true,
+            showDuration: true,
+            showSkillLevel: true,
+            ctaLabel: 'Register for Training',
         },
 
-        // Android App section - platform-specific showcase
-        androidApp: {
+        // Virtual Events section - online event cards
+        virtualEvents: {
             showHeader: true,
             showCards: true,
             showCta: true,
-            cardType: 'android-feature',
+            cardType: 'virtual-event',
             cardCount: 4,
-            showDeviceFrame: true,
+            showDateTime: true,
+            showPlatformInfo: true,
+            ctaLabel: 'Join Event',
         },
 
-        // Mobile Dashboard section - dashboard preview with stats
-        mobileDashboard: {
-            showHeader: true,
-            showStats: true,
-            showCards: true,
-            showCta: false,
-            cardType: 'dashboard',
-            cardCount: 3,
-            statCount: 4,
-            showChartPreview: true,
-        },
-
-        // Barcode Scanning section - scanning feature showcase
-        barcodeScanning: {
-            showHeader: true,
-            showCards: true,
-            showCta: true,
-            cardType: 'scanning',
-            cardCount: 3,
-            showScannerPreview: true,
-        },
-
-        // Push Notifications section - notification examples
-        pushNotifications: {
-            showHeader: true,
-            showCards: true,
-            showCta: false,
-            cardType: 'notification',
-            cardCount: 4,
-            showNotificationPreview: true,
-        },
-
-        // Offline Mode section - offline capabilities
-        offlineMode: {
-            showHeader: true,
-            showStats: true,
-            showCards: true,
-            showCta: true,
-            cardType: 'offline',
-            cardCount: 3,
-            statCount: 3,
-            showSyncIndicator: true,
-        },
-
-        // App Store Links section - download buttons/links
-        appStoreLinks: {
+        // Event Calendar section - calendar grid/month view skeleton
+        eventCalendar: {
             showHeader: true,
             showCards: false,
+            showCalendar: true,
             showCta: false,
-            showStoreButtons: true,
-            showQRCode: false,
+            calendarView: 'month',
+            eventDots: true,
+            showLegend: false,
+        },
+
+        // Past Event Recordings section - video/recording thumbnails
+        pastEventRecordings: {
+            showHeader: true,
+            showCards: true,
+            showCta: true,
+            cardType: 'recording',
+            cardCount: 6,
+            gridCols: 3,
+            showThumbnail: true,
+            showDuration: true,
+            ctaLabel: 'View Library',
         },
 
         // Default fallback for any section type
@@ -132,14 +134,13 @@ export const getSkeletonProps = (type, config = {}) => {
 
 // Export skeleton registry mapping
 export const skeletonRegistry = {
-    appFeatures: SectionSkeleton,
-    iosApp: SectionSkeleton,
-    androidApp: SectionSkeleton,
-    mobileDashboard: SectionSkeleton,
-    barcodeScanning: SectionSkeleton,
-    pushNotifications: SectionSkeleton,
-    offlineMode: SectionSkeleton,
-    appStoreLinks: SectionSkeleton,
+    upcomingWebinars: SectionSkeleton,
+    industryConferences: SectionSkeleton,
+    userGroups: SectionSkeleton,
+    trainingSessions: SectionSkeleton,
+    virtualEvents: SectionSkeleton,
+    eventCalendar: SectionSkeleton,
+    pastEventRecordings: SectionSkeleton,
 
     // Default fallback
     default: SectionSkeleton,
