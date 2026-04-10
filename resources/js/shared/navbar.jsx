@@ -13,6 +13,7 @@ import axios from 'axios';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
+  FiMap,
   FiHome,
   FiStar,
   FiInfo,
@@ -23,7 +24,10 @@ import {
   FiGlobe,
   FiShield,
   FiLayers,
+  FiCalendar,
+  FiLifeBuoy,
   FiSettings,
+  FiFileText,
   FiBriefcase,
   FiDollarSign,
   FiHelpCircle,
@@ -94,6 +98,10 @@ const iconMap = {
   TrustSignals: FiShield,
   Newsletter: FiMail,
   MobileApp: FiSmartphone,
+  Events: FiCalendar,
+  Support: FiLifeBuoy,
+  Legal: FiFileText,
+  Sitemap: FiMap,
 };
 
 

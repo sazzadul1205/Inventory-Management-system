@@ -322,4 +322,36 @@ class FrontEndController extends Controller
     {
         return $this->renderPage('mobileApp', 'frontend/MobileApp/MobileApp', 2);
     }
+
+    /**
+     * Show the Events page with data from database.
+     */
+    public function events()
+    {
+        return $this->renderPage('events', 'frontend/Events/Events', 2);
+    }
+
+    /**
+     * Show the Support page with data from database.
+     */
+    public function support()
+    {
+        return $this->renderPage('support', 'frontend/Support/Support', 2);
+    }
+
+    /**
+     * Show the Legal page with data from database.
+     */
+    public function legal()
+    {
+        return $this->renderPage('legal', 'frontend/Legal/Legal', 2);
+    }
+
+    /**
+     * Show the Sitemap page with data from database.
+     */
+    public function sitemap()
+    {
+        return $this->renderPage('sitemap', 'frontend/Sitemap/Sitemap', 2);
+    }
 }
