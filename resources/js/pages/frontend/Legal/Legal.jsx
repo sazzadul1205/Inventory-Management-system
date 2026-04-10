@@ -50,7 +50,6 @@ const Legal = ({ pageData = { meta: {}, sections: [] } }) => {
         termsOfService: "Terms of Service",
         cookiePolicy: "Cookie Policy",
         gdprCompliance: "GDPR Compliance",
-        
         dataProcessingAgreement: "Data Processing Agreement",
         securityPolicy: "Security Policy",
         acceptableUsePolicy: "Acceptable Use Policy",

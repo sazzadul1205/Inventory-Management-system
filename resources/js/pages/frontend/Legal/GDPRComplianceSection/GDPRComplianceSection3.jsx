@@ -1,4 +1,4 @@
-// page/frontend/MobileApp/Legal/GDPRComplianceSection/GDPRComplianceSection3.jsx
+// page/frontend/Legal/GDPRComplianceSection/GDPRComplianceSection3.jsx
 
 // React
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';

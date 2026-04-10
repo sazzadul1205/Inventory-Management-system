@@ -1,4 +1,4 @@
-// page/frontend/MobileApp/Legal/GDPRComplianceSection/GDPRComplianceSection2.jsx
+// page/frontend/Legal/GDPRComplianceSection/GDPRComplianceSection2.jsx
 
 // React
 import { useState, useMemo } from 'react';
