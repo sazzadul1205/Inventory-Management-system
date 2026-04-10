@@ -1,4 +1,4 @@
-// page/frontend/Learning/VideoTutorialsSection/VideoTutorialsSection3.jsx
+// page/frontend/Support/VideoTutorialsSection/VideoTutorialsSection3.jsx
 
 // React
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
