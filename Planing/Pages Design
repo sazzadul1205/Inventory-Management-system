@@ -294,4 +294,6 @@
 
 ## 26. ** Demo Page** (/demo)
 
-## 27. ** Service - SubPage Page** (/Service/{subpage})
+## 27. ** Service - SubPage Page** (/service/{subpage})
+
+## 28. ** Features - SubPage Page** (/features/{subpage})
