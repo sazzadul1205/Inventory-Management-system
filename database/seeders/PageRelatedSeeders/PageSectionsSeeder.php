@@ -21,7 +21,8 @@ class PageSectionsSeeder extends Seeder
 
         // Insert all page sections for Home page (page_id = 1)
         DB::table('page_sections')->insert([
-
+            $this->command->info('Starting Page Section Seeding... '),
+            $this->command->info('Creating Home page sections...'),
             // Home page sections
             [
                 'id' => 1,
@@ -374,7 +375,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Home page sections...'),
 
+            $this->command->info('Started Services page sections...'),
             // Services Page Section
             [
                 'id' => 28,
@@ -467,7 +470,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Services page sections...'),
 
+            $this->command->info('Started Features page sections...'),
             // Features Page Section
             [
                 'id' => 35,
@@ -573,7 +578,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Features page sections...'),
 
+            $this->command->info('Started How It Works page sections...'),
             // How It Works Page Section's
             [
                 'id' => 43,
@@ -653,7 +660,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed How It Works page sections...'),
 
+            $this->command->info('Started Industries page sections...'),
             // Industries Page Section's
             [
                 'id' => 49,
@@ -785,7 +794,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Industries page sections...'),
 
+            $this->command->info('Starting Success Stories page sections...'),
             // Success Stories page sections
             [
                 'id' => 59,
@@ -839,7 +850,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Success Stories page sections...'),
 
+            $this->command->info('Starting Testimonials page sections...'),
             // Testimonials page sections
             [
                 'id' => 63,
@@ -919,7 +932,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Testimonials page sections...'),
 
+            $this->command->info('Starting Pricing Plans page sections...'),
             // Pricing Plans page sections
             [
                 'id' => 69,
@@ -1012,7 +1027,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Pricing Plans page sections...'),
 
+            $this->command->info('Starting FAQ page sections...'),
             // FAQ page sections
             [
                 'id' => 76,
@@ -1105,7 +1122,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed FAQ page sections...'),
 
+            $this->command->info('Starting Contact page sections...'),
             // Contact page sections
             [
                 'id' => 83,
@@ -1211,7 +1230,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed Contact page sections...'),
 
+            $this->command->info('Starting About Us page sections...'),
             // About Us Page Sections
             [
                 'id' => 91,
@@ -1304,6 +1325,199 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            $this->command->info('Completed About Us page sections...'),
+
+            $this->command->info('Starting Why Choose Us page sections...'),
+            // Why Choose Us Page Sections
+            [
+                'id' => 98,
+                'page_id' => 12,
+                'section_key' => 'competitiveAdvantages',
+                'variant' => 'variant1',
+                'order' => 1,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 99,
+                'page_id' => 12,
+                'section_key' => 'uniqueSellingPoints',
+                'variant' => 'variant1',
+                'order' => 2,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 100,
+                'page_id' => 12,
+                'section_key' => 'customerSatisfactionStats',
+                'variant' => 'variant1',
+                'order' => 3,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 101,
+                'page_id' => 12,
+                'section_key' => 'industryExpertise',
+                'variant' => 'variant1',
+                'order' => 4,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 102,
+                'page_id' => 12,
+                'section_key' => 'technologyInnovation',
+                'variant' => 'variant1',
+                'order' => 5,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 103,
+                'page_id' => 12,
+                'section_key' => 'support24x7',
+                'variant' => 'variant1',
+                'order' => 6,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 104,
+                'page_id' => 12,
+                'section_key' => 'globalReach',
+                'variant' => 'variant1',
+                'order' => 7,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            $this->command->info('Completed Why Choose Us page sections...'),
+
+            $this->command->info('Starting Blog page sections...'),
+            // Blog Page Sections
+            [
+                'id' => 105,
+                'page_id' => 13,
+                'section_key' => 'industryInsights',
+                'variant' => 'variant1',
+                'order' => 1,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 106,
+                'page_id' => 13,
+                'section_key' => 'productUpdates',
+                'variant' => 'variant1',
+                'order' => 2,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 107,
+                'page_id' => 13,
+                'section_key' => 'howToGuides',
+                'variant' => 'variant1',
+                'order' => 3,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 108,
+                'page_id' => 13,
+                'section_key' => 'bestPractices',
+                'variant' => 'variant1',
+                'order' => 4,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 109,
+                'page_id' => 13,
+                'section_key' => 'companyNews',
+                'variant' => 'variant1',
+                'order' => 5,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 110,
+                'page_id' => 13,
+                'section_key' => 'expertArticles',
+                'variant' => 'variant1',
+                'order' => 6,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 111,
+                'page_id' => 13,
+                'section_key' => 'videoContent',
+                'variant' => 'variant1',
+                'order' => 7,
+                'enabled' => 1,
+                'props' => json_encode([]),
+                'device' => null,
+                'locale' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            $this->command->info('Completed Blog page sections...'),
+
+            
         ]);
 
         // Re-enable foreign key checks
