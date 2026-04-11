@@ -3,193 +3,141 @@
 // React
 import { Link } from '@inertiajs/react';
 
-// Icons
+// React Icons
+import { FaRocket } from 'react-icons/fa';
+import { HiOutlineGlobe } from "react-icons/hi";
 import {
+  HiCheck,
+  HiUsers,
+  HiArrowRight,
   HiOutlineTruck,
   HiOutlineClock,
-  HiOutlineGlobe,
-  HiArrowRight
-} from 'react-icons/hi';
+  HiBuildingOffice,
+} from 'react-icons/hi2';
 
 const HeroSection2 = ({ config }) => {
-  // Icon mapping function
+  // Feature icon mapping
   const getFeatureIcon = (iconName) => {
     const iconClasses = "w-5 h-5 mr-2 text-blue-600 dark:text-blue-400";
 
     switch (iconName) {
       case 'truck':
-        return <HiOutlineTruck className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineTruck className={iconClasses} />;
       case 'clock':
-        return <HiOutlineClock className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineClock className={iconClasses} />;
       case 'globe':
-        return <HiOutlineGlobe className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineGlobe className={iconClasses} />;
+      case 'rocket':
+        return <FaRocket className={iconClasses} />;
+      case 'users':
+        return <HiUsers className={iconClasses} />;
+      case 'building':
+        return <HiBuildingOffice className={iconClasses} />;
       default:
-        return null;
-    }
-  };
-
-  // Get primary button icon
-  const getButtonIcon = (iconName) => {
-    switch (iconName) {
-      case 'arrowRight':
-        return <HiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />;
-      default:
-        return null;
+        return <HiCheck className={iconClasses} />;
     }
   };
 
   return (
-    <section
-      className="relative bg-white dark:bg-gray-900 overflow-hidden"
-      role="region"
-      aria-label="Hero section - Smart Logistics Solutions"
-      itemScope
-      itemType="https://schema.org/Organization"
-    >
-      {/* Background Grid Pattern - decorative only */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+    <section className="relative bg-white dark:bg-gray-900 overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
+        <div className="h-full w-full bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#374151_1px,transparent_1px),linear-gradient(to_bottom,#374151_1px,transparent_1px)] bg-size-[50px_50px]" />
+      </div>
 
-      {/* Animated Lines - decorative only */}
-      <div className="absolute top-20 left-0 w-40 h-40 bg-blue-200 dark:bg-blue-900/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
-      <div className="absolute top-40 right-0 w-60 h-60 bg-yellow-200 dark:bg-yellow-900/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
+      {/* Animated Decorative Elements */}
+      <div className="absolute top-20 left-0 w-40 h-40 bg-blue-200 dark:bg-blue-900/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" aria-hidden="true" />
+      <div className="absolute top-40 right-0 w-60 h-60 bg-yellow-200 dark:bg-yellow-900/30 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" aria-hidden="true" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-32">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-32">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Animated Badge */}
-          <div
-            className={`inline-flex items-center ${config?.badge.backgroundColor} rounded-full px-4 py-2 mb-8 border ${config?.badge.borderColor}`}
-            aria-label="Global presence indicator"
-          >
-            {config?.badge.showPulse && (
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+
+          {/* Badge */}
+          {config?.badge?.text && (
+            <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 border border-blue-200 dark:border-gray-700">
+              {config?.badge?.showPulse && (
+                <span className="relative flex h-2 w-2 mr-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+              )}
+              <span className="ml-1 text-xs sm:text-sm font-medium text-blue-700 dark:text-gray-300">
+                {config.badge.text}
               </span>
-            )}
-            <span className={`ml-2 text-sm font-medium ${config?.badge.textColor}`}>
-              {config?.badge.text}
-            </span>
-          </div>
+            </div>
+          )}
 
           {/* Main Heading */}
-          <h1
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6"
-            itemProp="name"
-          >
-            {config?.heading.prefix}{' '}
-            <span className="relative">
-              <span className={`relative z-10 bg-linear-to-r ${config?.heading.highlightGradient} bg-clip-text text-transparent`}>
-                {config?.heading.highlightedText}
-              </span>
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                viewBox="0 0 300 12"
-                fill="none"
-                aria-hidden="true"
-                role="presentation"
-              >
-                <path d="M0 0L300 12" stroke="url(#gradient)" strokeWidth="2" />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#3B82F6" stopOpacity="1" />
-                  </linearGradient>
-                </defs>
-              </svg>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+            {config?.heading?.prefix}{' '}
+            <span className="bg-linear-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 bg-clip-text text-transparent">
+              {config?.heading?.highlightedText}
             </span>{' '}
-            {config?.heading.suffix}
+            {config?.heading?.suffix}
           </h1>
 
           {/* Description */}
-          <p
-            className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto"
-            itemProp="description"
-          >
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
             {config?.description}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center mb-16" role="group" aria-label="Call to action buttons">
-            <Link
-              href={config?.buttons.primary.url}
-              className={`group ${config?.buttons.primary.backgroundColor} ${config?.buttons.primary.hoverColor} ${config?.buttons.primary.textColor} px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
-              aria-label="Start free trial"
-            >
-              {config?.buttons.primary.text}
-              {getButtonIcon(config?.buttons.primary.icon)}
-            </Link>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
+            {config?.buttons?.primary && (
+              <Link
+                href={config.buttons.primary.url}
+                className="group bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              >
+                {config.buttons.primary.text}
+                <HiArrowRight className="text-lg group-hover:translate-x-1 transition-transform" />
+              </Link>
+            )}
 
-            <Link
-              href={config?.buttons.secondary.url}
-              className={`${config?.buttons.secondary.backgroundColor} ${config?.buttons.secondary.borderColor} ${config?.buttons.secondary.hoverBorderColor} ${config?.buttons.secondary.textColor} font-semibold px-8 py-4 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2`}
-              aria-label="View pricing plans"
-            >
-              {config?.buttons.secondary.text}
-            </Link>
+            {config?.buttons?.secondary && (
+              <Link
+                href={config.buttons.secondary.url}
+                className="bg-transparent border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800 flex items-center justify-center"
+              >
+                {config.buttons.secondary.text}
+              </Link>
+            )}
           </div>
 
           {/* Stats Cards */}
-          <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
-            itemProp="metrics"
-            aria-label="Company statistics"
-          >
-            {config?.stats.map((stat) => (
-              <div
-                key={stat.id}
-                className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 text-center backdrop-blur-sm"
-                itemProp="metric"
-              >
-                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1" itemProp="value">
-                  {stat.value}
+          {config?.stats && config.stats.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto px-4">
+              {config.stats.map((stat) => (
+                <div
+                  key={stat.id}
+                  className="bg-gray-50 dark:bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center backdrop-blur-sm"
+                >
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400" itemProp="name">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Feature Icons */}
-          <div
-            className="flex flex-wrap justify-center gap-8 mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
-            itemProp="featureList"
-            aria-label="Key features"
-          >
-            {config?.features.map((feature) => (
-              <div
-                key={feature.id}
-                className="flex items-center text-gray-600 dark:text-gray-400"
-                itemProp="feature"
-              >
-                {getFeatureIcon(feature.icon)}
-                <span className="text-sm">{feature.text}</span>
-              </div>
-            ))}
-          </div>
+          {config?.features && config.features.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-800 px-4">
+              {config.features.map((feature) => (
+                <div
+                  key={feature.id}
+                  className="flex items-center text-gray-600 dark:text-gray-400"
+                >
+                  {getFeatureIcon(feature.icon)}
+                  <span className="text-xs sm:text-sm">{feature.text}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Required CSS for animations - add to your global CSS file */}
-      <style>{`
-          @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-          }
-          .animate-blob { animation: blob 7s infinite; }
-          .animation-delay-2000 { animation-delay: 2s; }
-          .bg-grid-pattern {
-            background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
-                              linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
-            background-size: 50px 50px;
-          }
-          .dark .bg-grid-pattern {
-            background-image: linear-gradient(to right, #374151 1px, transparent 1px),
-                              linear-gradient(to bottom, #374151 1px, transparent 1px);
-          }
-        `}</style>
     </section>
   );
 };

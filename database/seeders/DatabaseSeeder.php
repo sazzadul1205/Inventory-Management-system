@@ -4,11 +4,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
 
 // Seeder Classes
 use Database\Seeders\PageRelatedSeeders\PageSeeders;
 use Database\Seeders\PageRelatedSeeders\PageSectionsSeeder;
+
+// Page Related Seeders
+use Database\Seeders\PageRelatedSeeders\HomePageSectionVariantSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -85,6 +87,9 @@ class DatabaseSeeder extends Seeder
         if ($confirm) {
             $this->call(PageSeeders::class);
             $this->call(PageSectionsSeeder::class);
+
+            $this->command->info('starting Home Page Section Variant Seeding !');
+            $this->call(HomePageSectionVariantSeeder::class);
             $this->command->info('✅ Pages and Sections seeded successfully!');
         } else {
             $this->command->warn('⚠️  Skipped Pages and Sections seeding.');
