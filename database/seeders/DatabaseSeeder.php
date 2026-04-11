@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 // Seeder Classes
 use Database\Seeders\PageRelatedSeeders\PageSeeders;
+use Database\Seeders\PageRelatedSeeders\PageSectionsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -101,5 +102,6 @@ class DatabaseSeeder extends Seeder
         // $this->command->info('✅ Database seeding completed successfully!');
 
         $this->call(PageSeeders::class);
+        $this->call(PageSectionsSeeder::class);
     }
 }
