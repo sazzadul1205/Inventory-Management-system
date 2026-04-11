@@ -1,243 +1,223 @@
-// page/frontend/Home/ServicesSection/ServicesSection1.jsx
+// page/frontend/Home/ServicesSection/ServicesSection2.jsx
 
 // React
 import { Link } from '@inertiajs/react';
 
-// Icons
-import { HiArrowRight, HiCog, HiTruck, HiChartBar, HiShieldCheck, HiClock, HiGlobe } from 'react-icons/hi';
+// React Icons
+import {
+  HiCheck,
+  HiArrowRight,
+  HiOutlineCube,
+  HiOutlineClock,
+  HiOutlineTruck,
+  HiOutlineUsers,
+  HiOutlineGlobeAlt,
+  HiOutlineSparkles,
+  HiOutlineChartBar,
+  HiOutlineShieldCheck,
+  HiOutlineDocumentReport,
+} from 'react-icons/hi';
 
-const ServicesSection1 = ({ config }) => {
+const ServicesSection2 = ({ config }) => {
   // Icon mapping
-  const getIcon = (iconName, className = "w-8 h-8") => {
-    const iconClasses = `${className} text-blue-600 dark:text-blue-400 group-hover:text-white group-hover:dark:text-white group-hover:scale-110 transition-transform`;
+  const getIcon = (iconName, className = "w-7 h-7") => {
+    const iconClasses = `${className}  text-white group-hover:text-white transition-colors duration-300`;
 
     switch (iconName) {
-      case 'cog':
-        return <HiCog className={iconClasses} aria-hidden="true" />;
+      case 'cube':
+        return <HiOutlineCube className={iconClasses} />;
       case 'truck':
-        return <HiTruck className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineTruck className={iconClasses} />;
       case 'chartBar':
-        return <HiChartBar className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineChartBar className={iconClasses} />;
       case 'shieldCheck':
-        return <HiShieldCheck className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineShieldCheck className={iconClasses} />;
       case 'clock':
-        return <HiClock className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineClock className={iconClasses} />;
       case 'globe':
-        return <HiGlobe className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineGlobeAlt className={iconClasses} />;
+      case 'document':
+        return <HiOutlineDocumentReport className={iconClasses} />;
+      case 'users':
+        return <HiOutlineUsers className={iconClasses} />;
+      case 'sparkles':
+        return <HiOutlineSparkles className={iconClasses} />;
       default:
-        return <HiCog className={iconClasses} aria-hidden="true" />;
-    }
-  };
-
-  // Get button icon
-  const getButtonIcon = (iconName) => {
-    switch (iconName) {
-      case 'arrowRight':
-        return <HiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />;
-      default:
-        return null;
+        return <HiOutlineCube className={iconClasses} />;
     }
   };
 
   return (
-    <section
-      className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"
-      role="region"
-      aria-label="Services section"
-      itemScope
-      itemType="https://schema.org/ItemList"
-    >
-      {/* Background Pattern - decorative */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+    <section className="relative pb-12 sm:pb-16 md:pb-24 bg-linear-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
 
-      {/* Gradient Orbs - decorative */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full filter blur-3xl opacity-30" aria-hidden="true" />
+      {/* Background decorative elements */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute top-0 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-yellow-200 dark:bg-yellow-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-2000" />
+      </div>
+
+      {/* Header Image Section */}
+      {config?.headerImage?.show && (
+        <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 mb-12 sm:mb-16 overflow-hidden">
+          <img
+            src={config.headerImage.src}
+            alt={config.headerImage.alt}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 to-purple-900/90 mix-blend-multiply" />
+          <div className="absolute inset-0 flex items-center justify-center px-4">
+            <div className="text-center text-white max-w-4xl">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-4">
+                {config?.headerImage?.title}
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100">
+                {config?.headerImage?.subtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {/* Badge */}
-          {config?.badge?.show && (
-            <div
-              className={`inline-flex items-center ${config.badge.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config.badge.borderColor}`}
-              aria-label="Services badge"
-            >
-              {config.badge.showPulse && (
-                <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-                </span>
-              )}
-              <span className={`text-sm font-medium ${config.badge.textColor}`}>
-                {config.badge.text}
-              </span>
-            </div>
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          {config?.badge?.text && (
+            <span className="text-blue-600 dark:text-blue-400 font-semibold text-xs sm:text-sm uppercase tracking-wider">
+              {config.badge.text}
+            </span>
           )}
-
-          {/* Heading */}
-          <h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
-            itemProp="name"
-          >
-            {config?.heading?.prefix}{' '}
-            <span className={`${config?.heading?.highlightColor} relative inline-block`}>
-              {config?.heading?.highlightedText}
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                height="8"
-                viewBox="0 0 200 8"
-                aria-hidden="true"
-              >
-                <line
-                  x1="0" y1="4" x2="200" y2="4"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  strokeDasharray="6 6"
-                  className={config?.heading?.highlightColor}
-                />
-              </svg>
-            </span>{' '}
-            {config?.heading?.suffix}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 sm:mt-4 mb-3 sm:mb-6">
+            {config?.heading?.main}
           </h2>
-
-          {/* Description */}
           {config?.description && (
-            <p
-              className="text-lg text-gray-600 dark:text-gray-400"
-              itemProp="description"
-            >
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
               {config.description}
             </p>
           )}
         </div>
 
-        {/* Services Grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          role="list"
-          aria-label="Services list"
-        >
+        {/* Services Grid - Alternating Layout */}
+        <div className="space-y-16 sm:space-y-20">
           {config?.services?.map((service, index) => (
-            <article
-              key={service.id || index}
-              className="group relative bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 hover:shadow-2xl dark:hover:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
-              itemProp="itemListElement"
-              itemScope
-              itemType="https://schema.org/Service"
-              role="listitem"
-            >
-              {/* Icon Container */}
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-all duration-300">
-                {getIcon(service.icon)}
+            <article key={service.id || index} className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+
+              {/* Content Side */}
+              <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
+                <div className="max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
+
+                  {/* Icon */}
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg shadow-blue-500/30 mx-auto lg:mx-0">
+                    {getIcon(service.icon, "w-6 h-6 sm:w-7 sm:h-7 text-white")}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-4">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+                    {service.description}
+                  </p>
+
+                  {/* Features List */}
+                  {service.features && service.features.length > 0 && (
+                    <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center justify-center lg:justify-start">
+                          <div className="shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-2 sm:mr-3">
+                            <HiCheck className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 dark:text-green-400" />
+                          </div>
+                          <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* CTA */}
+                  {service.link && (
+                    <Link
+                      href={service.link}
+                      className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors group text-sm sm:text-base"
+                      aria-label={`Learn more about ${service.title}`}
+                    >
+                      <span>{service.linkText || "Discover more"}</span>
+                      <HiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  )}
+                </div>
               </div>
 
-              {/* Content */}
-              <h3
-                className="text-2xl font-bold text-gray-900 dark:text-white mb-3"
-                itemProp="name"
-              >
-                {service.title}
-              </h3>
-              <p
-                className="text-gray-600 dark:text-gray-400 mb-6"
-                itemProp="description"
-              >
-                {service.description}
-              </p>
+              {/* Image Side */}
+              <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
+                <div className="relative">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-tr from-blue-600/20 to-purple-600/20" />
 
-              {/* Features List */}
-              {service.features && service.features.length > 0 && (
-                <ul className="space-y-2 mb-6" aria-label="Service features">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <svg
-                        className="w-4 h-4 text-green-500 dark:text-green-400 mr-2 mt-0.5 shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                    {/* Floating Stats Card */}
+                    {service.stats && service.stats.length > 0 && (
+                      <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-xl">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                          {service.stats.map((stat, idx) => (
+                            <div key={idx}>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
+                                {stat.value}
+                              </p>
+                              <p className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400">
+                                {stat.label}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-              {/* CTA Link */}
-              {service.link && (
-                <Link
-                  href={service.link}
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors group/link focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                  aria-label={`Learn more about ${service.title}`}
-                >
-                  {service.linkText || "Learn more"}
-                  <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" aria-hidden="true" />
-                </Link>
-              )}
-
-              {/* Decorative corner accent */}
-              <div
-                className="absolute top-4 right-4 w-12 h-12 bg-blue-500/10 dark:bg-blue-400/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                aria-hidden="true"
-               />
+                  {/* Decorative Elements */}
+                  <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 bg-blue-400 dark:bg-blue-600 rounded-full opacity-20 blur-xl" />
+                  <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-32 sm:h-32 bg-purple-400 dark:bg-purple-600 rounded-full opacity-20 blur-xl" />
+                </div>
+              </div>
             </article>
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA Card */}
         {config?.bottomCta?.show && (
-          <div className="text-center mt-16">
-            <Link
-              href={config.bottomCta.url}
-              className={`inline-flex items-center ${config.bottomCta.backgroundColor} ${config.bottomCta.textColor} ${config.bottomCta.hoverColor} px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
-              aria-label={config.bottomCta.ariaLabel || config.bottomCta.text}
-            >
-              {config.bottomCta.text}
-              {getButtonIcon(config.bottomCta.icon)}
-            </Link>
-          </div>
-        )}
-
-        {/* Stats Section */}
-        {config?.stats?.show && (
-          <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-gray-200 dark:border-gray-800"
-            aria-label="Company statistics"
-          >
-            {config.stats.items.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {stat.label}
-                </div>
+          <div className="mt-16 sm:mt-20 md:mt-24 relative">
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600 rounded-2xl sm:rounded-3xl blur-2xl opacity-30" />
+            <div className="relative bg-linear-to-r from-blue-600 to-purple-600 rounded-2xl sm:rounded-3xl overflow-hidden">
+              <div className="relative px-6 sm:px-8 py-8 sm:py-12 md:py-16 text-center">
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-4">
+                  {config.bottomCta.title}
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+                  {config.bottomCta.description}
+                </p>
+                <Link
+                  href={config.bottomCta.url}
+                  className="inline-flex items-center bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-xl group text-sm sm:text-base"
+                  aria-label={config.bottomCta.ariaLabel}
+                >
+                  {config.bottomCta.buttonText}
+                  <HiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
-            ))}
+            </div>
           </div>
         )}
       </div>
-
-      {/* Styles */}
-      <style>{`
-          .bg-grid-pattern {
-            background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
-                              linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
-            background-size: 50px 50px;
-          }
-          .dark .bg-grid-pattern {
-            background-image: linear-gradient(to right, #374151 1px, transparent 1px),
-                              linear-gradient(to bottom, #374151 1px, transparent 1px);
-          }
-        `}</style>
     </section>
   );
 };
 
-export default ServicesSection1;
+export default ServicesSection2;

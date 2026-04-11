@@ -2,321 +2,291 @@
 
 // React
 import { Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-// Icons
+// React Icons\
 import {
+  FaStar,
+  FaQuoteLeft,
+  FaArrowRight,
+} from 'react-icons/fa';
+import {
+  HiOutlineCog,
+  HiOutlineMail,
   HiOutlineCube,
   HiOutlineTruck,
-  HiOutlineChartBar,
-  HiOutlineShieldCheck,
   HiOutlineClock,
-  HiOutlineGlobeAlt,
-  HiOutlineDocumentText,
+  HiChevronRight,
   HiOutlineUsers,
-  HiOutlineCog,
-  HiOutlineLightningBolt,
+  HiOutlinePhone,
   HiOutlineSearch,
   HiOutlineRefresh,
-  HiChevronRight,
-  HiOutlineCheckCircle
+  HiOutlineSparkles,
+  HiOutlineGlobeAlt,
+  HiOutlineChartBar,
+  HiOutlineShieldCheck,
+  HiOutlineDocumentText,
+  HiOutlineLightningBolt,
+  HiOutlineLocationMarker,
 } from 'react-icons/hi';
 
 const ServicesSection3 = ({ config }) => {
-  // State for active tab/category
-  const [activeCategory, setActiveCategory] = useState(
-    config?.categories?.[0]?.id || 'all'
-  );
+  // State for hover effect
+  const [hoveredCard, setHoveredCard] = useState(null);
+
+  // State for testimonial carousel
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // Auto-rotate testimonials
+  useEffect(() => {
+    if (config?.testimonials?.show && config?.testimonials?.items?.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentTestimonial((prev) =>
+          prev === config.testimonials.items.length - 1 ? 0 : prev + 1
+        );
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [config?.testimonials]);
 
   // Icon mapping
   const getIcon = (iconName, className = "w-6 h-6") => {
-    const iconClasses = `${className} text-current`;
+    const iconClasses = `${className}`;
 
     switch (iconName) {
       case 'cube':
-        return <HiOutlineCube className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineCube className={iconClasses} />;
       case 'truck':
-        return <HiOutlineTruck className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineTruck className={iconClasses} />;
       case 'chartBar':
-        return <HiOutlineChartBar className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineChartBar className={iconClasses} />;
       case 'shieldCheck':
-        return <HiOutlineShieldCheck className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineShieldCheck className={iconClasses} />;
       case 'clock':
-        return <HiOutlineClock className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineClock className={iconClasses} />;
       case 'globe':
-        return <HiOutlineGlobeAlt className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineGlobeAlt className={iconClasses} />;
       case 'document':
-        return <HiOutlineDocumentText className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineDocumentText className={iconClasses} />;
       case 'users':
-        return <HiOutlineUsers className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineUsers className={iconClasses} />;
       case 'cog':
-        return <HiOutlineCog className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineCog className={iconClasses} />;
       case 'lightning':
-        return <HiOutlineLightningBolt className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineLightningBolt className={iconClasses} />;
       case 'search':
-        return <HiOutlineSearch className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineSearch className={iconClasses} />;
       case 'refresh':
-        return <HiOutlineRefresh className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineRefresh className={iconClasses} />;
+      case 'sparkles':
+        return <HiOutlineSparkles className={iconClasses} />;
+      case 'phone':
+        return <HiOutlinePhone className={iconClasses} />;
+      case 'mail':
+        return <HiOutlineMail className={iconClasses} />;
+      case 'location':
+        return <HiOutlineLocationMarker className={iconClasses} />;
       default:
-        return <HiOutlineCube className={iconClasses} aria-hidden="true" />;
+        return <HiOutlineCube className={iconClasses} />;
     }
   };
-
-  // Get category icon
-  const getCategoryIcon = (iconName) => {
-    switch (iconName) {
-      case 'inventory':
-        return <HiOutlineCube className="w-5 h-5" aria-hidden="true" />;
-      case 'transport':
-        return <HiOutlineTruck className="w-5 h-5" aria-hidden="true" />;
-      case 'analytics':
-        return <HiOutlineChartBar className="w-5 h-5" aria-hidden="true" />;
-      case 'warehouse':
-        return <HiOutlineCog className="w-5 h-5" aria-hidden="true" />;
-      default:
-        return <HiOutlineCube className="w-5 h-5" aria-hidden="true" />;
-    }
-  };
-
-  // Filter services by category
-  const getFilteredServices = () => {
-    if (activeCategory === 'all') {
-      return config?.services || [];
-    }
-    return config?.services?.filter(
-      service => service.category === activeCategory
-    ) || [];
-  };
-
-  // Get filtered services
-  const filteredServices = getFilteredServices();
 
   return (
-    <section
-      className="relative py-20 bg-gray-50 dark:bg-gray-900"
-      role="region"
-      aria-label="Services by category"
-      itemScope
-      itemType="https://schema.org/ItemList"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+    <section className="relative py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900 overflow-hidden">
+
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,var(--tw-gradient-stops))] from-blue-50/50 via-transparent to-transparent dark:from-blue-950/20" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl opacity-40" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl opacity-40" />
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 rounded-full px-4 py-2 mb-4">
-            <HiOutlineCheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
-            <span className="text-sm font-medium text-blue-800 dark:text-blue-200">
-              {config?.badge?.text || "OUR SERVICES"}
+
+        {/* Section Header with Animation */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 bg-linear-to-r from-blue-500 to-purple-600 text-white rounded-full px-4 py-1.5 mb-4 shadow-lg">
+            <HiOutlineSparkles className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-medium tracking-wide">
+              {config?.badge?.text || "PREMIUM SERVICES"}
             </span>
           </div>
 
-          {/* Heading */}
-          <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-            itemProp="name"
-          >
-            {config?.heading?.line1}{' '}
-            <span className="text-blue-600 dark:text-blue-400">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {config?.heading?.line1}
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
               {config?.heading?.highlighted}
             </span>
           </h2>
 
-          {/* Description */}
-          <p
-            className="text-lg text-gray-600 dark:text-gray-400"
-            itemProp="description"
-          >
-            {config?.description}
-          </p>
+          {config?.description && (
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              {config.description}
+            </p>
+          )}
         </div>
 
-        {/* Category Tabs */}
-        {config?.categories && config.categories.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="Service categories">
-            <button
-              key="all"
-              onClick={() => setActiveCategory('all')}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${activeCategory === 'all'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-              role="tab"
-              aria-selected={activeCategory === 'all'}
-              aria-controls="services-panel"
-            >
-              All Services
-            </button>
-            {config.categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`inline-flex items-center px-6 py-3 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${activeCategory === category.id
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
-                role="tab"
-                aria-selected={activeCategory === category.id}
-                aria-controls="services-panel"
-              >
-                <span className="mr-2">{getCategoryIcon(category.icon)}</span>
-                {category.name}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Services Grid - Cards with Icons */}
-        <div
-          id="services-panel"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          role="tabpanel"
-          aria-label={`${activeCategory === 'all' ? 'All' : 'Filtered'} services`}
-        >
-          {filteredServices.map((service, index) => (
+        {/* Services Grid - 3D Flip Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {config?.services?.map((service, index) => (
             <div
               key={service.id || index}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-              itemProp="itemListElement"
-              itemScope
-              itemType="https://schema.org/Service"
+              className="group relative"
+              onMouseEnter={() => setHoveredCard(service.id)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
-              {/* Gradient Overlay on Hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 to-purple-600/0 group-hover:from-blue-600/10 group-hover:to-purple-600/10 transition-all duration-300" aria-hidden="true" />
+              <div className="relative bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden">
 
-              {/* Top Accent Bar */}
-              <div className={`h-2 bg-linear-to-r ${service.accentColor} w-full`} aria-hidden="true" />
+                {/* Animated Gradient Border */}
+                <div className="absolute inset-0 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10" />
 
-              <div className="p-8">
-                {/* Icon */}
-                <div className={`w-16 h-16 ${service.iconBg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {getIcon(service.icon, "w-8 h-8")}
+                {/* Icon Container with Pulse Effect */}
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-purple-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+                  <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ${hoveredCard === service.id ? 'bg-linear-to-r from-blue-500 to-purple-600 shadow-lg' : service.iconBg || 'bg-blue-100 dark:bg-blue-900/30'}`}>
+                    {getIcon(service.icon, `w-7 h-7 transition-all duration-500 ${hoveredCard === service.id ? 'text-white' : service.iconColor || 'text-blue-600 dark:text-blue-400'}`)}
+                  </div>
                 </div>
 
-                {/* Title */}
-                <h3
-                  className="text-xl font-bold text-gray-900 dark:text-white mb-3"
-                  itemProp="name"
-                >
+                {/* Content */}
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {service.title}
                 </h3>
-
-                {/* Description */}
-                <p
-                  className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3"
-                  itemProp="description"
-                >
+                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
                   {service.description}
                 </p>
 
-                {/* Features - Compact */}
-                {service.features && service.features.length > 0 && (
-                  <div className="space-y-2 mb-6">
-                    {service.features.slice(0, 3).map((feature, idx) => (
-                      <div key={idx} className="flex items-start text-sm">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mr-2 shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-gray-600 dark:text-gray-400 line-clamp-1">{feature}</span>
-                      </div>
-                    ))}
-                    {service.features.length > 3 && (
-                      <p className="text-xs text-gray-500 dark:text-gray-500 pl-6">
-                        +{service.features.length - 3} more features
-                      </p>
-                    )}
-                  </div>
-                )}
+                {/* Feature Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {service.features?.slice(0, 2).map((feature, idx) => (
+                    <span key={idx} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">
+                      {feature}
+                    </span>
+                  ))}
+                  {service.features?.length > 2 && (
+                    <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">
+                      +{service.features.length - 2}
+                    </span>
+                  )}
+                </div>
 
-                {/* Meta Info */}
+                {/* Price & CTA */}
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-                  <span className="text-xs text-gray-500 dark:text-gray-500">
-                    {service.deliveryTime || '24/7 Available'}
-                  </span>
+                  {service.price && (
+                    <div>
+                      <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {service.price}
+                      </span>
+                      {service.priceUnit && (
+                        <span className="text-xs text-gray-500 dark:text-gray-400">/{service.priceUnit}</span>
+                      )}
+                    </div>
+                  )}
                   <Link
                     href={service.link}
-                    className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm transition-colors group/link focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                    aria-label={`Learn more about ${service.title}`}
+                    className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium text-sm hover:text-blue-700 transition-colors group/link"
                   >
-                    <span>Learn more</span>
-                    <HiChevronRight className="ml-1 group-hover/link:translate-x-1 transition-transform" aria-hidden="true" />
+                    Learn More
+                    <FaArrowRight className="ml-2 w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
                   </Link>
                 </div>
-              </div>
 
-              {/* Decorative Corner */}
-              <div className="absolute top-4 right-4 w-20 h-20 bg-blue-500/5 dark:bg-blue-400/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+                {/* Decorative Number */}
+                <div className="absolute top-4 right-4 text-6xl font-bold text-gray-800 dark:text-gray-200 opacity-50">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* No Results Message */}
-        {filteredServices.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 text-lg">
-              No services found in this category.
-            </p>
+        {/* Interactive Stats Section */}
+        {config?.stats?.show && (
+          <div className="mt-16 sm:mt-20 bg-linear-to-r from-blue-600 to-purple-600 rounded-2xl p-8 sm:p-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+              {config.stats.items?.map((stat, index) => (
+                <div key={index} className="text-center text-white">
+                  <div className="text-3xl sm:text-4xl font-bold mb-1">{stat.value}</div>
+                  <div className="text-sm text-blue-100">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
-        {/* Bottom Info Cards */}
-        {config?.bottomCards && config.bottomCards.length > 0 && (
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {config.bottomCards.map((card, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
-              >
-                <div className="flex items-center mb-4">
-                  <div className={`w-10 h-10 ${card.iconBg} rounded-lg flex items-center justify-center mr-3`}>
-                    {getIcon(card.icon, "w-5 h-5")}
-                  </div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white">
-                    {card.title}
-                  </h4>
+        {/* Testimonials Section */}
+        {config?.testimonials?.show && config?.testimonials?.items?.length > 0 && (
+          <div className="mt-16 sm:mt-20">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                What Our Clients Say
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">
+                Trusted by businesses worldwide
+              </p>
+            </div>
+
+            <div className="relative bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 sm:p-8">
+              <FaQuoteLeft className="absolute top-6 left-6 w-8 h-8 text-blue-200 dark:text-blue-800 opacity-50" />
+
+              <div className="text-center max-w-2xl mx-auto">
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 italic">
+                  "{config.testimonials.items[currentTestimonial]?.text}"
+                </p>
+                <div className="flex justify-center mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="w-4 h-4 text-yellow-400" />
+                  ))}
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {card.description}
+                <p className="font-semibold text-gray-900 dark:text-white">
+                  {config.testimonials.items[currentTestimonial]?.name}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {config.testimonials.items[currentTestimonial]?.position}
                 </p>
               </div>
-            ))}
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center gap-2 mt-6">
+                {config.testimonials.items.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentTestimonial(idx)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${currentTestimonial === idx
+                      ? 'w-6 bg-blue-600'
+                      : 'bg-gray-300 dark:bg-gray-600'
+                      }`}
+                    aria-label={`Go to testimonial ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
-        {/* Trust Indicators */}
-        {config?.trustIndicators?.show && (
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-8">
-            {config.trustIndicators.items.map((item, index) => (
-              <div key={index} className="flex items-center text-gray-600 dark:text-gray-400">
-                <span className="text-2xl font-bold text-gray-900 dark:text-white mr-2">
-                  {item.value}
-                </span>
-                <span className="text-sm">{item.label}</span>
-              </div>
-            ))}
+        {/* CTA Banner */}
+        {config?.cta?.show && (
+          <div className="mt-16 sm:mt-20 relative overflow-hidden rounded-2xl">
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600" />
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M30 10 L30 50 M10 30 L50 30 M20 20 L40 40 M40 20 L20 40\' stroke=\'rgba(255,255,255,0.05)\' stroke-width=\'1\' fill=\'none\'/%3E%3C/svg%3E')]" />
+            <div className="relative px-6 sm:px-8 py-10 sm:py-12 text-center">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                {config.cta.title}
+              </h3>
+              <p className="text-blue-100 mb-6 max-w-md mx-auto">
+                {config.cta.description}
+              </p>
+              <Link
+                href={config.cta.url}
+                className="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg group"
+              >
+                {config.cta.buttonText}
+                <HiChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         )}
       </div>
-
-      {/* Styles */}
-      <style >{`
-          .bg-circuit-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 L30 50 M10 30 L50 30 M20 20 L40 40 M40 20 L20 40' stroke='%23999' stroke-width='0.5' fill='none' stroke-opacity='0.2' /%3E%3C/svg%3E");
-            background-size: 30px 30px;
-          }
-          .line-clamp-1 {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-          }
-          .line-clamp-3 {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
-          }
-        `}</style>
     </section>
   );
 };
