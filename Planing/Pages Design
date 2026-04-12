@@ -292,6 +292,8 @@
 
 ---
 
+# NEW PAGES
+
 ## 26. ** Demo Page** (/demo)
 
 ## 27. ** Service - SubPage Page** (/service/{subpage})
@@ -301,3 +303,25 @@
 ## 29. ** Industries - SubPage Page** (/industries/{subpage})
 
 ## 30. ** Success Stories - SubPage Page** (/success-stories/{subpage})
+
+## 31. ** Integrations - Page** (/integrations)
+
+## 32. ** Integrations - SubPage Page** (/integrations/{subpage})
+
+## 33. ** Docs - SubPage Page** (/docs/{subpage})
+
+## 34. ** Api Console - Page** (/api-console)
+
+## 35. ** News - SubPage** (/news/{subpage})
+
+## 36. ** Press - Page** (/press)
+
+## 37. ** Press - SubPage Page** (/press/{subpage})
+
+## 38. ** Press Kit - Download Page** (/pressKit)
+
+## 39. ** Become A Partner - Page** (/become-a-partner)
+
+## 40. ** Partners - Page** (/partners )
+
+## 41. ** Partners - SubPage Page** (/partners/{subpage} )

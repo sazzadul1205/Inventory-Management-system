@@ -132,26 +132,10 @@ const fetchNavItems = async () => {
 };
 
 // =====================================================
-// THEME DETECTION
-// =====================================================
-
-const isDarkTheme = () => {
-  if (typeof window === 'undefined') return false;
-
-  if (document.documentElement.classList.contains('dark')) return true;
-
-  const saved = localStorage.getItem('theme');
-  if (saved) return saved === 'dark';
-
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-};
-
-// =====================================================
 // COMPONENT
 // =====================================================
 
 const Navbar = () => {
-  const [darkMode] = useState(isDarkTheme);
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -201,12 +185,7 @@ const Navbar = () => {
 
   // Outside click handler
   useEffect(() => {
-    /*************  ✨ Windsurf Command ⭐  *************/
-    /**
-     * Handles outside clicks on the dropdown menu.
-     * If the target is not part of the dropdown menu, it will close the dropdown.
-     */
-    /*******  b32f0b61-49ad-46e4-acad-d962fea9e6e8  *******/
+
     const handleClick = (e) => {
       if (!dropdownRef.current?.contains(e.target)) {
         setOpenDropdown(false);
@@ -227,7 +206,8 @@ const Navbar = () => {
 
         {/* LOGO */}
         <Link href="/" className="flex items-center">
-          <img src={darkMode ? DarkIcon : Icon} className="w-40" />
+          <img src={Icon} alt="InvLog Logo" className="w-40 dark:hidden" />
+          <img src={DarkIcon} alt="InvLog Logo" className="hidden w-40 dark:block" />
         </Link>
 
         {/* MENU */}

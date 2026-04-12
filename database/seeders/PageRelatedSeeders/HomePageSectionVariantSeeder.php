@@ -3830,6 +3830,953 @@ class HomePageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Integrations Section
+            [
+                'id' => 49,
+                'section_key' => 'integrations',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'INTEGRATIONS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Connect with',
+                        'highlightedText' => '100+ Tools',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Seamlessly integrate with your favorite apps and platforms to create a unified logistics ecosystem.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '100+', 'label' => 'Integrations'],
+                            ['value' => '50K+', 'label' => 'API Calls/Day'],
+                            ['value' => '99.9%', 'label' => 'Uptime']
+                        ]
+                    ],
+                    'integrations' => [
+                        ['id' => 1, 'name' => 'Shopify', 'category' => 'E-commerce', 'icon' => 'cart', 'popular' => true, 'link' => 'https://shopify.com'],
+                        ['id' => 2, 'name' => 'WooCommerce', 'category' => 'E-commerce', 'icon' => 'cart', 'popular' => false, 'link' => 'https://woocommerce.com'],
+                        ['id' => 3, 'name' => 'Magento', 'category' => 'E-commerce', 'icon' => 'cart', 'popular' => false, 'link' => 'https://magento.com'],
+                        ['id' => 4, 'name' => 'Stripe', 'category' => 'Payment', 'icon' => 'credit', 'popular' => true, 'link' => 'https://stripe.com'],
+                        ['id' => 5, 'name' => 'PayPal', 'category' => 'Payment', 'icon' => 'credit', 'popular' => false, 'link' => 'https://paypal.com'],
+                        ['id' => 6, 'name' => 'Salesforce', 'category' => 'CRM', 'icon' => 'cloud', 'popular' => true, 'link' => 'https://salesforce.com'],
+                        ['id' => 7, 'name' => 'HubSpot', 'category' => 'CRM', 'icon' => 'users', 'popular' => false, 'link' => 'https://hubspot.com'],
+                        ['id' => 8, 'name' => 'Mailchimp', 'category' => 'Marketing', 'icon' => 'mail', 'popular' => false, 'link' => 'https://mailchimp.com'],
+                        ['id' => 9, 'name' => 'Slack', 'category' => 'Communication', 'icon' => 'users', 'popular' => true, 'link' => 'https://slack.com'],
+                        ['id' => 10, 'name' => 'QuickBooks', 'category' => 'Accounting', 'icon' => 'document', 'popular' => false, 'link' => 'https://quickbooks.com'],
+                        ['id' => 11, 'name' => 'Tableau', 'category' => 'Analytics', 'icon' => 'chart', 'popular' => false, 'link' => 'https://tableau.com'],
+                        ['id' => 12, 'name' => 'AWS', 'category' => 'Cloud', 'icon' => 'cloud', 'popular' => true, 'link' => 'https://aws.amazon.com']
+                    ],
+                    'viewAll' => [
+                        'text' => 'View All Integrations',
+                        'url' => '/integrations'
+                    ],
+                    'featured' => [
+                        'show' => true,
+                        'title' => 'Shopify Integration',
+                        'description' => 'Sync your inventory, orders, and products seamlessly between our platform and your Shopify store.',
+                        'features' => [
+                            'Real-time inventory sync',
+                            'Automatic order fulfillment',
+                            'Product catalog management',
+                            'Returns processing'
+                        ],
+                        'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
+                        'learnMoreUrl' => '/integrations/shopify',
+                        'docsUrl' => '/docs/shopify-integration',
+                        'logoIcon' => 'cart',
+                        'logoLabel' => 'Featured Partner',
+                        'logoValue' => 'Shopify Plus Certified'
+                    ],
+                    'api' => [
+                        'show' => true,
+                        'title' => 'Build Custom Integrations',
+                        'description' => 'Our powerful REST API allows you to build custom integrations and extend our platform to fit your unique needs.',
+                        'docsUrl' => '/docs/api',
+                        'consoleUrl' => '/api-console'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 50,
+                'section_key' => 'integrations',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'INTEGRATIONS'
+                    ],
+                    'heading' => [
+                        'line1' => 'Connect with Your',
+                        'highlighted' => 'Favorite Tools'
+                    ],
+                    'description' => 'Seamlessly integrate with the apps and platforms you already use every day.',
+                    'search' => [
+                        'placeholder' => 'Search integrations...'
+                    ],
+                    'integrations' => [
+                        ['id' => 1, 'name' => 'Shopify', 'category' => 'E-commerce', 'icon' => 'cart', 'popular' => true, 'link' => 'https://shopify.com'],
+                        ['id' => 2, 'name' => 'WooCommerce', 'category' => 'E-commerce', 'icon' => 'cart', 'popular' => false, 'link' => 'https://woocommerce.com'],
+                        ['id' => 3, 'name' => 'Magento', 'category' => 'E-commerce', 'icon' => 'cart', 'popular' => false, 'link' => 'https://magento.com'],
+                        ['id' => 4, 'name' => 'Stripe', 'category' => 'Payment', 'icon' => 'credit', 'popular' => true, 'link' => 'https://stripe.com'],
+                        ['id' => 5, 'name' => 'PayPal', 'category' => 'Payment', 'icon' => 'credit', 'popular' => false, 'link' => 'https://paypal.com'],
+                        ['id' => 6, 'name' => 'Salesforce', 'category' => 'CRM', 'icon' => 'cloud', 'popular' => true, 'link' => 'https://salesforce.com'],
+                        ['id' => 7, 'name' => 'HubSpot', 'category' => 'CRM', 'icon' => 'users', 'popular' => false, 'link' => 'https://hubspot.com'],
+                        ['id' => 8, 'name' => 'Mailchimp', 'category' => 'Marketing', 'icon' => 'mail', 'popular' => false, 'link' => 'https://mailchimp.com'],
+                        ['id' => 9, 'name' => 'Slack', 'category' => 'Communication', 'icon' => 'users', 'popular' => true, 'link' => 'https://slack.com'],
+                        ['id' => 10, 'name' => 'QuickBooks', 'category' => 'Accounting', 'icon' => 'document', 'popular' => false, 'link' => 'https://quickbooks.com'],
+                        ['id' => 11, 'name' => 'Tableau', 'category' => 'Analytics', 'icon' => 'chart', 'popular' => false, 'link' => 'https://tableau.com'],
+                        ['id' => 12, 'name' => 'AWS', 'category' => 'Cloud', 'icon' => 'cloud', 'popular' => true, 'link' => 'https://aws.amazon.com']
+                    ],
+                    'viewAll' => [
+                        'text' => 'Browse All Integrations',
+                        'url' => '/integrations'
+                    ],
+                    'partners' => [
+                        'show' => true,
+                        'title' => 'Trusted Partners',
+                        'items' => [
+                            ['name' => 'Partner A', 'logo' => null],
+                            ['name' => 'Partner B', 'logo' => null],
+                            ['name' => 'Partner C', 'logo' => null],
+                            ['name' => 'Partner D', 'logo' => null]
+                        ]
+                    ],
+                    'api' => [
+                        'show' => true,
+                        'title' => 'Build Custom Integrations',
+                        'description' => 'Our powerful REST API allows you to build custom integrations and extend our platform.',
+                        'features' => [
+                            'RESTful API with comprehensive documentation',
+                            'Webhooks for real-time events',
+                            'OAuth 2.0 authentication',
+                            'Rate limiting up to 1000 requests/minute'
+                        ],
+                        'docsUrl' => '/docs/api',
+                        'consoleUrl' => '/api-console'
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Explore All Integrations',
+                        'url' => '/integrations',
+                        'ariaLabel' => 'View all available integrations'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 51,
+                'section_key' => 'integrations',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'INTEGRATIONS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Connect with',
+                        'highlightedText' => '100+ Tools',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Seamlessly integrate with your favorite apps and platforms to create a unified logistics ecosystem.',
+                    'search' => [
+                        'placeholder' => 'Search integrations...'
+                    ],
+                    'categories' => [
+                        ['id' => 'ecommerce', 'name' => 'E-commerce', 'count' => 25],
+                        ['id' => 'payment', 'name' => 'Payment', 'count' => 15],
+                        ['id' => 'crm', 'name' => 'CRM', 'count' => 18],
+                        ['id' => 'marketing', 'name' => 'Marketing', 'count' => 12],
+                        ['id' => 'analytics', 'name' => 'Analytics', 'count' => 10],
+                        ['id' => 'accounting', 'name' => 'Accounting', 'count' => 8]
+                    ],
+                    'popularTags' => [
+                        'show' => true,
+                        'items' => ['Shopify', 'Stripe', 'Salesforce', 'QuickBooks', 'Slack', 'Zapier']
+                    ],
+                    'integrations' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Shopify',
+                            'category' => 'E-commerce',
+                            'icon' => 'cart',
+                            'description' => 'Sync your inventory, orders, and products seamlessly between our platform and your Shopify store.',
+                            'rating' => 4.9,
+                            'verified' => true,
+                            'popular' => true,
+                            'link' => 'https://shopify.com',
+                            'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Stripe',
+                            'category' => 'Payment',
+                            'icon' => 'credit',
+                            'description' => 'Process payments and manage billing directly through our integrated Stripe connection.',
+                            'rating' => 4.8,
+                            'verified' => true,
+                            'popular' => true,
+                            'link' => 'https://stripe.com',
+                            'image' => 'https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Salesforce',
+                            'category' => 'CRM',
+                            'icon' => 'cloud',
+                            'description' => 'Sync customer data and sales orders between Salesforce and our platform.',
+                            'rating' => 4.7,
+                            'verified' => true,
+                            'popular' => false,
+                            'link' => 'https://salesforce.com',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'QuickBooks',
+                            'category' => 'Accounting',
+                            'icon' => 'document',
+                            'description' => 'Automatically sync financial data and generate invoices in QuickBooks.',
+                            'rating' => 4.6,
+                            'verified' => true,
+                            'popular' => false,
+                            'link' => 'https://quickbooks.com',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=100&h=100&fit=crop'
+                        ]
+                    ],
+                    'api' => [
+                        'show' => true,
+                        'title' => 'Build Custom Integrations',
+                        'description' => 'Our powerful REST API allows you to build custom integrations and extend our platform to fit your unique needs.',
+                        'docsUrl' => '/docs/api',
+                        'consoleUrl' => '/api-console'
+                    ],
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 52,
+                'section_key' => 'integrations',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // News Section
+            [
+                'id' => 53,
+                'section_key' => 'news',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'LATEST NEWS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Company',
+                        'highlightedText' => 'News',
+                        'suffix' => '& Updates'
+                    ],
+                    'description' => 'Stay up to date with the latest announcements, product updates, and company news.',
+                    'breakingNews' => [
+                        'show' => true,
+                        'text' => '🚀 Major Product Launch Coming Soon! Stay tuned for exciting updates...'
+                    ],
+                    'featured' => [
+                        'show' => true,
+                        'type' => 'announcement',
+                        'date' => '2024-01-15',
+                        'title' => 'Introducing AI-Powered Inventory Forecasting',
+                        'excerpt' => 'We\'re excited to announce our new AI-driven forecasting engine that helps businesses predict demand with 95% accuracy. This revolutionary feature will transform how you manage your inventory.',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+                        'link' => '/news/ai-forecasting-launch'
+                    ],
+                    'news' => [
+                        [
+                            'id' => 1,
+                            'title' => 'New Integration with Shopify Now Available',
+                            'excerpt' => 'Seamlessly sync your inventory and orders between our platform and your Shopify store with our new native integration.',
+                            'date' => '2024-03-15',
+                            'type' => 'update',
+                            'readTime' => '3 min read',
+                            'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+                            'tags' => ['Integration', 'E-commerce'],
+                            'likes' => 127,
+                            'source' => 'Product Team',
+                            'link' => '/news/shopify-integration'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Sazzad Named Top Logistics Platform 2024',
+                            'excerpt' => 'We\'re honored to be recognized as the best logistics platform by Supply Chain Excellence Awards.',
+                            'date' => '2024-03-10',
+                            'type' => 'award',
+                            'readTime' => '2 min read',
+                            'image' => 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600&h=400&fit=crop',
+                            'tags' => ['Award', 'Recognition'],
+                            'likes' => 342,
+                            'source' => 'Marketing Team',
+                            'link' => '/news/award-2024'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'New Warehouse Management Features',
+                            'excerpt' => 'Enhanced warehouse management capabilities including barcode scanning and automated picking.',
+                            'date' => '2024-03-05',
+                            'type' => 'update',
+                            'readTime' => '4 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'tags' => ['Product', 'Warehouse'],
+                            'likes' => 89,
+                            'source' => 'Product Team',
+                            'link' => '/news/warehouse-features'
+                        ]
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'View All News',
+                        'url' => '/news'
+                    ],
+                    'pressReleases' => [
+                        'show' => true,
+                        'url' => '/press',
+                        'items' => [
+                            [
+                                'date' => 'March 1, 2024',
+                                'title' => 'Sazzad Raises $50M Series B to Expand Global Operations',
+                                'embargo' => false,
+                                'link' => '/press/series-b-funding'
+                            ],
+                            [
+                                'date' => 'February 15, 2024',
+                                'title' => 'Sazzad Announces Strategic Partnership with Major Retailer',
+                                'embargo' => false,
+                                'link' => '/press/strategic-partnership'
+                            ],
+                            [
+                                'date' => 'January 20, 2024',
+                                'title' => 'Sazzad Launches Sustainability Initiative',
+                                'embargo' => true,
+                                'link' => '/press/sustainability-initiative'
+                            ]
+                        ]
+                    ],
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 54,
+                'section_key' => 'news',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'NEWS & UPDATES'
+                    ],
+                    'heading' => [
+                        'line1' => 'Latest',
+                        'highlighted' => 'Company News'
+                    ],
+                    'description' => 'Stay informed about the latest announcements, product updates, and company milestones.',
+                    'stats' => [
+                        'show' => true
+                    ],
+                    'search' => [
+                        'placeholder' => 'Search news...'
+                    ],
+                    'pagination' => [
+                        'perPage' => 6
+                    ],
+                    'featured' => [
+                        'show' => true,
+                        'title' => 'Sazzad Raises $50M Series B Funding',
+                        'excerpt' => 'We\'re excited to announce our $50M Series B funding round led by leading venture capital firms to accelerate global expansion.',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                        'link' => '/news/series-b-funding'
+                    ],
+                    'news' => [
+                        [
+                            'id' => 1,
+                            'title' => 'New AI-Powered Forecasting Engine Launched',
+                            'excerpt' => 'Introducing our new predictive analytics feature that helps businesses forecast demand with 95% accuracy.',
+                            'date' => '2024-03-20',
+                            'type' => 'Announcement',
+                            'readTime' => '3 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'tags' => ['AI', 'Forecasting', 'Product'],
+                            'likes' => 245,
+                            'source' => 'Product Team',
+                            'link' => '/news/ai-forecasting'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Sazzad Wins \'Best Logistics Platform\' Award',
+                            'excerpt' => 'We\'re honored to receive the Best Logistics Platform award at the 2024 Supply Chain Excellence Awards.',
+                            'date' => '2024-03-15',
+                            'type' => 'Award',
+                            'readTime' => '2 min read',
+                            'image' => 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600&h=400&fit=crop',
+                            'tags' => ['Award', 'Recognition'],
+                            'likes' => 567,
+                            'source' => 'Marketing Team',
+                            'link' => '/news/award-2024'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Strategic Partnership with Major Retailer',
+                            'excerpt' => 'Sazzad announces strategic partnership to power supply chain operations for leading retailer.',
+                            'date' => '2024-03-10',
+                            'type' => 'Partnership',
+                            'readTime' => '3 min read',
+                            'image' => 'https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=600&h=400&fit=crop',
+                            'tags' => ['Partnership', 'Retail'],
+                            'likes' => 189,
+                            'source' => 'Business Development',
+                            'link' => '/news/partnership'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Warehouse Management System Update',
+                            'excerpt' => 'New features including barcode scanning and automated picking now available in WMS.',
+                            'date' => '2024-03-05',
+                            'type' => 'Update',
+                            'readTime' => '2 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'tags' => ['Warehouse', 'Update'],
+                            'likes' => 134,
+                            'source' => 'Product Team',
+                            'link' => '/news/wms-update'
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Customer Success Story: How Company X Scaled 300%',
+                            'excerpt' => 'Learn how Company X used Sazzad to scale their operations and reduce logistics costs by 40%.',
+                            'date' => '2024-02-28',
+                            'type' => 'Case Study',
+                            'readTime' => '5 min read',
+                            'image' => 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop',
+                            'tags' => ['Case Study', 'Success'],
+                            'likes' => 423,
+                            'source' => 'Customer Success',
+                            'link' => '/case-studies/company-x'
+                        ],
+                        [
+                            'id' => 6,
+                            'title' => 'New API Version 2.0 Released',
+                            'excerpt' => 'Introducing API v2.0 with enhanced features, better performance, and improved documentation.',
+                            'date' => '2024-02-20',
+                            'type' => 'Announcement',
+                            'readTime' => '2 min read',
+                            'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
+                            'tags' => ['API', 'Developer'],
+                            'likes' => 98,
+                            'source' => 'Engineering',
+                            'link' => '/news/api-v2'
+                        ]
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'Browse All News',
+                        'url' => '/news'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 55,
+                'section_key' => 'news',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'NEWSROOM'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Company',
+                        'highlightedText' => 'News',
+                        'suffix' => '& Insights'
+                    ],
+                    'description' => 'Stay up to date with the latest announcements, product updates, and industry insights.',
+                    'pagination' => [
+                        'perPage' => 4
+                    ],
+                    'featured' => [
+                        'show' => true,
+                        'type' => 'Announcement',
+                        'date' => '2024-03-15',
+                        'title' => 'Sazzad Raises $50M Series B Funding',
+                        'excerpt' => 'We\'re excited to announce our $50M Series B funding round led by leading venture capital firms to accelerate global expansion and product innovation.',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+                        'readTime' => '4 min read',
+                        'source' => 'Press Release',
+                        'views' => 2500,
+                        'likes' => 342,
+                        'link' => '/news/series-b-funding'
+                    ],
+                    'news' => [
+                        [
+                            'id' => 1,
+                            'title' => 'New AI-Powered Forecasting Engine Launched',
+                            'excerpt' => 'Introducing our new predictive analytics feature that helps businesses forecast demand with 95% accuracy.',
+                            'date' => '2024-03-20',
+                            'type' => 'Announcement',
+                            'readTime' => '3 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
+                            'tags' => ['AI', 'Forecasting'],
+                            'views' => 1200,
+                            'source' => 'Product Team',
+                            'link' => '/news/ai-forecasting'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Sazzad Wins \'Best Logistics Platform\' Award',
+                            'excerpt' => 'We\'re honored to receive the Best Logistics Platform award at the 2024 Supply Chain Excellence Awards.',
+                            'date' => '2024-03-15',
+                            'type' => 'Award',
+                            'readTime' => '2 min read',
+                            'image' => 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&h=300&fit=crop',
+                            'tags' => ['Award'],
+                            'views' => 3400,
+                            'source' => 'Marketing Team',
+                            'link' => '/news/award-2024'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Strategic Partnership with Major Retailer',
+                            'excerpt' => 'Sazzad announces strategic partnership to power supply chain operations for leading retailer.',
+                            'date' => '2024-03-10',
+                            'type' => 'Partnership',
+                            'readTime' => '3 min read',
+                            'image' => 'https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=400&h=300&fit=crop',
+                            'tags' => ['Partnership'],
+                            'views' => 890,
+                            'source' => 'Business Development',
+                            'link' => '/news/partnership'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Warehouse Management System Update',
+                            'excerpt' => 'New features including barcode scanning and automated picking now available in WMS.',
+                            'date' => '2024-03-05',
+                            'type' => 'Update',
+                            'readTime' => '2 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop',
+                            'tags' => ['Warehouse'],
+                            'views' => 560,
+                            'source' => 'Product Team',
+                            'link' => '/news/wms-update'
+                        ]
+                    ],
+                    'sidebar' => [
+                        'about' => [
+                            'description' => 'Your source for the latest company news, product updates, and industry insights.',
+                            'views' => '15.2k'
+                        ],
+                        'contacts' => [
+                            'show' => true
+                        ],
+                        'social' => [
+                            'show' => true,
+                            'facebook' => 'https://facebook.com',
+                            'twitter' => 'https://twitter.com',
+                            'linkedin' => 'https://linkedin.com'
+                        ]
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'Browse All News',
+                        'url' => '/news'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 56,
+                'section_key' => 'news',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Partners Section
+            [
+                'id' => 57,
+                'section_key' => 'partner',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'OUR PARTNERS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Trusted by',
+                        'highlightedText' => 'Industry Leaders',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We partner with the best technology providers and service companies to deliver exceptional value to our customers.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '200+', 'label' => 'Global Partners'],
+                            ['value' => '50+', 'label' => 'Countries'],
+                            ['value' => '1000+', 'label' => 'Joint Customers'],
+                            ['value' => '99%', 'label' => 'Partner Satisfaction']
+                        ]
+                    ],
+                    'featured' => [
+                        'show' => true,
+                        'name' => 'Shopify Plus',
+                        'type' => 'Strategic Technology',
+                        'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                        'description' => 'Our strategic partnership with Shopify Plus enables seamless integration between our logistics platform and the world\'s leading e-commerce solution.',
+                        'badges' => ['Certified Partner', '2023 Partner of the Year', 'Global Strategic Alliance'],
+                        'metrics' => [
+                            ['value' => '500+', 'label' => 'Joint Customers'],
+                            ['value' => '2M+', 'label' => 'Orders Processed'],
+                            ['value' => '99.9%', 'label' => 'Uptime'],
+                            ['value' => '40%', 'label' => 'Faster Integration']
+                        ],
+                        'link' => '/partners/shopify'
+                    ],
+                    'partners' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Salesforce',
+                            'type' => 'CRM Partner',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=80&h=80&fit=crop',
+                            'description' => 'Enterprise CRM integration for seamless customer data sync.',
+                            'link' => '/partners/salesforce'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Stripe',
+                            'type' => 'Payment Partner',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=80&h=80&fit=crop',
+                            'description' => 'Secure payment processing and billing automation.',
+                            'link' => '/partners/stripe'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'AWS',
+                            'type' => 'Cloud Partner',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=80&h=80&fit=crop',
+                            'description' => 'Enterprise-grade cloud infrastructure and hosting.',
+                            'link' => '/partners/aws'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'Slack',
+                            'type' => 'Communication Partner',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=80&h=80&fit=crop',
+                            'description' => 'Real-time notifications and team collaboration.',
+                            'link' => '/partners/slack'
+                        ]
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Become a Partner',
+                        'description' => 'Join our growing network of partners and help businesses transform their supply chain operations.',
+                        'primaryButton' => [
+                            'text' => 'Apply Now',
+                            'url' => '/become-a-partner'
+                        ],
+                        'secondaryButton' => [
+                            'show' => true,
+                            'text' => 'Contact Partnership Team',
+                            'url' => '/contact?type=partnership'
+                        ],
+                        'note' => 'Applications reviewed within 5 business days'
+                    ],
+                    'testimonials' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'partner' => 'Shopify',
+                                'author' => 'John Smith, Partnership Director',
+                                'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=50&h=50&fit=crop',
+                                'quote' => 'Sazzad has been an incredible partner. Their platform integrates seamlessly with ours and their team is always responsive.',
+                                'rating' => 5
+                            ],
+                            [
+                                'partner' => 'Salesforce',
+                                'author' => 'Sarah Johnson, Ecosystem Manager',
+                                'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=50&h=50&fit=crop',
+                                'quote' => 'Working with Sazzad has opened new opportunities for our joint customers. Their commitment to innovation is impressive.',
+                                'rating' => 5
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 58,
+                'section_key' => 'partner',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'OUR ECOSYSTEM'
+                    ],
+                    'heading' => [
+                        'line1' => 'Powered by',
+                        'highlighted' => 'Trusted Partners'
+                    ],
+                    'description' => 'We collaborate with industry-leading partners to deliver comprehensive logistics solutions.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '200+', 'label' => 'Global Partners'],
+                            ['value' => '50+', 'label' => 'Countries'],
+                            ['value' => '1000+', 'label' => 'Joint Customers'],
+                            ['value' => '99%', 'label' => 'Partner Satisfaction']
+                        ]
+                    ],
+                    'search' => [
+                        'placeholder' => 'Search partners...'
+                    ],
+                    'pagination' => [
+                        'perPage' => 8
+                    ],
+                    'partners' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Shopify Plus',
+                            'type' => 'Technology',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Leading e-commerce platform powering millions of businesses worldwide.',
+                            'tags' => ['E-commerce', 'Retail'],
+                            'featured' => true,
+                            'link' => '/partners/shopify'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Salesforce',
+                            'type' => 'Technology',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Enterprise CRM platform for customer relationship management.',
+                            'tags' => ['CRM', 'Sales'],
+                            'featured' => false,
+                            'link' => '/partners/salesforce'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'FedEx',
+                            'type' => 'Logistics',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Global shipping and logistics services provider.',
+                            'tags' => ['Shipping', 'Delivery'],
+                            'featured' => true,
+                            'link' => '/partners/fedex'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'AWS',
+                            'type' => 'Technology',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Cloud infrastructure and hosting services.',
+                            'tags' => ['Cloud', 'Infrastructure'],
+                            'featured' => false,
+                            'link' => '/partners/aws'
+                        ],
+                        [
+                            'id' => 5,
+                            'name' => 'Deloitte',
+                            'type' => 'Consulting',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Global consulting and professional services firm.',
+                            'tags' => ['Consulting', 'Strategy'],
+                            'featured' => false,
+                            'link' => '/partners/deloitte'
+                        ],
+                        [
+                            'id' => 6,
+                            'name' => 'Stripe',
+                            'type' => 'Technology',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Payment processing and financial infrastructure.',
+                            'tags' => ['Payments', 'Billing'],
+                            'featured' => false,
+                            'link' => '/partners/stripe'
+                        ],
+                        [
+                            'id' => 7,
+                            'name' => 'DHL',
+                            'type' => 'Logistics',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'International shipping and courier services.',
+                            'tags' => ['International', 'Shipping'],
+                            'featured' => false,
+                            'link' => '/partners/dhl'
+                        ],
+                        [
+                            'id' => 8,
+                            'name' => 'McKinsey',
+                            'type' => 'Consulting',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Global management consulting firm.',
+                            'tags' => ['Strategy', 'Operations'],
+                            'featured' => false,
+                            'link' => '/partners/mckinsey'
+                        ]
+                    ],
+                    'programCta' => [
+                        'show' => true,
+                        'title' => 'Become a Partner',
+                        'description' => 'Join our partner ecosystem and help businesses transform their supply chain operations.',
+                        'primaryButton' => [
+                            'text' => 'Apply Now',
+                            'url' => '/become-a-partner'
+                        ],
+                        'secondaryButton' => [
+                            'text' => 'Contact Partnership Team',
+                            'url' => '/contact?type=partnership'
+                        ],
+                        'benefits' => [
+                            'Access to partner portal and resources',
+                            'Co-marketing opportunities',
+                            'Technical training and certification',
+                            'Priority support and dedicated account manager'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 59,
+                'section_key' => 'partner',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'PARTNER ECOSYSTEM'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Our',
+                        'highlightedText' => 'Global Partner',
+                        'suffix' => 'Network'
+                    ],
+                    'description' => 'Collaborating with industry leaders to deliver exceptional value to our customers.',
+                    'pagination' => [
+                        'perPage' => 6
+                    ],
+                    'featured' => [
+                        'show' => true,
+                        'name' => 'Shopify Plus',
+                        'type' => 'Technology',
+                        'tier' => 'Platinum',
+                        'region' => 'Global',
+                        'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=150&h=150&fit=crop',
+                        'description' => 'Strategic partnership enabling seamless e-commerce and logistics integration for enterprise merchants.',
+                        'metrics' => [
+                            ['value' => '500+', 'label' => 'Joint Customers'],
+                            ['value' => '2M+', 'label' => 'Orders Processed'],
+                            ['value' => '99.9%', 'label' => 'Uptime'],
+                            ['value' => '40%', 'label' => 'Faster Integration']
+                        ],
+                        'link' => '/partners/shopify'
+                    ],
+                    'partners' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Salesforce',
+                            'type' => 'Technology',
+                            'tier' => 'Gold',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Enterprise CRM platform for customer relationship management.',
+                            'tags' => ['CRM', 'Sales'],
+                            'link' => '/partners/salesforce'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'FedEx',
+                            'type' => 'Logistics',
+                            'tier' => 'Platinum',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Global shipping and logistics services provider.',
+                            'tags' => ['Shipping', 'Delivery'],
+                            'link' => '/partners/fedex'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'AWS',
+                            'type' => 'Technology',
+                            'tier' => 'Strategic',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Cloud infrastructure and hosting services.',
+                            'tags' => ['Cloud', 'Infrastructure'],
+                            'link' => '/partners/aws'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'Deloitte',
+                            'type' => 'Consulting',
+                            'tier' => 'Gold',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Global consulting and professional services firm.',
+                            'tags' => ['Consulting', 'Strategy'],
+                            'link' => '/partners/deloitte'
+                        ],
+                        [
+                            'id' => 5,
+                            'name' => 'Stripe',
+                            'type' => 'Technology',
+                            'tier' => 'Silver',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'Payment processing and financial infrastructure.',
+                            'tags' => ['Payments', 'Billing'],
+                            'link' => '/partners/stripe'
+                        ],
+                        [
+                            'id' => 6,
+                            'name' => 'DHL',
+                            'type' => 'Logistics',
+                            'tier' => 'Gold',
+                            'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop',
+                            'description' => 'International shipping and courier services.',
+                            'tags' => ['International', 'Shipping'],
+                            'link' => '/partners/dhl'
+                        ]
+                    ],
+                    'testimonial' => [
+                        'show' => true,
+                        'partner' => 'Shopify',
+                        'author' => 'John Smith, Partnership Director',
+                        'logo' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=50&h=50&fit=crop',
+                        'quote' => 'Sazzad has been an incredible partner. Their platform integrates seamlessly with ours and their team is always responsive.',
+                        'rating' => 5
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'Explore All Partners',
+                        'url' => '/partners'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 60,
+                'section_key' => 'partner',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
