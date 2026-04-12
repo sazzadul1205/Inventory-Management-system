@@ -1995,6 +1995,866 @@ class HomePageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Testimonials Section
+            [
+                'id' => 25,
+                'section_key' => 'testimonials',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'CLIENT TESTIMONIALS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'What Our',
+                        'highlightedText' => 'Clients Say',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Don\'t just take our word for it. Here\'s what our customers have to say about their experience.',
+                    'categories' => [
+                        ['id' => 'ecommerce', 'name' => 'E-Commerce'],
+                        ['id' => 'manufacturing', 'name' => 'Manufacturing'],
+                        ['id' => 'logistics', 'name' => 'Logistics']
+                    ],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'authorName' => 'Sarah Johnson',
+                            'authorTitle' => 'Supply Chain Director',
+                            'companyName' => 'TechLogix',
+                            'companyInitials' => 'TL',
+                            'industry' => 'E-Commerce',
+                            'location' => 'San Francisco, CA',
+                            'category' => 'ecommerce',
+                            'rating' => 5,
+                            'testimonial' => 'This platform transformed our inventory management. We\'ve seen a 40% reduction in stockouts and our fulfillment accuracy is now 99.9%. The real-time tracking feature alone saved us countless hours.',
+                            'keyBenefit' => '40% reduction in stockouts',
+                            'date' => 'March 15, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'authorName' => 'Michael Chen',
+                            'authorTitle' => 'Operations Manager',
+                            'companyName' => 'AutoParts Global',
+                            'companyInitials' => 'AP',
+                            'industry' => 'Automotive',
+                            'location' => 'Detroit, MI',
+                            'category' => 'manufacturing',
+                            'rating' => 5,
+                            'testimonial' => 'The automated reordering system has been a game-changer. We reduced our inventory carrying costs by 30% and improved our delivery times significantly. The team\'s support has been exceptional.',
+                            'keyBenefit' => '30% cost reduction',
+                            'date' => 'February 28, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'authorName' => 'Emily Rodriguez',
+                            'authorTitle' => 'Logistics Director',
+                            'companyName' => 'FreshFoods Co',
+                            'companyInitials' => 'FF',
+                            'industry' => 'Food & Beverage',
+                            'location' => 'Chicago, IL',
+                            'category' => 'logistics',
+                            'rating' => 4,
+                            'testimonial' => 'The cold chain monitoring feature gave us peace of mind. We\'ve reduced product waste by 50% and achieved 100% FDA compliance. The real-time alerts are invaluable.',
+                            'keyBenefit' => '50% less waste',
+                            'date' => 'January 10, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop'
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Read More Testimonials',
+                        'url' => '/testimonials',
+                        'ariaLabel' => 'View all client testimonials'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 26,
+                'section_key' => 'testimonials',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'CLIENT TESTIMONIALS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'What Our',
+                        'highlightedText' => 'Clients Say',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Don\'t just take our word for it. Here\'s what our customers have to say about their experience.',
+                    'categories' => [
+                        ['id' => 'ecommerce', 'name' => 'E-Commerce'],
+                        ['id' => 'manufacturing', 'name' => 'Manufacturing'],
+                        ['id' => 'logistics', 'name' => 'Logistics']
+                    ],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'authorName' => 'Sarah Johnson',
+                            'authorTitle' => 'Supply Chain Director',
+                            'companyName' => 'TechLogix',
+                            'companyInitials' => 'TL',
+                            'industry' => 'E-Commerce',
+                            'location' => 'San Francisco, CA',
+                            'category' => 'ecommerce',
+                            'rating' => 5,
+                            'testimonial' => 'This platform transformed our inventory management. We\'ve seen a 40% reduction in stockouts and our fulfillment accuracy is now 99.9%. The real-time tracking feature alone saved us countless hours.',
+                            'keyBenefit' => '40% reduction in stockouts',
+                            'date' => 'March 15, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'authorName' => 'Michael Chen',
+                            'authorTitle' => 'Operations Manager',
+                            'companyName' => 'AutoParts Global',
+                            'companyInitials' => 'AP',
+                            'industry' => 'Automotive',
+                            'location' => 'Detroit, MI',
+                            'category' => 'manufacturing',
+                            'rating' => 5,
+                            'testimonial' => 'The automated reordering system has been a game-changer. We reduced our inventory carrying costs by 30% and improved our delivery times significantly. The team\'s support has been exceptional.',
+                            'keyBenefit' => '30% cost reduction',
+                            'date' => 'February 28, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'authorName' => 'Emily Rodriguez',
+                            'authorTitle' => 'Logistics Director',
+                            'companyName' => 'FreshFoods Co',
+                            'companyInitials' => 'FF',
+                            'industry' => 'Food & Beverage',
+                            'location' => 'Chicago, IL',
+                            'category' => 'logistics',
+                            'rating' => 4,
+                            'testimonial' => 'The cold chain monitoring feature gave us peace of mind. We\'ve reduced product waste by 50% and achieved 100% FDA compliance. The real-time alerts are invaluable.',
+                            'keyBenefit' => '50% less waste',
+                            'date' => 'January 10, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop'
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Read More Testimonials',
+                        'url' => '/testimonials',
+                        'ariaLabel' => 'View all client testimonials'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 27,
+                'section_key' => 'testimonials',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'CUSTOMER STORIES'
+                    ],
+                    'heading' => [
+                        'line1' => 'Trusted by',
+                        'highlighted' => '5000+ Businesses'
+                    ],
+                    'description' => 'Don\'t just take our word for it. Here\'s what our customers have to say about their experience.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients'],
+                            ['value' => '98%', 'label' => 'Satisfaction Rate'],
+                            ['value' => '50M+', 'label' => 'Orders Processed'],
+                            ['value' => '24/7', 'label' => 'Support Available']
+                        ]
+                    ],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'authorName' => 'Sarah Johnson',
+                            'authorTitle' => 'Supply Chain Director',
+                            'companyName' => 'TechLogix Solutions',
+                            'companyInitials' => 'TL',
+                            'location' => 'San Francisco, CA',
+                            'rating' => 5,
+                            'testimonial' => 'This platform transformed our inventory management. We\'ve seen a 40% reduction in stockouts and our fulfillment accuracy is now 99.9%. The real-time tracking feature alone saved us countless hours of manual work.',
+                            'date' => 'March 15, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'authorName' => 'Michael Chen',
+                            'authorTitle' => 'Operations Manager',
+                            'companyName' => 'AutoParts Global',
+                            'companyInitials' => 'AP',
+                            'location' => 'Detroit, MI',
+                            'rating' => 5,
+                            'testimonial' => 'The automated reordering system has been a game-changer. We reduced our inventory carrying costs by 30% and improved delivery times significantly. Exceptional support team!',
+                            'date' => 'February 28, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'authorName' => 'Emily Rodriguez',
+                            'authorTitle' => 'Logistics Director',
+                            'companyName' => 'FreshFoods Co',
+                            'companyInitials' => 'FF',
+                            'location' => 'Chicago, IL',
+                            'rating' => 4,
+                            'testimonial' => 'The cold chain monitoring feature gave us peace of mind. We\'ve reduced product waste by 50% and achieved 100% FDA compliance. The real-time alerts are invaluable.',
+                            'date' => 'January 10, 2024',
+                            'authorImage' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'authorName' => 'David Kim',
+                            'authorTitle' => 'CEO',
+                            'companyName' => 'MedSupply Inc',
+                            'companyInitials' => 'MS',
+                            'location' => 'Boston, MA',
+                            'rating' => 5,
+                            'testimonial' => 'Implementing this solution was the best decision we made this year. Our supply chain visibility is now unmatched, and our customers love the real-time tracking.',
+                            'date' => 'December 5, 2023',
+                            'authorImage' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop'
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Read More Testimonials',
+                        'url' => '/testimonials',
+                        'ariaLabel' => 'View all customer testimonials'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 28,
+                'section_key' => 'testimonials',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Pricing Plans Section
+            [
+                'id' => 29,
+                'section_key' => 'pricingPlans',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'PRICING PLANS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Simple, Transparent',
+                        'highlightedText' => 'Pricing',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Choose the perfect plan for your business needs. No hidden fees, no surprises.',
+                    'saveBadge' => [
+                        'text' => 'Save 20%'
+                    ],
+                    'plans' => [
+                        [
+                            'id' => 'starter',
+                            'name' => 'Starter',
+                            'description' => 'Perfect for small businesses',
+                            'priceMonthly' => 29,
+                            'priceAnnual' => 290,
+                            'popular' => false,
+                            'ctaText' => 'Get Started',
+                            'features' => [
+                                ['text' => 'Up to 1,000 orders/month', 'included' => true],
+                                ['text' => 'Basic inventory tracking', 'included' => true],
+                                ['text' => 'Email support', 'included' => true],
+                                ['text' => 'Real-time analytics', 'included' => false],
+                                ['text' => 'API access', 'included' => false],
+                                ['text' => 'Dedicated account manager', 'included' => false]
+                            ]
+                        ],
+                        [
+                            'id' => 'professional',
+                            'name' => 'Professional',
+                            'description' => 'Best for growing businesses',
+                            'priceMonthly' => 79,
+                            'priceAnnual' => 790,
+                            'popular' => true,
+                            'ctaText' => 'Get Started',
+                            'features' => [
+                                ['text' => 'Up to 10,000 orders/month', 'included' => true],
+                                ['text' => 'Advanced inventory tracking', 'included' => true],
+                                ['text' => 'Priority email & chat support', 'included' => true],
+                                ['text' => 'Real-time analytics', 'included' => true],
+                                ['text' => 'API access', 'included' => true],
+                                ['text' => 'Dedicated account manager', 'included' => false]
+                            ]
+                        ],
+                        [
+                            'id' => 'business',
+                            'name' => 'Business',
+                            'description' => 'For scaling enterprises',
+                            'priceMonthly' => 199,
+                            'priceAnnual' => 1990,
+                            'popular' => false,
+                            'ctaText' => 'Get Started',
+                            'features' => [
+                                ['text' => 'Up to 50,000 orders/month', 'included' => true],
+                                ['text' => 'Advanced inventory tracking', 'included' => true],
+                                ['text' => '24/7 phone & chat support', 'included' => true],
+                                ['text' => 'Real-time analytics + forecasting', 'included' => true],
+                                ['text' => 'Full API access', 'included' => true],
+                                ['text' => 'Dedicated account manager', 'included' => true]
+                            ]
+                        ],
+                        [
+                            'id' => 'enterprise',
+                            'name' => 'Enterprise',
+                            'description' => 'Custom solutions',
+                            'priceMonthly' => null,
+                            'priceAnnual' => null,
+                            'popular' => false,
+                            'ctaText' => 'Contact Sales',
+                            'features' => [
+                                ['text' => 'Unlimited orders', 'included' => true],
+                                ['text' => 'Custom inventory solutions', 'included' => true],
+                                ['text' => '24/7 priority support', 'included' => true],
+                                ['text' => 'Custom analytics & reporting', 'included' => true],
+                                ['text' => 'Full API access + webhooks', 'included' => true],
+                                ['text' => 'Dedicated success team', 'included' => true]
+                            ]
+                        ]
+                    ],
+                    'enterprise' => [
+                        'show' => true,
+                        'title' => 'Need a Custom Solution?',
+                        'description' => 'Get tailored pricing and features for your specific business requirements.',
+                        'features' => [
+                            'Custom integrations with your existing systems',
+                            'SLA guarantees with 99.9% uptime',
+                            'On-premise deployment options',
+                            'Dedicated support team and training'
+                        ],
+                        'logos' => ['Company A', 'Company B', 'Company C', 'Company D'],
+                        'link' => '/contact',
+                        'linkText' => 'Contact our sales team'
+                    ],
+                    'faqLink' => [
+                        'show' => true,
+                        'text' => 'Have questions about pricing?',
+                        'linkText' => 'Visit our FAQ',
+                        'url' => '/faq'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 30,
+                'section_key' => 'pricingPlans',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'SIMPLE PRICING'
+                    ],
+                    'heading' => [
+                        'line1' => 'Choose the',
+                        'highlighted' => 'Perfect Plan'
+                    ],
+                    'description' => 'Flexible pricing options for businesses of all sizes. Start with a free trial, no credit card required.',
+                    'saveBadge' => [
+                        'text' => 'Save up to 20% with annual billing'
+                    ],
+                    'plans' => [
+                        [
+                            'id' => 'starter',
+                            'name' => 'Starter',
+                            'description' => 'For small businesses',
+                            'priceMonthly' => 29,
+                            'priceAnnual' => 290,
+                            'popular' => false,
+                            'trial' => '14-day free trial',
+                            'guarantee' => '30-day money back guarantee',
+                            'ctaText' => 'Start Free Trial',
+                            'link' => '/signup',
+                            'features' => [
+                                ['text' => 'Up to 1,000 orders/month', 'included' => true],
+                                ['text' => 'Basic inventory tracking', 'included' => true],
+                                ['text' => 'Email support', 'included' => true],
+                                ['text' => 'Real-time analytics', 'included' => false],
+                                ['text' => 'API access', 'included' => false, 'tooltip' => 'Available on higher plans'],
+                                ['text' => 'Dedicated support', 'included' => false]
+                            ]
+                        ],
+                        [
+                            'id' => 'professional',
+                            'name' => 'Professional',
+                            'description' => 'For growing businesses',
+                            'priceMonthly' => 79,
+                            'priceAnnual' => 790,
+                            'popular' => true,
+                            'trial' => '14-day free trial',
+                            'guarantee' => '30-day money back guarantee',
+                            'ctaText' => 'Start Free Trial',
+                            'link' => '/signup',
+                            'features' => [
+                                ['text' => 'Up to 10,000 orders/month', 'included' => true],
+                                ['text' => 'Advanced inventory tracking', 'included' => true],
+                                ['text' => 'Priority email & chat support', 'included' => true],
+                                ['text' => 'Real-time analytics', 'included' => true],
+                                ['text' => 'API access', 'included' => true],
+                                ['text' => 'Dedicated support', 'included' => false, 'tooltip' => 'Upgrade to Business']
+                            ]
+                        ],
+                        [
+                            'id' => 'business',
+                            'name' => 'Business',
+                            'description' => 'For large enterprises',
+                            'priceMonthly' => 199,
+                            'priceAnnual' => 1990,
+                            'popular' => false,
+                            'trial' => '14-day free trial',
+                            'guarantee' => '30-day money back guarantee',
+                            'ctaText' => 'Contact Sales',
+                            'link' => '/contact',
+                            'features' => [
+                                ['text' => 'Unlimited orders', 'included' => true],
+                                ['text' => 'Enterprise inventory suite', 'included' => true],
+                                ['text' => '24/7 phone & chat support', 'included' => true],
+                                ['text' => 'Advanced analytics + AI', 'included' => true],
+                                ['text' => 'Full API + webhooks', 'included' => true],
+                                ['text' => 'Dedicated account manager', 'included' => true]
+                            ]
+                        ]
+                    ],
+                    'comparison' => [
+                        'show' => true,
+                        'title' => 'Feature Comparison',
+                        'features' => [
+                            ['name' => 'Orders per month', 'values' => ['1,000', '10,000', 'Unlimited']],
+                            ['name' => 'Inventory tracking', 'values' => ['Basic', 'Advanced', 'Enterprise']],
+                            ['name' => 'Support', 'values' => ['Email', 'Priority Chat', '24/7 Phone']],
+                            ['name' => 'Analytics', 'values' => [false, true, 'Advanced + AI']],
+                            ['name' => 'API Access', 'values' => [false, true, 'Full + Webhooks']],
+                            ['name' => 'Dedicated Manager', 'values' => [false, false, true]]
+                        ]
+                    ],
+                    'guarantee' => [
+                        'show' => true,
+                        'text' => '30-day money-back guarantee. No questions asked.'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 31,
+                'section_key' => 'pricingPlans',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'PRICING PLANS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Simple, Transparent',
+                        'highlightedText' => 'Pricing',
+                        'suffix' => 'for Every Business'
+                    ],
+                    'description' => 'Choose the plan that fits your needs. All plans include a 14-day free trial.',
+                    'saveBadge' => [
+                        'text' => 'Save 20%'
+                    ],
+                    'plans' => [
+                        [
+                            'id' => 'starter',
+                            'name' => 'Starter',
+                            'description' => 'Perfect for small businesses',
+                            'icon' => 'starter',
+                            'priceMonthly' => 29,
+                            'priceAnnual' => 290,
+                            'popular' => false,
+                            'trial' => '14-day free trial',
+                            'ctaText' => 'Start Free Trial',
+                            'link' => '/signup',
+                            'features' => [
+                                ['text' => 'Up to 1,000 orders/month', 'included' => true],
+                                ['text' => 'Basic inventory tracking', 'included' => true],
+                                ['text' => 'Email support', 'included' => true],
+                                ['text' => 'Real-time analytics', 'included' => false],
+                                ['text' => 'API access', 'included' => false],
+                                ['text' => 'Dedicated account manager', 'included' => false]
+                            ]
+                        ],
+                        [
+                            'id' => 'professional',
+                            'name' => 'Professional',
+                            'description' => 'Best for growing businesses',
+                            'icon' => 'professional',
+                            'priceMonthly' => 79,
+                            'priceAnnual' => 790,
+                            'popular' => true,
+                            'trial' => '14-day free trial',
+                            'ctaText' => 'Start Free Trial',
+                            'link' => '/signup',
+                            'features' => [
+                                ['text' => 'Up to 10,000 orders/month', 'included' => true],
+                                ['text' => 'Advanced inventory tracking', 'included' => true],
+                                ['text' => 'Priority email & chat support', 'included' => true],
+                                ['text' => 'Real-time analytics + reports', 'included' => true],
+                                ['text' => 'API access', 'included' => true],
+                                ['text' => 'Dedicated account manager', 'included' => false]
+                            ]
+                        ],
+                        [
+                            'id' => 'business',
+                            'name' => 'Business',
+                            'description' => 'For large enterprises',
+                            'icon' => 'business',
+                            'priceMonthly' => 199,
+                            'priceAnnual' => 1990,
+                            'popular' => false,
+                            'trial' => '14-day free trial',
+                            'ctaText' => 'Contact Sales',
+                            'link' => '/contact',
+                            'features' => [
+                                ['text' => 'Unlimited orders', 'included' => true],
+                                ['text' => 'Enterprise inventory suite', 'included' => true],
+                                ['text' => '24/7 phone & chat support', 'included' => true],
+                                ['text' => 'Advanced analytics + AI', 'included' => true],
+                                ['text' => 'Full API + webhooks', 'included' => true],
+                                ['text' => 'Dedicated success team', 'included' => true]
+                            ]
+                        ]
+                    ],
+                    'enterprise' => [
+                        'show' => true,
+                        'title' => 'Need a Custom Solution?',
+                        'description' => 'Get tailored pricing and features for your specific business requirements.',
+                        'linkText' => 'Contact Our Sales Team',
+                        'link' => '/contact'
+                    ],
+                    'guarantee' => [
+                        'show' => true,
+                        'text' => '30-day money-back guarantee. No questions asked.'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 32,
+                'section_key' => 'pricingPlans',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // FAQ Section
+            [
+                'id' => 33,
+                'section_key' => 'faq',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'FAQ'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Frequently Asked',
+                        'highlightedText' => 'Questions',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Find answers to common questions about our platform, pricing, and services.',
+                    'search' => [
+                        'show' => true,
+                        'placeholder' => 'Search FAQs...'
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General'],
+                        ['id' => 'pricing', 'name' => 'Pricing'],
+                        ['id' => 'technical', 'name' => 'Technical'],
+                        ['id' => 'account', 'name' => 'Account']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 1,
+                            'question' => 'What is your platform?',
+                            'answer' => 'Our platform is a comprehensive inventory management and logistics solution that helps businesses track stock, manage orders, and optimize their supply chain in real-time.',
+                            'category' => 'general'
+                        ],
+                        [
+                            'id' => 2,
+                            'question' => 'How much does it cost?',
+                            'answer' => 'We offer flexible pricing plans starting at $29/month for small businesses. Visit our pricing page for detailed information about all plans and features.',
+                            'category' => 'pricing',
+                            'link' => '/pricing',
+                            'linkText' => 'View pricing plans'
+                        ],
+                        [
+                            'id' => 3,
+                            'question' => 'Is there a free trial?',
+                            'answer' => 'Yes, we offer a 14-day free trial on all our plans. No credit card required to start your trial.',
+                            'category' => 'pricing'
+                        ],
+                        [
+                            'id' => 4,
+                            'question' => 'Can I cancel anytime?',
+                            'answer' => 'Absolutely! You can cancel your subscription at any time with no hidden fees or long-term contracts.',
+                            'category' => 'account'
+                        ],
+                        [
+                            'id' => 5,
+                            'question' => 'What kind of support do you offer?',
+                            'answer' => 'We offer 24/7 email and chat support for all plans. Professional and Business plans include priority phone support and dedicated account managers.',
+                            'category' => 'technical'
+                        ],
+                        [
+                            'id' => 6,
+                            'question' => 'Is my data secure?',
+                            'answer' => 'Yes, we use bank-level 256-bit encryption and are SOC2 Type II compliant. Your data is always secure with us.',
+                            'category' => 'technical'
+                        ]
+                    ],
+                    'contact' => [
+                        'show' => true,
+                        'title' => 'Still have questions?',
+                        'description' => 'Can\'t find the answer you\'re looking for? Please chat with our friendly team.',
+                        'email' => 'support@example.com',
+                        'phone' => '+1 (555) 123-4567',
+                        'chat' => true,
+                        'responseTime' => 'Typically responds within 5 minutes'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 34,
+                'section_key' => 'faq',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'FAQ'
+                    ],
+                    'heading' => [
+                        'line1' => 'Got Questions?',
+                        'highlighted' => 'We\'ve Got Answers'
+                    ],
+                    'description' => 'Find answers to common questions about our platform, features, and services.',
+                    'search' => [
+                        'show' => true,
+                        'placeholder' => 'Search FAQs...'
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'general'],
+                        ['id' => 'account', 'name' => 'Account', 'icon' => 'account'],
+                        ['id' => 'features', 'name' => 'Features', 'icon' => 'features'],
+                        ['id' => 'support', 'name' => 'Support', 'icon' => 'support'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'billing'],
+                        ['id' => 'tutorial', 'name' => 'Tutorials', 'icon' => 'tutorial']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 1,
+                            'question' => 'What is your platform?',
+                            'answer' => 'Our platform is a comprehensive inventory management and logistics solution that helps businesses track stock, manage orders, and optimize supply chains in real-time.',
+                            'category' => 'general'
+                        ],
+                        [
+                            'id' => 2,
+                            'question' => 'How do I create an account?',
+                            'answer' => 'Click the \'Sign Up\' button on our homepage, fill in your details, and follow the verification steps. It takes less than 5 minutes.',
+                            'category' => 'account'
+                        ],
+                        [
+                            'id' => 3,
+                            'question' => 'What features are included?',
+                            'answer' => 'Features include real-time tracking, automated reordering, multi-warehouse support, barcode scanning, analytics dashboard, and API access.',
+                            'category' => 'features'
+                        ],
+                        [
+                            'id' => 4,
+                            'question' => 'Is there a free trial?',
+                            'answer' => 'Yes, we offer a 14-day free trial on all plans. No credit card required to start.',
+                            'category' => 'billing'
+                        ],
+                        [
+                            'id' => 5,
+                            'question' => 'What kind of support do you offer?',
+                            'answer' => 'We offer 24/7 email and chat support. Professional and Business plans include priority phone support.',
+                            'category' => 'support'
+                        ],
+                        [
+                            'id' => 6,
+                            'question' => 'Can I cancel anytime?',
+                            'answer' => 'Yes, you can cancel your subscription at any time with no hidden fees or long-term contracts.',
+                            'category' => 'billing'
+                        ],
+                        [
+                            'id' => 7,
+                            'question' => 'How do I get started?',
+                            'answer' => 'Sign up for a free trial, complete the onboarding process, and our team will guide you through setup.',
+                            'category' => 'tutorial'
+                        ],
+                        [
+                            'id' => 8,
+                            'question' => 'Is my data secure?',
+                            'answer' => 'Yes, we use bank-level 256-bit encryption and are SOC2 Type II compliant.',
+                            'category' => 'security'
+                        ]
+                    ],
+                    'helpCenter' => [
+                        'show' => true,
+                        'text' => 'Visit our Help Center for detailed guides',
+                        'url' => '/help'
+                    ],
+                    'contact' => [
+                        'show' => true,
+                        'email' => 'support@example.com',
+                        'emailResponseTime' => 'Response within 24 hours',
+                        'phone' => '+1 (555) 123-4567',
+                        'phoneHours' => 'Mon-Fri, 9am-6pm EST',
+                        'chat' => true,
+                        'chatHours' => '24/7 Live Support'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 35,
+                'section_key' => 'faq',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'FAQ'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Frequently Asked',
+                        'highlightedText' => 'Questions',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Find answers to common questions about our platform, features, and services.',
+                    'search' => [
+                        'show' => true,
+                        'placeholder' => 'Search FAQs...',
+                        'popularSearches' => ['pricing', 'free trial', 'integration', 'API', 'security']
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'general'],
+                        ['id' => 'account', 'name' => 'Account', 'icon' => 'account'],
+                        ['id' => 'features', 'name' => 'Features', 'icon' => 'features'],
+                        ['id' => 'support', 'name' => 'Support', 'icon' => 'support'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'billing'],
+                        ['id' => 'tutorial', 'name' => 'Tutorials', 'icon' => 'tutorial']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 1,
+                            'question' => 'What is your platform?',
+                            'answer' => 'Our platform is a comprehensive inventory management and logistics solution that helps businesses track stock, manage orders, and optimize supply chains in real-time.',
+                            'category' => 'general',
+                            'categoryName' => 'General',
+                            'relatedLinks' => [
+                                ['text' => 'Platform Overview', 'url' => '/features'],
+                                ['text' => 'Getting Started Guide', 'url' => '/docs/getting-started']
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'question' => 'How do I create an account?',
+                            'answer' => 'Click the \'Sign Up\' button on our homepage, fill in your details, and follow the verification steps. It takes less than 5 minutes.',
+                            'category' => 'account',
+                            'categoryName' => 'Account',
+                            'videoUrl' => 'https://youtube.com/watch?v=example'
+                        ],
+                        [
+                            'id' => 3,
+                            'question' => 'What features are included?',
+                            'answer' => 'Features include real-time tracking, automated reordering, multi-warehouse support, barcode scanning, analytics dashboard, and API access.',
+                            'category' => 'features',
+                            'categoryName' => 'Features',
+                            'relatedLinks' => [
+                                ['text' => 'All Features', 'url' => '/features'],
+                                ['text' => 'API Documentation', 'url' => '/docs/api']
+                            ]
+                        ],
+                        [
+                            'id' => 4,
+                            'question' => 'Is there a free trial?',
+                            'answer' => 'Yes, we offer a 14-day free trial on all plans. No credit card required to start.',
+                            'category' => 'billing',
+                            'categoryName' => 'Billing'
+                        ],
+                        [
+                            'id' => 5,
+                            'question' => 'What kind of support do you offer?',
+                            'answer' => 'We offer 24/7 email and chat support. Professional and Business plans include priority phone support.',
+                            'category' => 'support',
+                            'categoryName' => 'Support'
+                        ],
+                        [
+                            'id' => 6,
+                            'question' => 'Can I cancel anytime?',
+                            'answer' => 'Yes, you can cancel your subscription at any time with no hidden fees or long-term contracts.',
+                            'category' => 'billing',
+                            'categoryName' => 'Billing'
+                        ],
+                        [
+                            'id' => 7,
+                            'question' => 'How do I get started?',
+                            'answer' => 'Sign up for a free trial, complete the onboarding process, and our team will guide you through setup.',
+                            'category' => 'tutorial',
+                            'categoryName' => 'Tutorials',
+                            'videoUrl' => 'https://youtube.com/watch?v=example2'
+                        ],
+                        [
+                            'id' => 8,
+                            'question' => 'Is my data secure?',
+                            'answer' => 'Yes, we use bank-level 256-bit encryption and are SOC2 Type II compliant.',
+                            'category' => 'security',
+                            'categoryName' => 'Security',
+                            'relatedLinks' => [
+                                ['text' => 'Security Overview', 'url' => '/security'],
+                                ['text' => 'Privacy Policy', 'url' => '/privacy']
+                            ]
+                        ]
+                    ],
+                    'contact' => [
+                        'show' => true,
+                        'email' => 'support@example.com',
+                        'phone' => '+1 (555) 123-4567',
+                        'chat' => true,
+                        'responseTime' => 'Average response time: < 5 minutes'
+                    ],
+                    'feedback' => [
+                        'show' => true,
+                        'text' => 'Help us improve this page',
+                        'url' => '/feedback'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 36,
+                'section_key' => 'faq',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
