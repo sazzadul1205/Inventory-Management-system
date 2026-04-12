@@ -2855,6 +2855,981 @@ class HomePageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Contact Section
+            [
+                'id' => 37,
+                'section_key' => 'contact',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'GET IN TOUCH'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Let\'s Start a',
+                        'highlightedText' => 'Conversation',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Have questions about our platform? We\'re here to help. Reach out to us and we\'ll get back to you promptly.',
+                    'contactInfo' => [
+                        'email' => [
+                            'description' => 'Get back within 24 hours',
+                            'address' => 'support@inventorylogistics.com'
+                        ],
+                        'phone' => [
+                            'description' => 'Mon-Fri, 9am-6pm EST',
+                            'number' => '+1 (555) 123-4567'
+                        ],
+                        'office' => [
+                            'description' => 'Main office location',
+                            'address' => '123 Business Ave, Suite 100, New York, NY 10001',
+                            'image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop'
+                        ],
+                        'hours' => [
+                            ['day' => 'Monday - Friday', 'time' => '9:00 - 18:00'],
+                            ['day' => 'Saturday', 'time' => '10:00 - 14:00'],
+                            ['day' => 'Sunday', 'time' => 'Closed']
+                        ]
+                    ],
+                    'map' => [
+                        'show' => true,
+                        'embedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bbafd17%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1644262072188!5m2!1sen!2us'
+                    ],
+                    'form' => [
+                        'title' => 'Send Us a Message',
+                        'successMessage' => 'Thank you for your message! We\'ll get back to you soon.',
+                        'submitText' => 'Send Message',
+                        'privacyText' => 'By submitting this form, you agree to our ',
+                        'fields' => [
+                            'name' => [
+                                'label' => 'Your Name',
+                                'placeholder' => 'John Doe',
+                                'required' => true
+                            ],
+                            'email' => [
+                                'label' => 'Email Address',
+                                'placeholder' => 'john@company.com',
+                                'required' => true
+                            ],
+                            'company' => [
+                                'label' => 'Company Name',
+                                'placeholder' => 'Your Company',
+                                'required' => false
+                            ],
+                            'message' => [
+                                'label' => 'Your Message',
+                                'placeholder' => 'How can we help you?',
+                                'required' => true
+                            ]
+                        ]
+                    ],
+                    'links' => [
+                        'privacy' => '/privacy'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 38,
+                'section_key' => 'contact',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'GET IN TOUCH'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Let\'s Start a',
+                        'highlightedText' => 'Conversation',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Have questions about our platform? We\'re here to help. Reach out to us and we\'ll get back to you promptly.',
+                    'contactInfo' => [
+                        'email' => [
+                            'description' => 'Get back within 24 hours',
+                            'address' => 'support@inventorylogistics.com'
+                        ],
+                        'phone' => [
+                            'description' => 'Mon-Fri, 9am-6pm EST',
+                            'number' => '+1 (555) 123-4567'
+                        ],
+                        'office' => [
+                            'description' => 'Main office location',
+                            'address' => '123 Business Ave, Suite 100, New York, NY 10001',
+                            'image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop'
+                        ],
+                        'hours' => [
+                            ['day' => 'Monday - Friday', 'time' => '9:00 - 18:00'],
+                            ['day' => 'Saturday', 'time' => '10:00 - 14:00'],
+                            ['day' => 'Sunday', 'time' => 'Closed']
+                        ]
+                    ],
+                    'map' => [
+                        'show' => true,
+                        'embedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bbafd17%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1644262072188!5m2!1sen!2us'
+                    ],
+                    'form' => [
+                        'title' => 'Send Us a Message',
+                        'successMessage' => 'Thank you for your message! We\'ll get back to you soon.',
+                        'submitText' => 'Send Message',
+                        'privacyText' => 'By submitting this form, you agree to our ',
+                        'fields' => [
+                            'name' => [
+                                'label' => 'Your Name',
+                                'placeholder' => 'John Doe',
+                                'required' => true
+                            ],
+                            'email' => [
+                                'label' => 'Email Address',
+                                'placeholder' => 'john@company.com',
+                                'required' => true
+                            ],
+                            'company' => [
+                                'label' => 'Company Name',
+                                'placeholder' => 'Your Company',
+                                'required' => false
+                            ],
+                            'message' => [
+                                'label' => 'Your Message',
+                                'placeholder' => 'How can we help you?',
+                                'required' => true
+                            ]
+                        ]
+                    ],
+                    'links' => [
+                        'privacy' => '/privacy'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 39,
+                'section_key' => 'contact',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'CONTACT US'
+                    ],
+                    'heading' => [
+                        'prefix' => 'We\'re Here to',
+                        'highlightedText' => 'Help',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Have questions about our platform? Our team is ready to assist you.',
+                    'hero' => [
+                        'title' => 'We\'d Love to Hear From You',
+                        'subtitle' => 'Our team is ready to help with any questions you might have.',
+                        'responseTime' => 'Average response: 2 hours',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop'
+                    ],
+                    'contactInfo' => [
+                        'email' => 'support@inventorylogistics.com',
+                        'phone' => '+1 (555) 123-4567'
+                    ],
+                    'office' => [
+                        'address' => '123 Business Avenue, Suite 100, New York, NY 10001',
+                        'mapsUrl' => 'https://maps.google.com/?q=123+Business+Avenue+New+York+NY',
+                        'image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop'
+                    ],
+                    'officeHours' => [
+                        ['day' => 'Monday - Friday', 'time' => '9:00 - 18:00'],
+                        ['day' => 'Saturday', 'time' => '10:00 - 14:00'],
+                        ['day' => 'Sunday', 'time' => 'Closed']
+                    ],
+                    'map' => [
+                        'show' => true,
+                        'embedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bbafd17%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1644262072188!5m2!1sen!2us'
+                    ],
+                    'social' => [
+                        'show' => true,
+                        'links' => [
+                            ['label' => 'Facebook', 'url' => 'https://facebook.com', 'icon' => 'f'],
+                            ['label' => 'Twitter', 'url' => 'https://twitter.com', 'icon' => 't'],
+                            ['label' => 'LinkedIn', 'url' => 'https://linkedin.com', 'icon' => 'in'],
+                            ['label' => 'Instagram', 'url' => 'https://instagram.com', 'icon' => 'ig']
+                        ]
+                    ],
+                    'form' => [
+                        'successMessage' => 'Thank you for your message! We\'ll get back to you soon.'
+                    ],
+                    'links' => [
+                        'privacy' => '/privacy'
+                    ],
+                    'trustBadges' => [
+                        'show' => true
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 40,
+                'section_key' => 'contact',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // About Us Section
+            [
+                'id' => 41,
+                'section_key' => 'aboutUs',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'ABOUT US'
+                    ],
+                    'heading' => [
+                        'prefix' => 'We\'re',
+                        'highlightedText' => 'Transforming',
+                        'suffix' => 'Supply Chain Management'
+                    ],
+                    'description' => 'Learn about our mission, values, and the team behind our innovative logistics platform.',
+                    'image' => [
+                        'src' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
+                        'alt' => 'Our team collaborating'
+                    ],
+                    'experience' => [
+                        'show' => true,
+                        'years' => '10',
+                        'text' => 'Years of Excellence'
+                    ],
+                    'content' => [
+                        'title' => 'We\'re on a Mission to Transform Supply Chains',
+                        'paragraphs' => [
+                            'Founded in 2020, our platform has grown from a small team of logistics enthusiasts to a comprehensive solution serving businesses worldwide. Our journey began with a simple observation: supply chain management was too complex, too fragmented, and too inaccessible.',
+                            'Today, we\'re proud to serve over 5000 companies across 50+ industries, helping them streamline operations, reduce costs, and improve customer satisfaction.'
+                        ],
+                        'points' => [
+                            '5000+ satisfied customers',
+                            '99.9% uptime guarantee',
+                            '24/7 expert support',
+                            'Enterprise-grade security'
+                        ],
+                        'cta' => [
+                            'show' => true,
+                            'text' => 'Learn More About Us',
+                            'url' => '/about'
+                        ]
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients'],
+                            ['value' => '50M+', 'label' => 'Orders Processed'],
+                            ['value' => '98%', 'label' => 'Customer Satisfaction'],
+                            ['value' => '50+', 'label' => 'Countries Served']
+                        ]
+                    ],
+                    'values' => [
+                        'show' => true,
+                        'title' => 'Our Core Values',
+                        'items' => [
+                            [
+                                'title' => 'Innovation',
+                                'description' => 'Constantly pushing boundaries to deliver cutting-edge solutions.',
+                                'icon' => 'lightning'
+                            ],
+                            [
+                                'title' => 'Customer First',
+                                'description' => 'Our customers\' success is our top priority.',
+                                'icon' => 'heart'
+                            ],
+                            [
+                                'title' => 'Integrity',
+                                'description' => 'Transparent, honest, and ethical in everything we do.',
+                                'icon' => 'shield'
+                            ],
+                            [
+                                'title' => 'Excellence',
+                                'description' => 'Striving for the highest quality in all our services.',
+                                'icon' => 'star'
+                            ]
+                        ]
+                    ],
+                    'team' => [
+                        'show' => true,
+                        'title' => 'Meet Our Leadership Team',
+                        'description' => 'The passionate people behind our success',
+                        'members' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'position' => 'CEO & Founder',
+                                'image' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'position' => 'CTO',
+                                'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'position' => 'Head of Operations',
+                                'image' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'David Kim',
+                                'position' => 'Sales Director',
+                                'image' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Join Our Journey',
+                        'url' => '/contact',
+                        'ariaLabel' => 'Contact us to learn more'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 42,
+                'section_key' => 'aboutUs',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'ABOUT US'
+                    ],
+                    'heading' => [
+                        'line1' => 'We\'re',
+                        'highlighted' => 'Transforming Logistics'
+                    ],
+                    'description' => 'Learn about our journey, mission, and the team behind our innovative platform.',
+                    'video' => [
+                        'url' => 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                        'title' => 'About Our Company'
+                    ],
+                    'showcase' => [
+                        'show' => true,
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop',
+                        'alt' => 'Our team working together',
+                        'duration' => '2:30',
+                        'caption' => 'Watch our story in 2 minutes'
+                    ],
+                    'mission' => [
+                        'title' => 'Our Mission',
+                        'description' => 'To empower businesses of all sizes with intelligent, accessible supply chain solutions that drive efficiency, reduce costs, and foster sustainable growth.'
+                    ],
+                    'vision' => [
+                        'title' => 'Our Vision',
+                        'description' => 'To create a world where supply chain management is seamless, transparent, and accessible to every business, enabling them to focus on what they do best.'
+                    ],
+                    'timeline' => [
+                        'show' => true,
+                        'title' => 'Our Journey',
+                        'events' => [
+                            [
+                                'year' => '2020',
+                                'title' => 'Company Founded',
+                                'description' => 'Started with a vision to simplify supply chain management for businesses of all sizes.'
+                            ],
+                            [
+                                'year' => '2021',
+                                'title' => 'Platform Launch',
+                                'description' => 'Launched our first version of the inventory management platform.'
+                            ],
+                            [
+                                'year' => '2022',
+                                'title' => 'Global Expansion',
+                                'description' => 'Expanded operations to serve customers in 50+ countries worldwide.'
+                            ],
+                            [
+                                'year' => '2023',
+                                'title' => '5000+ Customers',
+                                'description' => 'Reached milestone of serving over 5000 satisfied businesses globally.'
+                            ]
+                        ]
+                    ],
+                    'values' => [
+                        'show' => true,
+                        'title' => 'What Drives Us',
+                        'description' => 'The principles that guide everything we do',
+                        'items' => [
+                            [
+                                'title' => 'Innovation',
+                                'icon' => 'lightning',
+                                'description' => 'We constantly push boundaries to deliver cutting-edge solutions that solve real-world problems.',
+                                'points' => [
+                                    'Continuous product improvement',
+                                    'Embracing new technologies',
+                                    'Customer-driven innovation'
+                                ]
+                            ],
+                            [
+                                'title' => 'Customer First',
+                                'icon' => 'heart',
+                                'description' => 'Our customers\' success is our top priority in everything we do.',
+                                'points' => [
+                                    '24/7 dedicated support',
+                                    'Regular feedback sessions',
+                                    'Tailored solutions'
+                                ]
+                            ],
+                            [
+                                'title' => 'Integrity',
+                                'icon' => 'shield',
+                                'description' => 'We operate with transparency, honesty, and ethical practices at all times.',
+                                'points' => [
+                                    'Transparent pricing',
+                                    'Data privacy protection',
+                                    'Honest communication'
+                                ]
+                            ],
+                            [
+                                'title' => 'Excellence',
+                                'icon' => 'star',
+                                'description' => 'We strive for the highest quality in all our services and products.',
+                                'points' => [
+                                    'Rigorous testing standards',
+                                    'Continuous improvement',
+                                    'Quality certifications'
+                                ]
+                            ]
+                        ]
+                    ],
+                    'team' => [
+                        'show' => true,
+                        'title' => 'Meet Our Leadership',
+                        'description' => 'Experienced leaders dedicated to your success',
+                        'members' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'position' => 'CEO & Founder',
+                                'image' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'position' => 'CTO',
+                                'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'position' => 'Head of Operations',
+                                'image' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'David Kim',
+                                'position' => 'Sales Director',
+                                'image' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients', 'icon' => 'users'],
+                            ['value' => '50M+', 'label' => 'Orders Processed', 'icon' => 'cube'],
+                            ['value' => '98%', 'label' => 'Satisfaction', 'icon' => 'star'],
+                            ['value' => '50+', 'label' => 'Countries', 'icon' => 'globe']
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Join Our Journey',
+                        'url' => '/contact',
+                        'ariaLabel' => 'Contact us to learn more'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 43,
+                'section_key' => 'aboutUs',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'ABOUT US'
+                    ],
+                    'heading' => [
+                        'prefix' => 'We\'re on a',
+                        'highlightedText' => 'Mission',
+                        'suffix' => 'to Transform Logistics'
+                    ],
+                    'description' => 'Learn about our journey, values, and the team behind our innovative platform.',
+                    'hero' => [
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop',
+                        'alt' => 'Our team working together',
+                        'title' => 'We\'re on a Mission',
+                        'subtitle' => 'To transform supply chain management for businesses worldwide'
+                    ],
+                    'floatingStats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients'],
+                            ['value' => '50M+', 'label' => 'Orders Processed'],
+                            ['value' => '98%', 'label' => 'Satisfaction'],
+                            ['value' => '24/7', 'label' => 'Support']
+                        ]
+                    ],
+                    'story' => [
+                        'badge' => 'OUR STORY',
+                        'title' => 'From a Simple Idea to a Global Platform',
+                        'paragraphs' => [
+                            'Founded in 2020, our platform began with a simple observation: supply chain management was too complex and inaccessible for many businesses.',
+                            'What started as a small project has grown into a comprehensive platform serving over 5000 companies across 50+ countries. Today, we\'re proud to help businesses of all sizes streamline their operations and achieve their goals.'
+                        ],
+                        'quote' => [
+                            'text' => 'We believe that every business deserves access to powerful, easy-to-use supply chain tools. That\'s why we built this platform.',
+                            'author' => 'Sarah Johnson',
+                            'position' => 'CEO & Co-founder'
+                        ],
+                        'images' => [
+                            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+                            'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop',
+                            'https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'mission' => [
+                        'title' => 'Our Mission',
+                        'description' => 'To empower businesses with intelligent supply chain solutions that drive efficiency, reduce costs, and foster sustainable growth.'
+                    ],
+                    'vision' => [
+                        'title' => 'Our Vision',
+                        'description' => 'To create a world where supply chain management is seamless, transparent, and accessible to every business.'
+                    ],
+                    'valuesCard' => [
+                        'title' => 'Our Values',
+                        'description' => 'Excellence, innovation, customer-first, and teamwork guide everything we do.'
+                    ],
+                    'timeline' => [
+                        'show' => true,
+                        'title' => 'Our Journey',
+                        'events' => [
+                            [
+                                'year' => '2020',
+                                'title' => 'Company Founded',
+                                'description' => 'Started with a vision to simplify supply chain management.'
+                            ],
+                            [
+                                'year' => '2021',
+                                'title' => 'Platform Launch',
+                                'description' => 'Launched our first version of the inventory management platform.'
+                            ],
+                            [
+                                'year' => '2022',
+                                'title' => 'Global Expansion',
+                                'description' => 'Expanded operations to serve customers in 50+ countries.'
+                            ],
+                            [
+                                'year' => '2023',
+                                'title' => '5000+ Customers',
+                                'description' => 'Reached milestone of serving over 5000 satisfied businesses.'
+                            ]
+                        ]
+                    ],
+                    'team' => [
+                        'show' => true,
+                        'title' => 'Meet Our Leadership',
+                        'description' => 'The passionate people behind our success',
+                        'members' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'position' => 'CEO & Founder',
+                                'image' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'position' => 'CTO',
+                                'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'position' => 'Head of Operations',
+                                'image' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop'
+                            ],
+                            [
+                                'name' => 'David Kim',
+                                'position' => 'Sales Director',
+                                'image' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients', 'icon' => 'users'],
+                            ['value' => '50M+', 'label' => 'Orders Processed', 'icon' => 'cube'],
+                            ['value' => '98%', 'label' => 'Satisfaction', 'icon' => 'star'],
+                            ['value' => '50+', 'label' => 'Countries', 'icon' => 'globe']
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Join Our Journey',
+                        'url' => '/contact',
+                        'ariaLabel' => 'Contact us to learn more'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 44,
+                'section_key' => 'aboutUs',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Why Choose Us Section
+            [
+                'id' => 45,
+                'section_key' => 'whyChooseUs',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'WHY CHOOSE US'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Why Businesses',
+                        'highlightedText' => 'Choose Us',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Discover what makes our platform the preferred choice for businesses worldwide.',
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Enterprise Security',
+                            'description' => 'Bank-level encryption and security protocols to protect your business data.',
+                            'icon' => 'shield',
+                            'stats' => [
+                                'label' => 'Data Protection',
+                                'value' => '256-bit'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Lightning Fast',
+                            'description' => 'High-performance platform with real-time updates and instant responses.',
+                            'icon' => 'lightning',
+                            'stats' => [
+                                'label' => 'Response Time',
+                                'value' => '< 100ms'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Expert Support',
+                            'description' => '24/7 dedicated support team to help you whenever you need assistance.',
+                            'icon' => 'users',
+                            'stats' => [
+                                'label' => 'Support Hours',
+                                'value' => '24/7'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1552581234-26160f608093?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Global Reach',
+                            'description' => 'Connect with carriers and warehouses across 50+ countries worldwide.',
+                            'icon' => 'globe',
+                            'stats' => [
+                                'label' => 'Countries Covered',
+                                'value' => '50+'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Smart Automation',
+                            'description' => 'Automate routine tasks and workflows to save time and reduce errors.',
+                            'icon' => 'cog',
+                            'stats' => [
+                                'label' => 'Time Saved',
+                                'value' => '75%'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 6,
+                            'title' => 'Cost Effective',
+                            'description' => 'Reduce operational costs with our optimized logistics solutions.',
+                            'icon' => 'dollar',
+                            'stats' => [
+                                'label' => 'Cost Reduction',
+                                'value' => '30%'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Start Your Journey Today',
+                        'url' => '/contact',
+                        'ariaLabel' => 'Get started with our platform'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 46,
+                'section_key' => 'whyChooseUs',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'WHY CHOOSE US'
+                    ],
+                    'heading' => [
+                        'line1' => 'Why Businesses',
+                        'highlighted' => 'Trust Us'
+                    ],
+                    'description' => 'Discover what makes our platform the preferred choice for supply chain management.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients'],
+                            ['value' => '50M+', 'label' => 'Orders Processed'],
+                            ['value' => '98%', 'label' => 'Satisfaction'],
+                            ['value' => '24/7', 'label' => 'Support']
+                        ]
+                    ],
+                    'image' => [
+                        'src' => 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
+                        'alt' => 'Team collaboration'
+                    ],
+                    'floatingStats' => [
+                        'show' => true,
+                        'text' => 'Trusted by 5000+ companies',
+                        'rating' => '4.9★'
+                    ],
+                    'tabs' => [
+                        [
+                            'title' => 'Security',
+                            'description' => 'Enterprise-grade security to protect your sensitive business data and ensure compliance.',
+                            'features' => [
+                                '256-bit AES encryption',
+                                'Multi-factor authentication',
+                                'GDPR & SOC2 compliant',
+                                'Automated backups'
+                            ],
+                            'metrics' => [
+                                ['value' => '256-bit', 'label' => 'Encryption'],
+                                ['value' => '99.99%', 'label' => 'Uptime']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Performance',
+                            'description' => 'Lightning-fast platform with real-time updates and instant response times.',
+                            'features' => [
+                                '<100ms response time',
+                                'Real-time data sync',
+                                '99.9% uptime guarantee',
+                                'Global CDN delivery'
+                            ],
+                            'metrics' => [
+                                ['value' => '<100ms', 'label' => 'Response Time'],
+                                ['value' => '99.9%', 'label' => 'Uptime']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Support',
+                            'description' => '24/7 dedicated support team to help you whenever you need assistance.',
+                            'features' => [
+                                '24/7 availability',
+                                'Dedicated account manager',
+                                'Emergency response team',
+                                'Training & onboarding'
+                            ],
+                            'metrics' => [
+                                ['value' => '24/7', 'label' => 'Availability'],
+                                ['value' => '<5min', 'label' => 'Response']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1552581234-26160f608093?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'featuresTitle' => 'What Sets Us Apart',
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Enterprise Security',
+                            'description' => 'Bank-level encryption and security protocols',
+                            'icon' => 'shield'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Lightning Fast',
+                            'description' => 'High-performance with real-time updates',
+                            'icon' => 'lightning'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Expert Support',
+                            'description' => '24/7 dedicated support team',
+                            'icon' => 'users'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Global Reach',
+                            'description' => 'Connect with carriers worldwide',
+                            'icon' => 'globe'
+                        ]
+                    ],
+                    'testimonial' => [
+                        'show' => true,
+                        'quote' => 'This platform transformed our supply chain operations. The real-time tracking and automated features saved us countless hours.',
+                        'author' => 'Sarah Johnson',
+                        'position' => 'Supply Chain Director, TechLogix'
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Experience the Difference',
+                        'url' => '/contact',
+                        'ariaLabel' => 'Start your journey with us'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 47,
+                'section_key' => 'whyChooseUs',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'WHY CHOOSE US'
+                    ],
+                    'heading' => [
+                        'prefix' => 'The',
+                        'highlightedText' => 'Smarter Choice',
+                        'suffix' => 'for Your Business'
+                    ],
+                    'description' => 'Discover what makes our platform the preferred solution for supply chain management.',
+                    'comparison' => [
+                        'show' => true,
+                        'traditional' => [
+                            'title' => 'Traditional Approach',
+                            'points' => [
+                                'Manual data entry & spreadsheets',
+                                'Delayed updates & reporting',
+                                'Limited visibility across channels',
+                                'Reactive problem solving'
+                            ]
+                        ],
+                        'sazzad' => [
+                            'title' => 'Our Approach',
+                            'points' => [
+                                'Automated real-time tracking',
+                                'Instant insights & analytics',
+                                'Complete end-to-end visibility',
+                                'Proactive optimization'
+                            ]
+                        ]
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Enterprise Security',
+                            'description' => 'Bank-level encryption to protect your business data.',
+                            'detailedDescription' => 'We take security seriously. Our platform uses 256-bit AES encryption, multi-factor authentication, and is SOC2 Type II compliant to ensure your data is always protected.',
+                            'icon' => 'shield',
+                            'popular' => true,
+                            'stat' => ['label' => 'Data Protection', 'value' => '256-bit'],
+                            'benefits' => [
+                                '256-bit AES encryption',
+                                'Multi-factor authentication',
+                                'GDPR & SOC2 compliant',
+                                'Automated daily backups'
+                            ],
+                            'metrics' => [
+                                ['value' => '256-bit', 'label' => 'Encryption'],
+                                ['value' => '99.99%', 'label' => 'Uptime']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop',
+                            'badge' => ['label' => 'Security Score', 'value' => 'A+ Rated', 'icon' => 'shield']
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Lightning Fast',
+                            'description' => 'High-performance with real-time updates.',
+                            'detailedDescription' => 'Experience blazing fast performance with response times under 100ms. Our global CDN ensures your data is always available when you need it.',
+                            'icon' => 'lightning',
+                            'popular' => false,
+                            'stat' => ['label' => 'Response Time', 'value' => '<100ms'],
+                            'benefits' => [
+                                '<100ms response time',
+                                'Real-time data sync',
+                                '99.9% uptime guarantee',
+                                'Global CDN delivery'
+                            ],
+                            'metrics' => [
+                                ['value' => '<100ms', 'label' => 'Response'],
+                                ['value' => '99.9%', 'label' => 'Uptime']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'badge' => ['label' => 'Performance', 'value' => '99.9% Uptime', 'icon' => 'lightning']
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Expert Support',
+                            'description' => '24/7 dedicated support team.',
+                            'detailedDescription' => 'Our support team is available 24/7 to help you with any questions or issues. Get dedicated account managers and priority assistance.',
+                            'icon' => 'users',
+                            'popular' => false,
+                            'stat' => ['label' => 'Support Hours', 'value' => '24/7'],
+                            'benefits' => [
+                                '24/7 availability',
+                                'Dedicated account manager',
+                                'Emergency response team',
+                                'Training & onboarding'
+                            ],
+                            'metrics' => [
+                                ['value' => '24/7', 'label' => 'Availability'],
+                                ['value' => '<5min', 'label' => 'Response']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1552581234-26160f608093?w=600&h=400&fit=crop',
+                            'badge' => ['label' => 'Support Rating', 'value' => '98% Happy', 'icon' => 'happy']
+                        ]
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Clients', 'icon' => 'users'],
+                            ['value' => '50M+', 'label' => 'Orders Processed', 'icon' => 'cube'],
+                            ['value' => '98%', 'label' => 'Satisfaction', 'icon' => 'star'],
+                            ['value' => '24/7', 'label' => 'Support', 'icon' => 'clock']
+                        ]
+                    ],
+                    'trustBadges' => [
+                        'show' => true,
+                        'items' => ['SSL Secure', 'GDPR Compliant', 'PCI DSS Certified', 'ISO 27001']
+                    ],
+                    'bottomCta' => [
+                        'show' => true,
+                        'text' => 'Experience the Difference',
+                        'url' => '/contact',
+                        'ariaLabel' => 'Start your journey with us'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 48,
+                'section_key' => 'whyChooseUs',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
