@@ -324,4 +324,20 @@
 
 ## 40. ** Partners - Page** (/partners )
 
-## 41. ** Partners - SubPage Page** (/partners/{subpage} )
+## 41. ** Partners - SubPage Page** (/partners/{subpage})
+
+## 42. ** Locations - Page** (/partners)
+
+## 43. ** Locations - SubPage Page** (/partners/{subpage})
+
+## 44. ** Global Contact - Page** (/global-contact)
+
+## 45. ** Offices - Page** (/offices)
+
+## 46. ** About - SubPage Page** (/about/{subpage})
+
+## 47. ** Careers - SubPage Page** (/careers/{subpage})
+
+## 48. ** Security - Page** (/security)
+
+## 49. ** Security Report - Download Page** (/security-report.pdf)

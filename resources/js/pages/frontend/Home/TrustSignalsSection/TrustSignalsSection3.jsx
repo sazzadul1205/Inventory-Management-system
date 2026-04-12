@@ -4,8 +4,8 @@
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
-// Icons
-import { FaAward, FaCertificate, } from 'react-icons/fa';
+// React Icons
+import { FaAward, FaCertificate } from 'react-icons/fa';
 import {
   HiOutlineShieldCheck,
   HiOutlineStar,
@@ -26,6 +26,7 @@ import {
 import { HiOutlineTrophy } from "react-icons/hi2";
 
 const TrustSignalsSection3 = ({ config }) => {
+  
   // State for active certification
   const [showAllReviews, setShowAllReviews] = useState(false);
 
@@ -69,130 +70,103 @@ const TrustSignalsSection3 = ({ config }) => {
     : config?.testimonials?.items?.slice(0, 3);
 
   return (
-    <section
-      className="relative py-20 bg-white dark:bg-gray-900"
-      role="region"
-      aria-label="Trust signals section"
-    >
-      {/* Background Pattern - Magazine Style */}
-      <div className="absolute inset-0 bg-magazine-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+    <section className="relative py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
+
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="h-full w-full bg-[linear-gradient(45deg,#e5e7eb_1px,transparent_1px),linear-gradient(-45deg,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(45deg,#374151_1px,transparent_1px),linear-gradient(-45deg,#374151_1px,transparent_1px)] bg-size-[30px_30px]" />
+      </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-64 h-64 bg-green-200 dark:bg-green-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl opacity-20" aria-hidden="true" />
+      <div className="absolute top-20 left-0 w-48 h-48 sm:w-64 sm:h-64 bg-green-200 dark:bg-green-900/20 rounded-full filter blur-3xl opacity-20" />
+      <div className="absolute bottom-20 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-emerald-200 dark:bg-emerald-900/20 rounded-full filter blur-3xl opacity-20" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Magazine Style */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16">
+
           {/* Badge */}
-          {config?.badge?.show && (
-            <div
-              className={`inline-flex items-center ${config.badge.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config.badge.borderColor}`}
-              aria-label="Trust signals badge"
-            >
-              {config.badge.showPulse && (
-                <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
+          {config?.badge?.show && config?.badge?.text && (
+            <div className="inline-flex items-center bg-green-100 dark:bg-gray-800 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 border border-green-200 dark:border-gray-700">
+              {config?.badge?.showPulse && (
+                <span className="relative flex h-2 w-2 mr-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
               )}
-              <span className={`text-sm font-medium ${config.badge.textColor}`}>
+              <span className="text-xs sm:text-sm font-medium text-green-700 dark:text-gray-300">
                 {config.badge.text}
               </span>
             </div>
           )}
 
           {/* Heading */}
-          <h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
-          >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-6">
             {config?.heading?.prefix}{' '}
-            <span className="relative">
-              <span className="relative z-10 bg-linear-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent">
-                {config?.heading?.highlightedText}
-              </span>
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                height="12"
-                viewBox="0 0 300 12"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M0 6 L300 6"
-                  stroke="url(#headingGradient)"
-                  strokeWidth="4"
-                  strokeDasharray="8 8"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="headingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#16A34A" />
-                    <stop offset="100%" stopColor="#10B981" />
-                  </linearGradient>
-                </defs>
-              </svg>
+            <span className="bg-linear-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              {config?.heading?.highlightedText}
             </span>{' '}
             {config?.heading?.suffix}
           </h2>
 
           {/* Description */}
           {config?.description && (
-            <p
-              className="text-lg text-gray-600 dark:text-gray-400"
-            >
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
               {config.description}
             </p>
           )}
         </div>
 
-        {/* Main Content - Magazine Layout */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
+
           {/* Main Column - Trust Indicators */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+
             {/* Featured Trust Badge */}
             {config?.featured?.show && (
-              <div className="bg-linear-to-br from-green-600 to-emerald-600 rounded-3xl p-8 text-white relative overflow-hidden">
+              <div className="bg-linear-to-br from-green-600 to-emerald-600 rounded-xl sm:rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+                  <div className="absolute -top-16 -right-16 w-48 h-48 bg-white rounded-full blur-3xl" />
                 </div>
 
-                <div className="relative flex items-center justify-between">
-                  <div>
-                    <span className="inline-flex items-center bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                      <HiOutlineSparkles className="w-4 h-4 mr-2" />
+                <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  <div className="flex-1">
+                    <span className="inline-flex items-center bg-white/20 text-white px-2.5 sm:px-3 md:px-4 py-0.5 sm:py-1 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-semibold mb-2 sm:mb-3 md:mb-4">
+                      <HiOutlineSparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                       {config.featured.label}
                     </span>
-                    <h3 className="text-3xl font-bold mb-3">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2 md:mb-3">
                       {config.featured.title}
                     </h3>
-                    <p className="text-green-100 mb-6 max-w-xl">
+                    <p className="text-green-100 text-sm sm:text-base mb-4 sm:mb-5 md:mb-6 max-w-xl">
                       {config.featured.description}
                     </p>
                     <Link
                       href={config.featured.link}
-                      className="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300"
+                      className="inline-flex items-center bg-white text-green-600 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 text-sm sm:text-base"
                     >
                       {config.featured.buttonText}
-                      <HiOutlineArrowRight className="ml-2" />
+                      <HiOutlineArrowRight className="ml-1.5 sm:ml-2" />
                     </Link>
                   </div>
-                  <div className="hidden lg:block w-32 h-32 bg-white/10 backdrop-blur-sm rounded-2xl p-4">
-                    <FaAward className="w-full h-full text-white" />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center">
+                    <FaAward className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
                   </div>
                 </div>
               </div>
             )}
 
             {/* Stats Grid */}
-            {config?.stats?.show && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {config?.stats?.show && config?.stats?.items && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 {config.stats.items.map((stat, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
-                    <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">
+                  <div key={index} className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md border border-gray-100 dark:border-gray-700 text-center">
+                    <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-green-600 dark:text-green-400 mb-0.5 sm:mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">
+                    <div className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400">
                       {stat.label}
                     </div>
                   </div>
@@ -201,21 +175,21 @@ const TrustSignalsSection3 = ({ config }) => {
             )}
 
             {/* Certifications Showcase */}
-            {config?.certifications?.show && (
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            {config?.certifications?.show && config?.certifications?.items && (
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   {config.certifications.title}
                 </h3>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                   {config.certifications.items.map((cert, index) => (
-                    <div key={index} className="flex items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-xl">
-                      <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center mr-3">
-                        <FaCertificate className="w-5 h-5 text-green-600" />
+                    <div key={index} className="flex items-center p-2 sm:p-3 bg-green-50 dark:bg-green-900/20 rounded-lg sm:rounded-xl">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                        <FaCertificate className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white text-sm">{cert.name}</h4>
-                        <p className="text-xs text-gray-500 dark:text-gray-500">{cert.issuer} • {cert.year}</p>
+                        <h4 className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm">{cert.name}</h4>
+                        <p className="text-[8px] sm:text-[10px] text-gray-500 dark:text-gray-500">{cert.issuer} • {cert.year}</p>
                       </div>
                     </div>
                   ))}
@@ -224,21 +198,21 @@ const TrustSignalsSection3 = ({ config }) => {
             )}
 
             {/* Security Features */}
-            {config?.security?.show && (
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            {config?.security?.show && config?.security?.items && (
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   {config.security.title}
                 </h3>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {config.security.items.map((item, index) => (
                     <div key={index} className="flex items-start">
-                      <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-3 shrink-0">
-                        {getIcon(item.icon, "w-4 h-4")}
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-2 sm:mr-3 shrink-0">
+                        {getIcon(item.icon, "w-3.5 h-3.5 sm:w-4 sm:h-4")}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white text-sm">{item.title}</h4>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">{item.description}</p>
+                        <h4 className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm">{item.title}</h4>
+                        <p className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -248,63 +222,66 @@ const TrustSignalsSection3 = ({ config }) => {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-8">
+          <div className="lg:col-span-1 space-y-5 sm:space-y-6 md:space-y-8">
+
             {/* Overall Rating */}
             {config?.rating?.show && (
-              <div className="bg-linear-to-br from-green-600 to-emerald-600 rounded-2xl p-6 text-white relative overflow-hidden">
+              <div className="bg-linear-to-br from-green-600 to-emerald-600 rounded-lg sm:rounded-xl p-5 sm:p-6 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full blur-3xl" />
+                  <div className="absolute -top-16 -right-16 w-48 h-48 bg-white rounded-full blur-3xl" />
                 </div>
 
                 <div className="relative">
-                  <h3 className="text-lg font-bold mb-4 flex items-center">
-                    <HiOutlineStar className="w-5 h-5 mr-2" />
+                  <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 flex items-center">
+                    <HiOutlineStar className="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 sm:mr-2" />
                     Customer Rating
                   </h3>
                   <div className="text-center">
-                    <div className="text-5xl font-bold mb-2">{config.rating.score}</div>
-                    <div className="flex justify-center mb-2">
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+                      {config.rating.score}
+                    </div>
+                    <div className="flex justify-center mb-1 sm:mb-2">
                       {[...Array(5)].map((_, i) => (
                         <HiOutlineStar
                           key={i}
-                          className={`w-5 h-5 ${i < Math.floor(config.rating.score)
-                              ? 'text-yellow-400 fill-yellow-400'
-                              : 'text-white/30'
+                          className={`w-4 h-4 sm:w-5 sm:h-5 ${i < Math.floor(config.rating.score)
+                            ? 'text-yellow-400 fill-yellow-400'
+                            : 'text-white/30'
                             }`}
                         />
                       ))}
                     </div>
-                    <p className="text-sm text-green-100">{config.rating.count} reviews</p>
+                    <p className="text-[10px] sm:text-xs text-green-100">{config.rating.count} reviews</p>
                   </div>
                 </div>
               </div>
             )}
 
             {/* Testimonials */}
-            {config?.testimonials?.show && (
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            {config?.testimonials?.show && config?.testimonials?.items && (
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Recent Reviews
                 </h3>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {displayedReviews?.map((testimonial, index) => (
-                    <div key={index} className="border-b border-gray-100 dark:border-gray-700 last:border-0 pb-4 last:pb-0">
-                      <div className="flex mb-2">
+                    <div key={index} className="border-b border-gray-100 dark:border-gray-700 last:border-0 pb-3 sm:pb-4 last:pb-0">
+                      <div className="flex mb-1 sm:mb-2">
                         {[...Array(5)].map((_, i) => (
                           <HiOutlineStar
                             key={i}
-                            className={`w-3 h-3 ${i < testimonial.rating
-                                ? 'text-yellow-400 fill-yellow-400'
-                                : 'text-gray-300'
+                            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${i < testimonial.rating
+                              ? 'text-yellow-400 fill-yellow-400'
+                              : 'text-gray-300'
                               }`}
                           />
                         ))}
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-2">
+                      <p className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 italic mb-1 sm:mb-2">
                         "{testimonial.quote}"
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-500">
+                      <p className="text-[8px] sm:text-[10px] text-gray-500 dark:text-gray-500">
                         – {testimonial.name}, {testimonial.company}
                       </p>
                     </div>
@@ -314,7 +291,7 @@ const TrustSignalsSection3 = ({ config }) => {
                 {config?.testimonials?.items?.length > 3 && (
                   <button
                     onClick={() => setShowAllReviews(!showAllReviews)}
-                    className="mt-4 text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
+                    className="mt-3 sm:mt-4 text-[10px] sm:text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
                   >
                     {showAllReviews ? 'Show less' : 'View all reviews'}
                   </button>
@@ -323,18 +300,18 @@ const TrustSignalsSection3 = ({ config }) => {
             )}
 
             {/* Compliance Badges */}
-            {config?.compliance?.show && (
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            {config?.compliance?.show && config?.compliance?.items && (
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Compliance
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {config.compliance.items.map((item, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full text-xs flex items-center"
+                      className="px-2 sm:px-3 py-0.5 sm:py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full text-[8px] sm:text-[10px] flex items-center"
                     >
-                      <HiOutlineCheckCircle className="w-3 h-3 mr-1" />
+                      <HiOutlineCheckCircle className="w-2 h-2 sm:w-2.5 sm:h-2.5 mr-0.5 sm:mr-1" />
                       {item}
                     </span>
                   ))}
@@ -343,19 +320,15 @@ const TrustSignalsSection3 = ({ config }) => {
             )}
 
             {/* Trusted By */}
-            {config?.trustedBy?.show && (
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            {config?.trustedBy?.show && config?.trustedBy?.logos && (
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Trusted By
                 </h3>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {config.trustedBy.logos.map((logo, index) => (
                     <div key={index} className="grayscale hover:grayscale-0 transition-all">
-                      <img
-                        src={logo.url}
-                        alt={logo.name}
-                        className="h-8 w-auto mx-auto"
-                      />
+                      <span className="text-gray-400 dark:text-gray-600 text-[10px] sm:text-xs font-medium block text-center">{logo.name}</span>
                     </div>
                   ))}
                 </div>
@@ -364,20 +337,20 @@ const TrustSignalsSection3 = ({ config }) => {
 
             {/* Security Report */}
             {config?.report?.show && (
-              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
-                <div className="flex items-center mb-4">
-                  <HiOutlineDocumentText className="w-8 h-8 text-green-600 mr-3" />
+              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <HiOutlineDocumentText className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-green-600 mr-2 sm:mr-3" />
                   <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white">{config.report.title}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-500">{config.report.description}</p>
+                    <h3 className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">{config.report.title}</h3>
+                    <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-500">{config.report.description}</p>
                   </div>
                 </div>
                 <Link
                   href={config.report.link}
-                  className="inline-flex items-center text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
+                  className="inline-flex items-center text-xs sm:text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
                 >
                   Download Report
-                  <HiOutlineArrowRight className="ml-2 w-4 h-4" />
+                  <HiOutlineArrowRight className="ml-1 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4" />
                 </Link>
               </div>
             )}
@@ -385,11 +358,11 @@ const TrustSignalsSection3 = ({ config }) => {
         </div>
 
         {/* Trust CTA */}
-        {config?.cta?.show && (
-          <div className="mt-16 text-center">
+        {config?.cta?.show && config?.cta?.text && (
+          <div className="mt-12 sm:mt-16 text-center">
             <Link
               href={config.cta.url}
-              className="inline-flex items-center bg-linear-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              className="inline-flex items-center bg-linear-to-r from-green-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             >
               {config.cta.text}
               <HiOutlineArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -397,21 +370,6 @@ const TrustSignalsSection3 = ({ config }) => {
           </div>
         )}
       </div>
-
-      {/* Styles */}
-      <style>{`
-        .bg-magazine-pattern {
-          background-image: 
-            linear-gradient(45deg, #e5e7eb 1px, transparent 1px),
-            linear-gradient(-45deg, #e5e7eb 1px, transparent 1px);
-          background-size: 30px 30px;
-        }
-        .dark .bg-magazine-pattern {
-          background-image: 
-            linear-gradient(45deg, #374151 1px, transparent 1px),
-            linear-gradient(-45deg, #374151 1px, transparent 1px);
-        }
-      `}</style>
     </section>
   );
 };

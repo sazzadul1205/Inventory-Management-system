@@ -4777,6 +4777,1303 @@ class HomePageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Global Presence Section
+            [
+                'id' => 61,
+                'section_key' => 'globalPresence',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'GLOBAL PRESENCE'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Our',
+                        'highlightedText' => 'Global Reach',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Operating across continents with local expertise and global standards.',
+                    'map' => [
+                        'show' => true,
+                        'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop',
+                        'locations' => [
+                            ['city' => 'New York', 'country' => 'USA', 'top' => '35%', 'left' => '15%'],
+                            ['city' => 'London', 'country' => 'UK', 'top' => '25%', 'left' => '45%'],
+                            ['city' => 'Singapore', 'country' => 'Singapore', 'top' => '55%', 'left' => '75%'],
+                            ['city' => 'Sydney', 'country' => 'Australia', 'top' => '70%', 'left' => '85%'],
+                            ['city' => 'Tokyo', 'country' => 'Japan', 'top' => '40%', 'left' => '82%'],
+                            ['city' => 'Dubai', 'country' => 'UAE', 'top' => '40%', 'left' => '60%']
+                        ]
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '20+', 'label' => 'Countries'],
+                            ['value' => '30+', 'label' => 'Offices Worldwide'],
+                            ['value' => '500+', 'label' => 'Global Employees'],
+                            ['value' => '24/7', 'label' => 'Global Support']
+                        ]
+                    ],
+                    'regions' => [
+                        [
+                            'id' => 1,
+                            'name' => 'North America',
+                            'headquarters' => 'New York, USA',
+                            'coverage' => 'USA, Canada, Mexico',
+                            'timezone' => 'EST, PST, CST',
+                            'officeCount' => 8,
+                            'link' => '/locations/north-america'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Europe',
+                            'headquarters' => 'London, UK',
+                            'coverage' => 'UK, Germany, France, Spain',
+                            'timezone' => 'GMT, CET',
+                            'officeCount' => 6,
+                            'link' => '/locations/europe'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Asia Pacific',
+                            'headquarters' => 'Singapore',
+                            'coverage' => 'Singapore, Japan, Australia, India',
+                            'timezone' => 'SGT, JST, AEST',
+                            'officeCount' => 10,
+                            'link' => '/locations/asia-pacific'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'Middle East & Africa',
+                            'headquarters' => 'Dubai, UAE',
+                            'coverage' => 'UAE, Saudi Arabia, South Africa',
+                            'timezone' => 'GST, SAST',
+                            'officeCount' => 4,
+                            'link' => '/locations/mea'
+                        ]
+                    ],
+                    'offices' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'city' => 'New York',
+                                'address' => '350 5th Ave, New York, NY 10118',
+                                'phone' => '+1 (212) 555-1234'
+                            ],
+                            [
+                                'city' => 'London',
+                                'address' => '25 Bank St, London E14 5JP',
+                                'phone' => '+44 20 7123 4567'
+                            ],
+                            [
+                                'city' => 'Singapore',
+                                'address' => '1 Raffles Place, Singapore 048616',
+                                'phone' => '+65 6789 0123'
+                            ],
+                            [
+                                'city' => 'Sydney',
+                                'address' => '1 Harbour St, Sydney NSW 2000',
+                                'phone' => '+61 2 9123 4567'
+                            ],
+                            [
+                                'city' => 'Tokyo',
+                                'address' => '1-1-1 Marunouchi, Chiyoda-ku, Tokyo',
+                                'phone' => '+81 3 4567 8901'
+                            ],
+                            [
+                                'city' => 'Dubai',
+                                'address' => 'Dubai International Financial Centre',
+                                'phone' => '+971 4 567 8901'
+                            ]
+                        ]
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Global Solutions, Local Support',
+                        'description' => 'Experience seamless logistics with our worldwide network of offices and partners.',
+                        'button' => [
+                            'text' => 'Find Your Local Office',
+                            'url' => '/contact'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 62,
+                'section_key' => 'globalPresence',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'WORLDWIDE REACH'
+                    ],
+                    'heading' => [
+                        'line1' => 'Our',
+                        'highlighted' => 'Global Footprint'
+                    ],
+                    'description' => 'Operating across continents with local expertise and global standards.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '20+', 'label' => 'Countries', 'icon' => 'globe'],
+                            ['value' => '30+', 'label' => 'Offices', 'icon' => 'building'],
+                            ['value' => '500+', 'label' => 'Employees', 'icon' => 'users'],
+                            ['value' => '24/7', 'label' => 'Support', 'icon' => 'clock']
+                        ]
+                    ],
+                    'continents' => [
+                        [
+                            'id' => 1,
+                            'name' => 'North America',
+                            'headquarters' => 'New York, USA',
+                            'coverage' => 'USA, Canada, Mexico',
+                            'timezones' => 'EST, PST, CST, MST',
+                            'officeCount' => 8,
+                            'countryCount' => 3,
+                            'description' => 'Our North American headquarters in New York serves as the hub for our operations across USA, Canada, and Mexico, providing comprehensive logistics solutions.',
+                            'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=500&fit=crop',
+                            'link' => '/locations/north-america'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Europe',
+                            'headquarters' => 'London, UK',
+                            'coverage' => 'UK, Germany, France, Spain, Italy',
+                            'timezones' => 'GMT, CET, EET',
+                            'officeCount' => 6,
+                            'countryCount' => 5,
+                            'description' => 'Our European operations are centered in London, with regional offices across major European cities delivering localized logistics solutions.',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop',
+                            'link' => '/locations/europe'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Asia Pacific',
+                            'headquarters' => 'Singapore',
+                            'coverage' => 'Singapore, Japan, Australia, India, China',
+                            'timezones' => 'SGT, JST, AEST, IST, CST',
+                            'officeCount' => 10,
+                            'countryCount' => 5,
+                            'description' => 'Our Asia Pacific headquarters in Singapore leads our rapidly growing presence across the region\'s key markets.',
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop',
+                            'link' => '/locations/asia-pacific'
+                        ]
+                    ],
+                    'offices' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'city' => 'New York',
+                                'address' => '350 5th Ave, New York, NY 10118',
+                                'phone' => '+1 (212) 555-1234',
+                                'email' => 'nyc@example.com'
+                            ],
+                            [
+                                'city' => 'London',
+                                'address' => '25 Bank St, London E14 5JP',
+                                'phone' => '+44 20 7123 4567',
+                                'email' => 'london@example.com'
+                            ],
+                            [
+                                'city' => 'Singapore',
+                                'address' => '1 Raffles Place, Singapore 048616',
+                                'phone' => '+65 6789 0123',
+                                'email' => 'singapore@example.com'
+                            ]
+                        ]
+                    ],
+                    'timezone' => [
+                        'show' => true,
+                        'title' => '24/7 Global Support',
+                        'description' => 'Our global team operates across multiple time zones to provide round-the-clock support.',
+                        'coverage' => '24/7',
+                        'zones' => ['EST', 'GMT', 'SGT', 'AEST']
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Connect With Your Local Office',
+                        'description' => 'Find your nearest office and discover how we can help optimize your supply chain.',
+                        'primaryButton' => [
+                            'text' => 'Find an Office',
+                            'url' => '/contact'
+                        ],
+                        'secondaryButton' => [
+                            'show' => true,
+                            'text' => 'Contact Global Team',
+                            'url' => '/global-contact'
+                        ],
+                        'social' => [
+                            'show' => true,
+                            'linkedin' => 'https://linkedin.com',
+                            'twitter' => 'https://twitter.com',
+                            'facebook' => 'https://facebook.com'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 63,
+                'section_key' => 'globalPresence',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'GLOBAL NETWORK'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Worldwide',
+                        'highlightedText' => 'Presence',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Serving customers across the globe with local expertise and international standards.',
+                    'globalStats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '20+', 'label' => 'Countries'],
+                            ['value' => '30+', 'label' => 'Offices'],
+                            ['value' => '500+', 'label' => 'Employees'],
+                            ['value' => '24/7', 'label' => 'Support']
+                        ]
+                    ],
+                    'regions' => [
+                        [
+                            'id' => 1,
+                            'name' => 'North America',
+                            'headquarters' => 'New York, USA',
+                            'coverage' => 'USA, Canada, Mexico',
+                            'timezones' => 'EST, PST, CST, MST',
+                            'officeCount' => 8,
+                            'markets' => ['United States', 'Canada', 'Mexico'],
+                            'link' => '/locations/north-america'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Europe',
+                            'headquarters' => 'London, UK',
+                            'coverage' => 'UK, Germany, France, Spain, Italy',
+                            'timezones' => 'GMT, CET, EET',
+                            'officeCount' => 6,
+                            'markets' => ['United Kingdom', 'Germany', 'France', 'Spain', 'Italy'],
+                            'link' => '/locations/europe'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Asia Pacific',
+                            'headquarters' => 'Singapore',
+                            'coverage' => 'Singapore, Japan, Australia, India, China',
+                            'timezones' => 'SGT, JST, AEST, IST, CST',
+                            'officeCount' => 10,
+                            'markets' => ['Singapore', 'Japan', 'Australia', 'India', 'China'],
+                            'link' => '/locations/asia-pacific'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'Middle East & Africa',
+                            'headquarters' => 'Dubai, UAE',
+                            'coverage' => 'UAE, Saudi Arabia, South Africa, Egypt',
+                            'timezones' => 'GST, SAST, EET',
+                            'officeCount' => 4,
+                            'markets' => ['UAE', 'Saudi Arabia', 'South Africa', 'Egypt'],
+                            'link' => '/locations/mea'
+                        ]
+                    ],
+                    'featuredOffices' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'city' => 'New York',
+                                'country' => 'USA',
+                                'address' => '350 5th Ave, New York, NY 10118',
+                                'phone' => '+1 (212) 555-1234',
+                                'email' => 'nyc@example.com',
+                                'description' => 'Our global headquarters serving North American operations and international clients.',
+                                'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=500&fit=crop',
+                                'link' => '/offices/new-york'
+                            ],
+                            [
+                                'city' => 'London',
+                                'country' => 'UK',
+                                'address' => '25 Bank St, London E14 5JP',
+                                'phone' => '+44 20 7123 4567',
+                                'email' => 'london@example.com',
+                                'description' => 'European headquarters driving logistics innovation across the continent.',
+                                'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop',
+                                'link' => '/offices/london'
+                            ],
+                            [
+                                'city' => 'Singapore',
+                                'country' => 'Singapore',
+                                'address' => '1 Raffles Place, Singapore 048616',
+                                'phone' => '+65 6789 0123',
+                                'email' => 'singapore@example.com',
+                                'description' => 'Asia Pacific hub connecting markets across the region.',
+                                'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop',
+                                'link' => '/offices/singapore'
+                            ]
+                        ]
+                    ],
+                    'businessHours' => [
+                        'show' => true,
+                        'items' => [
+                            ['region' => 'North America', 'hours' => '9:00 AM - 6:00 PM EST'],
+                            ['region' => 'Europe', 'hours' => '9:00 AM - 6:00 PM GMT'],
+                            ['region' => 'Asia Pacific', 'hours' => '9:00 AM - 6:00 PM SGT'],
+                            ['region' => 'Middle East', 'hours' => '9:00 AM - 6:00 PM GST']
+                        ]
+                    ],
+                    'events' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'month' => 'MAR',
+                                'day' => '15',
+                                'title' => 'Supply Chain Summit',
+                                'location' => 'New York',
+                                'link' => '/events/supply-chain-summit'
+                            ],
+                            [
+                                'month' => 'APR',
+                                'day' => '22',
+                                'title' => 'Logistics Innovation Forum',
+                                'location' => 'London',
+                                'link' => '/events/logistics-forum'
+                            ],
+                            [
+                                'month' => 'MAY',
+                                'day' => '10',
+                                'title' => 'E-commerce Logistics Expo',
+                                'location' => 'Singapore',
+                                'link' => '/events/ecommerce-expo'
+                            ]
+                        ]
+                    ],
+                    'contacts' => [
+                        'show' => true,
+                        'items' => [
+                            ['region' => 'North America', 'name' => 'John Smith', 'email' => 'na@example.com'],
+                            ['region' => 'Europe', 'name' => 'Sarah Johnson', 'email' => 'eu@example.com'],
+                            ['region' => 'Asia Pacific', 'name' => 'Michael Chen', 'email' => 'apac@example.com']
+                        ]
+                    ],
+                    'social' => [
+                        'show' => true,
+                        'linkedin' => 'https://linkedin.com',
+                        'twitter' => 'https://twitter.com',
+                        'facebook' => 'https://facebook.com'
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'Explore Global Locations',
+                        'url' => '/locations'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 64,
+                'section_key' => 'globalPresence',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Career
+            [
+                'id' => 65,
+                'section_key' => 'career',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'CAREERS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Join Our',
+                        'highlightedText' => 'Team',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Build your career with us and help shape the future of supply chain management.',
+                    'whyJoin' => [
+                        'show' => true,
+                        'title' => 'Why Join Us?',
+                        'items' => [
+                            [
+                                'title' => 'Great Culture',
+                                'description' => 'Collaborative, inclusive, and innovative work environment.',
+                                'icon' => 'users'
+                            ],
+                            [
+                                'title' => 'Work-Life Balance',
+                                'description' => 'Flexible hours and remote work options available.',
+                                'icon' => 'heart'
+                            ],
+                            [
+                                'title' => 'Growth Opportunities',
+                                'description' => 'Continuous learning and career advancement programs.',
+                                'icon' => 'lightning'
+                            ],
+                            [
+                                'title' => 'Learning & Development',
+                                'description' => 'Access to training, courses, and certification programs.',
+                                'icon' => 'academic'
+                            ]
+                        ]
+                    ],
+                    'positions' => [
+                        'show' => true,
+                        'title' => 'Open Positions',
+                        'viewAllUrl' => '/careers',
+                        'items' => [
+                            [
+                                'id' => 1,
+                                'title' => 'Senior Software Engineer',
+                                'department' => 'Engineering',
+                                'location' => 'Remote / New York',
+                                'type' => 'Full-time',
+                                'salary' => '$120k - $160k',
+                                'isNew' => true,
+                                'description' => 'Looking for an experienced engineer to help build our next-generation logistics platform.',
+                                'link' => '/careers/senior-software-engineer'
+                            ],
+                            [
+                                'id' => 2,
+                                'title' => 'Product Manager',
+                                'department' => 'Product',
+                                'location' => 'San Francisco, CA',
+                                'type' => 'Full-time',
+                                'salary' => '$110k - $150k',
+                                'isNew' => false,
+                                'description' => 'Drive product strategy and roadmap for our core logistics solutions.',
+                                'link' => '/careers/product-manager'
+                            ],
+                            [
+                                'id' => 3,
+                                'title' => 'Sales Director',
+                                'department' => 'Sales',
+                                'location' => 'Remote / US',
+                                'type' => 'Full-time',
+                                'salary' => '$150k - $200k + Commission',
+                                'isNew' => true,
+                                'description' => 'Lead our enterprise sales team and drive revenue growth.',
+                                'link' => '/careers/sales-director'
+                            ],
+                            [
+                                'id' => 4,
+                                'title' => 'Customer Success Manager',
+                                'department' => 'Customer Success',
+                                'location' => 'Chicago, IL',
+                                'type' => 'Full-time',
+                                'salary' => '$70k - $90k',
+                                'isNew' => false,
+                                'description' => 'Ensure customer satisfaction and drive adoption of our platform.',
+                                'link' => '/careers/customer-success-manager'
+                            ],
+                            [
+                                'id' => 5,
+                                'title' => 'Data Scientist',
+                                'department' => 'Data',
+                                'location' => 'Remote / Austin',
+                                'type' => 'Full-time',
+                                'salary' => '$130k - $170k',
+                                'isNew' => false,
+                                'description' => 'Build predictive models and analytics solutions for supply chain optimization.',
+                                'link' => '/careers/data-scientist'
+                            ],
+                            [
+                                'id' => 6,
+                                'title' => 'Marketing Manager',
+                                'department' => 'Marketing',
+                                'location' => 'New York, NY',
+                                'type' => 'Full-time',
+                                'salary' => '$80k - $110k',
+                                'isNew' => false,
+                                'description' => 'Lead demand generation and brand awareness campaigns.',
+                                'link' => '/careers/marketing-manager'
+                            ]
+                        ]
+                    ],
+                    'life' => [
+                        'show' => true,
+                        'title' => 'Life at Sazzad',
+                        'description' => 'We believe in creating an environment where everyone can thrive and do their best work.',
+                        'highlights' => [
+                            'Collaborative and inclusive workplace',
+                            'Weekly team lunches and events',
+                            'Wellness programs and gym membership',
+                            'Quarterly team offsites'
+                        ],
+                        'images' => [
+                            'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop',
+                            'https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=600&h=400&fit=crop'
+                        ],
+                        'link' => '/about/culture'
+                    ],
+                    'perks' => [
+                        'show' => true,
+                        'title' => 'Perks & Benefits',
+                        'items' => [
+                            [
+                                'title' => 'Health Insurance',
+                                'description' => 'Comprehensive medical, dental, and vision coverage',
+                                'icon' => 'health'
+                            ],
+                            [
+                                'title' => 'Flexible Work',
+                                'description' => 'Remote-first culture with flexible hours',
+                                'icon' => 'office'
+                            ],
+                            [
+                                'title' => 'Paid Time Off',
+                                'description' => 'Unlimited PTO and paid parental leave',
+                                'icon' => 'clock'
+                            ],
+                            [
+                                'title' => 'Learning Stipend',
+                                'description' => '$2,000 annual budget for courses and conferences',
+                                'icon' => 'academic'
+                            ]
+                        ]
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Ready to Make an Impact?',
+                        'description' => 'Join us in building the future of logistics technology.',
+                        'button' => [
+                            'text' => 'View All Openings',
+                            'url' => '/careers'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 66,
+                'section_key' => 'career',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'CAREERS'
+                    ],
+                    'heading' => [
+                        'line1' => 'Build Your',
+                        'highlighted' => 'Future With Us'
+                    ],
+                    'description' => 'Join a team of innovators and help shape the future of supply chain technology.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '50+', 'label' => 'Open Positions'],
+                            ['value' => '500+', 'label' => 'Team Members'],
+                            ['value' => '10+', 'label' => 'Countries'],
+                            ['value' => '98%', 'label' => 'Retention Rate']
+                        ]
+                    ],
+                    'search' => [
+                        'placeholder' => 'Search jobs by title, department, or keyword...'
+                    ],
+                    'pagination' => [
+                        'perPage' => 6
+                    ],
+                    'positions' => [
+                        'items' => [
+                            [
+                                'id' => 1,
+                                'title' => 'Senior Software Engineer',
+                                'department' => 'Engineering',
+                                'location' => 'Remote / New York',
+                                'type' => 'Full-time',
+                                'salary' => '$120k - $160k',
+                                'isNew' => true,
+                                'description' => 'Looking for an experienced engineer to help build our next-generation logistics platform.',
+                                'tags' => ['React', 'Node.js', 'AWS'],
+                                'link' => '/careers/senior-software-engineer'
+                            ],
+                            [
+                                'id' => 2,
+                                'title' => 'Product Manager',
+                                'department' => 'Product',
+                                'location' => 'San Francisco, CA',
+                                'type' => 'Full-time',
+                                'salary' => '$110k - $150k',
+                                'isNew' => false,
+                                'description' => 'Drive product strategy and roadmap for our core logistics solutions.',
+                                'tags' => ['Product Strategy', 'Agile', 'SaaS'],
+                                'link' => '/careers/product-manager'
+                            ],
+                            [
+                                'id' => 3,
+                                'title' => 'Sales Director',
+                                'department' => 'Sales',
+                                'location' => 'Remote / US',
+                                'type' => 'Full-time',
+                                'salary' => '$150k - $200k + Commission',
+                                'isNew' => true,
+                                'description' => 'Lead our enterprise sales team and drive revenue growth.',
+                                'tags' => ['Enterprise Sales', 'SaaS', 'Leadership'],
+                                'link' => '/careers/sales-director'
+                            ],
+                            [
+                                'id' => 4,
+                                'title' => 'Customer Success Manager',
+                                'department' => 'Customer Success',
+                                'location' => 'New York, NY',
+                                'type' => 'Full-time',
+                                'salary' => '$70k - $90k',
+                                'isNew' => false,
+                                'description' => 'Ensure customer satisfaction and drive adoption of our platform.',
+                                'tags' => ['Customer Success', 'Account Management'],
+                                'link' => '/careers/customer-success-manager'
+                            ],
+                            [
+                                'id' => 5,
+                                'title' => 'Data Scientist',
+                                'department' => 'Data',
+                                'location' => 'Remote / Austin',
+                                'type' => 'Full-time',
+                                'salary' => '$130k - $170k',
+                                'isNew' => false,
+                                'description' => 'Build predictive models and analytics solutions for supply chain optimization.',
+                                'tags' => ['Python', 'Machine Learning', 'SQL'],
+                                'link' => '/careers/data-scientist'
+                            ],
+                            [
+                                'id' => 6,
+                                'title' => 'Marketing Manager',
+                                'department' => 'Marketing',
+                                'location' => 'Remote / US',
+                                'type' => 'Full-time',
+                                'salary' => '$80k - $110k',
+                                'isNew' => false,
+                                'description' => 'Lead demand generation and brand awareness campaigns.',
+                                'tags' => ['Digital Marketing', 'Content Strategy'],
+                                'link' => '/careers/marketing-manager'
+                            ]
+                        ]
+                    ],
+                    'culture' => [
+                        'show' => true,
+                        'title' => 'Life at Sazzad',
+                        'items' => [
+                            [
+                                'title' => 'Collaborative Culture',
+                                'description' => 'Work with talented people who support and inspire each other.',
+                                'icon' => 'users'
+                            ],
+                            [
+                                'title' => 'Global Impact',
+                                'description' => 'Make a difference for businesses around the world.',
+                                'icon' => 'globe'
+                            ],
+                            [
+                                'title' => 'Growth Mindset',
+                                'description' => 'Continuous learning and career advancement opportunities.',
+                                'icon' => 'trophy'
+                            ]
+                        ]
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Ready to Make an Impact?',
+                        'description' => 'Join us in building the future of logistics technology.',
+                        'primaryButton' => [
+                            'text' => 'View All Openings',
+                            'url' => '/careers'
+                        ],
+                        'secondaryButton' => [
+                            'show' => true,
+                            'text' => 'Learn About Benefits',
+                            'url' => '/careers/benefits'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 67,
+                'section_key' => 'career',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'CAREERS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Shape the',
+                        'highlightedText' => 'Future of Logistics',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Join our mission to revolutionize supply chain management and build technology that powers global commerce.',
+                    'featuredRole' => [
+                        'show' => true,
+                        'title' => 'Senior Product Manager',
+                        'department' => 'Product',
+                        'location' => 'San Francisco, CA',
+                        'type' => 'Full-time',
+                        'description' => 'Lead product strategy for our core logistics platform and shape the future of supply chain technology.',
+                        'benefits' => [
+                            'Own a key strategic product area',
+                            'Work with cutting-edge technology',
+                            'Direct impact on customer success',
+                            'Collaborate with world-class engineers'
+                        ],
+                        'link' => '/careers/senior-product-manager'
+                    ],
+                    'departments' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Engineering',
+                            'jobs' => [
+                                [
+                                    'id' => 1,
+                                    'title' => 'Senior Frontend Engineer',
+                                    'location' => 'Remote / US',
+                                    'type' => 'Full-time',
+                                    'salary' => '$140k - $180k',
+                                    'link' => '/careers/frontend-engineer'
+                                ],
+                                [
+                                    'id' => 2,
+                                    'title' => 'Backend Engineer',
+                                    'location' => 'Remote / US',
+                                    'type' => 'Full-time',
+                                    'salary' => '$130k - $170k',
+                                    'link' => '/careers/backend-engineer'
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Product',
+                            'jobs' => [
+                                [
+                                    'id' => 3,
+                                    'title' => 'Product Designer',
+                                    'location' => 'San Francisco, CA',
+                                    'type' => 'Full-time',
+                                    'salary' => '$110k - $150k',
+                                    'link' => '/careers/product-designer'
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Sales',
+                            'jobs' => [
+                                [
+                                    'id' => 4,
+                                    'title' => 'Enterprise Account Executive',
+                                    'location' => 'Remote / US',
+                                    'type' => 'Full-time',
+                                    'salary' => '$150k - $200k + Commission',
+                                    'link' => '/careers/enterprise-ae'
+                                ]
+                            ]
+                        ]
+                    ],
+                    'whyJoin' => [
+                        'show' => true,
+                        'items' => [
+                            'Work with talented and passionate people',
+                            'Solve challenging problems at scale',
+                            'Competitive compensation and equity',
+                            'Flexible work arrangements',
+                            'Comprehensive health benefits',
+                            'Professional development budget'
+                        ]
+                    ],
+                    'perks' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'title' => 'Health & Wellness',
+                                'description' => 'Comprehensive medical, dental, and vision coverage',
+                                'icon' => 'health'
+                            ],
+                            [
+                                'title' => 'Remote-First',
+                                'description' => 'Work from anywhere with flexible hours',
+                                'icon' => 'remote'
+                            ],
+                            [
+                                'title' => 'Flexible PTO',
+                                'description' => 'Unlimited paid time off',
+                                'icon' => 'flex'
+                            ],
+                            [
+                                'title' => 'Learning Stipend',
+                                'description' => '$2,000 annual budget for courses and conferences',
+                                'icon' => 'learn'
+                            ],
+                            [
+                                'title' => 'Snacks & Coffee',
+                                'description' => 'Fully stocked kitchen in all offices',
+                                'icon' => 'food'
+                            ],
+                            [
+                                'title' => 'Birthday Off',
+                                'description' => 'Paid day off for your birthday',
+                                'icon' => 'cake'
+                            ]
+                        ]
+                    ],
+                    'team' => [
+                        'show' => true,
+                        'members' => [
+                            [
+                                'name' => 'Sarah Chen',
+                                'role' => 'Engineering Manager',
+                                'quote' => 'The best part about working here is the collaborative culture and the impact we make every day.',
+                                'image' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop'
+                            ],
+                            [
+                                'name' => 'Michael Rodriguez',
+                                'role' => 'Product Lead',
+                                'quote' => 'We\'re building technology that truly transforms how businesses operate globally.',
+                                'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop'
+                            ],
+                            [
+                                'name' => 'Emily Watson',
+                                'role' => 'Sales Director',
+                                'quote' => 'The energy and passion of this team is unmatched. Everyone is committed to excellence.',
+                                'image' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'social' => [
+                        'show' => true,
+                        'linkedin' => 'https://linkedin.com',
+                        'twitter' => 'https://twitter.com',
+                        'facebook' => 'https://facebook.com'
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'View All Open Positions',
+                        'url' => '/careers'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 68,
+                'section_key' => 'career',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Trust Signal
+            [
+                'id' => 69,
+                'section_key' => 'trustSignal',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'TRUST & SECURITY'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Built on',
+                        'highlightedText' => 'Trust',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We\'re committed to the highest standards of security, compliance, and customer satisfaction.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Happy Customers'],
+                            ['value' => '99.9%', 'label' => 'Uptime'],
+                            ['value' => '98%', 'label' => 'Satisfaction Rate'],
+                            ['value' => '24/7', 'label' => 'Support']
+                        ]
+                    ],
+                    'badges' => [
+                        'show' => true,
+                        'title' => 'Industry Recognition',
+                        'items' => [
+                            ['name' => 'Best Logistics Platform', 'issuer' => 'Supply Chain Awards 2024', 'icon' => 'award'],
+                            ['name' => 'ISO 27001 Certified', 'issuer' => 'International Standards', 'icon' => 'certificate'],
+                            ['name' => 'Top Rated Platform', 'issuer' => 'G2 2024', 'icon' => 'ribbon'],
+                            ['name' => 'GDPR Compliant', 'issuer' => 'EU Standards', 'icon' => 'shield']
+                        ]
+                    ],
+                    'certifications' => [
+                        'show' => true,
+                        'title' => 'Certifications & Compliance',
+                        'items' => [
+                            ['name' => 'ISO 27001', 'issuer' => 'International Organization', 'year' => '2024'],
+                            ['name' => 'SOC 2 Type II', 'issuer' => 'AICPA', 'year' => '2024'],
+                            ['name' => 'GDPR Compliant', 'issuer' => 'EU', 'year' => '2024'],
+                            ['name' => 'PCI DSS Level 1', 'issuer' => 'PCI Council', 'year' => '2024']
+                        ]
+                    ],
+                    'trustIndicators' => [
+                        [
+                            'title' => '5000+ Customers',
+                            'description' => 'Trusted by businesses worldwide',
+                            'icon' => 'users'
+                        ],
+                        [
+                            'title' => 'Global Coverage',
+                            'description' => '50+ countries served',
+                            'icon' => 'globe'
+                        ],
+                        [
+                            'title' => '24/7 Support',
+                            'description' => 'Round-the-clock assistance',
+                            'icon' => 'clock'
+                        ]
+                    ],
+                    'security' => [
+                        'show' => true,
+                        'title' => 'Security Features',
+                        'items' => [
+                            ['title' => '256-bit Encryption', 'description' => 'Bank-level security for your data'],
+                            ['title' => 'Multi-factor Authentication', 'description' => 'Enhanced account protection'],
+                            ['title' => 'Automated Backups', 'description' => 'Daily encrypted backups'],
+                            ['title' => 'Real-time Monitoring', 'description' => '24/7 security monitoring']
+                        ]
+                    ],
+                    'testimonials' => [
+                        'show' => true,
+                        'title' => 'What Our Customers Say',
+                        'items' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'role' => 'Supply Chain Director',
+                                'company' => 'TechLogix',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                                'rating' => 5,
+                                'quote' => 'The most reliable platform we\'ve used. Their security and uptime have been exceptional.'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'role' => 'Operations Manager',
+                                'company' => 'AutoParts Global',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                                'rating' => 5,
+                                'quote' => 'We trust them with our most critical supply chain data. Their security standards are top-notch.'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'role' => 'Logistics Director',
+                                'company' => 'FreshFoods Co',
+                                'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                                'rating' => 4,
+                                'quote' => 'Excellent platform with robust security features and reliable customer support.'
+                            ]
+                        ]
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Experience Enterprise Security',
+                        'description' => 'Join thousands of businesses that trust us with their supply chain operations.',
+                        'button' => [
+                            'text' => 'Start Free Trial',
+                            'url' => '/signup'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 70,
+                'section_key' => 'trustSignal',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'TRUST & SECURITY'
+                    ],
+                    'heading' => [
+                        'line1' => 'Your Security is Our',
+                        'highlighted' => 'Top Priority'
+                    ],
+                    'description' => 'We maintain the highest standards of security and compliance to protect your data.',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Customers Protected', 'icon' => 'users'],
+                            ['value' => '99.99%', 'label' => 'Uptime SLA', 'icon' => 'clock'],
+                            ['value' => '256-bit', 'label' => 'Encryption', 'icon' => 'lock'],
+                            ['value' => '24/7', 'label' => 'Monitoring', 'icon' => 'shield']
+                        ]
+                    ],
+                    'tabs' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'name' => 'Data Security',
+                                'title' => 'Bank-Level Security',
+                                'description' => 'Your data is protected with enterprise-grade security measures.',
+                                'points' => [
+                                    '256-bit AES encryption for data at rest',
+                                    'TLS 1.3 for data in transit',
+                                    'Regular security audits and penetration testing',
+                                    'Automated backup and disaster recovery'
+                                ],
+                                'badges' => [
+                                    ['name' => 'ISO 27001', 'icon' => 'certificate'],
+                                    ['name' => 'SOC 2', 'icon' => 'award']
+                                ]
+                            ],
+                            [
+                                'name' => 'Compliance',
+                                'title' => 'Global Compliance Standards',
+                                'description' => 'We meet rigorous compliance requirements across multiple jurisdictions.',
+                                'points' => [
+                                    'GDPR compliant for EU data protection',
+                                    'CCPA compliant for California privacy',
+                                    'PCI DSS Level 1 for payment security',
+                                    'HIPAA ready for healthcare data'
+                                ],
+                                'badges' => [
+                                    ['name' => 'GDPR', 'icon' => 'ribbon'],
+                                    ['name' => 'CCPA', 'icon' => 'certificate']
+                                ]
+                            ],
+                            [
+                                'name' => 'Privacy',
+                                'title' => 'Your Privacy Matters',
+                                'description' => 'We\'re committed to protecting your personal information.',
+                                'points' => [
+                                    'No selling of personal data',
+                                    'Transparent data practices',
+                                    'Right to access and delete your data',
+                                    'Privacy by design approach'
+                                ],
+                                'badges' => [
+                                    ['name' => 'Privacy Shield', 'icon' => 'award'],
+                                    ['name' => 'ePrivacy', 'icon' => 'ribbon']
+                                ]
+                            ]
+                        ]
+                    ],
+                    'certifications' => [
+                        'show' => true,
+                        'title' => 'Certifications & Compliance',
+                        'items' => [
+                            ['name' => 'ISO 27001', 'issuer' => 'International Organization', 'year' => '2024', 'link' => '/certifications/iso-27001'],
+                            ['name' => 'SOC 2 Type II', 'issuer' => 'AICPA', 'year' => '2024', 'link' => '/certifications/soc2'],
+                            ['name' => 'GDPR Compliant', 'issuer' => 'EU', 'year' => '2024', 'link' => '/certifications/gdpr'],
+                            ['name' => 'PCI DSS Level 1', 'issuer' => 'PCI Council', 'year' => '2024', 'link' => '/certifications/pci']
+                        ]
+                    ],
+                    'security' => [
+                        'show' => true,
+                        'title' => 'Security Features',
+                        'items' => [
+                            ['title' => 'Encryption at Rest', 'description' => 'All data stored is encrypted using AES-256', 'icon' => 'lock'],
+                            ['title' => 'Encryption in Transit', 'description' => 'TLS 1.3 for all data transmission', 'icon' => 'shield'],
+                            ['title' => 'Access Controls', 'description' => 'Role-based access and MFA', 'icon' => 'users'],
+                            ['title' => 'Audit Logging', 'description' => 'Complete audit trail of all actions', 'icon' => 'scale']
+                        ]
+                    ],
+                    'trustedBy' => [
+                        'show' => true,
+                        'title' => 'Trusted by Industry Leaders',
+                        'logos' => [
+                            ['name' => 'Company A', 'url' => '#'],
+                            ['name' => 'Company B', 'url' => '#'],
+                            ['name' => 'Company C', 'url' => '#'],
+                            ['name' => 'Company D', 'url' => '#']
+                        ]
+                    ],
+                    'testimonials' => [
+                        'show' => true,
+                        'title' => 'What Our Customers Say',
+                        'items' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'role' => 'CTO',
+                                'company' => 'TechCorp',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                                'rating' => 5,
+                                'quote' => 'Their security measures give us complete peace of mind. We trust them with our most sensitive data.'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'role' => 'Security Director',
+                                'company' => 'SecureSoft',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                                'rating' => 5,
+                                'quote' => 'Best-in-class security infrastructure. Their compliance certifications are impressive.'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'role' => 'Compliance Officer',
+                                'company' => 'GlobalFinance',
+                                'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                                'rating' => 4,
+                                'quote' => 'They\'ve made compliance easy with their comprehensive security framework.'
+                            ]
+                        ]
+                    ],
+                    'compliance' => [
+                        'show' => true,
+                        'items' => ['GDPR', 'CCPA', 'SOC 2', 'ISO 27001', 'PCI DSS', 'HIPAA Ready']
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'title' => 'Ready to Experience Enterprise Security?',
+                        'description' => 'Join thousands of businesses that trust us with their supply chain operations.',
+                        'primaryButton' => [
+                            'text' => 'Start Free Trial',
+                            'url' => '/signup'
+                        ],
+                        'secondaryButton' => [
+                            'show' => true,
+                            'text' => 'Contact Security Team',
+                            'url' => '/contact'
+                        ],
+                        'avatars' => [
+                            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop',
+                            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop',
+                            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 71,
+                'section_key' => 'trustSignal',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'TRUST & SECURITY'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Built on',
+                        'highlightedText' => 'Trust',
+                        'suffix' => 'and Transparency'
+                    ],
+                    'description' => 'We\'re committed to the highest standards of security, compliance, and customer satisfaction.',
+                    'featured' => [
+                        'show' => true,
+                        'label' => 'ISO 27001 Certified',
+                        'title' => 'Enterprise-Grade Security',
+                        'description' => 'We maintain the highest security standards with ISO 27001 certification and SOC 2 compliance.',
+                        'buttonText' => 'View Security Overview',
+                        'link' => '/security'
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '5000+', 'label' => 'Customers'],
+                            ['value' => '99.99%', 'label' => 'Uptime'],
+                            ['value' => '256-bit', 'label' => 'Encryption'],
+                            ['value' => '24/7', 'label' => 'Monitoring']
+                        ]
+                    ],
+                    'certifications' => [
+                        'show' => true,
+                        'title' => 'Certifications',
+                        'items' => [
+                            ['name' => 'ISO 27001', 'issuer' => 'International Organization', 'year' => '2024'],
+                            ['name' => 'SOC 2 Type II', 'issuer' => 'AICPA', 'year' => '2024'],
+                            ['name' => 'GDPR Compliant', 'issuer' => 'EU', 'year' => '2024'],
+                            ['name' => 'PCI DSS Level 1', 'issuer' => 'PCI Council', 'year' => '2024']
+                        ]
+                    ],
+                    'security' => [
+                        'show' => true,
+                        'title' => 'Security Features',
+                        'items' => [
+                            ['title' => 'Encryption at Rest', 'description' => 'AES-256 encryption for all stored data', 'icon' => 'lock'],
+                            ['title' => 'Encryption in Transit', 'description' => 'TLS 1.3 for all data transmission', 'icon' => 'shield'],
+                            ['title' => 'Access Controls', 'description' => 'Role-based access and MFA required', 'icon' => 'users'],
+                            ['title' => 'Audit Logging', 'description' => 'Complete audit trail of all actions', 'icon' => 'eye']
+                        ]
+                    ],
+                    'rating' => [
+                        'show' => true,
+                        'score' => 4.8,
+                        'count' => '1,200+'
+                    ],
+                    'testimonials' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'company' => 'TechCorp',
+                                'rating' => 5,
+                                'quote' => 'Their security measures give us complete peace of mind. We trust them with our most sensitive data.'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'company' => 'SecureSoft',
+                                'rating' => 5,
+                                'quote' => 'Best-in-class security infrastructure. Their compliance certifications are impressive.'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'company' => 'GlobalFinance',
+                                'rating' => 4,
+                                'quote' => 'They\'ve made compliance easy with their comprehensive security framework.'
+                            ],
+                            [
+                                'name' => 'David Kim',
+                                'company' => 'DataSafe',
+                                'rating' => 5,
+                                'quote' => 'Excellent security practices and transparent about their compliance standards.'
+                            ]
+                        ]
+                    ],
+                    'compliance' => [
+                        'show' => true,
+                        'items' => ['GDPR', 'CCPA', 'SOC 2', 'ISO 27001', 'PCI DSS']
+                    ],
+                    'trustedBy' => [
+                        'show' => true,
+                        'logos' => [
+                            ['name' => 'Company A', 'url' => '#'],
+                            ['name' => 'Company B', 'url' => '#'],
+                            ['name' => 'Company C', 'url' => '#'],
+                            ['name' => 'Company D', 'url' => '#']
+                        ]
+                    ],
+                    'report' => [
+                        'show' => true,
+                        'title' => 'Security Report',
+                        'description' => 'Download our latest security audit report',
+                        'link' => '/security-report.pdf'
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'text' => 'Learn More About Security',
+                        'url' => '/security'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 72,
+                'section_key' => 'trustSignal',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
