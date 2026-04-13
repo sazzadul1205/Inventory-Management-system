@@ -12,11 +12,8 @@ class HomePageSectionVariantSeeder extends Seeder
      */
     public function run(): void
     {
-        // Truncate the table to remove existing content
-        DB::table('section_variants')->truncate();
-
-        // Insert fresh data
-        DB::table('section_variants')->insert([
+        // Upsert only this page's variants so other page seeders do not get wiped out.
+        $variants = [
 
             // Hero Section
             [
@@ -7226,6 +7223,12 @@ class HomePageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        DB::table('section_variants')->upsert(
+            $variants,
+            ['section_key', 'variant'],
+            ['config', 'updated_at']
+        );
     }
 }

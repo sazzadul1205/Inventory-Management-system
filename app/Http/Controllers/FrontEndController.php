@@ -153,6 +153,7 @@ class FrontEndController extends Controller
                 'sections' => $sections,
             ];
 
+            // dd($pageData);
             return Inertia::render($componentPath, [
                 'pageData' => $pageData
             ]);
@@ -168,6 +169,7 @@ class FrontEndController extends Controller
      */
     public function home()
     {
+        
         return $this->renderPage('home', 'frontend/Home/Home', 0);
     }
 
