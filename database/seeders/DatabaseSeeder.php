@@ -11,6 +11,7 @@ use Database\Seeders\PageRelatedSeeders\PageSectionsSeeder;
 
 // Page Related Seeders
 use Database\Seeders\PageRelatedSeeders\HomePageSectionVariantSeeder;
+use Database\Seeders\PageRelatedSeeders\ServicesPageSectionVariantSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -88,8 +89,17 @@ class DatabaseSeeder extends Seeder
             $this->call(PageSeeders::class);
             $this->call(PageSectionsSeeder::class);
 
-            $this->command->info('starting Home Page Section Variant Seeding !');
+            // Call Home Page Section Variant Seeders
+            $this->command->info('Starting Home Page Section Variant Seeding !');
             $this->call(HomePageSectionVariantSeeder::class);
+            $this->command->info('Completed Home Page Section Variant Seeding !');
+
+            // Call Services Page Section Variant Seeders
+            $this->command->info('Completed Services Page Section Variant Seeding !');
+            $this->call(ServicesPageSectionVariantSeeder::class);
+            $this->command->info('Completed Services Page Section Variant Seeding !');
+
+
             $this->command->info('✅ Pages and Sections seeded successfully!');
         } else {
             $this->command->warn('⚠️  Skipped Pages and Sections seeding.');
