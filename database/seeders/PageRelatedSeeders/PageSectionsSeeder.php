@@ -22,7 +22,7 @@ class PageSectionsSeeder extends Seeder
         // Insert all page sections for Home page (page_id = 1)
         DB::table('page_sections')->insert([
 
-            // Home page sections
+            // Home page sections (proper order)
             [
                 'id' => 1,
                 'page_id' => 1,
@@ -39,7 +39,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 2,
                 'page_id' => 1,
-                'section_key' => 'services',
+                'section_key' => 'aboutUs',
                 'variant' => 'variant1',
                 'order' => 2,
                 'enabled' => 1,
@@ -52,7 +52,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 3,
                 'page_id' => 1,
-                'section_key' => 'features',
+                'section_key' => 'services',
                 'variant' => 'variant1',
                 'order' => 3,
                 'enabled' => 1,
@@ -65,7 +65,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 4,
                 'page_id' => 1,
-                'section_key' => 'howItWorks',
+                'section_key' => 'features',
                 'variant' => 'variant1',
                 'order' => 4,
                 'enabled' => 1,
@@ -78,7 +78,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 5,
                 'page_id' => 1,
-                'section_key' => 'industries',
+                'section_key' => 'howItWorks',
                 'variant' => 'variant1',
                 'order' => 5,
                 'enabled' => 1,
@@ -91,7 +91,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 6,
                 'page_id' => 1,
-                'section_key' => 'successStories',
+                'section_key' => 'whyChooseUs',
                 'variant' => 'variant1',
                 'order' => 6,
                 'enabled' => 1,
@@ -104,7 +104,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 7,
                 'page_id' => 1,
-                'section_key' => 'testimonials',
+                'section_key' => 'industries',
                 'variant' => 'variant1',
                 'order' => 7,
                 'enabled' => 1,
@@ -117,7 +117,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 8,
                 'page_id' => 1,
-                'section_key' => 'pricingPlans',
+                'section_key' => 'successStories',
                 'variant' => 'variant1',
                 'order' => 8,
                 'enabled' => 1,
@@ -130,7 +130,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 9,
                 'page_id' => 1,
-                'section_key' => 'faq',
+                'section_key' => 'testimonials',
                 'variant' => 'variant1',
                 'order' => 9,
                 'enabled' => 1,
@@ -143,7 +143,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 10,
                 'page_id' => 1,
-                'section_key' => 'contact',
+                'section_key' => 'trustSignal',
                 'variant' => 'variant1',
                 'order' => 10,
                 'enabled' => 1,
@@ -156,7 +156,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 11,
                 'page_id' => 1,
-                'section_key' => 'aboutUs',
+                'section_key' => 'pricingPlans',
                 'variant' => 'variant1',
                 'order' => 11,
                 'enabled' => 1,
@@ -169,7 +169,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 12,
                 'page_id' => 1,
-                'section_key' => 'whyChooseUs',
+                'section_key' => 'mobileApp',
                 'variant' => 'variant1',
                 'order' => 12,
                 'enabled' => 1,
@@ -195,7 +195,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 14,
                 'page_id' => 1,
-                'section_key' => 'news',
+                'section_key' => 'globalPresence',
                 'variant' => 'variant1',
                 'order' => 14,
                 'enabled' => 1,
@@ -221,7 +221,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 16,
                 'page_id' => 1,
-                'section_key' => 'globalPresence',
+                'section_key' => 'news',
                 'variant' => 'variant1',
                 'order' => 16,
                 'enabled' => 1,
@@ -234,7 +234,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 17,
                 'page_id' => 1,
-                'section_key' => 'career',
+                'section_key' => 'event',
                 'variant' => 'variant1',
                 'order' => 17,
                 'enabled' => 1,
@@ -247,7 +247,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 18,
                 'page_id' => 1,
-                'section_key' => 'trustSignal',
+                'section_key' => 'blog',
                 'variant' => 'variant1',
                 'order' => 18,
                 'enabled' => 1,
@@ -273,7 +273,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 20,
                 'page_id' => 1,
-                'section_key' => 'mobileApp',
+                'section_key' => 'faq',
                 'variant' => 'variant1',
                 'order' => 20,
                 'enabled' => 1,
@@ -286,7 +286,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 21,
                 'page_id' => 1,
-                'section_key' => 'event',
+                'section_key' => 'career',
                 'variant' => 'variant1',
                 'order' => 21,
                 'enabled' => 1,
@@ -299,7 +299,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 22,
                 'page_id' => 1,
-                'section_key' => 'customSolutions',
+                'section_key' => 'contact',
                 'variant' => 'variant1',
                 'order' => 22,
                 'enabled' => 1,
@@ -309,75 +309,10 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'id' => 23,
-                'page_id' => 1,
-                'section_key' => 'orderFulfillment',
-                'variant' => 'variant1',
-                'order' => 23,
-                'enabled' => 1,
-                'props' => json_encode([]),
-                'device' => null,
-                'locale' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 24,
-                'page_id' => 1,
-                'section_key' => 'returnsManagement',
-                'variant' => 'variant1',
-                'order' => 24,
-                'enabled' => 1,
-                'props' => json_encode([]),
-                'device' => null,
-                'locale' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 25,
-                'page_id' => 1,
-                'section_key' => 'supplyChainConsulting',
-                'variant' => 'variant1',
-                'order' => 25,
-                'enabled' => 1,
-                'props' => json_encode([]),
-                'device' => null,
-                'locale' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 26,
-                'page_id' => 1,
-                'section_key' => 'transportationManagement',
-                'variant' => 'variant1',
-                'order' => 26,
-                'enabled' => 1,
-                'props' => json_encode([]),
-                'device' => null,
-                'locale' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 27,
-                'page_id' => 1,
-                'section_key' => 'warehouseManagement',
-                'variant' => 'variant1',
-                'order' => 27,
-                'enabled' => 1,
-                'props' => json_encode([]),
-                'device' => null,
-                'locale' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
+            
             // Services Page Section
             [
-                'id' => 28,
+                'id' => 23,
                 'page_id' => 2,
                 'section_key' => 'allServices',
                 'variant' => 'variant1',
@@ -390,7 +325,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 29,
+                'id' => 24,
                 'page_id' => 2,
                 'section_key' => 'warehouseManagement',
                 'variant' => 'variant1',
@@ -403,7 +338,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 30,
+                'id' => 25,
                 'page_id' => 2,
                 'section_key' => 'orderFulfillment',
                 'variant' => 'variant1',
@@ -416,7 +351,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 31,
+                'id' => 26,
                 'page_id' => 2,
                 'section_key' => 'supplyChainConsulting',
                 'variant' => 'variant1',
@@ -429,7 +364,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 32,
+                'id' => 27,
                 'page_id' => 2,
                 'section_key' => 'transportationManagement',
                 'variant' => 'variant1',
@@ -442,7 +377,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 33,
+                'id' => 28,
                 'page_id' => 2,
                 'section_key' => 'returnManagement',
                 'variant' => 'variant1',
@@ -455,7 +390,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 34,
+                'id' => 29,
                 'page_id' => 2,
                 'section_key' => 'customSolution',
                 'variant' => 'variant1',
@@ -470,7 +405,7 @@ class PageSectionsSeeder extends Seeder
 
             // Features Page Section
             [
-                'id' => 35,
+                'id' => 30,
                 'page_id' => 3,
                 'section_key' => 'realTimeTracking',
                 'variant' => 'variant1',
@@ -483,7 +418,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 36,
+                'id' => 31,
                 'page_id' => 3,
                 'section_key' => 'automatedReordering',
                 'variant' => 'variant1',
@@ -496,7 +431,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 37,
+                'id' => 32,
                 'page_id' => 3,
                 'section_key' => 'multiWarehouseSupport',
                 'variant' => 'variant1',
@@ -509,7 +444,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 38,
+                'id' => 33,
                 'page_id' => 3,
                 'section_key' => 'barcodeScanning',
                 'variant' => 'variant1',
@@ -522,7 +457,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 39,
+                'id' => 34,
                 'page_id' => 3,
                 'section_key' => 'reportingAnalytics',
                 'variant' => 'variant1',
@@ -535,7 +470,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 40,
+                'id' => 35,
                 'page_id' => 3,
                 'section_key' => 'integrationCapabilities',
                 'variant' => 'variant1',
@@ -548,7 +483,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 41,
+                'id' => 36,
                 'page_id' => 3,
                 'section_key' => 'mobileAppFeatures',
                 'variant' => 'variant1',
@@ -561,7 +496,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 42,
+                'id' => 37,
                 'page_id' => 3,
                 'section_key' => 'securityFeatures',
                 'variant' => 'variant1',
@@ -576,7 +511,7 @@ class PageSectionsSeeder extends Seeder
 
             // How It Works Page Section's
             [
-                'id' => 43,
+                'id' => 38,
                 'page_id' => 4,
                 'section_key' => 'stepByStepProcess',
                 'variant' => 'variant1',
@@ -589,7 +524,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 44,
+                'id' => 39,
                 'page_id' => 4,
                 'section_key' => 'onboardingGuide',
                 'variant' => 'variant1',
@@ -602,7 +537,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 45,
+                'id' => 40,
                 'page_id' => 4,
                 'section_key' => 'implementationTimeline',
                 'variant' => 'variant1',
@@ -615,7 +550,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 46,
+                'id' => 41,
                 'page_id' => 4,
                 'section_key' => 'trainingAndSupport',
                 'variant' => 'variant1',
@@ -628,7 +563,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 47,
+                'id' => 42,
                 'page_id' => 4,
                 'section_key' => 'successMetrics',
                 'variant' => 'variant1',
@@ -641,7 +576,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 48,
+                'id' => 43,
                 'page_id' => 4,
                 'section_key' => 'caseStudies',
                 'variant' => 'variant1',
@@ -656,7 +591,7 @@ class PageSectionsSeeder extends Seeder
 
             // Industries Page Section's
             [
-                'id' => 49,
+                'id' => 44,
                 'page_id' => 5,
                 'section_key' => 'eCommerceAndRetail',
                 'variant' => 'variant1',
@@ -669,7 +604,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 50,
+                'id' => 45,
                 'page_id' => 5,
                 'section_key' => 'manufacturing',
                 'variant' => 'variant1',
@@ -682,7 +617,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 51,
+                'id' => 46,
                 'page_id' => 5,
                 'section_key' => 'healthcareAndPharmaceuticals',
                 'variant' => 'variant1',
@@ -695,7 +630,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 52,
+                'id' => 47,
                 'page_id' => 5,
                 'section_key' => 'foodAndBeverage',
                 'variant' => 'variant1',
@@ -708,7 +643,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 53,
+                'id' => 48,
                 'page_id' => 5,
                 'section_key' => 'automotive',
                 'variant' => 'variant1',
@@ -721,7 +656,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 54,
+                'id' => 49,
                 'page_id' => 5,
                 'section_key' => 'electronics',
                 'variant' => 'variant1',
@@ -734,7 +669,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 55,
+                'id' => 50,
                 'page_id' => 5,
                 'section_key' => 'fashionAndApparel',
                 'variant' => 'variant1',
@@ -747,7 +682,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 56,
+                'id' => 51,
                 'page_id' => 5,
                 'section_key' => 'wholesaleAndDistribution',
                 'variant' => 'variant1',
@@ -760,7 +695,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 57,
+                'id' => 52,
                 'page_id' => 5,
                 'section_key' => 'thirdPartyLogistics',
                 'variant' => 'variant1',
@@ -773,7 +708,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 58,
+                'id' => 53,
                 'page_id' => 5,
                 'section_key' => 'construction',
                 'variant' => 'variant1',
@@ -788,7 +723,7 @@ class PageSectionsSeeder extends Seeder
 
             // Success Stories page sections
             [
-                'id' => 59,
+                'id' => 54,
                 'page_id' => 6,
                 'section_key' => 'clientSuccessMetrics',
                 'variant' => 'variant1',
@@ -801,7 +736,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 60,
+                'id' => 55,
                 'page_id' => 6,
                 'section_key' => 'beforeAfterScenarios',
                 'variant' => 'variant1',
@@ -814,7 +749,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 61,
+                'id' => 56,
                 'page_id' => 6,
                 'section_key' => 'roiCalculations',
                 'variant' => 'variant1',
@@ -827,7 +762,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 62,
+                'id' => 57,
                 'page_id' => 6,
                 'section_key' => 'industrySpecificExamples',
                 'variant' => 'variant1',
@@ -842,7 +777,7 @@ class PageSectionsSeeder extends Seeder
 
             // Testimonials page sections
             [
-                'id' => 63,
+                'id' => 58,
                 'page_id' => 7,
                 'section_key' => 'customerReviews',
                 'variant' => 'variant1',
@@ -855,7 +790,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 64,
+                'id' => 59,
                 'page_id' => 7,
                 'section_key' => 'videoTestimonials',
                 'variant' => 'variant1',
@@ -868,7 +803,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 65,
+                'id' => 60,
                 'page_id' => 7,
                 'section_key' => 'writtenTestimonials',
                 'variant' => 'variant1',
@@ -881,7 +816,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 66,
+                'id' => 61,
                 'page_id' => 7,
                 'section_key' => 'industryExpertReviews',
                 'variant' => 'variant1',
@@ -894,7 +829,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 67,
+                'id' => 62,
                 'page_id' => 7,
                 'section_key' => 'partnerTestimonials',
                 'variant' => 'variant1',
@@ -907,7 +842,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 68,
+                'id' => 63,
                 'page_id' => 7,
                 'section_key' => 'ratingAndAwards',
                 'variant' => 'variant1',
@@ -922,7 +857,7 @@ class PageSectionsSeeder extends Seeder
 
             // Pricing Plans page sections
             [
-                'id' => 69,
+                'id' => 64,
                 'page_id' => 8,
                 'section_key' => 'starterPlan',
                 'variant' => 'variant1',
@@ -935,7 +870,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 70,
+                'id' => 65,
                 'page_id' => 8,
                 'section_key' => 'professionalPlan',
                 'variant' => 'variant1',
@@ -948,7 +883,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 71,
+                'id' => 66,
                 'page_id' => 8,
                 'section_key' => 'enterprisePlan',
                 'variant' => 'variant1',
@@ -961,7 +896,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 72,
+                'id' => 67,
                 'page_id' => 8,
                 'section_key' => 'CustomPricing',
                 'variant' => 'variant1',
@@ -974,7 +909,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 73,
+                'id' => 68,
                 'page_id' => 8,
                 'section_key' => 'freeTrial',
                 'variant' => 'variant1',
@@ -987,7 +922,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 74,
+                'id' => 69,
                 'page_id' => 8,
                 'section_key' => 'featureComparisonTable',
                 'variant' => 'variant1',
@@ -1000,7 +935,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 75,
+                'id' => 70,
                 'page_id' => 8,
                 'section_key' => 'faqAboutPricing',
                 'variant' => 'variant1',
@@ -1015,7 +950,7 @@ class PageSectionsSeeder extends Seeder
 
             // FAQ page sections
             [
-                'id' => 76,
+                'id' => 71,
                 'page_id' => 9,
                 'section_key' => 'generalQuestions',
                 'variant' => 'variant1',
@@ -1028,7 +963,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 77,
+                'id' => 72,
                 'page_id' => 9,
                 'section_key' => 'billingPricing',
                 'variant' => 'variant1',
@@ -1041,7 +976,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 78,
+                'id' => 73,
                 'page_id' => 9,
                 'section_key' => 'technicalSupport',
                 'variant' => 'variant1',
@@ -1054,7 +989,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 79,
+                'id' => 74,
                 'page_id' => 9,
                 'section_key' => 'implementation',
                 'variant' => 'variant1',
@@ -1067,7 +1002,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 80,
+                'id' => 75,
                 'page_id' => 9,
                 'section_key' => 'integrationsFAQ',
                 'variant' => 'variant1',
@@ -1080,7 +1015,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 81,
+                'id' => 76,
                 'page_id' => 9,
                 'section_key' => 'dataSecurity',
                 'variant' => 'variant1',
@@ -1093,7 +1028,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 82,
+                'id' => 77,
                 'page_id' => 9,
                 'section_key' => 'accountManagement',
                 'variant' => 'variant1',
@@ -1108,7 +1043,7 @@ class PageSectionsSeeder extends Seeder
 
             // Contact page sections
             [
-                'id' => 83,
+                'id' => 78,
                 'page_id' => 10,
                 'section_key' => 'contactForm',
                 'variant' => 'variant1',
@@ -1121,7 +1056,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 84,
+                'id' => 79,
                 'page_id' => 10,
                 'section_key' => 'salesInquiries',
                 'variant' => 'variant1',
@@ -1134,7 +1069,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 85,
+                'id' => 80,
                 'page_id' => 10,
                 'section_key' => 'supportRequests',
                 'variant' => 'variant1',
@@ -1147,7 +1082,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 86,
+                'id' => 81,
                 'page_id' => 10,
                 'section_key' => 'partnerInquiries',
                 'variant' => 'variant1',
@@ -1160,7 +1095,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 87,
+                'id' => 82,
                 'page_id' => 10,
                 'section_key' => 'officeLocations',
                 'variant' => 'variant1',
@@ -1173,7 +1108,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 88,
+                'id' => 83,
                 'page_id' => 10,
                 'section_key' => 'phoneNumbers',
                 'variant' => 'variant1',
@@ -1186,7 +1121,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 89,
+                'id' => 84,
                 'page_id' => 10,
                 'section_key' => 'emailAddresses',
                 'variant' => 'variant1',
@@ -1199,7 +1134,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 90,
+                'id' => 85,
                 'page_id' => 10,
                 'section_key' => 'liveChatOption',
                 'variant' => 'variant1',
@@ -1214,7 +1149,7 @@ class PageSectionsSeeder extends Seeder
 
             // About Us Page Sections
             [
-                'id' => 91,
+                'id' => 86,
                 'page_id' => 11,
                 'section_key' => 'companyStory',
                 'variant' => 'variant1',
@@ -1227,7 +1162,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 92,
+                'id' => 87,
                 'page_id' => 11,
                 'section_key' => 'missionVision',
                 'variant' => 'variant1',
@@ -1240,7 +1175,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 93,
+                'id' => 88,
                 'page_id' => 11,
                 'section_key' => 'coreValues',
                 'variant' => 'variant1',
@@ -1253,7 +1188,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 94,
+                'id' => 89,
                 'page_id' => 11,
                 'section_key' => 'leadershipTeam',
                 'variant' => 'variant1',
@@ -1266,7 +1201,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 95,
+                'id' => 90,
                 'page_id' => 11,
                 'section_key' => 'companyTimeline',
                 'variant' => 'variant1',
@@ -1279,7 +1214,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 96,
+                'id' => 91,
                 'page_id' => 11,
                 'section_key' => 'cultureCareers',
                 'variant' => 'variant1',
@@ -1292,7 +1227,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 97,
+                'id' => 92,
                 'page_id' => 11,
                 'section_key' => 'awardsRecognition',
                 'variant' => 'variant1',
@@ -1307,7 +1242,7 @@ class PageSectionsSeeder extends Seeder
 
             // Why Choose Us Page Sections
             [
-                'id' => 98,
+                'id' => 93,
                 'page_id' => 12,
                 'section_key' => 'competitiveAdvantages',
                 'variant' => 'variant1',
@@ -1320,7 +1255,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 99,
+                'id' => 94,
                 'page_id' => 12,
                 'section_key' => 'uniqueSellingPoints',
                 'variant' => 'variant1',
@@ -1333,7 +1268,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 100,
+                'id' => 95,
                 'page_id' => 12,
                 'section_key' => 'customerSatisfactionStats',
                 'variant' => 'variant1',
@@ -1346,7 +1281,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 101,
+                'id' => 96,
                 'page_id' => 12,
                 'section_key' => 'industryExpertise',
                 'variant' => 'variant1',
@@ -1359,7 +1294,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 102,
+                'id' => 97,
                 'page_id' => 12,
                 'section_key' => 'technologyInnovation',
                 'variant' => 'variant1',
@@ -1372,7 +1307,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 103,
+                'id' => 98,
                 'page_id' => 12,
                 'section_key' => 'support24x7',
                 'variant' => 'variant1',
@@ -1385,7 +1320,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 104,
+                'id' => 99,
                 'page_id' => 12,
                 'section_key' => 'globalReach',
                 'variant' => 'variant1',
@@ -1400,7 +1335,7 @@ class PageSectionsSeeder extends Seeder
 
             // Blog Page Sections
             [
-                'id' => 105,
+                'id' => 100,
                 'page_id' => 13,
                 'section_key' => 'industryInsights',
                 'variant' => 'variant1',
@@ -1413,7 +1348,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 106,
+                'id' => 101,
                 'page_id' => 13,
                 'section_key' => 'productUpdates',
                 'variant' => 'variant1',
@@ -1426,7 +1361,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 107,
+                'id' => 102,
                 'page_id' => 13,
                 'section_key' => 'howToGuides',
                 'variant' => 'variant1',
@@ -1439,7 +1374,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 108,
+                'id' => 103,
                 'page_id' => 13,
                 'section_key' => 'bestPractices',
                 'variant' => 'variant1',
@@ -1452,7 +1387,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 109,
+                'id' => 104,
                 'page_id' => 13,
                 'section_key' => 'companyNews',
                 'variant' => 'variant1',
@@ -1465,7 +1400,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 110,
+                'id' => 105,
                 'page_id' => 13,
                 'section_key' => 'expertArticles',
                 'variant' => 'variant1',
@@ -1478,7 +1413,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 111,
+                'id' => 106,
                 'page_id' => 13,
                 'section_key' => 'videoContent',
                 'variant' => 'variant1',
@@ -1493,7 +1428,7 @@ class PageSectionsSeeder extends Seeder
 
             // News Page Section
             [
-                'id' => 112,
+                'id' => 107,
                 'page_id' => 14,
                 'section_key' => 'pressReleases',
                 'variant' => 'variant1',
@@ -1506,7 +1441,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 113,
+                'id' => 108,
                 'page_id' => 14,
                 'section_key' => 'mediaCoverage',
                 'variant' => 'variant1',
@@ -1519,7 +1454,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 114,
+                'id' => 109,
                 'page_id' => 14,
                 'section_key' => 'companyAnnouncements',
                 'variant' => 'variant1',
@@ -1532,7 +1467,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 115,
+                'id' => 110,
                 'page_id' => 14,
                 'section_key' => 'industryEvents',
                 'variant' => 'variant1',
@@ -1545,7 +1480,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 116,
+                'id' => 111,
                 'page_id' => 14,
                 'section_key' => 'productLaunches',
                 'variant' => 'variant1',
@@ -1558,7 +1493,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 117,
+                'id' => 112,
                 'page_id' => 14,
                 'section_key' => 'awardsAndRecognition',
                 'variant' => 'variant1',
@@ -1573,7 +1508,7 @@ class PageSectionsSeeder extends Seeder
 
             // Partners Page Section
             [
-                'id' => 118,
+                'id' => 113,
                 'page_id' => 15,
                 'section_key' => 'partnerProgramOverview',
                 'variant' => 'variant1',
@@ -1586,7 +1521,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 119,
+                'id' => 114,
                 'page_id' => 15,
                 'section_key' => 'technologyPartners',
                 'variant' => 'variant1',
@@ -1599,7 +1534,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 120,
+                'id' => 115,
                 'page_id' => 15,
                 'section_key' => 'solutionPartners',
                 'variant' => 'variant1',
@@ -1612,7 +1547,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 121,
+                'id' => 116,
                 'page_id' => 15,
                 'section_key' => 'integrationPartners',
                 'variant' => 'variant1',
@@ -1625,7 +1560,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 122,
+                'id' => 117,
                 'page_id' => 15,
                 'section_key' => 'becomeAPartner',
                 'variant' => 'variant1',
@@ -1638,7 +1573,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 123,
+                'id' => 118,
                 'page_id' => 15,
                 'section_key' => 'partnerResources',
                 'variant' => 'variant1',
@@ -1651,7 +1586,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 124,
+                'id' => 119,
                 'page_id' => 15,
                 'section_key' => 'partnerDirectory',
                 'variant' => 'variant1',
@@ -1666,7 +1601,7 @@ class PageSectionsSeeder extends Seeder
 
             // Global Presence Page Section
             [
-                'id' => 125,
+                'id' => 120,
                 'page_id' => 16,
                 'section_key' => 'worldwideLocations',
                 'variant' => 'variant1',
@@ -1679,7 +1614,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 126,
+                'id' => 121,
                 'page_id' => 16,
                 'section_key' => 'regionalOffices',
                 'variant' => 'variant1',
@@ -1692,7 +1627,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 127,
+                'id' => 122,
                 'page_id' => 16,
                 'section_key' => 'globalCoverageMap',
                 'variant' => 'variant1',
@@ -1705,7 +1640,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 128,
+                'id' => 123,
                 'page_id' => 16,
                 'section_key' => 'localSupport',
                 'variant' => 'variant1',
@@ -1718,7 +1653,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 129,
+                'id' => 124,
                 'page_id' => 16,
                 'section_key' => 'internationalClients',
                 'variant' => 'variant1',
@@ -1731,7 +1666,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 130,
+                'id' => 125,
                 'page_id' => 16,
                 'section_key' => 'languageSupport',
                 'variant' => 'variant1',
@@ -1744,7 +1679,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 131,
+                'id' => 126,
                 'page_id' => 16,
                 'section_key' => 'currencySupport',
                 'variant' => 'variant1',
@@ -1759,7 +1694,7 @@ class PageSectionsSeeder extends Seeder
 
             // Careers Page Section
             [
-                'id' => 132,
+                'id' => 127,
                 'page_id' => 17,
                 'section_key' => 'openPositions',
                 'variant' => 'variant1',
@@ -1772,7 +1707,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 133,
+                'id' => 128,
                 'page_id' => 17,
                 'section_key' => 'companyCulture',
                 'variant' => 'variant1',
@@ -1785,7 +1720,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 134,
+                'id' => 129,
                 'page_id' => 17,
                 'section_key' => 'benefitsPerks',
                 'variant' => 'variant1',
@@ -1798,7 +1733,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 135,
+                'id' => 130,
                 'page_id' => 17,
                 'section_key' => 'lifeAtCompany',
                 'variant' => 'variant1',
@@ -1811,7 +1746,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 136,
+                'id' => 131,
                 'page_id' => 17,
                 'section_key' => 'internshipPrograms',
                 'variant' => 'variant1',
@@ -1824,7 +1759,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 137,
+                'id' => 132,
                 'page_id' => 17,
                 'section_key' => 'remoteOpportunities',
                 'variant' => 'variant1',
@@ -1837,7 +1772,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 138,
+                'id' => 133,
                 'page_id' => 17,
                 'section_key' => 'applicationProcess',
                 'variant' => 'variant1',
@@ -1852,7 +1787,7 @@ class PageSectionsSeeder extends Seeder
 
             // Trust Signals Page Section
             [
-                'id' => 139,
+                'id' => 134,
                 'page_id' => 18,
                 'section_key' => 'securityCertifications',
                 'variant' => 'variant1',
@@ -1865,7 +1800,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 140,
+                'id' => 135,
                 'page_id' => 18,
                 'section_key' => 'dataProtection',
                 'variant' => 'variant1',
@@ -1878,7 +1813,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 141,
+                'id' => 136,
                 'page_id' => 18,
                 'section_key' => 'privacyPolicy',
                 'variant' => 'variant1',
@@ -1891,7 +1826,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 142,
+                'id' => 137,
                 'page_id' => 18,
                 'section_key' => 'termsOfService',
                 'variant' => 'variant1',
@@ -1904,7 +1839,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 143,
+                'id' => 138,
                 'page_id' => 18,
                 'section_key' => 'complianceStandards',
                 'variant' => 'variant1',
@@ -1917,7 +1852,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 144,
+                'id' => 139,
                 'page_id' => 18,
                 'section_key' => 'gdprCompliance',
                 'variant' => 'variant1',
@@ -1930,7 +1865,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 145,
+                'id' => 140,
                 'page_id' => 18,
                 'section_key' => 'soc2TypeII',
                 'variant' => 'variant1',
@@ -1943,7 +1878,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 146,
+                'id' => 141,
                 'page_id' => 18,
                 'section_key' => 'isoCertifications',
                 'variant' => 'variant1',
@@ -1958,7 +1893,7 @@ class PageSectionsSeeder extends Seeder
 
             // Newsletter Page Section
             [
-                'id' => 147,
+                'id' => 142,
                 'page_id' => 19,
                 'section_key' => 'subscribeForm',
                 'variant' => 'variant1',
@@ -1971,7 +1906,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 148,
+                'id' => 143,
                 'page_id' => 19,
                 'section_key' => 'newsletterArchive',
                 'variant' => 'variant1',
@@ -1984,7 +1919,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 149,
+                'id' => 144,
                 'page_id' => 19,
                 'section_key' => 'contentPreview',
                 'variant' => 'variant1',
@@ -1997,7 +1932,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 150,
+                'id' => 145,
                 'page_id' => 19,
                 'section_key' => 'subscriptionBenefits',
                 'variant' => 'variant1',
@@ -2010,7 +1945,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 151,
+                'id' => 146,
                 'page_id' => 19,
                 'section_key' => 'unsubscribeOption',
                 'variant' => 'variant1',
@@ -2023,7 +1958,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 152,
+                'id' => 147,
                 'page_id' => 19,
                 'section_key' => 'emailPreferences',
                 'variant' => 'variant1',
@@ -2038,7 +1973,7 @@ class PageSectionsSeeder extends Seeder
 
             // Mobile App Page Section
             [
-                'id' => 153,
+                'id' => 148,
                 'page_id' => 20,
                 'section_key' => 'appFeatures',
                 'variant' => 'variant1',
@@ -2051,7 +1986,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 154,
+                'id' => 149,
                 'page_id' => 20,
                 'section_key' => 'iosApp',
                 'variant' => 'variant1',
@@ -2064,7 +1999,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 155,
+                'id' => 150,
                 'page_id' => 20,
                 'section_key' => 'androidApp',
                 'variant' => 'variant1',
@@ -2077,7 +2012,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 156,
+                'id' => 151,
                 'page_id' => 20,
                 'section_key' => 'mobileDashboard',
                 'variant' => 'variant1',
@@ -2090,7 +2025,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 157,
+                'id' => 152,
                 'page_id' => 20,
                 'section_key' => 'barcodeScanning',
                 'variant' => 'variant1',
@@ -2103,7 +2038,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 158,
+                'id' => 153,
                 'page_id' => 20,
                 'section_key' => 'pushNotifications',
                 'variant' => 'variant1',
@@ -2116,7 +2051,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 159,
+                'id' => 154,
                 'page_id' => 20,
                 'section_key' => 'offlineMode',
                 'variant' => 'variant1',
@@ -2129,7 +2064,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 160,
+                'id' => 155,
                 'page_id' => 20,
                 'section_key' => 'appStoreLinks',
                 'variant' => 'variant1',
@@ -2144,7 +2079,7 @@ class PageSectionsSeeder extends Seeder
 
             // Events Page Section
             [
-                'id' => 161,
+                'id' => 156,
                 'page_id' => 21,
                 'section_key' => 'upcomingWebinars',
                 'variant' => 'variant1',
@@ -2157,7 +2092,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 162,
+                'id' => 157,
                 'page_id' => 21,
                 'section_key' => 'industryConferences',
                 'variant' => 'variant1',
@@ -2170,7 +2105,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 163,
+                'id' => 158,
                 'page_id' => 21,
                 'section_key' => 'userGroups',
                 'variant' => 'variant1',
@@ -2183,7 +2118,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 164,
+                'id' => 159,
                 'page_id' => 21,
                 'section_key' => 'trainingSessions',
                 'variant' => 'variant1',
@@ -2196,7 +2131,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 165,
+                'id' => 160,
                 'page_id' => 21,
                 'section_key' => 'virtualEvents',
                 'variant' => 'variant1',
@@ -2209,7 +2144,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 166,
+                'id' => 161,
                 'page_id' => 21,
                 'section_key' => 'eventCalendar',
                 'variant' => 'variant1',
@@ -2222,7 +2157,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 167,
+                'id' => 162,
                 'page_id' => 21,
                 'section_key' => 'pastEventRecordings',
                 'variant' => 'variant1',
@@ -2237,7 +2172,7 @@ class PageSectionsSeeder extends Seeder
 
             // Support Page Section
             [
-                'id' => 168,
+                'id' => 163,
                 'page_id' => 22,
                 'section_key' => 'helpCenter',
                 'variant' => 'variant1',
@@ -2250,7 +2185,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 169,
+                'id' => 164,
                 'page_id' => 22,
                 'section_key' => 'knowledgeBase',
                 'variant' => 'variant1',
@@ -2263,7 +2198,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 170,
+                'id' => 165,
                 'page_id' => 22,
                 'section_key' => 'videoTutorials',
                 'variant' => 'variant1',
@@ -2276,7 +2211,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 171,
+                'id' => 166,
                 'page_id' => 22,
                 'section_key' => 'documentation',
                 'variant' => 'variant1',
@@ -2289,7 +2224,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 172,
+                'id' => 167,
                 'page_id' => 22,
                 'section_key' => 'ticketSystem',
                 'variant' => 'variant1',
@@ -2302,7 +2237,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 173,
+                'id' => 168,
                 'page_id' => 22,
                 'section_key' => 'liveChat',
                 'variant' => 'variant1',
@@ -2315,7 +2250,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 174,
+                'id' => 169,
                 'page_id' => 22,
                 'section_key' => 'communityForum',
                 'variant' => 'variant1',
@@ -2330,7 +2265,7 @@ class PageSectionsSeeder extends Seeder
 
             // Legal Page Section
             [
-                'id' => 175,
+                'id' => 170,
                 'page_id' => 23,
                 'section_key' => 'privacyPolicy',
                 'variant' => 'variant1',
@@ -2343,7 +2278,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 176,
+                'id' => 171,
                 'page_id' => 23,
                 'section_key' => 'termsOfService',
                 'variant' => 'variant1',
@@ -2356,7 +2291,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 177,
+                'id' => 172,
                 'page_id' => 23,
                 'section_key' => 'cookiePolicy',
                 'variant' => 'variant1',
@@ -2369,7 +2304,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 178,
+                'id' => 173,
                 'page_id' => 23,
                 'section_key' => 'gdprCompliance',
                 'variant' => 'variant1',
@@ -2382,7 +2317,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 179,
+                'id' => 174,
                 'page_id' => 23,
                 'section_key' => 'dataProcessingAgreement',
                 'variant' => 'variant1',
@@ -2395,7 +2330,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 180,
+                'id' => 175,
                 'page_id' => 23,
                 'section_key' => 'securityPolicy',
                 'variant' => 'variant1',
@@ -2408,7 +2343,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 181,
+                'id' => 176,
                 'page_id' => 23,
                 'section_key' => 'acceptableUsePolicy',
                 'variant' => 'variant1',
@@ -2420,10 +2355,9 @@ class PageSectionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             // Sitemap Page Section
             [
-                'id' => 182,
+                'id' => 177,
                 'page_id' => 24,
                 'section_key' => 'allPagesIndex',
                 'variant' => 'variant1',
@@ -2436,7 +2370,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 183,
+                'id' => 178,
                 'page_id' => 24,
                 'section_key' => 'categoryLinks',
                 'variant' => 'variant1',
@@ -2449,7 +2383,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 184,
+                'id' => 179,
                 'page_id' => 24,
                 'section_key' => 'resourceLinks',
                 'variant' => 'variant1',
@@ -2462,7 +2396,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 185,
+                'id' => 180,
                 'page_id' => 24,
                 'section_key' => 'legalLinks',
                 'variant' => 'variant1',
@@ -2475,7 +2409,7 @@ class PageSectionsSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 186,
+                'id' => 181,
                 'page_id' => 24,
                 'section_key' => 'socialMediaLinks',
                 'variant' => 'variant1',

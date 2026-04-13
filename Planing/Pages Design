@@ -349,3 +349,5 @@
 ## 52. ** Download App - Page** (/download-app)
 
 ## 52. ** Events App - SubPage Page** (/events/{subpage})
+
+## 52. ** Blog App - SubPage Page** (/blog/{subpage})

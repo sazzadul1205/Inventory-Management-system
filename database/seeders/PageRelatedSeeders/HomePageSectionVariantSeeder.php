@@ -5185,7 +5185,7 @@ class HomePageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            // Career
+            // Career Section
             [
                 'id' => 65,
                 'section_key' => 'career',
@@ -5676,7 +5676,7 @@ class HomePageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            // Trust Signal
+            // Trust Signal Section
             [
                 'id' => 69,
                 'section_key' => 'trustSignal',
@@ -6853,6 +6853,374 @@ class HomePageSectionVariantSeeder extends Seeder
             [
                 'id' => 84,
                 'section_key' => 'event',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Blog Section
+            [
+                'id' => 85,
+                'section_key' => 'blog',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'BLOG'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Latest',
+                        'highlightedText' => 'Insights',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Stay updated with the latest trends, tips, and best practices in supply chain management.',
+                    'featured' => [
+                        'show' => true,
+                        'title' => 'The Future of Supply Chain: AI and Automation',
+                        'excerpt' => 'Discover how artificial intelligence and automation are revolutionizing supply chain operations, from predictive analytics to autonomous vehicles.',
+                        'category' => 'Technology',
+                        'readTime' => '5 min read',
+                        'date' => '2024-03-15',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+                        'link' => '/blog/future-of-supply-chain',
+                        'author' => [
+                            'name' => 'Sarah Johnson',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+                        ]
+                    ],
+                    'posts' => [
+                        [
+                            'id' => 1,
+                            'title' => '10 Ways to Optimize Your Warehouse Layout',
+                            'excerpt' => 'Learn proven strategies to maximize space utilization and improve workflow efficiency in your warehouse.',
+                            'date' => '2024-03-10',
+                            'category' => 'Warehouse',
+                            'readTime' => '4 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'likes' => 234,
+                            'comments' => 45,
+                            'link' => '/blog/optimize-warehouse-layout',
+                            'author' => [
+                                'name' => 'Michael Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Inventory Management Best Practices',
+                            'excerpt' => 'Essential strategies to reduce stockouts, minimize carrying costs, and improve inventory accuracy.',
+                            'date' => '2024-03-05',
+                            'category' => 'Inventory',
+                            'readTime' => '6 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'likes' => 189,
+                            'comments' => 32,
+                            'link' => '/blog/inventory-best-practices',
+                            'author' => [
+                                'name' => 'Emily Rodriguez',
+                                'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Sustainable Logistics: Green Supply Chain',
+                            'excerpt' => 'How companies are reducing their carbon footprint through eco-friendly logistics practices.',
+                            'date' => '2024-02-28',
+                            'category' => 'Sustainability',
+                            'readTime' => '5 min read',
+                            'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'likes' => 312,
+                            'comments' => 67,
+                            'link' => '/blog/sustainable-logistics',
+                            'author' => [
+                                'name' => 'David Kim',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'View All Articles',
+                        'url' => '/blog'
+                    ],
+                    'newsletter' => [
+                        'show' => true,
+                        'title' => 'Subscribe to Our Newsletter',
+                        'description' => 'Get the latest insights delivered straight to your inbox',
+                        'placeholder' => 'Enter your email',
+                        'buttonText' => 'Subscribe',
+                        'privacyText' => 'We respect your privacy. Unsubscribe at any time.'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 86,
+                'section_key' => 'blog',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'OUR BLOG'
+                    ],
+                    'heading' => [
+                        'line1' => 'Latest',
+                        'highlighted' => 'Insights'
+                    ],
+                    'description' => 'Stay updated with the latest trends, tips, and best practices in supply chain management.',
+                    'search' => [
+                        'placeholder' => 'Search articles...'
+                    ],
+                    'pagination' => [
+                        'perPage' => 6
+                    ],
+                    'posts' => [
+                        [
+                            'id' => 1,
+                            'title' => 'The Future of Supply Chain: AI and Automation',
+                            'excerpt' => 'Discover how artificial intelligence and automation are revolutionizing supply chain operations.',
+                            'date' => '2024-03-15',
+                            'category' => 'Technology',
+                            'readTime' => '5 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'likes' => 234,
+                            'comments' => 45,
+                            'link' => '/blog/future-of-supply-chain',
+                            'author' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => '10 Ways to Optimize Your Warehouse Layout',
+                            'excerpt' => 'Learn proven strategies to maximize space utilization and improve workflow efficiency.',
+                            'date' => '2024-03-10',
+                            'category' => 'Warehouse',
+                            'readTime' => '4 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'likes' => 189,
+                            'comments' => 32,
+                            'link' => '/blog/optimize-warehouse-layout',
+                            'author' => [
+                                'name' => 'Michael Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Inventory Management Best Practices',
+                            'excerpt' => 'Essential strategies to reduce stockouts and improve inventory accuracy.',
+                            'date' => '2024-03-05',
+                            'category' => 'Inventory',
+                            'readTime' => '6 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'likes' => 312,
+                            'comments' => 67,
+                            'link' => '/blog/inventory-best-practices',
+                            'author' => [
+                                'name' => 'Emily Rodriguez',
+                                'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Sustainable Logistics: Green Supply Chain',
+                            'excerpt' => 'How companies are reducing their carbon footprint through eco-friendly practices.',
+                            'date' => '2024-02-28',
+                            'category' => 'Sustainability',
+                            'readTime' => '5 min read',
+                            'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'likes' => 278,
+                            'comments' => 53,
+                            'link' => '/blog/sustainable-logistics',
+                            'author' => [
+                                'name' => 'David Kim',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Real-time Tracking Benefits',
+                            'excerpt' => 'Why real-time visibility is crucial for modern supply chain management.',
+                            'date' => '2024-02-20',
+                            'category' => 'Technology',
+                            'readTime' => '3 min read',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop',
+                            'likes' => 156,
+                            'comments' => 28,
+                            'link' => '/blog/real-time-tracking',
+                            'author' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 6,
+                            'title' => 'Returns Management Strategies',
+                            'excerpt' => 'Best practices for handling product returns efficiently and cost-effectively.',
+                            'date' => '2024-02-15',
+                            'category' => 'Operations',
+                            'readTime' => '4 min read',
+                            'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+                            'likes' => 198,
+                            'comments' => 41,
+                            'link' => '/blog/returns-management',
+                            'author' => [
+                                'name' => 'Michael Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'popularTags' => [
+                        'show' => true,
+                        'items' => ['AI', 'Warehouse', 'Inventory', 'Sustainability', 'Logistics', 'E-commerce']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 87,
+                'section_key' => 'blog',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'BLOG'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Latest',
+                        'highlightedText' => 'Insights',
+                        'suffix' => '& Updates'
+                    ],
+                    'description' => 'Stay updated with the latest trends, tips, and best practices in supply chain management.',
+                    'featured' => [
+                        'show' => true,
+                        'title' => 'The Future of Supply Chain: AI and Automation',
+                        'excerpt' => 'Discover how artificial intelligence and automation are revolutionizing supply chain operations, from predictive analytics to autonomous vehicles.',
+                        'category' => 'Technology',
+                        'readTime' => '5 min read',
+                        'date' => '2024-03-15',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+                        'likes' => 234,
+                        'comments' => 45,
+                        'link' => '/blog/future-of-supply-chain',
+                        'author' => [
+                            'name' => 'Sarah Johnson',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+                        ]
+                    ],
+                    'posts' => [
+                        [
+                            'id' => 1,
+                            'title' => 'The Future of Supply Chain: AI and Automation',
+                            'excerpt' => 'Discover how artificial intelligence and automation are revolutionizing supply chain operations.',
+                            'date' => '2024-03-15',
+                            'category' => 'Technology',
+                            'readTime' => '5 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'likes' => 234,
+                            'comments' => 45,
+                            'link' => '/blog/future-of-supply-chain',
+                            'author' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => '10 Ways to Optimize Your Warehouse Layout',
+                            'excerpt' => 'Learn proven strategies to maximize space utilization and improve workflow efficiency.',
+                            'date' => '2024-03-10',
+                            'category' => 'Warehouse',
+                            'readTime' => '4 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'likes' => 189,
+                            'comments' => 32,
+                            'link' => '/blog/optimize-warehouse-layout',
+                            'author' => [
+                                'name' => 'Michael Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Inventory Management Best Practices',
+                            'excerpt' => 'Essential strategies to reduce stockouts and improve inventory accuracy.',
+                            'date' => '2024-03-05',
+                            'category' => 'Inventory',
+                            'readTime' => '6 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'likes' => 312,
+                            'comments' => 67,
+                            'link' => '/blog/inventory-best-practices',
+                            'author' => [
+                                'name' => 'Emily Rodriguez',
+                                'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Sustainable Logistics: Green Supply Chain',
+                            'excerpt' => 'How companies are reducing their carbon footprint through eco-friendly practices.',
+                            'date' => '2024-02-28',
+                            'category' => 'Sustainability',
+                            'readTime' => '5 min read',
+                            'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'likes' => 278,
+                            'comments' => 53,
+                            'link' => '/blog/sustainable-logistics',
+                            'author' => [
+                                'name' => 'David Kim',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'sidebar' => [
+                        'about' => [
+                            'show' => true,
+                            'description' => 'Stay updated with the latest trends, tips, and best practices in inventory management and logistics.',
+                            'views' => '12.5k'
+                        ],
+                        'recent' => [
+                            'show' => true
+                        ],
+                        'popular' => [
+                            'show' => true
+                        ],
+                        'categories' => [
+                            'show' => true
+                        ],
+                        'newsletter' => [
+                            'show' => true,
+                            'title' => 'Newsletter',
+                            'description' => 'Get the latest insights delivered to your inbox.',
+                            'placeholder' => 'Your email',
+                            'buttonText' => 'Subscribe'
+                        ],
+                        'social' => [
+                            'show' => true,
+                            'facebook' => 'https://facebook.com',
+                            'twitter' => 'https://twitter.com',
+                            'linkedin' => 'https://linkedin.com'
+                        ]
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'View All Articles',
+                        'url' => '/blog'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 88,
+                'section_key' => 'blog',
                 'variant' => 'custom',
                 'config' => json_encode([]),
                 'created_at' => now(),

@@ -65,12 +65,7 @@ const Home = ({ pageData = { meta: {}, sections: [] } }) => {
       newsletter: 'Newsletter',
       mobileApp: 'Mobile App',
       event: 'Events',
-      customSolutions: 'Custom Solutions',
-      orderFulfillment: 'Order Fulfillment',
-      returnsManagement: 'Returns Management',
-      supplyChainConsulting: 'Supply Chain Consulting',
-      transportationManagement: 'Transportation Management',
-      warehouseManagement: 'Warehouse Management',
+      blog: 'Blog',
     };
 
     return sections.map(section => ({
