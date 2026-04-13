@@ -6074,6 +6074,790 @@ class HomePageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Newsletter Section
+            [
+                'id' => 73,
+                'section_key' => 'newsletter',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'NEWSLETTER'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Stay',
+                        'highlightedText' => 'Updated',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Get the latest news, product updates, and industry insights delivered straight to your inbox.',
+                    'benefits' => [
+                        'show' => true,
+                        'items' => [
+                            'Weekly industry insights and trends',
+                            'Exclusive product updates and features',
+                            'Early access to webinars and events',
+                            'Special offers and promotions'
+                        ]
+                    ],
+                    'socialProof' => [
+                        'show' => true,
+                        'avatars' => [
+                            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop',
+                            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop',
+                            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop'
+                        ],
+                        'count' => '10,000',
+                        'text' => 'subscribers already joined'
+                    ],
+                    'successMessage' => [
+                        'title' => 'Thanks for Subscribing!',
+                        'description' => 'You\'ve been added to our newsletter. Check your inbox for a welcome email.'
+                    ],
+                    'form' => [
+                        'title' => 'Subscribe to Our Newsletter',
+                        'showName' => true,
+                        'namePlaceholder' => 'Enter your name',
+                        'emailPlaceholder' => 'you@example.com',
+                        'buttonText' => 'Subscribe Now',
+                        'privacyText' => 'We respect your privacy. Unsubscribe at any time.',
+                        'privacyLink' => '/privacy',
+                        'frequency' => 'Weekly newsletter. No spam, ever.',
+                        'showInterests' => true,
+                        'interests' => [
+                            'Product Updates',
+                            'Industry News',
+                            'Tips & Tutorials',
+                            'Events & Webinars'
+                        ]
+                    ],
+                    'trustBadges' => [
+                        'show' => true,
+                        'items' => [
+                            ['text' => 'No spam, ever', 'icon' => 'shield'],
+                            ['text' => 'Unsubscribe anytime', 'icon' => 'shield'],
+                            ['text' => 'Your data is safe', 'icon' => 'shield']
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 74,
+                'section_key' => 'newsletter',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'NEWSLETTER'
+                    ],
+                    'heading' => [
+                        'line1' => 'Join Our',
+                        'highlighted' => 'Newsletter'
+                    ],
+                    'description' => 'Get the latest updates, industry insights, and exclusive offers delivered straight to your inbox.',
+                    'topics' => [
+                        'Product Updates',
+                        'Industry News',
+                        'Tips & Best Practices',
+                        'Case Studies',
+                        'Events & Webinars'
+                    ],
+                    'successMessage' => [
+                        'title' => 'Successfully Subscribed!',
+                        'description' => 'Thank you for subscribing to our newsletter. You\'ll receive a confirmation email shortly.'
+                    ],
+                    'form' => [
+                        'namePlaceholder' => 'John Doe',
+                        'emailPlaceholder' => 'john@example.com',
+                        'buttonText' => 'Subscribe to Newsletter'
+                    ],
+                    'links' => [
+                        'privacy' => '/privacy'
+                    ],
+                    'social' => [
+                        'show' => true,
+                        'text' => 'Connect with us on social media',
+                        'facebook' => 'https://facebook.com',
+                        'twitter' => 'https://twitter.com',
+                        'linkedin' => 'https://linkedin.com'
+                    ],
+                    'trustBadges' => [
+                        'show' => true,
+                        'items' => [
+                            ['number' => '10,000+', 'label' => 'Subscribers'],
+                            ['number' => '98%', 'label' => 'Satisfaction'],
+                            ['number' => 'Weekly', 'label' => 'Newsletter'],
+                            ['number' => 'Free', 'label' => 'Subscription']
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 75,
+                'section_key' => 'newsletter',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'NEWSLETTER'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Stay',
+                        'highlightedText' => 'Informed',
+                        'suffix' => '& Inspired'
+                    ],
+                    'description' => 'Get the latest logistics insights, product updates, and exclusive content delivered to your inbox.',
+                    'featured' => [
+                        'show' => true,
+                        'badge' => 'FREE BONUS',
+                        'title' => 'Get Our Exclusive E-Book',
+                        'description' => 'Subscribe today and receive our comprehensive guide to supply chain optimization - absolutely free!'
+                    ],
+                    'benefits' => [
+                        'show' => true,
+                        'title' => 'What You\'ll Get',
+                        'items' => [
+                            [
+                                'title' => 'Weekly Industry Insights',
+                                'description' => 'Stay ahead with the latest logistics trends and best practices',
+                                'icon' => 'book'
+                            ],
+                            [
+                                'title' => 'Product Updates',
+                                'description' => 'Be the first to know about new features and improvements',
+                                'icon' => 'star'
+                            ],
+                            [
+                                'title' => 'Expert Tips',
+                                'description' => 'Actionable advice from supply chain professionals',
+                                'icon' => 'chat'
+                            ],
+                            [
+                                'title' => 'Exclusive Offers',
+                                'description' => 'Special discounts and early access to events',
+                                'icon' => 'heart'
+                            ]
+                        ]
+                    ],
+                    'testimonials' => [
+                        'show' => true,
+                        'avatars' => [
+                            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop',
+                            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop',
+                            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop'
+                        ],
+                        'quote' => 'This newsletter has been invaluable for staying current with logistics trends. The insights are practical and actionable.'
+                    ],
+                    'successMessage' => [
+                        'title' => 'Check Your Inbox!',
+                        'description' => 'We\'ve sent a confirmation link to your email. Please click it to verify your subscription.'
+                    ],
+                    'form' => [
+                        'title' => 'Get the Newsletter',
+                        'showName' => true,
+                        'namePlaceholder' => 'Enter your name',
+                        'emailPlaceholder' => 'you@example.com',
+                        'buttonText' => 'Subscribe Now',
+                        'privacyText' => 'We respect your privacy. Unsubscribe at any time.',
+                        'showFrequency' => true
+                    ],
+                    'recent' => [
+                        'show' => true,
+                        'avatars' => [
+                            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=30&h=30&fit=crop',
+                            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=30&h=30&fit=crop'
+                        ],
+                        'count' => '150'
+                    ],
+                    'footerNote' => 'No spam, ever. Unsubscribe at any time with just one click.'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 76,
+                'section_key' => 'newsletter',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Mobile App Section
+            [
+                'id' => 77,
+                'section_key' => 'mobileApp',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'MOBILE APP'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Manage Your',
+                        'highlightedText' => 'Supply Chain',
+                        'suffix' => 'On the Go'
+                    ],
+                    'description' => 'Take full control of your inventory and logistics from anywhere with our powerful mobile app.',
+                    'features' => [
+                        'show' => true,
+                        'items' => [
+                            ['text' => 'Scan barcodes with camera', 'icon' => 'camera'],
+                            ['text' => 'Real-time inventory updates', 'icon' => 'clock'],
+                            ['text' => 'Push notifications for alerts', 'icon' => 'bell'],
+                            ['text' => 'Offline mode support', 'icon' => 'cloud'],
+                            ['text' => 'QR code scanning', 'icon' => 'qrcode'],
+                            ['text' => 'Enterprise security', 'icon' => 'shield']
+                        ]
+                    ],
+                    'appButtons' => [
+                        'show' => true,
+                        'ios' => [
+                            'url' => 'https://apps.apple.com/app/example'
+                        ],
+                        'android' => [
+                            'url' => 'https://play.google.com/store/apps/details?id=com.example'
+                        ]
+                    ],
+                    'qrCode' => [
+                        'show' => true,
+                        'image' => 'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://example.com/download',
+                        'title' => 'Scan to Download',
+                        'description' => 'Get the app directly on your phone'
+                    ],
+                    'screenshots' => [
+                        'main' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop',
+                        'floating' => [
+                            [
+                                'image' => 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=100&h=100&fit=crop',
+                                'position' => '-top-6 -right-6'
+                            ],
+                            [
+                                'image' => 'https://images.unsplash.com/photo-1611162617263-4ec3060a058e?w=100&h=100&fit=crop',
+                                'position' => '-bottom-6 -left-6'
+                            ]
+                        ]
+                    ],
+                    'rating' => [
+                        'show' => true,
+                        'stars' => 5,
+                        'score' => '4.9',
+                        'count' => '10k+'
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '100k+', 'label' => 'Downloads'],
+                            ['value' => '4.9', 'label' => 'App Store Rating'],
+                            ['value' => '98%', 'label' => 'User Satisfaction'],
+                            ['value' => '24/7', 'label' => 'Mobile Access']
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 78,
+                'section_key' => 'mobileApp',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'MOBILE APP'
+                    ],
+                    'heading' => [
+                        'line1' => 'Powerful Mobile',
+                        'highlighted' => 'App'
+                    ],
+                    'description' => 'Manage your inventory and logistics from anywhere with our feature-rich mobile application.',
+                    'features' => [
+                        [
+                            'title' => 'Barcode Scanning',
+                            'description' => 'Scan barcodes instantly to update inventory levels',
+                            'icon' => 'qrcode'
+                        ],
+                        [
+                            'title' => 'Photo Management',
+                            'description' => 'Add and manage product photos on the go',
+                            'icon' => 'camera'
+                        ],
+                        [
+                            'title' => 'Smart Alerts',
+                            'description' => 'Get notified about low stock and shipments',
+                            'icon' => 'bell'
+                        ],
+                        [
+                            'title' => 'Offline Mode',
+                            'description' => 'Work offline and sync when connected',
+                            'icon' => 'clock'
+                        ]
+                    ],
+                    'appButtons' => [
+                        'ios' => [
+                            'url' => 'https://apps.apple.com/app/example'
+                        ],
+                        'android' => [
+                            'url' => 'https://play.google.com/store/apps/details?id=com.example'
+                        ]
+                    ],
+                    'qrCode' => [
+                        'show' => true,
+                        'image' => 'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://example.com/download',
+                        'title' => 'Scan to Download',
+                        'description' => 'Get the app directly on your phone'
+                    ],
+                    'screenshots' => [
+                        'main' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop'
+                    ],
+                    'rating' => [
+                        'show' => true,
+                        'stars' => 5,
+                        'score' => '4.9',
+                        'count' => '10k+'
+                    ],
+                    'downloadBadge' => 'FREE DOWNLOAD',
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '100k+', 'label' => 'Downloads'],
+                            ['value' => '4.9', 'label' => 'Rating'],
+                            ['value' => '98%', 'label' => 'Satisfaction'],
+                            ['value' => '24/7', 'label' => 'Access']
+                        ]
+                    ],
+                    'testimonials' => [
+                        'show' => true,
+                        'items' => [
+                            [
+                                'name' => 'Sarah Johnson',
+                                'role' => 'Warehouse Manager',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop',
+                                'rating' => 5,
+                                'quote' => 'The mobile app has revolutionized how we manage inventory. I can scan barcodes and update stock in seconds.'
+                            ],
+                            [
+                                'name' => 'Michael Chen',
+                                'role' => 'Logistics Coordinator',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop',
+                                'rating' => 5,
+                                'quote' => 'Offline mode is a lifesaver. I can work even in areas with poor connectivity.'
+                            ],
+                            [
+                                'name' => 'Emily Rodriguez',
+                                'role' => 'Operations Director',
+                                'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop',
+                                'rating' => 4,
+                                'quote' => 'Real-time alerts keep me informed about critical inventory levels.'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 79,
+                'section_key' => 'mobileApp',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'MOBILE APP'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Manage Your',
+                        'highlightedText' => 'Inventory',
+                        'suffix' => 'On the Go'
+                    ],
+                    'description' => 'Take full control of your supply chain from anywhere with our powerful mobile application.',
+                    'features' => [
+                        [
+                            'title' => 'Instant Scanning',
+                            'description' => 'Scan barcodes and QR codes in real-time',
+                            'icon' => 'qrcode',
+                            'color' => 'from-blue-500 to-blue-600'
+                        ],
+                        [
+                            'title' => 'Photo Capture',
+                            'description' => 'Add photos to inventory items on the go',
+                            'icon' => 'camera',
+                            'color' => 'from-indigo-500 to-indigo-600'
+                        ],
+                        [
+                            'title' => 'Smart Alerts',
+                            'description' => 'Get notified about low stock and movements',
+                            'icon' => 'bell',
+                            'color' => 'from-purple-500 to-purple-600'
+                        ],
+                        [
+                            'title' => 'Offline Mode',
+                            'description' => 'Work without internet and sync later',
+                            'icon' => 'clock',
+                            'color' => 'from-pink-500 to-pink-600'
+                        ],
+                        [
+                            'title' => 'Cloud Sync',
+                            'description' => 'Seamless sync across all your devices',
+                            'icon' => 'cloud',
+                            'color' => 'from-cyan-500 to-cyan-600'
+                        ],
+                        [
+                            'title' => 'Biometric Security',
+                            'description' => 'Secure access with fingerprint or face ID',
+                            'icon' => 'shield',
+                            'color' => 'from-emerald-500 to-emerald-600'
+                        ]
+                    ],
+                    'screenshots' => [
+                        'main' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=500&fit=crop',
+                        '0' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=600&fit=crop',
+                        '1' => 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&h=600&fit=crop',
+                        '2' => 'https://images.unsplash.com/photo-1611162617263-4ec3060a058e?w=600&h=600&fit=crop',
+                        '3' => 'https://images.unsplash.com/photo-1611162616457-8d0f3f8e1c9b?w=600&h=600&fit=crop',
+                        '4' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=600&fit=crop',
+                        '5' => 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&h=600&fit=crop'
+                    ],
+                    'rating' => [
+                        'show' => true,
+                        'stars' => 5,
+                        'score' => '4.9'
+                    ],
+                    'appButtons' => [
+                        'ios' => [
+                            'url' => 'https://apps.apple.com/app/example'
+                        ],
+                        'android' => [
+                            'url' => 'https://play.google.com/store/apps/details?id=com.example'
+                        ]
+                    ],
+                    'qrCode' => [
+                        'show' => true,
+                        'image' => 'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://example.com/download',
+                        'title' => 'Scan to Download',
+                        'description' => 'Get the app directly on your phone'
+                    ],
+                    'stats' => [
+                        'show' => true,
+                        'items' => [
+                            ['value' => '100k+', 'label' => 'Downloads'],
+                            ['value' => '4.9', 'label' => 'Rating'],
+                            ['value' => '98%', 'label' => 'Satisfaction'],
+                            ['value' => '24/7', 'label' => 'Access']
+                        ]
+                    ],
+                    'compatibility' => 'Compatible with iOS 14+ and Android 10+. Requires 100MB free space.',
+                    'cta' => [
+                        'show' => true,
+                        'text' => 'Download the App Now',
+                        'url' => '/download-app'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 80,
+                'section_key' => 'mobileApp',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Event Section
+            [
+                'id' => 81,
+                'section_key' => 'event',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'EVENTS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Upcoming',
+                        'highlightedText' => 'Events',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Join us for webinars, conferences, and workshops to stay ahead in the logistics industry.',
+                    'featured' => [
+                        'show' => true,
+                        'title' => 'Supply Chain Innovation Summit 2024',
+                        'description' => 'Join industry leaders and experts for a day of insights, networking, and innovation in supply chain management.',
+                        'date' => '2024-05-15',
+                        'location' => 'San Francisco, CA',
+                        'time' => '9:00 AM - 6:00 PM PST',
+                        'price' => '$299',
+                        'attendees' => 450,
+                        'capacity' => '75%',
+                        'spotsLeft' => '150',
+                        'link' => '/events/supply-chain-summit'
+                    ],
+                    'events' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Warehouse Automation Webinar',
+                            'description' => 'Learn how AI and robotics are transforming warehouse operations.',
+                            'date' => '2024-04-10',
+                            'location' => 'Virtual',
+                            'time' => '10:00 AM EST',
+                            'type' => 'Webinar',
+                            'attendees' => 120,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/events/warehouse-automation'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Logistics Leaders Conference',
+                            'description' => 'Connect with logistics professionals and discover new strategies for growth.',
+                            'date' => '2024-05-20',
+                            'location' => 'Chicago, IL',
+                            'time' => '8:30 AM - 5:00 PM CST',
+                            'type' => 'Conference',
+                            'attendees' => 350,
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+                            'link' => '/events/logistics-conference'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Inventory Optimization Workshop',
+                            'description' => 'Hands-on workshop to master inventory management techniques.',
+                            'date' => '2024-06-05',
+                            'location' => 'Virtual',
+                            'time' => '2:00 PM EST',
+                            'type' => 'Workshop',
+                            'attendees' => 85,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/events/inventory-workshop'
+                        ]
+                    ],
+                    'categories' => [
+                        'show' => true,
+                        'title' => 'Event Categories',
+                        'items' => [
+                            ['name' => 'Webinars', 'icon' => 'video', 'link' => '/events/webinars'],
+                            ['name' => 'Conferences', 'icon' => 'map', 'link' => '/events/conferences'],
+                            ['name' => 'Workshops', 'icon' => 'star', 'link' => '/events/workshops'],
+                            ['name' => 'Networking', 'icon' => 'calendar', 'link' => '/events/networking']
+                        ]
+                    ],
+                    'cta' => [
+                        'show' => true,
+                        'text' => 'View All Events',
+                        'url' => '/events'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 82,
+                'section_key' => 'event',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'EVENTS'
+                    ],
+                    'heading' => [
+                        'line1' => 'Join Us at',
+                        'highlighted' => 'Upcoming Events'
+                    ],
+                    'description' => 'Connect with industry experts, learn new skills, and stay ahead of the curve.',
+                    'search' => [
+                        'placeholder' => 'Search events...'
+                    ],
+                    'pagination' => [
+                        'perPage' => 4
+                    ],
+                    'events' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Supply Chain Innovation Summit',
+                            'description' => 'Join industry leaders for a day of insights into the future of supply chain management.',
+                            'date' => '2024-05-15',
+                            'location' => 'San Francisco, CA',
+                            'time' => '9:00 AM - 6:00 PM PST',
+                            'type' => 'Conference',
+                            'attendees' => 450,
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+                            'link' => '/events/supply-chain-summit'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Warehouse Automation Webinar',
+                            'description' => 'Learn how AI and robotics are transforming warehouse operations.',
+                            'date' => '2024-04-10',
+                            'location' => 'Virtual',
+                            'time' => '10:00 AM EST',
+                            'type' => 'Webinar',
+                            'attendees' => 120,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/events/warehouse-automation'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Logistics Leaders Conference',
+                            'description' => 'Connect with logistics professionals and discover new strategies for growth.',
+                            'date' => '2024-05-20',
+                            'location' => 'Chicago, IL',
+                            'time' => '8:30 AM - 5:00 PM CST',
+                            'type' => 'Conference',
+                            'attendees' => 350,
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+                            'link' => '/events/logistics-conference'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Inventory Optimization Workshop',
+                            'description' => 'Hands-on workshop to master inventory management techniques.',
+                            'date' => '2024-06-05',
+                            'location' => 'Virtual',
+                            'time' => '2:00 PM EST',
+                            'type' => 'Workshop',
+                            'attendees' => 85,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/events/inventory-workshop'
+                        ]
+                    ],
+                    'calendar' => [
+                        'show' => true,
+                        'text' => 'View Calendar View',
+                        'url' => '/events/calendar'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 83,
+                'section_key' => 'event',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'show' => true,
+                        'showPulse' => true,
+                        'text' => 'EVENTS'
+                    ],
+                    'heading' => [
+                        'prefix' => 'Don\'t Miss',
+                        'highlightedText' => 'Upcoming Events',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Join us for webinars, conferences, and workshops to stay ahead in the logistics industry.',
+                    'events' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Supply Chain Innovation Summit',
+                            'description' => 'Join industry leaders for a day of insights into the future of supply chain management.',
+                            'date' => '2024-05-15',
+                            'location' => 'San Francisco, CA',
+                            'time' => '9:00 AM - 6:00 PM PST',
+                            'type' => 'Conference',
+                            'attendees' => 450,
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop',
+                            'link' => '/events/supply-chain-summit'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Warehouse Automation Webinar',
+                            'description' => 'Learn how AI and robotics are transforming warehouse operations.',
+                            'date' => '2024-04-10',
+                            'location' => 'Virtual',
+                            'time' => '10:00 AM EST',
+                            'type' => 'Webinar',
+                            'attendees' => 120,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop',
+                            'link' => '/events/warehouse-automation'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Logistics Leaders Conference',
+                            'description' => 'Connect with logistics professionals and discover new strategies for growth.',
+                            'date' => '2024-05-20',
+                            'location' => 'Chicago, IL',
+                            'time' => '8:30 AM - 5:00 PM CST',
+                            'type' => 'Conference',
+                            'attendees' => 350,
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop',
+                            'link' => '/events/logistics-conference'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Inventory Optimization Workshop',
+                            'description' => 'Hands-on workshop to master inventory management techniques.',
+                            'date' => '2024-06-05',
+                            'location' => 'Virtual',
+                            'time' => '2:00 PM EST',
+                            'type' => 'Workshop',
+                            'attendees' => 85,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+                            'link' => '/events/inventory-workshop'
+                        ]
+                    ],
+                    'thisMonth' => [
+                        'show' => true,
+                        'count' => '8',
+                        'events' => [
+                            ['name' => 'Supply Chain Summit', 'date' => 'May 15'],
+                            ['name' => 'Logistics Conference', 'date' => 'May 20'],
+                            ['name' => 'Networking Mixer', 'date' => 'May 25']
+                        ]
+                    ],
+                    'popular' => [
+                        'show' => true,
+                        'items' => [
+                            ['title' => 'Supply Chain Innovation Summit', 'attendees' => 450, 'link' => '/events/supply-chain-summit'],
+                            ['title' => 'Logistics Leaders Conference', 'attendees' => 350, 'link' => '/events/logistics-conference'],
+                            ['title' => 'Warehouse Automation Webinar', 'attendees' => 120, 'link' => '/events/warehouse-automation']
+                        ]
+                    ],
+                    'types' => [
+                        'show' => true,
+                        'items' => [
+                            ['name' => 'Conferences', 'icon' => 'map'],
+                            ['name' => 'Webinars', 'icon' => 'video'],
+                            ['name' => 'Workshops', 'icon' => 'star'],
+                            ['name' => 'Networking', 'icon' => 'calendar']
+                        ]
+                    ],
+                    'newsletter' => [
+                        'show' => true,
+                        'title' => 'Event Alerts',
+                        'description' => 'Get notified about upcoming events',
+                        'placeholder' => 'Your email address',
+                        'buttonText' => 'Subscribe'
+                    ],
+                    'social' => [
+                        'show' => true,
+                        'facebook' => 'https://facebook.com',
+                        'twitter' => 'https://twitter.com',
+                        'linkedin' => 'https://linkedin.com'
+                    ],
+                    'viewAll' => [
+                        'show' => true,
+                        'text' => 'View All Events',
+                        'url' => '/events'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 84,
+                'section_key' => 'event',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
