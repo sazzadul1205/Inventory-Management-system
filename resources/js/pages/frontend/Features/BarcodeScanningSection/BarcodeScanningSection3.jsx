@@ -24,11 +24,24 @@ import {
   HiOutlineSparkles,
   HiOutlineStar,
   HiOutlineDesktopComputer,
-  HiOutlinePrinter
+  HiOutlinePrinter,
+  HiOutlineServer,
+  HiOutlineShoppingCart,
+  HiOutlineOfficeBuilding,
+  HiOutlineGlobe,
+  HiOutlineCube,
+  HiOutlineTruck as HiOutlineShipping,
+  HiOutlineDocumentText,
+  HiOutlineCog,
+  HiOutlineWifi,
+  HiOutlineDesktopComputer as HiOutlineWebcam,
+  HiOutlineChip as HiOutlineProcessor
 } from 'react-icons/hi';
-import { MdOutlineScanner } from "react-icons/md";
+import { MdOutlineScanner, MdOutlineBluetooth, MdOutlineUsb } from "react-icons/md";
 
 const BarcodeScanningSection3 = ({ config }) => {
+
+  // State for active integration in the integrations section
   const [activeIntegration, setActiveIntegration] = useState(0);
 
   // Icon mapping function
@@ -68,6 +81,32 @@ const BarcodeScanningSection3 = ({ config }) => {
         return <HiOutlineDesktopComputer className={className} />;
       case 'printer':
         return <HiOutlinePrinter className={className} />;
+      case 'server':
+        return <HiOutlineServer className={className} />;
+      case 'shopping-cart':
+        return <HiOutlineShoppingCart className={className} />;
+      case 'office':
+        return <HiOutlineOfficeBuilding className={className} />;
+      case 'globe':
+        return <HiOutlineGlobe className={className} />;
+      case 'cube':
+        return <HiOutlineCube className={className} />;
+      case 'shipping':
+        return <HiOutlineShipping className={className} />;
+      case 'document':
+        return <HiOutlineDocumentText className={className} />;
+      case 'cog':
+        return <HiOutlineCog className={className} />;
+      case 'wifi':
+        return <HiOutlineWifi className={className} />;
+      case 'bluetooth':
+        return <MdOutlineBluetooth className={className} />;
+      case 'usb':
+        return <MdOutlineUsb className={className} />;
+      case 'webcam':
+        return <HiOutlineWebcam className={className} />;
+      case 'processor':
+        return <HiOutlineProcessor className={className} />;
       default:
         return <HiOutlineQrcode className={className} />;
     }
@@ -244,7 +283,9 @@ const BarcodeScanningSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {config?.aiInsights?.map((insight, index) => (
                 <div key={index} className="relative bg-linear-to-br from-cyan-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 border border-cyan-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
-                  <div className="absolute top-4 right-4 text-2xl opacity-20">🤖</div>
+                  <div className="absolute top-4 right-4 text-2xl opacity-20">
+                    {getFeatureIcon(insight.icon, "w-6 h-6")}
+                  </div>
                   <div className="relative">
                     <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center mb-4">
                       {getFeatureIcon(insight.icon, "w-6 h-6 text-cyan-600 dark:text-cyan-400")}
@@ -273,7 +314,9 @@ const BarcodeScanningSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {config?.hardwareDevices?.map((device, index) => (
                 <div key={index} className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="text-4xl mb-3">{device.icon}</div>
+                  <div className="flex justify-center mb-3">
+                    {getFeatureIcon(device.icon, "w-12 h-12 text-cyan-600 dark:text-cyan-400")}
+                  </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{device.name}</h4>
                   <p className="text-xs text-gray-500 dark:text-gray-400">{device.type}</p>
                   <div className="mt-2 text-xs text-cyan-600 dark:text-cyan-400">{device.compatibility}</div>
@@ -319,8 +362,8 @@ const BarcodeScanningSection3 = ({ config }) => {
                   key={index}
                   className="group flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 >
-                  <div className="text-4xl mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    {integration.icon}
+                  <div className="mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
+                    {getFeatureIcon(integration.icon, "w-10 h-10 text-gray-700 dark:text-gray-300")}
                   </div>
                   <div className="text-sm text-gray-700 dark:text-gray-300 font-medium text-center">
                     {integration.name}
@@ -399,7 +442,9 @@ const BarcodeScanningSection3 = ({ config }) => {
                   key={index}
                   className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 hover:-translate-y-1 group"
                 >
-                  <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{type.icon}</div>
+                  <div className="flex justify-center mb-2 group-hover:scale-110 transition-transform">
+                    {getFeatureIcon(type.icon, "w-8 h-8 text-cyan-600 dark:text-cyan-400")}
+                  </div>
                   <div className="text-sm font-semibold text-gray-900 dark:text-white">{type.name}</div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">{type.format}</div>
                   <div className="text-xs text-cyan-600 dark:text-cyan-400 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">

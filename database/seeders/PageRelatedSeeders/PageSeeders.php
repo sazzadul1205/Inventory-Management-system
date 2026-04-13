@@ -53,7 +53,7 @@ class PageSeeders extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => ' ',
+                'name' => 'Features',
                 'slug' => 'features',
                 'meta' => json_encode([
                     'title' => 'Platform Features | Smart Inventory Management',
