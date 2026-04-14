@@ -17,24 +17,65 @@ import {
   HiOutlineCalendar,
   HiOutlineSearch,
   HiOutlinePlay,
-  HiOutlineDownload
+  HiOutlineDownload,
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineGlobeAlt,
+  HiOutlineCheckCircle,
 } from 'react-icons/hi';
 
 const TrainingAndSupportSection2 = ({ config }) => {
-  const [selectedSupport, setSelectedSupport] = useState('chat');
-  const [requestType, setRequestType] = useState('general');
-  const [requestMessage, setRequestMessage] = useState('');
-  const [requestSubmitted, setRequestSubmitted] = useState(false);
-  const [selectedTraining, setSelectedTraining] = useState(null);
 
+  // States
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [requestMessage, setRequestMessage] = useState('');
+  const [requestType, setRequestType] = useState('general');
+  const [selectedTraining, setSelectedTraining] = useState(null);
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
+
+  // State for support
+  const [selectedSupport, setSelectedSupport] = useState(config?.initialSupportType || 'chat');
+
+  // Handle request
   const handleSubmitRequest = (e) => {
     e.preventDefault();
     setRequestSubmitted(true);
     setTimeout(() => setRequestSubmitted(false), 3000);
     setRequestMessage('');
+    if (config?.onRequestSubmit) {
+      config.onRequestSubmit({ type: requestType, message: requestMessage, supportType: selectedSupport });
+    }
   };
 
+  // Handle search
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (query.length > 2 && config?.knowledgeBase) {
+      const results = config.knowledgeBase.filter(article =>
+        article.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  // State for active tab
   const trainingSessions = config?.trainingSessions || [];
+
+  // Helper function for icons
+  const getIcon = (iconName, className = "w-5 h-5") => {
+    switch (iconName) {
+      case 'chat': return <HiOutlineChat className={className} />;
+      case 'email': return <HiOutlineMail className={className} />;
+      case 'phone': return <HiOutlinePhone className={className} />;
+      case 'globe': return <HiOutlineGlobeAlt className={className} />;
+      case 'users': return <HiOutlineUsers className={className} />;
+      case 'check': return <HiOutlineCheckCircle className={className} />;
+      default: return <HiOutlineChat className={className} />;
+    }
+  };
 
   return (
     <section
@@ -87,10 +128,11 @@ const TrainingAndSupportSection2 = ({ config }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Side - Training & Resources */}
           <div className="space-y-6">
+            {/* Upcoming Training Sessions */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineAcademicCap className="w-6 h-6 text-purple-600" />
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Upcoming Training Sessions</h3>
+                <HiOutlineAcademicCap className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{config?.sessionsTitle || "Upcoming Training Sessions"}</h3>
               </div>
               <div className="space-y-3">
                 {trainingSessions.slice(0, 3).map((session, index) => (
@@ -105,19 +147,19 @@ const TrainingAndSupportSection2 = ({ config }) => {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-sm font-semibold text-purple-600">{session.date}</span>
-                          <span className="text-xs text-gray-500">{session.time}</span>
+                          <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">{session.date}</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">{session.time}</span>
                         </div>
                         <h4 className="font-semibold text-gray-900 dark:text-white">{session.title}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{session.description}</p>
-                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-500 dark:text-gray-400">
                           <span className="flex items-center gap-1">
                             <HiOutlineClock className="w-3 h-3" />
                             {session.duration}
                           </span>
                           <span className="flex items-center gap-1">
                             <HiOutlineUsers className="w-3 h-3" />
-                            {session.seats} seats left
+                            {session.seats} {config?.seatsLeftText || "seats left"}
                           </span>
                         </div>
                       </div>
@@ -130,7 +172,7 @@ const TrainingAndSupportSection2 = ({ config }) => {
                           href={session.registerLink}
                           className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700 transition-colors"
                         >
-                          Register Now
+                          {config?.registerNowText || "Register Now"}
                           <HiArrowRight className="w-4 h-4" />
                         </Link>
                       </div>
@@ -140,9 +182,9 @@ const TrainingAndSupportSection2 = ({ config }) => {
               </div>
               <Link
                 href={config?.allTrainingsLink || "/training"}
-                className="inline-flex items-center gap-2 text-purple-600 text-sm font-semibold mt-4 hover:underline"
+                className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 text-sm font-semibold mt-4 hover:underline"
               >
-                View all sessions
+                {config?.viewAllSessionsText || "View all sessions"}
                 <HiArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -150,8 +192,8 @@ const TrainingAndSupportSection2 = ({ config }) => {
             {/* Video Tutorials */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineVideoCamera className="w-6 h-6 text-purple-600" />
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Popular Video Tutorials</h3>
+                <HiOutlineVideoCamera className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{config?.videosTitle || "Popular Video Tutorials"}</h3>
               </div>
               <div className="space-y-3">
                 {config?.videoTutorials?.slice(0, 3).map((video, index) => (
@@ -160,12 +202,12 @@ const TrainingAndSupportSection2 = ({ config }) => {
                     href={video.link}
                     className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all group"
                   >
-                    <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center group-hover:bg-purple-100 transition-colors">
-                      <HiOutlinePlay className="w-5 h-5 text-purple-600" />
+                    <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center group-hover:bg-purple-100 dark:group-hover:bg-purple-900/30 transition-colors">
+                      <HiOutlinePlay className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-gray-900 dark:text-white text-sm">{video.title}</div>
-                      <div className="text-xs text-gray-500">{video.duration}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{video.duration}</div>
                     </div>
                     <HiArrowRight className="w-4 h-4 text-gray-400 group-hover:text-purple-600 transition-colors" />
                   </Link>
@@ -173,9 +215,9 @@ const TrainingAndSupportSection2 = ({ config }) => {
               </div>
               <Link
                 href={config?.allVideosLink || "/videos"}
-                className="inline-flex items-center gap-2 text-purple-600 text-sm font-semibold mt-4 hover:underline"
+                className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 text-sm font-semibold mt-4 hover:underline"
               >
-                Browse all tutorials
+                {config?.browseAllTutorialsText || "Browse all tutorials"}
                 <HiArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -183,8 +225,8 @@ const TrainingAndSupportSection2 = ({ config }) => {
             {/* Downloadable Resources */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineDocumentText className="w-6 h-6 text-purple-600" />
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Quick Resources</h3>
+                <HiOutlineDocumentText className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{config?.resourcesTitle || "Quick Resources"}</h3>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 {config?.quickResources?.map((resource, index) => (
@@ -193,10 +235,10 @@ const TrainingAndSupportSection2 = ({ config }) => {
                     href={resource.link}
                     className="flex items-center gap-2 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all group"
                   >
-                    <span className="text-xl">{resource.icon}</span>
+                    {getIcon(resource.icon, "w-5 h-5 text-purple-600")}
                     <div className="flex-1">
                       <div className="text-sm font-medium text-gray-900 dark:text-white">{resource.name}</div>
-                      <div className="text-xs text-gray-500">{resource.type}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{resource.type}</div>
                     </div>
                     <HiOutlineDownload className="w-4 h-4 text-gray-400" />
                   </Link>
@@ -210,24 +252,40 @@ const TrainingAndSupportSection2 = ({ config }) => {
             {/* Support Type Selector */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineChat className="w-6 h-6 text-purple-600" />
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Get Support</h3>
+                <HiOutlineChat className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{config?.supportTitle || "Get Support"}</h3>
               </div>
               <div className="grid grid-cols-3 gap-2 mb-6">
-                {['chat', 'email', 'phone'].map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => setSelectedSupport(type)}
-                    className={`py-2 rounded-lg text-sm font-medium transition-all duration-300 ${selectedSupport === type
-                      ? 'bg-purple-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
-                      }`}
-                  >
-                    {type === 'chat' && '💬 Chat'}
-                    {type === 'email' && '📧 Email'}
-                    {type === 'phone' && '📞 Phone'}
-                  </button>
-                ))}
+                <button
+                  onClick={() => setSelectedSupport('chat')}
+                  className={`py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1 ${selectedSupport === 'chat'
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                >
+                  {getIcon("chat", "w-4 h-4")}
+                  {config?.chatText || "Chat"}
+                </button>
+                <button
+                  onClick={() => setSelectedSupport('email')}
+                  className={`py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1 ${selectedSupport === 'email'
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                >
+                  {getIcon("email", "w-4 h-4")}
+                  {config?.emailText || "Email"}
+                </button>
+                <button
+                  onClick={() => setSelectedSupport('phone')}
+                  className={`py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1 ${selectedSupport === 'phone'
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                >
+                  {getIcon("phone", "w-4 h-4")}
+                  {config?.phoneText || "Phone"}
+                </button>
               </div>
 
               {/* Support Request Form */}
@@ -237,11 +295,11 @@ const TrainingAndSupportSection2 = ({ config }) => {
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-8 h-8 bg-green-500 rounded-full" />
                       <div>
-                        <div className="font-semibold text-sm">Support Agent</div>
-                        <div className="text-xs text-green-600">Online</div>
+                        <div className="font-semibold text-sm">{config?.agentName || "Support Agent"}</div>
+                        <div className="text-xs text-green-600">{config?.onlineText || "Online"}</div>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Hi! How can I help you today?</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{config?.welcomeMessage || "Hi! How can I help you today?"}</p>
                   </div>
                   <form onSubmit={handleSubmitRequest}>
                     <select
@@ -249,15 +307,15 @@ const TrainingAndSupportSection2 = ({ config }) => {
                       onChange={(e) => setRequestType(e.target.value)}
                       className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg mb-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     >
-                      <option value="general">General Question</option>
-                      <option value="technical">Technical Issue</option>
-                      <option value="billing">Billing Question</option>
-                      <option value="training">Training Request</option>
+                      <option value="general">{config?.generalOption || "General Question"}</option>
+                      <option value="technical">{config?.technicalOption || "Technical Issue"}</option>
+                      <option value="billing">{config?.billingOption || "Billing Question"}</option>
+                      <option value="training">{config?.trainingOption || "Training Request"}</option>
                     </select>
                     <textarea
                       value={requestMessage}
                       onChange={(e) => setRequestMessage(e.target.value)}
-                      placeholder="Type your message..."
+                      placeholder={config?.messagePlaceholder || "Type your message..."}
                       rows={3}
                       className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg mb-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
                     />
@@ -265,12 +323,13 @@ const TrainingAndSupportSection2 = ({ config }) => {
                       type="submit"
                       className="w-full py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
                     >
-                      Send Message
+                      {config?.sendMessageText || "Send Message"}
                     </button>
                   </form>
                   {requestSubmitted && (
                     <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg text-green-600 text-sm text-center animate-fadeIn">
-                      ✓ Message sent! We'll respond within 2 hours.
+                      {getIcon("check", "w-4 h-4 inline mr-1")}
+                      {config?.confirmationMessage || "Message sent! We'll respond within 2 hours."}
                     </div>
                   )}
                 </div>
@@ -279,12 +338,12 @@ const TrainingAndSupportSection2 = ({ config }) => {
               {selectedSupport === 'email' && (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Get a response within 2 hours during business hours.
+                    {config?.emailDescription || "Get a response within 2 hours during business hours."}
                   </p>
                   <form onSubmit={handleSubmitRequest}>
                     <input
                       type="email"
-                      placeholder="Your email address"
+                      placeholder={config?.emailPlaceholder || "Your email address"}
                       className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg mb-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     />
                     <select
@@ -292,15 +351,15 @@ const TrainingAndSupportSection2 = ({ config }) => {
                       onChange={(e) => setRequestType(e.target.value)}
                       className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg mb-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     >
-                      <option value="general">General Question</option>
-                      <option value="technical">Technical Issue</option>
-                      <option value="billing">Billing Question</option>
-                      <option value="training">Training Request</option>
+                      <option value="general">{config?.generalOption || "General Question"}</option>
+                      <option value="technical">{config?.technicalOption || "Technical Issue"}</option>
+                      <option value="billing">{config?.billingOption || "Billing Question"}</option>
+                      <option value="training">{config?.trainingOption || "Training Request"}</option>
                     </select>
                     <textarea
                       value={requestMessage}
                       onChange={(e) => setRequestMessage(e.target.value)}
-                      placeholder="Describe your question or issue..."
+                      placeholder={config?.emailMessagePlaceholder || "Describe your question or issue..."}
                       rows={3}
                       className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg mb-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
                     />
@@ -308,7 +367,7 @@ const TrainingAndSupportSection2 = ({ config }) => {
                       type="submit"
                       className="w-full py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
                     >
-                      Send Email
+                      {config?.sendEmailText || "Send Email"}
                     </button>
                   </form>
                 </div>
@@ -316,19 +375,21 @@ const TrainingAndSupportSection2 = ({ config }) => {
 
               {selectedSupport === 'phone' && (
                 <div className="space-y-4 text-center">
-                  <div className="text-4xl mb-2">📞</div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">1-800-XXX-XXXX</div>
+                  <div className="flex justify-center mb-2">
+                    {getIcon("phone", "w-12 h-12 text-purple-600")}
+                  </div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">{config?.phoneNumber || "1-800-XXX-XXXX"}</div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Available Mon-Fri, 9am-6pm EST
+                    {config?.phoneAvailability || "Available Mon-Fri, 9am-6pm EST"}
                   </p>
                   <p className="text-xs text-gray-500">
-                    Enterprise customers have 24/7 priority support
+                    {config?.prioritySupportText || "Enterprise customers have 24/7 priority support"}
                   </p>
                   <Link
-                    href="/support/callback"
+                    href={config?.callbackLink || "/support/callback"}
                     className="inline-block px-6 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
                   >
-                    Request Callback
+                    {config?.callbackText || "Request Callback"}
                   </Link>
                 </div>
               )}
@@ -337,19 +398,25 @@ const TrainingAndSupportSection2 = ({ config }) => {
             {/* Knowledge Base */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineBookOpen className="w-6 h-6 text-purple-600" />
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Knowledge Base</h3>
+                <HiOutlineBookOpen className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">{config?.knowledgeBaseTitle || "Knowledge Base"}</h3>
               </div>
               <div className="relative mb-4">
                 <HiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search for answers..."
+                  value={searchQuery}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  placeholder={config?.searchPlaceholder || "Search for answers..."}
                   className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               <div className="space-y-2">
-                {config?.knowledgeBase?.map((article, index) => (
+                {(
+                  searchResults.length > 0
+                    ? searchResults
+                    : (config?.knowledgeBase ?? []).slice(0, 5)
+                ).map((article, index) => (
                   <Link
                     key={index}
                     href={article.link}
@@ -362,9 +429,9 @@ const TrainingAndSupportSection2 = ({ config }) => {
               </div>
               <Link
                 href={config?.knowledgeBaseLink || "/support/kb"}
-                className="inline-flex items-center gap-2 text-purple-600 text-sm font-semibold mt-4 hover:underline"
+                className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 text-sm font-semibold mt-4 hover:underline"
               >
-                Browse all articles
+                {config?.browseAllArticlesText || "Browse all articles"}
                 <HiArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -373,19 +440,19 @@ const TrainingAndSupportSection2 = ({ config }) => {
             <div className="bg-linear-to-r from-purple-600 to-pink-600 rounded-2xl p-6 text-white">
               <div className="flex items-center gap-3 mb-3">
                 <HiOutlineUsers className="w-6 h-6" />
-                <h3 className="text-lg font-bold">Join Our Community</h3>
+                <h3 className="text-lg font-bold">{config?.communityTitle || "Join Our Community"}</h3>
               </div>
               <p className="text-sm text-purple-100 mb-4">
-                Connect with 10,000+ users, share best practices, and get help from experts.
+                {config?.communityDescription || "Connect with 10,000+ users, share best practices, and get help from experts."}
               </p>
               <div className="flex items-center justify-between">
-                <div className="text-2xl font-bold">10K+</div>
-                <div className="text-sm">Active Members</div>
+                <div className="text-2xl font-bold">{config?.communityMembers || "10K+"}</div>
+                <div className="text-sm">{config?.activeMembersText || "Active Members"}</div>
                 <Link
                   href={config?.communityLink || "/community"}
                   className="px-4 py-2 bg-white text-purple-600 rounded-lg text-sm font-semibold hover:shadow-lg transition-all"
                 >
-                  Join Now
+                  {config?.joinNowText || "Join Now"}
                 </Link>
               </div>
             </div>

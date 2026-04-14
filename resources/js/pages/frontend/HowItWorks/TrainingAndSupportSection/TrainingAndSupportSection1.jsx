@@ -13,13 +13,42 @@ import {
   HiOutlineUsers,
   HiOutlineClock,
   HiOutlineCheckCircle,
-  HiArrowRight,
   HiOutlineBookOpen,
   HiOutlineCalendar,
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineGlobeAlt,
+  HiOutlineStar,
+  HiOutlineSparkles
 } from 'react-icons/hi';
+import { HiOutlineArrowRight } from 'react-icons/hi2';
 
 const TrainingAndSupportSection1 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('training');
+
+  // State for active tab
+  const [activeTab, setActiveTab] = useState(config?.initialTab || 'training');
+
+  // Helper function for icons
+  const getIcon = (iconName, className = "w-8 h-8") => {
+    switch (iconName) {
+      case 'academic': return <HiOutlineAcademicCap className={className} />;
+      case 'chat': return <HiOutlineChat className={className} />;
+      case 'document': return <HiOutlineDocumentText className={className} />;
+      case 'video': return <HiOutlineVideoCamera className={className} />;
+      case 'users': return <HiOutlineUsers className={className} />;
+      case 'clock': return <HiOutlineClock className={className} />;
+      case 'check': return <HiOutlineCheckCircle className={className} />;
+      case 'arrow': return <HiOutlineArrowRight className={className} />;
+      case 'book': return <HiOutlineBookOpen className={className} />;
+      case 'calendar': return <HiOutlineCalendar className={className} />;
+      case 'mail': return <HiOutlineMail className={className} />;
+      case 'phone': return <HiOutlinePhone className={className} />;
+      case 'globe': return <HiOutlineGlobeAlt className={className} />;
+      case 'star': return <HiOutlineStar className={className} />;
+      case 'sparkles': return <HiOutlineSparkles className={className} />;
+      default: return <HiOutlineAcademicCap className={className} />;
+    }
+  };
 
   return (
     <section
@@ -72,8 +101,10 @@ const TrainingAndSupportSection1 = ({ config }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           {config?.stats?.map((stat, index) => (
             <div key={index} className="text-center p-6 bg-linear-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-purple-600 mb-1">{stat.value}</div>
+              <div className="flex justify-center mb-3">
+                {getIcon(stat.icon, "w-8 h-8 text-purple-600 dark:text-purple-400")}
+              </div>
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">{stat.value}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
             </div>
           ))}
@@ -83,36 +114,33 @@ const TrainingAndSupportSection1 = ({ config }) => {
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           <button
             onClick={() => setActiveTab('training')}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-              activeTab === 'training'
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'training'
                 ? 'bg-purple-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+              }`}
           >
-            <HiOutlineAcademicCap className="inline w-4 h-4 mr-2" />
-            Training Programs
+            {getIcon("academic", "w-4 h-4")}
+            {config?.trainingTabText || "Training Programs"}
           </button>
           <button
             onClick={() => setActiveTab('support')}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-              activeTab === 'support'
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'support'
                 ? 'bg-purple-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+              }`}
           >
-            <HiOutlineChat className="inline w-4 h-4 mr-2" />
-            Support Channels
+            {getIcon("chat", "w-4 h-4")}
+            {config?.supportTabText || "Support Channels"}
           </button>
           <button
             onClick={() => setActiveTab('resources')}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-              activeTab === 'resources'
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'resources'
                 ? 'bg-purple-600 text-white shadow-lg'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+              }`}
           >
-            <HiOutlineDocumentText className="inline w-4 h-4 mr-2" />
-            Learning Resources
+            {getIcon("book", "w-4 h-4")}
+            {config?.resourcesTabText || "Learning Resources"}
           </button>
         </div>
 
@@ -125,37 +153,39 @@ const TrainingAndSupportSection1 = ({ config }) => {
                 className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="p-6">
-                  <div className="text-3xl mb-4">{program.icon}</div>
+                  <div className="flex justify-start mb-4">
+                    {getIcon(program.icon, "w-10 h-10 text-purple-600 dark:text-purple-400")}
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                     {program.title}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                     {program.description}
                   </p>
-                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-500 dark:text-gray-400">
                     <span className="flex items-center gap-1">
-                      <HiOutlineClock className="w-4 h-4" />
+                      {getIcon("clock", "w-4 h-4")}
                       {program.duration}
                     </span>
                     <span className="flex items-center gap-1">
-                      <HiOutlineUsers className="w-4 h-4" />
+                      {getIcon("users", "w-4 h-4")}
                       {program.audience}
                     </span>
                   </div>
                   <ul className="space-y-2 mb-6">
                     {program.features?.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-purple-500 mr-2 shrink-0 mt-0.5" />
+                        {getIcon("check", "w-4 h-4 text-purple-500 mr-2 shrink-0 mt-0.5")}
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <Link
                     href={program.link}
-                    className="inline-flex items-center text-purple-600 font-semibold hover:underline"
+                    className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:underline"
                   >
-                    Learn more
-                    <HiArrowRight className="w-4 h-4 ml-1" />
+                    {config?.learnMoreText || "Learn more"}
+                    {getIcon("arrow", "w-4 h-4 ml-1")}
                   </Link>
                 </div>
               </div>
@@ -171,20 +201,22 @@ const TrainingAndSupportSection1 = ({ config }) => {
                 key={index}
                 className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="text-4xl mb-4">{channel.icon}</div>
+                <div className="flex justify-center mb-4">
+                  {getIcon(channel.icon, "w-10 h-10 text-purple-600 dark:text-purple-400")}
+                </div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   {channel.name}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
                   {channel.description}
                 </p>
-                <div className="text-sm text-purple-600 mb-3">{channel.availability}</div>
+                <div className="text-sm text-purple-600 dark:text-purple-400 mb-3">{channel.availability}</div>
                 <Link
                   href={channel.link}
-                  className="inline-flex items-center text-purple-600 font-semibold hover:underline"
+                  className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:underline"
                 >
                   {channel.cta}
-                  <HiArrowRight className="w-4 h-4 ml-1" />
+                  {getIcon("arrow", "w-4 h-4 ml-1")}
                 </Link>
               </div>
             ))}
@@ -195,72 +227,78 @@ const TrainingAndSupportSection1 = ({ config }) => {
         {activeTab === 'resources' && (
           <div className="space-y-8">
             {/* Video Tutorials */}
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <HiOutlineVideoCamera className="w-5 h-5 text-purple-600" />
-                Video Tutorials
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {config?.videoTutorials?.map((video, index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 hover:shadow-md transition-all"
-                  >
-                    <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-3 flex items-center justify-center">
-                      <HiOutlineVideoCamera className="w-8 h-8 text-gray-400" />
+            {config?.videoTutorials && config.videoTutorials.length > 0 && (
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  {getIcon("video", "w-5 h-5 text-purple-600")}
+                  {config?.videosTitle || "Video Tutorials"}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {config.videoTutorials.map((video, index) => (
+                    <div
+                      key={index}
+                      className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 hover:shadow-md transition-all"
+                    >
+                      <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-3 flex items-center justify-center">
+                        {getIcon("video", "w-8 h-8 text-gray-400")}
+                      </div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{video.title}</h4>
+                      <p className="text-xs text-gray-500 mb-2">{video.duration}</p>
+                      <Link href={video.link} className="text-sm text-purple-600 dark:text-purple-400 hover:underline">
+                        {config?.watchNowText || "Watch now"} →
+                      </Link>
                     </div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{video.title}</h4>
-                    <p className="text-xs text-gray-500 mb-2">{video.duration}</p>
-                    <Link href={video.link} className="text-sm text-purple-600 hover:underline">
-                      Watch now →
-                    </Link>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Documentation */}
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <HiOutlineBookOpen className="w-5 h-5 text-purple-600" />
-                Documentation
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {config?.documentation?.map((doc, index) => (
-                  <Link
-                    key={index}
-                    href={doc.link}
-                    className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all"
-                  >
-                    <span className="text-gray-700 dark:text-gray-300">{doc.title}</span>
-                    <HiArrowRight className="w-4 h-4 text-gray-400" />
-                  </Link>
-                ))}
+            {config?.documentation && config.documentation.length > 0 && (
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  {getIcon("book", "w-5 h-5 text-purple-600")}
+                  {config?.documentationTitle || "Documentation"}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {config.documentation.map((doc, index) => (
+                    <Link
+                      key={index}
+                      href={doc.link}
+                      className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all"
+                    >
+                      <span className="text-gray-700 dark:text-gray-300">{doc.title}</span>
+                      {getIcon("arrow", "w-4 h-4 text-gray-400")}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Downloadable Resources */}
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <HiOutlineDocumentText className="w-5 h-5 text-purple-600" />
-                Downloadable Resources
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {config?.downloads?.map((download, index) => (
-                  <Link
-                    key={index}
-                    href={download.link}
-                    className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all"
-                  >
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white">{download.name}</div>
-                      <div className="text-xs text-gray-500">{download.type} • {download.size}</div>
-                    </div>
-                    <HiOutlineDocumentText className="w-5 h-5 text-gray-400" />
-                  </Link>
-                ))}
+            {config?.downloads && config.downloads.length > 0 && (
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  {getIcon("document", "w-5 h-5 text-purple-600")}
+                  {config?.downloadsTitle || "Downloadable Resources"}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {config.downloads.map((download, index) => (
+                    <Link
+                      key={index}
+                      href={download.link}
+                      className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all"
+                    >
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">{download.name}</div>
+                        <div className="text-xs text-gray-500">{download.type} • {download.size}</div>
+                      </div>
+                      {getIcon("document", "w-5 h-5 text-gray-400")}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
 
@@ -269,19 +307,21 @@ const TrainingAndSupportSection1 = ({ config }) => {
           <div className="mt-12 bg-linear-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="text-3xl mb-3">🎓</div>
-                <h3 className="text-2xl font-bold mb-2">Live Training Sessions</h3>
+                <div className="mb-3">
+                  {getIcon("academic", "w-10 h-10")}
+                </div>
+                <h3 className="text-2xl font-bold mb-2">{config?.liveTrainingTitle || "Live Training Sessions"}</h3>
                 <p className="text-purple-100 mb-4">
-                  Join our expert-led live training sessions to get hands-on experience and ask questions in real-time.
+                  {config?.liveTrainingDescription || "Join our expert-led live training sessions to get hands-on experience and ask questions in real-time."}
                 </p>
                 <div className="flex items-center gap-4 text-sm">
                   <span className="flex items-center gap-1">
-                    <HiOutlineCalendar className="w-4 h-4" />
-                    Weekly sessions
+                    {getIcon("calendar", "w-4 h-4")}
+                    {config?.liveTrainingFrequency || "Weekly sessions"}
                   </span>
                   <span className="flex items-center gap-1">
-                    <HiOutlineUsers className="w-4 h-4" />
-                    Small groups
+                    {getIcon("users", "w-4 h-4")}
+                    {config?.liveTrainingGroupSize || "Small groups"}
                   </span>
                 </div>
               </div>
@@ -290,8 +330,8 @@ const TrainingAndSupportSection1 = ({ config }) => {
                   href={config?.liveTrainingLink || "/training/live"}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all"
                 >
-                  View Schedule
-                  <HiOutlineCalendar className="w-4 h-4" />
+                  {config?.viewScheduleText || "View Schedule"}
+                  {getIcon("calendar", "w-4 h-4")}
                 </Link>
               </div>
             </div>
@@ -310,7 +350,7 @@ const TrainingAndSupportSection1 = ({ config }) => {
                 className="px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
               >
                 {config?.ctaButtonText || "Contact Training Team"}
-                <HiArrowRight aria-hidden="true" />
+                {getIcon("arrow")}
               </Link>
             </div>
           </div>
