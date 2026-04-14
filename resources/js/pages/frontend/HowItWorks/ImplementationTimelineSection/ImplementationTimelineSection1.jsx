@@ -15,29 +15,41 @@ import {
   HiOutlineCog,
   HiOutlineChartBar,
 } from 'react-icons/hi';
-import { HiOutlineRocketLaunch } from "react-icons/hi2";
+import { HiOutlineRocketLaunch } from 'react-icons/hi2';
 
 const ImplementationTimelineSection1 = ({ config }) => {
-  const [expandedPhase, setExpandedPhase] = useState(null);
 
+  // State to track the expanded phase
+  const [expandedPhase, setExpandedPhase] = useState(config?.initialExpandedPhase || null);
+
+  // Function to toggle a phase
   const togglePhase = (phaseId) => {
     setExpandedPhase(expandedPhase === phaseId ? null : phaseId);
   };
 
-  const getPhaseIcon = (phase) => {
-    switch (phase) {
+  // Helper function for phase icons
+  const getPhaseIcon = (iconName, className = "w-8 h-8") => {
+    switch (iconName) {
       case 'discovery':
-        return <HiOutlineUserGroup className="w-8 h-8" />;
+        return <HiOutlineUserGroup className={className} />;
       case 'setup':
-        return <HiOutlineDatabase className="w-8 h-8" />;
+        return <HiOutlineDatabase className={className} />;
       case 'configuration':
-        return <HiOutlineCog className="w-8 h-8" />;
+        return <HiOutlineCog className={className} />;
       case 'launch':
-        return <HiOutlineRocketLaunch className="w-8 h-8" />;
+        return <HiOutlineRocketLaunch className={className} />;
       case 'optimization':
-        return <HiOutlineChartBar className="w-8 h-8" />;
+        return <HiOutlineChartBar className={className} />;
+      case 'calendar':
+        return <HiOutlineCalendar className={className} />;
+      case 'clock':
+        return <HiOutlineClock className={className} />;
+      case 'check':
+        return <HiOutlineCheckCircle className={className} />;
+      case 'arrow':
+        return <HiOutlineArrowRight className={className} />;
       default:
-        return <HiOutlineCalendar className="w-8 h-8" />;
+        return <HiOutlineCalendar className={className} />;
     }
   };
 
@@ -90,18 +102,12 @@ const ImplementationTimelineSection1 = ({ config }) => {
 
         {/* Timeline Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="text-center p-6 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <div className="text-3xl font-bold text-blue-600 mb-2">{config?.totalDuration || "4-6 weeks"}</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Typical Implementation</div>
-          </div>
-          <div className="text-center p-6 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <div className="text-3xl font-bold text-blue-600 mb-2">{config?.dedicatedTeam || "Dedicated Team"}</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Project Manager + Technical Support</div>
-          </div>
-          <div className="text-center p-6 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <div className="text-3xl font-bold text-blue-600 mb-2">{config?.supportHours || "24/7"}</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Support During Implementation</div>
-          </div>
+          {config?.timelineStats?.map((stat, index) => (
+            <div key={index} className="text-center p-6 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{stat.value}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+            </div>
+          ))}
         </div>
 
         {/* Timeline Phases */}
@@ -133,27 +139,27 @@ const ImplementationTimelineSection1 = ({ config }) => {
                   <div className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="shrink-0 w-12 h-12 bg-blue-50 dark:bg-gray-700 rounded-xl flex items-center justify-center">
-                        {getPhaseIcon(phase.icon)}
+                        {getPhaseIcon(phase.icon, "w-8 h-8 text-blue-600 dark:text-blue-400")}
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2 flex-wrap">
                           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                             {phase.title}
                           </h3>
-                          <span className="px-2 py-0.5 text-xs font-semibold bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full">
+                          <span className="px-2 py-0.5 text-xs font-semibold bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
                             Week {phase.weekRange}
                           </span>
                         </div>
                         <p className="text-gray-600 dark:text-gray-400">
                           {phase.shortDescription}
                         </p>
-                        <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
+                        <div className="flex items-center gap-4 mt-3 text-sm text-gray-500 dark:text-gray-400">
                           <span className="flex items-center gap-1">
-                            <HiOutlineClock className="w-4 h-4" />
+                            {getPhaseIcon("clock", "w-4 h-4")}
                             {phase.duration}
                           </span>
                           <span className="flex items-center gap-1">
-                            <HiOutlineUserGroup className="w-4 h-4" />
+                            {getPhaseIcon("discovery", "w-4 h-4")}
                             {phase.responsible}
                           </span>
                         </div>
@@ -174,7 +180,7 @@ const ImplementationTimelineSection1 = ({ config }) => {
                         <ul className="space-y-2">
                           {phase.activities?.map((activity, idx) => (
                             <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                              <HiOutlineCheckCircle className="w-4 h-4 text-blue-500 mr-2 shrink-0 mt-0.5" />
+                              {getPhaseIcon("check", "w-4 h-4 text-blue-500 mr-2 shrink-0 mt-0.5")}
                               <span>{activity}</span>
                             </li>
                           ))}
@@ -200,7 +206,7 @@ const ImplementationTimelineSection1 = ({ config }) => {
                           className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:underline mt-2"
                         >
                           {phase.actionText || "Learn more"}
-                          <HiOutlineArrowRight className="w-4 h-4" />
+                          {getPhaseIcon("arrow", "w-4 h-4")}
                         </Link>
                       )}
                     </div>
@@ -216,19 +222,21 @@ const ImplementationTimelineSection1 = ({ config }) => {
           <div className="mt-16">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                What You Can Expect
+                {config?.metricsTitle || "What You Can Expect"}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Measurable results after successful implementation
+                {config?.metricsDescription || "Measurable results after successful implementation"}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {config?.metrics?.map((metric, index) => (
                 <div key={index} className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-lg transition-all">
-                  <div className="text-3xl mb-2">{metric.icon}</div>
-                  <div className="text-2xl font-bold text-blue-600 mb-1">{metric.value}</div>
+                  <div className="flex justify-center mb-3">
+                    {getPhaseIcon(metric.icon, "w-8 h-8 text-blue-600 dark:text-blue-400")}
+                  </div>
+                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{metric.value}</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">{metric.label}</div>
-                  <div className="text-xs text-gray-500 mt-1">{metric.description}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">{metric.description}</div>
                 </div>
               ))}
             </div>
@@ -240,7 +248,7 @@ const ImplementationTimelineSection1 = ({ config }) => {
           <div className="mt-16 text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
               <div className="flex items-center gap-3">
-                <HiOutlineCalendar className="w-6 h-6 text-blue-600" />
+                {getPhaseIcon("calendar", "w-6 h-6 text-blue-600 dark:text-blue-400")}
                 <span className="text-gray-700 dark:text-gray-300 font-medium">
                   {config?.ctaText || "Ready to start your implementation?"}
                 </span>
@@ -250,7 +258,7 @@ const ImplementationTimelineSection1 = ({ config }) => {
                 className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
               >
                 {config?.ctaButtonText || "Schedule a Discovery Call"}
-                <HiOutlineArrowRight aria-hidden="true" />
+                {getPhaseIcon("arrow", "w-4 h-4")}
               </Link>
             </div>
           </div>

@@ -20,11 +20,18 @@ import {
   HiOutlineChip,
   HiOutlinePlay,
   HiOutlineCode,
-  HiOutlineSparkles
+  HiOutlineSparkles,
+  HiOutlineCloud,
+  HiOutlineShieldCheck,
+  HiOutlineStar,
+  HiOutlineDesktopComputer,
+  HiOutlineMail
 } from 'react-icons/hi';
 
 const StepByStepProcessSection2 = ({ config }) => {
-  const [expandedStep, setExpandedStep] = useState(1);
+
+  // State for active step
+  const [expandedStep, setExpandedStep] = useState(config?.initialExpandedStep || 1);
 
   // Icon mapping function
   const getStepIcon = (iconName, className = "w-6 h-6") => {
@@ -55,6 +62,18 @@ const StepByStepProcessSection2 = ({ config }) => {
         return <HiOutlineCode className={className} />;
       case 'sparkles':
         return <HiOutlineSparkles className={className} />;
+      case 'cloud':
+        return <HiOutlineCloud className={className} />;
+      case 'shield':
+        return <HiOutlineShieldCheck className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
+      case 'desktop':
+        return <HiOutlineDesktopComputer className={className} />;
+      case 'mail':
+        return <HiOutlineMail className={className} />;
+      case 'check':
+        return <HiOutlineCheckCircle className={className} />;
       default:
         return <HiOutlineUserAdd className={className} />;
     }
@@ -142,7 +161,7 @@ const StepByStepProcessSection2 = ({ config }) => {
                   <div className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="shrink-0 w-12 h-12 bg-blue-50 dark:bg-gray-700 rounded-xl flex items-center justify-center">
-                        {getStepIcon(step.icon)}
+                        {getStepIcon(step.icon, "w-6 h-6 text-blue-600 dark:text-blue-400")}
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
@@ -175,7 +194,7 @@ const StepByStepProcessSection2 = ({ config }) => {
                         <ul className="space-y-2">
                           {step.keyPoints?.map((point, idx) => (
                             <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                              <HiOutlineCheckCircle className="w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 shrink-0 mt-0.5" />
+                              {getStepIcon("check", "w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 shrink-0 mt-0.5")}
                               <span>{point}</span>
                             </li>
                           ))}
@@ -185,13 +204,13 @@ const StepByStepProcessSection2 = ({ config }) => {
                       {/* Estimated Time */}
                       {step.estimatedTime && (
                         <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
-                          <HiOutlineClock className="w-4 h-4" />
-                          <span>⏱️ Estimated time: {step.estimatedTime}</span>
+                          {getStepIcon("clock", "w-4 h-4")}
+                          <span>Estimated time: {step.estimatedTime}</span>
                         </div>
                       )}
 
                       {/* Resources */}
-                      {step.resources && (
+                      {step.resources && step.resources.length > 0 && (
                         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
                           <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Resources:</p>
                           <div className="flex flex-wrap gap-2">
@@ -235,6 +254,9 @@ const StepByStepProcessSection2 = ({ config }) => {
                 key={index}
                 className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
               >
+                <div className="flex justify-center mb-3">
+                  {getStepIcon(stat.icon, "w-8 h-8 text-blue-600 dark:text-blue-400")}
+                </div>
                 <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{stat.value}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">{stat.label}</div>
                 <div className="text-xs text-gray-500 dark:text-gray-500">{stat.description}</div>
@@ -251,11 +273,11 @@ const StepByStepProcessSection2 = ({ config }) => {
                 {config?.ctaText || "Ready to start your journey?"}
               </span>
               <Link
-                href={config?.ctaLink || "/signup"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
+                href={config?.ctaPrimaryLink || "/signup"}
+                className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 aria-label="Start your journey"
               >
-                {config?.ctaButton?.text || "Get Started"}
+                {config?.ctaButton?.primaryText || "Get Started"}
                 <HiArrowRight aria-hidden="true" />
               </Link>
             </div>

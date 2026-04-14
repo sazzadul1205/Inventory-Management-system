@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Page\Page;
 use App\Models\Page\SectionVariant as PageSectionVariant;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class FrontEndController extends Controller
 {
@@ -20,6 +21,33 @@ class FrontEndController extends Controller
         }
         $key = str_replace(' ', '', $key);
         return lcfirst($key);
+    }
+
+    /**
+     * Resolve possible slug aliases so page rendering survives mixed slug styles
+     * in routes, controller method names, and seed data.
+     *
+     * @param string $slug
+     * @return array
+     */
+    private function resolvePageSlugs($slug)
+    {
+        $aliases = [
+            'howItWorks' => ['how-it-works'],
+            'successStories' => ['success-stories'],
+            'pricingPlans' => ['pricing', 'pricing-plans'],
+            'aboutUs' => ['about', 'about-us'],
+            'whyChooseUs' => ['why-choose-us'],
+            'globalPresence' => ['global-presence'],
+            'trustSignals' => ['trust-signals'],
+            'mobileApp' => ['mobile-app'],
+        ];
+
+        return array_values(array_unique(array_filter([
+            $slug,
+            Str::kebab($slug),
+            ...($aliases[$slug] ?? []),
+        ])));
     }
 
     /**
@@ -105,7 +133,7 @@ class FrontEndController extends Controller
             $errorReason = null;
 
             // Fetch the page from database with its sections
-            $page = Page::where('slug', $slug)
+            $page = Page::whereIn('slug', $this->resolvePageSlugs($slug))
                 ->where('is_active', true)
                 ->with([
                     'sections' => function ($query) {

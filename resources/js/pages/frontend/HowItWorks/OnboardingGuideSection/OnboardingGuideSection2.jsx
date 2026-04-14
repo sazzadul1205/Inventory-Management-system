@@ -12,46 +12,87 @@ import {
   HiArrowRight,
   HiArrowLeft,
   HiOutlineSparkles,
+  HiOutlineLightBulb,
+  HiOutlineUserAdd,
+  HiOutlineDatabase,
+  HiOutlineQrcode,
+  HiOutlineChartBar,
+  HiOutlineDocumentText,
+  HiOutlineVideoCamera,
+  HiOutlineAcademicCap
 } from 'react-icons/hi';
 
 const OnboardingGuideSection2 = ({ config }) => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState([]);
-  const [answers, setAnswers] = useState({});
 
+  // State for current step
+  const [currentStep, setCurrentStep] = useState(config?.initialStep || 0);
+
+  // State for completed steps
+  const [completedSteps, setCompletedSteps] = useState(config?.initialCompletedSteps || []);
+
+  // State for answers
+  const [answers, setAnswers] = useState(config?.initialAnswers || {});
+
+  // Get the wizard steps
   const steps = config?.wizardSteps || [];
 
+  // Function to handle next step
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     }
   };
 
+  // Function to handle previous step
   const handlePrevious = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
 
-  const markStepComplete = () => {
-    if (!completedSteps.includes(currentStep)) {
-      setCompletedSteps([...completedSteps, currentStep]);
+  // Function to mark a step as complete
+  const markStepComplete = (stepIndex) => {
+    if (!completedSteps.includes(stepIndex)) {
+      const newCompleted = [...completedSteps, stepIndex];
+      setCompletedSteps(newCompleted);
+      if (config?.onStepComplete) {
+        config.onStepComplete(stepIndex, newCompleted);
+      }
     }
   };
 
+  // Function to handle answer selection
   const handleAnswer = (stepId, answer) => {
-    setAnswers({ ...answers, [stepId]: answer });
-    markStepComplete();
+    const newAnswers = { ...answers, [stepId]: answer };
+    setAnswers(newAnswers);
+    markStepComplete(currentStep);
     if (currentStep < steps.length - 1) {
-      setTimeout(() => handleNext(), 500);
+      setTimeout(() => handleNext(), config?.autoAdvanceDelay || 500);
     }
   };
 
+  // Function to calculate progress percentage
   const getProgressPercentage = () => {
     return Math.round((completedSteps.length / steps.length) * 100);
   };
 
+  // Get the data for the current step
   const currentStepData = steps[currentStep];
+
+  // Icon mapping for step icons
+  const getStepIcon = (iconName, className = "w-10 h-10") => {
+    switch (iconName) {
+      case 'user': return <HiOutlineUserAdd className={className} />;
+      case 'database': return <HiOutlineDatabase className={className} />;
+      case 'qrcode': return <HiOutlineQrcode className={className} />;
+      case 'chart': return <HiOutlineChartBar className={className} />;
+      case 'video': return <HiOutlineVideoCamera className={className} />;
+      case 'document': return <HiOutlineDocumentText className={className} />;
+      case 'academic': return <HiOutlineAcademicCap className={className} />;
+      case 'lightbulb': return <HiOutlineLightBulb className={className} />;
+      default: return <HiOutlineUserAdd className={className} />;
+    }
+  };
 
   return (
     <section
@@ -104,9 +145,9 @@ const OnboardingGuideSection2 = ({ config }) => {
         <div className="mb-8">
           <div className="flex justify-between mb-2">
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Setup Progress
+              {config?.progressTitle || "Setup Progress"}
             </span>
-            <span className="text-sm font-bold text-teal-600">
+            <span className="text-sm font-bold text-teal-600 dark:text-teal-400">
               {getProgressPercentage()}%
             </span>
           </div>
@@ -114,7 +155,7 @@ const OnboardingGuideSection2 = ({ config }) => {
             <div
               className="bg-linear-to-r from-teal-500 to-cyan-500 h-2 rounded-full transition-all duration-500"
               style={{ width: `${getProgressPercentage()}%` }}
-             />
+            />
           </div>
         </div>
 
@@ -137,6 +178,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                         ? 'bg-teal-600 text-white ring-4 ring-teal-200 dark:ring-teal-900'
                         : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
                       }`}
+                    aria-label={`Go to step ${index + 1}: ${step.shortTitle}`}
                   >
                     {completedSteps.includes(index) ? (
                       <HiOutlineCheckCircle className="w-5 h-5" />
@@ -159,7 +201,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                 {/* Step Icon and Title */}
                 <div className="text-center mb-8">
                   <div className="w-20 h-20 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <div className="text-3xl">{currentStepData.icon}</div>
+                    {getStepIcon(currentStepData.icon, "w-10 h-10 text-teal-600 dark:text-teal-400")}
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     {currentStepData.title}
@@ -200,7 +242,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                   <div className="space-y-6">
                     <div className="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-6">
                       <div className="flex items-start gap-4">
-                        <div className="text-2xl">💡</div>
+                        {getStepIcon("lightbulb", "w-6 h-6 text-teal-600")}
                         <div>
                           <p className="text-gray-700 dark:text-gray-300">
                             {currentStepData.infoText}
@@ -228,7 +270,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                       onClick={() => handleAnswer(currentStepData.id, 'acknowledged')}
                       className="w-full py-3 bg-teal-600 text-white rounded-xl font-semibold hover:bg-teal-700 transition-colors"
                     >
-                      Got it, continue
+                      {currentStepData.continueText || "Got it, continue"}
                     </button>
                   </div>
                 )}
@@ -236,7 +278,9 @@ const OnboardingGuideSection2 = ({ config }) => {
                 {currentStepData.type === 'action' && (
                   <div className="space-y-6">
                     <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 text-center">
-                      <div className="text-4xl mb-3">{currentStepData.actionIcon}</div>
+                      <div className="mb-3 flex justify-center">
+                        {getStepIcon(currentStepData.actionIcon || "document", "w-10 h-10 text-teal-600")}
+                      </div>
                       <p className="text-gray-700 dark:text-gray-300 mb-4">
                         {currentStepData.actionDescription}
                       </p>
@@ -253,7 +297,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                       onClick={() => handleAnswer(currentStepData.id, 'completed')}
                       className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                     >
-                      I'll do this later
+                      {currentStepData.skipText || "I'll do this later"}
                     </button>
                   </div>
                 )}
@@ -261,15 +305,23 @@ const OnboardingGuideSection2 = ({ config }) => {
                 {currentStepData.type === 'video' && (
                   <div className="space-y-6">
                     <div className="aspect-video bg-gray-900 rounded-xl flex items-center justify-center">
-                      <button className="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors">
+                      <button
+                        onClick={() => window.open(currentStepData.videoUrl, '_blank')}
+                        className="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors"
+                      >
                         <HiOutlinePlay className="w-8 h-8 text-white ml-1" />
                       </button>
                     </div>
+                    {currentStepData.videoDescription && (
+                      <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                        {currentStepData.videoDescription}
+                      </p>
+                    )}
                     <button
                       onClick={() => handleAnswer(currentStepData.id, 'watched')}
                       className="w-full py-3 bg-teal-600 text-white rounded-xl font-semibold hover:bg-teal-700 transition-colors"
                     >
-                      Mark as watched
+                      {currentStepData.watchButtonText || "Mark as watched"}
                     </button>
                   </div>
                 )}
@@ -288,7 +340,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                 }`}
             >
               <HiArrowLeft className="w-4 h-4" />
-              Previous
+              {config?.previousButtonText || "Previous"}
             </button>
 
             {currentStep < steps.length - 1 ? (
@@ -300,7 +352,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed'
                   }`}
               >
-                Next
+                {config?.nextButtonText || "Next"}
                 <HiArrowRight className="w-4 h-4" />
               </button>
             ) : (
@@ -309,7 +361,7 @@ const OnboardingGuideSection2 = ({ config }) => {
                 className="px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all duration-300 flex items-center gap-2"
               >
                 <HiOutlineSparkles className="w-4 h-4" />
-                Complete Setup
+                {config?.completeButtonText || "Complete Setup"}
               </Link>
             )}
           </div>
@@ -321,7 +373,14 @@ const OnboardingGuideSection2 = ({ config }) => {
             <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
               <HiOutlineChat className="w-5 h-5" />
               <span className="text-sm">
-                Need help? <Link href={config?.supportLink || "/support"} className="text-teal-600 dark:text-teal-400 font-semibold hover:underline">Contact our support team</Link> or check our <Link href={config?.docsLink || "/docs"} className="text-teal-600 dark:text-teal-400 font-semibold hover:underline">documentation</Link>.
+                {config?.supportText || "Need help?"}{' '}
+                <Link href={config?.supportLink || "/support"} className="text-teal-600 dark:text-teal-400 font-semibold hover:underline">
+                  {config?.supportLinkText || "Contact our support team"}
+                </Link>{' '}
+                {config?.orText || "or check our"}{' '}
+                <Link href={config?.docsLink || "/docs"} className="text-teal-600 dark:text-teal-400 font-semibold hover:underline">
+                  {config?.docsLinkText || "documentation"}
+                </Link>.
               </span>
             </div>
           </div>

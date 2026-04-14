@@ -23,12 +23,20 @@ import {
   HiOutlineSparkles,
   HiOutlineStar,
   HiOutlineThumbUp,
-  HiOutlineAcademicCap
+  HiOutlineAcademicCap,
+  HiOutlineCloud,
+  HiOutlineShieldCheck,
+  HiOutlineDesktopComputer,
+  HiOutlineMail
 } from 'react-icons/hi';
 
 const StepByStepProcessSection3 = ({ config }) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [completedSteps, setCompletedSteps] = useState([]);
+
+  // State for active step
+  const [currentStep, setCurrentStep] = useState(config?.initialStep || 1);
+
+  // State for completed steps
+  const [completedSteps, setCompletedSteps] = useState(config?.initialCompletedSteps || []);
 
   // Icon mapping function
   const getStepIcon = (iconName, className = "w-6 h-6") => {
@@ -65,25 +73,41 @@ const StepByStepProcessSection3 = ({ config }) => {
         return <HiOutlineThumbUp className={className} />;
       case 'academic':
         return <HiOutlineAcademicCap className={className} />;
+      case 'cloud':
+        return <HiOutlineCloud className={className} />;
+      case 'shield':
+        return <HiOutlineShieldCheck className={className} />;
+      case 'desktop':
+        return <HiOutlineDesktopComputer className={className} />;
+      case 'mail':
+        return <HiOutlineMail className={className} />;
       default:
         return <HiOutlineUserAdd className={className} />;
     }
   };
 
+  // Function to handle step click
   const handleStepClick = (stepNumber) => {
     setCurrentStep(stepNumber);
   };
 
+  // Function to mark a step as completed
   const markStepCompleted = (stepNumber) => {
     if (!completedSteps.includes(stepNumber)) {
       setCompletedSteps([...completedSteps, stepNumber]);
+      // Optional: Call config callback if provided
+      if (config?.onStepCompleted) {
+        config.onStepCompleted(stepNumber);
+      }
     }
   };
 
+  // Function to check if a step is completed
   const isStepCompleted = (stepNumber) => {
     return completedSteps.includes(stepNumber);
   };
 
+  // Get the data for the current step
   const currentStepData = config?.steps?.find(step => step.number === currentStep);
 
   return (
@@ -141,7 +165,7 @@ const StepByStepProcessSection3 = ({ config }) => {
 
         {/* Horizontal Stepper */}
         <div className="mb-12 overflow-x-auto">
-          <div className="min-w-150 md:min-w-0">
+          <div className="min-w-0[600px] md:min-w-0">
             <div className="flex items-center justify-between">
               {config?.steps?.map((step, index) => (
                 <div key={step.id} className="flex-1 relative">
@@ -150,14 +174,15 @@ const StepByStepProcessSection3 = ({ config }) => {
                     onClick={() => handleStepClick(step.number)}
                     className={`relative z-10 flex flex-col items-center group w-full transition-all duration-300 ${currentStep === step.number ? 'scale-105' : ''
                       }`}
+                    aria-label={`Go to step ${step.number}: ${step.title}`}
                   >
                     {/* Step Circle */}
                     <div
                       className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${isStepCompleted(step.number)
-                          ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
-                          : currentStep === step.number
-                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 ring-4 ring-blue-200 dark:ring-blue-900'
-                            : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 group-hover:bg-blue-100 dark:group-hover:bg-gray-600'
+                        ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
+                        : currentStep === step.number
+                          ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 ring-4 ring-blue-200 dark:ring-blue-900'
+                          : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 group-hover:bg-blue-100 dark:group-hover:bg-gray-600'
                         }`}
                     >
                       {isStepCompleted(step.number) ? (
@@ -170,8 +195,8 @@ const StepByStepProcessSection3 = ({ config }) => {
                     {/* Step Label */}
                     <div className="mt-3 text-center">
                       <div className={`text-sm font-semibold transition-colors duration-300 ${currentStep === step.number
-                          ? 'text-blue-600 dark:text-blue-400'
-                          : 'text-gray-500 dark:text-gray-400'
+                        ? 'text-blue-600 dark:text-blue-400'
+                        : 'text-gray-500 dark:text-gray-400'
                         }`}>
                         {step.title}
                       </div>
@@ -187,7 +212,7 @@ const StepByStepProcessSection3 = ({ config }) => {
                       <div
                         className={`h-full bg-linear-to-r from-blue-500 to-green-500 transition-all duration-500 ${isStepCompleted(step.number) ? 'w-full' : 'w-0'
                           }`}
-                       />
+                      />
                     </div>
                   )}
                 </div>
@@ -203,7 +228,7 @@ const StepByStepProcessSection3 = ({ config }) => {
             <div>
               {/* Step Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full mb-4">
-                <HiOutlineClock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                {getStepIcon("clock", "w-4 h-4 text-blue-600 dark:text-blue-400")}
                 <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
                   Step {currentStep} • {currentStepData?.estimatedTime}
                 </span>
@@ -220,16 +245,16 @@ const StepByStepProcessSection3 = ({ config }) => {
               </p>
 
               {/* Key Features */}
-              {currentStepData?.keyPoints && (
+              {currentStepData?.keyPoints && currentStepData.keyPoints.length > 0 && (
                 <div className="mb-6">
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <HiOutlineStar className="w-5 h-5 text-blue-500" />
+                    {getStepIcon("star", "w-5 h-5 text-blue-500")}
                     What you'll accomplish:
                   </h4>
                   <ul className="space-y-2">
                     {currentStepData.keyPoints.map((point, idx) => (
                       <li key={idx} className="flex items-start text-gray-600 dark:text-gray-400">
-                        <HiOutlineCheckCircle className="w-5 h-5 text-green-500 dark:text-green-400 mr-3 shrink-0 mt-0.5" />
+                        {getStepIcon("check", "w-5 h-5 text-green-500 dark:text-green-400 mr-3 shrink-0 mt-0.5")}
                         <span>{point}</span>
                       </li>
                     ))}
@@ -238,10 +263,10 @@ const StepByStepProcessSection3 = ({ config }) => {
               )}
 
               {/* Resources */}
-              {currentStepData?.resources && (
+              {currentStepData?.resources && currentStepData.resources.length > 0 && (
                 <div className="mb-6">
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <HiOutlineAcademicCap className="w-5 h-5 text-blue-500" />
+                    {getStepIcon("academic", "w-5 h-5 text-blue-500")}
                     Helpful resources:
                   </h4>
                   <div className="flex flex-wrap gap-2">
@@ -260,13 +285,13 @@ const StepByStepProcessSection3 = ({ config }) => {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-3 mt-6">
-                {!isStepCompleted(currentStep) && (
+                {!isStepCompleted(currentStep) && config?.showCompleteButton !== false && (
                   <button
                     onClick={() => markStepCompleted(currentStep)}
                     className="px-6 py-2.5 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center gap-2"
                   >
-                    <HiOutlineCheckCircle className="w-5 h-5" />
-                    Mark as Complete
+                    {getStepIcon("check", "w-5 h-5")}
+                    {config?.completeButtonText || "Mark as Complete"}
                   </button>
                 )}
 
@@ -276,17 +301,17 @@ const StepByStepProcessSection3 = ({ config }) => {
                     className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg inline-flex items-center gap-2"
                   >
                     {currentStepData.actionText || "Get Started"}
-                    <HiArrowRight className="w-4 h-4" />
+                    {getStepIcon("arrow", "w-4 h-4")}
                   </Link>
                 )}
 
-                {currentStep < config?.steps?.length && isStepCompleted(currentStep) && (
+                {currentStep < (config?.steps?.length || 0) && isStepCompleted(currentStep) && (
                   <button
                     onClick={() => handleStepClick(currentStep + 1)}
                     className="px-6 py-2.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 inline-flex items-center gap-2"
                   >
                     Next Step
-                    <HiArrowRight className="w-4 h-4" />
+                    {getStepIcon("arrow", "w-4 h-4")}
                   </button>
                 )}
               </div>
@@ -296,7 +321,9 @@ const StepByStepProcessSection3 = ({ config }) => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
               {currentStepData?.preview ? (
                 <div className="text-center">
-                  <div className="text-6xl mb-4">{currentStepData.preview.icon}</div>
+                  <div className="mb-4 flex justify-center">
+                    {getStepIcon(currentStepData.preview.icon, "w-12 h-12 text-blue-600 dark:text-blue-400")}
+                  </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                     {currentStepData.preview.title}
                   </h4>
@@ -307,18 +334,17 @@ const StepByStepProcessSection3 = ({ config }) => {
                     <img
                       src={currentStepData.preview.image}
                       alt={currentStepData.preview.title}
-                      className="mt-4 rounded-lg"
+                      className="mt-4 rounded-lg mx-auto"
                     />
                   )}
                 </div>
               ) : (
                 <div className="text-center py-8">
                   <div className="w-24 h-24 bg-linear-to-br from-blue-100 to-indigo-100 dark:from-gray-700 dark:to-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                    {getStepIcon(currentStepData?.icon, "w-12 h-12 text-blue-600 dark:text-blue-400")}
+                    {getStepIcon(currentStepData?.icon || "user", "w-12 h-12 text-blue-600 dark:text-blue-400")}
                   </div>
                   <p className="text-gray-500 dark:text-gray-400 text-sm">
-                    Interactive preview available<br />
-                    when you start this step
+                    {config?.previewPlaceholderText || "Interactive preview available when you start this step"}
                   </p>
                 </div>
               )}
@@ -332,7 +358,7 @@ const StepByStepProcessSection3 = ({ config }) => {
             <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Overall Progress
+                  {config?.progressTitle || "Overall Progress"}
                 </span>
                 <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
                   {Math.round((completedSteps.length / (config?.steps?.length || 1)) * 100)}%
@@ -342,11 +368,13 @@ const StepByStepProcessSection3 = ({ config }) => {
                 <div
                   className="bg-linear-to-r from-blue-500 to-indigo-500 h-3 rounded-full transition-all duration-500"
                   style={{ width: `${(completedSteps.length / (config?.steps?.length || 1)) * 100}%` }}
-                 />
+                />
               </div>
               <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
-                {completedSteps.length} of {config?.steps?.length} steps completed
-                {completedSteps.length === config?.steps?.length && " 🎉 Congratulations! You're ready to go live!"}
+                {completedSteps.length === config?.steps?.length
+                  ? config?.completionMessage || "🎉 Congratulations! You're ready to go live!"
+                  : `${completedSteps.length} of ${config?.steps?.length} steps completed`
+                }
               </p>
             </div>
           </div>
@@ -360,11 +388,11 @@ const StepByStepProcessSection3 = ({ config }) => {
                 {config?.ctaText || "Ready to begin your journey?"}
               </span>
               <Link
-                href={config?.ctaLink || "/signup"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
+                href={config?.ctaPrimaryLink || "/signup"}
+                className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 aria-label="Start your journey"
               >
-                {config?.ctaButton?.text || "Start Free Trial"}
+                {config?.ctaButton?.primaryText || "Start Free Trial"}
                 <HiArrowRight aria-hidden="true" />
               </Link>
             </div>

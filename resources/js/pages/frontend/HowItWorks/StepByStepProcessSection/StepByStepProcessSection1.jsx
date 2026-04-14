@@ -17,37 +17,59 @@ import {
   HiOutlineQrcode,
   HiOutlineDocumentText,
   HiOutlineBell,
-  HiOutlineChip
+  HiOutlineChip,
+  HiOutlineCloud,
+  HiOutlineShieldCheck,
+  HiOutlineSparkles,
+  HiOutlineStar,
+  HiOutlineDesktopComputer,
+  HiOutlineMail
 } from 'react-icons/hi';
 
 const StepByStepProcessSection1 = ({ config }) => {
-  const [activeStep, setActiveStep] = useState(0);
+
+  // State for active step
+  const [activeStep, setActiveStep] = useState(config?.initialStep !== undefined ? config.initialStep : 0);
 
   // Icon mapping function
   const getStepIcon = (iconName, className = "w-8 h-8") => {
     switch (iconName) {
       case 'user':
-        return <HiOutlineUserAdd className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineUserAdd className={className} />;
       case 'database':
-        return <HiOutlineDatabase className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineDatabase className={className} />;
       case 'sync':
-        return <HiOutlineRefresh className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineRefresh className={className} />;
       case 'chart':
-        return <HiOutlineChartBar className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineChartBar className={className} />;
       case 'clock':
-        return <HiOutlineClock className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineClock className={className} />;
       case 'truck':
-        return <HiOutlineTruck className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineTruck className={className} />;
       case 'qrcode':
-        return <HiOutlineQrcode className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineQrcode className={className} />;
       case 'document':
-        return <HiOutlineDocumentText className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineDocumentText className={className} />;
       case 'bell':
-        return <HiOutlineBell className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineBell className={className} />;
       case 'chip':
-        return <HiOutlineChip className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineChip className={className} />;
+      case 'cloud':
+        return <HiOutlineCloud className={className} />;
+      case 'shield':
+        return <HiOutlineShieldCheck className={className} />;
+      case 'sparkles':
+        return <HiOutlineSparkles className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
+      case 'desktop':
+        return <HiOutlineDesktopComputer className={className} />;
+      case 'mail':
+        return <HiOutlineMail className={className} />;
+      case 'check':
+        return <HiOutlineCheckCircle className={className} />;
       default:
-        return <HiOutlineUserAdd className={`${className} text-blue-600 dark:text-blue-400`} aria-hidden="true" />;
+        return <HiOutlineUserAdd className={className} />;
     }
   };
 
@@ -111,7 +133,7 @@ const StepByStepProcessSection1 = ({ config }) => {
               key={step.id}
               className="group relative"
               onMouseEnter={() => setActiveStep(index)}
-              onMouseLeave={() => setActiveStep(null)}
+              onMouseLeave={() => config?.showProgress && setActiveStep(config?.initialStep !== undefined ? config.initialStep : 0)}
             >
               {/* Step Number */}
               <div className="absolute -top-4 -left-4 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg z-10">
@@ -122,7 +144,7 @@ const StepByStepProcessSection1 = ({ config }) => {
               <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 pt-12 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 h-full">
                 {/* Icon */}
                 <div className="w-16 h-16 bg-blue-50 dark:bg-gray-700 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {getStepIcon(step.icon)}
+                  {getStepIcon(step.icon, "w-8 h-8 text-blue-600 dark:text-blue-400")}
                 </div>
 
                 {/* Title */}
@@ -142,7 +164,7 @@ const StepByStepProcessSection1 = ({ config }) => {
                 <ul className="space-y-2 mb-6">
                   {step.keyPoints?.slice(0, 2).map((point, idx) => (
                     <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 shrink-0 mt-0.5" />
+                      {getStepIcon("check", "w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 shrink-0 mt-0.5")}
                       <span>{point}</span>
                     </li>
                   ))}
@@ -151,7 +173,7 @@ const StepByStepProcessSection1 = ({ config }) => {
                 {/* Estimated Time */}
                 {step.estimatedTime && (
                   <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                    <HiOutlineClock className="w-4 h-4" />
+                    {getStepIcon("clock", "w-4 h-4")}
                     <span>Estimated time: {step.estimatedTime}</span>
                   </div>
                 )}
@@ -185,7 +207,7 @@ const StepByStepProcessSection1 = ({ config }) => {
                 <div
                   className="bg-linear-to-r from-blue-500 to-indigo-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${((activeStep + 1) / (config?.steps?.length || 1)) * 100}%` }}
-                 />
+                />
               </div>
               <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
                 {activeStep >= 0 && config?.steps?.[activeStep]?.progressTip}
@@ -202,11 +224,11 @@ const StepByStepProcessSection1 = ({ config }) => {
                 {config?.ctaText || "Ready to get started?"}
               </span>
               <Link
-                href={config?.ctaLink || "/contact"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
+                href={config?.ctaPrimaryLink || "/contact"}
+                className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 aria-label="Start your journey"
               >
-                {config?.ctaButton?.text || "Get Started"}
+                {config?.ctaButton?.primaryText || "Get Started"}
                 <HiArrowRight aria-hidden="true" />
               </Link>
             </div>

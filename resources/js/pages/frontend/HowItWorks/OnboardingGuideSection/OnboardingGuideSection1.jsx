@@ -17,13 +17,21 @@ import {
   HiOutlineCalendar,
   HiOutlineVideoCamera,
   HiOutlineBookOpen,
-  HiOutlineSparkles
+  HiOutlineSparkles,
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineGlobeAlt
 } from 'react-icons/hi';
 
 const OnboardingGuideSection1 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('guide');
-  const [completedItems, setCompletedItems] = useState([]);
 
+  // State to track active tab
+  const [activeTab, setActiveTab] = useState(config?.initialTab || 'guide');
+
+  // State to track completed checklist items
+  const [completedItems, setCompletedItems] = useState(config?.initialCompletedItems || []);
+
+  // Function to toggle completion of a checklist item
   const toggleComplete = (itemId) => {
     if (completedItems.includes(itemId)) {
       setCompletedItems(completedItems.filter(id => id !== itemId));
@@ -32,6 +40,7 @@ const OnboardingGuideSection1 = ({ config }) => {
     }
   };
 
+  // Function to calculate progress percentage
   const getProgressPercentage = () => {
     const totalItems = config?.checklist?.length || 1;
     return Math.round((completedItems.length / totalItems) * 100);
@@ -88,32 +97,32 @@ const OnboardingGuideSection1 = ({ config }) => {
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           <button
             onClick={() => setActiveTab('guide')}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${activeTab === 'guide'
-                ? 'bg-teal-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'guide'
+              ? 'bg-teal-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
           >
-            <HiOutlineBookOpen className="inline w-4 h-4 mr-2" />
+            <HiOutlineBookOpen className="w-4 h-4" />
             Getting Started Guide
           </button>
           <button
             onClick={() => setActiveTab('checklist')}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${activeTab === 'checklist'
-                ? 'bg-teal-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'checklist'
+              ? 'bg-teal-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
           >
-            <HiOutlineCheckCircle className="inline w-4 h-4 mr-2" />
+            <HiOutlineCheckCircle className="w-4 h-4" />
             Setup Checklist
           </button>
           <button
             onClick={() => setActiveTab('resources')}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${activeTab === 'resources'
-                ? 'bg-teal-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'resources'
+              ? 'bg-teal-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
           >
-            <HiOutlineAcademicCap className="inline w-4 h-4 mr-2" />
+            <HiOutlineAcademicCap className="w-4 h-4" />
             Resources & Support
           </button>
         </div>
@@ -129,10 +138,10 @@ const OnboardingGuideSection1 = ({ config }) => {
                   <div className="bg-linear-to-br from-teal-50 to-cyan-50 dark:from-gray-700 dark:to-gray-700 rounded-xl p-6">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                        <HiOutlineVideoCamera className="w-5 h-5 text-teal-600" />
+                        <HiOutlineVideoCamera className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                       </div>
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                        Welcome Video
+                        {config?.welcomeVideoTitle || "Welcome Video"}
                       </h3>
                     </div>
                     <div className="aspect-video bg-gray-900 rounded-lg flex items-center justify-center mb-4">
@@ -141,38 +150,32 @@ const OnboardingGuideSection1 = ({ config }) => {
                       </button>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      Watch this 5-minute overview to understand the platform's key features and how to get started.
+                      {config?.welcomeVideoDescription || "Watch this 5-minute overview to understand the platform's key features and how to get started."}
                     </p>
                   </div>
                 </div>
 
                 {/* Quick Stats */}
                 <div className="space-y-4">
-                  <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                    <div className="text-2xl font-bold text-teal-600">15 min</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Average setup time</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                    <div className="text-2xl font-bold text-teal-600">200+</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Pre-built integrations</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                    <div className="text-2xl font-bold text-teal-600">24/7</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Support available</div>
-                  </div>
+                  {config?.quickStats?.map((stat, index) => (
+                    <div key={index} className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
+                      <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">{stat.value}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Guide Steps */}
               <div className="mt-8">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                  Step-by-Step Guide
+                  {config?.guideStepsTitle || "Step-by-Step Guide"}
                 </h3>
                 <div className="space-y-4">
                   {config?.guideSteps?.map((step, index) => (
                     <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-700/30 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
                       <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center shrink-0">
-                        <span className="text-teal-600 font-bold">{index + 1}</span>
+                        <span className="text-teal-600 dark:text-teal-400 font-bold">{index + 1}</span>
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -209,9 +212,9 @@ const OnboardingGuideSection1 = ({ config }) => {
               <div className="mb-8">
                 <div className="flex justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Setup Progress
+                    {config?.progressTitle || "Setup Progress"}
                   </span>
-                  <span className="text-sm font-bold text-teal-600">
+                  <span className="text-sm font-bold text-teal-600 dark:text-teal-400">
                     {getProgressPercentage()}%
                   </span>
                 </div>
@@ -219,7 +222,7 @@ const OnboardingGuideSection1 = ({ config }) => {
                   <div
                     className="bg-linear-to-r from-teal-500 to-cyan-500 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${getProgressPercentage()}%` }}
-                   />
+                  />
                 </div>
               </div>
 
@@ -229,8 +232,8 @@ const OnboardingGuideSection1 = ({ config }) => {
                   <div
                     key={item.id}
                     className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 cursor-pointer ${completedItems.includes(item.id)
-                        ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                        : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-gray-100 dark:hover:bg-gray-700/50'
+                      ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                      : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-gray-100 dark:hover:bg-gray-700/50'
                       }`}
                     onClick={() => toggleComplete(item.id)}
                   >
@@ -244,8 +247,8 @@ const OnboardingGuideSection1 = ({ config }) => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className={`font-medium ${completedItems.includes(item.id)
-                            ? 'text-gray-500 dark:text-gray-400 line-through'
-                            : 'text-gray-900 dark:text-white'
+                          ? 'text-gray-500 dark:text-gray-400 line-through'
+                          : 'text-gray-900 dark:text-white'
                           }`}>
                           {item.title}
                         </span>
@@ -276,10 +279,10 @@ const OnboardingGuideSection1 = ({ config }) => {
                 <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl text-center">
                   <HiOutlineSparkles className="w-8 h-8 text-green-500 mx-auto mb-2" />
                   <p className="text-green-700 dark:text-green-300 font-semibold">
-                    🎉 Congratulations! You've completed all setup steps!
+                    {config?.completionMessage || "Congratulations! You've completed all setup steps!"}
                   </p>
                   <p className="text-sm text-green-600 dark:text-green-400 mt-1">
-                    You're ready to start using the platform.
+                    {config?.completionSubmessage || "You're ready to start using the platform."}
                   </p>
                 </div>
               )}
@@ -294,10 +297,10 @@ const OnboardingGuideSection1 = ({ config }) => {
                 <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                      <HiOutlineDocumentText className="w-5 h-5 text-teal-600" />
+                      <HiOutlineDocumentText className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      Documentation
+                      {config?.documentationTitle || "Documentation"}
                     </h3>
                   </div>
                   <ul className="space-y-3">
@@ -319,10 +322,10 @@ const OnboardingGuideSection1 = ({ config }) => {
                 <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                      <HiOutlineUserGroup className="w-5 h-5 text-teal-600" />
+                      <HiOutlineUserGroup className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      Support Channels
+                      {config?.supportTitle || "Support Channels"}
                     </h3>
                   </div>
                   <ul className="space-y-3">
@@ -332,7 +335,7 @@ const OnboardingGuideSection1 = ({ config }) => {
                           href={channel.link}
                           className="flex items-center gap-3 p-2 hover:bg-white dark:hover:bg-gray-600 rounded-lg transition-colors"
                         >
-                          <span className="text-xl">{channel.icon}</span>
+                          {getIconForChannel(channel.icon, "w-5 h-5 text-teal-600")}
                           <div>
                             <div className="font-medium text-gray-900 dark:text-white">{channel.name}</div>
                             <div className="text-sm text-gray-500 dark:text-gray-400">{channel.description}</div>
@@ -347,10 +350,10 @@ const OnboardingGuideSection1 = ({ config }) => {
                 <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                      <HiOutlineVideoCamera className="w-5 h-5 text-teal-600" />
+                      <HiOutlineVideoCamera className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      Training Videos
+                      {config?.trainingTitle || "Training Videos"}
                     </h3>
                   </div>
                   <ul className="space-y-3">
@@ -372,10 +375,10 @@ const OnboardingGuideSection1 = ({ config }) => {
                 <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                      <HiOutlineChat className="w-5 h-5 text-teal-600" />
+                      <HiOutlineChat className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      Community
+                      {config?.communityTitle || "Community"}
                     </h3>
                   </div>
                   <ul className="space-y-3">
@@ -386,7 +389,7 @@ const OnboardingGuideSection1 = ({ config }) => {
                           className="flex items-center justify-between p-2 hover:bg-white dark:hover:bg-gray-600 rounded-lg transition-colors"
                         >
                           <span className="text-gray-700 dark:text-gray-300">{link.name}</span>
-                          <span className="text-xl">{link.icon}</span>
+                          {getIconForChannel(link.icon, "w-5 h-5 text-gray-500")}
                         </Link>
                       </li>
                     ))}
@@ -402,7 +405,7 @@ const OnboardingGuideSection1 = ({ config }) => {
           <div className="mt-12 text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
               <div className="flex items-center gap-3">
-                <HiOutlineCalendar className="w-8 h-8 text-teal-600" />
+                <HiOutlineCalendar className="w-8 h-8 text-teal-600 dark:text-teal-400" />
                 <span className="text-gray-700 dark:text-gray-300 font-medium">
                   {config?.demoText || "Need personalized help?"}
                 </span>
@@ -418,6 +421,20 @@ const OnboardingGuideSection1 = ({ config }) => {
           </div>
         )}
       </div>
+
+      {/* Helper function for channel icons */}
+      {(() => {
+        window.getIconForChannel = (iconName, className) => {
+          switch (iconName) {
+            case 'mail': return <HiOutlineMail className={className} />;
+            case 'phone': return <HiOutlinePhone className={className} />;
+            case 'chat': return <HiOutlineChat className={className} />;
+            case 'globe': return <HiOutlineGlobeAlt className={className} />;
+            default: return <HiOutlineChat className={className} />;
+          }
+        };
+        return null;
+      })()}
 
       {/* Required CSS for animations */}
       <style>{`
@@ -444,3 +461,14 @@ const OnboardingGuideSection1 = ({ config }) => {
 };
 
 export default OnboardingGuideSection1;
+
+// Helper function
+const getIconForChannel = (iconName, className) => {
+  switch (iconName) {
+    case 'mail': return <HiOutlineMail className={className} />;
+    case 'phone': return <HiOutlinePhone className={className} />;
+    case 'chat': return <HiOutlineChat className={className} />;
+    case 'globe': return <HiOutlineGlobeAlt className={className} />;
+    default: return <HiOutlineChat className={className} />;
+  }
+};

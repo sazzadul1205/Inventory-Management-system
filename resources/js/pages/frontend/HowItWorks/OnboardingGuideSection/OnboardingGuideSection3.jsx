@@ -18,36 +18,74 @@ import {
   HiOutlineSparkles,
   HiOutlineDownload,
   HiOutlineExternalLink,
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineGlobeAlt,
+  HiOutlineUserGroup
 } from 'react-icons/hi';
-import { HiOutlineTrophy } from "react-icons/hi2";
+import { HiOutlineTrophy } from 'react-icons/hi2';
 
 const OnboardingGuideSection3 = ({ config }) => {
+
+  // State for active video
   const [activeVideo, setActiveVideo] = useState(null);
-  const [watchedVideos, setWatchedVideos] = useState([]);
-  const [completedMilestones, setCompletedMilestones] = useState([]);
-  const [expandedSection, setExpandedSection] = useState('videos');
+
+  // State for watched videos
+  const [watchedVideos, setWatchedVideos] = useState(config?.initialWatchedVideos || []);
+
+  // State for expanded section
+  const [expandedSection, setExpandedSection] = useState(config?.initialExpandedSection || 'videos');
+
+  // State for completed milestones
+  const [completedMilestones, setCompletedMilestones] = useState(config?.initialCompletedMilestones || []);
+
+  // Refs
   const videoRef = useRef(null);
 
+  // Function to mark a video as watched
   const markVideoWatched = (videoId) => {
     if (!watchedVideos.includes(videoId)) {
-      setWatchedVideos([...watchedVideos, videoId]);
+      const newWatched = [...watchedVideos, videoId];
+      setWatchedVideos(newWatched);
+      if (config?.onVideoWatched) {
+        config.onVideoWatched(videoId, newWatched);
+      }
     }
   };
 
+  // Function to mark a milestone as complete
   const markMilestoneComplete = (milestoneId) => {
     if (!completedMilestones.includes(milestoneId)) {
-      setCompletedMilestones([...completedMilestones, milestoneId]);
+      const newCompleted = [...completedMilestones, milestoneId];
+      setCompletedMilestones(newCompleted);
+      if (config?.onMilestoneComplete) {
+        config.onMilestoneComplete(milestoneId, newCompleted);
+      }
     }
   };
 
+  // Function to calculate video progress
   const getVideoProgress = () => {
     const totalVideos = config?.videoTutorials?.length || 1;
     return Math.round((watchedVideos.length / totalVideos) * 100);
   };
 
+  // Function to calculate milestone progress
   const getMilestoneProgress = () => {
     const totalMilestones = config?.milestones?.length || 1;
     return Math.round((completedMilestones.length / totalMilestones) * 100);
+  };
+
+  // Helper function for channel icons
+  const getChannelIcon = (iconName, className = "w-5 h-5 mx-auto mb-1") => {
+    switch (iconName) {
+      case 'chat': return <HiOutlineChat className={className} />;
+      case 'mail': return <HiOutlineMail className={className} />;
+      case 'phone': return <HiOutlinePhone className={className} />;
+      case 'globe': return <HiOutlineGlobeAlt className={className} />;
+      case 'users': return <HiOutlineUserGroup className={className} />;
+      default: return <HiOutlineChat className={className} />;
+    }
   };
 
   return (
@@ -101,10 +139,10 @@ const OnboardingGuideSection3 = ({ config }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-linear-to-br from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <HiOutlineVideoCamera className="w-8 h-8 text-teal-600" />
-              <span className="text-2xl font-bold text-teal-600">{getVideoProgress()}%</span>
+              <HiOutlineVideoCamera className="w-8 h-8 text-teal-600 dark:text-teal-400" />
+              <span className="text-2xl font-bold text-teal-600 dark:text-teal-400">{getVideoProgress()}%</span>
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">Video Tutorials</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white">{config?.videosCardTitle || "Video Tutorials"}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               {watchedVideos.length} of {config?.videoTutorials?.length} completed
             </p>
@@ -112,16 +150,16 @@ const OnboardingGuideSection3 = ({ config }) => {
               <div
                 className="bg-teal-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${getVideoProgress()}%` }}
-               />
+              />
             </div>
           </div>
 
           <div className="bg-linear-to-br from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <HiOutlineTrophy className="w-8 h-8 text-teal-600" />
-              <span className="text-2xl font-bold text-teal-600">{getMilestoneProgress()}%</span>
+              <HiOutlineTrophy className="w-8 h-8 text-teal-600 dark:text-teal-400" />
+              <span className="text-2xl font-bold text-teal-600 dark:text-teal-400">{getMilestoneProgress()}%</span>
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">Milestones</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white">{config?.milestonesCardTitle || "Milestones"}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
               {completedMilestones.length} of {config?.milestones?.length} achieved
             </p>
@@ -129,18 +167,18 @@ const OnboardingGuideSection3 = ({ config }) => {
               <div
                 className="bg-teal-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${getMilestoneProgress()}%` }}
-               />
+              />
             </div>
           </div>
 
           <div className="bg-linear-to-br from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <HiOutlineClock className="w-8 h-8 text-teal-600" />
-              <span className="text-2xl font-bold text-teal-600">~30 min</span>
+              <HiOutlineClock className="w-8 h-8 text-teal-600 dark:text-teal-400" />
+              <span className="text-2xl font-bold text-teal-600 dark:text-teal-400">{config?.estimatedTimeValue || "~30 min"}</span>
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">Estimated Time</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white">{config?.timeCardTitle || "Estimated Time"}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Complete all tutorials and milestones
+              {config?.timeCardDescription || "Complete all tutorials and milestones"}
             </p>
           </div>
         </div>
@@ -153,13 +191,13 @@ const OnboardingGuideSection3 = ({ config }) => {
               <button
                 onClick={() => setExpandedSection('videos')}
                 className={`w-full text-left p-3 rounded-xl transition-all duration-300 mb-2 ${expandedSection === 'videos'
-                    ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
               >
                 <div className="flex items-center gap-3">
                   <HiOutlineVideoCamera className="w-5 h-5" />
-                  <span className="font-medium">Video Tutorials</span>
+                  <span className="font-medium">{config?.videosNavText || "Video Tutorials"}</span>
                   {watchedVideos.length > 0 && (
                     <span className="ml-auto text-xs bg-teal-500 text-white px-2 py-0.5 rounded-full">
                       {watchedVideos.length}/{config?.videoTutorials?.length}
@@ -171,13 +209,13 @@ const OnboardingGuideSection3 = ({ config }) => {
               <button
                 onClick={() => setExpandedSection('milestones')}
                 className={`w-full text-left p-3 rounded-xl transition-all duration-300 mb-2 ${expandedSection === 'milestones'
-                    ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
               >
                 <div className="flex items-center gap-3">
                   <HiOutlineTrophy className="w-5 h-5" />
-                  <span className="font-medium">Getting Started Milestones</span>
+                  <span className="font-medium">{config?.milestonesNavText || "Getting Started Milestones"}</span>
                   {completedMilestones.length > 0 && (
                     <span className="ml-auto text-xs bg-teal-500 text-white px-2 py-0.5 rounded-full">
                       {completedMilestones.length}/{config?.milestones?.length}
@@ -189,13 +227,13 @@ const OnboardingGuideSection3 = ({ config }) => {
               <button
                 onClick={() => setExpandedSection('resources')}
                 className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${expandedSection === 'resources'
-                    ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
               >
                 <div className="flex items-center gap-3">
                   <HiOutlineBookOpen className="w-5 h-5" />
-                  <span className="font-medium">Resources & Downloads</span>
+                  <span className="font-medium">{config?.resourcesNavText || "Resources & Downloads"}</span>
                 </div>
               </button>
             </div>
@@ -238,7 +276,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                   ) : (
                     <div className="p-8 text-center">
                       <HiOutlineVideoCamera className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">Select a video tutorial to start learning</p>
+                      <p className="text-gray-500">{config?.videoPlaceholderText || "Select a video tutorial to start learning"}</p>
                     </div>
                   )}
                 </div>
@@ -248,8 +286,8 @@ const OnboardingGuideSection3 = ({ config }) => {
                     <div
                       key={video.id}
                       className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer ${watchedVideos.includes(video.id)
-                          ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                          : 'bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                        : 'bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700'
                         }`}
                       onClick={() => setActiveVideo(video)}
                     >
@@ -257,7 +295,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                         {watchedVideos.includes(video.id) ? (
                           <HiOutlineCheckCircle className="w-6 h-6 text-green-500" />
                         ) : (
-                          <HiOutlinePlay className="w-6 h-6 text-teal-600" />
+                          <HiOutlinePlay className="w-6 h-6 text-teal-600 dark:text-teal-400" />
                         )}
                       </div>
                       <div className="flex-1">
@@ -267,7 +305,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                       <div className="text-right">
                         <div className="text-sm text-gray-500">{video.duration}</div>
                         {!watchedVideos.includes(video.id) && (
-                          <button className="text-xs text-teal-600 mt-1">Watch now</button>
+                          <span className="text-xs text-teal-600 dark:text-teal-400 mt-1 block">{config?.watchNowText || "Watch now"}</span>
                         )}
                       </div>
                     </div>
@@ -283,8 +321,8 @@ const OnboardingGuideSection3 = ({ config }) => {
                   <div
                     key={milestone.id}
                     className={`p-6 rounded-2xl transition-all duration-300 ${completedMilestones.includes(milestone.id)
-                        ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                        : 'bg-gray-50 dark:bg-gray-800'
+                      ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                      : 'bg-gray-50 dark:bg-gray-800'
                       }`}
                   >
                     <div className="flex items-start gap-4">
@@ -298,7 +336,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap mb-2">
                           <h3 className="font-semibold text-gray-900 dark:text-white">{milestone.title}</h3>
-                          <span className="text-xs px-2 py-0.5 bg-teal-100 dark:bg-teal-900/30 text-teal-600 rounded-full">
+                          <span className="text-xs px-2 py-0.5 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full">
                             {milestone.estimatedTime}
                           </span>
                         </div>
@@ -320,7 +358,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                             onClick={() => markMilestoneComplete(milestone.id)}
                             className="inline-flex items-center gap-2 text-sm text-teal-600 dark:text-teal-400 font-semibold hover:underline"
                           >
-                            Mark as complete
+                            {config?.markCompleteText || "Mark as complete"}
                             <HiOutlineCheckCircle className="w-3 h-3" />
                           </button>
                         )}
@@ -328,7 +366,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                         {completedMilestones.includes(milestone.id) && (
                           <div className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
                             <HiOutlineCheckCircle className="w-4 h-4" />
-                            Completed
+                            {config?.completedText || "Completed"}
                           </div>
                         )}
                       </div>
@@ -339,13 +377,13 @@ const OnboardingGuideSection3 = ({ config }) => {
                 {completedMilestones.length === config?.milestones?.length && (
                   <div className="p-6 bg-linear-to-r from-teal-500 to-cyan-500 rounded-2xl text-center text-white">
                     <HiOutlineTrophy className="w-12 h-12 mx-auto mb-3" />
-                    <h3 className="text-xl font-bold mb-2">Congratulations!</h3>
-                    <p>You've completed all onboarding milestones. You're ready to start using the platform!</p>
+                    <h3 className="text-xl font-bold mb-2">{config?.completionTitle || "Congratulations!"}</h3>
+                    <p>{config?.completionMessage || "You've completed all onboarding milestones. You're ready to start using the platform!"}</p>
                     <Link
                       href={config?.completionLink || "/dashboard"}
                       className="inline-block mt-4 px-6 py-2 bg-white text-teal-600 rounded-lg font-semibold hover:shadow-lg transition-all"
                     >
-                      Go to Dashboard
+                      {config?.dashboardButtonText || "Go to Dashboard"}
                     </Link>
                   </div>
                 )}
@@ -358,8 +396,8 @@ const OnboardingGuideSection3 = ({ config }) => {
                 {/* Documentation */}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                    <HiOutlineDocumentText className="w-5 h-5 text-teal-600" />
-                    Documentation
+                    <HiOutlineDocumentText className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                    {config?.documentationTitle || "Documentation"}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {config?.documentation?.map((doc, index) => (
@@ -378,8 +416,8 @@ const OnboardingGuideSection3 = ({ config }) => {
                 {/* Downloadable Resources */}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                    <HiOutlineDownload className="w-5 h-5 text-teal-600" />
-                    Downloadable Resources
+                    <HiOutlineDownload className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                    {config?.downloadsTitle || "Downloadable Resources"}
                   </h3>
                   <div className="space-y-3">
                     {config?.downloads?.map((download, index) => (
@@ -392,7 +430,7 @@ const OnboardingGuideSection3 = ({ config }) => {
                           <div className="font-medium text-gray-900 dark:text-white">{download.name}</div>
                           <div className="text-xs text-gray-500">{download.type} • {download.size}</div>
                         </div>
-                        <HiOutlineDownload className="w-5 h-5 text-teal-600" />
+                        <HiOutlineDownload className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                       </Link>
                     ))}
                   </div>
@@ -401,8 +439,8 @@ const OnboardingGuideSection3 = ({ config }) => {
                 {/* Support Channels */}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                    <HiOutlineChat className="w-5 h-5 text-teal-600" />
-                    Get Help
+                    <HiOutlineChat className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                    {config?.supportTitle || "Get Help"}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {config?.supportChannels?.map((channel, index) => (
@@ -411,7 +449,9 @@ const OnboardingGuideSection3 = ({ config }) => {
                         href={channel.link}
                         className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg hover:shadow-md transition-all"
                       >
-                        <div className="text-2xl mb-1">{channel.icon}</div>
+                        <div className="flex justify-center mb-1">
+                          {getChannelIcon(channel.icon, "w-5 h-5 text-teal-600")}
+                        </div>
                         <div className="font-medium text-gray-900 dark:text-white text-sm">{channel.name}</div>
                         <div className="text-xs text-gray-500">{channel.description}</div>
                       </Link>
@@ -428,7 +468,7 @@ const OnboardingGuideSection3 = ({ config }) => {
           <div className="mt-12 text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
               <div className="flex items-center gap-3">
-                <HiOutlineSparkles className="w-6 h-6 text-teal-600" />
+                <HiOutlineSparkles className="w-6 h-6 text-teal-600 dark:text-teal-400" />
                 <span className="text-gray-700 dark:text-gray-300 font-medium">
                   {config?.ctaText || "Need personalized assistance?"}
                 </span>
