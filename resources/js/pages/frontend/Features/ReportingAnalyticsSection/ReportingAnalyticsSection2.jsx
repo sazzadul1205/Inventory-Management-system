@@ -21,13 +21,28 @@ import {
   HiOutlineEye,
   HiOutlineShare,
   HiOutlineFilter,
-  HiOutlineRefresh
+  HiOutlineRefresh,
+  HiOutlinePresentationChartLine,
+  HiOutlineUsers,
+  HiOutlineShoppingCart,
+  HiOutlineClipboardList,
+  HiOutlineTruck,
+  HiOutlineCurrencyDollar,
+  HiOutlineClock,
+  HiOutlineStar,
+  HiOutlineTemplate
 } from 'react-icons/hi';
 
 const ReportingAnalyticsSection2 = ({ config }) => {
-  const [selectedMetric, setSelectedMetric] = useState('inventory');
-  const [timeRange, setTimeRange] = useState('weekly');
-  const [selectedChart, setSelectedChart] = useState('trend');
+
+  // State for selected metric
+  const [selectedMetric, setSelectedMetric] = useState(config?.initialMetric || 'inventory');
+
+  // State for selected time range
+  const [timeRange, setTimeRange] = useState(config?.initialTimeRange || 'weekly');
+
+  // State for selected chart
+  const [selectedChart, setSelectedChart] = useState(config?.initialChart || 'trend');
 
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-6 h-6") => {
@@ -60,32 +75,49 @@ const ReportingAnalyticsSection2 = ({ config }) => {
         return <HiOutlineFilter className={className} />;
       case 'refresh':
         return <HiOutlineRefresh className={className} />;
+      case 'presentation':
+        return <HiOutlinePresentationChartLine className={className} />;
+      case 'users':
+        return <HiOutlineUsers className={className} />;
+      case 'cart':
+        return <HiOutlineShoppingCart className={className} />;
+      case 'inventory':
+        return <HiOutlineClipboardList className={className} />;
+      case 'truck':
+        return <HiOutlineTruck className={className} />;
+      case 'dollar':
+        return <HiOutlineCurrencyDollar className={className} />;
+      case 'clock':
+        return <HiOutlineClock className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
+      case 'template':
+        return <HiOutlineTemplate className={className} />;
       default:
         return <HiOutlineChartBar className={className} />;
     }
   };
 
-  // Sample data for charts
-  const chartData = {
-    inventory: {
-      trend: [65, 72, 68, 85, 92, 88, 95],
-      pie: [45, 30, 25],
-      bar: [120, 85, 95, 110, 130, 125, 140]
-    },
-    sales: {
-      trend: [45, 52, 58, 65, 72, 78, 85],
-      pie: [55, 25, 20],
-      bar: [85, 92, 98, 105, 112, 118, 125]
-    },
-    fulfillment: {
-      trend: [92, 94, 95, 96, 97, 98, 99],
-      pie: [98, 2],
-      bar: [88, 91, 93, 95, 96, 97, 98]
-    }
+  // Get chart data from config
+  const getChartData = () => {
+    const metricData = config?.chartData?.[selectedMetric] || config?.chartData?.inventory;
+    return {
+      trend: metricData?.trend || [65, 72, 68, 85, 92, 88, 95],
+      pie: metricData?.pie || [45, 30, 25],
+      bar: metricData?.bar || [120, 85, 95, 110, 130, 125, 140]
+    };
   };
 
-  const getChartData = () => {
-    return chartData[selectedMetric] || chartData.inventory;
+  // Get metric display names
+  const getMetricDisplay = () => {
+    const metric = config?.features?.find(f => f.id === selectedMetric);
+    return metric?.title || selectedMetric;
+  };
+
+  // Get stats for selected metric
+  const getMetricStats = () => {
+    const stats = config?.metricStats?.[selectedMetric] || config?.metricStats?.inventory;
+    return stats;
   };
 
   return (
@@ -192,7 +224,7 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                           className="inline-flex items-center mt-4 text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                         >
                           <span>Learn more</span>
-                          <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                          <HiArrowRight className="ml-2 transition-transform group-hover/link:translate-x-1" />
                         </Link>
                       </div>
                     )}
@@ -214,40 +246,39 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400">Analytics Dashboard</span>
                 <button className="text-gray-400 hover:text-purple-600 transition-colors">
-                  <HiOutlineRefresh className="w-4 h-4" />
+                  {getFeatureIcon("refresh", "w-4 h-4")}
                 </button>
               </div>
 
               {/* Time Range Selector */}
               <div className="flex gap-2 mb-6">
-                {['daily', 'weekly', 'monthly'].map((range) => (
+                {config?.timeRanges?.map((range) => (
                   <button
-                    key={range}
-                    onClick={() => setTimeRange(range)}
-                    className={`px-3 py-1 text-sm rounded-lg transition-all duration-300 ${timeRange === range
+                    key={range.value}
+                    onClick={() => setTimeRange(range.value)}
+                    className={`px-3 py-1 text-sm rounded-lg transition-all duration-300 ${timeRange === range.value
                       ? 'bg-purple-600 text-white'
                       : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-gray-600'
                       }`}
                   >
-                    {range.charAt(0).toUpperCase() + range.slice(1)}
+                    {range.label}
                   </button>
                 ))}
               </div>
 
               {/* Chart Type Selector */}
               <div className="flex gap-2 mb-6">
-                {['trend', 'pie', 'bar'].map((type) => (
+                {config?.chartTypes?.map((type) => (
                   <button
-                    key={type}
-                    onClick={() => setSelectedChart(type)}
-                    className={`px-3 py-1 text-sm rounded-lg transition-all duration-300 ${selectedChart === type
+                    key={type.value}
+                    onClick={() => setSelectedChart(type.value)}
+                    className={`px-3 py-1 text-sm rounded-lg transition-all duration-300 ${selectedChart === type.value
                       ? 'bg-purple-600 text-white'
                       : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-gray-600'
                       }`}
                   >
-                    {type === 'trend' && '📈 Trend'}
-                    {type === 'pie' && '🥧 Pie'}
-                    {type === 'bar' && '📊 Bar'}
+                    {getFeatureIcon(type.icon, "w-4 h-4 inline mr-1")}
+                    {type.label}
                   </button>
                 ))}
               </div>
@@ -256,9 +287,7 @@ const ReportingAnalyticsSection2 = ({ config }) => {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6">
                 <div className="text-center mb-4">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {selectedMetric === 'inventory' && 'Inventory Trends'}
-                    {selectedMetric === 'sales' && 'Sales Performance'}
-                    {selectedMetric === 'fulfillment' && 'Fulfillment Rate'}
+                    {getMetricDisplay()}
                   </h4>
                 </div>
 
@@ -287,7 +316,8 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                           let cumulative = 0;
                           const colors = ['#8b5cf6', '#a78bfa', '#c4b5fd'];
                           return data.map((value, i) => {
-                            const percentage = (value / data.reduce((a, b) => a + b, 0)) * 100;
+                            const total = data.reduce((a, b) => a + b, 0);
+                            const percentage = (value / total) * 100;
                             const start = cumulative;
                             cumulative += percentage;
                             const end = cumulative;
@@ -324,41 +354,25 @@ const ReportingAnalyticsSection2 = ({ config }) => {
               </div>
 
               {/* Key Stats */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg">
-                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
-                    {selectedMetric === 'inventory' && '92%'}
-                    {selectedMetric === 'sales' && '+18%'}
-                    {selectedMetric === 'fulfillment' && '98%'}
-                  </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Growth</div>
+              {config?.showMetricStats && (
+                <div className="grid grid-cols-3 gap-3 mb-6">
+                  {getMetricStats()?.map((stat, index) => (
+                    <div key={index} className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg">
+                      <div className="text-lg font-bold text-purple-600 dark:text-purple-400">{stat.value}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
-                <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg">
-                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
-                    {selectedMetric === 'inventory' && '12.5K'}
-                    {selectedMetric === 'sales' && '$45.2K'}
-                    {selectedMetric === 'fulfillment' && '2.3d'}
-                  </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Total</div>
-                </div>
-                <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg">
-                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
-                    {selectedMetric === 'inventory' && '+8%'}
-                    {selectedMetric === 'sales' && '+12%'}
-                    {selectedMetric === 'fulfillment' && '+2%'}
-                  </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">vs Last Period</div>
-                </div>
-              </div>
+              )}
 
               {/* Export Options */}
               <div className="flex gap-2">
                 <button className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 text-sm">
-                  <HiOutlineDownload className="w-4 h-4" />
+                  {getFeatureIcon("download", "w-4 h-4")}
                   Export Report
                 </button>
                 <button className="flex-1 px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors flex items-center justify-center gap-2 text-sm">
-                  <HiOutlineShare className="w-4 h-4" />
+                  {getFeatureIcon("share", "w-4 h-4")}
                   Share
                 </button>
               </div>
@@ -371,6 +385,9 @@ const ReportingAnalyticsSection2 = ({ config }) => {
           <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-6">
             {config?.metrics?.map((metric, index) => (
               <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                <div className="flex justify-center mb-3">
+                  {getFeatureIcon(metric.icon, "w-8 h-8 text-purple-600 dark:text-purple-400")}
+                </div>
                 <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">{metric.value}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">{metric.label}</div>
                 <div className="text-xs text-gray-500 dark:text-gray-500">{metric.description}</div>
@@ -397,7 +414,9 @@ const ReportingAnalyticsSection2 = ({ config }) => {
                   className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="text-2xl">{template.icon}</div>
+                    <div className="text-2xl">
+                      {getFeatureIcon(template.icon, "w-6 h-6 text-purple-600 dark:text-purple-400")}
+                    </div>
                     <h4 className="font-semibold text-gray-900 dark:text-white">{template.name}</h4>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
@@ -418,18 +437,26 @@ const ReportingAnalyticsSection2 = ({ config }) => {
         {/* Bottom CTA Section */}
         {config?.showCta && (
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-4 p-1 bg-gray-50 dark:bg-gray-800/50 rounded-full pl-6 pr-2 py-2">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl">
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to unlock actionable insights?"}
               </span>
-              <Link
-                href={config?.ctaLink || "/contact"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
-                aria-label="Start analyzing now"
-              >
-                {config?.ctaButton?.text || "Get Started"}
-                <HiArrowRight aria-hidden="true" />
-              </Link>
+              <div className="flex gap-3">
+                <Link
+                  href={config?.ctaPrimaryLink || "/contact"}
+                  className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
+                  aria-label="Start analyzing now"
+                >
+                  {config?.ctaButton?.primaryText || "Get Started"}
+                  <HiArrowRight aria-hidden="true" />
+                </Link>
+                <Link
+                  href={config?.ctaSecondaryLink || "/demo"}
+                  className="px-6 py-3 bg-transparent border-2 border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400 font-semibold rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 inline-flex items-center gap-2"
+                >
+                  {config?.ctaButton?.secondaryText || "Watch Demo"}
+                </Link>
+              </div>
             </div>
           </div>
         )}

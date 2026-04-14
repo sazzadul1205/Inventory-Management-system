@@ -5,7 +5,6 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
-import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import {
   HiOutlineDeviceMobile,
   HiOutlineQrcode,
@@ -21,17 +20,26 @@ import {
   HiOutlineClipboardList,
   HiOutlineTruck,
   HiOutlineSearch,
-  HiOutlineDownload,
   HiOutlineHome,
   HiOutlineShoppingCart,
   HiOutlineUser,
-  HiOutlineMenu
+  HiOutlineMenu,
+  HiOutlineWifi,
+  HiOutlineClock,
+  HiOutlineStar,
+  HiOutlineSparkles
 } from 'react-icons/hi';
+import { HiOutlineSignal } from 'react-icons/hi2';
+import { MdOutlineBatteryFull } from "react-icons/md";
 
 const MobileAppFeaturesSection2 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [scannedBarcode, setScannedBarcode] = useState('');
+
+  // State for scanned QR code
   const [scanResult, setScanResult] = useState(null);
+  const [scannedBarcode, setScannedBarcode] = useState('');
+
+  // Tab management
+  const [activeTab, setActiveTab] = useState(config?.initialTab || 'dashboard');
 
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-6 h-6") => {
@@ -68,20 +76,28 @@ const MobileAppFeaturesSection2 = ({ config }) => {
         return <HiOutlineUser className={className} />;
       case 'menu':
         return <HiOutlineMenu className={className} />;
+      case 'wifi':
+        return <HiOutlineWifi className={className} />;
+      case 'battery':
+        return <MdOutlineBatteryFull className={className} />;
+      case 'signal':
+        return <HiOutlineSignal className={className} />;
+      case 'clock':
+        return <HiOutlineClock className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
+      case 'sparkles':
+        return <HiOutlineSparkles className={className} />;
       default:
         return <HiOutlineDeviceMobile className={className} />;
     }
   };
 
+  // Simulate product scan
   const handleScan = () => {
     if (scannedBarcode) {
       // Simulate product lookup
-      const products = {
-        '8901234567890': { name: 'Wireless Headphones', price: '$89.99', stock: 245 },
-        '5901234123457': { name: 'Smart Watch', price: '$199.99', stock: 128 },
-        '4006381333931': { name: 'Bluetooth Speaker', price: '$59.99', stock: 312 }
-      };
-
+      const products = config?.productDatabase || {};
       const product = products[scannedBarcode];
       if (product) {
         setScanResult({
@@ -92,7 +108,7 @@ const MobileAppFeaturesSection2 = ({ config }) => {
       } else {
         setScanResult({
           success: false,
-          message: 'Product not found',
+          message: config?.notFoundMessage || 'Product not found',
           barcode: scannedBarcode
         });
       }
@@ -204,7 +220,7 @@ const MobileAppFeaturesSection2 = ({ config }) => {
                           className="inline-flex items-center mt-4 text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
                         >
                           <span>Learn more</span>
-                          <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                          <HiArrowRight className="ml-2 transition-transform group-hover/link:translate-x-1" />
                         </Link>
                       </div>
                     )}
@@ -224,16 +240,23 @@ const MobileAppFeaturesSection2 = ({ config }) => {
               <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden m-1">
                 {/* Status Bar */}
                 <div className="bg-gray-100 dark:bg-gray-900 px-4 pt-6 pb-2 flex justify-between text-xs text-gray-600 dark:text-gray-400">
-                  <span>9:41</span>
-                  <span>📶 🔋 100%</span>
+                  <span className="flex items-center gap-1">
+                    {getFeatureIcon("clock", "w-3 h-3")}
+                    9:41
+                  </span>
+                  <span className="flex items-center gap-1">
+                    {getFeatureIcon("signal", "w-3 h-3")}
+                    {getFeatureIcon("wifi", "w-3 h-3")}
+                    {getFeatureIcon("battery", "w-3 h-3")}
+                  </span>
                 </div>
 
                 {/* App Header */}
                 <div className="bg-linear-to-r from-orange-500 to-amber-500 text-white px-4 py-3">
                   <div className="flex items-center justify-between">
-                    <HiOutlineMenu className="w-5 h-5" />
-                    <span className="font-semibold">Inventory Pro</span>
-                    <HiOutlineBell className="w-5 h-5" />
+                    {getFeatureIcon("menu", "w-5 h-5")}
+                    <span className="font-semibold">{config?.appName || "Inventory Pro"}</span>
+                    {getFeatureIcon("bell", "w-5 h-5")}
                   </div>
                 </div>
 
@@ -243,53 +266,53 @@ const MobileAppFeaturesSection2 = ({ config }) => {
                     <div>
                       <h3 className="font-bold text-gray-900 dark:text-white mb-3">Dashboard</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
-                          <div className="text-2xl font-bold text-orange-600">245</div>
-                          <div className="text-xs text-gray-600">Total Orders</div>
-                        </div>
-                        <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
-                          <div className="text-2xl font-bold text-orange-600">128</div>
-                          <div className="text-xs text-gray-600">Low Stock</div>
-                        </div>
+                        {config?.dashboardStats?.map((stat, idx) => (
+                          <div key={idx} className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
+                            <div className="text-2xl font-bold text-orange-600">{stat.value}</div>
+                            <div className="text-xs text-gray-600">{stat.label}</div>
+                          </div>
+                        ))}
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Today's Revenue</span>
-                          <span className="font-bold text-orange-600">$1,245</span>
+                      {config?.dashboardRevenue && (
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">{config.dashboardRevenue.label}</span>
+                            <span className="font-bold text-orange-600">{config.dashboardRevenue.value}</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="bg-orange-500 h-2 rounded-full" style={{ width: config.dashboardRevenue.progress }} />
+                          </div>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-orange-500 h-2 rounded-full w-3/4" />
-                        </div>
-                      </div>
+                      )}
                     </div>
                   )}
 
                   {activeTab === 'scan' && (
                     <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-3">Barcode Scanner</h3>
+                      <h3 className="font-bold text-gray-900 dark:text-white mb-3">{config?.scanTitle || "Barcode Scanner"}</h3>
                       <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-4 text-center">
                         <div className="w-32 h-32 mx-auto border-2 border-orange-400 rounded-lg flex items-center justify-center mb-2">
-                          <HiOutlineCamera className="w-12 h-12 text-gray-400" />
+                          {getFeatureIcon("camera", "w-12 h-12 text-gray-400")}
                         </div>
-                        <p className="text-sm text-gray-600">Position barcode in frame</p>
+                        <p className="text-sm text-gray-600">{config?.scanInstruction || "Position barcode in frame"}</p>
                       </div>
                       <div className="flex gap-2">
                         <input
                           type="text"
                           value={scannedBarcode}
                           onChange={(e) => setScannedBarcode(e.target.value)}
-                          placeholder="Enter barcode"
-                          className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                          placeholder={config?.scanPlaceholder || "Enter barcode"}
+                          className="flex-1 px-3 py-2 border rounded-lg text-sm dark:bg-gray-700 dark:border-gray-600"
                         />
                         <button
                           onClick={handleScan}
-                          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm"
+                          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors"
                         >
-                          Scan
+                          {config?.scanButtonText || "Scan"}
                         </button>
                       </div>
                       {scanResult && (
-                        <div className={`mt-3 p-3 rounded-lg text-sm ${scanResult.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                        <div className={`mt-3 p-3 rounded-lg text-sm ${scanResult.success ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'}`}>
                           {scanResult.success ? (
                             <div>
                               <p className="font-semibold">✓ Product Found</p>
@@ -307,24 +330,20 @@ const MobileAppFeaturesSection2 = ({ config }) => {
 
                   {activeTab === 'orders' && (
                     <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-3">Recent Orders</h3>
+                      <h3 className="font-bold text-gray-900 dark:text-white mb-3">{config?.ordersTitle || "Recent Orders"}</h3>
                       <div className="space-y-2">
-                        {[
-                          { id: 'ORD-001', status: 'Shipped', total: '$129.99' },
-                          { id: 'ORD-002', status: 'Processing', total: '$89.99' },
-                          { id: 'ORD-003', status: 'Delivered', total: '$199.99' }
-                        ].map((order, i) => (
+                        {config?.recentOrders?.map((order, i) => (
                           <div key={i} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                             <div className="flex justify-between">
                               <span className="font-medium">{order.id}</span>
-                              <span className={`text-xs px-2 py-1 rounded-full ${order.status === 'Shipped' ? 'bg-blue-100 text-blue-800' :
-                                order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800' :
-                                  'bg-green-100 text-green-800'
+                              <span className={`text-xs px-2 py-1 rounded-full ${order.status === 'Shipped' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
+                                order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                                  'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
                                 }`}>{order.status}</span>
                             </div>
-                            <div className="flex justify-between mt-1 text-sm text-gray-600">
+                            <div className="flex justify-between mt-1 text-sm text-gray-600 dark:text-gray-400">
                               <span>{order.total}</span>
-                              <button className="text-orange-500">Track →</button>
+                              <button className="text-orange-500">{config?.trackButtonText || "Track"} →</button>
                             </div>
                           </div>
                         ))}
@@ -334,13 +353,9 @@ const MobileAppFeaturesSection2 = ({ config }) => {
 
                   {activeTab === 'inventory' && (
                     <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-3">Inventory</h3>
+                      <h3 className="font-bold text-gray-900 dark:text-white mb-3">{config?.inventoryTitle || "Inventory"}</h3>
                       <div className="space-y-2">
-                        {[
-                          { name: 'Wireless Headphones', stock: 245, location: 'A-12' },
-                          { name: 'Smart Watch', stock: 128, location: 'B-05' },
-                          { name: 'Bluetooth Speaker', stock: 312, location: 'C-08' }
-                        ].map((item, i) => (
+                        {config?.inventoryItems?.map((item, i) => (
                           <div key={i} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                             <div className="flex justify-between">
                               <span className="font-medium text-sm">{item.name}</span>
@@ -356,18 +371,15 @@ const MobileAppFeaturesSection2 = ({ config }) => {
 
                 {/* Bottom Navigation */}
                 <div className="border-t border-gray-200 dark:border-gray-700 flex justify-around py-2">
-                  <button onClick={() => setActiveTab('dashboard')} className={`p-2 ${activeTab === 'dashboard' ? 'text-orange-500' : 'text-gray-400'}`}>
-                    <HiOutlineHome className="w-5 h-5" />
-                  </button>
-                  <button onClick={() => setActiveTab('scan')} className={`p-2 ${activeTab === 'scan' ? 'text-orange-500' : 'text-gray-400'}`}>
-                    <HiOutlineQrcode className="w-5 h-5" />
-                  </button>
-                  <button onClick={() => setActiveTab('orders')} className={`p-2 ${activeTab === 'orders' ? 'text-orange-500' : 'text-gray-400'}`}>
-                    <HiOutlineShoppingCart className="w-5 h-5" />
-                  </button>
-                  <button onClick={() => setActiveTab('inventory')} className={`p-2 ${activeTab === 'inventory' ? 'text-orange-500' : 'text-gray-400'}`}>
-                    <HiOutlineClipboardList className="w-5 h-5" />
-                  </button>
+                  {config?.bottomNavItems?.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setActiveTab(item.id)}
+                      className={`p-2 ${activeTab === item.id ? 'text-orange-500' : 'text-gray-400'} transition-colors`}
+                    >
+                      {getFeatureIcon(item.icon, "w-5 h-5")}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
@@ -377,12 +389,11 @@ const MobileAppFeaturesSection2 = ({ config }) => {
         {/* App Store Badges */}
         {config?.showAppBadges && (
           <div className="flex justify-center gap-4 mt-12">
-
             <Link
               href={config?.iosLink || "/app-store"}
               className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg transition-transform hover:scale-105"
             >
-              <FaApple className="text-xl" />
+              {getFeatureIcon("mobile", "text-xl")}
               <span className="text-xs leading-tight">
                 Download on the <br /> <strong>App Store</strong>
               </span>
@@ -392,12 +403,11 @@ const MobileAppFeaturesSection2 = ({ config }) => {
               href={config?.androidLink || "/play-store"}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg transition-transform hover:scale-105"
             >
-              <FaGooglePlay className="text-xl" />
+              {getFeatureIcon("mobile", "text-xl")}
               <span className="text-xs leading-tight">
                 Get it on <br /> <strong>Google Play</strong>
               </span>
             </Link>
-
           </div>
         )}
 
@@ -414,7 +424,7 @@ const MobileAppFeaturesSection2 = ({ config }) => {
                   className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 >
                   {config?.ctaButton?.primaryText || "Download App"}
-                  <HiOutlineDownload aria-hidden="true" />
+                  {getFeatureIcon("download")}
                 </Link>
                 <Link
                   href={config?.ctaSecondaryLink || "/demo"}

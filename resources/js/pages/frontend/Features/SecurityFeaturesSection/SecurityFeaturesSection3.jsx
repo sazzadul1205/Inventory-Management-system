@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
-import { FiAlertTriangle } from "react-icons/fi";
+import { AiOutlineAlert } from "react-icons/ai";
 import {
   HiOutlineShieldCheck,
   HiOutlineLockClosed,
@@ -15,7 +15,6 @@ import {
   HiOutlineDocumentText,
   HiOutlineServer,
   HiOutlineClipboardList,
-  HiArrowRight,
   HiOutlineCheckCircle,
   HiOutlineFingerPrint,
   HiOutlineMail,
@@ -25,11 +24,19 @@ import {
   HiOutlineStar,
   HiOutlineCloud,
   HiOutlineDatabase,
-  HiOutlineCode
+  HiOutlineCode,
+  HiOutlineChip,
+  HiOutlineGlobe,
+  HiOutlineOfficeBuilding,
+  HiOutlineUser,
+  HiOutlinePhone,
+  HiOutlineChat
 } from 'react-icons/hi';
 
 const SecurityFeaturesSection3 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('compliance');
+
+  // State for active tab
+  const [activeTab, setActiveTab] = useState(config?.initialTab || 'compliance');
 
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-8 h-8") => {
@@ -57,17 +64,33 @@ const SecurityFeaturesSection3 = ({ config }) => {
       case 'globe':
         return <HiOutlineGlobeAlt className={className} />;
       case 'alert':
-        return <FiAlertTriangle className={className} />;
+        return <AiOutlineAlert className={className} />;
       case 'clock':
         return <HiOutlineClock className={className} />;
       case 'sparkles':
         return <HiOutlineSparkles className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
       case 'cloud':
         return <HiOutlineCloud className={className} />;
       case 'database':
         return <HiOutlineDatabase className={className} />;
       case 'code':
         return <HiOutlineCode className={className} />;
+      case 'chip':
+        return <HiOutlineChip className={className} />;
+      case 'globe-alt':
+        return <HiOutlineGlobe className={className} />;
+      case 'office':
+        return <HiOutlineOfficeBuilding className={className} />;
+      case 'user':
+        return <HiOutlineUser className={className} />;
+      case 'phone':
+        return <HiOutlinePhone className={className} />;
+      case 'chat':
+        return <HiOutlineChat className={className} />;
+      case 'check':
+        return <HiOutlineCheckCircle className={className} />;
       default:
         return <HiOutlineShieldCheck className={className} />;
     }
@@ -181,7 +204,7 @@ const SecurityFeaturesSection3 = ({ config }) => {
                   )}
                   {feature.isPopular && (
                     <span className="px-2 py-0.5 text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full flex items-center gap-1">
-                      <HiOutlineStar className="w-3 h-3" />
+                      {getFeatureIcon("star", "w-3 h-3")}
                       Popular
                     </span>
                   )}
@@ -196,7 +219,7 @@ const SecurityFeaturesSection3 = ({ config }) => {
                 <ul className="space-y-2 mb-6">
                   {feature.details?.slice(0, 3).map((detail, idx) => (
                     <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-emerald-500 dark:text-emerald-400 mr-2 shrink-0 mt-0.5" />
+                      {getFeatureIcon("check", "w-4 h-4 text-emerald-500 dark:text-emerald-400 mr-2 shrink-0 mt-0.5")}
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -220,7 +243,7 @@ const SecurityFeaturesSection3 = ({ config }) => {
                   className="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-semibold hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-300 group/link"
                 >
                   <span>Learn more</span>
-                  <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                  {getFeatureIcon("arrow", "ml-2 group-hover/link:translate-x-1 transition-transform")}
                 </Link>
               </div>
 
@@ -279,7 +302,9 @@ const SecurityFeaturesSection3 = ({ config }) => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {config?.complianceStandards?.map((standard, index) => (
                     <div key={index} className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300">
-                      <div className="text-3xl mb-2">{standard.icon}</div>
+                      <div className="mb-2 flex justify-center">
+                        {getFeatureIcon(standard.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
+                      </div>
                       <div className="font-semibold text-gray-900 dark:text-white text-sm">{standard.name}</div>
                       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{standard.region}</div>
                     </div>
@@ -291,7 +316,9 @@ const SecurityFeaturesSection3 = ({ config }) => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {config?.securityCertifications?.map((cert, index) => (
                     <div key={index} className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300">
-                      <div className="text-3xl mb-2">{cert.icon}</div>
+                      <div className="mb-2 flex justify-center">
+                        {getFeatureIcon(cert.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
+                      </div>
                       <div className="font-semibold text-gray-900 dark:text-white text-sm">{cert.name}</div>
                       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{cert.type}</div>
                     </div>
@@ -303,7 +330,9 @@ const SecurityFeaturesSection3 = ({ config }) => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {config?.dataRegions?.map((region, index) => (
                     <div key={index} className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300">
-                      <div className="text-3xl mb-2">{region.icon}</div>
+                      <div className="mb-2 flex justify-center">
+                        {getFeatureIcon(region.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
+                      </div>
                       <div className="font-semibold text-gray-900 dark:text-white text-sm">{region.name}</div>
                       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{region.location}</div>
                     </div>
@@ -328,7 +357,9 @@ const SecurityFeaturesSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {config?.aiInsights?.map((insight, index) => (
                 <div key={index} className="relative bg-linear-to-br from-emerald-50 to-green-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 border border-emerald-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
-                  <div className="absolute top-4 right-4 text-2xl opacity-20">🤖</div>
+                  <div className="absolute top-4 right-4 opacity-20">
+                    {getFeatureIcon("chip", "w-6 h-6")}
+                  </div>
                   <div className="relative">
                     <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-4">
                       {getFeatureIcon(insight.icon, "w-6 h-6 text-emerald-600 dark:text-emerald-400")}
@@ -357,24 +388,20 @@ const SecurityFeaturesSection3 = ({ config }) => {
                       {config?.architectureDescription || "Never trust, always verify. Our security model ensures continuous validation at every access point."}
                     </p>
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>Continuous authentication & authorization</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>Micro-segmentation & least privilege</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>End-to-end encryption for all traffic</span>
-                      </div>
+                      {config?.architectureFeatures?.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          {getFeatureIcon("check", "w-5 h-5")}
+                          <span>{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     {config?.securityLayers?.map((layer, index) => (
                       <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                        <div className="text-2xl mb-2">{layer.icon}</div>
+                        <div className="mb-2 flex justify-center">
+                          {getFeatureIcon(layer.icon, "w-8 h-8 text-white")}
+                        </div>
                         <div className="text-white font-semibold text-sm">{layer.name}</div>
                         <div className="text-emerald-200 text-xs mt-1">{layer.description}</div>
                       </div>
@@ -400,7 +427,9 @@ const SecurityFeaturesSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {config?.securitySupport?.map((support, index) => (
                 <div key={index} className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300">
-                  <div className="text-3xl mb-3">{support.icon}</div>
+                  <div className="mb-3 flex justify-center">
+                    {getFeatureIcon(support.icon, "w-10 h-10 text-emerald-600 dark:text-emerald-400")}
+                  </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{support.title}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">{support.description}</p>
                 </div>
@@ -422,7 +451,7 @@ const SecurityFeaturesSection3 = ({ config }) => {
                   className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 >
                   {config?.ctaButton?.primaryText || "Contact Security Team"}
-                  <HiArrowRight aria-hidden="true" />
+                  {getFeatureIcon("arrow")}
                 </Link>
                 <Link
                   href={config?.ctaSecondaryLink || "/security-white-paper"}

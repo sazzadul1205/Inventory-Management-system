@@ -1,11 +1,11 @@
 // page/frontend/Features/IntegrationCapabilitiesSection/IntegrationCapabilitiesSection3.jsx
 
-// React
+// ReactCiPlug1
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
-import { FaPlug } from "react-icons/fa";
+import { CiPlug1 } from "react-icons/ci";
 import {
   HiOutlineCloud,
   HiOutlineDatabase,
@@ -15,8 +15,6 @@ import {
   HiOutlineLockClosed,
   HiOutlineChartBar,
   HiOutlineBell,
-  HiArrowRight,
-  HiOutlineCheckCircle,
   HiOutlineServer,
   HiOutlineShare,
   HiOutlineDocumentText,
@@ -26,7 +24,17 @@ import {
   HiOutlineShoppingCart,
   HiOutlineTruck,
   HiOutlineCreditCard,
-  HiOutlineMail
+  HiOutlineMail,
+  HiOutlineLightningBolt,
+  HiOutlineGlobe,
+  HiOutlineOfficeBuilding,
+  HiOutlineUsers,
+  HiOutlineCalendar,
+  HiOutlineClipboardList,
+  HiOutlineCurrencyDollar,
+  HiOutlineShieldCheck,
+  HiOutlineKey,
+  HiOutlineFingerPrint
 } from 'react-icons/hi';
 
 const IntegrationCapabilitiesSection3 = ({ config }) => {
@@ -53,7 +61,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
       case 'bell':
         return <HiOutlineBell className={className} />;
       case 'plug':
-        return <FaPlug className={className} />;
+        return <CiPlug1 className={className} />;
       case 'server':
         return <HiOutlineServer className={className} />;
       case 'share':
@@ -64,6 +72,8 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
         return <HiOutlineTerminal className={className} />;
       case 'sparkles':
         return <HiOutlineSparkles className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
       case 'cart':
         return <HiOutlineShoppingCart className={className} />;
       case 'truck':
@@ -72,8 +82,28 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
         return <HiOutlineCreditCard className={className} />;
       case 'mail':
         return <HiOutlineMail className={className} />;
+      case 'lightning':
+        return <HiOutlineLightningBolt className={className} />;
+      case 'globe':
+        return <HiOutlineGlobe className={className} />;
+      case 'office':
+        return <HiOutlineOfficeBuilding className={className} />;
+      case 'users':
+        return <HiOutlineUsers className={className} />;
+      case 'calendar':
+        return <HiOutlineCalendar className={className} />;
+      case 'inventory':
+        return <HiOutlineClipboardList className={className} />;
+      case 'dollar':
+        return <HiOutlineCurrencyDollar className={className} />;
+      case 'shield':
+        return <HiOutlineShieldCheck className={className} />;
+      case 'key':
+        return <HiOutlineKey className={className} />;
+      case 'fingerprint':
+        return <HiOutlineFingerPrint className={className} />;
       default:
-        return <FaPlug className={className} />;
+        return <CiPlug1 className={className} />;
     }
   };
 
@@ -190,7 +220,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   )}
                   {feature.isPopular && (
                     <span className="px-2 py-0.5 text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full flex items-center gap-1">
-                      <HiOutlineStar className="w-3 h-3" />
+                      {getFeatureIcon("star", "w-3 h-3")}
                       Popular
                     </span>
                   )}
@@ -205,7 +235,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                 <ul className="space-y-2 mb-6">
                   {feature.details?.slice(0, 3).map((detail, idx) => (
                     <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-teal-500 dark:text-teal-400 mr-2 shrink-0 mt-0.5" />
+                      {getFeatureIcon("check", "w-4 h-4 text-teal-500 dark:text-teal-400 mr-2 shrink-0 mt-0.5")}
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -229,7 +259,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   className="inline-flex items-center text-teal-600 dark:text-teal-400 font-semibold hover:text-teal-700 dark:hover:text-teal-300 transition-colors duration-300 group/link"
                 >
                   <span>Learn more</span>
-                  <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                  {getFeatureIcon("arrow", "ml-2 group-hover/link:translate-x-1 transition-transform")}
                 </Link>
               </div>
 
@@ -284,8 +314,8 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                   onClick={() => setSelectedIntegration(integration)}
                 >
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
-                    {integration.icon}
+                  <div className="mb-3 group-hover:scale-110 transition-transform">
+                    {getFeatureIcon(integration.icon, "w-10 h-10 text-teal-600 dark:text-teal-400")}
                   </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
                     {integration.name}
@@ -293,10 +323,12 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
                     {integration.category}
                   </p>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <span className="text-xs text-teal-600 dark:text-teal-400">{integration.setupTime}</span>
                     {integration.isPopular && (
-                      <span className="text-xs text-yellow-500">★ Popular</span>
+                      <span className="text-xs text-yellow-500 flex items-center gap-1">
+                        {getFeatureIcon("star", "w-3 h-3")} Popular
+                      </span>
                     )}
                   </div>
 
@@ -322,7 +354,9 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {config?.aiInsights?.map((insight, index) => (
                 <div key={index} className="relative bg-linear-to-br from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 border border-teal-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
-                  <div className="absolute top-4 right-4 text-2xl opacity-20">🤖</div>
+                  <div className="absolute top-4 right-4 opacity-20">
+                    {getFeatureIcon("chip", "w-6 h-6")}
+                  </div>
                   <div className="relative">
                     <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center mb-4">
                       {getFeatureIcon(insight.icon, "w-6 h-6 text-teal-600 dark:text-teal-400")}
@@ -354,7 +388,9 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   key={index}
                   className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="text-3xl mb-3">{resource.icon}</div>
+                  <div className="mb-3">
+                    {getFeatureIcon(resource.icon, "w-8 h-8 text-teal-600 dark:text-teal-400")}
+                  </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{resource.title}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{resource.description}</p>
                   <Link
@@ -362,7 +398,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                     className="text-sm text-teal-600 dark:text-teal-400 font-semibold hover:text-teal-700 inline-flex items-center gap-1"
                   >
                     Learn more
-                    <HiArrowRight className="w-3 h-3" />
+                    {getFeatureIcon("arrow", "w-3 h-3")}
                   </Link>
                 </div>
               ))}
@@ -384,24 +420,20 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                       {config?.securityDescription || "Your data is protected with industry-leading security standards"}
                     </p>
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>SOC2 Type II Certified</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>GDPR & CCPA Compliant</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>256-bit Encryption at Rest & Transit</span>
-                      </div>
+                      {config?.securityFeatures?.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          {getFeatureIcon("check", "w-5 h-5")}
+                          <span>{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     {config?.securityBadges?.map((badge, index) => (
                       <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                        <div className="text-2xl mb-2">{badge.icon}</div>
+                        <div className="mb-2">
+                          {getFeatureIcon(badge.icon, "w-8 h-8 text-white mx-auto")}
+                        </div>
                         <div className="text-white font-semibold text-sm">{badge.name}</div>
                       </div>
                     ))}
@@ -425,7 +457,7 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
                   className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 >
                   {config?.ctaButton?.primaryText || "Start Building"}
-                  <HiArrowRight aria-hidden="true" />
+                  {getFeatureIcon("arrow")}
                 </Link>
                 <Link
                   href={config?.ctaSecondaryLink || "/docs"}
@@ -464,4 +496,4 @@ const IntegrationCapabilitiesSection3 = ({ config }) => {
   );
 };
 
-export default IntegrationCapabilitiesSection3;
+export default IntegrationCapabilitiesSection3; 

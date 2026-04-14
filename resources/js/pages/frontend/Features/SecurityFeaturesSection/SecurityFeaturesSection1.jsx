@@ -17,37 +17,49 @@ import {
   HiOutlineCheckCircle,
   HiOutlineFingerPrint,
   HiOutlineMail,
-  HiOutlineGlobeAlt
+  HiOutlineGlobeAlt,
+  HiOutlineCloud,
+  HiOutlineDatabase,
+  HiOutlineChip,
 } from 'react-icons/hi';
 
 const SecurityFeaturesSection1 = ({ config }) => {
+
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-8 h-8") => {
     switch (iconName) {
       case 'shield':
-        return <HiOutlineShieldCheck className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineShieldCheck className={className} />;
       case 'lock':
-        return <HiOutlineLockClosed className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineLockClosed className={className} />;
       case 'key':
-        return <HiOutlineKey className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineKey className={className} />;
       case 'users':
-        return <HiOutlineUserGroup className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineUserGroup className={className} />;
       case 'eye':
-        return <HiOutlineEye className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineEye className={className} />;
       case 'document':
-        return <HiOutlineDocumentText className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineDocumentText className={className} />;
       case 'server':
-        return <HiOutlineServer className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineServer className={className} />;
       case 'clipboard':
-        return <HiOutlineClipboardList className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineClipboardList className={className} />;
       case 'fingerprint':
-        return <HiOutlineFingerPrint className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineFingerPrint className={className} />;
       case 'mail':
-        return <HiOutlineMail className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineMail className={className} />;
       case 'globe':
-        return <HiOutlineGlobeAlt className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineGlobeAlt className={className} />;
+      case 'cloud':
+        return <HiOutlineCloud className={className} />;
+      case 'database':
+        return <HiOutlineDatabase className={className} />;
+      case 'chip':
+        return <HiOutlineChip className={className} />;
+      case 'check':
+        return <HiOutlineCheckCircle className={className} />;
       default:
-        return <HiOutlineShieldCheck className={`${className} text-emerald-600 dark:text-emerald-400`} aria-hidden="true" />;
+        return <HiOutlineShieldCheck className={className} />;
     }
   };
 
@@ -131,13 +143,15 @@ const SecurityFeaturesSection1 = ({ config }) => {
           <div className="mb-16">
             <div className="text-center mb-8">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Industry-Leading Certifications
+                {config?.certificationsTitle || "Industry-Leading Certifications"}
               </h3>
             </div>
             <div className="flex flex-wrap justify-center gap-8">
               {config.certifications.map((cert, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl mb-2">{cert.icon}</div>
+                  <div className="mb-2 flex justify-center">
+                    {getFeatureIcon(cert.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
+                  </div>
                   <div className="text-sm font-semibold text-gray-900 dark:text-white">{cert.name}</div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">{cert.description}</div>
                 </div>
@@ -148,7 +162,7 @@ const SecurityFeaturesSection1 = ({ config }) => {
 
         {/* Features Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
           itemProp="offers"
           itemScope
           itemType="https://schema.org/Offer"
@@ -163,7 +177,7 @@ const SecurityFeaturesSection1 = ({ config }) => {
             >
               {/* Feature Icon */}
               <div className="w-16 h-16 bg-emerald-50 dark:bg-gray-700 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {getFeatureIcon(feature.icon)}
+                {getFeatureIcon(feature.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
               </div>
 
               {/* Feature Title */}
@@ -186,14 +200,7 @@ const SecurityFeaturesSection1 = ({ config }) => {
               <ul className="space-y-3 mb-6" aria-label={`${feature.title} details`}>
                 {feature.details?.map((detail, index) => (
                   <li key={index} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                    <svg
-                      className="w-5 h-5 text-emerald-500 dark:text-emerald-400 mr-2 shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                    >
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
+                    {getFeatureIcon("check", "w-5 h-5 text-emerald-500 dark:text-emerald-400 mr-2 shrink-0 mt-0.5")}
                     <span>{detail}</span>
                   </li>
                 ))}
@@ -217,7 +224,7 @@ const SecurityFeaturesSection1 = ({ config }) => {
 
         {/* Compliance Badges */}
         {config?.complianceBadges && (
-          <div className="mt-20">
+          <div className="mt-20 mb-20">
             <div className="text-center mb-12">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 {config?.complianceTitle || "Global Compliance Standards"}
@@ -232,7 +239,9 @@ const SecurityFeaturesSection1 = ({ config }) => {
                   key={index}
                   className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300"
                 >
-                  <div className="text-3xl mb-2">{badge.icon}</div>
+                  <div className="mb-2 flex justify-center">
+                    {getFeatureIcon(badge.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
+                  </div>
                   <div className="text-sm font-semibold text-gray-900 dark:text-white">{badge.name}</div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{badge.region}</div>
                 </div>
@@ -243,10 +252,12 @@ const SecurityFeaturesSection1 = ({ config }) => {
 
         {/* Data Protection Section */}
         {config?.showDataProtection && (
-          <div className="mt-20 bg-emerald-50 dark:bg-emerald-900/10 rounded-3xl p-8 md:p-12">
+          <div className="mt-20 mb-20 bg-emerald-50 dark:bg-emerald-900/10 rounded-3xl p-8 md:p-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="text-4xl mb-4">🔒</div>
+                <div className="mb-4">
+                  {getFeatureIcon("shield", "w-10 h-10 text-emerald-600 dark:text-emerald-400")}
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {config?.dataProtectionTitle || "Your Data, Your Control"}
                 </h3>
@@ -256,7 +267,7 @@ const SecurityFeaturesSection1 = ({ config }) => {
                 <ul className="space-y-2">
                   {config?.dataProtectionFeatures?.map((feature, index) => (
                     <li key={index} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-emerald-500" />
+                      {getFeatureIcon("check", "w-5 h-5 text-emerald-500")}
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -264,9 +275,34 @@ const SecurityFeaturesSection1 = ({ config }) => {
               </div>
               <div className="flex justify-center">
                 <div className="w-32 h-32 bg-emerald-200 dark:bg-emerald-800/50 rounded-full flex items-center justify-center">
-                  <HiOutlineShieldCheck className="w-16 h-16 text-emerald-600 dark:text-emerald-400" />
+                  {getFeatureIcon("shield", "w-16 h-16 text-emerald-600 dark:text-emerald-400")}
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Security Metrics */}
+        {config?.showSecurityMetrics && (
+          <div className="mt-20 mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                {config?.metricsTitle || "Security by the Numbers"}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {config?.metricsDescription || "Our commitment to security in measurable terms"}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {config?.securityMetrics?.map((metric, index) => (
+                <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="flex justify-center mb-3">
+                    {getFeatureIcon(metric.icon, "w-8 h-8 text-emerald-600 dark:text-emerald-400")}
+                  </div>
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">{metric.value}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">{metric.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -274,18 +310,26 @@ const SecurityFeaturesSection1 = ({ config }) => {
         {/* Bottom CTA Section */}
         {config?.showCta && (
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-4 p-1 bg-gray-50 dark:bg-gray-800/50 rounded-full pl-6 pr-2 py-2">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl">
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to secure your operations?"}
               </span>
-              <Link
-                href={config?.ctaLink || "/contact"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
-                aria-label="Learn about security"
-              >
-                {config?.ctaButton?.text || "Contact Security Team"}
-                <HiArrowRight aria-hidden="true" />
-              </Link>
+              <div className="flex gap-3">
+                <Link
+                  href={config?.ctaPrimaryLink || "/contact"}
+                  className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
+                  aria-label="Learn about security"
+                >
+                  {config?.ctaButton?.primaryText || "Contact Security Team"}
+                  <HiArrowRight aria-hidden="true" />
+                </Link>
+                <Link
+                  href={config?.ctaSecondaryLink || "/security"}
+                  className="px-6 py-3 bg-transparent border-2 border-emerald-600 dark:border-emerald-400 text-emerald-600 dark:text-emerald-400 font-semibold rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-300 inline-flex items-center gap-2"
+                >
+                  {config?.ctaButton?.secondaryText || "Read Security Whitepaper"}
+                </Link>
+              </div>
             </div>
           </div>
         )}

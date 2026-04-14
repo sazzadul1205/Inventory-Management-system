@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Icons
-import { FaPlug } from "react-icons/fa";
+import { CiPlug1 } from "react-icons/ci";
 import {
   HiOutlineCloud,
   HiOutlineDatabase,
@@ -21,14 +21,29 @@ import {
   HiOutlineShare,
   HiOutlineDocumentText,
   HiOutlineTerminal,
-  HiOutlinePlay,
+  HiOutlineLightningBolt,
+  HiOutlineGlobe,
+  HiOutlineOfficeBuilding,
+  HiOutlineShoppingCart,
+  HiOutlineUsers,
+  HiOutlineMail,
+  HiOutlineCalendar,
+  HiOutlineClipboardList,
+  HiOutlineTruck,
+  HiOutlineCurrencyDollar
 } from 'react-icons/hi';
 
 const IntegrationCapabilitiesSection2 = ({ config }) => {
-  const [selectedFeature, setSelectedFeature] = useState('api');
-  const [apiEndpoint, setApiEndpoint] = useState('/api/v1/inventory');
-  const [apiResponse, setApiResponse] = useState(null);
+
+  // States
   const [isLoading, setIsLoading] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
+
+  // State for selected feature
+  const [selectedFeature, setSelectedFeature] = useState(config?.initialFeature || 'api');
+
+  // State for API endpoint
+  const [apiEndpoint, setApiEndpoint] = useState(config?.initialEndpoint || '/api/v1/inventory');
 
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-6 h-6") => {
@@ -50,7 +65,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
       case 'bell':
         return <HiOutlineBell className={className} />;
       case 'plug':
-        return <FaPlug className={className} />;
+        return <CiPlug1 className={className} />;
       case 'server':
         return <HiOutlineServer className={className} />;
       case 'share':
@@ -59,57 +74,46 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
         return <HiOutlineDocumentText className={className} />;
       case 'terminal':
         return <HiOutlineTerminal className={className} />;
+      case 'lightning':
+        return <HiOutlineLightningBolt className={className} />;
+      case 'globe':
+        return <HiOutlineGlobe className={className} />;
+      case 'office':
+        return <HiOutlineOfficeBuilding className={className} />;
+      case 'cart':
+        return <HiOutlineShoppingCart className={className} />;
+      case 'users':
+        return <HiOutlineUsers className={className} />;
+      case 'mail':
+        return <HiOutlineMail className={className} />;
+      case 'calendar':
+        return <HiOutlineCalendar className={className} />;
+      case 'inventory':
+        return <HiOutlineClipboardList className={className} />;
+      case 'truck':
+        return <HiOutlineTruck className={className} />;
+      case 'dollar':
+        return <HiOutlineCurrencyDollar className={className} />;
       default:
-        return <FaPlug className={className} />;
+        return <CiPlug1 className={className} />;
     }
   };
 
+  // Simulate API call
   const handleApiCall = async () => {
     setIsLoading(true);
     // Simulate API call
     setTimeout(() => {
-      const responses = {
-        '/api/v1/inventory': {
-          status: 200,
-          data: {
-            products: [
-              { id: 1, name: "Wireless Headphones", stock: 245, location: "WH-A-12" },
-              { id: 2, name: "Smart Watch", stock: 128, location: "WH-B-05" },
-              { id: 3, name: "Bluetooth Speaker", stock: 312, location: "WH-C-08" }
-            ],
-            total: 685,
-            lastUpdated: new Date().toISOString()
-          }
-        },
-        '/api/v1/orders': {
-          status: 200,
-          data: {
-            orders: [
-              { id: "ORD-001", status: "shipped", total: 129.99, date: "2024-01-15" },
-              { id: "ORD-002", status: "processing", total: 89.99, date: "2024-01-16" },
-              { id: "ORD-003", status: "delivered", total: 199.99, date: "2024-01-14" }
-            ],
-            totalOrders: 3
-          }
-        },
-        '/api/v1/warehouses': {
-          status: 200,
-          data: {
-            warehouses: [
-              { id: "WH-001", name: "North America Hub", capacity: 50000, utilization: 78 },
-              { id: "WH-002", name: "Europe Distribution", capacity: 35000, utilization: 65 },
-              { id: "WH-003", name: "Asia Pacific Center", capacity: 45000, utilization: 82 }
-            ]
-          }
-        }
-      };
+      const responses = config?.apiResponses || {};
       setApiResponse(responses[apiEndpoint] || { status: 404, error: "Endpoint not found" });
       setIsLoading(false);
     }, 800);
   };
 
+  // Copy API endpoint to clipboard
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
+    // You can replace with a toast notification
     alert('Copied to clipboard!');
   };
 
@@ -217,7 +221,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                           className="inline-flex items-center mt-4 text-teal-600 dark:text-teal-400 font-semibold hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
                         >
                           <span>Learn more</span>
-                          <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                          <HiArrowRight className="ml-2 transition-transform group-hover/link:translate-x-1" />
                         </Link>
                       </div>
                     )}
@@ -251,9 +255,11 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                     onChange={(e) => setApiEndpoint(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   >
-                    <option value="/api/v1/inventory">GET /api/v1/inventory</option>
-                    <option value="/api/v1/orders">GET /api/v1/orders</option>
-                    <option value="/api/v1/warehouses">GET /api/v1/warehouses</option>
+                    {config?.apiEndpoints?.map((endpoint) => (
+                      <option key={endpoint.value} value={endpoint.value}>
+                        {endpoint.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -261,7 +267,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                 <div className="bg-gray-900 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <HiOutlineTerminal className="w-4 h-4 text-gray-400" />
+                      {getFeatureIcon("terminal", "w-4 h-4 text-gray-400")}
                       <span className="text-xs text-gray-400">cURL Example</span>
                     </div>
                     <button
@@ -290,7 +296,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                     </>
                   ) : (
                     <>
-                      <HiOutlinePlay className="w-4 h-4" />
+                      {getFeatureIcon("play", "w-4 h-4")}
                       Try it Now
                     </>
                   )}
@@ -320,18 +326,12 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
 
                 {/* API Stats */}
                 <div className="grid grid-cols-3 gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-teal-600 dark:text-teal-400">99.99%</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Uptime SLA</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-teal-600 dark:text-teal-400">&lt;100ms</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Response Time</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-teal-600 dark:text-teal-400">10K/min</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Rate Limit</div>
-                  </div>
+                  {config?.apiStats?.map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-lg font-bold text-teal-600 dark:text-teal-400">{stat.value}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -340,7 +340,7 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
 
         {/* Integration Partners Grid */}
         {config?.showPartners && (
-          <div className="mt-20">
+          <div className="mt-20 mb-20">
             <div className="text-center mb-12">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 {config?.partnersTitle || "Trusted by Leading Platforms"}
@@ -355,8 +355,8 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
                   key={index}
                   className="group flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="text-3xl mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
-                    {partner.icon}
+                  <div className="mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
+                    {getFeatureIcon(partner.icon, "w-8 h-8 text-teal-600 dark:text-teal-400")}
                   </div>
                   <div className="text-sm text-gray-700 dark:text-gray-300 font-medium text-center">
                     {partner.name}
@@ -369,9 +369,12 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
 
         {/* Key Metrics Row */}
         {config?.showMetrics && (
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="mt-20 mb-20 grid grid-cols-1 md:grid-cols-4 gap-6">
             {config?.metrics?.map((metric, index) => (
               <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                <div className="flex justify-center mb-3">
+                  {getFeatureIcon(metric.icon, "w-8 h-8 text-teal-600 dark:text-teal-400")}
+                </div>
                 <div className="text-3xl font-bold text-teal-600 dark:text-teal-400 mb-2">{metric.value}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">{metric.label}</div>
                 <div className="text-xs text-gray-500 dark:text-gray-500">{metric.description}</div>
@@ -383,18 +386,26 @@ const IntegrationCapabilitiesSection2 = ({ config }) => {
         {/* Bottom CTA Section */}
         {config?.showCta && (
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-4 p-1 bg-gray-50 dark:bg-gray-800/50 rounded-full pl-6 pr-2 py-2">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl">
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to integrate your stack?"}
               </span>
-              <Link
-                href={config?.ctaLink || "/contact"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
-                aria-label="Start integrating now"
-              >
-                {config?.ctaButton?.text || "Get Started"}
-                <HiArrowRight aria-hidden="true" />
-              </Link>
+              <div className="flex gap-3">
+                <Link
+                  href={config?.ctaPrimaryLink || "/contact"}
+                  className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
+                  aria-label="Start integrating now"
+                >
+                  {config?.ctaButton?.primaryText || "Get Started"}
+                  <HiArrowRight aria-hidden="true" />
+                </Link>
+                <Link
+                  href={config?.ctaSecondaryLink || "/docs"}
+                  className="px-6 py-3 bg-transparent border-2 border-teal-600 dark:border-teal-400 text-teal-600 dark:text-teal-400 font-semibold rounded-lg hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-all duration-300 inline-flex items-center gap-2"
+                >
+                  {config?.ctaButton?.secondaryText || "View API Docs"}
+                </Link>
+              </div>
             </div>
           </div>
         )}

@@ -16,8 +16,6 @@ import {
   HiOutlineBell,
   HiOutlineDatabase,
   HiOutlineChip,
-  HiArrowRight,
-  HiOutlineCheckCircle,
   HiOutlineEye,
   HiOutlineShare,
   HiOutlineFilter,
@@ -28,10 +26,24 @@ import {
   HiOutlineStar,
   HiOutlineDesktopComputer,
   HiOutlineMail,
-  HiOutlineClock
+  HiOutlineClock,
+  HiOutlineServer,
+  HiOutlineShoppingCart,
+  HiOutlineOfficeBuilding,
+  HiOutlineGlobe,
+  HiOutlineCube,
+  HiOutlineTruck,
+  HiOutlineUsers,
+  HiOutlineCurrencyDollar,
+  HiOutlinePresentationChartLine,
+  HiOutlineTemplate,
+  HiOutlineDocumentText,
+  HiOutlineCog
 } from 'react-icons/hi';
 
 const ReportingAnalyticsSection3 = ({ config }) => {
+
+  // State for active integration
   const [activeIntegration, setActiveIntegration] = useState(0);
 
   // Icon mapping function
@@ -71,12 +83,38 @@ const ReportingAnalyticsSection3 = ({ config }) => {
         return <HiOutlineShieldCheck className={className} />;
       case 'sparkles':
         return <HiOutlineSparkles className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
       case 'desktop':
         return <HiOutlineDesktopComputer className={className} />;
       case 'mail':
         return <HiOutlineMail className={className} />;
       case 'clock':
         return <HiOutlineClock className={className} />;
+      case 'server':
+        return <HiOutlineServer className={className} />;
+      case 'shopping-cart':
+        return <HiOutlineShoppingCart className={className} />;
+      case 'office':
+        return <HiOutlineOfficeBuilding className={className} />;
+      case 'globe':
+        return <HiOutlineGlobe className={className} />;
+      case 'cube':
+        return <HiOutlineCube className={className} />;
+      case 'truck':
+        return <HiOutlineTruck className={className} />;
+      case 'users':
+        return <HiOutlineUsers className={className} />;
+      case 'dollar':
+        return <HiOutlineCurrencyDollar className={className} />;
+      case 'presentation':
+        return <HiOutlinePresentationChartLine className={className} />;
+      case 'template':
+        return <HiOutlineTemplate className={className} />;
+      case 'document':
+        return <HiOutlineDocumentText className={className} />;
+      case 'cog':
+        return <HiOutlineCog className={className} />;
       default:
         return <HiOutlineChartBar className={className} />;
     }
@@ -190,7 +228,7 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                   )}
                   {feature.isPopular && (
                     <span className="px-2 py-0.5 text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full flex items-center gap-1">
-                      <HiOutlineStar className="w-3 h-3" />
+                      {getFeatureIcon("star", "w-3 h-3")}
                       Popular
                     </span>
                   )}
@@ -205,7 +243,7 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                 <ul className="space-y-2 mb-6">
                   {feature.details?.slice(0, 3).map((detail, idx) => (
                     <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-purple-500 dark:text-purple-400 mr-2 shrink-0 mt-0.5" />
+                      {getFeatureIcon("check", "w-4 h-4 text-purple-500 dark:text-purple-400 mr-2 shrink-0 mt-0.5")}
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -229,7 +267,7 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                   className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors duration-300 group/link"
                 >
                   <span>Learn more</span>
-                  <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                  {getFeatureIcon("arrow", "ml-2 group-hover/link:translate-x-1 transition-transform")}
                 </Link>
               </div>
 
@@ -253,7 +291,9 @@ const ReportingAnalyticsSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {config?.aiInsights?.map((insight, index) => (
                 <div key={index} className="relative bg-linear-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 border border-purple-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
-                  <div className="absolute top-4 right-4 text-2xl opacity-20">🤖</div>
+                  <div className="absolute top-4 right-4 opacity-20">
+                    {getFeatureIcon("chip", "w-6 h-6")}
+                  </div>
                   <div className="relative">
                     <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mb-4">
                       {getFeatureIcon(insight.icon, "w-6 h-6 text-purple-600 dark:text-purple-400")}
@@ -282,7 +322,9 @@ const ReportingAnalyticsSection3 = ({ config }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {config?.advancedFeatures?.map((feature, index) => (
                 <div key={index} className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="text-3xl mb-3">{feature.icon}</div>
+                  <div className="flex justify-center mb-3">
+                    {getFeatureIcon(feature.icon, "w-10 h-10 text-purple-600 dark:text-purple-400")}
+                  </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{feature.name}</h4>
                   <p className="text-xs text-gray-500 dark:text-gray-400">{feature.description}</p>
                 </div>
@@ -327,8 +369,8 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                   key={index}
                   className="group flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 >
-                  <div className="text-4xl mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    {integration.icon}
+                  <div className="mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
+                    {getFeatureIcon(integration.icon, "w-10 h-10 text-gray-700 dark:text-gray-300")}
                   </div>
                   <div className="text-sm text-gray-700 dark:text-gray-300 font-medium text-center">
                     {integration.name}
@@ -357,15 +399,15 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        {getFeatureIcon("check", "w-5 h-5")}
                         <span>Reduce operational costs by 25-35%</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        {getFeatureIcon("check", "w-5 h-5")}
                         <span>Improve forecast accuracy by 40%</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        {getFeatureIcon("check", "w-5 h-5")}
                         <span>Increase revenue by 15-20%</span>
                       </div>
                     </div>
@@ -408,7 +450,9 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                   className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 hover:shadow-md transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="text-xl">{report.icon}</div>
+                    <div>
+                      {getFeatureIcon(report.icon, "w-5 h-5 text-purple-600 dark:text-purple-400")}
+                    </div>
                     <h4 className="font-medium text-gray-900 dark:text-white text-sm">{report.name}</h4>
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400">{report.category}</p>
@@ -433,7 +477,9 @@ const ReportingAnalyticsSection3 = ({ config }) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {config?.schedulingFeatures?.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl">
-                    <div className="text-2xl">{feature.icon}</div>
+                    <div>
+                      {getFeatureIcon(feature.icon, "w-6 h-6 text-purple-600 dark:text-purple-400")}
+                    </div>
                     <div>
                       <div className="font-semibold text-gray-900 dark:text-white text-sm">{feature.title}</div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">{feature.description}</div>
@@ -458,7 +504,7 @@ const ReportingAnalyticsSection3 = ({ config }) => {
                   className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 >
                   {config?.ctaButton?.primaryText || "Start Free Trial"}
-                  <HiArrowRight aria-hidden="true" />
+                  {getFeatureIcon("arrow")}
                 </Link>
                 <Link
                   href={config?.ctaSecondaryLink || "/demo"}

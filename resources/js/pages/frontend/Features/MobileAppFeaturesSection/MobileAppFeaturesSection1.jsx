@@ -4,7 +4,6 @@
 import { Link } from '@inertiajs/react';
 
 // Icons
-import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import {
   HiOutlineDeviceMobile,
   HiOutlineQrcode,
@@ -15,46 +14,70 @@ import {
   HiOutlineShieldCheck,
   HiOutlineUserGroup,
   HiArrowRight,
-  HiOutlineCheckCircle,
   HiOutlineLocationMarker,
   HiOutlineClipboardList,
   HiOutlineTruck,
   HiOutlineSearch,
-  HiOutlineDownload
+  HiOutlineDownload,
+  HiOutlineCloud,
+  HiOutlineDatabase,
+  HiOutlineChip,
+  HiOutlineSparkles,
+  HiOutlineStar,
+  HiOutlineDesktopComputer,
+  HiOutlineWifi,
 } from 'react-icons/hi';
+import { MdOutlineOfflineBolt } from "react-icons/md";
 
 const MobileAppFeaturesSection1 = ({ config }) => {
+
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-8 h-8") => {
     switch (iconName) {
       case 'mobile':
-        return <HiOutlineDeviceMobile className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineDeviceMobile className={className} />;
       case 'qrcode':
-        return <HiOutlineQrcode className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineQrcode className={className} />;
       case 'camera':
-        return <HiOutlineCamera className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineCamera className={className} />;
       case 'bell':
-        return <HiOutlineBell className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineBell className={className} />;
       case 'chart':
-        return <HiOutlineChartBar className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineChartBar className={className} />;
       case 'sync':
-        return <HiOutlineRefresh className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineRefresh className={className} />;
       case 'shield':
-        return <HiOutlineShieldCheck className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineShieldCheck className={className} />;
       case 'users':
-        return <HiOutlineUserGroup className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineUserGroup className={className} />;
       case 'location':
-        return <HiOutlineLocationMarker className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineLocationMarker className={className} />;
       case 'inventory':
-        return <HiOutlineClipboardList className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineClipboardList className={className} />;
       case 'truck':
-        return <HiOutlineTruck className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineTruck className={className} />;
       case 'search':
-        return <HiOutlineSearch className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineSearch className={className} />;
       case 'download':
-        return <HiOutlineDownload className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineDownload className={className} />;
+      case 'cloud':
+        return <HiOutlineCloud className={className} />;
+      case 'database':
+        return <HiOutlineDatabase className={className} />;
+      case 'chip':
+        return <HiOutlineChip className={className} />;
+      case 'sparkles':
+        return <HiOutlineSparkles className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
+      case 'desktop':
+        return <HiOutlineDesktopComputer className={className} />;
+      case 'wifi':
+        return <HiOutlineWifi className={className} />;
+      case 'offline':
+        return <MdOutlineOfflineBolt className={className} />;
       default:
-        return <HiOutlineDeviceMobile className={`${className} text-orange-600 dark:text-orange-400`} aria-hidden="true" />;
+        return <HiOutlineDeviceMobile className={className} />;
     }
   };
 
@@ -114,12 +137,11 @@ const MobileAppFeaturesSection1 = ({ config }) => {
         {/* App Store Badges */}
         {config?.showAppBadges && (
           <div className="flex justify-center gap-4 mb-12">
-
             <Link
               href={config?.iosLink || "/app-store"}
               className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg transition-transform hover:scale-105"
             >
-              <FaApple className="text-xl" />
+              {getFeatureIcon("mobile", "text-xl")}
               <span className="text-sm font-medium">App Store</span>
             </Link>
 
@@ -127,10 +149,9 @@ const MobileAppFeaturesSection1 = ({ config }) => {
               href={config?.androidLink || "/play-store"}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg transition-transform hover:scale-105"
             >
-              <FaGooglePlay className="text-xl" />
+              {getFeatureIcon("mobile", "text-xl")}
               <span className="text-sm font-medium">Google Play</span>
             </Link>
-
           </div>
         )}
 
@@ -158,7 +179,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
 
         {/* Features Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
           itemProp="offers"
           itemScope
           itemType="https://schema.org/Offer"
@@ -173,7 +194,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
             >
               {/* Feature Icon */}
               <div className="w-16 h-16 bg-orange-50 dark:bg-gray-700 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {getFeatureIcon(feature.icon)}
+                {getFeatureIcon(feature.icon, "w-8 h-8 text-orange-600 dark:text-orange-400")}
               </div>
 
               {/* Feature Title */}
@@ -196,14 +217,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
               <ul className="space-y-3 mb-6" aria-label={`${feature.title} details`}>
                 {feature.details?.map((detail, index) => (
                   <li key={index} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                    <svg
-                      className="w-5 h-5 text-orange-500 dark:text-orange-400 mr-2 shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                    >
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
+                    {getFeatureIcon("check", "w-5 h-5 text-orange-500 dark:text-orange-400 mr-2 shrink-0 mt-0.5")}
                     <span>{detail}</span>
                   </li>
                 ))}
@@ -227,7 +241,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
 
         {/* Mobile App Screenshots Preview */}
         {config?.showScreenshots && (
-          <div className="mt-20">
+          <div className="mt-20 mb-20">
             <div className="text-center mb-12">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 {config?.screenshotsTitle || "App Experience"}
@@ -242,9 +256,11 @@ const MobileAppFeaturesSection1 = ({ config }) => {
                   key={index}
                   className="group relative bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="aspect-9/19 bg-linear-to-br from-orange-100 to-amber-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+                  <div className="aspect-9/19 bg-linear-to-br from-orange-100 to-amber-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center p-8">
                     <div className="text-center">
-                      <div className="text-4xl mb-2">{screenshot.icon}</div>
+                      <div className="mb-3 flex justify-center">
+                        {getFeatureIcon(screenshot.icon, "w-12 h-12 text-orange-600 dark:text-orange-400")}
+                      </div>
                       <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">{screenshot.title}</p>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{screenshot.description}</p>
                     </div>
@@ -257,10 +273,12 @@ const MobileAppFeaturesSection1 = ({ config }) => {
 
         {/* Offline Capabilities */}
         {config?.showOffline && (
-          <div className="mt-20 bg-orange-50 dark:bg-orange-900/10 rounded-3xl p-8 md:p-12">
+          <div className="mt-20 mb-20 bg-orange-50 dark:bg-orange-900/10 rounded-3xl p-8 md:p-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="text-4xl mb-4">📱</div>
+                <div className="mb-4">
+                  {getFeatureIcon("offline", "w-12 h-12 text-orange-600 dark:text-orange-400")}
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {config?.offlineTitle || "Works Offline"}
                 </h3>
@@ -270,7 +288,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
                 <ul className="space-y-2">
                   {config?.offlineFeatures?.map((feature, index) => (
                     <li key={index} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-orange-500" />
+                      {getFeatureIcon("check", "w-5 h-5 text-orange-500")}
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -278,9 +296,37 @@ const MobileAppFeaturesSection1 = ({ config }) => {
               </div>
               <div className="flex justify-center">
                 <div className="w-32 h-32 bg-orange-200 dark:bg-orange-800/50 rounded-full flex items-center justify-center">
-                  <HiOutlineRefresh className="w-16 h-16 text-orange-600 dark:text-orange-400" />
+                  {getFeatureIcon("sync", "w-16 h-16 text-orange-600 dark:text-orange-400")}
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* App Features Highlights */}
+        {config?.showAppHighlights && (
+          <div className="mt-20 mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                {config?.highlightsTitle || "Why Choose Our Mobile App"}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {config?.highlightsDescription || "Everything you need to manage your operations on the go"}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {config?.appHighlights?.map((highlight, index) => (
+                <div
+                  key={index}
+                  className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    {getFeatureIcon(highlight.icon, "w-7 h-7 text-orange-600 dark:text-orange-400")}
+                  </div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{highlight.title}</h4>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{highlight.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -298,7 +344,7 @@ const MobileAppFeaturesSection1 = ({ config }) => {
                   className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 >
                   {config?.ctaButton?.primaryText || "Download App"}
-                  <HiOutlineDownload aria-hidden="true" />
+                  {getFeatureIcon("download")}
                 </Link>
                 <Link
                   href={config?.ctaSecondaryLink || "/demo"}
@@ -330,6 +376,9 @@ const MobileAppFeaturesSection1 = ({ config }) => {
         .dark .bg-grid-pattern {
           background-image: linear-gradient(to right, #374151 1px, transparent 1px),
                             linear-gradient(to bottom, #374151 1px, transparent 1px);
+        }
+        .aspect-9/19 {
+          aspect-ratio: 9 / 19;
         }
       `}</style>
     </section>

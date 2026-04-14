@@ -1481,6 +1481,1790 @@ class FeaturesPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Reporting & Analytics Section
+            [
+                'id' => 133,
+                'section_key' => 'reportingAnalytics',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Data Intelligence',
+                        'backgroundColor' => 'bg-purple-50 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Real-Time',
+                        'highlightedText' => 'Reporting & Analytics',
+                        'suffix' => 'Suite',
+                        'highlightGradient' => 'from-purple-500 to-indigo-500'
+                    ],
+                    'description' => 'Transform your data into actionable insights with AI-powered analytics, customizable dashboards, and real-time reporting capabilities.',
+                    'benefits' => [
+                        [
+                            'icon' => 'trending',
+                            'title' => '30% Faster Decisions',
+                            'description' => 'Real-time data processing reduces decision-making time by up to 30%'
+                        ],
+                        [
+                            'icon' => 'database',
+                            'title' => 'Unified Data Hub',
+                            'description' => 'Centralize all your business metrics in one intelligent platform'
+                        ],
+                        [
+                            'icon' => 'chart-pie',
+                            'title' => 'Predictive Insights',
+                            'description' => 'AI-powered forecasts with 94% accuracy to anticipate trends'
+                        ]
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'chart-bar',
+                            'title' => 'Custom Dashboards',
+                            'description' => 'Build personalized dashboards with drag-and-drop widgets and real-time data visualization.',
+                            'details' => [
+                                'Drag-and-drop interface',
+                                '50+ chart types',
+                                'Real-time data updates',
+                                'Save custom templates'
+                            ],
+                            'link' => '/features/custom-dashboards'
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'analytics',
+                            'title' => 'Predictive Analytics',
+                            'description' => 'Leverage machine learning to forecast trends, identify patterns, and predict outcomes.',
+                            'details' => [
+                                'Demand forecasting',
+                                'Anomaly detection',
+                                'Trend prediction',
+                                'What-if analysis'
+                            ],
+                            'link' => '/features/predictive-analytics',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'report',
+                            'title' => 'Automated Reports',
+                            'description' => 'Schedule and automate report generation with custom delivery to stakeholders.',
+                            'details' => [
+                                'Automated scheduling',
+                                'Email delivery',
+                                'PDF/Excel exports',
+                                'White-label branding'
+                            ],
+                            'link' => '/features/automated-reports'
+                        ]
+                    ],
+                    'showMetricsPreview' => true,
+                    'metricsTitle' => 'Key Performance Indicators',
+                    'metricsDescription' => 'Track the metrics that matter most to your business',
+                    'keyMetrics' => [
+                        [
+                            'icon' => 'users',
+                            'value' => '12.5K',
+                            'label' => 'Active Users',
+                            'change' => '+18%',
+                            'trend' => 'up',
+                            'description' => 'Monthly active users'
+                        ],
+                        [
+                            'icon' => 'cart',
+                            'value' => '$2.4M',
+                            'label' => 'Revenue Tracked',
+                            'change' => '+32%',
+                            'trend' => 'up',
+                            'description' => 'Total revenue analyzed'
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'value' => '2.3s',
+                            'label' => 'Query Response',
+                            'change' => '-41%',
+                            'trend' => 'down',
+                            'description' => 'Average query time'
+                        ],
+                        [
+                            'icon' => 'star',
+                            'value' => '98%',
+                            'label' => 'Accuracy Rate',
+                            'change' => '+5%',
+                            'trend' => 'up',
+                            'description' => 'Prediction accuracy'
+                        ]
+                    ],
+                    'showReportTypes' => true,
+                    'reportTypesTitle' => 'Pre-Built Reports',
+                    'reportTypesDescription' => 'Ready-to-use reports for common business needs',
+                    'reportTypes' => [
+                        ['icon' => 'presentation', 'name' => 'Sales Performance', 'description' => 'Track revenue, conversions, and sales team performance metrics.', 'frequency' => 'Daily/Weekly'],
+                        ['icon' => 'users', 'name' => 'Customer Analytics', 'description' => 'Understand customer behavior, retention, and lifetime value.', 'frequency' => 'Weekly/Monthly'],
+                        ['icon' => 'inventory', 'name' => 'Inventory Report', 'description' => 'Monitor stock levels, turnover rates, and reorder points.', 'frequency' => 'Real-time'],
+                        ['icon' => 'truck', 'name' => 'Supply Chain', 'description' => 'Track logistics, delivery times, and supplier performance.', 'frequency' => 'Daily'],
+                        ['icon' => 'dollar', 'name' => 'Financial Summary', 'description' => 'View P&L, cash flow, and expense breakdowns.', 'frequency' => 'Monthly'],
+                        ['icon' => 'chart-bar', 'name' => 'Marketing ROI', 'description' => 'Measure campaign effectiveness and channel performance.', 'frequency' => 'Weekly']
+                    ],
+                    'showExportOptions' => true,
+                    'exportTitle' => 'Multiple Export Formats',
+                    'exportDescription' => 'Export your data in any format you need',
+                    'exportFormats' => ['PDF', 'Excel', 'CSV', 'JSON', 'HTML'],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to unlock actionable insights?',
+                    'ctaPrimaryLink' => '/contact',
+                    'ctaSecondaryLink' => '/demo',
+                    'ctaButton' => [
+                        'primaryText' => 'Get Started',
+                        'primaryBackground' => 'bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700',
+                        'secondaryText' => 'Watch Demo'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 134,
+                'section_key' => 'reportingAnalytics',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Live Analytics',
+                        'backgroundColor' => 'bg-purple-50 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Interactive',
+                        'highlightedText' => 'Analytics Dashboard',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-purple-500 to-indigo-500'
+                    ],
+                    'description' => 'Explore your data with our interactive dashboard simulator. Click on any metric to see real-time visualizations and insights.',
+                    'initialMetric' => 'inventory',
+                    'initialTimeRange' => 'weekly',
+                    'initialChart' => 'trend',
+                    'features' => [
+                        [
+                            'id' => 'inventory',
+                            'icon' => 'inventory',
+                            'title' => 'Inventory Analytics',
+                            'description' => 'Track stock levels, turnover rates, and optimize inventory management.',
+                            'details' => [
+                                'Real-time stock monitoring',
+                                'Automated reorder alerts',
+                                'Dead stock identification',
+                                'Inventory valuation reports'
+                            ],
+                            'link' => '/features/inventory-analytics'
+                        ],
+                        [
+                            'id' => 'sales',
+                            'icon' => 'cart',
+                            'title' => 'Sales Performance',
+                            'description' => 'Monitor revenue, conversion rates, and sales team performance metrics.',
+                            'details' => [
+                                'Revenue trend analysis',
+                                'Conversion funnel tracking',
+                                'Sales team KPIs',
+                                'Seasonal trend detection'
+                            ],
+                            'link' => '/features/sales-analytics'
+                        ],
+                        [
+                            'id' => 'fulfillment',
+                            'icon' => 'truck',
+                            'title' => 'Fulfillment Metrics',
+                            'description' => 'Track order processing times, shipping accuracy, and delivery performance.',
+                            'details' => [
+                                'Order cycle time',
+                                'Shipping accuracy rate',
+                                'Carrier performance',
+                                'Returns analysis'
+                            ],
+                            'link' => '/features/fulfillment-analytics'
+                        ]
+                    ],
+                    'timeRanges' => [
+                        ['value' => 'daily', 'label' => 'Daily'],
+                        ['value' => 'weekly', 'label' => 'Weekly'],
+                        ['value' => 'monthly', 'label' => 'Monthly']
+                    ],
+                    'chartTypes' => [
+                        ['value' => 'trend', 'label' => 'Trend', 'icon' => 'trending'],
+                        ['value' => 'pie', 'label' => 'Pie', 'icon' => 'chart-pie'],
+                        ['value' => 'bar', 'label' => 'Bar', 'icon' => 'chart-bar']
+                    ],
+                    'chartData' => [
+                        'inventory' => [
+                            'trend' => [65, 72, 68, 85, 92, 88, 95],
+                            'pie' => [45, 30, 25],
+                            'bar' => [120, 85, 95, 110, 130, 125, 140]
+                        ],
+                        'sales' => [
+                            'trend' => [45, 52, 58, 65, 72, 78, 85],
+                            'pie' => [55, 25, 20],
+                            'bar' => [85, 92, 98, 105, 112, 118, 125]
+                        ],
+                        'fulfillment' => [
+                            'trend' => [92, 94, 95, 96, 97, 98, 99],
+                            'pie' => [98, 2],
+                            'bar' => [88, 91, 93, 95, 96, 97, 98]
+                        ]
+                    ],
+                    'showMetricStats' => true,
+                    'metricStats' => [
+                        'inventory' => [
+                            ['value' => '92%', 'label' => 'Accuracy'],
+                            ['value' => '12.5K', 'label' => 'SKUs'],
+                            ['value' => '+8%', 'label' => 'Growth']
+                        ],
+                        'sales' => [
+                            ['value' => '+18%', 'label' => 'Growth'],
+                            ['value' => '$45.2K', 'label' => 'Revenue'],
+                            ['value' => '+12%', 'label' => 'vs Last']
+                        ],
+                        'fulfillment' => [
+                            ['value' => '98%', 'label' => 'Rate'],
+                            ['value' => '2.3d', 'label' => 'Avg Time'],
+                            ['value' => '+2%', 'label' => 'Improvement']
+                        ]
+                    ],
+                    'showMetrics' => true,
+                    'metrics' => [
+                        ['icon' => 'users', 'value' => '12.5K', 'label' => 'Active Users', 'description' => 'Monthly active users'],
+                        ['icon' => 'dollar', 'value' => '$2.4M', 'label' => 'Revenue Tracked', 'description' => 'Total revenue analyzed'],
+                        ['icon' => 'clock', 'value' => '2.3s', 'label' => 'Query Response', 'description' => 'Average query time'],
+                        ['icon' => 'star', 'value' => '98%', 'label' => 'Accuracy Rate', 'description' => 'Prediction accuracy']
+                    ],
+                    'showTemplates' => true,
+                    'templatesTitle' => 'Popular Report Templates',
+                    'templatesDescription' => 'Ready-to-use templates for common analytics needs',
+                    'reportTemplates' => [
+                        ['icon' => 'presentation', 'name' => 'Sales Performance', 'description' => 'Track revenue, conversions, and sales team performance metrics.', 'frequency' => 'Daily/Weekly'],
+                        ['icon' => 'users', 'name' => 'Customer Analytics', 'description' => 'Understand customer behavior, retention, and lifetime value.', 'frequency' => 'Weekly/Monthly'],
+                        ['icon' => 'inventory', 'name' => 'Inventory Report', 'description' => 'Monitor stock levels, turnover rates, and reorder points.', 'frequency' => 'Real-time']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to unlock actionable insights?',
+                    'ctaPrimaryLink' => '/contact',
+                    'ctaSecondaryLink' => '/demo',
+                    'ctaButton' => [
+                        'primaryText' => 'Get Started',
+                        'primaryBackground' => 'bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700',
+                        'secondaryText' => 'Watch Demo'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 135,
+                'section_key' => 'reportingAnalytics',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Advanced Analytics',
+                        'backgroundColor' => 'bg-purple-50 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Enterprise',
+                        'highlightedText' => 'Reporting & Analytics',
+                        'suffix' => 'Platform',
+                        'highlightGradient' => 'from-purple-500 to-indigo-500'
+                    ],
+                    'description' => 'Enterprise-grade analytics platform that delivers actionable insights, predictive intelligence, and real-time data visualization at scale.',
+                    'stats' => [
+                        ['value' => '99.9%', 'label' => 'Platform Uptime'],
+                        ['value' => '50+', 'label' => 'Report Templates'],
+                        ['value' => '10M+', 'label' => 'Data Points/sec'],
+                        ['value' => '24/7', 'label' => 'Real-time Sync']
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'presentation',
+                            'title' => 'Executive Dashboards',
+                            'description' => 'C-suite ready dashboards with real-time KPIs and customizable visualizations.',
+                            'details' => [
+                                'Real-time data refresh',
+                                'Role-based views',
+                                'Drill-down capabilities',
+                                'Mobile responsive'
+                            ],
+                            'metrics' => [
+                                ['value' => '<1s', 'label' => 'Load Time'],
+                                ['value' => '50+', 'label' => 'Widgets']
+                            ],
+                            'link' => '/features/executive-dashboards',
+                            'isNew' => true
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'chip',
+                            'title' => 'Predictive Intelligence',
+                            'description' => 'Machine learning algorithms that forecast trends and identify opportunities.',
+                            'details' => [
+                                'Demand forecasting',
+                                'Anomaly detection',
+                                'Sentiment analysis',
+                                'Risk assessment'
+                            ],
+                            'metrics' => [
+                                ['value' => '94%', 'label' => 'Accuracy'],
+                                ['value' => '30%', 'label' => 'Cost Savings']
+                            ],
+                            'link' => '/features/predictive-intelligence',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'cloud',
+                            'title' => 'Cloud Analytics Hub',
+                            'description' => 'Centralized data platform with enterprise-grade security and scalability.',
+                            'details' => [
+                                'Auto-scaling infrastructure',
+                                'End-to-end encryption',
+                                'Global CDN delivery',
+                                '99.99% uptime SLA'
+                            ],
+                            'metrics' => [
+                                ['value' => '100%', 'label' => 'Encrypted'],
+                                ['value' => '5TB', 'label' => 'Storage']
+                            ],
+                            'link' => '/features/cloud-analytics'
+                        ]
+                    ],
+                    'showAIInsights' => true,
+                    'aiInsightsTitle' => 'AI-Powered Analytics Intelligence',
+                    'aiInsightsDescription' => 'Smart insights that drive better business decisions',
+                    'aiInsights' => [
+                        [
+                            'icon' => 'trending',
+                            'title' => 'Trend Prediction',
+                            'description' => 'AI algorithms predict market trends with 94% accuracy up to 6 months ahead.',
+                            'impact' => 'Increase revenue by 25%'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Anomaly Detection',
+                            'description' => 'Real-time identification of unusual patterns and potential fraud.',
+                            'impact' => 'Prevent $100k+ losses'
+                        ],
+                        [
+                            'icon' => 'sparkles',
+                            'title' => 'Smart Recommendations',
+                            'description' => 'Actionable insights delivered directly to decision-makers.',
+                            'impact' => 'Save 20+ hours weekly'
+                        ]
+                    ],
+                    'showAdvancedFeatures' => true,
+                    'advancedTitle' => 'Advanced Analytics Capabilities',
+                    'advancedDescription' => 'Powerful tools for deep data exploration',
+                    'advancedFeatures' => [
+                        ['icon' => 'database', 'name' => 'Data Mining', 'description' => 'Pattern discovery in large datasets'],
+                        ['icon' => 'chart-bar', 'name' => 'Cohort Analysis', 'description' => 'User behavior tracking'],
+                        ['icon' => 'filter', 'name' => 'Funnel Analysis', 'description' => 'Conversion optimization'],
+                        ['icon' => 'clock', 'name' => 'Time Series', 'description' => 'Temporal data analysis']
+                    ],
+                    'showIntegrations' => true,
+                    'integrationsTitle' => 'Seamless Data Integration',
+                    'integrationsDescription' => 'Connect your analytics with your entire business ecosystem',
+                    'integrationCategories' => [
+                        ['name' => 'Data Sources'],
+                        ['name' => 'Business Apps'],
+                        ['name' => 'Cloud Storage']
+                    ],
+                    'integrations' => [
+                        [
+                            'items' => [
+                                ['icon' => 'database', 'name' => 'SQL Server', 'type' => 'Database'],
+                                ['icon' => 'database', 'name' => 'PostgreSQL', 'type' => 'Database'],
+                                ['icon' => 'database', 'name' => 'MongoDB', 'type' => 'NoSQL'],
+                                ['icon' => 'database', 'name' => 'Snowflake', 'type' => 'Cloud DB']
+                            ]
+                        ],
+                        [
+                            'items' => [
+                                ['icon' => 'shopping-cart', 'name' => 'Salesforce', 'type' => 'CRM'],
+                                ['icon' => 'shopping-cart', 'name' => 'Shopify', 'type' => 'E-commerce'],
+                                ['icon' => 'office', 'name' => 'SAP', 'type' => 'ERP'],
+                                ['icon' => 'users', 'name' => 'HubSpot', 'type' => 'Marketing']
+                            ]
+                        ],
+                        [
+                            'items' => [
+                                ['icon' => 'cloud', 'name' => 'AWS S3', 'type' => 'Cloud'],
+                                ['icon' => 'cloud', 'name' => 'Google Cloud', 'type' => 'Cloud'],
+                                ['icon' => 'cloud', 'name' => 'Azure', 'type' => 'Cloud'],
+                                ['icon' => 'cube', 'name' => 'Dropbox', 'type' => 'Storage']
+                            ]
+                        ]
+                    ],
+                    'showROICalculator' => true,
+                    'roiTitle' => 'Calculate Your Analytics ROI',
+                    'roiDescription' => 'See how data-driven decisions impact your bottom line',
+                    'roiExample' => 'Up to 6x ROI',
+                    'roiLink' => '/calculator',
+                    'showReportGallery' => true,
+                    'galleryTitle' => 'Comprehensive Report Library',
+                    'galleryDescription' => '50+ pre-built templates for every business need',
+                    'reportGallery' => [
+                        ['icon' => 'presentation', 'name' => 'Sales Performance', 'category' => 'Sales'],
+                        ['icon' => 'users', 'name' => 'Customer Analytics', 'category' => 'Marketing'],
+                        ['icon' => 'truck', 'name' => 'Supply Chain', 'category' => 'Operations'],
+                        ['icon' => 'dollar', 'name' => 'Financial Summary', 'category' => 'Finance'],
+                        ['icon' => 'chart-bar', 'name' => 'Marketing ROI', 'category' => 'Marketing'],
+                        ['icon' => 'database', 'name' => 'Data Quality', 'category' => 'Technical'],
+                        ['icon' => 'clock', 'name' => 'Time Series', 'category' => 'Analytics'],
+                        ['icon' => 'chip', 'name' => 'Predictive Model', 'category' => 'AI/ML']
+                    ],
+                    'showScheduledReports' => true,
+                    'scheduledTitle' => 'Automated Report Scheduling',
+                    'scheduledDescription' => 'Never miss important insights with automated delivery',
+                    'schedulingFeatures' => [
+                        ['icon' => 'calendar', 'title' => 'Flexible Scheduling', 'description' => 'Daily, weekly, monthly cadence'],
+                        ['icon' => 'mail', 'title' => 'Email Delivery', 'description' => 'Send to stakeholders automatically'],
+                        ['icon' => 'download', 'title' => 'Multiple Formats', 'description' => 'PDF, Excel, CSV exports']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to unlock the power of data-driven decisions?',
+                    'ctaPrimaryLink' => '/trial',
+                    'ctaSecondaryLink' => '/demo',
+                    'ctaButton' => [
+                        'primaryText' => 'Start Free Trial',
+                        'primaryBackground' => 'bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700',
+                        'secondaryText' => 'Watch Demo'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 136,
+                'section_key' => 'reportingAnalytics',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Integration Capabilities Section
+            [
+                'id' => 137,
+                'section_key' => 'integrationCapabilities',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Seamless Integration',
+                        'backgroundColor' => 'bg-teal-50 dark:bg-teal-900/30',
+                        'borderColor' => 'border-teal-200 dark:border-teal-800',
+                        'textColor' => 'text-teal-700 dark:text-teal-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Enterprise',
+                        'highlightedText' => 'Integration Capabilities',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-teal-500 to-cyan-500'
+                    ],
+                    'description' => 'Connect your entire business ecosystem with our powerful integration platform. Seamlessly sync data across all your tools and systems.',
+                    'benefits' => [
+                        [
+                            'icon' => 'lightning',
+                            'title' => 'Real-time Sync',
+                            'description' => 'Data synchronization in milliseconds across all connected platforms'
+                        ],
+                        [
+                            'icon' => 'lock',
+                            'title' => 'Enterprise Security',
+                            'description' => 'Bank-grade encryption and compliance with industry standards'
+                        ],
+                        [
+                            'icon' => 'plug',
+                            'title' => '500+ Connectors',
+                            'description' => 'Pre-built integrations for popular business applications'
+                        ]
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'cloud',
+                            'title' => 'Cloud-Native Architecture',
+                            'description' => 'Built for scale with auto-scaling infrastructure and 99.99% uptime SLA.',
+                            'details' => [
+                                'Serverless architecture',
+                                'Global CDN delivery',
+                                'Automatic failover',
+                                'Real-time monitoring'
+                            ],
+                            'link' => '/features/cloud-native'
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'code',
+                            'title' => 'RESTful API',
+                            'description' => 'Comprehensive API with detailed documentation and SDK support for all major languages.',
+                            'details' => [
+                                'REST API endpoints',
+                                'Webhook support',
+                                'Rate limiting',
+                                'API versioning'
+                            ],
+                            'link' => '/features/api',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'database',
+                            'title' => 'Data Transformation',
+                            'description' => 'Powerful ETL capabilities to map, transform, and enrich your data in real-time.',
+                            'details' => [
+                                'Custom field mapping',
+                                'Data validation rules',
+                                'Error handling',
+                                'Batch processing'
+                            ],
+                            'link' => '/features/data-transformation'
+                        ]
+                    ],
+                    'showCategories' => true,
+                    'categoriesTitle' => 'Connect with Your Ecosystem',
+                    'categoriesDescription' => 'Pre-built connectors for popular platforms',
+                    'integrationCategories' => [
+                        [
+                            'icon' => 'cart',
+                            'name' => 'E-commerce',
+                            'description' => 'Connect your online stores',
+                            'platforms' => ['Shopify', 'WooCommerce', 'Magento', 'BigCommerce']
+                        ],
+                        [
+                            'icon' => 'database',
+                            'name' => 'Databases',
+                            'description' => 'Sync with your data sources',
+                            'platforms' => ['PostgreSQL', 'MySQL', 'MongoDB', 'Snowflake']
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'name' => 'Cloud Storage',
+                            'description' => 'Connect cloud platforms',
+                            'platforms' => ['AWS S3', 'Google Cloud', 'Azure', 'Dropbox']
+                        ],
+                        [
+                            'icon' => 'mail',
+                            'name' => 'Marketing Tools',
+                            'description' => 'Integrate marketing platforms',
+                            'platforms' => ['Mailchimp', 'HubSpot', 'Salesforce', 'Marketo']
+                        ]
+                    ],
+                    'showAPIFeatures' => true,
+                    'apiTitle' => 'Powerful API Capabilities',
+                    'apiDescription' => 'Build custom integrations with our comprehensive API',
+                    'apiFeatures' => [
+                        ['icon' => 'code', 'title' => 'RESTful API', 'description' => 'Full REST API support with JSON payloads'],
+                        ['icon' => 'sync', 'title' => 'Webhooks', 'description' => 'Real-time event notifications'],
+                        ['icon' => 'lock', 'title' => 'OAuth 2.0', 'description' => 'Secure authentication protocol'],
+                        ['icon' => 'document', 'title' => 'Interactive Docs', 'description' => 'Live API explorer and testing']
+                    ],
+                    'showIntegrationsCounter' => true,
+                    'counterTitle' => '500+ Pre-Built Integrations',
+                    'counterDescription' => 'Connect seamlessly with your favorite tools and platforms',
+                    'counterLink' => '/integrations',
+                    'showCta' => true,
+                    'ctaText' => 'Ready to connect your ecosystem?',
+                    'ctaPrimaryLink' => '/contact',
+                    'ctaSecondaryLink' => '/docs',
+                    'ctaButton' => [
+                        'primaryText' => 'Get Started',
+                        'primaryBackground' => 'bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700',
+                        'secondaryText' => 'View API Docs'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 138,
+                'section_key' => 'integrationCapabilities',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Developer Friendly',
+                        'backgroundColor' => 'bg-teal-50 dark:bg-teal-900/30',
+                        'borderColor' => 'border-teal-200 dark:border-teal-800',
+                        'textColor' => 'text-teal-700 dark:text-teal-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Powerful',
+                        'highlightedText' => 'API & Integrations',
+                        'suffix' => 'Platform',
+                        'highlightGradient' => 'from-teal-500 to-cyan-500'
+                    ],
+                    'description' => 'Build custom integrations with our comprehensive REST API. Test endpoints live and see real responses.',
+                    'initialFeature' => 'api',
+                    'initialEndpoint' => '/api/v1/inventory',
+                    'features' => [
+                        [
+                            'id' => 'api',
+                            'icon' => 'code',
+                            'title' => 'RESTful API',
+                            'description' => 'Full-featured REST API with comprehensive documentation and SDK support.',
+                            'details' => [
+                                'Resource-based endpoints',
+                                'JSON request/response',
+                                'Webhook support',
+                                'Real-time events'
+                            ],
+                            'link' => '/features/api'
+                        ],
+                        [
+                            'id' => 'auth',
+                            'icon' => 'lock',
+                            'title' => 'Authentication',
+                            'description' => 'Secure authentication methods including OAuth 2.0, API keys, and JWT tokens.',
+                            'details' => [
+                                'OAuth 2.0 support',
+                                'API key management',
+                                'JWT authentication',
+                                'Role-based access control'
+                            ],
+                            'link' => '/features/auth'
+                        ],
+                        [
+                            'id' => 'webhooks',
+                            'icon' => 'sync',
+                            'title' => 'Webhooks',
+                            'description' => 'Real-time event notifications to keep your systems in sync automatically.',
+                            'details' => [
+                                'Event-based triggers',
+                                'Retry mechanism',
+                                'Payload signing',
+                                'Delivery monitoring'
+                            ],
+                            'link' => '/features/webhooks'
+                        ]
+                    ],
+                    'apiEndpoints' => [
+                        ['value' => '/api/v1/inventory', 'label' => 'GET /api/v1/inventory'],
+                        ['value' => '/api/v1/orders', 'label' => 'GET /api/v1/orders'],
+                        ['value' => '/api/v1/warehouses', 'label' => 'GET /api/v1/warehouses']
+                    ],
+                    'apiResponses' => [
+                        '/api/v1/inventory' => [
+                            'status' => 200,
+                            'data' => [
+                                'products' => [
+                                    ['id' => 1, 'name' => 'Wireless Headphones', 'stock' => 245, 'location' => 'WH-A-12'],
+                                    ['id' => 2, 'name' => 'Smart Watch', 'stock' => 128, 'location' => 'WH-B-05'],
+                                    ['id' => 3, 'name' => 'Bluetooth Speaker', 'stock' => 312, 'location' => 'WH-C-08']
+                                ],
+                                'total' => 685,
+                                'lastUpdated' => '2024-01-15T10:30:00Z'
+                            ]
+                        ],
+                        '/api/v1/orders' => [
+                            'status' => 200,
+                            'data' => [
+                                'orders' => [
+                                    ['id' => 'ORD-001', 'status' => 'shipped', 'total' => 129.99, 'date' => '2024-01-15'],
+                                    ['id' => 'ORD-002', 'status' => 'processing', 'total' => 89.99, 'date' => '2024-01-16'],
+                                    ['id' => 'ORD-003', 'status' => 'delivered', 'total' => 199.99, 'date' => '2024-01-14']
+                                ],
+                                'totalOrders' => 3
+                            ]
+                        ],
+                        '/api/v1/warehouses' => [
+                            'status' => 200,
+                            'data' => [
+                                'warehouses' => [
+                                    ['id' => 'WH-001', 'name' => 'North America Hub', 'capacity' => 50000, 'utilization' => 78],
+                                    ['id' => 'WH-002', 'name' => 'Europe Distribution', 'capacity' => 35000, 'utilization' => 65],
+                                    ['id' => 'WH-003', 'name' => 'Asia Pacific Center', 'capacity' => 45000, 'utilization' => 82]
+                                ]
+                            ]
+                        ]
+                    ],
+                    'apiStats' => [
+                        ['value' => '99.99%', 'label' => 'Uptime SLA'],
+                        ['value' => '<100ms', 'label' => 'Response Time'],
+                        ['value' => '10K/min', 'label' => 'Rate Limit']
+                    ],
+                    'showPartners' => true,
+                    'partnersTitle' => 'Trusted by Leading Platforms',
+                    'partnersDescription' => 'Connect with 200+ pre-built integrations',
+                    'integrationPartners' => [
+                        ['icon' => 'cloud', 'name' => 'AWS'],
+                        ['icon' => 'database', 'name' => 'MongoDB'],
+                        ['icon' => 'cart', 'name' => 'Shopify'],
+                        ['icon' => 'office', 'name' => 'Salesforce'],
+                        ['icon' => 'mail', 'name' => 'Mailchimp'],
+                        ['icon' => 'globe', 'name' => 'WordPress']
+                    ],
+                    'showMetrics' => true,
+                    'metrics' => [
+                        ['icon' => 'lightning', 'value' => '10M+', 'label' => 'API Calls/Day', 'description' => 'Daily request volume'],
+                        ['icon' => 'users', 'value' => '5K+', 'label' => 'Active Developers', 'description' => 'Building integrations'],
+                        ['icon' => 'database', 'value' => '200+', 'label' => 'Pre-built Connectors', 'description' => 'Ready to use'],
+                        ['icon' => 'globe', 'value' => '99.99%', 'label' => 'Uptime SLA', 'description' => 'Enterprise grade']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to integrate your stack?',
+                    'ctaPrimaryLink' => '/contact',
+                    'ctaSecondaryLink' => '/docs',
+                    'ctaButton' => [
+                        'primaryText' => 'Get Started',
+                        'primaryBackground' => 'bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700',
+                        'secondaryText' => 'View API Docs'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 139,
+                'section_key' => 'integrationCapabilities',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Integration Ecosystem',
+                        'backgroundColor' => 'bg-teal-50 dark:bg-teal-900/30',
+                        'borderColor' => 'border-teal-200 dark:border-teal-800',
+                        'textColor' => 'text-teal-700 dark:text-teal-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Seamless',
+                        'highlightedText' => 'Integration Ecosystem',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-teal-500 to-cyan-500'
+                    ],
+                    'description' => 'Connect, automate, and scale with our extensive integration marketplace. 500+ pre-built connectors for your entire tech stack.',
+                    'stats' => [
+                        ['value' => '500+', 'label' => 'Pre-built Integrations'],
+                        ['value' => '50K+', 'label' => 'Active Connections'],
+                        ['value' => '99.99%', 'label' => 'Platform Uptime'],
+                        ['value' => '24/7', 'label' => 'Support Available']
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'plug',
+                            'title' => 'Plug & Play Connectors',
+                            'description' => 'Ready-to-use integrations that work out of the box with minimal configuration.',
+                            'details' => [
+                                'One-click setup',
+                                'Auto-configuration',
+                                'Pre-mapped fields',
+                                'Test mode available'
+                            ],
+                            'metrics' => [
+                                ['value' => '<5min', 'label' => 'Setup Time'],
+                                ['value' => '500+', 'label' => 'Connectors']
+                            ],
+                            'link' => '/features/connectors',
+                            'isNew' => true
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'sync',
+                            'title' => 'Real-time Sync',
+                            'description' => 'Bi-directional data synchronization with millisecond latency across all platforms.',
+                            'details' => [
+                                'Instant data sync',
+                                'Conflict resolution',
+                                'Error recovery',
+                                'Sync history'
+                            ],
+                            'metrics' => [
+                                ['value' => '<100ms', 'label' => 'Latency'],
+                                ['value' => '99.99%', 'label' => 'Success Rate']
+                            ],
+                            'link' => '/features/real-time-sync',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'shield',
+                            'title' => 'Enterprise Security',
+                            'description' => 'Bank-grade encryption and compliance with SOC2, GDPR, and HIPAA standards.',
+                            'details' => [
+                                'End-to-end encryption',
+                                'Audit logging',
+                                'Access controls',
+                                'Compliance certified'
+                            ],
+                            'metrics' => [
+                                ['value' => '256-bit', 'label' => 'Encryption'],
+                                ['value' => '100%', 'label' => 'Compliant']
+                            ],
+                            'link' => '/features/security'
+                        ]
+                    ],
+                    'showMarketplace' => true,
+                    'marketplaceTitle' => 'Integration Marketplace',
+                    'marketplaceDescription' => 'Connect with 200+ popular apps and services',
+                    'categories' => [
+                        ['id' => 'ecommerce', 'name' => 'E-commerce'],
+                        ['id' => 'crm', 'name' => 'CRM'],
+                        ['id' => 'marketing', 'name' => 'Marketing'],
+                        ['id' => 'accounting', 'name' => 'Accounting']
+                    ],
+                    'integrations' => [
+                        ['icon' => 'cart', 'name' => 'Shopify', 'category' => 'ecommerce', 'setupTime' => '5 min', 'isPopular' => true],
+                        ['icon' => 'cart', 'name' => 'WooCommerce', 'category' => 'ecommerce', 'setupTime' => '5 min', 'isPopular' => false],
+                        ['icon' => 'office', 'name' => 'Salesforce', 'category' => 'crm', 'setupTime' => '10 min', 'isPopular' => true],
+                        ['icon' => 'users', 'name' => 'HubSpot', 'category' => 'crm', 'setupTime' => '8 min', 'isPopular' => true],
+                        ['icon' => 'mail', 'name' => 'Mailchimp', 'category' => 'marketing', 'setupTime' => '3 min', 'isPopular' => true],
+                        ['icon' => 'mail', 'name' => 'Klaviyo', 'category' => 'marketing', 'setupTime' => '5 min', 'isPopular' => false],
+                        ['icon' => 'dollar', 'name' => 'QuickBooks', 'category' => 'accounting', 'setupTime' => '10 min', 'isPopular' => true],
+                        ['icon' => 'dollar', 'name' => 'Xero', 'category' => 'accounting', 'setupTime' => '8 min', 'isPopular' => false]
+                    ],
+                    'showAIInsights' => true,
+                    'aiInsightsTitle' => 'AI-Powered Integration Intelligence',
+                    'aiInsightsDescription' => 'Smart recommendations for your integration needs',
+                    'aiInsights' => [
+                        [
+                            'icon' => 'sparkles',
+                            'title' => 'Smart Recommendations',
+                            'description' => 'AI suggests the best integrations based on your tech stack.',
+                            'impact' => 'Reduce setup time by 60%'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Usage Analytics',
+                            'description' => 'Track integration performance and usage patterns.',
+                            'impact' => 'Optimize workflow efficiency'
+                        ],
+                        [
+                            'icon' => 'bell',
+                            'title' => 'Proactive Alerts',
+                            'description' => 'Get notified about sync issues before they impact business.',
+                            'impact' => 'Prevent 95% of disruptions'
+                        ]
+                    ],
+                    'showDeveloperResources' => true,
+                    'devResourcesTitle' => 'Developer Resources',
+                    'devResourcesDescription' => 'Everything you need to build powerful integrations',
+                    'developerResources' => [
+                        ['icon' => 'document', 'title' => 'API Documentation', 'description' => 'Comprehensive API guides and references.', 'link' => '/docs/api'],
+                        ['icon' => 'terminal', 'title' => 'SDKs & Libraries', 'description' => 'Official SDKs for all major languages.', 'link' => '/docs/sdks'],
+                        ['icon' => 'code', 'title' => 'Code Examples', 'description' => 'Real-world integration examples.', 'link' => '/docs/examples'],
+                        ['icon' => 'server', 'title' => 'Webhook Simulator', 'description' => 'Test webhooks in a safe environment.', 'link' => '/docs/webhooks']
+                    ],
+                    'showSecurity' => true,
+                    'securityTitle' => 'Enterprise-Grade Security',
+                    'securityDescription' => 'Your data is protected with industry-leading security standards',
+                    'securityFeatures' => [
+                        'SOC2 Type II Certified',
+                        'GDPR & CCPA Compliant',
+                        '256-bit Encryption at Rest & Transit',
+                        'Regular Security Audits',
+                        'SSO & MFA Support',
+                        'Role-based Access Control'
+                    ],
+                    'securityBadges' => [
+                        ['icon' => 'shield', 'name' => 'SOC2'],
+                        ['icon' => 'globe', 'name' => 'GDPR'],
+                        ['icon' => 'lock', 'name' => 'HIPAA'],
+                        ['icon' => 'fingerprint', 'name' => 'ISO 27001']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to connect your entire ecosystem?',
+                    'ctaPrimaryLink' => '/trial',
+                    'ctaSecondaryLink' => '/docs',
+                    'ctaButton' => [
+                        'primaryText' => 'Start Building',
+                        'primaryBackground' => 'bg-linear-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700',
+                        'secondaryText' => 'View Documentation'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 140,
+                'section_key' => 'integrationCapabilities',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Mobile App Features Section
+            [
+                'id' => 141,
+                'section_key' => 'mobileAppFeatures',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Mobile-First Solution',
+                        'backgroundColor' => 'bg-orange-50 dark:bg-orange-900/30',
+                        'borderColor' => 'border-orange-200 dark:border-orange-800',
+                        'textColor' => 'text-orange-700 dark:text-orange-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Powerful',
+                        'highlightedText' => 'Mobile App',
+                        'suffix' => 'for Modern Teams',
+                        'highlightGradient' => 'from-orange-500 to-amber-500'
+                    ],
+                    'description' => 'Transform your operations with our feature-rich mobile app. Scan, track, and manage everything from the palm of your hand.',
+                    'showAppBadges' => true,
+                    'iosLink' => '/app-store',
+                    'androidLink' => '/play-store',
+                    'benefits' => [
+                        [
+                            'icon' => 'sync',
+                            'title' => 'Real-time Sync',
+                            'description' => 'Data syncs instantly across all devices'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Enterprise Security',
+                            'description' => 'Bank-grade encryption and biometric auth'
+                        ],
+                        [
+                            'icon' => 'offline',
+                            'title' => 'Offline Mode',
+                            'description' => 'Work anywhere, even without internet'
+                        ]
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'qrcode',
+                            'title' => 'Barcode Scanning',
+                            'description' => 'Fast and accurate barcode scanning for inventory management.',
+                            'details' => [
+                                'Scan 100+ barcodes per minute',
+                                'Supports 50+ barcode formats',
+                                'Batch scanning mode',
+                                'Auto-fill product details'
+                            ],
+                            'link' => '/features/barcode-scanning',
+                            'isNew' => true
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'location',
+                            'title' => 'GPS Tracking',
+                            'description' => 'Real-time location tracking for fleet and asset management.',
+                            'details' => [
+                                'Live vehicle tracking',
+                                'Geofencing alerts',
+                                'Route optimization',
+                                'Delivery confirmation'
+                            ],
+                            'link' => '/features/gps-tracking',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'chart',
+                            'title' => 'Analytics Dashboard',
+                            'description' => 'Mobile-optimized dashboards with real-time KPIs and insights.',
+                            'details' => [
+                                'Customizable widgets',
+                                'Real-time metrics',
+                                'Export reports',
+                                'Data visualization'
+                            ],
+                            'link' => '/features/mobile-analytics'
+                        ]
+                    ],
+                    'showScreenshots' => true,
+                    'screenshotsTitle' => 'App Experience',
+                    'screenshotsDescription' => 'See the mobile app in action',
+                    'screenshots' => [
+                        ['icon' => 'qrcode', 'title' => 'Scanning', 'description' => 'Fast barcode recognition'],
+                        ['icon' => 'chart', 'title' => 'Analytics', 'description' => 'Real-time insights'],
+                        ['icon' => 'inventory', 'title' => 'Inventory', 'description' => 'Manage stock levels'],
+                        ['icon' => 'bell', 'title' => 'Alerts', 'description' => 'Smart notifications']
+                    ],
+                    'showOffline' => true,
+                    'offlineTitle' => 'Works Offline',
+                    'offlineDescription' => 'Continue working even without internet connection. All data syncs automatically when you\'re back online.',
+                    'offlineFeatures' => [
+                        'Scan and save data offline',
+                        'Automatic sync when online',
+                        'Queue management',
+                        'Conflict resolution'
+                    ],
+                    'showAppHighlights' => true,
+                    'highlightsTitle' => 'Why Choose Our Mobile App',
+                    'highlightsDescription' => 'Everything you need to manage your operations on the go',
+                    'appHighlights' => [
+                        ['icon' => 'mobile', 'title' => 'iOS & Android', 'description' => 'Native apps for both platforms'],
+                        ['icon' => 'shield', 'title' => 'Biometric Login', 'description' => 'Face ID & Fingerprint support'],
+                        ['icon' => 'cloud', 'title' => 'Cloud Sync', 'description' => 'Real-time data sync'],
+                        ['icon' => 'bell', 'title' => 'Push Notifications', 'description' => 'Instant alerts']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to take your operations mobile?',
+                    'ctaPrimaryLink' => '/download',
+                    'ctaSecondaryLink' => '/demo',
+                    'ctaButton' => [
+                        'primaryText' => 'Download App',
+                        'primaryBackground' => 'bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700',
+                        'secondaryText' => 'Watch Demo'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 142,
+                'section_key' => 'mobileAppFeatures',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Interactive Demo',
+                        'backgroundColor' => 'bg-orange-50 dark:bg-orange-900/30',
+                        'borderColor' => 'border-orange-200 dark:border-orange-800',
+                        'textColor' => 'text-orange-700 dark:text-orange-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Experience the',
+                        'highlightedText' => 'Mobile App',
+                        'suffix' => 'in Action',
+                        'highlightGradient' => 'from-orange-500 to-amber-500'
+                    ],
+                    'description' => 'Interact with our mobile app simulator. Scan barcodes, track orders, and manage inventory in real-time.',
+                    'initialTab' => 'dashboard',
+                    'appName' => 'Inventory Pro',
+                    'features' => [
+                        [
+                            'id' => 'dashboard',
+                            'icon' => 'home',
+                            'title' => 'Real-time Dashboard',
+                            'description' => 'View key metrics and KPIs at a glance with our intuitive dashboard.',
+                            'details' => [
+                                'Live inventory counts',
+                                'Order status tracking',
+                                'Revenue analytics',
+                                'Performance indicators'
+                            ],
+                            'link' => '/features/mobile-dashboard'
+                        ],
+                        [
+                            'id' => 'scan',
+                            'icon' => 'qrcode',
+                            'title' => 'Smart Barcode Scanning',
+                            'description' => 'Fast and accurate scanning with instant product information retrieval.',
+                            'details' => [
+                                '50+ barcode formats',
+                                'Batch scanning mode',
+                                'Auto product lookup',
+                                'History tracking'
+                            ],
+                            'link' => '/features/mobile-scanning',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 'orders',
+                            'icon' => 'cart',
+                            'title' => 'Order Management',
+                            'description' => 'Track, update, and manage orders from anywhere.',
+                            'details' => [
+                                'Real-time order updates',
+                                'Status tracking',
+                                'Customer notifications',
+                                'Delivery confirmation'
+                            ],
+                            'link' => '/features/mobile-orders'
+                        ],
+                        [
+                            'id' => 'inventory',
+                            'icon' => 'inventory',
+                            'title' => 'Inventory Control',
+                            'description' => 'Manage stock levels, locations, and transfers on the go.',
+                            'details' => [
+                                'Stock level alerts',
+                                'Location tracking',
+                                'Transfer management',
+                                'Cycle counting'
+                            ],
+                            'link' => '/features/mobile-inventory'
+                        ]
+                    ],
+                    'dashboardStats' => [
+                        ['value' => '245', 'label' => 'Total Orders'],
+                        ['value' => '128', 'label' => 'Low Stock']
+                    ],
+                    'dashboardRevenue' => [
+                        'label' => 'Today\'s Revenue',
+                        'value' => '$1,245',
+                        'progress' => '75%'
+                    ],
+                    'scanTitle' => 'Barcode Scanner',
+                    'scanInstruction' => 'Position barcode in frame',
+                    'scanPlaceholder' => 'Enter barcode',
+                    'scanButtonText' => 'Scan',
+                    'notFoundMessage' => 'Product not found',
+                    'productDatabase' => [
+                        '8901234567890' => ['name' => 'Wireless Headphones', 'price' => '$89.99', 'stock' => 245],
+                        '5901234123457' => ['name' => 'Smart Watch', 'price' => '$199.99', 'stock' => 128],
+                        '4006381333931' => ['name' => 'Bluetooth Speaker', 'price' => '$59.99', 'stock' => 312]
+                    ],
+                    'ordersTitle' => 'Recent Orders',
+                    'recentOrders' => [
+                        ['id' => 'ORD-001', 'status' => 'Shipped', 'total' => '$129.99'],
+                        ['id' => 'ORD-002', 'status' => 'Processing', 'total' => '$89.99'],
+                        ['id' => 'ORD-003', 'status' => 'Delivered', 'total' => '$199.99']
+                    ],
+                    'trackButtonText' => 'Track',
+                    'inventoryTitle' => 'Inventory',
+                    'inventoryItems' => [
+                        ['name' => 'Wireless Headphones', 'stock' => 245, 'location' => 'A-12'],
+                        ['name' => 'Smart Watch', 'stock' => 128, 'location' => 'B-05'],
+                        ['name' => 'Bluetooth Speaker', 'stock' => 312, 'location' => 'C-08']
+                    ],
+                    'bottomNavItems' => [
+                        ['id' => 'dashboard', 'icon' => 'home'],
+                        ['id' => 'scan', 'icon' => 'qrcode'],
+                        ['id' => 'orders', 'icon' => 'cart'],
+                        ['id' => 'inventory', 'icon' => 'inventory']
+                    ],
+                    'showAppBadges' => true,
+                    'iosLink' => '/app-store',
+                    'androidLink' => '/play-store',
+                    'showCta' => true,
+                    'ctaText' => 'Ready to take your operations mobile?',
+                    'ctaPrimaryLink' => '/download',
+                    'ctaSecondaryLink' => '/demo',
+                    'ctaButton' => [
+                        'primaryText' => 'Download App',
+                        'primaryBackground' => 'bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700',
+                        'secondaryText' => 'Watch Demo'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 143,
+                'section_key' => 'mobileAppFeatures',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Multi-Platform',
+                        'backgroundColor' => 'bg-orange-50 dark:bg-orange-900/30',
+                        'borderColor' => 'border-orange-200 dark:border-orange-800',
+                        'textColor' => 'text-orange-700 dark:text-orange-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Native',
+                        'highlightedText' => 'iOS & Android',
+                        'suffix' => 'Apps',
+                        'highlightGradient' => 'from-orange-500 to-amber-500'
+                    ],
+                    'description' => 'Fully native mobile apps for both iOS and Android platforms, delivering optimal performance and user experience.',
+                    'initialPlatform' => 'ios',
+                    'stats' => [
+                        ['value' => '500K+', 'label' => 'App Downloads'],
+                        ['value' => '4.9', 'label' => 'App Store Rating'],
+                        ['value' => '99.9%', 'label' => 'Crash-Free'],
+                        ['value' => '<100ms', 'label' => 'Response Time']
+                    ],
+                    'showPlatformSelector' => true,
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'sparkles',
+                            'title' => 'Native Performance',
+                            'description' => 'Optimized for each platform with native UI components and gestures.',
+                            'details' => [
+                                'Smooth 60fps animations',
+                                'Platform-specific UI',
+                                'Hardware acceleration',
+                                'Memory optimization'
+                            ],
+                            'link' => '/features/native-performance',
+                            'platform' => 'both',
+                            'isNew' => true
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'fingerprint',
+                            'title' => 'Biometric Auth',
+                            'description' => 'Secure login with Face ID, Touch ID, or fingerprint authentication.',
+                            'details' => [
+                                'Face ID support',
+                                'Touch ID integration',
+                                'Fingerprint scanning',
+                                'Secure keychain storage'
+                            ],
+                            'link' => '/features/biometric-auth',
+                            'platform' => 'both',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'sync',
+                            'title' => 'iCloud/Google Sync',
+                            'description' => 'Seamless cloud sync across all your devices.',
+                            'details' => [
+                                'Cross-device sync',
+                                'Background updates',
+                                'Conflict resolution',
+                                'Offline support'
+                            ],
+                            'link' => '/features/cloud-sync',
+                            'platform' => 'both'
+                        ]
+                    ],
+                    'showWearable' => true,
+                    'wearableTitle' => 'Wearable Device Integration',
+                    'wearableDescription' => 'Extend your reach to smartwatches and wearables',
+                    'wearableDevices' => [
+                        [
+                            'icon' => 'watch',
+                            'name' => 'Apple Watch',
+                            'description' => 'View notifications and quick actions',
+                            'features' => 'Glanceable information'
+                        ],
+                        [
+                            'icon' => 'watch',
+                            'name' => 'Wear OS',
+                            'description' => 'Smartwatch companion app',
+                            'features' => 'Quick actions'
+                        ],
+                        [
+                            'icon' => 'desktop',
+                            'name' => 'Widgets',
+                            'description' => 'Home screen widgets',
+                            'features' => 'At-a-glance data'
+                        ]
+                    ],
+                    'showFeaturesShowcase' => true,
+                    'showcaseTitle' => 'What\'s Inside the App',
+                    'showcaseDescription' => 'Everything you need to manage your business on the go',
+                    'appFeatures' => [
+                        ['icon' => 'qrcode', 'title' => 'Barcode Scanner', 'description' => 'Fast & accurate scanning'],
+                        ['icon' => 'chart', 'title' => 'Analytics', 'description' => 'Real-time insights'],
+                        ['icon' => 'bell', 'title' => 'Push Notifications', 'description' => 'Instant alerts'],
+                        ['icon' => 'shield', 'title' => 'Secure', 'description' => 'Bank-grade security']
+                    ],
+                    'showSecurity' => true,
+                    'securityTitle' => 'Bank-Grade Security',
+                    'securityDescription' => 'Your data is protected with enterprise-level security measures',
+                    'securityFeatures' => [
+                        'End-to-end encryption',
+                        'Biometric authentication (Face ID / Fingerprint)',
+                        'Remote wipe capabilities',
+                        'Automatic session timeout',
+                        'Secure data storage'
+                    ],
+                    'securityIcons' => [
+                        ['icon' => 'fingerprint', 'label' => 'Face ID'],
+                        ['icon' => 'chip', 'label' => 'Secure Enclave'],
+                        ['icon' => 'lock', 'label' => 'Auto-Lock']
+                    ],
+                    'showAppBadges' => true,
+                    'iosLink' => '/app-store',
+                    'androidLink' => '/play-store',
+                    'rating' => 5,
+                    'ratingText' => '4.9 (15,000+ reviews)',
+                    'showCta' => true,
+                    'ctaText' => 'Ready to take your operations mobile?',
+                    'ctaPrimaryLink' => '/download',
+                    'ctaSecondaryLink' => '/demo',
+                    'ctaButton' => [
+                        'primaryText' => 'Download App',
+                        'primaryBackground' => 'bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700',
+                        'secondaryText' => 'Watch Demo'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 144,
+                'section_key' => 'mobileAppFeatures',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Security Features Section
+            [
+                'id' => 145,
+                'section_key' => 'securityFeatures',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Enterprise Security',
+                        'backgroundColor' => 'bg-emerald-50 dark:bg-emerald-900/30',
+                        'borderColor' => 'border-emerald-200 dark:border-emerald-800',
+                        'textColor' => 'text-emerald-700 dark:text-emerald-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Enterprise-Grade',
+                        'highlightedText' => 'Security',
+                        'suffix' => 'Infrastructure',
+                        'highlightGradient' => 'from-emerald-500 to-green-500'
+                    ],
+                    'description' => 'Protect your business with our comprehensive security framework. SOC2 compliant, GDPR ready, and built with zero-trust architecture.',
+                    'benefits' => [
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Zero-Trust Architecture',
+                            'description' => 'Every request is verified, authenticated, and encrypted'
+                        ],
+                        [
+                            'icon' => 'lock',
+                            'title' => 'End-to-End Encryption',
+                            'description' => '256-bit AES encryption for data at rest and in transit'
+                        ],
+                        [
+                            'icon' => 'fingerprint',
+                            'title' => 'Multi-Factor Auth',
+                            'description' => 'Biometric and TOTP support for all accounts'
+                        ]
+                    ],
+                    'certificationsTitle' => 'Industry-Leading Certifications',
+                    'certifications' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II', 'description' => 'Security & Compliance'],
+                        ['icon' => 'globe', 'name' => 'GDPR', 'description' => 'Data Protection'],
+                        ['icon' => 'lock', 'name' => 'ISO 27001', 'description' => 'Security Management'],
+                        ['icon' => 'server', 'name' => 'HIPAA', 'description' => 'Healthcare Compliance']
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'lock',
+                            'title' => 'Advanced Encryption',
+                            'description' => 'Military-grade encryption protecting your data at all times.',
+                            'details' => [
+                                'AES-256 encryption at rest',
+                                'TLS 1.3 for data in transit',
+                                'Hardware security modules',
+                                'Key rotation policies'
+                            ],
+                            'link' => '/security/encryption',
+                            'isNew' => true
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'fingerprint',
+                            'title' => 'Identity Management',
+                            'description' => 'Robust authentication and access control for all users.',
+                            'details' => [
+                                'SSO integration (SAML/OIDC)',
+                                'Multi-factor authentication',
+                                'Role-based access control',
+                                'Automated user provisioning'
+                            ],
+                            'link' => '/security/identity',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'eye',
+                            'title' => 'Audit & Monitoring',
+                            'description' => 'Real-time monitoring and comprehensive audit logs.',
+                            'details' => [
+                                'Real-time threat detection',
+                                'Comprehensive audit trails',
+                                'Automated alerts',
+                                'Security analytics'
+                            ],
+                            'link' => '/security/audit'
+                        ]
+                    ],
+                    'complianceTitle' => 'Global Compliance Standards',
+                    'complianceDescription' => 'Meet regulatory requirements worldwide',
+                    'complianceBadges' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2', 'region' => 'Global'],
+                        ['icon' => 'globe', 'name' => 'GDPR', 'region' => 'Europe'],
+                        ['icon' => 'shield', 'name' => 'CCPA', 'region' => 'California'],
+                        ['icon' => 'server', 'name' => 'HIPAA', 'region' => 'Healthcare']
+                    ],
+                    'showDataProtection' => true,
+                    'dataProtectionTitle' => 'Your Data, Your Control',
+                    'dataProtectionDescription' => 'We take data protection seriously. Your information is encrypted, securely stored, and never shared without your consent.',
+                    'dataProtectionFeatures' => [
+                        'Data encryption at rest and in transit',
+                        'Automated backup and recovery',
+                        'Data retention policies',
+                        'Privacy by design principles'
+                    ],
+                    'showSecurityMetrics' => true,
+                    'metricsTitle' => 'Security by the Numbers',
+                    'metricsDescription' => 'Our commitment to security in measurable terms',
+                    'securityMetrics' => [
+                        ['icon' => 'shield', 'value' => '99.99%', 'label' => 'Uptime SLA'],
+                        ['icon' => 'lock', 'value' => '256-bit', 'label' => 'Encryption'],
+                        ['icon' => 'key', 'value' => '10M+', 'label' => 'Audit Events/Day'],
+                        ['icon' => 'users', 'value' => '100%', 'label' => 'MFA Coverage']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to secure your operations?',
+                    'ctaPrimaryLink' => '/contact',
+                    'ctaSecondaryLink' => '/security',
+                    'ctaButton' => [
+                        'primaryText' => 'Contact Security Team',
+                        'primaryBackground' => 'bg-linear-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700',
+                        'secondaryText' => 'Read Security Whitepaper'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 146,
+                'section_key' => 'securityFeatures',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Interactive Security',
+                        'backgroundColor' => 'bg-emerald-50 dark:bg-emerald-900/30',
+                        'borderColor' => 'border-emerald-200 dark:border-emerald-800',
+                        'textColor' => 'text-emerald-700 dark:text-emerald-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Test Our',
+                        'highlightedText' => 'Security Features',
+                        'suffix' => 'Interactive Demo',
+                        'highlightGradient' => 'from-emerald-500 to-green-500'
+                    ],
+                    'description' => 'Experience our security measures firsthand with interactive demonstrations of encryption, MFA, RBAC, and audit logging.',
+                    'initialFeature' => 'encryption',
+                    'simulatorTitle' => 'Security Simulator',
+                    'features' => [
+                        [
+                            'id' => 'encryption',
+                            'icon' => 'lock',
+                            'title' => 'AES-256 Encryption',
+                            'description' => 'Military-grade encryption protecting your data at rest and in transit.',
+                            'details' => [
+                                'End-to-end encryption',
+                                'Perfect forward secrecy',
+                                'Hardware security modules',
+                                'Automated key rotation'
+                            ],
+                            'link' => '/security/encryption'
+                        ],
+                        [
+                            'id' => 'mfa',
+                            'icon' => 'key',
+                            'title' => 'Multi-Factor Auth',
+                            'description' => 'Additional layer of security with biometric and TOTP support.',
+                            'details' => [
+                                'TOTP authenticator apps',
+                                'SMS verification',
+                                'Biometric authentication',
+                                'Backup codes'
+                            ],
+                            'link' => '/security/mfa',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 'rbac',
+                            'icon' => 'users',
+                            'title' => 'Role-Based Access',
+                            'description' => 'Granular access controls based on user roles and permissions.',
+                            'details' => [
+                                'Custom role creation',
+                                'Permission hierarchies',
+                                'Just-in-time access',
+                                'Access reviews'
+                            ],
+                            'link' => '/security/rbac'
+                        ],
+                        [
+                            'id' => 'audit',
+                            'icon' => 'clipboard',
+                            'title' => 'Audit Logging',
+                            'description' => 'Comprehensive logging of all security events and user actions.',
+                            'details' => [
+                                'Real-time monitoring',
+                                'Tamper-proof logs',
+                                'Automated alerts',
+                                'Compliance reporting'
+                            ],
+                            'link' => '/security/audit'
+                        ]
+                    ],
+                    'encryptionTitle' => 'AES-256 Encryption',
+                    'encryptionSubtitle' => 'Your data is securely encrypted',
+                    'originalDataLabel' => 'Original Data',
+                    'originalData' => 'Sensitive Customer Data: Order #12345, Total $1,299.99',
+                    'encryptedDataLabel' => 'Encrypted Data',
+                    'encryptedData' => '7b3d8e2f9a1c4e5b8d7f2a3c6e9f1b4d8e2c5f7a9b3d6e8c1f4a7b9e2d5c8f1a4b7',
+                    'encryptionFeatures' => [
+                        'AES-256 encryption (military-grade)',
+                        'TLS 1.3 for data in transit',
+                        'HSM key protection'
+                    ],
+                    'mfaTitle' => 'Multi-Factor Authentication',
+                    'mfaSubtitle' => 'Test the MFA flow',
+                    'passwordPrompt' => 'Enter your password:',
+                    'passwordPlaceholder' => '••••••••',
+                    'demoPassword' => 'password123',
+                    'verifyPasswordText' => 'Verify Password',
+                    'codePrompt' => 'Enter verification code from authenticator app:',
+                    'codePlaceholder' => '123456',
+                    'verifyCodeText' => 'Verify',
+                    'backText' => 'Back',
+                    'demoCodeMessage' => 'Demo code: 123456',
+                    'mfaDemoCode' => '123456',
+                    'invalidCodeMessage' => 'Invalid code. Try: 123456',
+                    'successMessage' => 'Authentication Successful!',
+                    'accessGrantedMessage' => 'MFA verified. Access granted.',
+                    'tryAgainText' => 'Try Again',
+                    'rbacTitle' => 'Role-Based Access Control',
+                    'rbacSubtitle' => 'Simulate different user roles',
+                    'rbacRoles' => [
+                        [
+                            'name' => 'Admin',
+                            'accessLevel' => 'Full Access',
+                            'badgeClass' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'description' => 'Can create, edit, delete, and manage users'
+                        ],
+                        [
+                            'name' => 'Manager',
+                            'accessLevel' => 'Edit Access',
+                            'badgeClass' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'description' => 'Can edit inventory and create orders'
+                        ],
+                        [
+                            'name' => 'Viewer',
+                            'accessLevel' => 'Read Only',
+                            'badgeClass' => 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+                            'description' => 'Can only view data and generate reports'
+                        ]
+                    ],
+                    'auditTitle' => 'Audit Log Simulator',
+                    'auditSubtitle' => 'Recent security events',
+                    'auditLogs' => [
+                        ['action' => 'User Login', 'user' => 'john.doe@company.com', 'time' => '2 minutes ago', 'status' => 'success'],
+                        ['action' => 'Password Change', 'user' => 'jane.smith@company.com', 'time' => '15 minutes ago', 'status' => 'success'],
+                        ['action' => 'MFA Enabled', 'user' => 'mike.wilson@company.com', 'time' => '1 hour ago', 'status' => 'success'],
+                        ['action' => 'Failed Login Attempt', 'user' => 'unknown@ip.com', 'time' => '2 hours ago', 'status' => 'failed'],
+                        ['action' => 'Role Updated', 'user' => 'admin@company.com', 'time' => '3 hours ago', 'status' => 'success'],
+                        ['action' => 'Data Export', 'user' => 'analyst@company.com', 'time' => '5 hours ago', 'status' => 'success']
+                    ],
+                    'securityScoreLabel' => 'Security Score',
+                    'securityScore' => '98',
+                    'securityScoreWidth' => '98%',
+                    'securityFeatures' => [
+                        'Encryption: Active',
+                        'MFA: Available',
+                        'Audit Logs: Enabled',
+                        'RBAC: Configured'
+                    ],
+                    'certificationsTitle' => 'Industry-Leading Certifications',
+                    'certifications' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II', 'description' => 'Security & Compliance'],
+                        ['icon' => 'globe', 'name' => 'GDPR', 'description' => 'Data Protection'],
+                        ['icon' => 'lock', 'name' => 'ISO 27001', 'description' => 'Security Management'],
+                        ['icon' => 'server', 'name' => 'HIPAA', 'description' => 'Healthcare Compliance']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to secure your operations?',
+                    'ctaPrimaryLink' => '/contact',
+                    'ctaSecondaryLink' => '/security',
+                    'ctaButton' => [
+                        'primaryText' => 'Contact Security Team',
+                        'primaryBackground' => 'bg-linear-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700',
+                        'secondaryText' => 'Read Security Whitepaper'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 147,
+                'section_key' => 'securityFeatures',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Enterprise Security',
+                        'backgroundColor' => 'bg-emerald-50 dark:bg-emerald-900/30',
+                        'borderColor' => 'border-emerald-200 dark:border-emerald-800',
+                        'textColor' => 'text-emerald-700 dark:text-emerald-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Comprehensive',
+                        'highlightedText' => 'Security Framework',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-emerald-500 to-green-500'
+                    ],
+                    'description' => 'Enterprise-grade security with global compliance certifications, AI-powered threat detection, and 24/7 monitoring.',
+                    'initialTab' => 'compliance',
+                    'stats' => [
+                        ['value' => '99.99%', 'label' => 'Uptime SLA'],
+                        ['value' => '0', 'label' => 'Security Breaches'],
+                        ['value' => '24/7', 'label' => 'Security Monitoring'],
+                        ['value' => '100%', 'label' => 'Data Encryption']
+                    ],
+                    'features' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'shield',
+                            'title' => 'Zero-Trust Architecture',
+                            'description' => 'Never trust, always verify. Every request is authenticated and authorized.',
+                            'details' => [
+                                'Continuous verification',
+                                'Least privilege access',
+                                'Micro-segmentation',
+                                'Real-time monitoring'
+                            ],
+                            'metrics' => [
+                                ['value' => '100%', 'label' => 'Verification Rate'],
+                                ['value' => '<50ms', 'label' => 'Auth Time']
+                            ],
+                            'link' => '/security/zero-trust',
+                            'isNew' => true
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'chip',
+                            'title' => 'AI Threat Detection',
+                            'description' => 'Machine learning models that identify and respond to threats in real-time.',
+                            'details' => [
+                                'Anomaly detection',
+                                'Behavioral analytics',
+                                'Automated response',
+                                'Threat intelligence'
+                            ],
+                            'metrics' => [
+                                ['value' => '99.9%', 'label' => 'Detection Rate'],
+                                ['value' => '<1s', 'label' => 'Response Time']
+                            ],
+                            'link' => '/security/ai-detection',
+                            'isPopular' => true
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'lock',
+                            'title' => 'Data Protection',
+                            'description' => 'Military-grade encryption and data loss prevention.',
+                            'details' => [
+                                'AES-256 encryption',
+                                'DLP policies',
+                                'Backup & recovery',
+                                'Data masking'
+                            ],
+                            'metrics' => [
+                                ['value' => '256-bit', 'label' => 'Encryption'],
+                                ['value' => 'RTO <15min', 'label' => 'Recovery']
+                            ],
+                            'link' => '/security/data-protection'
+                        ]
+                    ],
+                    'showCompliance' => true,
+                    'complianceTitle' => 'Global Compliance & Certifications',
+                    'complianceDescription' => 'Meet the highest security and privacy standards worldwide',
+                    'complianceStandards' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II', 'region' => 'Global'],
+                        ['icon' => 'globe-alt', 'name' => 'GDPR', 'region' => 'Europe'],
+                        ['icon' => 'shield', 'name' => 'CCPA', 'region' => 'California'],
+                        ['icon' => 'server', 'name' => 'HIPAA', 'region' => 'Healthcare'],
+                        ['icon' => 'lock', 'name' => 'ISO 27001', 'region' => 'Global'],
+                        ['icon' => 'key', 'name' => 'PCI DSS', 'region' => 'Payments'],
+                        ['icon' => 'office', 'name' => 'SOX', 'region' => 'Financial'],
+                        ['icon' => 'cloud', 'name' => 'FedRAMP', 'region' => 'US Government']
+                    ],
+                    'securityCertifications' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2', 'type' => 'Type II'],
+                        ['icon' => 'lock', 'name' => 'ISO 27001', 'type' => 'Certified'],
+                        ['icon' => 'key', 'name' => 'PCI DSS', 'type' => 'Level 1'],
+                        ['icon' => 'globe-alt', 'name' => 'GDPR', 'type' => 'Compliant'],
+                        ['icon' => 'server', 'name' => 'HIPAA', 'type' => 'Compliant'],
+                        ['icon' => 'cloud', 'name' => 'CSA STAR', 'type' => 'Level 2']
+                    ],
+                    'dataRegions' => [
+                        ['icon' => 'globe-alt', 'name' => 'US East', 'location' => 'N. Virginia'],
+                        ['icon' => 'globe-alt', 'name' => 'US West', 'location' => 'Oregon'],
+                        ['icon' => 'globe-alt', 'name' => 'EU Central', 'location' => 'Frankfurt'],
+                        ['icon' => 'globe-alt', 'name' => 'APAC', 'location' => 'Singapore'],
+                        ['icon' => 'globe-alt', 'name' => 'UK', 'location' => 'London'],
+                        ['icon' => 'globe-alt', 'name' => 'Canada', 'location' => 'Montreal']
+                    ],
+                    'showAIInsights' => true,
+                    'aiInsightsTitle' => 'AI-Powered Security Intelligence',
+                    'aiInsightsDescription' => 'Proactive threat detection and automated response',
+                    'aiInsights' => [
+                        [
+                            'icon' => 'eye',
+                            'title' => 'Real-time Monitoring',
+                            'description' => 'Continuous scanning for anomalies and suspicious activities.',
+                            'impact' => '99.9% threat detection rate'
+                        ],
+                        [
+                            'icon' => 'sparkles',
+                            'title' => 'Predictive Analytics',
+                            'description' => 'AI predicts potential vulnerabilities before they\'re exploited.',
+                            'impact' => '70% fewer security incidents'
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'title' => 'Automated Response',
+                            'description' => 'Instant containment and remediation of security threats.',
+                            'impact' => '<1 minute response time'
+                        ]
+                    ],
+                    'showArchitecture' => true,
+                    'architectureTitle' => 'Zero-Trust Security Architecture',
+                    'architectureDescription' => 'Never trust, always verify. Our security model ensures continuous validation at every access point.',
+                    'architectureFeatures' => [
+                        'Continuous authentication & authorization',
+                        'Micro-segmentation & least privilege',
+                        'End-to-end encryption for all traffic',
+                        'Real-time monitoring & auditing'
+                    ],
+                    'securityLayers' => [
+                        ['icon' => 'lock', 'name' => 'Identity', 'description' => 'MFA & SSO'],
+                        ['icon' => 'shield', 'name' => 'Network', 'description' => 'Zero-trust'],
+                        ['icon' => 'database', 'name' => 'Data', 'description' => 'Encryption'],
+                        ['icon' => 'eye', 'name' => 'Monitoring', 'description' => '24/7 SOC']
+                    ],
+                    'showSupport' => true,
+                    'supportTitle' => '24/7 Security Operations Center',
+                    'supportDescription' => 'Our dedicated security team monitors and protects your data around the clock',
+                    'securitySupport' => [
+                        ['icon' => 'user', 'title' => 'Dedicated Team', 'description' => 'Security experts on call 24/7'],
+                        ['icon' => 'phone', 'title' => 'Emergency Response', 'description' => '15-minute SLA for critical issues'],
+                        ['icon' => 'chat', 'title' => 'Security Advisory', 'description' => 'Best practices & guidance']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to secure your operations?',
+                    'ctaPrimaryLink' => '/security-contact',
+                    'ctaSecondaryLink' => '/security-white-paper',
+                    'ctaButton' => [
+                        'primaryText' => 'Contact Security Team',
+                        'primaryBackground' => 'bg-linear-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700',
+                        'secondaryText' => 'Read White Paper'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 148,
+                'section_key' => 'securityFeatures',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         // Add the new FeatureP variants

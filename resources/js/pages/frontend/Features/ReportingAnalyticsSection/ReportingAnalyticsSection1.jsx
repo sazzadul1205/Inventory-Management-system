@@ -17,39 +17,88 @@ import {
   HiOutlineChip,
   HiArrowRight,
   HiOutlineEye,
-  HiOutlineShare
+  HiOutlineShare,
+  HiOutlineRefresh,
+  HiOutlineFilter,
+  HiOutlineMail,
+  HiOutlineClock,
+  HiOutlineCurrencyDollar,
+  HiOutlineUsers,
+  HiOutlineShoppingCart,
+  HiOutlineClipboardList,
+  HiOutlineTruck,
+  HiOutlineStar,
+  HiOutlineCheckCircle,
+  HiOutlineChartBar as HiOutlineAnalytics,
+  HiOutlineDocumentText,
+  HiOutlinePresentationChartLine,
+  HiOutlineTable,
+  HiOutlineTemplate
 } from 'react-icons/hi';
 
 const ReportingAnalyticsSection1 = ({ config }) => {
+  
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-8 h-8") => {
     switch (iconName) {
       case 'chart-bar':
-        return <HiOutlineChartBar className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineChartBar className={className} />;
       case 'chart-pie':
-        return <HiOutlineChartPie className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineChartPie className={className} />;
       case 'chart-square':
-        return <HiOutlineChartSquareBar className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineChartSquareBar className={className} />;
       case 'trending':
-        return <HiOutlineTrendingUp className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineTrendingUp className={className} />;
       case 'report':
-        return <HiOutlineDocumentReport className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineDocumentReport className={className} />;
       case 'download':
-        return <HiOutlineDownload className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineDownload className={className} />;
       case 'calendar':
-        return <HiOutlineCalendar className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineCalendar className={className} />;
       case 'bell':
-        return <HiOutlineBell className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineBell className={className} />;
       case 'database':
-        return <HiOutlineDatabase className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineDatabase className={className} />;
       case 'chip':
-        return <HiOutlineChip className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineChip className={className} />;
       case 'eye':
-        return <HiOutlineEye className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineEye className={className} />;
       case 'share':
-        return <HiOutlineShare className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineShare className={className} />;
+      case 'refresh':
+        return <HiOutlineRefresh className={className} />;
+      case 'filter':
+        return <HiOutlineFilter className={className} />;
+      case 'mail':
+        return <HiOutlineMail className={className} />;
+      case 'clock':
+        return <HiOutlineClock className={className} />;
+      case 'dollar':
+        return <HiOutlineCurrencyDollar className={className} />;
+      case 'users':
+        return <HiOutlineUsers className={className} />;
+      case 'cart':
+        return <HiOutlineShoppingCart className={className} />;
+      case 'inventory':
+        return <HiOutlineClipboardList className={className} />;
+      case 'truck':
+        return <HiOutlineTruck className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
+      case 'check':
+        return <HiOutlineCheckCircle className={className} />;
+      case 'analytics':
+        return <HiOutlineAnalytics className={className} />;
+      case 'document':
+        return <HiOutlineDocumentText className={className} />;
+      case 'presentation':
+        return <HiOutlinePresentationChartLine className={className} />;
+      case 'table':
+        return <HiOutlineTable className={className} />;
+      case 'template':
+        return <HiOutlineTemplate className={className} />;
       default:
-        return <HiOutlineChartBar className={`${className} text-purple-600 dark:text-purple-400`} aria-hidden="true" />;
+        return <HiOutlineChartBar className={className} />;
     }
   };
 
@@ -130,7 +179,7 @@ const ReportingAnalyticsSection1 = ({ config }) => {
 
         {/* Features Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
           itemProp="offers"
           itemScope
           itemType="https://schema.org/Offer"
@@ -145,7 +194,7 @@ const ReportingAnalyticsSection1 = ({ config }) => {
             >
               {/* Feature Icon */}
               <div className="w-16 h-16 bg-purple-50 dark:bg-gray-700 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {getFeatureIcon(feature.icon)}
+                {getFeatureIcon(feature.icon, "w-8 h-8 text-purple-600 dark:text-purple-400")}
               </div>
 
               {/* Feature Title */}
@@ -168,14 +217,7 @@ const ReportingAnalyticsSection1 = ({ config }) => {
               <ul className="space-y-3 mb-6" aria-label={`${feature.title} details`}>
                 {feature.details?.map((detail, index) => (
                   <li key={index} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                    <svg
-                      className="w-5 h-5 text-purple-500 dark:text-purple-400 mr-2 shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                    >
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
+                    {getFeatureIcon("check", "w-5 h-5 text-purple-500 dark:text-purple-400 mr-2 shrink-0 mt-0.5")}
                     <span>{detail}</span>
                   </li>
                 ))}
@@ -199,7 +241,7 @@ const ReportingAnalyticsSection1 = ({ config }) => {
 
         {/* Key Metrics Preview */}
         {config?.showMetricsPreview && (
-          <div className="mt-20">
+          <div className="mt-20 mb-20">
             <div className="text-center mb-12">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 {config?.metricsTitle || "Key Performance Indicators"}
@@ -219,8 +261,8 @@ const ReportingAnalyticsSection1 = ({ config }) => {
                       {getFeatureIcon(metric.icon, "w-5 h-5 text-purple-600 dark:text-purple-400")}
                     </div>
                     <span className={`text-xs font-semibold px-2 py-1 rounded-full ${metric.trend === 'up' ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' :
-                        metric.trend === 'down' ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400' :
-                          'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                      metric.trend === 'down' ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400' :
+                        'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
                       }`}>
                       {metric.change}
                     </span>
@@ -242,7 +284,7 @@ const ReportingAnalyticsSection1 = ({ config }) => {
 
         {/* Report Types Section */}
         {config?.showReportTypes && (
-          <div className="mt-20">
+          <div className="mb-20">
             <div className="text-center mb-12">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 {config?.reportTypesTitle || "Pre-Built Reports"}
@@ -258,7 +300,9 @@ const ReportingAnalyticsSection1 = ({ config }) => {
                   className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="text-2xl">{report.icon}</div>
+                    <div className="text-2xl">
+                      {getFeatureIcon(report.icon, "w-6 h-6 text-purple-600 dark:text-purple-400")}
+                    </div>
                     <h4 className="font-semibold text-gray-900 dark:text-white">{report.name}</h4>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
@@ -266,7 +310,7 @@ const ReportingAnalyticsSection1 = ({ config }) => {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-purple-600 dark:text-purple-400">{report.frequency}</span>
-                    <HiOutlineDocumentReport className="w-4 h-4 text-gray-400 group-hover:text-purple-500 transition-colors" />
+                    {getFeatureIcon("report", "w-4 h-4 text-gray-400 group-hover:text-purple-500 transition-colors")}
                   </div>
                 </div>
               ))}
@@ -274,21 +318,62 @@ const ReportingAnalyticsSection1 = ({ config }) => {
           </div>
         )}
 
+        {/* Data Export Options */}
+        {config?.showExportOptions && (
+          <div className="mb-20">
+            <div className="bg-linear-to-r from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl p-8 border border-purple-100 dark:border-gray-700">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                    {getFeatureIcon("download", "w-8 h-8 text-purple-600 dark:text-purple-400")}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                      {config?.exportTitle || "Multiple Export Formats"}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {config?.exportDescription || "Export your data in any format you need"}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  {config?.exportFormats?.map((format, index) => (
+                    <button
+                      key={index}
+                      className="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors font-medium text-sm"
+                    >
+                      {format}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Bottom CTA Section */}
         {config?.showCta && (
           <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-4 p-1 bg-gray-50 dark:bg-gray-800/50 rounded-full pl-6 pr-2 py-2">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl">
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 {config?.ctaText || "Ready to unlock actionable insights?"}
               </span>
-              <Link
-                href={config?.ctaLink || "/contact"}
-                className={`${config?.ctaButton?.backgroundColor} ${config?.ctaButton?.textColor} px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2`}
-                aria-label="Start analyzing now"
-              >
-                {config?.ctaButton?.text || "Get Started"}
-                <HiArrowRight aria-hidden="true" />
-              </Link>
+              <div className="flex gap-3">
+                <Link
+                  href={config?.ctaPrimaryLink || "/contact"}
+                  className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
+                  aria-label="Start analyzing now"
+                >
+                  {config?.ctaButton?.primaryText || "Get Started"}
+                  <HiArrowRight aria-hidden="true" />
+                </Link>
+                <Link
+                  href={config?.ctaSecondaryLink || "/demo"}
+                  className="px-6 py-3 bg-transparent border-2 border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400 font-semibold rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 inline-flex items-center gap-2"
+                >
+                  {config?.ctaButton?.secondaryText || "Watch Demo"}
+                </Link>
+              </div>
             </div>
           </div>
         )}

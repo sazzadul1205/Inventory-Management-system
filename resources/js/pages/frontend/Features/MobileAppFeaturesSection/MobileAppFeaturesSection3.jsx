@@ -3,7 +3,6 @@
 // React
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
-import { FaApple, FaGooglePlay, FaStar } from 'react-icons/fa';
 
 // Icons
 import {
@@ -15,22 +14,29 @@ import {
   HiOutlineRefresh,
   HiOutlineShieldCheck,
   HiOutlineUserGroup,
-  HiArrowRight,
-  HiOutlineCheckCircle,
   HiOutlineLocationMarker,
   HiOutlineClipboardList,
   HiOutlineTruck,
   HiOutlineSearch,
-  HiOutlineDownload,
   HiOutlineSparkles,
   HiOutlineStar,
   HiOutlineClock,
   HiOutlineChip,
   HiOutlineWifi,
+  HiOutlineHome,
+  HiOutlineShoppingCart,
+  HiOutlineUser,
+  HiOutlineFingerPrint,
+  HiOutlineKey,
+  HiOutlineLockClosed,
+  HiOutlineDesktopComputer
 } from 'react-icons/hi';
+import { MdOutlineWatch } from "react-icons/md";
 
 const MobileAppFeaturesSection3 = ({ config }) => {
-  const [activePlatform, setActivePlatform] = useState('ios');
+
+  // State for selected platform
+  const [activePlatform, setActivePlatform] = useState(config?.initialPlatform || 'ios');
 
   // Icon mapping function
   const getFeatureIcon = (iconName, className = "w-8 h-8") => {
@@ -61,12 +67,30 @@ const MobileAppFeaturesSection3 = ({ config }) => {
         return <HiOutlineSearch className={className} />;
       case 'sparkles':
         return <HiOutlineSparkles className={className} />;
+      case 'star':
+        return <HiOutlineStar className={className} />;
       case 'clock':
         return <HiOutlineClock className={className} />;
       case 'chip':
         return <HiOutlineChip className={className} />;
       case 'wifi':
         return <HiOutlineWifi className={className} />;
+      case 'home':
+        return <HiOutlineHome className={className} />;
+      case 'cart':
+        return <HiOutlineShoppingCart className={className} />;
+      case 'user':
+        return <HiOutlineUser className={className} />;
+      case 'fingerprint':
+        return <HiOutlineFingerPrint className={className} />;
+      case 'key':
+        return <HiOutlineKey className={className} />;
+      case 'lock':
+        return <HiOutlineLockClosed className={className} />;
+      case 'watch':
+        return <MdOutlineWatch className={className} />;
+      case 'desktop':
+        return <HiOutlineDesktopComputer className={className} />;
       default:
         return <HiOutlineDeviceMobile className={className} />;
     }
@@ -154,7 +178,7 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
             >
-              <HiOutlineDeviceMobile className="w-5 h-5" />
+              {getFeatureIcon("mobile", "w-5 h-5")}
               iOS App
             </button>
             <button
@@ -164,7 +188,7 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
             >
-              <HiOutlineDeviceMobile className="w-5 h-5" />
+              {getFeatureIcon("mobile", "w-5 h-5")}
               Android App
             </button>
           </div>
@@ -206,7 +230,7 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                   )}
                   {feature.isPopular && (
                     <span className="px-2 py-0.5 text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full flex items-center gap-1">
-                      <HiOutlineStar className="w-3 h-3" />
+                      {getFeatureIcon("star", "w-3 h-3")}
                       Popular
                     </span>
                   )}
@@ -221,7 +245,7 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                 <ul className="space-y-2 mb-6">
                   {feature.details?.slice(0, 3).map((detail, idx) => (
                     <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-orange-500 dark:text-orange-400 mr-2 shrink-0 mt-0.5" />
+                      {getFeatureIcon("check", "w-4 h-4 text-orange-500 dark:text-orange-400 mr-2 shrink-0 mt-0.5")}
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -247,7 +271,7 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                   className="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors duration-300 group/link"
                 >
                   <span>Learn more</span>
-                  <HiArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                  {getFeatureIcon("arrow", "ml-2 group-hover/link:translate-x-1 transition-transform")}
                 </Link>
               </div>
 
@@ -272,7 +296,9 @@ const MobileAppFeaturesSection3 = ({ config }) => {
               {config?.wearableDevices?.map((device, index) => (
                 <div key={index} className="relative bg-linear-to-br from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 border border-orange-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">{device.icon}</div>
+                    <div className="mb-3 flex justify-center">
+                      {getFeatureIcon(device.icon, "w-12 h-12 text-orange-600 dark:text-orange-400")}
+                    </div>
                     <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{device.name}</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{device.description}</p>
                     <div className="text-xs font-semibold text-orange-600 dark:text-orange-400">{device.features}</div>
@@ -300,9 +326,11 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                   key={index}
                   className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">{appFeature.icon}</div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{appFeature.title}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{appFeature.description}</p>
+                  <div className="mb-3 group-hover:scale-110 transition-transform flex justify-center">
+                    {getFeatureIcon(appFeature.icon, "w-10 h-10 text-orange-600 dark:text-orange-400")}
+                  </div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-center">{appFeature.title}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 text-center">{appFeature.description}</p>
                 </div>
               ))}
             </div>
@@ -323,39 +351,23 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                       {config?.securityDescription || "Your data is protected with enterprise-level security measures"}
                     </p>
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>End-to-end encryption</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>Biometric authentication (Face ID / Fingerprint)</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
-                        <span>Remote wipe capabilities</span>
-                      </div>
+                      {config?.securityFeatures?.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          {getFeatureIcon("check", "w-5 h-5")}
+                          <span>{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <div className="flex justify-center gap-8">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mb-2">
-                        <HiOutlineShieldCheck className="w-10 h-10" />
+                    {config?.securityIcons?.map((icon, index) => (
+                      <div key={index} className="text-center">
+                        <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mb-2">
+                          {getFeatureIcon(icon.icon, "w-10 h-10")}
+                        </div>
+                        <div className="text-white text-sm">{icon.label}</div>
                       </div>
-                      <div className="text-white text-sm">Face ID</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mb-2">
-                        <HiOutlineChip className="w-10 h-10" />
-                      </div>
-                      <div className="text-white text-sm">Secure Enclave</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mb-2">
-                        <HiOutlineRefresh className="w-10 h-10" />
-                      </div>
-                      <div className="text-white text-sm">Auto-Lock</div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -366,15 +378,13 @@ const MobileAppFeaturesSection3 = ({ config }) => {
         {/* App Store Badges with Ratings */}
         {config?.showAppBadges && (
           <div className="flex flex-col items-center gap-4 mb-12">
-
             {/* Buttons */}
             <div className="flex gap-4">
-
               <Link
                 href={config?.iosLink || "/app-store"}
                 className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg transition-transform hover:scale-105"
               >
-                <FaApple className="text-xl" />
+                {getFeatureIcon("mobile", "text-xl")}
                 <span className="text-xs leading-tight">
                   Download on the <br /> <strong>App Store</strong>
                 </span>
@@ -384,25 +394,21 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                 href={config?.androidLink || "/play-store"}
                 className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg transition-transform hover:scale-105"
               >
-                <FaGooglePlay className="text-xl" />
+                {getFeatureIcon("mobile", "text-xl")}
                 <span className="text-xs leading-tight">
                   Get it on <br /> <strong>Google Play</strong>
                 </span>
               </Link>
-
             </div>
 
             {/* Ratings */}
             <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-
               <div className="flex text-yellow-500">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} />
+                {[...Array(config?.rating || 5)].map((_, i) => (
+                  <span key={i}>{getFeatureIcon("star", "w-4 h-4")}</span>
                 ))}
               </div>
-
-              <span>4.9 (15,000+ reviews)</span>
-
+              <span>{config?.ratingText || "4.9 (15,000+ reviews)"}</span>
             </div>
           </div>
         )}
@@ -420,7 +426,7 @@ const MobileAppFeaturesSection3 = ({ config }) => {
                   className={`${config?.ctaButton?.primaryBackground || "bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700"} px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2 text-white`}
                 >
                   {config?.ctaButton?.primaryText || "Download App"}
-                  <HiOutlineDownload aria-hidden="true" />
+                  {getFeatureIcon("download")}
                 </Link>
                 <Link
                   href={config?.ctaSecondaryLink || "/demo"}
