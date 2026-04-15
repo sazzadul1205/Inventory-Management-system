@@ -2746,7 +2746,2204 @@ class IndustriesPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Electronics Section
+            [
+                'id' => 193,
+                'section_key' => 'electronics',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Industry Focus',
+                        'backgroundColor' => 'bg-purple-50 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Electronics',
+                        'highlightedText' => 'Supply Chain Solutions',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-purple-500 to-indigo-500'
+                    ],
+                    'description' => 'Optimize your electronics supply chain with component traceability, inventory optimization, and quality management.',
+                    'initialTab' => 'overview',
+                    'showStats' => true,
+                    'stats' => [
+                        ['icon' => 'chip', 'value' => '300+', 'label' => 'Electronics Companies'],
+                        ['icon' => 'database', 'value' => '5M+', 'label' => 'Components Managed'],
+                        ['icon' => 'trending', 'value' => '30%', 'label' => 'Inventory Reduction'],
+                        ['icon' => 'clock', 'value' => '99.5%', 'label' => 'On-Time Delivery']
+                    ],
+                    'overview' => [
+                        'title' => 'Component Traceability & Supply Chain Optimization',
+                        'description' => 'Our platform helps electronics manufacturers, distributors, and contract manufacturers track components from supplier to finished product with complete traceability and quality control.',
+                        'highlights' => [
+                            'Complete component traceability from wafer to finished good',
+                            'RoHS and REACH compliance management',
+                            'Obsolescence management and lifecycle tracking',
+                            'Counterfeit component detection',
+                            'ESD and moisture sensitivity tracking'
+                        ],
+                        'ctaText' => 'Explore Solutions',
+                        'ctaLink' => '/solutions/electronics',
+                        'statsCards' => [
+                            ['value' => '50+', 'label' => 'Integrations'],
+                            ['value' => '99.9%', 'label' => 'Traceability Rate'],
+                            ['value' => '24/7', 'label' => 'Support'],
+                            ['value' => '500+', 'label' => 'Happy Clients']
+                        ]
+                    ],
+                    'challenges' => [
+                        [
+                            'icon' => 'database',
+                            'title' => 'Component Traceability',
+                            'description' => 'Tracking components from multiple suppliers across global supply chains is complex and error-prone.'
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'title' => 'Obsolescence Management',
+                            'description' => 'Managing end-of-life components and last-time-buy decisions is critical to avoid production disruptions.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Counterfeit Prevention',
+                            'description' => 'Detecting and preventing counterfeit components requires rigorous inspection and documentation.'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Inventory Optimization',
+                            'description' => 'Balancing component inventory levels with long lead times and demand volatility is challenging.'
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Supply Chain Visibility',
+                            'description' => 'Limited visibility across multi-tier supply chains causes production delays and excess inventory.'
+                        ],
+                        [
+                            'icon' => 'bulb',
+                            'title' => 'Compliance Management',
+                            'description' => 'Meeting RoHS, REACH, and conflict minerals requirements demands extensive documentation.'
+                        ]
+                    ],
+                    'solutions' => [
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Component Traceability',
+                            'description' => 'Complete lot and date code traceability from supplier to finished product.',
+                            'features' => [
+                                'Lot/date code tracking',
+                                'Supplier traceability',
+                                'Recall management',
+                                'Digital audit trails'
+                            ]
+                        ],
+                        [
+                            'icon' => 'chip',
+                            'title' => 'Obsolescence Management',
+                            'description' => 'Proactive management of component obsolescence with last-time-buy planning.',
+                            'features' => [
+                                'Lifecycle tracking',
+                                'Last-time-buy alerts',
+                                'Alternative part recommendations',
+                                'End-of-life planning'
+                            ]
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Counterfeit Detection',
+                            'description' => 'Automated counterfeit detection with inspection workflows and documentation.',
+                            'features' => [
+                                'Inspection checklists',
+                                'Testing documentation',
+                                'Risk scoring',
+                                'Supplier qualification'
+                            ]
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Inventory Optimization',
+                            'description' => 'Optimize component inventory with demand forecasting and safety stock calculations.',
+                            'features' => [
+                                'Demand forecasting',
+                                'Safety stock optimization',
+                                'Lead time management',
+                                'Automated replenishment'
+                            ]
+                        ],
+                        [
+                            'icon' => 'trending',
+                            'title' => 'Supply Chain Visibility',
+                            'description' => 'Real-time visibility across your entire electronics supply chain.',
+                            'features' => [
+                                'Multi-tier visibility',
+                                'Supplier portals',
+                                'Order tracking',
+                                'Performance analytics'
+                            ]
+                        ],
+                        [
+                            'icon' => 'document',
+                            'title' => 'Compliance Management',
+                            'description' => 'Automated RoHS, REACH, and conflict minerals compliance documentation.',
+                            'features' => [
+                                'Compliance dashboards',
+                                'Certification tracking',
+                                'Declarations management',
+                                'Audit reporting'
+                            ]
+                        ]
+                    ],
+                    'showFeatures' => true,
+                    'features' => [
+                        'title' => 'Why Electronics Leaders Choose Us',
+                        'items' => [
+                            ['icon' => 'shield', 'title' => 'IPC-A-610'],
+                            ['icon' => 'chip', 'title' => 'Traceability'],
+                            ['icon' => 'clock', 'title' => 'Obsolescence'],
+                            ['icon' => 'cloud', 'title' => 'Multi-tier'],
+                            ['icon' => 'database', 'title' => 'Supplier Portal'],
+                            ['icon' => 'users', 'title' => '24/7 Support'],
+                            ['icon' => 'trending', 'title' => 'Scalable'],
+                            ['icon' => 'chart', 'title' => 'Analytics']
+                        ]
+                    ],
+                    'showStandards' => true,
+                    'standardsText' => 'ISO 9001 | IPC-A-610 | J-STD-001 | RoHS Compliant | REACH | UL Certified | AS9100D',
+                    'showSuccessMetrics' => true,
+                    'successMetrics' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '35%', 'label' => 'Inventory Reduction'],
+                        ['icon' => 'star', 'value' => '99.5%', 'label' => 'Traceability Rate'],
+                        ['icon' => 'dollar', 'value' => '$1.2M', 'label' => 'Avg. Annual Savings']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your electronics operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 194,
+                'section_key' => 'electronics',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Success Stories',
+                        'backgroundColor' => 'bg-purple-50 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Electronics',
+                        'highlightedText' => 'Success Stories',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-purple-500 to-indigo-500'
+                    ],
+                    'description' => 'See how electronics companies are managing component traceability, obsolescence, and supply chain optimization.',
+                    'initialIndex' => 0,
+                    'autoplay' => true,
+                    'autoplayInterval' => 6000,
+                    'caseStudies' => [
+                        [
+                            'id' => 'precision-electronics',
+                            'icon' => 'chip',
+                            'company' => 'Precision Electronics',
+                            'location' => 'San Jose, CA',
+                            'industry' => 'PCB Assembly',
+                            'keyResult' => ['value' => '45%', 'label' => 'Faster Time-to-Market'],
+                            'results' => [
+                                ['value' => '45%', 'label' => 'Faster Time-to-Market'],
+                                ['value' => '99.9%', 'label' => 'Component Traceability'],
+                                ['value' => '$2.1M', 'label' => 'Annual Savings'],
+                                ['value' => '3x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Precision Electronics struggled with component traceability across 1000+ suppliers, leading to recall risks and compliance issues for medical device customers.',
+                            'solution' => 'Implemented our end-to-end traceability solution with lot tracking, supplier portals, and automated compliance reporting for RoHS and REACH.',
+                            'compliance' => ['IPC-A-610', 'RoHS Compliant', 'REACH', 'ISO 9001'],
+                            'testimonial' => [
+                                'quote' => 'We now have complete traceability from component to finished board. Audit preparation that took weeks now takes hours.',
+                                'author' => 'David Kim',
+                                'role' => 'Quality Director'
+                            ],
+                            'downloadLink' => '/case-studies/precision-electronics/download',
+                            'videoLink' => '/case-studies/precision-electronics/video'
+                        ],
+                        [
+                            'id' => 'semiconductor-solutions',
+                            'icon' => 'microphone',
+                            'company' => 'Semiconductor Solutions',
+                            'location' => 'Austin, TX',
+                            'industry' => 'Semiconductors',
+                            'keyResult' => ['value' => '60%', 'label' => 'Obsolescence Cost Reduction'],
+                            'results' => [
+                                ['value' => '60%', 'label' => 'Obsolescence Cost Reduction'],
+                                ['value' => '0', 'label' => 'Production Stops'],
+                                ['value' => '$3.2M', 'label' => 'Annual Savings'],
+                                ['value' => '4x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Managing component obsolescence across thousands of active parts was causing production stops and expensive last-time buys without proper planning.',
+                            'solution' => 'Deployed our obsolescence management platform with lifecycle tracking, last-time-buy optimization, and alternative part recommendations.',
+                            'compliance' => ['J-STD-001', 'AS9100D', 'IPC-A-610'],
+                            'testimonial' => [
+                                'quote' => 'We\'ve eliminated production stops from obsolescence and reduced last-time-buy costs by 60%. The ROI has been exceptional.',
+                                'author' => 'Sarah Chen',
+                                'role' => 'Supply Chain VP'
+                            ],
+                            'downloadLink' => '/case-studies/semiconductor/download',
+                            'videoLink' => '/case-studies/semiconductor/video'
+                        ],
+                        [
+                            'id' => 'consumer-electronics',
+                            'icon' => 'mobile',
+                            'company' => 'Consumer Electronics Inc.',
+                            'location' => 'Shenzhen, China',
+                            'industry' => 'Consumer Electronics',
+                            'keyResult' => ['value' => '50%', 'label' => 'Inventory Reduction'],
+                            'results' => [
+                                ['value' => '50%', 'label' => 'Inventory Reduction'],
+                                ['value' => '99.5%', 'label' => 'On-Time Delivery'],
+                                ['value' => '$1.8M', 'label' => 'Annual Savings'],
+                                ['value' => '2.5x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Managing inventory across 5000+ SKUs with volatile demand and long lead times was causing excess inventory and stockouts.',
+                            'solution' => 'Implemented our inventory optimization platform with demand forecasting, safety stock optimization, and automated replenishment.',
+                            'compliance' => ['RoHS', 'REACH', 'WEEE'],
+                            'testimonial' => [
+                                'quote' => 'Inventory is down 50% while service levels improved to 99.5%. The forecasting accuracy is remarkable.',
+                                'author' => 'Michael Lee',
+                                'role' => 'Operations Director'
+                            ],
+                            'downloadLink' => '/case-studies/consumer-electronics/download',
+                            'videoLink' => '/case-studies/consumer-electronics/video'
+                        ]
+                    ],
+                    'showAdditionalCases' => true,
+                    'additionalCasesTitle' => 'More Success Stories',
+                    'additionalCases' => [
+                        [
+                            'icon' => 'chip',
+                            'company' => 'Power Systems Inc.',
+                            'industry' => 'Power Electronics',
+                            'result' => '99.9%',
+                            'resultLabel' => 'Traceability',
+                            'description' => 'Achieved complete component traceability for automotive customers.',
+                            'link' => '/case-studies/power-systems'
+                        ],
+                        [
+                            'icon' => 'desktop',
+                            'company' => 'Compute Solutions',
+                            'industry' => 'Computer Hardware',
+                            'result' => '35%',
+                            'resultLabel' => 'Cost Reduction',
+                            'description' => 'Reduced supply chain costs with supplier consolidation.',
+                            'link' => '/case-studies/compute-solutions'
+                        ],
+                        [
+                            'icon' => 'cog',
+                            'company' => 'EMS Technologies',
+                            'industry' => 'Contract Manufacturing',
+                            'result' => '50%',
+                            'resultLabel' => 'Faster Turnaround',
+                            'description' => 'Cut production lead times in half with real-time tracking.',
+                            'link' => '/case-studies/ems-technologies'
+                        ]
+                    ],
+                    'showObsolescenceCalculator' => true,
+                    'obsolescenceReduction' => '40-60%',
+                    'lastTimeBuySavings' => '25-35%',
+                    'paybackPeriod' => '6-9',
+                    'calculatorLink' => '/obsolescence-calculator',
+                    'showPartners' => true,
+                    'partnersTitle' => 'Trusted by leading electronics manufacturers and distributors',
+                    'partners' => [
+                        ['icon' => 'chip', 'name' => 'Arrow'],
+                        ['icon' => 'database', 'name' => 'Avnet'],
+                        ['icon' => 'truck', 'name' => 'DigiKey'],
+                        ['icon' => 'chip', 'name' => 'Mouser'],
+                        ['icon' => 'cog', 'name' => 'Flex'],
+                        ['icon' => 'desktop', 'name' => 'Jabil']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to write your own success story?',
+                    'ctaButtonText' => 'Start Your Journey',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 195,
+                'section_key' => 'electronics',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Features & FAQ',
+                        'backgroundColor' => 'bg-purple-50 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Everything You',
+                        'highlightedText' => 'Need for Electronics',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-purple-500 to-indigo-500'
+                    ],
+                    'description' => 'Comprehensive electronics supply chain solutions designed to optimize component traceability, manage obsolescence, and ensure compliance.',
+                    'initialFeature' => 0,
+                    'showFeatureGrid' => true,
+                    'benefits' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '45%', 'label' => 'Faster Time-to-Market'],
+                        ['icon' => 'dollar', 'value' => '$1.5M', 'label' => 'Avg. Annual Savings'],
+                        ['icon' => 'star', 'value' => '99.5%', 'label' => 'Traceability Rate']
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Component Traceability',
+                            'shortDescription' => 'Complete lot traceability',
+                            'description' => 'End-to-end component traceability from supplier to finished product with lot tracking, date code management, and recall capabilities.',
+                            'capabilities' => [
+                                'Lot/date code tracking',
+                                'Supplier traceability',
+                                'Recall management',
+                                'Digital audit trails',
+                                'Chain of custody'
+                            ],
+                            'standards' => ['IPC-A-610', 'J-STD-001', 'ISO 9001'],
+                            'link' => '/electronics/traceability'
+                        ],
+                        [
+                            'icon' => 'chip',
+                            'title' => 'Obsolescence Management',
+                            'shortDescription' => 'Proactive lifecycle tracking',
+                            'description' => 'Proactive management of component obsolescence with lifecycle tracking, last-time-buy optimization, and alternative part recommendations.',
+                            'capabilities' => [
+                                'Lifecycle tracking',
+                                'Last-time-buy alerts',
+                                'Alternative part recommendations',
+                                'End-of-life planning',
+                                'Risk assessment'
+                            ],
+                            'standards' => ['AS9100D', 'ISO 9001'],
+                            'link' => '/electronics/obsolescence'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Counterfeit Detection',
+                            'shortDescription' => 'Automated inspection',
+                            'description' => 'Automated counterfeit detection with inspection workflows, testing documentation, and supplier qualification tracking.',
+                            'capabilities' => [
+                                'Inspection checklists',
+                                'Testing documentation',
+                                'Risk scoring',
+                                'Supplier qualification',
+                                'Visual inspection guides'
+                            ],
+                            'standards' => ['AS6081', 'IDEA-STD-1010', 'SAE AS5553'],
+                            'link' => '/electronics/counterfeit-detection'
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Supply Chain Visibility',
+                            'shortDescription' => 'Multi-tier visibility',
+                            'description' => 'Real-time visibility across your multi-tier electronics supply chain with supplier portals and order tracking.',
+                            'capabilities' => [
+                                'Multi-tier visibility',
+                                'Supplier portals',
+                                'Order tracking',
+                                'Performance analytics',
+                                'Lead time monitoring'
+                            ],
+                            'standards' => ['ISO 9001'],
+                            'link' => '/electronics/supply-chain'
+                        ],
+                        [
+                            'icon' => 'database',
+                            'title' => 'Inventory Optimization',
+                            'shortDescription' => 'Demand forecasting',
+                            'description' => 'Optimize component inventory with demand forecasting, safety stock calculations, and automated replenishment.',
+                            'capabilities' => [
+                                'Demand forecasting',
+                                'Safety stock optimization',
+                                'Lead time management',
+                                'Automated replenishment',
+                                'ABC analysis'
+                            ],
+                            'standards' => ['ISO 9001'],
+                            'link' => '/electronics/inventory'
+                        ],
+                        [
+                            'icon' => 'document',
+                            'title' => 'Compliance Management',
+                            'shortDescription' => 'RoHS/REACH compliance',
+                            'description' => 'Automated RoHS, REACH, and conflict minerals compliance documentation with certification tracking and declarations management.',
+                            'capabilities' => [
+                                'Compliance dashboards',
+                                'Certification tracking',
+                                'Declarations management',
+                                'Audit reporting',
+                                'Supplier compliance'
+                            ],
+                            'standards' => ['RoHS', 'REACH', 'Conflict Minerals'],
+                            'link' => '/electronics/compliance'
+                        ]
+                    ],
+                    'showComparison' => true,
+                    'comparison' => [
+                        'before' => [
+                            'Manual component tracking errors',
+                            'Reactive obsolescence management',
+                            'Counterfeit risk exposure',
+                            'Limited supply chain visibility',
+                            'Paper-based compliance'
+                        ],
+                        'after' => [
+                            '99.9% component traceability',
+                            'Proactive lifecycle management',
+                            'Automated counterfeit detection',
+                            'Real-time supply chain visibility',
+                            'Automated digital compliance'
+                        ]
+                    ],
+                    'showTechStack' => true,
+                    'techStackTitle' => 'Seamlessly Integrates With Your Electronics Stack',
+                    'techStack' => [
+                        ['icon' => 'cloud', 'name' => 'Oracle'],
+                        ['icon' => 'database', 'name' => 'SAP'],
+                        ['icon' => 'chip', 'name' => 'Plex'],
+                        ['icon' => 'cog', 'name' => 'Kinaxis'],
+                        ['icon' => 'chart', 'name' => 'Tableau'],
+                        ['icon' => 'truck', 'name' => 'Blue Yonder'],
+                        ['icon' => 'desktop', 'name' => 'Siemens'],
+                        ['icon' => 'microphone', 'name' => 'Arena']
+                    ],
+                    'showHowItWorks' => true,
+                    'howItWorksTitle' => 'How It Works',
+                    'steps' => [
+                        ['icon' => 'database', 'title' => 'Connect', 'description' => 'Integrate with your ERP, PLM, and supplier systems.'],
+                        ['icon' => 'qrcode', 'title' => 'Track', 'description' => 'Scan components at each stage of production.'],
+                        ['icon' => 'chart', 'title' => 'Optimize', 'description' => 'Use analytics to manage obsolescence and inventory.']
+                    ],
+                    'showFaq' => true,
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How does the platform handle component traceability?',
+                            'answer' => 'Our system provides complete lot and date code traceability from supplier receipt through finished product shipment. Every component can be traced forward and backward for recall management.'
+                        ],
+                        [
+                            'question' => 'How does obsolescence management work?',
+                            'answer' => 'We monitor component lifecycle status from manufacturers, provide proactive alerts for end-of-life notifications, and help optimize last-time-buy decisions with alternative part recommendations.'
+                        ],
+                        [
+                            'question' => 'Does it support counterfeit detection?',
+                            'answer' => 'Yes, our platform includes counterfeit detection workflows with inspection checklists, testing documentation, risk scoring, and supplier qualification tracking aligned with AS6081 and IDEA standards.'
+                        ],
+                        [
+                            'question' => 'Can it integrate with our PLM system?',
+                            'answer' => 'Yes, we offer pre-built integrations with major PLM systems including Arena, Siemens, PTC, and Dassault. Custom integrations are also available.'
+                        ],
+                        [
+                            'question' => 'Is there a demo available?',
+                            'answer' => 'Yes! We offer personalized demos tailored to your specific electronics operations. Contact our team to schedule a demo.'
+                        ]
+                    ],
+                    'showResources' => true,
+                    'resourcesTitle' => 'Helpful Resources',
+                    'resources' => [
+                        [
+                            'icon' => 'document',
+                            'title' => 'Electronics Supply Chain Guide',
+                            'description' => 'Learn best practices for electronics supply chain optimization.',
+                            'cta' => 'Download Guide',
+                            'link' => '/resources/electronics-guide'
+                        ],
+                        [
+                            'icon' => 'play',
+                            'title' => 'Platform Demo',
+                            'description' => 'Watch a 10-minute overview of our electronics solutions.',
+                            'cta' => 'Watch Demo',
+                            'link' => '/resources/demo-video'
+                        ],
+                        [
+                            'icon' => 'download',
+                            'title' => 'Obsolescence Calculator',
+                            'description' => 'Calculate potential savings from proactive obsolescence management.',
+                            'cta' => 'Calculate Now',
+                            'link' => '/resources/roi-calculator'
+                        ]
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your electronics operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 196,
+                'section_key' => 'electronics',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Wholesale & Distribution Section
+            [
+                'id' => 197,
+                'section_key' => 'wholesaleAndDistribution',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Industry Focus',
+                        'backgroundColor' => 'bg-pink-50 dark:bg-pink-900/30',
+                        'borderColor' => 'border-pink-200 dark:border-pink-800',
+                        'textColor' => 'text-pink-700 dark:text-pink-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Fashion &',
+                        'highlightedText' => 'Apparel Solutions',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-pink-500 to-rose-500'
+                    ],
+                    'description' => 'Optimize your fashion supply chain with real-time inventory, omnichannel fulfillment, and sustainable practices.',
+                    'initialTab' => 'overview',
+                    'showStats' => true,
+                    'stats' => [
+                        ['icon' => 'bag', 'value' => '500+', 'label' => 'Fashion Brands'],
+                        ['icon' => 'database', 'value' => '10M+', 'label' => 'SKUs Managed'],
+                        ['icon' => 'trending', 'value' => '30%', 'label' => 'Markdown Reduction'],
+                        ['icon' => 'clock', 'value' => '98%', 'label' => 'Inventory Accuracy']
+                    ],
+                    'overview' => [
+                        'title' => 'Omnichannel Fashion Inventory Management',
+                        'description' => 'Our platform helps fashion brands and apparel retailers manage inventory across all channels, reduce markdowns, and improve customer satisfaction with real-time visibility.',
+                        'highlights' => [
+                            'Unified inventory across stores, e-commerce, and marketplaces',
+                            'Seasonal inventory planning and allocation',
+                            'Size and color matrix management',
+                            'Markdown optimization and margin protection',
+                            'Buy online, return in-store capabilities'
+                        ],
+                        'ctaText' => 'Explore Solutions',
+                        'ctaLink' => '/solutions/fashion',
+                        'statsCards' => [
+                            ['value' => '50+', 'label' => 'Integrations'],
+                            ['value' => '99.9%', 'label' => 'Inventory Accuracy'],
+                            ['value' => '24/7', 'label' => 'Support'],
+                            ['value' => '500+', 'label' => 'Happy Clients']
+                        ]
+                    ],
+                    'challenges' => [
+                        [
+                            'icon' => 'database',
+                            'title' => 'Inventory Fragmentation',
+                            'description' => 'Disconnected inventory across stores, warehouses, and e-commerce leads to stockouts and lost sales.'
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'title' => 'Seasonal Planning',
+                            'description' => 'Managing seasonal inventory turns and markdowns requires accurate demand forecasting.'
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Omnichannel Fulfillment',
+                            'description' => 'Coordinating ship-from-store and buy online, return in-store creates operational complexity.'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Markdown Optimization',
+                            'description' => 'Poor markdown timing and depth decisions erode margins and brand value.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Sustainability Tracking',
+                            'description' => 'Meeting sustainability goals requires visibility into materials and supply chain practices.'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'title' => 'Returns Management',
+                            'description' => 'High return rates in apparel require efficient processing and restocking.'
+                        ]
+                    ],
+                    'solutions' => [
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Unified Inventory',
+                            'description' => 'Real-time inventory visibility across all channels with centralized management.',
+                            'features' => [
+                                'Multi-channel sync',
+                                'Size/color matrix',
+                                'Location intelligence',
+                                'Stock allocation'
+                            ]
+                        ],
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Omnichannel Fulfillment',
+                            'description' => 'Intelligent order routing to optimize fulfillment from stores or warehouses.',
+                            'features' => [
+                                'Ship-from-store',
+                                'BOPIS (Buy Online Pickup In Store)',
+                                'Endless aisle',
+                                'Returns management'
+                            ]
+                        ],
+                        [
+                            'icon' => 'trending',
+                            'title' => 'Markdown Optimization',
+                            'description' => 'AI-powered markdown recommendations to maximize margins and sell-through.',
+                            'features' => [
+                                'Dynamic pricing',
+                                'Markdown timing',
+                                'Margin protection',
+                                'Clearance planning'
+                            ]
+                        ],
+                        [
+                            'icon' => 'refresh',
+                            'title' => 'Seasonal Planning',
+                            'description' => 'Demand forecasting and inventory allocation for seasonal collections.',
+                            'features' => [
+                                'Demand forecasting',
+                                'Allocation optimization',
+                                'Replenishment planning',
+                                'Assortment planning'
+                            ]
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Sustainability Tracking',
+                            'description' => 'Track materials, suppliers, and circular fashion initiatives.',
+                            'features' => [
+                                'Material traceability',
+                                'Supplier scorecards',
+                                'Circular economy tracking',
+                                'Sustainability reporting'
+                            ]
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Analytics Dashboard',
+                            'description' => 'Comprehensive analytics for sell-through, turn rates, and profitability.',
+                            'features' => [
+                                'Sell-through analysis',
+                                'Turn rate tracking',
+                                'Profitability analytics',
+                                'Seasonal comparisons'
+                            ]
+                        ]
+                    ],
+                    'showFeatures' => true,
+                    'features' => [
+                        'title' => 'Why Fashion & Apparel Leaders Choose Us',
+                        'items' => [
+                            ['icon' => 'tag', 'title' => 'Size/Color Matrix'],
+                            ['icon' => 'truck', 'title' => 'Omnichannel'],
+                            ['icon' => 'trending', 'title' => 'Markdown Optimization'],
+                            ['icon' => 'cloud', 'title' => 'Unified Inventory'],
+                            ['icon' => 'database', 'title' => 'Analytics'],
+                            ['icon' => 'users', 'title' => '24/7 Support'],
+                            ['icon' => 'shield', 'title' => 'Sustainable'],
+                            ['icon' => 'clock', 'title' => 'Real-time']
+                        ]
+                    ],
+                    'showSustainability' => true,
+                    'sustainabilityText' => 'Sustainable Practices | Ethical Sourcing | Circular Fashion Ready | GOTS Certified | OEKO-TEX',
+                    'showSuccessMetrics' => true,
+                    'successMetrics' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '35%', 'label' => 'Markdown Reduction'],
+                        ['icon' => 'star', 'value' => '98%', 'label' => 'Inventory Accuracy'],
+                        ['icon' => 'dollar', 'value' => '$1.2M', 'label' => 'Avg. Annual Savings']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your fashion operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 198,
+                'section_key' => 'wholesaleAndDistribution',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Success Stories',
+                        'backgroundColor' => 'bg-pink-50 dark:bg-pink-900/30',
+                        'borderColor' => 'border-pink-200 dark:border-pink-800',
+                        'textColor' => 'text-pink-700 dark:text-pink-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Fashion &',
+                        'highlightedText' => 'Apparel Success Stories',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-pink-500 to-rose-500'
+                    ],
+                    'description' => 'See how fashion brands and apparel retailers are optimizing inventory, reducing markdowns, and improving sustainability.',
+                    'initialIndex' => 0,
+                    'autoplay' => true,
+                    'autoplayInterval' => 6000,
+                    'caseStudies' => [
+                        [
+                            'id' => 'fashion-forward',
+                            'icon' => 'tshirt',
+                            'company' => 'Fashion Forward',
+                            'location' => 'New York, NY',
+                            'industry' => 'Contemporary Apparel',
+                            'keyResult' => ['value' => '35%', 'label' => 'Markdown Reduction'],
+                            'results' => [
+                                ['value' => '35%', 'label' => 'Markdown Reduction'],
+                                ['value' => '98%', 'label' => 'Inventory Accuracy'],
+                                ['value' => '$2.5M', 'label' => 'Annual Savings'],
+                                ['value' => '3x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Fashion Forward struggled with excess inventory and deep markdowns across 50+ stores and e-commerce, eroding margins and brand value.',
+                            'solution' => 'Implemented our markdown optimization platform with AI-powered pricing recommendations and unified inventory management.',
+                            'sustainability' => ['GOTS Certified', 'Sustainable Materials'],
+                            'testimonial' => [
+                                'quote' => 'We\'ve reduced markdowns by 35% while maintaining sell-through. The AI recommendations are incredibly accurate.',
+                                'author' => 'Sarah Johnson',
+                                'role' => 'Merchandising Director'
+                            ],
+                            'downloadLink' => '/case-studies/fashion-forward/download',
+                            'videoLink' => '/case-studies/fashion-forward/video'
+                        ],
+                        [
+                            'id' => 'sustainable-style',
+                            'icon' => 'tag',
+                            'company' => 'Sustainable Style Co.',
+                            'location' => 'Portland, OR',
+                            'industry' => 'Eco-Fashion',
+                            'keyResult' => ['value' => '100%', 'label' => 'Sustainable Sourcing'],
+                            'results' => [
+                                ['value' => '100%', 'label' => 'Sustainable Sourcing'],
+                                ['value' => '45%', 'label' => 'Faster Turnaround'],
+                                ['value' => '$1.8M', 'label' => 'Annual Savings'],
+                                ['value' => '2.8x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Tracking sustainable materials and suppliers across global supply chain was manual and error-prone, limiting transparency claims.',
+                            'solution' => 'Deployed our sustainability tracking platform with material traceability, supplier scorecards, and circular economy features.',
+                            'sustainability' => ['OEKO-TEX', 'GOTS', 'Circular Ready'],
+                            'testimonial' => [
+                                'quote' => 'We now have complete visibility into our supply chain. Customers trust our sustainability claims.',
+                                'author' => 'Emma Chen',
+                                'role' => 'Sustainability Director'
+                            ],
+                            'downloadLink' => '/case-studies/sustainable-style/download',
+                            'videoLink' => '/case-studies/sustainable-style/video'
+                        ],
+                        [
+                            'id' => 'luxe-collection',
+                            'icon' => 'scissors',
+                            'company' => 'Luxe Collection',
+                            'location' => 'Los Angeles, CA',
+                            'industry' => 'Luxury Fashion',
+                            'keyResult' => ['value' => '98%', 'label' => 'Omnichannel Fulfillment'],
+                            'results' => [
+                                ['value' => '98%', 'label' => 'Fulfillment Rate'],
+                                ['value' => '50%', 'label' => 'Faster Delivery'],
+                                ['value' => '$3.2M', 'label' => 'Annual Savings'],
+                                ['value' => '4x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Managing inventory across boutiques, e-commerce, and wholesale channels caused stockouts and missed sales opportunities.',
+                            'solution' => 'Implemented our omnichannel fulfillment platform with ship-from-store, BOPIS, and endless aisle capabilities.',
+                            'sustainability' => ['Ethical Sourcing', 'Circular Fashion'],
+                            'testimonial' => [
+                                'quote' => 'Omnichannel fulfillment has transformed our business. We\'re delivering faster and never missing a sale.',
+                                'author' => 'Michael Lee',
+                                'role' => 'Operations VP'
+                            ],
+                            'downloadLink' => '/case-studies/luxe-collection/download',
+                            'videoLink' => '/case-studies/luxe-collection/video'
+                        ]
+                    ],
+                    'showAdditionalCases' => true,
+                    'additionalCasesTitle' => 'More Success Stories',
+                    'additionalCases' => [
+                        [
+                            'icon' => 'tshirt',
+                            'company' => 'Urban Apparel',
+                            'industry' => 'Streetwear',
+                            'result' => '40%',
+                            'resultLabel' => 'Inventory Reduction',
+                            'description' => 'Optimized inventory turns with demand forecasting and allocation.',
+                            'link' => '/case-studies/urban-apparel'
+                        ],
+                        [
+                            'icon' => 'tag',
+                            'company' => 'Kids Fashion Co.',
+                            'industry' => 'Children\'s Wear',
+                            'result' => '99.5%',
+                            'resultLabel' => 'Order Accuracy',
+                            'description' => 'Achieved near-perfect order accuracy with barcode scanning.',
+                            'link' => '/case-studies/kids-fashion'
+                        ],
+                        [
+                            'icon' => 'scissors',
+                            'company' => 'Athleisure Brands',
+                            'industry' => 'Activewear',
+                            'result' => '55%',
+                            'resultLabel' => 'Faster Replenishment',
+                            'description' => 'Reduced replenishment time with automated inventory management.',
+                            'link' => '/case-studies/athleisure'
+                        ]
+                    ],
+                    'showMarkdownCalculator' => true,
+                    'markdownReduction' => '20-30%',
+                    'marginImprovement' => '15-25%',
+                    'paybackPeriod' => '3-6',
+                    'calculatorLink' => '/markdown-calculator',
+                    'showPartners' => true,
+                    'partnersTitle' => 'Leading sustainable fashion brands trust us',
+                    'partners' => [
+                        ['icon' => 'tshirt', 'name' => 'Patagonia'],
+                        ['icon' => 'tag', 'name' => 'Reformation'],
+                        ['icon' => 'scissors', 'name' => 'Eileen Fisher'],
+                        ['icon' => 'bag', 'name' => 'Stella McCartney'],
+                        ['icon' => 'tshirt', 'name' => 'Pangaia'],
+                        ['icon' => 'tag', 'name' => 'Allbirds']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to write your own success story?',
+                    'ctaButtonText' => 'Start Your Journey',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 199,
+                'section_key' => 'wholesaleAndDistribution',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Features & FAQ',
+                        'backgroundColor' => 'bg-pink-50 dark:bg-pink-900/30',
+                        'borderColor' => 'border-pink-200 dark:border-pink-800',
+                        'textColor' => 'text-pink-700 dark:text-pink-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Everything You',
+                        'highlightedText' => 'Need for Fashion',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-pink-500 to-rose-500'
+                    ],
+                    'description' => 'Comprehensive fashion and apparel solutions designed to optimize inventory, reduce markdowns, and support sustainable practices.',
+                    'initialFeature' => 0,
+                    'showFeatureGrid' => true,
+                    'benefits' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '35%', 'label' => 'Markdown Reduction'],
+                        ['icon' => 'dollar', 'value' => '$1.2M', 'label' => 'Avg. Annual Savings'],
+                        ['icon' => 'star', 'value' => '98%', 'label' => 'Inventory Accuracy']
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Unified Inventory',
+                            'shortDescription' => 'Omnichannel visibility',
+                            'description' => 'Real-time inventory visibility across all channels - stores, e-commerce, and marketplaces. Centralized management of size/color matrices and stock allocation.',
+                            'capabilities' => [
+                                'Multi-channel sync',
+                                'Size/color matrix',
+                                'Location intelligence',
+                                'Stock allocation',
+                                'Inventory pooling'
+                            ],
+                            'sustainability' => ['Circular Ready'],
+                            'link' => '/fashion/unified-inventory'
+                        ],
+                        [
+                            'icon' => 'trending',
+                            'title' => 'Markdown Optimization',
+                            'shortDescription' => 'AI-powered pricing',
+                            'description' => 'AI-powered markdown recommendations to maximize margins and sell-through. Dynamic pricing with margin protection and clearance planning.',
+                            'capabilities' => [
+                                'Dynamic pricing',
+                                'Markdown timing',
+                                'Margin protection',
+                                'Clearance planning',
+                                'Price elasticity'
+                            ],
+                            'sustainability' => ['Waste Reduction'],
+                            'link' => '/fashion/markdown-optimization'
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Omnichannel Fulfillment',
+                            'shortDescription' => 'Ship-from-store, BOPIS',
+                            'description' => 'Intelligent order routing to optimize fulfillment from stores or warehouses with ship-from-store, BOPIS, and endless aisle capabilities.',
+                            'capabilities' => [
+                                'Ship-from-store',
+                                'BOPIS',
+                                'Endless aisle',
+                                'Returns management',
+                                'Order routing'
+                            ],
+                            'sustainability' => ['Carbon Efficient'],
+                            'link' => '/fashion/omnichannel'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Sustainability Tracking',
+                            'shortDescription' => 'Material traceability',
+                            'description' => 'Track materials, suppliers, and circular fashion initiatives. Complete visibility into sustainable sourcing and environmental impact.',
+                            'capabilities' => [
+                                'Material traceability',
+                                'Supplier scorecards',
+                                'Circular economy tracking',
+                                'Sustainability reporting',
+                                'Carbon footprint'
+                            ],
+                            'sustainability' => ['GOTS', 'OEKO-TEX', 'BCI'],
+                            'link' => '/fashion/sustainability'
+                        ],
+                        [
+                            'icon' => 'refresh',
+                            'title' => 'Seasonal Planning',
+                            'shortDescription' => 'Demand forecasting',
+                            'description' => 'Demand forecasting and inventory allocation for seasonal collections. Optimize assortment planning and replenishment.',
+                            'capabilities' => [
+                                'Demand forecasting',
+                                'Allocation optimization',
+                                'Replenishment planning',
+                                'Assortment planning',
+                                'Trend analysis'
+                            ],
+                            'sustainability' => ['Waste Reduction'],
+                            'link' => '/fashion/seasonal-planning'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Analytics Dashboard',
+                            'shortDescription' => 'Performance insights',
+                            'description' => 'Comprehensive analytics for sell-through, turn rates, profitability, and seasonal comparisons.',
+                            'capabilities' => [
+                                'Sell-through analysis',
+                                'Turn rate tracking',
+                                'Profitability analytics',
+                                'Seasonal comparisons',
+                                'Store performance'
+                            ],
+                            'sustainability' => ['Impact Reporting'],
+                            'link' => '/fashion/analytics'
+                        ]
+                    ],
+                    'showComparison' => true,
+                    'comparison' => [
+                        'before' => [
+                            'Disconnected inventory systems',
+                            'Manual markdown decisions',
+                            'Limited omnichannel capabilities',
+                            'Poor sustainability visibility',
+                            'Reactive seasonal planning'
+                        ],
+                        'after' => [
+                            'Unified omnichannel inventory',
+                            'AI-powered markdown optimization',
+                            'Seamless BOPIS and ship-from-store',
+                            'Complete sustainability traceability',
+                            'Proactive seasonal forecasting'
+                        ]
+                    ],
+                    'showTechStack' => true,
+                    'techStackTitle' => 'Seamlessly Integrates With Your Fashion Tech Stack',
+                    'techStack' => [
+                        ['icon' => 'cloud', 'name' => 'Shopify'],
+                        ['icon' => 'database', 'name' => 'Salesforce'],
+                        ['icon' => 'tag', 'name' => 'Centric'],
+                        ['icon' => 'scissors', 'name' => 'Cegid'],
+                        ['icon' => 'chart', 'name' => 'Tableau'],
+                        ['icon' => 'truck', 'name' => 'Manhattan'],
+                        ['icon' => 'bag', 'name' => 'Magento'],
+                        ['icon' => 'tshirt', 'name' => 'Apparel 21']
+                    ],
+                    'showHowItWorks' => true,
+                    'howItWorksTitle' => 'How It Works',
+                    'steps' => [
+                        ['icon' => 'database', 'title' => 'Connect', 'description' => 'Integrate with your POS, e-commerce, and ERP systems.'],
+                        ['icon' => 'qrcode', 'title' => 'Track', 'description' => 'Scan items for real-time inventory visibility.'],
+                        ['icon' => 'chart', 'title' => 'Optimize', 'description' => 'Use analytics to optimize pricing and allocation.']
+                    ],
+                    'showFaq' => true,
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How does the platform handle size and color variants?',
+                            'answer' => 'Our platform has native support for size/color matrices with intelligent inventory management across all variants. You can track stock by size/color at each location.'
+                        ],
+                        [
+                            'question' => 'How does markdown optimization work?',
+                            'answer' => 'Our AI analyzes historical sales, inventory levels, seasonal trends, and competitor pricing to recommend optimal markdown timing and depth to maximize margins.'
+                        ],
+                        [
+                            'question' => 'Does it support BOPIS and ship-from-store?',
+                            'answer' => 'Yes! Our omnichannel fulfillment module includes BOPIS, curbside pickup, ship-from-store, and endless aisle capabilities with intelligent order routing.'
+                        ],
+                        [
+                            'question' => 'How does sustainability tracking work?',
+                            'answer' => 'We provide complete material traceability from source to finished product, supplier sustainability scorecards, and circular economy tracking for resale and recycling.'
+                        ],
+                        [
+                            'question' => 'Is there a demo available?',
+                            'answer' => 'Yes! We offer personalized demos tailored to your specific fashion and apparel operations. Contact our team to schedule a demo.'
+                        ]
+                    ],
+                    'showResources' => true,
+                    'resourcesTitle' => 'Helpful Resources',
+                    'resources' => [
+                        [
+                            'icon' => 'document',
+                            'title' => 'Fashion Retail Guide',
+                            'description' => 'Learn best practices for fashion inventory management and markdown optimization.',
+                            'cta' => 'Download Guide',
+                            'link' => '/resources/fashion-guide'
+                        ],
+                        [
+                            'icon' => 'play',
+                            'title' => 'Platform Demo',
+                            'description' => 'Watch an 8-minute overview of our fashion solutions.',
+                            'cta' => 'Watch Demo',
+                            'link' => '/resources/demo-video'
+                        ],
+                        [
+                            'icon' => 'download',
+                            'title' => 'Markdown Calculator',
+                            'description' => 'Calculate potential savings from optimized markdown strategies.',
+                            'cta' => 'Calculate Now',
+                            'link' => '/resources/roi-calculator'
+                        ]
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your fashion operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 200,
+                'section_key' => 'wholesaleAndDistribution',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Third Party Logistics Section
+            [
+                'id' => 201,
+                'section_key' => 'thirdPartyLogistics',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Industry Focus',
+                        'backgroundColor' => 'bg-blue-50 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Third-Party',
+                        'highlightedText' => 'Logistics Solutions',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-blue-500 to-indigo-500'
+                    ],
+                    'description' => 'Optimize your 3PL operations with real-time visibility, warehouse efficiency, and client portals.',
+                    'initialTab' => 'overview',
+                    'showStats' => true,
+                    'stats' => [
+                        ['icon' => 'truck', 'value' => '400+', 'label' => '3PL Providers'],
+                        ['icon' => 'database', 'value' => '50M+', 'label' => 'Orders Fulfilled'],
+                        ['icon' => 'trending', 'value' => '35%', 'label' => 'Labor Efficiency Gain'],
+                        ['icon' => 'star', 'value' => '99.8%', 'label' => 'Inventory Accuracy']
+                    ],
+                    'overview' => [
+                        'title' => 'Warehouse & Logistics Optimization',
+                        'description' => 'Our platform helps 3PL providers optimize warehouse operations, improve client visibility, and reduce costs with real-time tracking and analytics.',
+                        'highlights' => [
+                            'Real-time warehouse visibility',
+                            'Client portals with self-service reporting',
+                            'Barcode scanning and RFID integration',
+                            'Labor management and productivity tracking',
+                            'Billing and invoicing automation'
+                        ],
+                        'ctaText' => 'Explore Solutions',
+                        'ctaLink' => '/solutions/3pl',
+                        'statsCards' => [
+                            ['value' => '50+', 'label' => 'Integrations'],
+                            ['value' => '99.9%', 'label' => 'Scan Accuracy'],
+                            ['value' => '24/7', 'label' => 'Support'],
+                            ['value' => '500+', 'label' => 'Happy Clients']
+                        ]
+                    ],
+                    'challenges' => [
+                        [
+                            'icon' => 'clock',
+                            'title' => 'Labor Efficiency',
+                            'description' => 'Manual processes and paper-based workflows reduce warehouse productivity and increase costs.'
+                        ],
+                        [
+                            'icon' => 'database',
+                            'title' => 'Inventory Visibility',
+                            'description' => 'Limited real-time visibility across warehouses causes errors and delays.'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'title' => 'Client Communication',
+                            'description' => 'Providing clients with real-time inventory and order status is challenging without portals.'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Billing Complexity',
+                            'description' => 'Managing complex billing based on storage, handling, and value-added services is time-consuming.'
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Shipping Integration',
+                            'description' => 'Integrating with multiple carriers and managing shipping rates is complex.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Accuracy Requirements',
+                            'description' => 'Meeting client SLAs requires near-perfect inventory and order accuracy.'
+                        ]
+                    ],
+                    'solutions' => [
+                        [
+                            'icon' => 'warehouse',
+                            'title' => 'Warehouse Management',
+                            'description' => 'Optimize warehouse operations with real-time inventory tracking and labor management.',
+                            'features' => [
+                                'Real-time inventory visibility',
+                                'Putaway and picking optimization',
+                                'Cycle counting',
+                                'Labor tracking'
+                            ]
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Client Portals',
+                            'description' => 'White-label portals for clients to view inventory, orders, and reports in real-time.',
+                            'features' => [
+                                'Real-time inventory access',
+                                'Order tracking',
+                                'Custom reporting',
+                                'Document storage'
+                            ]
+                        ],
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Barcode/RFID Scanning',
+                            'description' => 'Fast and accurate scanning for receiving, putaway, picking, and shipping.',
+                            'features' => [
+                                'Mobile scanning apps',
+                                'RFID integration',
+                                'Batch processing',
+                                'Error proofing'
+                            ]
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Billing Automation',
+                            'description' => 'Automated billing based on activity, storage, and value-added services.',
+                            'features' => [
+                                'Activity-based billing',
+                                'Storage fee calculation',
+                                'Client invoicing',
+                                'Payment integration'
+                            ]
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Carrier Integration',
+                            'description' => 'Integrate with major carriers for rate shopping and label generation.',
+                            'features' => [
+                                'Rate shopping',
+                                'Label printing',
+                                'Tracking updates',
+                                'Freight management'
+                            ]
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Analytics Dashboard',
+                            'description' => 'Comprehensive analytics for KPIs, SLAs, and operational efficiency.',
+                            'features' => [
+                                'SLA tracking',
+                                'Productivity metrics',
+                                'Cost analysis',
+                                'Client reporting'
+                            ]
+                        ]
+                    ],
+                    'showFeatures' => true,
+                    'features' => [
+                        'title' => 'Why 3PL Leaders Choose Us',
+                        'items' => [
+                            ['icon' => 'warehouse', 'title' => 'WMS Ready'],
+                            ['icon' => 'qrcode', 'title' => 'Scanning'],
+                            ['icon' => 'cloud', 'title' => 'Client Portals'],
+                            ['icon' => 'chart', 'title' => 'Analytics'],
+                            ['icon' => 'database', 'title' => 'EDI Support'],
+                            ['icon' => 'users', 'title' => '24/7 Support'],
+                            ['icon' => 'trending', 'title' => 'Scalable'],
+                            ['icon' => 'shield', 'title' => 'Secure']
+                        ]
+                    ],
+                    'showStandards' => true,
+                    'standardsText' => 'ISO 9001 | SOC 2 Type II | GS1 Standards | WMS Certified | C-TPAT | TAPA',
+                    'showSuccessMetrics' => true,
+                    'successMetrics' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '35%', 'label' => 'Labor Efficiency Gain'],
+                        ['icon' => 'star', 'value' => '99.8%', 'label' => 'Inventory Accuracy'],
+                        ['icon' => 'dollar', 'value' => '$1.5M', 'label' => 'Avg. Annual Savings']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your 3PL operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 202,
+                'section_key' => 'thirdPartyLogistics',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Success Stories',
+                        'backgroundColor' => 'bg-blue-50 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => '3PL',
+                        'highlightedText' => 'Success Stories',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-blue-500 to-indigo-500'
+                    ],
+                    'description' => 'See how third-party logistics providers are optimizing warehouse operations and improving client satisfaction.',
+                    'initialIndex' => 0,
+                    'autoplay' => true,
+                    'autoplayInterval' => 6000,
+                    'caseStudies' => [
+                        [
+                            'id' => 'logistic-solutions',
+                            'icon' => 'warehouse',
+                            'company' => 'Logistic Solutions Inc.',
+                            'location' => 'Chicago, IL',
+                            'industry' => 'Warehousing & Distribution',
+                            'keyResult' => ['value' => '45%', 'label' => 'Labor Efficiency Gain'],
+                            'results' => [
+                                ['value' => '45%', 'label' => 'Labor Efficiency Gain'],
+                                ['value' => '99.9%', 'label' => 'Inventory Accuracy'],
+                                ['value' => '$2.5M', 'label' => 'Annual Savings'],
+                                ['value' => '3x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Logistic Solutions struggled with manual warehouse processes, leading to high labor costs, errors, and difficulty meeting client SLAs across 5 warehouses.',
+                            'solution' => 'Implemented our WMS solution with barcode scanning, putaway optimization, and real-time inventory visibility across all facilities.',
+                            'technologies' => ['WMS', 'Barcode Scanning', 'RFID Ready'],
+                            'testimonial' => [
+                                'quote' => 'Labor efficiency is up 45% and accuracy is near perfect. Our clients love the real-time visibility.',
+                                'author' => 'David Miller',
+                                'role' => 'Operations Director'
+                            ],
+                            'downloadLink' => '/case-studies/logistic-solutions/download',
+                            'videoLink' => '/case-studies/logistic-solutions/video'
+                        ],
+                        [
+                            'id' => 'fulfillment-pro',
+                            'icon' => 'truck',
+                            'company' => 'Fulfillment Pro',
+                            'location' => 'Atlanta, GA',
+                            'industry' => 'E-commerce Fulfillment',
+                            'keyResult' => ['value' => '60%', 'label' => 'Faster Processing'],
+                            'results' => [
+                                ['value' => '60%', 'label' => 'Faster Processing'],
+                                ['value' => '99.8%', 'label' => 'Order Accuracy'],
+                                ['value' => '$1.8M', 'label' => 'Annual Savings'],
+                                ['value' => '2.8x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Fulfillment Pro needed to scale for peak seasons but manual processes caused bottlenecks and delayed client orders.',
+                            'solution' => 'Deployed our automated fulfillment platform with batch picking, packing optimization, and carrier integration.',
+                            'technologies' => ['WMS', 'EDI', 'Carrier API'],
+                            'testimonial' => [
+                                'quote' => 'We now process 60% more orders with the same staff. Peak season is no longer a challenge.',
+                                'author' => 'Sarah Johnson',
+                                'role' => 'VP of Operations'
+                            ],
+                            'downloadLink' => '/case-studies/fulfillment-pro/download',
+                            'videoLink' => '/case-studies/fulfillment-pro/video'
+                        ],
+                        [
+                            'id' => 'global-logistics',
+                            'icon' => 'cloud',
+                            'company' => 'Global Logistics Group',
+                            'location' => 'Los Angeles, CA',
+                            'industry' => 'International Freight',
+                            'keyResult' => ['value' => '100%', 'label' => 'Client Portal Adoption'],
+                            'results' => [
+                                ['value' => '100%', 'label' => 'Portal Adoption'],
+                                ['value' => '75%', 'label' => 'Support Ticket Reduction'],
+                                ['value' => '$1.2M', 'label' => 'Annual Savings'],
+                                ['value' => '2.5x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Clients lacked real-time visibility into inventory and orders, causing hundreds of daily support calls and manual reporting requests.',
+                            'solution' => 'Launched white-label client portals with real-time inventory access, order tracking, and self-service reporting.',
+                            'technologies' => ['Client Portal', 'Real-time API', 'Custom Reports'],
+                            'testimonial' => [
+                                'quote' => 'Client satisfaction has soared. Support tickets are down 75% and clients love the self-service portals.',
+                                'author' => 'Michael Chen',
+                                'role' => 'Client Success Director'
+                            ],
+                            'downloadLink' => '/case-studies/global-logistics/download',
+                            'videoLink' => '/case-studies/global-logistics/video'
+                        ]
+                    ],
+                    'showAdditionalCases' => true,
+                    'additionalCasesTitle' => 'More Success Stories',
+                    'additionalCases' => [
+                        [
+                            'icon' => 'warehouse',
+                            'company' => 'Prime Logistics',
+                            'industry' => 'Warehousing',
+                            'result' => '35%',
+                            'resultLabel' => 'Space Utilization',
+                            'description' => 'Improved warehouse space utilization with slotting optimization.',
+                            'link' => '/case-studies/prime-logistics'
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'company' => 'Express Freight',
+                            'industry' => 'Transportation',
+                            'result' => '25%',
+                            'resultLabel' => 'Faster Turnaround',
+                            'description' => 'Reduced dock-to-stock time with mobile scanning.',
+                            'link' => '/case-studies/express-freight'
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'company' => 'Integrated Logistics',
+                            'industry' => 'Multi-client',
+                            'result' => '100%',
+                            'resultLabel' => 'Billing Accuracy',
+                            'description' => 'Achieved perfect billing accuracy with automated invoicing.',
+                            'link' => '/case-studies/integrated-logistics'
+                        ]
+                    ],
+                    'showBillingCalculator' => true,
+                    'billingTimeReduction' => '75%',
+                    'revenueRecovery' => '5-10%',
+                    'paybackPeriod' => '3-6',
+                    'calculatorLink' => '/billing-calculator',
+                    'showPartners' => true,
+                    'partnersTitle' => 'Trusted by leading 3PL providers serving diverse industries',
+                    'partners' => [
+                        ['icon' => 'warehouse', 'name' => 'XPO Logistics'],
+                        ['icon' => 'truck', 'name' => 'DHL Supply Chain'],
+                        ['icon' => 'cloud', 'name' => 'Ryder'],
+                        ['icon' => 'database', 'name' => 'Kuehne + Nagel'],
+                        ['icon' => 'cog', 'name' => 'DB Schenker'],
+                        ['icon' => 'wifi', 'name' => 'CEVA Logistics']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to write your own success story?',
+                    'ctaButtonText' => 'Start Your Journey',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 203,
+                'section_key' => 'thirdPartyLogistics',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Features & FAQ',
+                        'backgroundColor' => 'bg-blue-50 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Everything You',
+                        'highlightedText' => 'Need for 3PL',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-blue-500 to-indigo-500'
+                    ],
+                    'description' => 'Comprehensive third-party logistics solutions designed to optimize warehouse operations, improve client satisfaction, and reduce costs.',
+                    'initialFeature' => 0,
+                    'showFeatureGrid' => true,
+                    'benefits' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '45%', 'label' => 'Labor Efficiency Gain'],
+                        ['icon' => 'dollar', 'value' => '$1.5M', 'label' => 'Avg. Annual Savings'],
+                        ['icon' => 'star', 'value' => '99.8%', 'label' => 'Inventory Accuracy']
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'warehouse',
+                            'title' => 'Warehouse Management',
+                            'shortDescription' => 'Optimize warehouse operations',
+                            'description' => 'Complete warehouse management system with real-time inventory tracking, putaway optimization, picking efficiency, and labor management.',
+                            'capabilities' => [
+                                'Real-time inventory visibility',
+                                'Putaway and picking optimization',
+                                'Cycle counting',
+                                'Labor tracking',
+                                'Slotting optimization'
+                            ],
+                            'technologies' => ['WMS', 'RFID Ready', 'Mobile Scanning'],
+                            'link' => '/3pl/warehouse-management'
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Client Portals',
+                            'shortDescription' => 'White-label client access',
+                            'description' => 'White-label portals for clients to view inventory, orders, and reports in real-time with self-service capabilities.',
+                            'capabilities' => [
+                                'Real-time inventory access',
+                                'Order tracking',
+                                'Custom reporting',
+                                'Document storage',
+                                'Billing visibility'
+                            ],
+                            'technologies' => ['Client Portal', 'Real-time API', 'SSO'],
+                            'link' => '/3pl/client-portals'
+                        ],
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Barcode/RFID Scanning',
+                            'shortDescription' => 'Fast and accurate scanning',
+                            'description' => 'Mobile scanning apps for receiving, putaway, picking, and shipping with RFID integration and error proofing.',
+                            'capabilities' => [
+                                'Mobile scanning apps',
+                                'RFID integration',
+                                'Batch processing',
+                                'Error proofing',
+                                'Voice picking ready'
+                            ],
+                            'technologies' => ['Barcode', 'RFID', 'Voice Picking'],
+                            'link' => '/3pl/scanning'
+                        ],
+                        [
+                            'icon' => 'dollar',
+                            'title' => 'Billing Automation',
+                            'shortDescription' => 'Automated client billing',
+                            'description' => 'Automated billing based on activity, storage, and value-added services with revenue recovery analytics.',
+                            'capabilities' => [
+                                'Activity-based billing',
+                                'Storage fee calculation',
+                                'Client invoicing',
+                                'Payment integration',
+                                'Revenue recovery'
+                            ],
+                            'technologies' => ['Billing Engine', 'EDI 810', 'Payment Gateway'],
+                            'link' => '/3pl/billing'
+                        ],
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Carrier Integration',
+                            'shortDescription' => 'Multi-carrier shipping',
+                            'description' => 'Integrate with major carriers for rate shopping, label generation, and tracking updates.',
+                            'capabilities' => [
+                                'Rate shopping',
+                                'Label printing',
+                                'Tracking updates',
+                                'Freight management',
+                                'Audit recovery'
+                            ],
+                            'technologies' => ['Carrier APIs', 'EDI 856', 'Rate Shopping'],
+                            'link' => '/3pl/carrier-integration'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Analytics Dashboard',
+                            'shortDescription' => 'Comprehensive analytics',
+                            'description' => 'Comprehensive analytics for KPIs, SLAs, client profitability, and operational efficiency.',
+                            'capabilities' => [
+                                'SLA tracking',
+                                'Productivity metrics',
+                                'Cost analysis',
+                                'Client reporting',
+                                'Profitability analytics'
+                            ],
+                            'technologies' => ['BI Dashboard', 'Custom Reports', 'Data Export'],
+                            'link' => '/3pl/analytics'
+                        ]
+                    ],
+                    'showComparison' => true,
+                    'comparison' => [
+                        'before' => [
+                            'Manual warehouse processes',
+                            'Limited client visibility',
+                            'Error-prone billing',
+                            'Disconnected systems',
+                            'Reactive decision making'
+                        ],
+                        'after' => [
+                            'Automated warehouse operations',
+                            'Real-time client portals',
+                            'Automated billing with recovery',
+                            'Integrated technology stack',
+                            'Proactive analytics insights'
+                        ]
+                    ],
+                    'showTechStack' => true,
+                    'techStackTitle' => 'Seamlessly Integrates With Your 3PL Stack',
+                    'techStack' => [
+                        ['icon' => 'cloud', 'name' => 'Manhattan'],
+                        ['icon' => 'database', 'name' => 'Blue Yonder'],
+                        ['icon' => 'warehouse', 'name' => 'HighJump'],
+                        ['icon' => 'cog', 'name' => 'SAP EWM'],
+                        ['icon' => 'truck', 'name' => 'Oracle WMS'],
+                        ['icon' => 'wifi', 'name' => 'Zebra'],
+                        ['icon' => 'qrcode', 'name' => 'Honeywell'],
+                        ['icon' => 'chart', 'name' => 'Tableau']
+                    ],
+                    'showHowItWorks' => true,
+                    'howItWorksTitle' => 'How It Works',
+                    'steps' => [
+                        ['icon' => 'database', 'title' => 'Connect', 'description' => 'Integrate with your WMS, ERP, and carrier systems.'],
+                        ['icon' => 'qrcode', 'title' => 'Scan', 'description' => 'Scan inventory for real-time tracking and accuracy.'],
+                        ['icon' => 'chart', 'title' => 'Optimize', 'description' => 'Use analytics to optimize operations and billing.']
+                    ],
+                    'showFaq' => true,
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How does the platform integrate with our existing WMS?',
+                            'answer' => 'We offer pre-built integrations with major WMS platforms including Manhattan, Blue Yonder, HighJump, SAP EWM, and Oracle. Custom integrations are also available for legacy systems.'
+                        ],
+                        [
+                            'question' => 'Can we provide white-label portals for our clients?',
+                            'answer' => 'Yes! Our client portals are fully white-label with your branding. Clients get real-time inventory visibility, order tracking, and self-service reporting.'
+                        ],
+                        [
+                            'question' => 'How does automated billing work?',
+                            'answer' => 'Our billing engine automatically calculates charges based on activity (receiving, picking, packing), storage (cube/time), and value-added services, then generates client invoices.'
+                        ],
+                        [
+                            'question' => 'What carrier integrations are available?',
+                            'answer' => 'We integrate with FedEx, UPS, DHL, USPS, and regional carriers for rate shopping, label generation, and tracking. EDI 856 for ASNs is also supported.'
+                        ],
+                        [
+                            'question' => 'Is there a demo available?',
+                            'answer' => 'Yes! We offer personalized demos tailored to your specific 3PL operations. Contact our team to schedule a demo.'
+                        ]
+                    ],
+                    'showResources' => true,
+                    'resourcesTitle' => 'Helpful Resources',
+                    'resources' => [
+                        [
+                            'icon' => 'document',
+                            'title' => '3PL Operations Guide',
+                            'description' => 'Learn best practices for warehouse optimization and client management.',
+                            'cta' => 'Download Guide',
+                            'link' => '/resources/3pl-guide'
+                        ],
+                        [
+                            'icon' => 'play',
+                            'title' => 'Platform Demo',
+                            'description' => 'Watch a 10-minute overview of our 3PL solutions.',
+                            'cta' => 'Watch Demo',
+                            'link' => '/resources/demo-video'
+                        ],
+                        [
+                            'icon' => 'download',
+                            'title' => 'Billing Calculator',
+                            'description' => 'Calculate potential savings from automated billing and revenue recovery.',
+                            'cta' => 'Calculate Now',
+                            'link' => '/resources/roi-calculator'
+                        ]
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your 3PL operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 204,
+                'section_key' => 'thirdPartyLogistics',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Construction Section
+            [
+                'id' => 205,
+                'section_key' => 'construction',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Industry Focus',
+                        'backgroundColor' => 'bg-amber-50 dark:bg-amber-900/30',
+                        'borderColor' => 'border-amber-200 dark:border-amber-800',
+                        'textColor' => 'text-amber-700 dark:text-amber-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Construction',
+                        'highlightedText' => 'Material Management',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-amber-500 to-orange-500'
+                    ],
+                    'description' => 'Optimize your construction material supply chain with real-time tracking, job site inventory management, and equipment tracking.',
+                    'initialTab' => 'overview',
+                    'showStats' => true,
+                    'stats' => [
+                        ['icon' => 'building', 'value' => '500+', 'label' => 'Construction Firms'],
+                        ['icon' => 'database', 'value' => '10K+', 'label' => 'Projects Managed'],
+                        ['icon' => 'trending', 'value' => '25%', 'label' => 'Material Cost Reduction'],
+                        ['icon' => 'clock', 'value' => '98%', 'label' => 'On-Time Delivery']
+                    ],
+                    'overview' => [
+                        'title' => 'Job Site Inventory & Equipment Tracking',
+                        'description' => 'Our platform helps construction firms track materials, equipment, and supplies across multiple job sites with real-time visibility and automated replenishment.',
+                        'highlights' => [
+                            'Real-time material tracking across job sites',
+                            'Equipment maintenance and utilization',
+                            'Automated reorder points for consumables',
+                            'Supplier performance management',
+                            'Mobile scanning for receiving and transfers'
+                        ],
+                        'ctaText' => 'Explore Solutions',
+                        'ctaLink' => '/solutions/construction',
+                        'statsCards' => [
+                            ['value' => '50+', 'label' => 'Integrations'],
+                            ['value' => '99.9%', 'label' => 'Inventory Accuracy'],
+                            ['value' => '24/7', 'label' => 'Support'],
+                            ['value' => '500+', 'label' => 'Happy Clients']
+                        ]
+                    ],
+                    'challenges' => [
+                        [
+                            'icon' => 'truck',
+                            'title' => 'Material Tracking',
+                            'description' => 'Tracking materials across multiple job sites leads to waste, theft, and project delays.'
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'title' => 'Equipment Downtime',
+                            'description' => 'Poor equipment maintenance tracking causes unexpected breakdowns and project delays.'
+                        ],
+                        [
+                            'icon' => 'database',
+                            'title' => 'Inventory Visibility',
+                            'description' => 'Limited visibility into job site inventory causes material shortages and over-ordering.'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Cost Overruns',
+                            'description' => 'Manual tracking leads to inaccurate job costing and budget overruns.'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'title' => 'Supplier Coordination',
+                            'description' => 'Poor supplier communication causes delivery delays and material shortages.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'title' => 'Compliance Tracking',
+                            'description' => 'Meeting safety and compliance requirements requires extensive documentation.'
+                        ]
+                    ],
+                    'solutions' => [
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Material Tracking',
+                            'description' => 'Real-time tracking of materials from delivery to job site consumption.',
+                            'features' => [
+                                'Barcode scanning for receiving',
+                                'Job site inventory counts',
+                                'Transfer tracking',
+                                'Consumption logging'
+                            ]
+                        ],
+                        [
+                            'icon' => 'cog',
+                            'title' => 'Equipment Management',
+                            'description' => 'Track equipment location, maintenance schedules, and utilization rates.',
+                            'features' => [
+                                'Equipment check-in/out',
+                                'Maintenance scheduling',
+                                'Utilization analytics',
+                                'GPS tracking'
+                            ]
+                        ],
+                        [
+                            'icon' => 'refresh',
+                            'title' => 'Automated Replenishment',
+                            'description' => 'Automated reordering based on consumption rates and min/max levels.',
+                            'features' => [
+                                'Min/max levels',
+                                'Consumption forecasting',
+                                'PO automation',
+                                'Supplier integration'
+                            ]
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Job Site Visibility',
+                            'description' => 'Real-time inventory visibility across all job sites from any device.',
+                            'features' => [
+                                'Mobile access',
+                                'Real-time counts',
+                                'Photo documentation',
+                                'Offline mode'
+                            ]
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Job Costing',
+                            'description' => 'Accurate job costing with material and equipment tracking.',
+                            'features' => [
+                                'Material cost tracking',
+                                'Equipment cost allocation',
+                                'Labor integration',
+                                'Budget vs actual'
+                            ]
+                        ],
+                        [
+                            'icon' => 'document',
+                            'title' => 'Compliance Management',
+                            'description' => 'Automated safety and compliance documentation tracking.',
+                            'features' => [
+                                'Safety inspection logs',
+                                'Equipment certifications',
+                                'Material certs',
+                                'Audit trails'
+                            ]
+                        ]
+                    ],
+                    'showFeatures' => true,
+                    'features' => [
+                        'title' => 'Why Construction Leaders Choose Us',
+                        'items' => [
+                            ['icon' => 'qrcode', 'title' => 'Material Tracking'],
+                            ['icon' => 'cog', 'title' => 'Equipment Mgmt'],
+                            ['icon' => 'cloud', 'title' => 'Job Site Access'],
+                            ['icon' => 'chart', 'title' => 'Job Costing'],
+                            ['icon' => 'database', 'title' => 'Analytics'],
+                            ['icon' => 'users', 'title' => '24/7 Support'],
+                            ['icon' => 'trending', 'title' => 'Scalable'],
+                            ['icon' => 'shield', 'title' => 'Compliance']
+                        ]
+                    ],
+                    'showStandards' => true,
+                    'standardsText' => 'ISO 9001 | LEED Ready | OSHA Compliant | BIM Integrated | ACI Certified | AIA Documents',
+                    'showSuccessMetrics' => true,
+                    'successMetrics' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '25%', 'label' => 'Material Cost Reduction'],
+                        ['icon' => 'star', 'value' => '98%', 'label' => 'On-Time Delivery'],
+                        ['icon' => 'dollar', 'value' => '$1.2M', 'label' => 'Avg. Annual Savings']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your construction operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 206,
+                'section_key' => 'construction',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Success Stories',
+                        'backgroundColor' => 'bg-amber-50 dark:bg-amber-900/30',
+                        'borderColor' => 'border-amber-200 dark:border-amber-800',
+                        'textColor' => 'text-amber-700 dark:text-amber-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Construction',
+                        'highlightedText' => 'Success Stories',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-amber-500 to-orange-500'
+                    ],
+                    'description' => 'See how construction firms are reducing material costs, improving job site efficiency, and completing projects on time.',
+                    'initialIndex' => 0,
+                    'autoplay' => true,
+                    'autoplayInterval' => 6000,
+                    'caseStudies' => [
+                        [
+                            'id' => 'prestige-construction',
+                            'icon' => 'building',
+                            'company' => 'Prestige Construction',
+                            'location' => 'Dallas, TX',
+                            'industry' => 'Commercial Construction',
+                            'keyResult' => ['value' => '35%', 'label' => 'Material Cost Reduction'],
+                            'results' => [
+                                ['value' => '35%', 'label' => 'Material Cost Reduction'],
+                                ['value' => '92%', 'label' => 'Theft Reduction'],
+                                ['value' => '$2.5M', 'label' => 'Annual Savings'],
+                                ['value' => '3x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Prestige Construction was losing millions annually to material theft, waste, and over-ordering across 15 active job sites with no real-time visibility.',
+                            'solution' => 'Implemented our job site inventory tracking system with barcode scanning, GPS tracking for high-value materials, and automated replenishment.',
+                            'projectType' => ['Commercial', 'Multi-family', 'Mixed-use'],
+                            'testimonial' => [
+                                'quote' => 'Material costs are down 35% and theft is almost eliminated. We have real-time visibility into every job site.',
+                                'author' => 'Tom Bradley',
+                                'role' => 'Construction Director'
+                            ],
+                            'downloadLink' => '/case-studies/prestige-construction/download',
+                            'videoLink' => '/case-studies/prestige-construction/video'
+                        ],
+                        [
+                            'id' => 'heavy-equipment',
+                            'icon' => 'cog',
+                            'company' => 'Heavy Equipment Services',
+                            'location' => 'Houston, TX',
+                            'industry' => 'Heavy Civil',
+                            'keyResult' => ['value' => '45%', 'label' => 'Equipment Utilization'],
+                            'results' => [
+                                ['value' => '45%', 'label' => 'Utilization Gain'],
+                                ['value' => '60%', 'label' => 'Downtime Reduction'],
+                                ['value' => '$1.8M', 'label' => 'Annual Savings'],
+                                ['value' => '2.8x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Poor equipment tracking caused underutilization, unexpected breakdowns, and rental overspending across the fleet of 200+ machines.',
+                            'solution' => 'Deployed our equipment management platform with GPS tracking, maintenance scheduling, and utilization analytics.',
+                            'projectType' => ['Heavy Civil', 'Infrastructure', 'Road Construction'],
+                            'testimonial' => [
+                                'quote' => 'Equipment utilization is up 45% and downtime is down 60%. We\'re getting more work done with the same fleet.',
+                                'author' => 'Maria Garcia',
+                                'role' => 'Fleet Manager'
+                            ],
+                            'downloadLink' => '/case-studies/heavy-equipment/download',
+                            'videoLink' => '/case-studies/heavy-equipment/video'
+                        ],
+                        [
+                            'id' => 'green-builders',
+                            'icon' => 'hardhat',
+                            'company' => 'Green Builders',
+                            'location' => 'Portland, OR',
+                            'industry' => 'Residential Construction',
+                            'keyResult' => ['value' => '98%', 'label' => 'On-Time Delivery'],
+                            'results' => [
+                                ['value' => '98%', 'label' => 'On-Time Delivery'],
+                                ['value' => '25%', 'label' => 'Waste Reduction'],
+                                ['value' => '$950K', 'label' => 'Annual Savings'],
+                                ['value' => '2.5x', 'label' => 'ROI']
+                            ],
+                            'challenge' => 'Material shortages and poor supplier coordination caused project delays and budget overruns across residential developments.',
+                            'solution' => 'Implemented our supply chain platform with supplier portals, automated PO generation, and real-time delivery tracking.',
+                            'projectType' => ['Residential', 'Multi-family', 'Sustainable'],
+                            'testimonial' => [
+                                'quote' => 'On-time delivery is now 98% and material waste is down 25%. Our suppliers are fully integrated.',
+                                'author' => 'David Chen',
+                                'role' => 'Project Manager'
+                            ],
+                            'downloadLink' => '/case-studies/green-builders/download',
+                            'videoLink' => '/case-studies/green-builders/video'
+                        ]
+                    ],
+                    'showAdditionalCases' => true,
+                    'additionalCasesTitle' => 'More Success Stories',
+                    'additionalCases' => [
+                        [
+                            'icon' => 'building',
+                            'company' => 'Summit Contractors',
+                            'industry' => 'Commercial',
+                            'result' => '40%',
+                            'resultLabel' => 'Faster Closeout',
+                            'description' => 'Reduced project closeout time with digital documentation.',
+                            'link' => '/case-studies/summit-contractors'
+                        ],
+                        [
+                            'icon' => 'cog',
+                            'company' => 'Metro Paving',
+                            'industry' => 'Infrastructure',
+                            'result' => '30%',
+                            'resultLabel' => 'Fuel Savings',
+                            'description' => 'Optimized equipment routing and reduced fuel consumption.',
+                            'link' => '/case-studies/metro-paving'
+                        ],
+                        [
+                            'icon' => 'hardhat',
+                            'company' => 'Elite Renovations',
+                            'industry' => 'Residential',
+                            'result' => '99%',
+                            'resultLabel' => 'Material Accuracy',
+                            'description' => 'Achieved near-perfect material ordering with consumption tracking.',
+                            'link' => '/case-studies/elite-renovations'
+                        ]
+                    ],
+                    'showCostCalculator' => true,
+                    'theftReduction' => '80-90%',
+                    'wasteReduction' => '15-25%',
+                    'paybackPeriod' => '3-6',
+                    'calculatorLink' => '/construction-calculator',
+                    'showPartners' => true,
+                    'partnersTitle' => 'Trusted by leading construction firms across North America',
+                    'partners' => [
+                        ['icon' => 'building', 'name' => 'Turner Construction'],
+                        ['icon' => 'cog', 'name' => 'Bechtel'],
+                        ['icon' => 'hardhat', 'name' => 'Fluor'],
+                        ['icon' => 'truck', 'name' => 'Kiewit'],
+                        ['icon' => 'building', 'name' => 'Whiting-Turner'],
+                        ['icon' => 'cog', 'name' => 'DPR Construction']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to write your own success story?',
+                    'ctaButtonText' => 'Start Your Journey',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 207,
+                'section_key' => 'construction',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Features & FAQ',
+                        'backgroundColor' => 'bg-amber-50 dark:bg-amber-900/30',
+                        'borderColor' => 'border-amber-200 dark:border-amber-800',
+                        'textColor' => 'text-amber-700 dark:text-amber-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Everything You',
+                        'highlightedText' => 'Need for Construction',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-amber-500 to-orange-500'
+                    ],
+                    'description' => 'Comprehensive construction material and equipment management solutions designed to reduce costs and improve project delivery.',
+                    'initialFeature' => 0,
+                    'showFeatureGrid' => true,
+                    'benefits' => [
+                        ['icon' => 'trending', 'value' => '287%', 'label' => 'Average ROI'],
+                        ['icon' => 'clock', 'value' => '25%', 'label' => 'Material Cost Reduction'],
+                        ['icon' => 'dollar', 'value' => '$1.2M', 'label' => 'Avg. Annual Savings'],
+                        ['icon' => 'star', 'value' => '98%', 'label' => 'On-Time Delivery']
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'qrcode',
+                            'title' => 'Material Tracking',
+                            'shortDescription' => 'Real-time job site inventory',
+                            'description' => 'Track materials from delivery to consumption with barcode scanning, GPS tracking for high-value items, and automated inventory counts.',
+                            'capabilities' => [
+                                'Barcode scanning for receiving',
+                                'Job site inventory counts',
+                                'Transfer tracking',
+                                'Consumption logging',
+                                'Theft prevention alerts'
+                            ],
+                            'technologies' => ['Barcode', 'GPS', 'RFID'],
+                            'link' => '/construction/material-tracking'
+                        ],
+                        [
+                            'icon' => 'cog',
+                            'title' => 'Equipment Management',
+                            'shortDescription' => 'Fleet optimization',
+                            'description' => 'Complete equipment management with GPS tracking, maintenance scheduling, utilization analytics, and rental optimization.',
+                            'capabilities' => [
+                                'Equipment check-in/out',
+                                'Maintenance scheduling',
+                                'Utilization analytics',
+                                'GPS tracking',
+                                'Rental management'
+                            ],
+                            'technologies' => ['GPS', 'Telematics', 'IoT'],
+                            'link' => '/construction/equipment'
+                        ],
+                        [
+                            'icon' => 'refresh',
+                            'title' => 'Automated Replenishment',
+                            'shortDescription' => 'Smart inventory reordering',
+                            'description' => 'Automated material reordering based on consumption rates, project schedules, and min/max levels with supplier integration.',
+                            'capabilities' => [
+                                'Min/max levels',
+                                'Consumption forecasting',
+                                'PO automation',
+                                'Supplier integration',
+                                'Lead time tracking'
+                            ],
+                            'technologies' => ['EDI', 'API', 'Forecasting'],
+                            'link' => '/construction/replenishment'
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'title' => 'Job Site Visibility',
+                            'shortDescription' => 'Mobile access',
+                            'description' => 'Real-time inventory visibility across all job sites from any device with offline mode and photo documentation.',
+                            'capabilities' => [
+                                'Mobile access',
+                                'Real-time counts',
+                                'Photo documentation',
+                                'Offline mode',
+                                'Site transfers'
+                            ],
+                            'technologies' => ['Mobile', 'Cloud', 'Offline Sync'],
+                            'link' => '/construction/job-site'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Project Costing',
+                            'shortDescription' => 'Accurate job costing',
+                            'description' => 'Accurate project costing with material tracking, equipment cost allocation, and labor integration for budget vs actual analysis.',
+                            'capabilities' => [
+                                'Material cost tracking',
+                                'Equipment cost allocation',
+                                'Labor integration',
+                                'Budget vs actual',
+                                'Variance analysis'
+                            ],
+                            'technologies' => ['ERP Integration', 'Analytics'],
+                            'link' => '/construction/costing'
+                        ],
+                        [
+                            'icon' => 'document',
+                            'title' => 'Compliance Management',
+                            'shortDescription' => 'Safety & documentation',
+                            'description' => 'Automated safety and compliance documentation tracking with inspection logs, equipment certifications, and audit trails.',
+                            'capabilities' => [
+                                'Safety inspection logs',
+                                'Equipment certifications',
+                                'Material certs',
+                                'Audit trails',
+                                'OSHA reporting'
+                            ],
+                            'technologies' => ['Digital Forms', 'Document Management'],
+                            'link' => '/construction/compliance'
+                        ]
+                    ],
+                    'showComparison' => true,
+                    'comparison' => [
+                        'before' => [
+                            'Manual material tracking',
+                            'Unplanned equipment downtime',
+                            'Material theft and waste',
+                            'Poor job site visibility',
+                            'Reactive replenishment'
+                        ],
+                        'after' => [
+                            'Real-time material tracking',
+                            'Predictive maintenance',
+                            '85% theft reduction',
+                            'Complete job site visibility',
+                            'Automated replenishment'
+                        ]
+                    ],
+                    'showTechStack' => true,
+                    'techStackTitle' => 'Seamlessly Integrates With Your Construction Stack',
+                    'techStack' => [
+                        ['icon' => 'building', 'name' => 'Procore'],
+                        ['icon' => 'database', 'name' => 'Autodesk BIM 360'],
+                        ['icon' => 'cog', 'name' => 'Viewpoint'],
+                        ['icon' => 'truck', 'name' => 'Sage'],
+                        ['icon' => 'hardhat', 'name' => 'HCSS'],
+                        ['icon' => 'cloud', 'name' => 'PlanGrid'],
+                        ['icon' => 'chart', 'name' => 'Bluebeam'],
+                        ['icon' => 'wrench', 'name' => 'Fleetio']
+                    ],
+                    'showHowItWorks' => true,
+                    'howItWorksTitle' => 'How It Works',
+                    'steps' => [
+                        ['icon' => 'database', 'title' => 'Connect', 'description' => 'Integrate with your accounting, ERP, and project management systems.'],
+                        ['icon' => 'qrcode', 'title' => 'Scan', 'description' => 'Scan materials on delivery and consumption at job sites.'],
+                        ['icon' => 'chart', 'title' => 'Optimize', 'description' => 'Use analytics to reduce costs and improve project delivery.']
+                    ],
+                    'showFaq' => true,
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How does material tracking work across multiple job sites?',
+                            'answer' => 'Our system provides real-time visibility across all job sites with barcode scanning for receiving and consumption, transfer tracking between sites, and automated inventory counts.'
+                        ],
+                        [
+                            'question' => 'Can it track equipment maintenance and utilization?',
+                            'answer' => 'Yes! Our equipment management module tracks maintenance schedules, work orders, utilization rates, and rental equipment with GPS location data.'
+                        ],
+                        [
+                            'question' => 'How does automated replenishment work?',
+                            'answer' => 'The system monitors consumption rates and inventory levels, automatically generating purchase orders when stock reaches min/max thresholds based on project schedules.'
+                        ],
+                        [
+                            'question' => 'Does it integrate with our accounting software?',
+                            'answer' => 'Yes, we offer pre-built integrations with major construction accounting and ERP systems including Sage, Viewpoint, QuickBooks, and more.'
+                        ],
+                        [
+                            'question' => 'Is there a demo available?',
+                            'answer' => 'Yes! We offer personalized demos tailored to your specific construction operations. Contact our team to schedule a demo.'
+                        ]
+                    ],
+                    'showResources' => true,
+                    'resourcesTitle' => 'Helpful Resources',
+                    'resources' => [
+                        [
+                            'icon' => 'document',
+                            'title' => 'Construction Material Management Guide',
+                            'description' => 'Learn best practices for job site inventory and equipment tracking.',
+                            'cta' => 'Download Guide',
+                            'link' => '/resources/construction-guide'
+                        ],
+                        [
+                            'icon' => 'play',
+                            'title' => 'Platform Demo',
+                            'description' => 'Watch a 10-minute overview of our construction solutions.',
+                            'cta' => 'Watch Demo',
+                            'link' => '/resources/demo-video'
+                        ],
+                        [
+                            'icon' => 'download',
+                            'title' => 'ROI Calculator',
+                            'description' => 'Calculate potential savings from material cost reduction and theft prevention.',
+                            'cta' => 'Calculate Now',
+                            'link' => '/resources/roi-calculator'
+                        ]
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Ready to transform your construction operations?',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 208,
+                'section_key' => 'construction',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
+
 
         // Add the new FeatureP variants
         DB::table('section_variants')->upsert(
