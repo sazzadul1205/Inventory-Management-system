@@ -1,24 +1,95 @@
-// page/frontend/Industries/ECommerceAndRetailSection/ECommerceAndRetailSection1.jsx
+// pages/frontend/Industries/ECommerceAndRetailSection/ECommerceAndRetailSection1.jsx
 
-// React
+/**
+ * E-Commerce & Retail Solutions Section Component
+ * Showcases industry-specific solutions for retail and e-commerce businesses
+ * Features: Statistics display, tabbed content (Overview/Challenges/Solutions), feature highlights
+ * 
+ * All icons from react-icons library (no emojis, no custom icons)
+ */
+
+// React Core Imports
 import { Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
-// Icons
+// React Icons - All from react-icons library
 import {
   HiOutlineShoppingBag,
   HiOutlineChartBar,
   HiOutlineCheckCircle,
   HiArrowRight,
   HiOutlineLightBulb,
+  HiOutlineTrendingUp,
+  HiOutlineUsers,
+  HiOutlineClock,
+  HiOutlineCurrencyDollar,
+  HiOutlineTruck,
+  HiOutlineDatabase,
+  HiOutlineShieldCheck,
+  HiOutlineSparkles,
+  HiOutlineStar,
+  HiOutlineQrcode,
+  HiOutlineRefresh,
+  HiOutlineChip,
+  HiOutlineCloud
 } from 'react-icons/hi';
 
 const ECommerceAndRetailSection1 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+  // ==================== STATE MANAGEMENT ====================
+  const [activeTab, setActiveTab] = useState(config?.initialTab || 'overview');  // Current active tab
 
+  // ==================== MEMOIZED DATA ====================
   const stats = config?.stats || [];
-  const challenges = config?.challenges || [];
+  const features = config?.features || {};
   const solutions = config?.solutions || [];
+  const challenges = config?.challenges || [];
+
+  // ==================== HELPER FUNCTIONS ====================
+  /**
+   * Get icon component by name
+   * @param {string} iconName - Name of the icon
+   * @param {string} className - CSS classes for the icon
+   * @returns {JSX.Element} Icon component
+   */
+  const getIcon = useCallback((iconName, className = "w-5 h-5") => {
+    const icons = {
+      'bag': HiOutlineShoppingBag,
+      'chart': HiOutlineChartBar,
+      'check': HiOutlineCheckCircle,
+      'arrow': HiArrowRight,
+      'bulb': HiOutlineLightBulb,
+      'trending': HiOutlineTrendingUp,
+      'users': HiOutlineUsers,
+      'clock': HiOutlineClock,
+      'dollar': HiOutlineCurrencyDollar,
+      'truck': HiOutlineTruck,
+      'database': HiOutlineDatabase,
+      'shield': HiOutlineShieldCheck,
+      'sparkles': HiOutlineSparkles,
+      'star': HiOutlineStar,
+      'qrcode': HiOutlineQrcode,
+      'refresh': HiOutlineRefresh,
+      'chip': HiOutlineChip,
+      'cloud': HiOutlineCloud
+    };
+
+    const IconComponent = icons[iconName] || HiOutlineShoppingBag;
+    return <IconComponent className={className} />;
+  }, []);
+
+  /**
+   * Get tab configuration
+   * @returns {Array} Tab configuration array
+   */
+  const getTabs = useCallback(() => {
+    return [
+      { id: 'overview', label: 'Overview', icon: 'bag' },
+      { id: 'challenges', label: 'Key Challenges', icon: 'chart' },
+      { id: 'solutions', label: 'Our Solutions', icon: 'bulb' }
+    ];
+  }, []);
+
+  const tabs = getTabs();
 
   return (
     <section
@@ -26,15 +97,20 @@ const ECommerceAndRetailSection1 = ({ config }) => {
       role="region"
       aria-label="E-Commerce & Retail Solutions Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-orange-50/30 to-transparent dark:from-orange-900/5 pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-0 left-0 w-1/3 h-full bg-linear-to-r from-amber-50/30 to-transparent dark:from-amber-900/5 pointer-events-none" aria-hidden="true" />
 
+      {/* Floating decorative elements */}
+      <div className="absolute top-20 right-10 w-32 h-32 bg-orange-300/5 dark:bg-orange-500/5 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-20 left-10 w-40 h-40 bg-amber-300/5 dark:bg-amber-500/5 rounded-full blur-3xl" aria-hidden="true" />
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          {/* Section Badge */}
+          {/* Badge */}
           <div
             className={`inline-flex items-center ${config?.badge?.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor}`}
             aria-label="Industry badge"
@@ -50,7 +126,7 @@ const ECommerceAndRetailSection1 = ({ config }) => {
             </span>
           </div>
 
-          {/* Section Title */}
+          {/* Title */}
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             {config?.title?.prefix}{' '}
             <span className={`bg-linear-to-r ${config?.title?.highlightGradient} bg-clip-text text-transparent`}>
@@ -59,138 +135,148 @@ const ECommerceAndRetailSection1 = ({ config }) => {
             {config?.title?.suffix}
           </h2>
 
-          {/* Section Description */}
+          {/* Description */}
           <p className="text-xl text-gray-600 dark:text-gray-300">
             {config?.description}
           </p>
         </div>
 
-        {/* Stats Grid */}
-        {config?.showStats && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        {/* ==================== STATS GRID ==================== */}
+        {config?.showStats && stats.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl">
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-1">{stat.value}</div>
+              <div
+                key={index}
+                className="text-center p-5 bg-gray-50 dark:bg-gray-800/50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="flex justify-center mb-3">
+                  {getIcon(stat.icon, "w-8 h-8 text-orange-600 dark:text-orange-400")}
+                </div>
+                <div className="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400 mb-1 font-mono">
+                  {stat.value}
+                </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Tab Navigation */}
+        {/* ==================== TAB NAVIGATION ==================== */}
         <div className="flex justify-center border-b border-gray-200 dark:border-gray-700 mb-8">
-          {['overview', 'challenges', 'solutions'].map((tab) => (
+          {tabs.map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 text-sm font-medium transition-all capitalize ${activeTab === tab
-                  ? 'text-orange-600 border-b-2 border-orange-600'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-5 py-3 text-sm font-medium transition-all capitalize ${activeTab === tab.id
+                ? 'text-orange-600 border-b-2 border-orange-600'
+                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
+              aria-label={`Show ${tab.label} tab`}
             >
-              {tab === 'overview' && (
-                <span className="flex items-center gap-2">
-                  <HiOutlineShoppingBag className="w-4 h-4" />
-                  Overview
-                </span>
-              )}
-              {tab === 'challenges' && (
-                <span className="flex items-center gap-2">
-                  <HiOutlineChartBar className="w-4 h-4" />
-                  Key Challenges
-                </span>
-              )}
-              {tab === 'solutions' && (
-                <span className="flex items-center gap-2">
-                  <HiOutlineLightBulb className="w-4 h-4" />
-                  Our Solutions
-                </span>
-              )}
+              {getIcon(tab.icon, "w-4 h-4")}
+              {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Tab Content */}
-        <div className="mb-12">
-          {activeTab === 'overview' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* ==================== TAB CONTENT ==================== */}
+        <div className="mb-12 min-h-112.5">
+          {/* Overview Tab */}
+          {activeTab === 'overview' && config?.overview && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-fadeIn">
+              {/* Left Column - Text Content */}
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {config?.overview?.title}
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                  {config.overview.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                  {config?.overview?.description}
+                  {config.overview.description}
                 </p>
                 <div className="space-y-3">
-                  {config?.overview?.highlights?.map((highlight, idx) => (
+                  {config.overview.highlights?.map((highlight, idx) => (
                     <div key={idx} className="flex items-start gap-3">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
+                      {getIcon("check", "w-5 h-5 text-green-500 mt-0.5 shrink-0")}
                       <span className="text-gray-700 dark:text-gray-300">{highlight}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-8">
                   <Link
-                    href={config?.overview?.ctaLink || "/demo"}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    href={config.overview.ctaLink || "/demo"}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-orange-600 to-amber-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                   >
-                    {config?.overview?.ctaText || "Explore Solutions"}
-                    <HiArrowRight aria-hidden="true" />
+                    {config.overview.ctaText || "Explore Solutions"}
+                    {getIcon("arrow", "w-4 h-4")}
                   </Link>
                 </div>
               </div>
+
+              {/* Right Column - Stats Cards */}
               <div className="relative">
-                <div className="bg-linear-to-br from-orange-100 to-amber-100 dark:from-orange-900/20 dark:to-amber-900/20 rounded-2xl p-8">
-                  <div className="text-6xl mb-4 text-center">🛍️</div>
+                <div className="bg-linear-to-br from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8 border border-orange-100 dark:border-gray-700">
+                  <div className="flex justify-center mb-5">
+                    {getIcon("bag", "w-12 h-12 text-orange-600")}
+                  </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-                      <div className="text-2xl font-bold text-orange-600">500+</div>
-                      <div className="text-xs text-gray-500">Retailers Served</div>
-                    </div>
-                    <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-                      <div className="text-2xl font-bold text-orange-600">98%</div>
-                      <div className="text-xs text-gray-500">Satisfaction Rate</div>
-                    </div>
-                    <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-                      <div className="text-2xl font-bold text-orange-600">30%</div>
-                      <div className="text-xs text-gray-500">Avg. Cost Reduction</div>
-                    </div>
-                    <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-                      <div className="text-2xl font-bold text-orange-600">2.5x</div>
-                      <div className="text-xs text-gray-500">Avg. ROI</div>
-                    </div>
+                    {config.overview.statsCards?.map((card, idx) => (
+                      <div key={idx} className="text-center p-4 bg-white dark:bg-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all">
+                        <div className="text-xl md:text-2xl font-bold text-orange-600 dark:text-orange-400 font-mono">
+                          {card.value}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{card.label}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {activeTab === 'challenges' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Challenges Tab */}
+          {activeTab === 'challenges' && challenges.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn">
               {challenges.map((challenge, index) => (
-                <div key={index} className="p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl hover:shadow-lg transition-all">
-                  <div className="text-3xl mb-3">{challenge.icon}</div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{challenge.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{challenge.description}</p>
+                <div
+                  key={index}
+                  className="p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
+                >
+                  <div className="flex justify-center mb-3">
+                    {getIcon(challenge.icon, "w-10 h-10 text-orange-600")}
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 text-center">
+                    {challenge.title}
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm text-center leading-relaxed">
+                    {challenge.description}
+                  </p>
                 </div>
               ))}
             </div>
           )}
 
-          {activeTab === 'solutions' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Solutions Tab */}
+          {activeTab === 'solutions' && solutions.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn">
               {solutions.map((solution, index) => (
-                <div key={index} className="p-6 bg-linear-to-br from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-2xl hover:shadow-lg transition-all">
-                  <div className="text-3xl mb-3">{solution.icon}</div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{solution.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{solution.description}</p>
-                  {solution.features && (
-                    <ul className="space-y-1">
+                <div
+                  key={index}
+                  className="p-6 bg-linear-to-br from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-orange-100 dark:border-gray-700 group"
+                >
+                  <div className="flex justify-center mb-4">
+                    {getIcon(solution.icon, "w-10 h-10 text-orange-600")}
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 text-center">
+                    {solution.title}
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm text-center leading-relaxed mb-3">
+                    {solution.description}
+                  </p>
+                  {solution.features && solution.features.length > 0 && (
+                    <ul className="space-y-1.5 mt-3 pt-3 border-t border-orange-100 dark:border-gray-700">
                       {solution.features.map((feature, idx) => (
-                        <li key={idx} className="text-xs text-gray-500 flex items-center gap-1">
-                          <HiOutlineCheckCircle className="w-3 h-3 text-green-500" />
-                          {feature}
+                        <li key={idx} className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
+                          {getIcon("check", "w-3 h-3 text-green-500 shrink-0")}
+                          <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -201,16 +287,18 @@ const ECommerceAndRetailSection1 = ({ config }) => {
           )}
         </div>
 
-        {/* Key Features Row */}
-        {config?.showFeatures && (
-          <div className="mb-12 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-6">
-              {config?.features?.title || "Why E-Commerce & Retail Leaders Choose Us"}
+        {/* ==================== KEY FEATURES ROW ==================== */}
+        {config?.showFeatures && features?.items?.length > 0 && (
+          <div className="mb-12 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 hover:shadow-lg transition-all">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">
+              {features.title || "Why E-Commerce & Retail Leaders Choose Us"}
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {config?.features?.items?.map((feature, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl mb-2">{feature.icon}</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+              {features.items.map((feature, index) => (
+                <div key={index} className="text-center group">
+                  <div className="flex justify-center mb-2">
+                    {getIcon(feature.icon, "w-8 h-8 text-orange-600 group-hover:scale-110 transition-transform")}
+                  </div>
                   <div className="font-semibold text-gray-800 dark:text-gray-200 text-sm">{feature.title}</div>
                 </div>
               ))}
@@ -218,28 +306,48 @@ const ECommerceAndRetailSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== SUCCESS METRICS BANNER ==================== */}
+        {config?.showSuccessMetrics && config?.successMetrics && (
+          <div className="mb-12 bg-linear-to-r from-orange-600 to-amber-600 rounded-2xl p-6 text-white shadow-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-center">
+              {config.successMetrics.map((metric, index) => (
+                <div key={index} className="animate-fadeIn" style={{ animationDelay: `${index * 100}ms` }}>
+                  <div className="flex justify-center mb-2">
+                    {getIcon(metric.icon, "w-6 h-6 text-white")}
+                  </div>
+                  <div className="text-2xl md:text-3xl font-bold">{metric.value}</div>
+                  <div className="text-sm text-orange-100 mt-1">{metric.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ==================== CALL TO ACTION ==================== */}
         {config?.showCta && (
           <div className="text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineShoppingBag className="w-6 h-6 text-orange-600" />
-              <span className="text-gray-700 dark:text-gray-300 font-medium">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-5 p-6 bg-linear-to-r from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl border border-orange-100 dark:border-gray-700">
+              <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
+                {getIcon("bag", "w-6 h-6 text-orange-600")}
+              </div>
+              <span className="text-gray-700 dark:text-gray-300 font-medium text-center sm:text-left">
                 {config?.ctaText || "Ready to transform your retail operations?"}
               </span>
               <Link
                 href={config?.ctaLink || "/demo"}
-                className="px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+                className="px-6 py-3 bg-linear-to-r from-orange-600 to-amber-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
               >
                 {config?.ctaButtonText || "Get Started Today"}
-                <HiArrowRight aria-hidden="true" />
+                {getIcon("arrow", "w-4 h-4")}
               </Link>
             </div>
           </div>
         )}
       </div>
 
-      {/* Required CSS for animations */}
+      {/* ==================== STYLES ==================== */}
       <style>{`
+        /* Fade In Animation */
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -251,8 +359,10 @@ const ECommerceAndRetailSection1 = ({ config }) => {
           }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
+          animation: fadeIn 0.3s ease-out forwards;
         }
+        
+        /* Noise Pattern Background */
         .bg-noise-pattern {
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
           background-repeat: repeat;

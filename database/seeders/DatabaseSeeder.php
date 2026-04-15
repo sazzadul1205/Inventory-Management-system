@@ -14,6 +14,7 @@ use Database\Seeders\PageRelatedSeeders\HomePageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\ServicesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\FeaturesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\HowItWorksPageSectionVariantSeeder;
+use Database\Seeders\PageRelatedSeeders\IndustriesPageSectionVariantSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -88,28 +89,27 @@ class DatabaseSeeder extends Seeder
         // Confirm pages seeding
         $confirm = $this->command->confirm('Do you want to seed Pages?', true);
         if ($confirm) {
+
+            // Call Page Seeders
             $this->call(PageSeeders::class);
+
+            // Call Page Section Seeders
             $this->call(PageSectionsSeeder::class);
 
             // Call Home Page Section Variant Seeders
-            $this->command->info('1.Starting Home Page Section Variant Seeding !');
             $this->call(HomePageSectionVariantSeeder::class);
-            $this->command->info('1.Completed Home Page Section Variant Seeding !');
 
             // Call Services Page Section Variant Seeders
-            $this->command->info('2.Starting Services Page Section Variant Seeding !');
             $this->call(ServicesPageSectionVariantSeeder::class);
-            $this->command->info('2.Completed Services Page Section Variant Seeding !');
 
             // Call Features Page Section Variant Seeders
-            $this->command->info('3.Starting Features Page Section Variant Seeding !');
             $this->call(FeaturesPageSectionVariantSeeder::class);
-            $this->command->info('3.Completed Features Page Section Variant Seeding !');
 
             // Call HowItWorks Page Section Variant Seeders
-            $this->command->info('3.Starting HowItWorks Page Section Variant Seeding !');
             $this->call(HowItWorksPageSectionVariantSeeder::class);
-            $this->command->info('3.Completed HowItWorks Page Section Variant Seeding !');
+
+            // Call Industries Page Section Variant Seeders
+            $this->call(IndustriesPageSectionVariantSeeder::class);
 
 
             $this->command->info('✅ Pages and Sections seeded successfully!');
