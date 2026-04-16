@@ -1558,6 +1558,1792 @@ class TestimonialsPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Industry Expert Reviews Section
+            [
+                'id' => 237,
+                'section_key' => 'industryExpertReviews',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Industry Recognition',
+                        'backgroundColor' => 'bg-purple-100 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'What',
+                        'highlightedText' => 'Experts',
+                        'suffix' => 'Are Saying',
+                        'highlightGradient' => 'from-purple-600 to-indigo-600'
+                    ],
+                    'description' => 'Industry analysts, media outlets, and consultants recognize our platform\'s impact and innovation.',
+                    'stats' => [
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Expert Rating'],
+                        ['icon' => 'newspaper', 'value' => '50+', 'label' => 'Media Mentions'],
+                        ['icon' => 'trophy', 'value' => '15+', 'label' => 'Industry Awards'],
+                        ['icon' => 'users', 'value' => '25+', 'label' => 'Analyst Reports']
+                    ],
+                    'categories' => ['all', 'analyst', 'media', 'consultant', 'award'],
+                    'reviews' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'chart',
+                            'category' => 'analyst',
+                            'featured' => true,
+                            'publication' => 'Gartner',
+                            'author' => 'John Smith',
+                            'role' => 'Senior Research Director',
+                            'organization' => 'Gartner',
+                            'date' => 'March 2024',
+                            'rating' => 5,
+                            'quote' => 'This platform represents a paradigm shift in supply chain management. The AI-driven forecasting capabilities are unmatched in the industry.',
+                            'fullQuote' => 'This platform represents a paradigm shift in supply chain management. The AI-driven forecasting capabilities are unmatched in the industry. Organizations using this solution have seen significant improvements in forecast accuracy and inventory optimization.',
+                            'highlights' => [
+                                'Named Leader in Supply Chain Planning',
+                                'Highest score for AI/ML capabilities',
+                                'Strong customer satisfaction ratings'
+                            ],
+                            'link' => 'https://gartner.com/review'
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'newspaper',
+                            'category' => 'media',
+                            'featured' => false,
+                            'publication' => 'Forbes',
+                            'author' => 'Sarah Williams',
+                            'role' => 'Technology Editor',
+                            'organization' => 'Forbes',
+                            'date' => 'February 2024',
+                            'rating' => 5,
+                            'quote' => 'This solution is revolutionizing how companies manage their inventory. The real-time visibility and predictive analytics are game-changers.',
+                            'fullQuote' => 'This solution is revolutionizing how companies manage their inventory. The real-time visibility and predictive analytics are game-changers for businesses of all sizes. We\'ve seen remarkable case studies across retail, manufacturing, and logistics sectors.',
+                            'highlights' => [
+                                'Featured in \'Top Supply Chain Tech\'',
+                                'Recognized for innovation',
+                                'Customer success stories highlighted'
+                            ],
+                            'link' => 'https://forbes.com/article'
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'users',
+                            'category' => 'consultant',
+                            'featured' => false,
+                            'publication' => 'McKinsey & Company',
+                            'author' => 'David Chen',
+                            'role' => 'Partner',
+                            'organization' => 'McKinsey & Company',
+                            'date' => 'January 2024',
+                            'rating' => 5,
+                            'quote' => 'The platform delivers exceptional ROI for clients. We\'ve seen inventory reductions of 25-35% and significant improvements in forecast accuracy.',
+                            'fullQuote' => 'The platform delivers exceptional ROI for clients. We\'ve seen inventory reductions of 25-35% and significant improvements in forecast accuracy. The implementation is smooth, and clients report high satisfaction with the support team.',
+                            'highlights' => [
+                                'Recommended for enterprise clients',
+                                'High marks for ease of integration',
+                                'Strong customer support ratings'
+                            ],
+                            'link' => 'https://mckinsey.com/insights'
+                        ],
+                        [
+                            'id' => 4,
+                            'icon' => 'trophy',
+                            'category' => 'award',
+                            'featured' => false,
+                            'publication' => 'Supply Chain Awards',
+                            'author' => 'Award Committee',
+                            'role' => 'Judging Panel',
+                            'organization' => 'Supply Chain Excellence Awards',
+                            'date' => 'December 2023',
+                            'rating' => 5,
+                            'quote' => 'Winner of Best Supply Chain Innovation. The platform demonstrated exceptional results and innovation in inventory management.',
+                            'fullQuote' => 'Winner of Best Supply Chain Innovation. The platform demonstrated exceptional results and innovation in inventory management. The judges were impressed by the measurable ROI and customer satisfaction metrics presented.',
+                            'highlights' => [
+                                'Best Supply Chain Innovation 2023',
+                                'Recognized for AI/ML excellence',
+                                'Customer impact award'
+                            ],
+                            'link' => 'https://supplychainawards.com/winners'
+                        ],
+                        [
+                            'id' => 5,
+                            'icon' => 'chart',
+                            'category' => 'analyst',
+                            'featured' => false,
+                            'publication' => 'IDC',
+                            'author' => 'Lisa Anderson',
+                            'role' => 'Research VP',
+                            'organization' => 'IDC',
+                            'date' => 'November 2023',
+                            'rating' => 5,
+                            'quote' => 'The platform\'s AI capabilities are among the best in class. Clients report significant improvements in supply chain efficiency.',
+                            'fullQuote' => 'The platform\'s AI capabilities are among the best in class. Clients report significant improvements in supply chain efficiency, with some achieving over 40% reduction in inventory carrying costs.',
+                            'highlights' => [
+                                'Strong market position',
+                                'High customer satisfaction',
+                                'Innovative technology stack'
+                            ],
+                            'link' => 'https://idc.com/report'
+                        ],
+                        [
+                            'id' => 6,
+                            'icon' => 'newspaper',
+                            'category' => 'media',
+                            'featured' => false,
+                            'publication' => 'Wall Street Journal',
+                            'author' => 'Michael Brown',
+                            'role' => 'Business Reporter',
+                            'organization' => 'WSJ',
+                            'date' => 'October 2023',
+                            'rating' => 4,
+                            'quote' => 'This technology is helping companies navigate supply chain disruptions with real-time insights and predictive analytics.',
+                            'fullQuote' => 'This technology is helping companies navigate supply chain disruptions with real-time insights and predictive analytics. The platform has become essential for businesses looking to build resilient supply chains.',
+                            'highlights' => [
+                                'Featured in Tech section',
+                                'Case study highlighted',
+                                'Industry expert quotes'
+                            ],
+                            'link' => 'https://wsj.com/technology'
+                        ]
+                    ],
+                    'showAwards' => true,
+                    'awardsTitle' => 'Awards & Recognition',
+                    'awards' => [
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Supply Chain Innovation',
+                            'presentedBy' => 'Supply Chain Excellence Awards',
+                            'year' => '2023'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'AI Platform of the Year',
+                            'presentedBy' => 'Tech Innovation Awards',
+                            'year' => '2023'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Customer Satisfaction Leader',
+                            'presentedBy' => 'Software Reviews',
+                            'year' => '2024'
+                        ]
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Recognized by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Want to see what the experts are saying?',
+                    'ctaButtonText' => 'View Press Kit',
+                    'ctaLink' => '/press'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 238,
+                'section_key' => 'industryExpertReviews',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Expert Recognition',
+                        'backgroundColor' => 'bg-purple-100 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'What',
+                        'highlightedText' => 'Industry Experts',
+                        'suffix' => 'Say',
+                        'highlightGradient' => 'from-purple-600 to-indigo-600'
+                    ],
+                    'description' => 'Leading analysts, media outlets, and consultants recognize our platform\'s impact and innovation.',
+                    'stats' => [
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Expert Rating', 'change' => '+0.2'],
+                        ['icon' => 'newspaper', 'value' => '50+', 'label' => 'Media Mentions', 'change' => '+12'],
+                        ['icon' => 'trophy', 'value' => '15+', 'label' => 'Industry Awards', 'change' => '+3'],
+                        ['icon' => 'chart', 'value' => '25+', 'label' => 'Analyst Reports', 'change' => '+5']
+                    ],
+                    'categories' => ['all', 'analyst', 'media', 'consultant', 'award'],
+                    'reviews' => [
+                        [
+                            'id' => 1,
+                            'category' => 'analyst',
+                            'featured' => true,
+                            'publication' => 'Gartner',
+                            'author' => 'John Smith',
+                            'role' => 'Senior Research Director',
+                            'organization' => 'Gartner',
+                            'date' => 'March 2024',
+                            'rating' => 5,
+                            'quote' => 'This platform represents a paradigm shift in supply chain management. The AI-driven forecasting capabilities are unmatched in the industry.',
+                            'fullQuote' => 'This platform represents a paradigm shift in supply chain management. The AI-driven forecasting capabilities are unmatched in the industry. Organizations using this solution have seen significant improvements in forecast accuracy and inventory optimization.',
+                            'highlights' => [
+                                'Named Leader in Supply Chain Planning',
+                                'Highest score for AI/ML capabilities',
+                                'Strong customer satisfaction ratings'
+                            ],
+                            'link' => 'https://gartner.com/review'
+                        ],
+                        [
+                            'id' => 2,
+                            'category' => 'media',
+                            'featured' => true,
+                            'publication' => 'Forbes',
+                            'author' => 'Sarah Williams',
+                            'role' => 'Technology Editor',
+                            'organization' => 'Forbes',
+                            'date' => 'February 2024',
+                            'rating' => 5,
+                            'quote' => 'This solution is revolutionizing how companies manage their inventory. The real-time visibility and predictive analytics are game-changers.',
+                            'fullQuote' => 'This solution is revolutionizing how companies manage their inventory. The real-time visibility and predictive analytics are game-changers for businesses of all sizes. We\'ve seen remarkable case studies across retail, manufacturing, and logistics sectors.',
+                            'highlights' => [
+                                'Featured in \'Top Supply Chain Tech\'',
+                                'Recognized for innovation',
+                                'Customer success stories highlighted'
+                            ],
+                            'link' => 'https://forbes.com/article'
+                        ],
+                        [
+                            'id' => 3,
+                            'category' => 'consultant',
+                            'featured' => false,
+                            'publication' => 'McKinsey & Company',
+                            'author' => 'David Chen',
+                            'role' => 'Partner',
+                            'organization' => 'McKinsey & Company',
+                            'date' => 'January 2024',
+                            'rating' => 5,
+                            'quote' => 'The platform delivers exceptional ROI for clients. We\'ve seen inventory reductions of 25-35% and significant improvements in forecast accuracy.',
+                            'fullQuote' => 'The platform delivers exceptional ROI for clients. We\'ve seen inventory reductions of 25-35% and significant improvements in forecast accuracy. The implementation is smooth, and clients report high satisfaction with the support team.',
+                            'highlights' => [
+                                'Recommended for enterprise clients',
+                                'High marks for ease of integration',
+                                'Strong customer support ratings'
+                            ],
+                            'link' => 'https://mckinsey.com/insights'
+                        ],
+                        [
+                            'id' => 4,
+                            'category' => 'award',
+                            'featured' => false,
+                            'publication' => 'Supply Chain Awards',
+                            'author' => 'Award Committee',
+                            'role' => 'Judging Panel',
+                            'organization' => 'Supply Chain Excellence Awards',
+                            'date' => 'December 2023',
+                            'rating' => 5,
+                            'quote' => 'Winner of Best Supply Chain Innovation. The platform demonstrated exceptional results and innovation in inventory management.',
+                            'fullQuote' => 'Winner of Best Supply Chain Innovation. The platform demonstrated exceptional results and innovation in inventory management. The judges were impressed by the measurable ROI and customer satisfaction metrics presented.',
+                            'highlights' => [
+                                'Best Supply Chain Innovation 2023',
+                                'Recognized for AI/ML excellence',
+                                'Customer impact award'
+                            ],
+                            'link' => 'https://supplychainawards.com/winners'
+                        ],
+                        [
+                            'id' => 5,
+                            'category' => 'analyst',
+                            'featured' => false,
+                            'publication' => 'IDC',
+                            'author' => 'Lisa Anderson',
+                            'role' => 'Research VP',
+                            'organization' => 'IDC',
+                            'date' => 'November 2023',
+                            'rating' => 5,
+                            'quote' => 'The platform\'s AI capabilities are among the best in class. Clients report significant improvements in supply chain efficiency.',
+                            'fullQuote' => 'The platform\'s AI capabilities are among the best in class. Clients report significant improvements in supply chain efficiency, with some achieving over 40% reduction in inventory carrying costs.',
+                            'highlights' => [
+                                'Strong market position',
+                                'High customer satisfaction',
+                                'Innovative technology stack'
+                            ],
+                            'link' => 'https://idc.com/report'
+                        ],
+                        [
+                            'id' => 6,
+                            'category' => 'media',
+                            'featured' => false,
+                            'publication' => 'Wall Street Journal',
+                            'author' => 'Michael Brown',
+                            'role' => 'Business Reporter',
+                            'organization' => 'WSJ',
+                            'date' => 'October 2023',
+                            'rating' => 4,
+                            'quote' => 'This technology is helping companies navigate supply chain disruptions with real-time insights and predictive analytics.',
+                            'fullQuote' => 'This technology is helping companies navigate supply chain disruptions with real-time insights and predictive analytics. The platform has become essential for businesses looking to build resilient supply chains.',
+                            'highlights' => [
+                                'Featured in Tech section',
+                                'Case study highlighted',
+                                'Industry expert quotes'
+                            ],
+                            'link' => 'https://wsj.com/technology'
+                        ]
+                    ],
+                    'showPressKit' => true,
+                    'pressKitLink' => '/press-kit',
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Recognized by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Want to see our full press coverage?',
+                    'ctaButtonText' => 'Visit Press Room',
+                    'ctaLink' => '/press'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 239,
+                'section_key' => 'industryExpertReviews',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Expert Recognition',
+                        'backgroundColor' => 'bg-purple-100 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Industry',
+                        'highlightedText' => 'Recognition',
+                        'suffix' => 'Hub',
+                        'highlightGradient' => 'from-purple-600 to-indigo-600'
+                    ],
+                    'description' => 'Discover what industry experts, analysts, and awards are saying about our platform.',
+                    'stats' => [
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Expert Rating', 'trend' => '+0.2'],
+                        ['icon' => 'newspaper', 'value' => '50+', 'label' => 'Media Mentions', 'trend' => '+12'],
+                        ['icon' => 'trophy', 'value' => '15+', 'label' => 'Industry Awards', 'trend' => '+3'],
+                        ['icon' => 'document-report', 'value' => '25+', 'label' => 'Analyst Reports', 'trend' => '+5']
+                    ],
+                    'timeline' => [
+                        [
+                            'icon' => 'trophy',
+                            'year' => '2024',
+                            'title' => 'Best Supply Chain Innovation',
+                            'description' => 'Won the prestigious Supply Chain Excellence Award for AI-driven inventory optimization.',
+                            'publication' => 'Supply Chain Awards'
+                        ],
+                        [
+                            'icon' => 'newspaper',
+                            'year' => '2023',
+                            'title' => 'Named Leader by Gartner',
+                            'description' => 'Positioned as a Leader in the Gartner Magic Quadrant for Supply Chain Planning.',
+                            'publication' => 'Gartner'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'year' => '2023',
+                            'title' => 'IDC MarketScape Recognition',
+                            'description' => 'Recognized as a Major Player in the IDC MarketScape for Inventory Optimization.',
+                            'publication' => 'IDC'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'year' => '2022',
+                            'title' => 'Forbes Technology Council',
+                            'description' => 'Featured as a top supply chain technology solution by Forbes.',
+                            'publication' => 'Forbes'
+                        ]
+                    ],
+                    'reviews' => [
+                        [
+                            'id' => 1,
+                            'category' => 'analyst',
+                            'publication' => 'Gartner',
+                            'author' => 'John Smith',
+                            'role' => 'Senior Research Director',
+                            'organization' => 'Gartner',
+                            'date' => 'March 2024',
+                            'year' => '2024',
+                            'rating' => 5,
+                            'quote' => 'This platform represents a paradigm shift in supply chain management. The AI-driven forecasting capabilities are unmatched in the industry.',
+                            'fullQuote' => 'This platform represents a paradigm shift in supply chain management. The AI-driven forecasting capabilities are unmatched in the industry. Organizations using this solution have seen significant improvements in forecast accuracy and inventory optimization. The platform\'s ability to integrate with existing ERP systems is particularly noteworthy.',
+                            'highlights' => [
+                                'Named Leader in Supply Chain Planning',
+                                'Highest score for AI/ML capabilities',
+                                'Strong customer satisfaction ratings'
+                            ],
+                            'link' => 'https://gartner.com/review'
+                        ],
+                        [
+                            'id' => 2,
+                            'category' => 'media',
+                            'publication' => 'Forbes',
+                            'author' => 'Sarah Williams',
+                            'role' => 'Technology Editor',
+                            'organization' => 'Forbes',
+                            'date' => 'February 2024',
+                            'year' => '2024',
+                            'rating' => 5,
+                            'quote' => 'This solution is revolutionizing how companies manage their inventory. The real-time visibility and predictive analytics are game-changers.',
+                            'fullQuote' => 'This solution is revolutionizing how companies manage their inventory. The real-time visibility and predictive analytics are game-changers for businesses of all sizes. We\'ve seen remarkable case studies across retail, manufacturing, and logistics sectors.',
+                            'highlights' => [
+                                'Featured in \'Top Supply Chain Tech\'',
+                                'Recognized for innovation',
+                                'Customer success stories highlighted'
+                            ],
+                            'link' => 'https://forbes.com/article'
+                        ],
+                        [
+                            'id' => 3,
+                            'category' => 'consultant',
+                            'publication' => 'McKinsey & Company',
+                            'author' => 'David Chen',
+                            'role' => 'Partner',
+                            'organization' => 'McKinsey & Company',
+                            'date' => 'January 2024',
+                            'year' => '2024',
+                            'rating' => 5,
+                            'quote' => 'The platform delivers exceptional ROI for clients. We\'ve seen inventory reductions of 25-35% and significant improvements in forecast accuracy.',
+                            'fullQuote' => 'The platform delivers exceptional ROI for clients. We\'ve seen inventory reductions of 25-35% and significant improvements in forecast accuracy. The implementation is smooth, and clients report high satisfaction with the support team.',
+                            'highlights' => [
+                                'Recommended for enterprise clients',
+                                'High marks for ease of integration',
+                                'Strong customer support ratings'
+                            ],
+                            'link' => 'https://mckinsey.com/insights'
+                        ],
+                        [
+                            'id' => 4,
+                            'category' => 'analyst',
+                            'publication' => 'IDC',
+                            'author' => 'Lisa Anderson',
+                            'role' => 'Research VP',
+                            'organization' => 'IDC',
+                            'date' => 'November 2023',
+                            'year' => '2023',
+                            'rating' => 5,
+                            'quote' => 'The platform\'s AI capabilities are among the best in class. Clients report significant improvements in supply chain efficiency.',
+                            'fullQuote' => 'The platform\'s AI capabilities are among the best in class. Clients report significant improvements in supply chain efficiency, with some achieving over 40% reduction in inventory carrying costs.',
+                            'highlights' => [
+                                'Strong market position',
+                                'High customer satisfaction',
+                                'Innovative technology stack'
+                            ],
+                            'link' => 'https://idc.com/report'
+                        ],
+                        [
+                            'id' => 5,
+                            'category' => 'media',
+                            'publication' => 'Wall Street Journal',
+                            'author' => 'Michael Brown',
+                            'role' => 'Business Reporter',
+                            'organization' => 'WSJ',
+                            'date' => 'October 2023',
+                            'year' => '2023',
+                            'rating' => 4,
+                            'quote' => 'This technology is helping companies navigate supply chain disruptions with real-time insights and predictive analytics.',
+                            'fullQuote' => 'This technology is helping companies navigate supply chain disruptions with real-time insights and predictive analytics. The platform has become essential for businesses looking to build resilient supply chains.',
+                            'highlights' => [
+                                'Featured in Tech section',
+                                'Case study highlighted',
+                                'Industry expert quotes'
+                            ],
+                            'link' => 'https://wsj.com/technology'
+                        ]
+                    ],
+                    'reports' => [
+                        [
+                            'icon' => 'document-report',
+                            'title' => 'Magic Quadrant for Supply Chain Planning',
+                            'publisher' => 'Gartner',
+                            'date' => 'March 2024',
+                            'rating' => 4.8,
+                            'description' => 'Comprehensive analysis of supply chain planning vendors. Our platform recognized as a Leader with highest ability to execute.',
+                            'link' => '/reports/gartner-mq-2024.pdf'
+                        ],
+                        [
+                            'icon' => 'document-report',
+                            'title' => 'MarketScape for Inventory Optimization',
+                            'publisher' => 'IDC',
+                            'date' => 'November 2023',
+                            'rating' => 4.7,
+                            'description' => 'IDC MarketScape assessment of inventory optimization solutions. Recognized as a Major Player with strong capabilities.',
+                            'link' => '/reports/idc-marketscape-2023.pdf'
+                        ]
+                    ],
+                    'awards' => [
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Supply Chain Innovation',
+                            'presentedBy' => 'Supply Chain Excellence Awards',
+                            'year' => '2024',
+                            'description' => 'Recognized for AI-driven inventory optimization platform'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'AI Platform of the Year',
+                            'presentedBy' => 'Tech Innovation Awards',
+                            'year' => '2023',
+                            'description' => 'Awarded for breakthrough AI/ML capabilities'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Customer Satisfaction Leader',
+                            'presentedBy' => 'Software Reviews',
+                            'year' => '2024',
+                            'description' => 'Highest customer satisfaction score in supply chain software'
+                        ]
+                    ],
+                    'pressKitLink' => '/press-kit'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 240,
+                'section_key' => 'industryExpertReviews',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Partner Testimonials Section
+            [
+                'id' => 241,
+                'section_key' => 'partnerTestimonials',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Partner Success',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'What Our',
+                        'highlightedText' => 'Partners',
+                        'suffix' => 'Say',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Hear from our technology, implementation, and reseller partners about their experience working with us.',
+                    'stats' => [
+                        ['icon' => 'handshake', 'value' => '150+', 'label' => 'Global Partners'],
+                        ['icon' => 'users', 'value' => '45+', 'label' => 'Countries Served'],
+                        ['icon' => 'trending', 'value' => '98%', 'label' => 'Partner Satisfaction'],
+                        ['icon' => 'chart', 'value' => '3x', 'label' => 'Revenue Growth']
+                    ],
+                    'categories' => ['all', 'technology', 'implementation', 'reseller', 'strategic'],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'chip',
+                            'category' => 'technology',
+                            'featured' => true,
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2022',
+                            'author' => 'Sarah Johnson',
+                            'role' => 'VP of Alliances',
+                            'company' => 'TechIntegrate Solutions',
+                            'rating' => 5,
+                            'quote' => 'The integration was seamless and their API documentation is outstanding. Our joint customers have seen remarkable results with the combined solution.',
+                            'fullQuote' => 'The integration was seamless and their API documentation is outstanding. Our joint customers have seen remarkable results with the combined solution. The support team has been responsive and collaborative throughout our partnership.',
+                            'results' => ['35% faster implementation', '98% customer satisfaction'],
+                            'collaboration' => [
+                                'Joint go-to-market strategy launched in Q1 2024',
+                                'Co-developed integration framework',
+                                'Shared customer success stories'
+                            ],
+                            'link' => '/partners/techintegrate'
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'sparkles',
+                            'category' => 'implementation',
+                            'featured' => false,
+                            'partnerType' => 'Implementation Partner',
+                            'partnerSince' => '2021',
+                            'author' => 'Michael Chen',
+                            'role' => 'Managing Director',
+                            'company' => 'Global Implementations',
+                            'rating' => 5,
+                            'quote' => 'We\'ve implemented this platform for over 50 clients and the feedback has been overwhelmingly positive. The ROI is consistently impressive.',
+                            'fullQuote' => 'We\'ve implemented this platform for over 50 clients and the feedback has been overwhelmingly positive. The ROI is consistently impressive. The training and certification program prepared our team thoroughly.',
+                            'results' => ['50+ successful implementations', '100% client retention'],
+                            'collaboration' => [
+                                'Certified implementation specialists',
+                                'Dedicated partner success manager',
+                                'Regular joint training sessions'
+                            ],
+                            'link' => '/partners/global-implementations'
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'handshake',
+                            'category' => 'reseller',
+                            'featured' => false,
+                            'partnerType' => 'Reseller Partner',
+                            'partnerSince' => '2023',
+                            'author' => 'David Williams',
+                            'role' => 'VP of Sales',
+                            'company' => 'Enterprise Software Solutions',
+                            'rating' => 5,
+                            'quote' => 'The partner program provides excellent margins and support. Our sales team loves selling this solution because it delivers real value.',
+                            'fullQuote' => 'The partner program provides excellent margins and support. Our sales team loves selling this solution because it delivers real value. The joint marketing support has been exceptional.',
+                            'results' => ['$2.5M in joint revenue', '25+ new customers'],
+                            'collaboration' => [
+                                'Co-marketing campaigns',
+                                'Sales enablement training',
+                                'Quarterly business reviews'
+                            ],
+                            'link' => '/partners/enterprise-software'
+                        ],
+                        [
+                            'id' => 4,
+                            'icon' => 'trending',
+                            'category' => 'strategic',
+                            'featured' => false,
+                            'partnerType' => 'Strategic Partner',
+                            'partnerSince' => '2020',
+                            'author' => 'Lisa Anderson',
+                            'role' => 'SVP Strategic Alliances',
+                            'company' => 'Strategic Consulting Group',
+                            'rating' => 5,
+                            'quote' => 'This partnership has been transformative for our consulting practice. The platform\'s capabilities set us apart from competitors.',
+                            'fullQuote' => 'This partnership has been transformative for our consulting practice. The platform\'s capabilities set us apart from competitors. Our clients consistently praise the solution\'s ease of use and powerful analytics.',
+                            'results' => ['40+ joint consulting engagements', 'Industry recognition'],
+                            'collaboration' => [
+                                'Strategic advisory board participation',
+                                'Joint thought leadership content',
+                                'Co-developed industry solutions'
+                            ],
+                            'link' => '/partners/strategic-consulting'
+                        ],
+                        [
+                            'id' => 5,
+                            'icon' => 'database',
+                            'category' => 'technology',
+                            'featured' => false,
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2023',
+                            'author' => 'Robert Taylor',
+                            'role' => 'CTO',
+                            'company' => 'DataSync Technologies',
+                            'rating' => 4,
+                            'quote' => 'The platform\'s flexibility made integration straightforward. We\'re excited about the joint value we can deliver to customers.',
+                            'fullQuote' => 'The platform\'s flexibility made integration straightforward. We\'re excited about the joint value we can deliver to customers. The API-first approach aligns perfectly with our product strategy.',
+                            'results' => ['Seamless data integration', 'Enhanced product offering'],
+                            'collaboration' => [
+                                'Joint product roadmap alignment',
+                                'Co-marketing initiatives',
+                                'Technical integration support'
+                            ],
+                            'link' => '/partners/datasync'
+                        ]
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Trusted by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showPartnerProgram' => true,
+                    'partnerCtaText' => 'Ready to become a partner?',
+                    'partnerCtaButtonText' => 'Join Our Partner Program',
+                    'partnerCtaLink' => '/partners'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 242,
+                'section_key' => 'partnerTestimonials',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Partner Voices',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'What Our',
+                        'highlightedText' => 'Partners',
+                        'suffix' => 'Say',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Hear from our technology, implementation, and reseller partners about their experience working with us.',
+                    'stats' => [
+                        ['icon' => 'handshake', 'value' => '150+', 'label' => 'Global Partners', 'trend' => '+12%'],
+                        ['icon' => 'globe', 'value' => '45+', 'label' => 'Countries Served', 'trend' => '+8'],
+                        ['icon' => 'trending', 'value' => '98%', 'label' => 'Partner Satisfaction', 'trend' => '+3%'],
+                        ['icon' => 'chart', 'value' => '3x', 'label' => 'Revenue Growth', 'trend' => '+0.5x']
+                    ],
+                    'videoTitle' => 'Partner Video Testimonials',
+                    'videoTestimonials' => [
+                        [
+                            'thumbnail' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=450&fit=crop',
+                            'title' => 'Technology Integration Success Story',
+                            'author' => 'Sarah Johnson',
+                            'company' => 'TechIntegrate Solutions'
+                        ],
+                        [
+                            'thumbnail' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=800&h=450&fit=crop',
+                            'title' => 'Implementation Partnership Excellence',
+                            'author' => 'Michael Chen',
+                            'company' => 'Global Implementations'
+                        ]
+                    ],
+                    'categories' => ['all', 'technology', 'implementation', 'reseller', 'strategic'],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'chip',
+                            'category' => 'technology',
+                            'featured' => true,
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2022',
+                            'author' => 'Sarah Johnson',
+                            'role' => 'VP of Alliances',
+                            'company' => 'TechIntegrate Solutions',
+                            'rating' => 5,
+                            'quote' => 'The integration was seamless and their API documentation is outstanding. Our joint customers have seen remarkable results with the combined solution.',
+                            'fullQuote' => 'The integration was seamless and their API documentation is outstanding. Our joint customers have seen remarkable results with the combined solution. The support team has been responsive and collaborative throughout our partnership. We\'ve grown our joint business by 40% year over year.',
+                            'results' => [
+                                ['value' => '35%', 'label' => 'Faster Implementation'],
+                                ['value' => '98%', 'label' => 'Customer Satisfaction']
+                            ],
+                            'collaboration' => [
+                                'Joint go-to-market strategy launched in Q1 2024',
+                                'Co-developed integration framework',
+                                'Shared customer success stories',
+                                'Quarterly business reviews'
+                            ],
+                            'link' => '/partners/techintegrate'
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'sparkles',
+                            'category' => 'implementation',
+                            'featured' => false,
+                            'partnerType' => 'Implementation Partner',
+                            'partnerSince' => '2021',
+                            'author' => 'Michael Chen',
+                            'role' => 'Managing Director',
+                            'company' => 'Global Implementations',
+                            'rating' => 5,
+                            'quote' => 'We\'ve implemented this platform for over 50 clients and the feedback has been overwhelmingly positive. The ROI is consistently impressive.',
+                            'fullQuote' => 'We\'ve implemented this platform for over 50 clients and the feedback has been overwhelmingly positive. The ROI is consistently impressive. The training and certification program prepared our team thoroughly. We\'ve expanded our implementation team by 200% to meet demand.',
+                            'results' => [
+                                ['value' => '50+', 'label' => 'Implementations'],
+                                ['value' => '100%', 'label' => 'Client Retention']
+                            ],
+                            'collaboration' => [
+                                'Certified implementation specialists',
+                                'Dedicated partner success manager',
+                                'Regular joint training sessions',
+                                'Pre-sales support'
+                            ],
+                            'link' => '/partners/global-implementations'
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'handshake',
+                            'category' => 'reseller',
+                            'featured' => false,
+                            'partnerType' => 'Reseller Partner',
+                            'partnerSince' => '2023',
+                            'author' => 'David Williams',
+                            'role' => 'VP of Sales',
+                            'company' => 'Enterprise Software Solutions',
+                            'rating' => 5,
+                            'quote' => 'The partner program provides excellent margins and support. Our sales team loves selling this solution because it delivers real value.',
+                            'fullQuote' => 'The partner program provides excellent margins and support. Our sales team loves selling this solution because it delivers real value. The joint marketing support has been exceptional. We\'ve already exceeded our first-year sales targets.',
+                            'results' => [
+                                ['value' => '$2.5M', 'label' => 'Joint Revenue'],
+                                ['value' => '25+', 'label' => 'New Customers']
+                            ],
+                            'collaboration' => [
+                                'Co-marketing campaigns',
+                                'Sales enablement training',
+                                'Quarterly business reviews',
+                                'Lead sharing program'
+                            ],
+                            'link' => '/partners/enterprise-software'
+                        ],
+                        [
+                            'id' => 4,
+                            'icon' => 'trending',
+                            'category' => 'strategic',
+                            'featured' => false,
+                            'partnerType' => 'Strategic Partner',
+                            'partnerSince' => '2020',
+                            'author' => 'Lisa Anderson',
+                            'role' => 'SVP Strategic Alliances',
+                            'company' => 'Strategic Consulting Group',
+                            'rating' => 5,
+                            'quote' => 'This partnership has been transformative for our consulting practice. The platform\'s capabilities set us apart from competitors.',
+                            'fullQuote' => 'This partnership has been transformative for our consulting practice. The platform\'s capabilities set us apart from competitors. Our clients consistently praise the solution\'s ease of use and powerful analytics. We\'ve expanded our practice by 150% since partnering.',
+                            'results' => [
+                                ['value' => '40+', 'label' => 'Joint Engagements'],
+                                ['value' => 'Industry', 'label' => 'Recognition']
+                            ],
+                            'collaboration' => [
+                                'Strategic advisory board participation',
+                                'Joint thought leadership content',
+                                'Co-developed industry solutions',
+                                'Executive briefings'
+                            ],
+                            'link' => '/partners/strategic-consulting'
+                        ],
+                        [
+                            'id' => 5,
+                            'icon' => 'database',
+                            'category' => 'technology',
+                            'featured' => false,
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2023',
+                            'author' => 'Robert Taylor',
+                            'role' => 'CTO',
+                            'company' => 'DataSync Technologies',
+                            'rating' => 4,
+                            'quote' => 'The platform\'s flexibility made integration straightforward. We\'re excited about the joint value we can deliver to customers.',
+                            'fullQuote' => 'The platform\'s flexibility made integration straightforward. We\'re excited about the joint value we can deliver to customers. The API-first approach aligns perfectly with our product strategy. We\'ve already launched three joint customer implementations.',
+                            'results' => [
+                                ['value' => 'Seamless', 'label' => 'Integration'],
+                                ['value' => 'Enhanced', 'label' => 'Product Offering']
+                            ],
+                            'collaboration' => [
+                                'Joint product roadmap alignment',
+                                'Co-marketing initiatives',
+                                'Technical integration support',
+                                'Customer success alignment'
+                            ],
+                            'link' => '/partners/datasync'
+                        ]
+                    ],
+                    'showSuccessMetrics' => true,
+                    'successMetrics' => [
+                        ['icon' => 'chart', 'value' => '150+', 'label' => 'Joint Customers'],
+                        ['icon' => 'trending', 'value' => '200%', 'label' => 'Partner Revenue Growth'],
+                        ['icon' => 'users', 'value' => '50+', 'label' => 'Certified Partners']
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Trusted by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showPartnerProgram' => true,
+                    'partnerCtaText' => 'Join our growing partner ecosystem',
+                    'partnerCtaButtonText' => 'Become a Partner',
+                    'partnerCtaLink' => '/partners'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 243,
+                'section_key' => 'partnerTestimonials',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Partner Success',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlightedText' => 'Partner Ecosystem',
+                        'suffix' => 'in Action',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Discover how our partners are driving success for their clients while growing their own businesses.',
+                    'stats' => [
+                        ['icon' => 'handshake', 'value' => '150+', 'label' => 'Global Partners', 'trend' => '+12%'],
+                        ['icon' => 'globe', 'value' => '45+', 'label' => 'Countries Served', 'trend' => '+8'],
+                        ['icon' => 'trending', 'value' => '98%', 'label' => 'Partner Satisfaction', 'trend' => '+3%'],
+                        ['icon' => 'chart', 'value' => '3x', 'label' => 'Revenue Growth', 'trend' => '+0.5x']
+                    ],
+                    'categories' => ['all', 'technology', 'implementation', 'reseller', 'strategic'],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'icon' => 'chip',
+                            'category' => 'technology',
+                            'featured' => true,
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2022',
+                            'annualRevenue' => 5000000,
+                            'author' => 'Sarah Johnson',
+                            'role' => 'VP of Alliances',
+                            'company' => 'TechIntegrate Solutions',
+                            'rating' => 5,
+                            'quote' => 'The integration was seamless and their API documentation is outstanding. Our joint customers have seen remarkable results with the combined solution.',
+                            'fullQuote' => 'The integration was seamless and their API documentation is outstanding. Our joint customers have seen remarkable results with the combined solution. The support team has been responsive and collaborative throughout our partnership. We\'ve grown our joint business by 40% year over year.',
+                            'results' => [
+                                ['value' => '35%', 'label' => 'Faster Implementation'],
+                                ['value' => '98%', 'label' => 'Customer Satisfaction'],
+                                ['value' => '40%', 'label' => 'Revenue Growth']
+                            ],
+                            'collaboration' => [
+                                'Joint go-to-market strategy launched in Q1 2024',
+                                'Co-developed integration framework',
+                                'Shared customer success stories',
+                                'Quarterly business reviews'
+                            ],
+                            'link' => '/partners/techintegrate',
+                            'caseStudyLink' => '/case-studies/techintegrate'
+                        ],
+                        [
+                            'id' => 2,
+                            'icon' => 'sparkles',
+                            'category' => 'implementation',
+                            'featured' => false,
+                            'partnerType' => 'Implementation Partner',
+                            'partnerSince' => '2021',
+                            'annualRevenue' => 3500000,
+                            'author' => 'Michael Chen',
+                            'role' => 'Managing Director',
+                            'company' => 'Global Implementations',
+                            'rating' => 5,
+                            'quote' => 'We\'ve implemented this platform for over 50 clients and the feedback has been overwhelmingly positive. The ROI is consistently impressive.',
+                            'fullQuote' => 'We\'ve implemented this platform for over 50 clients and the feedback has been overwhelmingly positive. The ROI is consistently impressive. The training and certification program prepared our team thoroughly. We\'ve expanded our implementation team by 200% to meet demand.',
+                            'results' => [
+                                ['value' => '50+', 'label' => 'Implementations'],
+                                ['value' => '100%', 'label' => 'Client Retention'],
+                                ['value' => '200%', 'label' => 'Team Growth']
+                            ],
+                            'collaboration' => [
+                                'Certified implementation specialists',
+                                'Dedicated partner success manager',
+                                'Regular joint training sessions',
+                                'Pre-sales support'
+                            ],
+                            'link' => '/partners/global-implementations',
+                            'caseStudyLink' => '/case-studies/global-implementations'
+                        ],
+                        [
+                            'id' => 3,
+                            'icon' => 'handshake',
+                            'category' => 'reseller',
+                            'featured' => false,
+                            'partnerType' => 'Reseller Partner',
+                            'partnerSince' => '2023',
+                            'annualRevenue' => 2500000,
+                            'author' => 'David Williams',
+                            'role' => 'VP of Sales',
+                            'company' => 'Enterprise Software Solutions',
+                            'rating' => 5,
+                            'quote' => 'The partner program provides excellent margins and support. Our sales team loves selling this solution because it delivers real value.',
+                            'fullQuote' => 'The partner program provides excellent margins and support. Our sales team loves selling this solution because it delivers real value. The joint marketing support has been exceptional. We\'ve already exceeded our first-year sales targets.',
+                            'results' => [
+                                ['value' => '$2.5M', 'label' => 'Joint Revenue'],
+                                ['value' => '25+', 'label' => 'New Customers'],
+                                ['value' => '150%', 'label' => 'Target Achievement']
+                            ],
+                            'collaboration' => [
+                                'Co-marketing campaigns',
+                                'Sales enablement training',
+                                'Quarterly business reviews',
+                                'Lead sharing program'
+                            ],
+                            'link' => '/partners/enterprise-software',
+                            'caseStudyLink' => '/case-studies/enterprise-software'
+                        ],
+                        [
+                            'id' => 4,
+                            'icon' => 'trending',
+                            'category' => 'strategic',
+                            'featured' => false,
+                            'partnerType' => 'Strategic Partner',
+                            'partnerSince' => '2020',
+                            'annualRevenue' => 8000000,
+                            'author' => 'Lisa Anderson',
+                            'role' => 'SVP Strategic Alliances',
+                            'company' => 'Strategic Consulting Group',
+                            'rating' => 5,
+                            'quote' => 'This partnership has been transformative for our consulting practice. The platform\'s capabilities set us apart from competitors.',
+                            'fullQuote' => 'This partnership has been transformative for our consulting practice. The platform\'s capabilities set us apart from competitors. Our clients consistently praise the solution\'s ease of use and powerful analytics. We\'ve expanded our practice by 150% since partnering.',
+                            'results' => [
+                                ['value' => '40+', 'label' => 'Joint Engagements'],
+                                ['value' => 'Industry', 'label' => 'Recognition'],
+                                ['value' => '150%', 'label' => 'Practice Growth']
+                            ],
+                            'collaboration' => [
+                                'Strategic advisory board participation',
+                                'Joint thought leadership content',
+                                'Co-developed industry solutions',
+                                'Executive briefings'
+                            ],
+                            'link' => '/partners/strategic-consulting',
+                            'caseStudyLink' => '/case-studies/strategic-consulting'
+                        ],
+                        [
+                            'id' => 5,
+                            'icon' => 'database',
+                            'category' => 'technology',
+                            'featured' => false,
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2023',
+                            'annualRevenue' => 1800000,
+                            'author' => 'Robert Taylor',
+                            'role' => 'CTO',
+                            'company' => 'DataSync Technologies',
+                            'rating' => 4,
+                            'quote' => 'The platform\'s flexibility made integration straightforward. We\'re excited about the joint value we can deliver to customers.',
+                            'fullQuote' => 'The platform\'s flexibility made integration straightforward. We\'re excited about the joint value we can deliver to customers. The API-first approach aligns perfectly with our product strategy. We\'ve already launched three joint customer implementations.',
+                            'results' => [
+                                ['value' => 'Seamless', 'label' => 'Integration'],
+                                ['value' => 'Enhanced', 'label' => 'Product Offering'],
+                                ['value' => '3', 'label' => 'Joint Customers']
+                            ],
+                            'collaboration' => [
+                                'Joint product roadmap alignment',
+                                'Co-marketing initiatives',
+                                'Technical integration support',
+                                'Customer success alignment'
+                            ],
+                            'link' => '/partners/datasync',
+                            'caseStudyLink' => '/case-studies/datasync'
+                        ]
+                    ],
+                    'partnerSpotlights' => [
+                        [
+                            'icon' => 'building',
+                            'category' => 'technology',
+                            'partnerType' => 'Technology Partner',
+                            'partnerSince' => '2022',
+                            'company' => 'TechIntegrate Solutions',
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=400&fit=crop',
+                            'description' => 'TechIntegrate Solutions has been instrumental in expanding our reach into the enterprise market. Their deep technical expertise and commitment to customer success have made them an invaluable partner.',
+                            'metric1' => '35%',
+                            'metric1Label' => 'Faster Implementations',
+                            'metric2' => '$5M',
+                            'metric2Label' => 'Joint Revenue',
+                            'link' => '/partners/techintegrate-spotlight'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'category' => 'implementation',
+                            'partnerType' => 'Implementation Partner',
+                            'partnerSince' => '2021',
+                            'company' => 'Global Implementations',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=800&h=400&fit=crop',
+                            'description' => 'Global Implementations has successfully delivered our platform to over 50 enterprise clients. Their certified implementation specialists ensure smooth deployments and rapid time-to-value.',
+                            'metric1' => '50+',
+                            'metric1Label' => 'Implementations',
+                            'metric2' => '100%',
+                            'metric2Label' => 'Success Rate',
+                            'link' => '/partners/global-spotlight'
+                        ]
+                    ],
+                    'successMetrics' => [
+                        [
+                            'icon' => 'chart',
+                            'value' => '$50M+',
+                            'label' => 'Partner Revenue',
+                            'description' => 'Total revenue generated through partner ecosystem'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'value' => '500+',
+                            'label' => 'Joint Customers',
+                            'description' => 'Customers served through partner relationships'
+                        ],
+                        [
+                            'icon' => 'trending',
+                            'value' => '200%',
+                            'label' => 'Partner Growth',
+                            'description' => 'Year-over-year partner revenue growth'
+                        ]
+                    ],
+                    'growthTrends' => [
+                        ['year' => '2021', 'growth' => '+45%', 'percentage' => '45%'],
+                        ['year' => '2022', 'growth' => '+78%', 'percentage' => '78%'],
+                        ['year' => '2023', 'growth' => '+112%', 'percentage' => '100%'],
+                        ['year' => '2024', 'growth' => '+156%', 'percentage' => '100%']
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Trusted by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showPartnerProgram' => true,
+                    'partnerCtaText' => 'Ready to join our partner ecosystem?',
+                    'partnerCtaButtonText' => 'Apply to Become a Partner',
+                    'partnerCtaLink' => '/partners'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 244,
+                'section_key' => 'partnerTestimonials',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Ratings & Awards Section
+            [
+                'id' => 245,
+                'section_key' => 'ratingAndAwards',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Ratings & Awards',
+                        'backgroundColor' => 'bg-yellow-100 dark:bg-yellow-900/30',
+                        'borderColor' => 'border-yellow-200 dark:border-yellow-800',
+                        'textColor' => 'text-yellow-700 dark:text-yellow-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Recognized',
+                        'highlightedText' => 'Excellence',
+                        'suffix' => 'Across Platforms',
+                        'highlightGradient' => 'from-yellow-600 to-amber-600'
+                    ],
+                    'description' => 'See why customers and industry experts consistently rate us as a top solution in our category.',
+                    'platforms' => [
+                        ['id' => 'g2', 'name' => 'G2'],
+                        ['id' => 'capterra', 'name' => 'Capterra'],
+                        ['id' => 'trustpilot', 'name' => 'Trustpilot'],
+                        ['id' => 'google', 'name' => 'Google'],
+                        ['id' => 'softwareadvice', 'name' => 'Software Advice']
+                    ],
+                    'ratings' => [
+                        [
+                            'platform' => 'g2',
+                            'rating' => 4.9,
+                            'reviewCount' => 2847,
+                            'badge' => 'Leader',
+                            'snippet' => 'The best inventory management platform we\'ve ever used. The AI forecasting is incredibly accurate and has saved us millions.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 2450],
+                                ['star' => 4, 'count' => 320],
+                                ['star' => 3, 'count' => 50],
+                                ['star' => 2, 'count' => 15],
+                                ['star' => 1, 'count' => 12]
+                            ],
+                            'link' => 'https://g2.com/products/reviews'
+                        ],
+                        [
+                            'platform' => 'capterra',
+                            'rating' => 4.8,
+                            'reviewCount' => 1256,
+                            'badge' => 'Top Rated',
+                            'snippet' => 'Excellent customer support and powerful analytics. The implementation was smooth and the ROI was evident within months.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 980],
+                                ['star' => 4, 'count' => 210],
+                                ['star' => 3, 'count' => 40],
+                                ['star' => 2, 'count' => 15],
+                                ['star' => 1, 'count' => 11]
+                            ],
+                            'link' => 'https://capterra.com/products/reviews'
+                        ],
+                        [
+                            'platform' => 'trustpilot',
+                            'rating' => 4.9,
+                            'reviewCount' => 892,
+                            'badge' => 'Excellent',
+                            'snippet' => 'This platform has transformed our supply chain operations. Highly recommended for any business looking to optimize inventory.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 780],
+                                ['star' => 4, 'count' => 85],
+                                ['star' => 3, 'count' => 15],
+                                ['star' => 2, 'count' => 7],
+                                ['star' => 1, 'count' => 5]
+                            ],
+                            'link' => 'https://trustpilot.com/reviews'
+                        ],
+                        [
+                            'platform' => 'google',
+                            'rating' => 4.7,
+                            'reviewCount' => 523,
+                            'badge' => 'Verified',
+                            'snippet' => 'Great platform with excellent features. The team is responsive and always helpful.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 380],
+                                ['star' => 4, 'count' => 100],
+                                ['star' => 3, 'count' => 25],
+                                ['star' => 2, 'count' => 10],
+                                ['star' => 1, 'count' => 8]
+                            ],
+                            'link' => 'https://google.com/reviews'
+                        ],
+                        [
+                            'platform' => 'softwareadvice',
+                            'rating' => 4.8,
+                            'reviewCount' => 342,
+                            'badge' => 'Recommended',
+                            'snippet' => 'Excellent value for money. The AI capabilities are impressive and have helped us reduce inventory costs significantly.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 260],
+                                ['star' => 4, 'count' => 60],
+                                ['star' => 3, 'count' => 12],
+                                ['star' => 2, 'count' => 6],
+                                ['star' => 1, 'count' => 4]
+                            ],
+                            'link' => 'https://softwareadvice.com/reviews'
+                        ]
+                    ],
+                    'awardsTitle' => 'Awards & Recognition',
+                    'awards' => [
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Supply Chain Innovation',
+                            'presentedBy' => 'Supply Chain Excellence Awards',
+                            'year' => '2024',
+                            'description' => 'Recognized for AI-driven inventory optimization platform'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Leader in Supply Chain Planning',
+                            'presentedBy' => 'Gartner Magic Quadrant',
+                            'year' => '2024',
+                            'description' => 'Positioned as a Leader for ability to execute and completeness of vision'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Customer Satisfaction Leader',
+                            'presentedBy' => 'Software Reviews',
+                            'year' => '2024',
+                            'description' => 'Highest customer satisfaction score in supply chain software category'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'AI Platform of the Year',
+                            'presentedBy' => 'Tech Innovation Awards',
+                            'year' => '2023',
+                            'description' => 'Recognized for breakthrough AI/ML capabilities in inventory management'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Top Rated Software',
+                            'presentedBy' => 'Capterra',
+                            'year' => '2024',
+                            'description' => 'Consistently rated 4.8+ stars by verified users'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Place to Work',
+                            'presentedBy' => 'Great Place to Work',
+                            'year' => '2024',
+                            'description' => 'Recognized for company culture and employee satisfaction'
+                        ]
+                    ],
+                    'stats' => [
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Average Rating'],
+                        ['icon' => 'users', 'value' => '5,000+', 'label' => 'Verified Reviews'],
+                        ['icon' => 'trending', 'value' => '98%', 'label' => 'Would Recommend'],
+                        ['icon' => 'globe', 'value' => '25+', 'label' => 'Countries Served']
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Trusted by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'See why our customers rate us 4.9 stars',
+                    'ctaButtonText' => 'Read All Reviews',
+                    'ctaLink' => '/reviews'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 246,
+                'section_key' => 'ratingAndAwards',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Ratings & Awards',
+                        'backgroundColor' => 'bg-yellow-100 dark:bg-yellow-900/30',
+                        'borderColor' => 'border-yellow-200 dark:border-yellow-800',
+                        'textColor' => 'text-yellow-700 dark:text-yellow-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Recognized',
+                        'highlightedText' => 'Excellence',
+                        'suffix' => 'Across Platforms',
+                        'highlightGradient' => 'from-yellow-600 to-amber-600'
+                    ],
+                    'description' => 'See why customers and industry experts consistently rate us as a top solution in our category.',
+                    'stats' => [
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Average Rating', 'trend' => '+0.2'],
+                        ['icon' => 'users', 'value' => '5,000+', 'label' => 'Verified Reviews', 'trend' => '+15%'],
+                        ['icon' => 'trending', 'value' => '98%', 'label' => 'Would Recommend', 'trend' => '+3%'],
+                        ['icon' => 'globe', 'value' => '25+', 'label' => 'Countries Served', 'trend' => '+5']
+                    ],
+                    'ratings' => [
+                        [
+                            'platform' => 'g2',
+                            'rating' => 4.9,
+                            'reviewCount' => 2847,
+                            'badge' => 'Leader',
+                            'lastUpdated' => 'March 2024',
+                            'snippet' => 'The best inventory management platform we\'ve ever used. The AI forecasting is incredibly accurate and has saved us millions.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 2450],
+                                ['star' => 4, 'count' => 320],
+                                ['star' => 3, 'count' => 50],
+                                ['star' => 2, 'count' => 15],
+                                ['star' => 1, 'count' => 12]
+                            ],
+                            'link' => 'https://g2.com/products/reviews'
+                        ],
+                        [
+                            'platform' => 'capterra',
+                            'rating' => 4.8,
+                            'reviewCount' => 1256,
+                            'badge' => 'Top Rated',
+                            'lastUpdated' => 'February 2024',
+                            'snippet' => 'Excellent customer support and powerful analytics. The implementation was smooth and the ROI was evident within months.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 980],
+                                ['star' => 4, 'count' => 210],
+                                ['star' => 3, 'count' => 40],
+                                ['star' => 2, 'count' => 15],
+                                ['star' => 1, 'count' => 11]
+                            ],
+                            'link' => 'https://capterra.com/products/reviews'
+                        ],
+                        [
+                            'platform' => 'trustpilot',
+                            'rating' => 4.9,
+                            'reviewCount' => 892,
+                            'badge' => 'Excellent',
+                            'lastUpdated' => 'January 2024',
+                            'snippet' => 'This platform has transformed our supply chain operations. Highly recommended for any business looking to optimize inventory.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 780],
+                                ['star' => 4, 'count' => 85],
+                                ['star' => 3, 'count' => 15],
+                                ['star' => 2, 'count' => 7],
+                                ['star' => 1, 'count' => 5]
+                            ],
+                            'link' => 'https://trustpilot.com/reviews'
+                        ],
+                        [
+                            'platform' => 'google',
+                            'rating' => 4.7,
+                            'reviewCount' => 523,
+                            'badge' => 'Verified',
+                            'lastUpdated' => 'December 2023',
+                            'snippet' => 'Great platform with excellent features. The team is responsive and always helpful.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 380],
+                                ['star' => 4, 'count' => 100],
+                                ['star' => 3, 'count' => 25],
+                                ['star' => 2, 'count' => 10],
+                                ['star' => 1, 'count' => 8]
+                            ],
+                            'link' => 'https://google.com/reviews'
+                        ],
+                        [
+                            'platform' => 'softwareadvice',
+                            'rating' => 4.8,
+                            'reviewCount' => 342,
+                            'badge' => 'Recommended',
+                            'lastUpdated' => 'November 2023',
+                            'snippet' => 'Excellent value for money. The AI capabilities are impressive and have helped us reduce inventory costs significantly.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 260],
+                                ['star' => 4, 'count' => 60],
+                                ['star' => 3, 'count' => 12],
+                                ['star' => 2, 'count' => 6],
+                                ['star' => 1, 'count' => 4]
+                            ],
+                            'link' => 'https://softwareadvice.com/reviews'
+                        ]
+                    ],
+                    'awardsTitle' => 'Awards & Recognition',
+                    'awards' => [
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Supply Chain Innovation',
+                            'presentedBy' => 'Supply Chain Excellence Awards',
+                            'year' => '2024',
+                            'category' => 'innovation',
+                            'featuredIn' => 'Forbes',
+                            'isNew' => true,
+                            'description' => 'Recognized for AI-driven inventory optimization platform that delivers measurable ROI within months.',
+                            'fullDescription' => 'The Supply Chain Excellence Awards recognized our platform for its groundbreaking AI-driven inventory optimization capabilities. The judges were impressed by the measurable ROI our clients achieve, with average inventory reductions of 25-35% within the first six months.',
+                            'highlights' => [
+                                'First company to achieve 99.9% forecast accuracy',
+                                'Recognized for innovative AI/ML approach',
+                                'Strong customer satisfaction metrics'
+                            ],
+                            'link' => '/awards/supply-chain-excellence'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Leader in Supply Chain Planning',
+                            'presentedBy' => 'Gartner Magic Quadrant',
+                            'year' => '2024',
+                            'category' => 'technology',
+                            'featuredIn' => 'Gartner',
+                            'isNew' => true,
+                            'description' => 'Positioned as a Leader for ability to execute and completeness of vision in supply chain planning.',
+                            'fullDescription' => 'Gartner positioned our platform as a Leader in the Magic Quadrant for Supply Chain Planning. We were recognized for our strong ability to execute and completeness of vision, particularly in AI-driven forecasting and inventory optimization.',
+                            'highlights' => [
+                                'Highest score for AI/ML capabilities',
+                                'Strong customer satisfaction ratings',
+                                'Recognized for innovation in demand sensing'
+                            ],
+                            'link' => '/awards/gartner-magic-quadrant'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Customer Satisfaction Leader',
+                            'presentedBy' => 'Software Reviews',
+                            'year' => '2024',
+                            'category' => 'customer',
+                            'featuredIn' => 'Software Reviews',
+                            'isNew' => true,
+                            'description' => 'Highest customer satisfaction score in supply chain software category.',
+                            'fullDescription' => 'Software Reviews named us a Customer Satisfaction Leader based on aggregated customer reviews. We achieved the highest overall satisfaction score in the supply chain software category, with particular strength in ease of use and customer support.',
+                            'highlights' => [
+                                '#1 in customer satisfaction',
+                                'Highest recommendation score (98%)',
+                                'Strong marks for implementation support'
+                            ],
+                            'link' => '/awards/software-reviews'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'AI Platform of the Year',
+                            'presentedBy' => 'Tech Innovation Awards',
+                            'year' => '2023',
+                            'category' => 'innovation',
+                            'featuredIn' => 'TechCrunch',
+                            'isNew' => false,
+                            'description' => 'Recognized for breakthrough AI/ML capabilities in inventory management and demand forecasting.',
+                            'fullDescription' => 'The Tech Innovation Awards recognized our platform as AI Platform of the Year for our breakthrough machine learning capabilities in inventory management and demand forecasting.',
+                            'highlights' => [
+                                'Breakthrough AI/ML technology',
+                                'Proven customer ROI',
+                                'Scalable enterprise solution'
+                            ],
+                            'link' => '/awards/tech-innovation'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Top Rated Software',
+                            'presentedBy' => 'Capterra',
+                            'year' => '2024',
+                            'category' => 'customer',
+                            'featuredIn' => 'Capterra',
+                            'isNew' => false,
+                            'description' => 'Consistently rated 4.8+ stars by verified users across multiple categories.',
+                            'fullDescription' => 'Capterra recognized us as Top Rated Software based on consistently high ratings from verified users. Our platform maintains a 4.8+ star rating across all categories, with particular strength in ease of use and customer support.',
+                            'highlights' => [
+                                '4.8+ star average rating',
+                                '500+ verified reviews',
+                                'Top 1% in category'
+                            ],
+                            'link' => '/awards/capterra-top-rated'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Place to Work',
+                            'presentedBy' => 'Great Place to Work',
+                            'year' => '2024',
+                            'category' => 'growth',
+                            'featuredIn' => 'Fortune',
+                            'isNew' => false,
+                            'description' => 'Recognized for company culture, employee satisfaction, and workplace excellence.',
+                            'fullDescription' => 'Great Place to Work certified our organization as a Best Place to Work based on employee feedback. We scored particularly high in areas of trust, pride, and camaraderie.',
+                            'highlights' => [
+                                '95% employee satisfaction',
+                                'Recognized for inclusive culture',
+                                'Strong leadership trust scores'
+                            ],
+                            'link' => '/awards/great-place-to-work'
+                        ]
+                    ],
+                    'showBadges' => true,
+                    'badges' => [
+                        ['icon' => 'shield', 'name' => 'ISO 27001', 'description' => 'Information Security Certified'],
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II', 'description' => 'Security & Compliance'],
+                        ['icon' => 'shield', 'name' => 'GDPR Compliant', 'description' => 'Data Protection'],
+                        ['icon' => 'shield', 'name' => 'HIPAA Ready', 'description' => 'Healthcare Compliance']
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Trusted by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Join our satisfied customers',
+                    'ctaButtonText' => 'Get Started Today',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 247,
+                'section_key' => 'ratingAndAwards',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Ratings & Awards',
+                        'backgroundColor' => 'bg-yellow-100 dark:bg-yellow-900/30',
+                        'borderColor' => 'border-yellow-200 dark:border-yellow-800',
+                        'textColor' => 'text-yellow-700 dark:text-yellow-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Industry',
+                        'highlightedText' => 'Recognition',
+                        'suffix' => 'Showcase',
+                        'highlightGradient' => 'from-yellow-600 to-amber-600'
+                    ],
+                    'description' => 'See why customers and industry experts consistently rate us as a top solution in our category.',
+                    'stats' => [
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Average Rating'],
+                        ['icon' => 'users', 'value' => '5,000+', 'label' => 'Verified Reviews'],
+                        ['icon' => 'trending', 'value' => '98%', 'label' => 'Would Recommend'],
+                        ['icon' => 'globe', 'value' => '25+', 'label' => 'Countries Served']
+                    ],
+                    'ratings' => [
+                        [
+                            'platform' => 'g2',
+                            'rating' => 4.9,
+                            'reviewCount' => 2847,
+                            'badge' => 'Leader',
+                            'snippet' => 'The best inventory management platform we\'ve ever used.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 2450],
+                                ['star' => 4, 'count' => 320],
+                                ['star' => 3, 'count' => 50],
+                                ['star' => 2, 'count' => 15],
+                                ['star' => 1, 'count' => 12]
+                            ],
+                            'link' => 'https://g2.com/products/reviews'
+                        ],
+                        [
+                            'platform' => 'capterra',
+                            'rating' => 4.8,
+                            'reviewCount' => 1256,
+                            'badge' => 'Top Rated',
+                            'snippet' => 'Excellent customer support and powerful analytics.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 980],
+                                ['star' => 4, 'count' => 210],
+                                ['star' => 3, 'count' => 40],
+                                ['star' => 2, 'count' => 15],
+                                ['star' => 1, 'count' => 11]
+                            ],
+                            'link' => 'https://capterra.com/products/reviews'
+                        ],
+                        [
+                            'platform' => 'trustpilot',
+                            'rating' => 4.9,
+                            'reviewCount' => 892,
+                            'badge' => 'Excellent',
+                            'snippet' => 'This platform has transformed our supply chain operations.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 780],
+                                ['star' => 4, 'count' => 85],
+                                ['star' => 3, 'count' => 15],
+                                ['star' => 2, 'count' => 7],
+                                ['star' => 1, 'count' => 5]
+                            ],
+                            'link' => 'https://trustpilot.com/reviews'
+                        ],
+                        [
+                            'platform' => 'google',
+                            'rating' => 4.7,
+                            'reviewCount' => 523,
+                            'badge' => 'Verified',
+                            'snippet' => 'Great platform with excellent features.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 380],
+                                ['star' => 4, 'count' => 100],
+                                ['star' => 3, 'count' => 25],
+                                ['star' => 2, 'count' => 10],
+                                ['star' => 1, 'count' => 8]
+                            ],
+                            'link' => 'https://google.com/reviews'
+                        ],
+                        [
+                            'platform' => 'softwareadvice',
+                            'rating' => 4.8,
+                            'reviewCount' => 342,
+                            'badge' => 'Recommended',
+                            'snippet' => 'Excellent value for money. The AI capabilities are impressive.',
+                            'breakdown' => [
+                                ['star' => 5, 'count' => 260],
+                                ['star' => 4, 'count' => 60],
+                                ['star' => 3, 'count' => 12],
+                                ['star' => 2, 'count' => 6],
+                                ['star' => 1, 'count' => 4]
+                            ],
+                            'link' => 'https://softwareadvice.com/reviews'
+                        ]
+                    ],
+                    'awards' => [
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Supply Chain Innovation',
+                            'presentedBy' => 'Supply Chain Excellence Awards',
+                            'year' => '2024',
+                            'featured' => true,
+                            'description' => 'Recognized for AI-driven inventory optimization platform that delivers measurable ROI within months.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Leader in Supply Chain Planning',
+                            'presentedBy' => 'Gartner Magic Quadrant',
+                            'year' => '2024',
+                            'featured' => true,
+                            'description' => 'Positioned as a Leader for ability to execute and completeness of vision.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Customer Satisfaction Leader',
+                            'presentedBy' => 'Software Reviews',
+                            'year' => '2024',
+                            'featured' => true,
+                            'description' => 'Highest customer satisfaction score in supply chain software category.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'AI Platform of the Year',
+                            'presentedBy' => 'Tech Innovation Awards',
+                            'year' => '2023',
+                            'featured' => false,
+                            'description' => 'Recognized for breakthrough AI/ML capabilities in inventory management.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Top Rated Software',
+                            'presentedBy' => 'Capterra',
+                            'year' => '2024',
+                            'featured' => false,
+                            'description' => 'Consistently rated 4.8+ stars by verified users.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best Place to Work',
+                            'presentedBy' => 'Great Place to Work',
+                            'year' => '2024',
+                            'featured' => false,
+                            'description' => 'Recognized for company culture and employee satisfaction.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Inc. 5000 Fastest Growing',
+                            'presentedBy' => 'Inc. Magazine',
+                            'year' => '2023',
+                            'featured' => false,
+                            'description' => 'Recognized as one of America\'s fastest-growing private companies.'
+                        ],
+                        [
+                            'icon' => 'trophy',
+                            'title' => 'Best AI Solution',
+                            'presentedBy' => 'AI Summit Awards',
+                            'year' => '2023',
+                            'featured' => false,
+                            'description' => 'Awarded for excellence in artificial intelligence applications.'
+                        ]
+                    ],
+                    'certifications' => [
+                        [
+                            'icon' => 'shield',
+                            'name' => 'ISO 27001',
+                            'validator' => 'International Organization for Standardization',
+                            'year' => '2024',
+                            'description' => 'Certified for information security management systems.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'SOC 2 Type II',
+                            'validator' => 'American Institute of CPAs',
+                            'year' => '2024',
+                            'description' => 'Validated for security, availability, and confidentiality controls.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'GDPR Compliant',
+                            'validator' => 'European Union',
+                            'year' => '2024',
+                            'description' => 'Compliant with data protection and privacy regulations.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'HIPAA Ready',
+                            'validator' => 'U.S. Department of Health',
+                            'year' => '2024',
+                            'description' => 'Ready for healthcare data compliance requirements.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'PCI DSS Level 1',
+                            'validator' => 'PCI Security Standards Council',
+                            'year' => '2024',
+                            'description' => 'Highest level of payment card industry compliance.'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'CSA STAR',
+                            'validator' => 'Cloud Security Alliance',
+                            'year' => '2024',
+                            'description' => 'Cloud security and privacy certification.'
+                        ]
+                    ],
+                    'badges' => [
+                        ['icon' => 'shield', 'name' => 'ISO 27001', 'description' => 'Information Security Certified'],
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II', 'description' => 'Security & Compliance'],
+                        ['icon' => 'shield', 'name' => 'GDPR Compliant', 'description' => 'Data Protection'],
+                        ['icon' => 'shield', 'name' => 'HIPAA Ready', 'description' => 'Healthcare Compliance']
+                    ],
+                    'showTrustIndicators' => true,
+                    'trustText' => 'Trusted by industry leaders worldwide',
+                    'trustLogos' => [
+                        ['icon' => 'google', 'name' => 'Google'],
+                        ['icon' => 'microsoft', 'name' => 'Microsoft'],
+                        ['icon' => 'amazon', 'name' => 'Amazon']
+                    ],
+                    'showCta' => true,
+                    'ctaText' => 'Experience the award-winning platform yourself',
+                    'ctaButtonText' => 'Start Free Trial',
+                    'ctaLink' => '/demo'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 248,
+                'section_key' => 'ratingAndAwards',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         // Add the new Services variants
