@@ -2299,7 +2299,7 @@ class SuccessStoriesPageSectionVariantSeeder extends Seeder
                             'company' => 'Fashion Forward Retail',
                             'title' => 'Omnichannel Inventory Optimization',
                             'description' => 'Leading fashion retailer struggled with disconnected inventory across 50+ stores and e-commerce, causing $3.2M in lost sales annually.',
-                            'bgColor' => 'bg-gradient-to-r from-blue-600 to-indigo-600',
+                            'bgColor' => 'bg-linear-to-r from-blue-600 to-indigo-600',
                             'challenge' => 'Poor inventory visibility across online and physical stores led to 22% stockout rates and 18% markdown rates. Manual processes caused slow 14-day replenishment cycles.',
                             'solution' => 'Implemented unified commerce platform with AI-powered demand forecasting, real-time inventory visibility, and automated replenishment across all channels.',
                             'results' => [
@@ -2325,7 +2325,7 @@ class SuccessStoriesPageSectionVariantSeeder extends Seeder
                             'company' => 'Precision Industries',
                             'title' => 'AI-Powered Inventory Management',
                             'description' => 'Aerospace manufacturer reduced inventory costs by 35% and improved forecast accuracy from 68% to 94% with AI-driven supply chain optimization.',
-                            'bgColor' => 'bg-gradient-to-r from-purple-600 to-pink-600',
+                            'bgColor' => 'bg-linear-to-r from-purple-600 to-pink-600',
                             'challenge' => 'Legacy systems caused inventory visibility gaps across 12 warehouses, leading to $2.5M in excess stock and frequent production delays.',
                             'solution' => 'Deployed AI-powered inventory optimization platform with real-time sync across all ERP systems and warehouses.',
                             'results' => [
@@ -2351,7 +2351,7 @@ class SuccessStoriesPageSectionVariantSeeder extends Seeder
                             'company' => 'Global Logistics Solutions',
                             'title' => 'Automated Billing & Revenue Recovery',
                             'description' => '3PL provider recovered $2.1M in revenue and achieved 99.9% billing accuracy with automated billing engine.',
-                            'bgColor' => 'bg-gradient-to-r from-cyan-600 to-blue-600',
+                            'bgColor' => 'bg-linear-to-r from-cyan-600 to-blue-600',
                             'challenge' => 'Manual billing processes caused 15% invoice rework rate and $1.8M annual revenue leakage from un-billed services.',
                             'solution' => 'Deployed automated billing engine with real-time rate validation, client-specific business rules, and automated dispute resolution.',
                             'results' => [
@@ -2377,7 +2377,7 @@ class SuccessStoriesPageSectionVariantSeeder extends Seeder
                             'company' => 'HealthFirst Medical Network',
                             'title' => 'RFID-Based Inventory Tracking',
                             'description' => 'Healthcare network reduced expired inventory waste by 90% and achieved 100% audit compliance with RFID tracking.',
-                            'bgColor' => 'bg-gradient-to-r from-teal-600 to-emerald-600',
+                            'bgColor' => 'bg-linear-to-r from-teal-600 to-emerald-600',
                             'challenge' => 'Expiring medical supplies caused $1.2M in annual waste across 15 facilities with 120+ manual hours weekly checking expiration dates.',
                             'solution' => 'Deployed RFID-based inventory tracking with expiration date alerts, automated reordering, and real-time visibility.',
                             'results' => [
@@ -2403,7 +2403,7 @@ class SuccessStoriesPageSectionVariantSeeder extends Seeder
                             'company' => 'FreshFood Distributors',
                             'title' => 'Shelf-Life Management Solution',
                             'description' => 'Food distributor reduced spoilage by 71% and saved $1.5M annually with real-time expiration tracking.',
-                            'bgColor' => 'bg-gradient-to-r from-orange-600 to-red-600',
+                            'bgColor' => 'bg-linear-to-r from-orange-600 to-red-600',
                             'challenge' => 'Product spoilage from poor expiration tracking caused $2.1M annual waste with limited lot traceability and recall capabilities.',
                             'solution' => 'Implemented real-time expiration date management with cold chain monitoring and automated recall management.',
                             'results' => [
@@ -2429,7 +2429,7 @@ class SuccessStoriesPageSectionVariantSeeder extends Seeder
                             'company' => 'ElectroTech Manufacturing',
                             'title' => 'Component Obsolescence Management',
                             'description' => 'Electronics manufacturer reduced obsolescence costs by 63% with proactive lifecycle management.',
-                            'bgColor' => 'bg-gradient-to-r from-indigo-600 to-purple-600',
+                            'bgColor' => 'bg-linear-to-r from-indigo-600 to-purple-600',
                             'challenge' => 'Component obsolescence caused $3.2M in redesign costs with 40% of products requiring costly redesigns due to end-of-life components.',
                             'solution' => 'Deployed obsolescence monitoring and prediction with last-time buy optimization and lifecycle management dashboard.',
                             'results' => [

@@ -15,6 +15,7 @@ use Database\Seeders\PageRelatedSeeders\ServicesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\FeaturesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\HowItWorksPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\IndustriesPageSectionVariantSeeder;
+use Database\Seeders\PageRelatedSeeders\TestimonialsPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\SuccessStoriesPageSectionVariantSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -114,6 +115,9 @@ class DatabaseSeeder extends Seeder
 
             // Call Success Stories Page Section Variant Seeders
             $this->call(SuccessStoriesPageSectionVariantSeeder::class);
+
+            // Call Testimonials Page Section Variant Seeders
+            $this->call(TestimonialsPageSectionVariantSeeder::class);
 
 
             $this->command->info('✅ Pages and Sections seeded successfully!');

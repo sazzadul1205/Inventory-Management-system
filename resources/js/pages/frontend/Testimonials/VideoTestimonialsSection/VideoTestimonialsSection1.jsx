@@ -1,10 +1,25 @@
 // frontend/Testimonials/VideoTestimonialsSection/VideoTestimonialsSection1.jsx
 
-// React
-import { Link } from '@inertiajs/react';
-import { useState, useRef, useEffect } from 'react';
+/**
+ * Video Testimonials Section Component
+ * A comprehensive video testimonial showcase featuring:
+ * - Featured video with large hero display
+ * - Responsive video grid with thumbnails
+ * - Full-featured modal video player with custom controls
+ * - Play/Pause, Mute/Unmute, Progress bar with seeking
+ * - Video duration display and formatting
+ * - Statistics display for video engagement
+ * - Keyboard navigation (ESC to close modal)
+ *
+ * All icons from react-icons library (no emojis, no custom icons)
+ */
 
-// Icons
+// React Core Imports
+import { Link } from '@inertiajs/react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+
+// React Icons - All from react-icons library
+import { FaMicrosoft } from 'react-icons/fa';
 import {
   HiOutlinePlay,
   HiOutlinePause,
@@ -13,29 +28,270 @@ import {
   HiOutlineX,
   HiArrowRight,
   HiOutlineStar,
+  HiOutlineChartBar,
+  HiOutlineUsers,
+  HiOutlineEye,
+  HiOutlineThumbUp,
+  HiOutlineClock,
+  HiOutlineSparkles,
 } from 'react-icons/hi';
-import { HiOutlinePlayCircle } from "react-icons/hi2";
+import { HiOutlinePlayCircle } from 'react-icons/hi2';
+import { TbBrandGoogle, TbBrandAmazon } from 'react-icons/tb';
 
 const VideoTestimonialsSection1 = ({ config }) => {
-  const [selectedVideo, setSelectedVideo] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  // ==================== STATE MANAGEMENT ====================
   const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedStats, setAnimatedStats] = useState({});
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  // ==================== REFS ====================
   const videoRef = useRef(null);
   const modalRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  const videos = config?.videos || [];
+  // ==================== MEMOIZED DATA ====================
+  const videos = useMemo(() => config?.videos || [], [config]);
+  const stats = useMemo(() => config?.stats || [], [config]);
+  const featuredVideo = config?.featuredVideo;
 
-  useEffect(() => {
-    if (selectedVideo && videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
-      }
+  // ==================== HELPER FUNCTIONS ====================
+
+  /**
+   * Get icon component by name
+   * @param {string} iconName - Name of the icon from config
+   * @param {string} className - CSS classes for styling
+   * @returns {JSX.Element} - React Icon component
+   */
+  const getIcon = useCallback((iconName, className = "w-5 h-5") => {
+    const icons = {
+      'play': HiOutlinePlay,
+      'pause': HiOutlinePause,
+      'volume-up': HiOutlineVolumeUp,
+      'volume-off': HiOutlineVolumeOff,
+      'x': HiOutlineX,
+      'arrow-right': HiArrowRight,
+      'star': HiOutlineStar,
+      'play-circle': HiOutlinePlayCircle,
+      'chart': HiOutlineChartBar,
+      'users': HiOutlineUsers,
+      'eye': HiOutlineEye,
+      'thumb-up': HiOutlineThumbUp,
+      'clock': HiOutlineClock,
+      'sparkles': HiOutlineSparkles,
+      'google': TbBrandGoogle,
+      'microsoft': FaMicrosoft,
+      'amazon': TbBrandAmazon,
+    };
+    const IconComponent = icons[iconName] || HiOutlinePlayCircle;
+    return <IconComponent className={className} />;
+  }, []);
+
+  /**
+   * Render star rating component
+   * @param {number} rating - Rating value (1-5)
+   * @param {string} size - Size class for stars
+   * @returns {JSX.Element} Star rating component
+   */
+  const renderStars = useCallback((rating, size = "w-3 h-3") => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    return (
+      <div className="flex gap-0.5">
+        {[...Array(5)].map((_, i) => {
+          if (i < fullStars) {
+            return <span key={i}>{getIcon("star", `${size} text-yellow-500 fill-yellow-500`)}</span>;
+          }
+          if (i === fullStars && hasHalfStar) {
+            return <span key={i}>{getIcon("star", `${size} text-yellow-500 fill-yellow-500 opacity-50`)}</span>;
+          }
+          return <span key={i}>{getIcon("star", `${size} text-gray-300 dark:text-gray-600`)}</span>;
+        })}
+      </div>
+    );
+  }, [getIcon]);
+
+  /**
+   * Format duration in seconds to MM:SS format
+   * @param {number} seconds - Duration in seconds
+   * @returns {string} Formatted duration string
+   */
+  const formatDuration = useCallback((seconds) => {
+    if (isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }, []);
+
+  /**
+   * Parse metric value to extract numeric value and suffix
+   * @param {string} value - Metric value string
+   * @returns {Object} Object containing numeric value and suffix
+   */
+  const parseMetricValue = useCallback((value) => {
+    const match = value.match(/[\d,.]+/);
+    const numericValue = match ? parseFloat(match[0].replace(/,/g, '')) : 0;
+    const suffix = value.replace(/[\d,.]+/, '').trim();
+    return { numericValue, suffix };
+  }, []);
+
+  // ==================== MODAL CONTROLS ====================
+  const openModal = useCallback((video) => {
+    setSelectedVideo(video);
+    setIsPlaying(true);
+    setIsMuted(false);
+    setProgress(0);
+    setCurrentTime(0);
+    setDuration(0);
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const closeModal = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
     }
-  }, [isPlaying, selectedVideo]);
+    setSelectedVideo(null);
+    setIsPlaying(false);
+    setProgress(0);
+    document.body.style.overflow = 'auto';
+  }, []);
 
+  // ==================== VIDEO EVENT HANDLERS ====================
+  const handlePlayPause = useCallback(() => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  }, [isPlaying]);
+
+  const handleMuteToggle = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  }, [isMuted]);
+
+  const handleTimeUpdate = useCallback(() => {
+    if (videoRef.current) {
+      const current = videoRef.current.currentTime;
+      const total = videoRef.current.duration;
+      setCurrentTime(current);
+      setProgress((current / total) * 100);
+    }
+  }, []);
+
+  const handleLoadedMetadata = useCallback(() => {
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+    }
+  }, []);
+
+  const handleSeek = useCallback((e) => {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+    const seekPercentage = x / width;
+    if (videoRef.current && duration) {
+      videoRef.current.currentTime = seekPercentage * duration;
+    }
+  }, [duration]);
+
+  const handleVideoEnd = useCallback(() => {
+    setIsPlaying(false);
+    setProgress(0);
+    setCurrentTime(0);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // ==================== INTERSECTION OBSERVER ====================
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // ==================== ANIMATE STATISTICS ====================
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const duration = 2000;
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    const startValues = {};
+    const targetValues = {};
+    const increments = {};
+    const suffixes = {};
+
+    stats.forEach((stat, index) => {
+      const { numericValue, suffix } = parseMetricValue(stat.value);
+      startValues[index] = 0;
+      targetValues[index] = numericValue;
+      increments[index] = numericValue / steps;
+      suffixes[index] = suffix;
+    });
+
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      currentStep++;
+      const newValues = {};
+
+      stats.forEach((_, index) => {
+        let newValue = startValues[index] + (increments[index] * currentStep);
+        if (currentStep >= steps) {
+          newValue = targetValues[index];
+        }
+
+        let formattedValue;
+        if (suffixes[index] === '%') {
+          formattedValue = `${Math.floor(newValue)}%`;
+        } else if (suffixes[index] === 'K' && newValue >= 1000) {
+          formattedValue = `${(newValue / 1000).toFixed(1)}K`;
+        } else if (newValue >= 1000000) {
+          formattedValue = `${(newValue / 1000000).toFixed(1)}M`;
+        } else if (newValue >= 1000) {
+          formattedValue = `${(newValue / 1000).toFixed(1)}K`;
+        } else {
+          formattedValue = `${Math.floor(newValue)}${suffixes[index]}`;
+        }
+
+        newValues[index] = formattedValue;
+      });
+
+      setAnimatedStats(newValues);
+
+      if (currentStep >= steps) {
+        clearInterval(interval);
+      }
+    }, stepDuration);
+
+    return () => clearInterval(interval);
+  }, [isVisible, stats, parseMetricValue]);
+
+  // ==================== KEYBOARD EVENT HANDLER ====================
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape' && selectedVideo) {
@@ -44,58 +300,35 @@ const VideoTestimonialsSection1 = ({ config }) => {
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
-  }, [selectedVideo]);
+  }, [selectedVideo, closeModal]);
 
-  const openModal = (video) => {
-    setSelectedVideo(video);
-    setIsPlaying(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-    setSelectedVideo(null);
-    setIsPlaying(false);
-    setProgress(0);
-    document.body.style.overflow = 'auto';
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      const currentProgress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
-      setProgress(currentProgress);
-    }
-  };
-
-  const handleSeek = (e) => {
-    const seekTime = (e.nativeEvent.offsetX / e.target.offsetWidth) * videoRef.current.duration;
-    videoRef.current.currentTime = seekTime;
-  };
-
-  const formatDuration = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
+  // ==================== CLEANUP ON UNMOUNT ====================
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <section
+      ref={sectionRef}
       className="relative py-20 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden"
       role="region"
       aria-label="Video Testimonials"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute top-1/3 left-10 w-64 h-64 bg-indigo-100/20 dark:bg-indigo-900/5 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
+          {/* Badge */}
           <div
-            className={`inline-flex items-center ${config?.badge?.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor}`}
+            className={`inline-flex items-center ${config?.badge?.backgroundColor || 'bg-blue-100 dark:bg-blue-900/30'} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor || 'border-blue-200 dark:border-blue-800'}`}
+            aria-label="Video testimonials badge"
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
@@ -103,95 +336,112 @@ const VideoTestimonialsSection1 = ({ config }) => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
-            <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
-              {config?.badge?.text}
+            <span className={`text-sm font-medium ${config?.badge?.textColor || 'text-blue-700 dark:text-blue-300'}`}>
+              {config?.badge?.text || "Video Testimonials"}
             </span>
           </div>
+
+          {/* Title */}
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            {config?.title?.prefix}{' '}
-            <span className={`bg-linear-to-r ${config?.title?.highlightGradient} bg-clip-text text-transparent`}>
-              {config?.title?.highlightedText}
+            {config?.title?.prefix || 'Hear from Our'}{' '}
+            <span className={`bg-linear-to-r ${config?.title?.highlightGradient || 'from-blue-600 to-indigo-600'} bg-clip-text text-transparent`}>
+              {config?.title?.highlightedText || 'Satisfied Clients'}
             </span>{' '}
-            {config?.title?.suffix}
+            {config?.title?.suffix || ''}
           </h2>
+
+          {/* Description */}
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            {config?.description}
+            {config?.description || "Watch real stories from customers who have transformed their businesses with our solutions."}
           </p>
         </div>
 
-        {/* Featured Video */}
-        {config?.featuredVideo && (
+        {/* ==================== FEATURED VIDEO ==================== */}
+        {featuredVideo && (
           <div className="mb-16">
-            <div className="relative group rounded-2xl overflow-hidden shadow-2xl cursor-pointer" onClick={() => openModal(config.featuredVideo)}>
+            <div
+              className="relative group rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
+              onClick={() => openModal(featuredVideo)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && openModal(featuredVideo)}
+              aria-label={`Play featured video: ${featuredVideo.title}`}
+            >
               <img
-                src={config.featuredVideo.thumbnail}
-                alt={config.featuredVideo.title}
-                className="w-full h-100 md:h-125 object-cover"
+                src={featuredVideo.thumbnail}
+                alt={featuredVideo.title}
+                className="w-full h-80 md:h-125 object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all flex items-center justify-center">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <HiOutlinePlay className="w-8 h-8 text-blue-600 ml-1" />
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  {getIcon("play", "w-8 h-8 text-blue-600 ml-1")}
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/70 to-transparent">
-                <div className="text-white text-xl font-bold mb-1">{config.featuredVideo.title}</div>
-                <div className="text-white/80 text-sm">{config.featuredVideo.author}, {config.featuredVideo.company}</div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 to-transparent">
+                <div className="text-white text-xl md:text-2xl font-bold mb-1">{featuredVideo.title}</div>
+                <div className="text-white/80 text-sm md:text-base">{featuredVideo.author}, {featuredVideo.company}</div>
               </div>
-              {config.featuredVideo.badge && (
-                <div className="absolute top-4 right-4 px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
-                  {config.featuredVideo.badge}
+              {featuredVideo.badge && (
+                <div className="absolute top-4 right-4 px-3 py-1 bg-linear-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold rounded-full shadow-lg">
+                  {featuredVideo.badge}
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {/* Video Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* ==================== VIDEO GRID ==================== */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {videos.map((video, index) => (
             <div
               key={index}
-              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden cursor-pointer"
+              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer border border-gray-100 dark:border-gray-700"
               onClick={() => openModal(video)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && openModal(video)}
+              aria-label={`Play video: ${video.title}`}
             >
-              <div className="relative">
+              {/* Thumbnail */}
+              <div className="relative overflow-hidden">
                 <img
                   src={video.thumbnail}
                   alt={video.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all flex items-center justify-center">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <HiOutlinePlay className="w-5 h-5 text-blue-600 ml-0.5" />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    {getIcon("play", "w-5 h-5 text-blue-600 ml-0.5")}
                   </div>
                 </div>
                 {video.duration && (
-                  <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">
+                  <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded-md backdrop-blur-sm">
                     {video.duration}
                   </div>
                 )}
               </div>
+
+              {/* Content */}
               <div className="p-5">
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center justify-between mb-2">
                   {video.rating && (
-                    <div className="flex gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <HiOutlineStar key={i} className={`w-3 h-3 ${i < video.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} />
-                      ))}
+                    <div className="flex items-center gap-2">
+                      {renderStars(video.rating, "w-3 h-3")}
+                      <span className="text-xs text-gray-500">{video.rating}.0</span>
                     </div>
                   )}
-                  <span className="text-xs text-gray-400">{video.date}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500">{video.date}</span>
                 </div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
                   {video.title}
                 </h3>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-sm">
-                    {video.avatar || video.icon}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
+                    {getIcon(video.icon || "users", "w-5 h-5")}
                   </div>
                   <div>
                     <div className="text-sm font-semibold text-gray-800 dark:text-gray-200">{video.author}</div>
-                    <div className="text-xs text-gray-500">{video.company}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">{video.company}</div>
                   </div>
                 </div>
               </div>
@@ -199,117 +449,164 @@ const VideoTestimonialsSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Video Modal */}
-        {selectedVideo && (
-          <div
-            ref={modalRef}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-            onClick={(e) => e.target === modalRef.current && closeModal()}
-          >
-            <div className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden">
-              {/* Close Button */}
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-all"
+        {/* ==================== STATISTICS SECTION ==================== */}
+        {config?.showStats && stats.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700"
               >
-                <HiOutlineX className="w-5 h-5" />
-              </button>
-
-              {/* Video Player */}
-              <video
-                ref={videoRef}
-                src={selectedVideo.url}
-                className="w-full aspect-video"
-                onTimeUpdate={handleTimeUpdate}
-                muted={isMuted}
-              />
-
-              {/* Video Controls */}
-              <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
-                {/* Progress Bar */}
-                <div
-                  className="w-full h-1 bg-white/30 rounded-full mb-3 cursor-pointer"
-                  onClick={handleSeek}
-                >
-                  <div
-                    className="h-full bg-blue-500 rounded-full relative"
-                    style={{ width: `${progress}%` }}
-                  >
-                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full" />
-                  </div>
+                <div className="flex justify-center mb-3 text-blue-600 dark:text-blue-400">
+                  {getIcon(stat.icon, "w-8 h-8")}
                 </div>
-
-                {/* Controls Row */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => setIsPlaying(!isPlaying)}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all"
-                    >
-                      {isPlaying ? (
-                        <HiOutlinePause className="w-4 h-4" />
-                      ) : (
-                        <HiOutlinePlay className="w-4 h-4 ml-0.5" />
-                      )}
-                    </button>
-                    <button
-                      onClick={() => setIsMuted(!isMuted)}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all"
-                    >
-                      {isMuted ? (
-                        <HiOutlineVolumeOff className="w-4 h-4" />
-                      ) : (
-                        <HiOutlineVolumeUp className="w-4 h-4" />
-                      )}
-                    </button>
-                    <span className="text-white text-sm">
-                      {videoRef.current && formatDuration(videoRef.current.currentTime)} / {videoRef.current && formatDuration(videoRef.current.duration)}
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-white text-sm font-semibold">{selectedVideo.author}</div>
-                    <div className="text-white/70 text-xs">{selectedVideo.company}</div>
-                  </div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1 font-mono">
+                  {animatedStats[index] || stat.value}
                 </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Stats Section */}
-        {config?.showStats && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {config?.stats?.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md">
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{stat.value}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
               </div>
             ))}
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== TRUST INDICATORS ==================== */}
+        {config?.showTrustIndicators && config?.trustLogos?.length > 0 && (
+          <div className="text-center pt-8 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">
+              {config?.trustText || "Trusted by industry leaders worldwide"}
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 dark:opacity-50">
+              {config.trustLogos.map((logo, index) => (
+                <div key={index} className="transition-all duration-300 hover:opacity-100 hover:scale-110">
+                  {getIcon(logo.icon, "w-8 h-8 md:w-10 md:h-10 text-gray-500 dark:text-gray-400")}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ==================== CALL TO ACTION ==================== */}
         {config?.showCta && (
-          <div className="text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlinePlayCircle className="w-6 h-6 text-blue-600" />
-              <span className="text-gray-700 dark:text-gray-300 font-medium">
+          <div className="text-center mt-12">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-5 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl border border-blue-100 dark:border-gray-700">
+              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                {getIcon("play-circle", "w-6 h-6 text-blue-600")}
+              </div>
+              <span className="text-gray-700 dark:text-gray-300 font-medium text-center sm:text-left">
                 {config?.ctaText || "Want to share your story?"}
               </span>
               <Link
                 href={config?.ctaLink || "/submit-testimonial"}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+                className="px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
               >
                 {config?.ctaButtonText || "Submit Your Testimonial"}
-                <HiArrowRight aria-hidden="true" />
+                {getIcon("arrow-right", "w-4 h-4")}
               </Link>
             </div>
           </div>
         )}
       </div>
 
-      {/* Required CSS */}
+      {/* ==================== VIDEO MODAL ==================== */}
+      {selectedVideo && (
+        <div
+          ref={modalRef}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
+          onClick={(e) => e.target === modalRef.current && closeModal()}
+          role="dialog"
+          aria-label="Video player modal"
+          aria-modal="true"
+        >
+          <div className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl">
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+              aria-label="Close video player"
+            >
+              {getIcon("x", "w-5 h-5")}
+            </button>
+
+            {/* Video Player */}
+            <video
+              ref={videoRef}
+              src={selectedVideo.url}
+              className="w-full aspect-video"
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleLoadedMetadata}
+              onEnded={handleVideoEnd}
+              muted={isMuted}
+              autoPlay
+              playsInline
+            />
+
+            {/* Custom Video Controls */}
+            <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
+              {/* Progress Bar */}
+              <div
+                className="w-full h-1 bg-white/30 rounded-full mb-3 cursor-pointer group/progress"
+                onClick={handleSeek}
+                role="progressbar"
+                aria-label="Video progress"
+                aria-valuenow={progress}
+                aria-valuemin={0}
+                aria-valuemax={100}
+              >
+                <div
+                  className="h-full bg-linear-to-r from-blue-500 to-indigo-500 rounded-full relative"
+                  style={{ width: `${progress}%` }}
+                >
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity" />
+                </div>
+              </div>
+
+              {/* Controls Row */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  {/* Play/Pause Button */}
+                  <button
+                    onClick={handlePlayPause}
+                    className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+                    aria-label={isPlaying ? "Pause video" : "Play video"}
+                  >
+                    {isPlaying ? (
+                      getIcon("pause", "w-4 h-4")
+                    ) : (
+                      getIcon("play", "w-4 h-4 ml-0.5")
+                    )}
+                  </button>
+
+                  {/* Mute/Unmute Button */}
+                  <button
+                    onClick={handleMuteToggle}
+                    className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+                    aria-label={isMuted ? "Unmute video" : "Mute video"}
+                  >
+                    {isMuted ? (
+                      getIcon("volume-off", "w-4 h-4")
+                    ) : (
+                      getIcon("volume-up", "w-4 h-4")
+                    )}
+                  </button>
+
+                  {/* Time Display */}
+                  <span className="text-white text-sm font-mono">
+                    {formatDuration(currentTime)} / {formatDuration(duration)}
+                  </span>
+                </div>
+
+                {/* Video Info */}
+                <div className="text-right">
+                  <div className="text-white text-sm font-semibold">{selectedVideo.author}</div>
+                  <div className="text-white/70 text-xs">{selectedVideo.company}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes fadeIn {
           from {
@@ -322,7 +619,7 @@ const VideoTestimonialsSection1 = ({ config }) => {
           }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
+          animation: fadeIn 0.5s ease-out forwards;
         }
         .line-clamp-2 {
           display: -webkit-box;
