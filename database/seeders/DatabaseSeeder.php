@@ -15,6 +15,7 @@ use Database\Seeders\PageRelatedSeeders\ServicesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\FeaturesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\HowItWorksPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\IndustriesPageSectionVariantSeeder;
+use Database\Seeders\PageRelatedSeeders\PricingPlansPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\TestimonialsPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\SuccessStoriesPageSectionVariantSeeder;
 
@@ -86,7 +87,7 @@ class DatabaseSeeder extends Seeder
     protected function seedPagesAndSections(): void
     {
         $this->command->info('📄 Seeding Pages and Sections...');
-        $this->command->line('──────────────────────────────────────────');
+        $this->command->line('──────────────────────────────────────');
 
         // Confirm pages seeding
         $confirm = $this->command->confirm('Do you want to seed Pages?', true);
@@ -119,6 +120,8 @@ class DatabaseSeeder extends Seeder
             // Call Testimonials Page Section Variant Seeders
             $this->call(TestimonialsPageSectionVariantSeeder::class);
 
+            // Call Pricing Plans Page Section Variant Seeders
+            $this->call(PricingPlansPageSectionVariantSeeder::class);
 
             $this->command->info('✅ Pages and Sections seeded successfully!');
         } else {

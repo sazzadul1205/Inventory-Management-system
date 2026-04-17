@@ -1,10 +1,25 @@
 // frontend/PricingPlans/StarterPlanSection/StarterPlanSection2.jsx
 
-// React
+/**
+ * Starter Plan Section Component - Interactive Pricing
+ * A comprehensive pricing showcase featuring:
+ * - Interactive pricing cards with hover effects
+ * - Monthly/Yearly billing toggle with savings animation
+ * - Feature comparison with visual indicators
+ * - ROI calculator preview section
+ * - FAQ accordion with question icons
+ * - Money-back guarantee with shield icon
+ * - Trust badges from industry leaders
+ *
+ * All icons from react-icons library (no emojis, no custom icons)
+ */
+
+// React Core Imports
 import { Link } from '@inertiajs/react';
 import { useState, useEffect, useMemo } from 'react';
 
-// Icons
+// React Icons - All from react-icons library
+import { FaRocket, FaBriefcase, FaBuilding, FaMicrosoft } from 'react-icons/fa';
 import {
   HiOutlineCheck,
   HiOutlineX,
@@ -13,17 +28,88 @@ import {
   HiOutlineSparkles,
   HiOutlineShieldCheck,
   HiOutlineQuestionMarkCircle,
+  HiOutlineChartBar,
+  HiOutlineClock,
+  HiOutlineTrendingUp,
 } from 'react-icons/hi';
+import { TbBrandGoogle, TbBrandAmazon } from 'react-icons/tb';
 
 const StarterPlanSection2 = ({ config }) => {
-  const [billingPeriod, setBillingPeriod] = useState('monthly');
-  const [, setIsHovered] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [animatedSavings, setAnimatedSavings] = useState({});
+  const [billingPeriod, setBillingPeriod] = useState('monthly');
 
+  // ==================== MEMOIZED DATA ====================
   const plans = useMemo(() => config?.plans || [], [config?.plans]);
 
+  // ==================== HELPER FUNCTIONS ====================
+
+  /**
+   * Get icon component by name
+   * @param {string} iconName - Name of the icon from config
+   * @param {string} className - CSS classes for styling
+   * @returns {JSX.Element} - React Icon component
+   */
+  const getIcon = (iconName, className = "w-10 h-10") => {
+    const icons = {
+      'rocket': FaRocket,
+      'briefcase': FaBriefcase,
+      'building': FaBuilding,
+      'google': TbBrandGoogle,
+      'microsoft': FaMicrosoft,
+      'amazon': TbBrandAmazon,
+    };
+    const IconComponent = icons[iconName] || FaRocket;
+    return <IconComponent className={className} />;
+  };
+
+  /**
+   * Get the current price based on billing period
+   * @param {Object} plan - Plan object
+   * @returns {number} Current price
+   */
+  const getPrice = (plan) => {
+    if (billingPeriod === 'monthly') {
+      return plan.priceMonthly;
+    }
+    return plan.priceYearly;
+  };
+
+  /**
+   * Get monthly equivalent for yearly billing
+   * @param {Object} plan - Plan object
+   * @returns {string|null} Monthly equivalent price or null
+   */
+  const getMonthlyEquivalent = (plan) => {
+    if (billingPeriod === 'yearly') {
+      return (plan.priceYearly / 12).toFixed(0);
+    }
+    return null;
+  };
+
+  /**
+   * Calculate savings amount for yearly billing
+   * @param {Object} plan - Plan object
+   * @returns {number|null} Savings amount or null
+   */
+  const getSavingsAmount = (plan) => {
+    if (billingPeriod === 'yearly') {
+      const monthlyTotal = plan.priceMonthly * 12;
+      const savingsAmount = monthlyTotal - plan.priceYearly;
+      return savingsAmount;
+    }
+    return null;
+  };
+
+  /**
+   * Toggle between monthly and yearly billing
+   */
+  const toggleBilling = () => {
+    setBillingPeriod(billingPeriod === 'monthly' ? 'yearly' : 'monthly');
+  };
+
+  // ==================== ANIMATE SAVINGS PERCENTAGES ====================
   useEffect(() => {
-    // Animate savings percentages on load
     plans.forEach((plan, index) => {
       if (plan.savingsPercentage) {
         let current = 0;
@@ -45,45 +131,24 @@ const StarterPlanSection2 = ({ config }) => {
     });
   }, [plans]);
 
-  const getPrice = (plan) => {
-    if (billingPeriod === 'monthly') {
-      return plan.priceMonthly;
-    }
-    return plan.priceYearly;
-  };
-
-  const getMonthlyEquivalent = (plan) => {
-    if (billingPeriod === 'yearly') {
-      return (plan.priceYearly / 12).toFixed(0);
-    }
-    return null;
-  };
-
-  const getSavings = (plan) => {
-    if (billingPeriod === 'yearly') {
-      const monthlyTotal = plan.priceMonthly * 12;
-      const savingsAmount = monthlyTotal - plan.priceYearly;
-      return savingsAmount;
-    }
-    return null;
-  };
-
   return (
     <section
       className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"
       role="region"
-      aria-label="Starter Plan Pricing"
+      aria-label="Starter Plan Pricing - Interactive"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
+          {/* Badge */}
           <div
-            className={`inline-flex items-center ${config?.badge?.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor}`}
+            className={`inline-flex items-center ${config?.badge?.backgroundColor || 'bg-blue-100 dark:bg-blue-900/30'} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor || 'border-blue-200 dark:border-blue-800'}`}
+            aria-label="Pricing badge"
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
@@ -91,108 +156,143 @@ const StarterPlanSection2 = ({ config }) => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
-            <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
-              {config?.badge?.text}
+            <span className={`text-sm font-medium ${config?.badge?.textColor || 'text-blue-700 dark:text-blue-300'}`}>
+              {config?.badge?.text || "Simple Pricing"}
             </span>
           </div>
+
+          {/* Title */}
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            {config?.title?.prefix}{' '}
-            <span className={`bg-linear-to-r ${config?.title?.highlightGradient} bg-clip-text text-transparent`}>
-              {config?.title?.highlightedText}
+            {config?.title?.prefix || 'Choose the'}{' '}
+            <span className={`bg-linear-to-r ${config?.title?.highlightGradient || 'from-blue-600 to-indigo-600'} bg-clip-text text-transparent`}>
+              {config?.title?.highlightedText || 'Perfect Plan'}
             </span>{' '}
-            {config?.title?.suffix}
+            {config?.title?.suffix || 'for Your Business'}
           </h2>
+
+          {/* Description */}
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            {config?.description}
+            {config?.description || "Start small and scale as you grow. No hidden fees, cancel anytime."}
           </p>
         </div>
 
-        {/* Billing Toggle with Savings Badge */}
-        <div className="flex justify-center items-center gap-4 mb-12">
-          <span className={`text-sm font-medium ${billingPeriod === 'monthly' ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>
+        <div className="flex justify-center items-center gap-6 mb-12">
+          {/* Monthly */}
+          <span
+            className={`text-sm font-semibold transition ${billingPeriod === 'monthly'
+                ? 'text-gray-900 dark:text-white'
+                : 'text-gray-400'
+              }`}
+          >
             Monthly
           </span>
+
+          {/* Toggle */}
           <button
-            onClick={() => setBillingPeriod(billingPeriod === 'monthly' ? 'yearly' : 'monthly')}
-            className="relative w-16 h-8 bg-linear-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-500 rounded-full transition-all focus:outline-none shadow-inner"
+            onClick={toggleBilling}
+            role="switch"
+            aria-checked={billingPeriod === 'yearly'}
+            className={`relative w-14 h-7 flex items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500
+      ${billingPeriod === 'yearly'
+                ? 'bg-blue-600'
+                : 'bg-gray-300 dark:bg-gray-600'
+              }`}
           >
             <span
-              className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform ${billingPeriod === 'yearly' ? 'transform translate-x-9' : 'translate-x-1'
-                }`}
+              className={`absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300
+        ${billingPeriod === 'yearly' ? 'translate-x-7' : 'translate-x-0'}`}
             />
           </button>
-          <span className={`text-sm font-medium ${billingPeriod === 'yearly' ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>
-            Yearly
-          </span>
-          {billingPeriod === 'yearly' && (
-            <span className="ml-2 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-2 py-1 rounded-full animate-pulse">
-              Save up to 20%
+
+          {/* Yearly */}
+          <div className="flex items-center gap-2">
+            <span
+              className={`text-sm font-semibold transition ${billingPeriod === 'yearly'
+                  ? 'text-gray-900 dark:text-white'
+                  : 'text-gray-400'
+                }`}
+            >
+              Yearly
             </span>
-          )}
+
+            {/* Badge */}
+            <span className="text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-2.5 py-0.5 rounded-full">
+              Save 20%
+            </span>
+          </div>
         </div>
 
-        {/* Pricing Cards with Interactive Hover */}
+        {/* ==================== PRICING CARDS WITH INTERACTIVE HOVER ==================== */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {plans.map((plan, index) => {
             const isPopular = plan.popular;
             const price = getPrice(plan);
             const monthlyEquivalent = getMonthlyEquivalent(plan);
-            const savings = getSavings(plan);
+            const savingsAmount = getSavingsAmount(plan);
             const savingsPercent = animatedSavings[index] || plan.savingsPercentage;
 
             return (
               <div
-                key={plan.id}
+                key={plan.id || index}
                 className={`relative bg-white dark:bg-gray-800 rounded-3xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 ${isPopular ? 'ring-2 ring-blue-500 shadow-xl' : 'hover:shadow-xl'
                   }`}
-                onMouseEnter={() => setIsHovered(index)}
-                onMouseLeave={() => setIsHovered(null)}
+                aria-label={`${plan.name} plan`}
               >
+                {/* Popular Badge */}
                 {isPopular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-linear-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                    <HiOutlineSparkles className="inline w-4 h-4 mr-1" />
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-linear-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-full shadow-lg flex items-center gap-1">
+                    <HiOutlineSparkles className="w-4 h-4" />
                     Most Popular
                   </div>
                 )}
 
                 <div className="p-8">
-                  <div className="text-4xl mb-3">{plan.icon}</div>
+                  {/* Plan Icon - React Icon */}
+                  <div className="text-blue-600 dark:text-blue-400 mb-3">
+                    {getIcon(plan.icon, "w-12 h-12")}
+                  </div>
+
+                  {/* Plan Name */}
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     {plan.name}
                   </h3>
+
+                  {/* Plan Description */}
                   <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
                     {plan.description}
                   </p>
 
+                  {/* Price Display */}
                   <div className="mb-6">
                     <div className="flex items-baseline gap-1">
                       <span className="text-5xl font-bold text-gray-900 dark:text-white">
                         ${price}
                       </span>
-                      <span className="text-gray-500">/{billingPeriod === 'monthly' ? 'mo' : 'yr'}</span>
+                      <span className="text-gray-500 dark:text-gray-400">/{billingPeriod === 'monthly' ? 'mo' : 'yr'}</span>
                     </div>
                     {monthlyEquivalent && (
-                      <div className="text-sm text-gray-500 mt-1">
+                      <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                         ${monthlyEquivalent}/month billed annually
                       </div>
                     )}
-                    {savings && billingPeriod === 'yearly' && (
+                    {savingsAmount && billingPeriod === 'yearly' && (
                       <div className="mt-2 inline-block px-2 py-1 bg-green-100 dark:bg-green-900/30 rounded-lg">
                         <span className="text-xs font-semibold text-green-700 dark:text-green-400">
-                          Save ${savings} annually
+                          Save ${savingsAmount} annually
                         </span>
                       </div>
                     )}
                     {savingsPercent && billingPeriod === 'yearly' && (
-                      <div className="mt-1 text-xs text-green-600">
+                      <div className="mt-1 text-xs text-green-600 dark:text-green-400">
                         {savingsPercent}% savings vs monthly
                       </div>
                     )}
                   </div>
 
+                  {/* Call to Action Button */}
                   <Link
                     href={plan.ctaLink || "/demo"}
-                    className={`block text-center px-6 py-3 rounded-xl font-semibold transition-all ${isPopular
+                    className={`block text-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${isPopular
                       ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg transform hover:scale-105'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
@@ -201,6 +301,7 @@ const StarterPlanSection2 = ({ config }) => {
                     <HiArrowRight className="inline ml-2 w-4 h-4" />
                   </Link>
 
+                  {/* Features List */}
                   <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                       <HiOutlineCheck className="w-5 h-5 text-green-500" />
@@ -221,7 +322,7 @@ const StarterPlanSection2 = ({ config }) => {
           })}
         </div>
 
-        {/* Feature Comparison with Visual Bars */}
+        {/* ==================== FEATURE COMPARISON WITH VISUAL BARS ==================== */}
         {config?.showComparison && (
           <div className="mb-12 bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
@@ -237,15 +338,15 @@ const StarterPlanSection2 = ({ config }) => {
                       </span>
                     </div>
                     <div className="flex-1 grid grid-cols-3 gap-4">
-                      {plans.map((plan) => (
-                        <div key={plan.id} className="text-center">
+                      {plans.map((plan, planIdx) => (
+                        <div key={plan.id || planIdx} className="text-center">
                           {plan.features?.includes(feature.name) ? (
                             <div className="inline-flex items-center justify-center w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full">
-                              <HiOutlineCheck className="w-5 h-5 text-green-600" />
+                              <HiOutlineCheck className="w-5 h-5 text-green-600 dark:text-green-400" />
                             </div>
                           ) : (
                             <div className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full">
-                              <HiOutlineX className="w-5 h-5 text-gray-400" />
+                              <HiOutlineX className="w-5 h-5 text-gray-400 dark:text-gray-500" />
                             </div>
                           )}
                         </div>
@@ -258,12 +359,14 @@ const StarterPlanSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* ROI Calculator Preview */}
+        {/* ==================== ROI CALCULATOR PREVIEW ==================== */}
         {config?.showROICalculator && (
           <div className="mb-12 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-3xl p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="text-3xl mb-3">💰</div>
+                <div className="text-blue-600 dark:text-blue-400 mb-3">
+                  <HiOutlineChartBar className="w-8 h-8" />
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   See Your Potential Savings
                 </h3>
@@ -272,23 +375,29 @@ const StarterPlanSection2 = ({ config }) => {
                 </p>
                 <div className="flex gap-4">
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">25-35%</div>
-                    <div className="text-xs text-gray-500">Cost Reduction</div>
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">25-35%</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Cost Reduction</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">3-6 mo</div>
-                    <div className="text-xs text-gray-500">Payback Period</div>
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                      <HiOutlineClock className="w-5 h-5" />
+                      3-6 mo
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Payback Period</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">2.5x</div>
-                    <div className="text-xs text-gray-500">Average ROI</div>
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                      <HiOutlineTrendingUp className="w-5 h-5" />
+                      2.5x
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Average ROI</div>
                   </div>
                 </div>
               </div>
               <div className="text-center">
                 <Link
                   href={config?.roiLink || "/roi-calculator"}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300"
                 >
                   Calculate Your ROI
                   <HiArrowRight className="w-4 h-4" />
@@ -298,30 +407,32 @@ const StarterPlanSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Trust Badges */}
+        {/* ==================== TRUST BADGES ==================== */}
         <div className="mb-12 text-center">
-          <p className="text-sm text-gray-500 mb-4">Trusted by 1,000+ businesses</p>
-          <div className="flex flex-wrap justify-center gap-8 opacity-60">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Trusted by 1,000+ businesses</p>
+          <div className="flex flex-wrap justify-center gap-8 opacity-60 dark:opacity-50">
             {config?.trustBadges?.map((badge, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="text-2xl mb-1">{badge.icon}</div>
-                <span className="text-xs text-gray-500">{badge.name}</span>
+              <div key={index} className="flex flex-col items-center transition-all duration-300 hover:opacity-100 hover:scale-110">
+                <div className="mb-1 text-gray-500 dark:text-gray-400">
+                  {getIcon(badge.icon, "w-8 h-8")}
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400">{badge.name}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* FAQ Accordion */}
-        {config?.showFaq && (
+        {/* ==================== FAQ SECTION ==================== */}
+        {config?.showFaq && config?.faqs?.length > 0 && (
           <div className="mb-12">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
               Frequently Asked Questions
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {config?.faqs?.map((faq, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all">
+              {config.faqs.map((faq, index) => (
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2 flex items-start gap-2">
-                    <HiOutlineQuestionMarkCircle className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                    <HiOutlineQuestionMarkCircle className="w-5 h-5 text-blue-500 dark:text-blue-400 shrink-0 mt-0.5" />
                     {faq.question}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 ml-7">
@@ -333,11 +444,11 @@ const StarterPlanSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Money Back Guarantee Banner */}
-        {config?.showGuarantee && (
+        {/* ==================== MONEY BACK GUARANTEE BANNER ==================== */}
+        {config?.showGuarantee !== false && (
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-50 dark:bg-green-900/20 rounded-full">
-              <HiOutlineShieldCheck className="w-5 h-5 text-green-600" />
+              <HiOutlineShieldCheck className="w-5 h-5 text-green-600 dark:text-green-400" />
               <span className="text-sm text-gray-700 dark:text-gray-300">
                 {config?.guaranteeText || "30-day money-back guarantee. No risk, no questions asked."}
               </span>
@@ -345,17 +456,17 @@ const StarterPlanSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Contact Sales Section */}
-        {config?.showContactSales && (
+        {/* ==================== CONTACT SALES SECTION ==================== */}
+        {config?.showContactSales !== false && (
           <div className="text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-              <HiOutlineUsers className="w-6 h-6 text-blue-600" />
+              <HiOutlineUsers className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               <span className="text-gray-700 dark:text-gray-300">
                 {config?.contactText || "Need a custom solution for your business?"}
               </span>
               <Link
                 href={config?.contactLink || "/contact"}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all inline-flex items-center gap-2"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 inline-flex items-center gap-2"
               >
                 Contact Sales
                 <HiArrowRight className="w-4 h-4" />
@@ -365,6 +476,7 @@ const StarterPlanSection2 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes fadeIn {
           from {
@@ -377,7 +489,7 @@ const StarterPlanSection2 = ({ config }) => {
           }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
+          animation: fadeIn 0.5s ease-out forwards;
         }
         .animate-pulse {
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
