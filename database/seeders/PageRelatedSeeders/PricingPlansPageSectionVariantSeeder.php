@@ -17,7 +17,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
         $variants = [
             // Starter Plan Section
             [
-
+                'id' => 249,
                 'section_key' => 'starterPlan',
                 'variant' => 'variant1',
                 'config' => json_encode([
@@ -143,7 +143,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 250,
                 'section_key' => 'starterPlan',
                 'variant' => 'variant2',
                 'config' => json_encode([
@@ -277,7 +277,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 251,
                 'section_key' => 'starterPlan',
                 'variant' => 'variant3',
                 'config' => json_encode([
@@ -424,7 +424,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 252,
                 'section_key' => 'starterPlan',
                 'variant' => 'custom',
                 'config' => json_encode([]),
@@ -434,7 +434,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
 
             // Professional Plan Section
             [
-
+                'id' => 253,
                 'section_key' => 'professionalPlan',
                 'variant' => 'variant1',
                 'config' => json_encode([
@@ -532,7 +532,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 254,
                 'section_key' => 'professionalPlan',
                 'variant' => 'variant2',
                 'config' => json_encode([
@@ -663,7 +663,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 255,
                 'section_key' => 'professionalPlan',
                 'variant' => 'variant3',
                 'config' => json_encode([
@@ -797,7 +797,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 256,
                 'section_key' => 'professionalPlan',
                 'variant' => 'custom',
                 'config' => json_encode([]),
@@ -807,7 +807,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
 
             // Enterprise Plan Section
             [
-
+                'id' => 257,
                 'section_key' => 'enterprisePlan',
                 'variant' => 'variant1',
                 'config' => json_encode([
@@ -956,7 +956,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 258,
                 'section_key' => 'enterprisePlan',
                 'variant' => 'variant2',
                 'config' => json_encode([
@@ -1117,7 +1117,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 259,
                 'section_key' => 'enterprisePlan',
                 'variant' => 'variant3',
                 'config' => json_encode([
@@ -1329,7 +1329,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-
+                'id' => 260,
                 'section_key' => 'enterprisePlan',
                 'variant' => 'custom',
                 'config' => json_encode([]),
@@ -1339,6 +1339,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
 
             // Custom Pricing Section
             [
+                'id' => 261,
                 'section_key' => 'customPricing',
                 'variant' => 'variant1',
                 'config' => json_encode([
@@ -1465,6 +1466,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'id' => 262,
                 'section_key' => 'customPricing',
                 'variant' => 'variant2',
                 'config' => json_encode([
@@ -1568,6 +1570,7 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'id' => 263,
                 'section_key' => 'customPricing',
                 'variant' => 'variant3',
                 'config' => json_encode([
@@ -1639,7 +1642,1206 @@ class PricingPlansPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'id' => 264,
                 'section_key' => 'customPricing',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Free Trial Section
+            [
+                'id' => 265,
+                'section_key' => 'freeTrial',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Free Trial',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Start Your',
+                        'highlightedText' => 'Free Trial',
+                        'suffix' => 'Today',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Experience the full power of our platform with a 14-day free trial. No credit card required, cancel anytime.',
+                    'plans' => [
+                        [
+                            'id' => 'professional',
+                            'name' => 'Professional',
+                            'features' => [
+                                'Up to 10 users',
+                                '50,000 SKUs',
+                                'Basic analytics',
+                                'Email support',
+                                'API access'
+                            ]
+                        ],
+                        [
+                            'id' => 'enterprise',
+                            'name' => 'Enterprise',
+                            'features' => [
+                                'Unlimited users',
+                                'Unlimited SKUs',
+                                'Advanced analytics',
+                                '24/7 priority support',
+                                'Custom integrations',
+                                'Dedicated account manager'
+                            ]
+                        ]
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Real-time Analytics',
+                            'description' => 'Get instant insights with live dashboards and custom reports'
+                        ],
+                        [
+                            'icon' => 'database',
+                            'title' => 'Unlimited Storage',
+                            'description' => 'Store all your data with no limits during trial period'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'title' => 'Team Collaboration',
+                            'description' => 'Invite team members and work together seamlessly'
+                        ],
+                        [
+                            'icon' => 'cog',
+                            'title' => 'Custom Workflows',
+                            'description' => 'Build automated workflows tailored to your business'
+                        ],
+                        [
+                            'icon' => 'handshake',
+                            'title' => 'Integration Ready',
+                            'description' => 'Connect with 100+ third-party tools and services'
+                        ],
+                        [
+                            'icon' => 'support',
+                            'title' => '24/7 Support',
+                            'description' => 'Get help anytime from our dedicated support team'
+                        ]
+                    ],
+                    'testimonials' => [
+                        [
+                            'quote' => 'The free trial gave us everything we needed to evaluate the platform. We signed up for the enterprise plan within a week.',
+                            'author' => 'Sarah Johnson',
+                            'role' => 'CTO',
+                            'company' => 'TechFlow Solutions',
+                            'icon' => 'users'
+                        ],
+                        [
+                            'quote' => 'Amazing onboarding experience. The support team helped us set up everything in just 2 days.',
+                            'author' => 'Michael Chen',
+                            'role' => 'Operations Director',
+                            'company' => 'Global Logistics',
+                            'icon' => 'users'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'question' => 'Do I need a credit card to start?',
+                            'answer' => 'No, we never ask for credit card information during the free trial period. You can start immediately with just your email.'
+                        ],
+                        [
+                            'question' => 'What happens after the 14-day trial?',
+                            'answer' => 'You\'ll receive a notification before your trial ends. You can choose a subscription plan or export your data at any time.'
+                        ],
+                        [
+                            'question' => 'Can I upgrade or downgrade my plan?',
+                            'answer' => 'Yes, you can switch between plans at any time. During the trial, you have access to all features regardless of plan.'
+                        ],
+                        [
+                            'question' => 'Is there a setup fee?',
+                            'answer' => 'No, there are no setup fees. All plans include free onboarding and setup support.'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 266,
+                'section_key' => 'freeTrial',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Free Trial',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Start Your',
+                        'highlightedText' => 'Free Trial',
+                        'suffix' => 'Today',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Experience the full power of our platform with a 14-day free trial. No credit card required, cancel anytime.',
+                    'plans' => [
+                        [
+                            'id' => 'professional',
+                            'icon' => 'sparkles',
+                            'name' => 'Professional',
+                            'price' => 99,
+                            'description' => 'Perfect for growing businesses',
+                            'features' => [
+                                'Up to 10 users',
+                                '50,000 SKUs',
+                                'Basic analytics',
+                                'Email support',
+                                'API access'
+                            ]
+                        ],
+                        [
+                            'id' => 'business',
+                            'icon' => 'chart',
+                            'name' => 'Business',
+                            'price' => 249,
+                            'description' => 'For scaling organizations',
+                            'features' => [
+                                'Up to 50 users',
+                                '200,000 SKUs',
+                                'Advanced analytics',
+                                'Priority support',
+                                'Custom reports'
+                            ]
+                        ],
+                        [
+                            'id' => 'enterprise',
+                            'icon' => 'rocket',
+                            'name' => 'Enterprise',
+                            'price' => 499,
+                            'description' => 'For large enterprises',
+                            'features' => [
+                                'Unlimited users',
+                                'Unlimited SKUs',
+                                'AI-powered analytics',
+                                '24/7 dedicated support',
+                                'Custom integrations'
+                            ]
+                        ]
+                    ],
+                    'industries' => [
+                        ['id' => 'retail', 'name' => 'Retail'],
+                        ['id' => 'manufacturing', 'name' => 'Manufacturing'],
+                        ['id' => 'logistics', 'name' => 'Logistics'],
+                        ['id' => 'healthcare', 'name' => 'Healthcare'],
+                        ['id' => 'technology', 'name' => 'Technology'],
+                        ['id' => 'food-beverage', 'name' => 'Food & Beverage']
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'database',
+                            'title' => 'Full Platform Access',
+                            'description' => 'Try all premium features with no restrictions during your trial'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'title' => 'Team Collaboration',
+                            'description' => 'Invite your whole team and work together seamlessly'
+                        ],
+                        [
+                            'icon' => 'support',
+                            'title' => 'Dedicated Support',
+                            'description' => 'Get help from our customer success team whenever you need it'
+                        ]
+                    ],
+                    'videoTestimonials' => [
+                        [
+                            'thumbnail' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800',
+                            'title' => 'How Acme Corp increased efficiency by 40%',
+                            'author' => 'Sarah Johnson, CTO at Acme Corp'
+                        ],
+                        [
+                            'thumbnail' => 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800',
+                            'title' => 'Streamlining operations at Global Logistics',
+                            'author' => 'Michael Chen, Operations Director'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'question' => 'Do I need a credit card to start?',
+                            'answer' => 'No, we never ask for credit card information during the free trial period. You can start immediately with just your email.'
+                        ],
+                        [
+                            'question' => 'What happens after the 14-day trial?',
+                            'answer' => 'You\'ll receive a notification before your trial ends. You can choose a subscription plan or export your data at any time.'
+                        ],
+                        [
+                            'question' => 'Can I upgrade or downgrade my plan?',
+                            'answer' => 'Yes, you can switch between plans at any time. During the trial, you have access to all features regardless of plan.'
+                        ],
+                        [
+                            'question' => 'Is there a setup fee?',
+                            'answer' => 'No, there are no setup fees. All plans include free onboarding and setup support.'
+                        ]
+                    ],
+                    'trustBadges' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II'],
+                        ['icon' => 'handshake', 'name' => 'GDPR Compliant'],
+                        ['icon' => 'clock', 'name' => '99.9% Uptime']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 267,
+                'section_key' => 'freeTrial',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Free Trial',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Start Your',
+                        'highlightedText' => 'Free Trial',
+                        'suffix' => 'Today',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Experience the full power of our platform with a 14-day free trial. No credit card required, cancel anytime.',
+                    'benefits' => [
+                        'Full access to all premium features',
+                        'No credit card required',
+                        'Cancel anytime during trial',
+                        'Dedicated onboarding support',
+                        'Team collaboration tools'
+                    ],
+                    'plans' => [
+                        [
+                            'id' => 'professional',
+                            'name' => 'Professional',
+                            'features' => [
+                                'Up to 10 users',
+                                '50,000 SKUs',
+                                'Basic analytics',
+                                'Email support',
+                                'API access',
+                                'Basic reporting'
+                            ]
+                        ],
+                        [
+                            'id' => 'business',
+                            'name' => 'Business',
+                            'features' => [
+                                'Up to 50 users',
+                                '200,000 SKUs',
+                                'Advanced analytics',
+                                'Priority support',
+                                'Custom reports',
+                                'Team collaboration'
+                            ]
+                        ],
+                        [
+                            'id' => 'enterprise',
+                            'name' => 'Enterprise',
+                            'features' => [
+                                'Unlimited users',
+                                'Unlimited SKUs',
+                                'AI-powered analytics',
+                                '24/7 dedicated support',
+                                'Custom integrations',
+                                'SLA guarantee'
+                            ]
+                        ]
+                    ],
+                    'demoSteps' => [
+                        [
+                            'icon' => 'rocket',
+                            'title' => 'Welcome to the Platform',
+                            'description' => 'See how our intuitive dashboard gives you complete control over your operations.',
+                            'highlights' => [
+                                'Real-time data visualization',
+                                'Customizable widgets',
+                                'One-click reporting'
+                            ],
+                            'visualIcon' => 'rocket'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'title' => 'Powerful Analytics',
+                            'description' => 'Make data-driven decisions with our advanced analytics engine.',
+                            'highlights' => [
+                                'Predictive insights',
+                                'Trend analysis',
+                                'Export any report'
+                            ],
+                            'visualIcon' => 'chart'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'title' => 'Team Collaboration',
+                            'description' => 'Work seamlessly with your team in real-time.',
+                            'highlights' => [
+                                'Role-based access',
+                                'Real-time updates',
+                                'Comment and review'
+                            ],
+                            'visualIcon' => 'users'
+                        ],
+                        [
+                            'icon' => 'handshake',
+                            'title' => 'Ready to Get Started?',
+                            'description' => 'Join thousands of businesses already using our platform.',
+                            'highlights' => [
+                                '14-day free trial',
+                                'No setup fees',
+                                'Cancel anytime'
+                            ],
+                            'visualIcon' => 'handshake'
+                        ]
+                    ],
+                    'comparisonFeatures' => [
+                        ['name' => 'API Access'],
+                        ['name' => 'Advanced Analytics'],
+                        ['name' => 'Priority Support'],
+                        ['name' => 'Custom Reports'],
+                        ['name' => 'Team Collaboration'],
+                        ['name' => 'SLA Guarantee']
+                    ],
+                    'faqs' => [
+                        [
+                            'question' => 'Do I need a credit card to start?',
+                            'answer' => 'No, we never ask for credit card information during the free trial period. You can start immediately with just your email.'
+                        ],
+                        [
+                            'question' => 'What happens after the 14-day trial?',
+                            'answer' => 'You\'ll receive a notification before your trial ends. You can choose a subscription plan or export your data at any time.'
+                        ],
+                        [
+                            'question' => 'Can I upgrade or downgrade my plan?',
+                            'answer' => 'Yes, you can switch between plans at any time. During the trial, you have access to all features regardless of plan.'
+                        ],
+                        [
+                            'question' => 'Is there a setup fee?',
+                            'answer' => 'No, there are no setup fees. All plans include free onboarding and setup support.'
+                        ]
+                    ],
+                    'trustBadges' => [
+                        ['icon' => 'shield', 'name' => 'SOC 2 Type II'],
+                        ['icon' => 'globe', 'name' => 'GDPR Compliant'],
+                        ['icon' => 'clock', 'name' => '99.9% Uptime'],
+                        ['icon' => 'users', 'name' => '1,000+ Customers']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 268,
+                'section_key' => 'freeTrial',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Feature Comparison Table Section
+            [
+                'id' => 269,
+                'section_key' => 'featureComparisonTable',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Compare Plans',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Compare',
+                        'highlightedText' => 'Plans & Features',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Find the perfect plan for your business needs. Compare features across all our pricing tiers.',
+                    'plans' => [
+                        [
+                            'id' => 'starter',
+                            'icon' => 'sparkles',
+                            'name' => 'Starter',
+                            'price' => 49,
+                            'popular' => false,
+                            'description' => 'Perfect for small businesses and startups'
+                        ],
+                        [
+                            'id' => 'professional',
+                            'icon' => 'rocket',
+                            'name' => 'Professional',
+                            'price' => 99,
+                            'popular' => true,
+                            'description' => 'Most popular for growing businesses'
+                        ],
+                        [
+                            'id' => 'business',
+                            'icon' => 'chart',
+                            'name' => 'Business',
+                            'price' => 249,
+                            'popular' => false,
+                            'description' => 'For scaling organizations'
+                        ],
+                        [
+                            'id' => 'enterprise',
+                            'icon' => 'handshake',
+                            'name' => 'Enterprise',
+                            'price' => 499,
+                            'popular' => false,
+                            'description' => 'Custom solutions for large enterprises'
+                        ]
+                    ],
+                    'categories' => [
+                        ['id' => 'core', 'icon' => 'cog', 'name' => 'Core Features'],
+                        ['id' => 'advanced', 'icon' => 'chart', 'name' => 'Advanced'],
+                        ['id' => 'support', 'icon' => 'support', 'name' => 'Support'],
+                        ['id' => 'integrations', 'icon' => 'cloud', 'name' => 'Integrations']
+                    ],
+                    'features' => [
+                        [
+                            'icon' => 'users',
+                            'name' => 'User Seats',
+                            'category' => 'core',
+                            'tooltip' => 'Number of team members who can access the platform',
+                            'starter' => 'Up to 5',
+                            'professional' => 'Up to 20',
+                            'business' => 'Up to 100',
+                            'enterprise' => 'Unlimited'
+                        ],
+                        [
+                            'icon' => 'database',
+                            'name' => 'Storage',
+                            'category' => 'core',
+                            'tooltip' => 'Total storage space for your data',
+                            'starter' => '10 GB',
+                            'professional' => '100 GB',
+                            'business' => '1 TB',
+                            'enterprise' => 'Unlimited'
+                        ],
+                        [
+                            'icon' => 'chart',
+                            'name' => 'Advanced Analytics',
+                            'category' => 'advanced',
+                            'tooltip' => 'In-depth reporting and data visualization',
+                            'starter' => false,
+                            'professional' => true,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'SSO Integration',
+                            'category' => 'integrations',
+                            'tooltip' => 'Single sign-on for enterprise security',
+                            'starter' => false,
+                            'professional' => false,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'name' => 'Support Response Time',
+                            'category' => 'support',
+                            'tooltip' => 'Average time for support ticket response',
+                            'starter' => '48 hours',
+                            'professional' => '24 hours',
+                            'business' => '4 hours',
+                            'enterprise' => '1 hour'
+                        ],
+                        [
+                            'icon' => 'phone',
+                            'name' => 'Phone Support',
+                            'category' => 'support',
+                            'tooltip' => 'Dedicated phone support line',
+                            'starter' => false,
+                            'professional' => false,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'icon' => 'cloud',
+                            'name' => 'Custom Integrations',
+                            'category' => 'integrations',
+                            'tooltip' => 'Connect with any third-party API',
+                            'starter' => false,
+                            'professional' => '5',
+                            'business' => '20',
+                            'enterprise' => 'Unlimited'
+                        ],
+                        [
+                            'icon' => 'mail',
+                            'name' => 'Email Reports',
+                            'category' => 'advanced',
+                            'tooltip' => 'Automated email reports and summaries',
+                            'starter' => false,
+                            'professional' => true,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'icon' => 'credit-card',
+                            'name' => 'API Access',
+                            'category' => 'integrations',
+                            'tooltip' => 'REST API for custom development',
+                            'starter' => false,
+                            'professional' => true,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'icon' => 'support',
+                            'name' => 'Dedicated Account Manager',
+                            'category' => 'support',
+                            'tooltip' => 'Personal account manager for your business',
+                            'starter' => false,
+                            'professional' => false,
+                            'business' => false,
+                            'enterprise' => true
+                        ]
+                    ],
+                    'ctaText' => 'Not sure which plan is right for you?',
+                    'ctaLink' => '/contact',
+                    'ctaButtonText' => 'Contact Sales',
+                    'footnote' => '* All prices are in USD and billed monthly. Annual billing options available with 20% discount.'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 270,
+                'section_key' => 'featureComparisonTable',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Compare Plans',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Find Your',
+                        'highlightedText' => 'Perfect Plan',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Compare features across all our pricing tiers to find the perfect fit for your business.',
+                    'plans' => [
+                        ['id' => 'starter', 'icon' => 'sparkles', 'name' => 'Starter', 'price' => 49, 'popular' => false],
+                        ['id' => 'professional', 'icon' => 'rocket', 'name' => 'Professional', 'price' => 99, 'popular' => true],
+                        ['id' => 'business', 'icon' => 'chart', 'name' => 'Business', 'price' => 249, 'popular' => false],
+                        ['id' => 'enterprise', 'icon' => 'handshake', 'name' => 'Enterprise', 'price' => 'Custom', 'popular' => false]
+                    ],
+                    'featuresByCategory' => [
+                        [
+                            'icon' => 'cog',
+                            'name' => 'Core Features',
+                            'features' => [
+                                [
+                                    'icon' => 'users',
+                                    'name' => 'User Seats',
+                                    'tooltip' => 'Number of team members who can access the platform',
+                                    'starter' => 'Up to 5',
+                                    'professional' => 'Up to 20',
+                                    'business' => 'Up to 100',
+                                    'enterprise' => 'Unlimited'
+                                ],
+                                [
+                                    'icon' => 'database',
+                                    'name' => 'Storage',
+                                    'tooltip' => 'Total storage space for your data',
+                                    'starter' => '10 GB',
+                                    'professional' => '100 GB',
+                                    'business' => '1 TB',
+                                    'enterprise' => 'Unlimited'
+                                ],
+                                [
+                                    'icon' => 'chart',
+                                    'name' => 'Basic Analytics',
+                                    'tooltip' => 'Standard reporting and dashboards',
+                                    'starter' => true,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'chart',
+                                    'name' => 'Advanced Analytics',
+                                    'tooltip' => 'In-depth reporting and data visualization',
+                                    'starter' => false,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'cloud',
+                                    'name' => 'API Access',
+                                    'tooltip' => 'REST API for custom development',
+                                    'starter' => false,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ]
+                            ]
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'name' => 'Security & Compliance',
+                            'features' => [
+                                [
+                                    'icon' => 'shield',
+                                    'name' => 'SSO Integration',
+                                    'tooltip' => 'Single sign-on for enterprise security',
+                                    'starter' => false,
+                                    'professional' => false,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'shield',
+                                    'name' => 'Data Encryption',
+                                    'tooltip' => 'AES-256 encryption for data at rest',
+                                    'starter' => true,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'clock',
+                                    'name' => 'Audit Logs',
+                                    'tooltip' => 'Track all user actions and changes',
+                                    'starter' => false,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ]
+                            ]
+                        ],
+                        [
+                            'icon' => 'support',
+                            'name' => 'Support',
+                            'features' => [
+                                [
+                                    'icon' => 'mail',
+                                    'name' => 'Email Support',
+                                    'tooltip' => 'Support via email tickets',
+                                    'starter' => true,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'chat',
+                                    'name' => 'Live Chat Support',
+                                    'tooltip' => 'Real-time chat support',
+                                    'starter' => false,
+                                    'professional' => true,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'phone',
+                                    'name' => 'Phone Support',
+                                    'tooltip' => 'Dedicated phone support line',
+                                    'starter' => false,
+                                    'professional' => false,
+                                    'business' => true,
+                                    'enterprise' => true
+                                ],
+                                [
+                                    'icon' => 'clock',
+                                    'name' => 'Support Response Time',
+                                    'tooltip' => 'Average time for support ticket response',
+                                    'starter' => '48 hours',
+                                    'professional' => '24 hours',
+                                    'business' => '4 hours',
+                                    'enterprise' => '1 hour'
+                                ]
+                            ]
+                        ]
+                    ],
+                    'ctaText' => 'Ready to get started?',
+                    'ctaLink' => '/contact',
+                    'ctaButtonText' => 'Start Free Trial',
+                    'trialLink' => '/free-trial',
+                    'footnote' => '* All prices are in USD and billed monthly. Annual billing options available with 20% discount.'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 271,
+                'section_key' => 'featureComparisonTable',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'Compare Plans',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Compare',
+                        'highlightedText' => 'Plans & Features',
+                        'suffix' => '',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Compare features across all our pricing tiers to find the perfect fit for your business.',
+                    'plans' => [
+                        ['id' => 'starter', 'icon' => 'sparkles', 'name' => 'Starter', 'price' => 49, 'popular' => false],
+                        ['id' => 'professional', 'icon' => 'rocket', 'name' => 'Professional', 'price' => 99, 'popular' => true],
+                        ['id' => 'business', 'icon' => 'chart', 'name' => 'Business', 'price' => 249, 'popular' => false],
+                        ['id' => 'enterprise', 'icon' => 'handshake', 'name' => 'Enterprise', 'price' => 'Custom', 'popular' => false]
+                    ],
+                    'categories' => [
+                        ['id' => 'core', 'icon' => 'cog', 'name' => 'Core'],
+                        ['id' => 'security', 'icon' => 'shield', 'name' => 'Security'],
+                        ['id' => 'support', 'icon' => 'support', 'name' => 'Support'],
+                        ['id' => 'integrations', 'icon' => 'cloud', 'name' => 'Integrations']
+                    ],
+                    'features' => [
+                        [
+                            'id' => 'users',
+                            'icon' => 'users',
+                            'name' => 'User Seats',
+                            'description' => 'Number of team members who can access the platform',
+                            'category' => 'core',
+                            'starter' => 'Up to 5',
+                            'professional' => 'Up to 20',
+                            'business' => 'Up to 100',
+                            'enterprise' => 'Unlimited'
+                        ],
+                        [
+                            'id' => 'storage',
+                            'icon' => 'database',
+                            'name' => 'Storage',
+                            'description' => 'Total storage space for your data',
+                            'category' => 'core',
+                            'starter' => '10 GB',
+                            'professional' => '100 GB',
+                            'business' => '1 TB',
+                            'enterprise' => 'Unlimited'
+                        ],
+                        [
+                            'id' => 'analytics',
+                            'icon' => 'chart',
+                            'name' => 'Advanced Analytics',
+                            'description' => 'In-depth reporting and data visualization',
+                            'category' => 'core',
+                            'starter' => false,
+                            'professional' => true,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'id' => 'sso',
+                            'icon' => 'shield',
+                            'name' => 'SSO Integration',
+                            'description' => 'Single sign-on for enterprise security',
+                            'category' => 'security',
+                            'starter' => false,
+                            'professional' => false,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'id' => 'phone-support',
+                            'icon' => 'phone',
+                            'name' => 'Phone Support',
+                            'description' => 'Dedicated phone support line',
+                            'category' => 'support',
+                            'starter' => false,
+                            'professional' => false,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'id' => 'api-access',
+                            'icon' => 'cloud',
+                            'name' => 'API Access',
+                            'description' => 'REST API for custom development',
+                            'category' => 'integrations',
+                            'starter' => false,
+                            'professional' => true,
+                            'business' => true,
+                            'enterprise' => true
+                        ],
+                        [
+                            'id' => 'response-time',
+                            'icon' => 'clock',
+                            'name' => 'Support Response Time',
+                            'description' => 'Average time for support ticket response',
+                            'category' => 'support',
+                            'starter' => '48 hours',
+                            'professional' => '24 hours',
+                            'business' => '4 hours',
+                            'enterprise' => '1 hour'
+                        ],
+                        [
+                            'id' => 'custom-reports',
+                            'icon' => 'chart',
+                            'name' => 'Custom Reports',
+                            'description' => 'Build custom dashboards and reports',
+                            'category' => 'core',
+                            'starter' => false,
+                            'professional' => false,
+                            'business' => true,
+                            'enterprise' => true
+                        ]
+                    ],
+                    'ctaText' => 'Ready to get started with the perfect plan?',
+                    'ctaLink' => '/contact',
+                    'ctaButtonText' => 'Start Free Trial',
+                    'trialLink' => '/free-trial',
+                    'footnote' => '* All prices are in USD and billed monthly. Annual billing options available with 20% discount.'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 272,
+                'section_key' => 'featureComparisonTable',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // FAQ About Pricing Section
+            [
+                'id' => 273,
+                'section_key' => 'faqAboutPricing',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'FAQ',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Frequently Asked',
+                        'highlightedText' => 'Questions',
+                        'suffix' => 'About Pricing',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Find answers to common questions about our pricing, plans, and billing.',
+                    'stats' => [
+                        [
+                            'icon' => 'clock',
+                            'value' => '< 24h',
+                            'label' => 'Avg Response Time'
+                        ],
+                        [
+                            'icon' => 'star',
+                            'value' => '4.9',
+                            'label' => 'Customer Satisfaction'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'value' => '10,000+',
+                            'label' => 'Happy Customers'
+                        ],
+                        [
+                            'icon' => 'handshake',
+                            'value' => '98%',
+                            'label' => 'Would Recommend'
+                        ]
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'icon' => 'question', 'name' => 'General'],
+                        ['id' => 'billing', 'icon' => 'credit-card', 'name' => 'Billing'],
+                        ['id' => 'features', 'icon' => 'sparkles', 'name' => 'Features'],
+                        ['id' => 'enterprise', 'icon' => 'building', 'name' => 'Enterprise']
+                    ],
+                    'faqs' => [
+                        [
+                            'icon' => 'credit-card',
+                            'question' => 'What payment methods do you accept?',
+                            'answer' => 'We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for annual plans. Enterprise customers can also pay by invoice.',
+                            'category' => 'billing',
+                            'link' => '/payment-methods'
+                        ],
+                        [
+                            'icon' => 'question',
+                            'question' => 'Can I change my plan later?',
+                            'answer' => 'Yes, you can upgrade, downgrade, or cancel your plan at any time. Changes take effect immediately for upgrades and at the next billing cycle for downgrades.',
+                            'category' => 'general',
+                            'link' => '/change-plan'
+                        ],
+                        [
+                            'icon' => 'credit-card',
+                            'question' => 'Do you offer discounts for annual billing?',
+                            'answer' => 'Yes, annual plans come with a 20% discount compared to monthly billing. You\'ll save two months free when you commit to a full year.',
+                            'category' => 'billing',
+                            'link' => '/annual-pricing'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'question' => 'Is there a free trial available?',
+                            'answer' => 'Yes, we offer a 14-day free trial on all paid plans. No credit card required. You\'ll have full access to all features during the trial period.',
+                            'category' => 'general',
+                            'link' => '/free-trial'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'question' => 'What is your refund policy?',
+                            'answer' => 'We offer a 30-day money-back guarantee on all annual plans. If you\'re not satisfied, we\'ll refund your full payment - no questions asked.',
+                            'category' => 'billing',
+                            'link' => '/refund-policy'
+                        ],
+                        [
+                            'icon' => 'building',
+                            'question' => 'Do you offer custom enterprise pricing?',
+                            'answer' => 'Yes, we offer custom pricing for enterprise customers with specific needs. Contact our sales team for a personalized quote based on your requirements.',
+                            'category' => 'enterprise',
+                            'link' => '/enterprise'
+                        ],
+                        [
+                            'icon' => 'cog',
+                            'question' => 'Can I add custom features to my plan?',
+                            'answer' => 'Yes, many features can be added as add-ons to any plan. Contact support to discuss your specific requirements and custom pricing.',
+                            'category' => 'features',
+                            'link' => '/custom-features'
+                        ],
+                        [
+                            'icon' => 'question',
+                            'question' => 'Is there a setup fee?',
+                            'answer' => 'No, there are no setup fees for any of our plans. You can start using the platform immediately after signing up.',
+                            'category' => 'general'
+                        ]
+                    ],
+                    'contactText' => 'Still have questions? Our team is here to help.',
+                    'contactLink' => '/contact',
+                    'contactButtonText' => 'Contact Sales',
+                    'showGuarantee' => true,
+                    'guaranteeText' => '30-day money-back guarantee on all annual plans'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 274,
+                'section_key' => 'faqAboutPricing',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'FAQ',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Frequently Asked',
+                        'highlightedText' => 'Questions',
+                        'suffix' => 'About Pricing',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Find answers to common questions about our pricing, plans, and billing.',
+                    'popularQuestions' => [
+                        'What payment methods do you accept?',
+                        'Can I change my plan later?',
+                        'Do you offer discounts for annual billing?',
+                        'Is there a free trial available?'
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'icon' => 'question', 'name' => 'General'],
+                        ['id' => 'billing', 'icon' => 'credit-card', 'name' => 'Billing'],
+                        ['id' => 'features', 'icon' => 'sparkles', 'name' => 'Features'],
+                        ['id' => 'enterprise', 'icon' => 'building', 'name' => 'Enterprise']
+                    ],
+                    'faqs' => [
+                        [
+                            'icon' => 'credit-card',
+                            'question' => 'What payment methods do you accept?',
+                            'answer' => 'We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for annual plans. Enterprise customers can also pay by invoice.',
+                            'category' => 'billing',
+                            'tags' => ['payment', 'billing'],
+                            'link' => '/payment-methods'
+                        ],
+                        [
+                            'icon' => 'question',
+                            'question' => 'Can I change my plan later?',
+                            'answer' => 'Yes, you can upgrade, downgrade, or cancel your plan at any time. Changes take effect immediately for upgrades and at the next billing cycle for downgrades.',
+                            'category' => 'general',
+                            'tags' => ['plan', 'upgrade', 'downgrade'],
+                            'link' => '/change-plan'
+                        ],
+                        [
+                            'icon' => 'credit-card',
+                            'question' => 'Do you offer discounts for annual billing?',
+                            'answer' => 'Yes, annual plans come with a 20% discount compared to monthly billing. You\'ll save two months free when you commit to a full year.',
+                            'category' => 'billing',
+                            'tags' => ['discount', 'annual', 'savings'],
+                            'link' => '/annual-pricing'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'question' => 'Is there a free trial available?',
+                            'answer' => 'Yes, we offer a 14-day free trial on all paid plans. No credit card required. You\'ll have full access to all features during the trial period.',
+                            'category' => 'general',
+                            'tags' => ['trial', 'free', 'demo'],
+                            'link' => '/free-trial'
+                        ],
+                        [
+                            'icon' => 'shield',
+                            'question' => 'What is your refund policy?',
+                            'answer' => 'We offer a 30-day money-back guarantee on all annual plans. If you\'re not satisfied, we\'ll refund your full payment - no questions asked.',
+                            'category' => 'billing',
+                            'tags' => ['refund', 'guarantee', 'money-back'],
+                            'link' => '/refund-policy'
+                        ],
+                        [
+                            'icon' => 'building',
+                            'question' => 'Do you offer custom enterprise pricing?',
+                            'answer' => 'Yes, we offer custom pricing for enterprise customers with specific needs. Contact our sales team for a personalized quote based on your requirements.',
+                            'category' => 'enterprise',
+                            'tags' => ['enterprise', 'custom', 'quote'],
+                            'link' => '/enterprise'
+                        ]
+                    ],
+                    'glossary' => [
+                        [
+                            'icon' => 'credit-card',
+                            'term' => 'Annual Billing',
+                            'definition' => 'A payment model where customers pay for a full year of service upfront, typically receiving a discount compared to monthly billing.'
+                        ],
+                        [
+                            'icon' => 'users',
+                            'term' => 'Per-Seat Pricing',
+                            'definition' => 'A pricing model where you pay based on the number of users or \'seats\' that need access to the platform.'
+                        ],
+                        [
+                            'icon' => 'clock',
+                            'term' => 'Usage-Based Pricing',
+                            'definition' => 'A flexible pricing model where you pay only for what you use, such as API calls, storage, or transactions.'
+                        ],
+                        [
+                            'icon' => 'handshake',
+                            'term' => 'Enterprise Agreement',
+                            'definition' => 'A custom contract for large organizations that includes tailored pricing, SLAs, and dedicated support.'
+                        ]
+                    ],
+                    'contactText' => 'Still have questions? Our team is here to help.',
+                    'contactLink' => '/contact',
+                    'contactButtonText' => 'Contact Sales',
+                    'trustText' => 'Trusted by 1,000+ businesses worldwide'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 275,
+                'section_key' => 'faqAboutPricing',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'text' => 'FAQ',
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Frequently Asked',
+                        'highlightedText' => 'Questions',
+                        'suffix' => 'About Pricing',
+                        'highlightGradient' => 'from-blue-600 to-indigo-600'
+                    ],
+                    'description' => 'Find answers to common questions about our pricing, plans, and billing.',
+                    'stats' => [
+                        ['icon' => 'clock', 'value' => '< 24h', 'label' => 'Avg Response Time'],
+                        ['icon' => 'star', 'value' => '4.9', 'label' => 'Customer Satisfaction'],
+                        ['icon' => 'users', 'value' => '10,000+', 'label' => 'Happy Customers'],
+                        ['icon' => 'handshake', 'value' => '98%', 'label' => 'Would Recommend']
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'icon' => 'question', 'name' => 'General'],
+                        ['id' => 'billing', 'icon' => 'credit-card', 'name' => 'Billing'],
+                        ['id' => 'features', 'icon' => 'sparkles', 'name' => 'Features'],
+                        ['id' => 'enterprise', 'icon' => 'building', 'name' => 'Enterprise']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'payment-methods',
+                            'icon' => 'credit-card',
+                            'question' => 'What payment methods do you accept?',
+                            'answer' => 'We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for annual plans. Enterprise customers can also pay by invoice.',
+                            'category' => 'billing',
+                            'tags' => ['payment', 'billing'],
+                            'link' => '/payment-methods'
+                        ],
+                        [
+                            'id' => 'change-plan',
+                            'icon' => 'cog',
+                            'question' => 'Can I change my plan later?',
+                            'answer' => 'Yes, you can upgrade, downgrade, or cancel your plan at any time. Changes take effect immediately for upgrades and at the next billing cycle for downgrades.',
+                            'category' => 'general',
+                            'tags' => ['plan', 'upgrade', 'downgrade'],
+                            'link' => '/change-plan'
+                        ],
+                        [
+                            'id' => 'annual-discount',
+                            'icon' => 'credit-card',
+                            'question' => 'Do you offer discounts for annual billing?',
+                            'answer' => 'Yes, annual plans come with a 20% discount compared to monthly billing. You\'ll save two months free when you commit to a full year.',
+                            'category' => 'billing',
+                            'tags' => ['discount', 'annual', 'savings'],
+                            'link' => '/annual-pricing'
+                        ],
+                        [
+                            'id' => 'free-trial',
+                            'icon' => 'sparkles',
+                            'question' => 'Is there a free trial available?',
+                            'answer' => 'Yes, we offer a 14-day free trial on all paid plans. No credit card required. You\'ll have full access to all features during the trial period.',
+                            'category' => 'general',
+                            'tags' => ['trial', 'free', 'demo'],
+                            'link' => '/free-trial'
+                        ],
+                        [
+                            'id' => 'refund-policy',
+                            'icon' => 'shield',
+                            'question' => 'What is your refund policy?',
+                            'answer' => 'We offer a 30-day money-back guarantee on all annual plans. If you\'re not satisfied, we\'ll refund your full payment - no questions asked.',
+                            'category' => 'billing',
+                            'tags' => ['refund', 'guarantee', 'money-back'],
+                            'link' => '/refund-policy'
+                        ],
+                        [
+                            'id' => 'enterprise-pricing',
+                            'icon' => 'building',
+                            'question' => 'Do you offer custom enterprise pricing?',
+                            'answer' => 'Yes, we offer custom pricing for enterprise customers with specific needs. Contact our sales team for a personalized quote based on your requirements.',
+                            'category' => 'enterprise',
+                            'tags' => ['enterprise', 'custom', 'quote'],
+                            'link' => '/enterprise'
+                        ]
+                    ],
+                    'contactText' => 'Can\'t find what you\'re looking for?',
+                    'contactLink' => '/contact',
+                    'contactButtonText' => 'Contact Support',
+                    'showGuarantee' => true,
+                    'guaranteeText' => '30-day money-back guarantee on all annual plans'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 276,
+                'section_key' => 'faqAboutPricing',
                 'variant' => 'custom',
                 'config' => json_encode([]),
                 'created_at' => now(),
