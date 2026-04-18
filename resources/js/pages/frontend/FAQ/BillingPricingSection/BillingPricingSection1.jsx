@@ -1,4 +1,4 @@
-// frontend/FAQ/BillingPricingSection/BillingPricingSection1.jsx
+// pages/frontend/FAQ/BillingPricingSection/BillingPricingSection1.jsx
 
 /**
  * Billing & Pricing Section Component
@@ -232,7 +232,7 @@ const BillingPricingSection1 = ({ config }) => {
         )}
 
         {/* ==================== FAQ ACCORDION ==================== */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-12">
+        <div className="max-w-6xl mx-auto space-y-4 mb-12">
           {filteredFaqs.map((faq, index) => (
             <div
               key={index}

@@ -1,10 +1,36 @@
-// frontend/FAQ/IntegrationsSection/IntegrationsSection3.jsx
+// pages/frontend/FAQ/IntegrationsSection/IntegrationsSection3.jsx
 
-// React
+/**
+ * Integrations Section Component - Knowledge Base with API Playground
+ * A comprehensive integrations knowledge base featuring:
+ * - Category-based accordion view for organized FAQ browsing
+ * - Search functionality with text highlighting across questions, answers, and tags
+ * - Popular questions quick-select buttons
+ * - Multiple sorting options (Most Recent, Most Popular, Most Helpful)
+ * - Save/Bookmark favorite questions with localStorage persistence
+ * - Export FAQs to JSON file
+ * - Print-friendly view for documentation
+ * - Helpful/Not helpful voting on answers with localStorage persistence
+ * - Code snippet display for API examples
+ * - Interactive API Playground for testing endpoints
+ * - Popular integrations grid with hover effects
+ * - Statistics display (available integrations, API calls, connected apps, setup time)
+ * - Results count with clear search button
+ * - Advanced filters panel (category and sorting options)
+ * - Saved questions section for quick access
+ * - Empty state with "Ask about an Integration" CTA
+ * - API documentation call-to-action with SDKs link
+ * - Contact form modal for integration-specific questions
+ * - Fully responsive and dark mode compatible with mark highlighting
+ *
+ * All icons from react-icons library (no emojis, no custom icons)
+ */
+
 import { Link } from '@inertiajs/react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 
-// Icons
+// React Icons - All from react-icons library
+import { FaRocket, FaRegHandshake, FaPlug } from 'react-icons/fa';
 import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
@@ -22,68 +48,121 @@ import {
   HiOutlinePrinter,
   HiOutlineDownload,
   HiOutlineChip,
+  HiOutlineClock,
+  HiOutlineUsers,
+  HiOutlineDatabase,
+  HiOutlineCloud,
+  HiOutlineCog,
+  HiOutlineCheckCircle,
 } from 'react-icons/hi';
+import { HiOutlineWrench } from 'react-icons/hi2';
 
 const IntegrationsSection3 = ({ config }) => {
+  // ==================== STATE MANAGEMENT ====================
   const [openFaq, setOpenFaq] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
-  const [showFilters, setShowFilters] = useState(false);
-  const [helpfulVotes, setHelpfulVotes] = useState({});
   const [savedFaqs, setSavedFaqs] = useState([]);
-  const [showContactForm, setShowContactForm] = useState(false);
-  const [showApiPlayground, setShowApiPlayground] = useState(false);
-  const [apiResponse, setApiResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    integration: '',
-    message: ''
-  });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [apiResponse, setApiResponse] = useState('');
+  const [helpfulVotes, setHelpfulVotes] = useState({});
+  const [showFilters, setShowFilters] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [showContactForm, setShowContactForm] = useState(false);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
+  const [showApiPlayground, setShowApiPlayground] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', email: '', integration: '', message: '' });
+
+  // ==================== REFS ====================
   const searchRef = useRef(null);
 
-  const faqs = config?.faqs || [];
-  const categories = config?.categories || [];
-  const popularQuestions = config?.popularQuestions || [];
+  // ==================== MEMOIZED DATA ====================
   const stats = config?.stats || [];
-  const allIntegrations = config?.allIntegrations || [];
   const apiEndpoints = config?.apiEndpoints || [];
+  const allIntegrations = config?.allIntegrations || [];
+  const popularQuestions = config?.popularQuestions || [];
+  const faqs = useMemo(() => config?.faqs || [], [config?.faqs]);
+  const categories = useMemo(() => config?.categories || [], [config?.categories]);
 
-  useEffect(() => {
-    const savedVotes = localStorage.getItem('integrationFaqHelpfulVotes');
-    if (savedVotes) {
-      setHelpfulVotes(JSON.parse(savedVotes));
-    }
-    const saved = localStorage.getItem('savedIntegrationFaqs');
-    if (saved) {
-      setSavedFaqs(JSON.parse(saved));
-    }
+  // ==================== HELPER FUNCTIONS ====================
+
+  /**
+   * Get icon component by name
+   * @param {string} iconName - Name of the icon from config
+   * @param {string} className - CSS classes for styling
+   * @returns {JSX.Element} - React Icon component
+   */
+  const getIcon = useCallback((iconName, className = "w-5 h-5") => {
+    const icons = {
+      'chevron-down': HiOutlineChevronDown,
+      'chevron-up': HiOutlineChevronUp,
+      'search': HiOutlineSearch,
+      'shield': HiOutlineShieldCheck,
+      'arrow-right': HiOutlineArrowRight,
+      'x': HiOutlineX,
+      'question': HiOutlineQuestionMarkCircle,
+      'code': HiOutlineCode,
+      'external-link': HiOutlineExternalLink,
+      'thumb-up': HiOutlineThumbUp,
+      'thumb-down': HiOutlineThumbDown,
+      'filter': HiOutlineFilter,
+      'bookmark': HiOutlineBookmark,
+      'printer': HiOutlinePrinter,
+      'download': HiOutlineDownload,
+      'chip': HiOutlineChip,
+      'clock': HiOutlineClock,
+      'users': HiOutlineUsers,
+      'plug': FaPlug,
+      'database': HiOutlineDatabase,
+      'cloud': HiOutlineCloud,
+      'wrench': HiOutlineWrench,
+      'cog': HiOutlineCog,
+      'check-circle': HiOutlineCheckCircle,
+      'rocket': FaRocket,
+      'handshake': FaRegHandshake,
+    };
+    const IconComponent = icons[iconName] || FaPlug;
+    return <IconComponent className={className} />;
   }, []);
 
-  const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
+  /**
+   * Toggle FAQ accordion item
+   * @param {string} key - Unique key for the FAQ item
+   */
+  const toggleFaq = useCallback((key) => {
+    setOpenFaq(prev => prev === key ? null : key);
+  }, []);
 
-  const toggleCategory = (categoryId) => {
+  /**
+   * Toggle category expansion
+   * @param {string} categoryId - ID of the category to toggle
+   */
+  const toggleCategory = useCallback((categoryId) => {
     setExpandedCategories(prev => ({
       ...prev,
       [categoryId]: !prev[categoryId]
     }));
-  };
+  }, []);
 
-  const handleHelpful = (faqId, isHelpful) => {
+  /**
+   * Handle helpful/unhelpful vote
+   * @param {string|number} faqId - ID of the FAQ
+   * @param {boolean} isHelpful - Whether the answer was helpful
+   */
+  const handleHelpful = useCallback((faqId, isHelpful) => {
     setHelpfulVotes(prev => {
       const newVotes = { ...prev, [faqId]: isHelpful };
       localStorage.setItem('integrationFaqHelpfulVotes', JSON.stringify(newVotes));
       return newVotes;
     });
-  };
+  }, []);
 
-  const handleSaveFaq = (faqId) => {
+  /**
+   * Handle save/unsave FAQ
+   * @param {string|number} faqId - ID of the FAQ to save or unsave
+   */
+  const handleSaveFaq = useCallback((faqId) => {
     setSavedFaqs(prev => {
       const newSaved = prev.includes(faqId)
         ? prev.filter(id => id !== faqId)
@@ -91,11 +170,17 @@ const IntegrationsSection3 = ({ config }) => {
       localStorage.setItem('savedIntegrationFaqs', JSON.stringify(newSaved));
       return newSaved;
     });
-  };
+  }, []);
 
-  const handleContactSubmit = (e) => {
+  /**
+   * Handle contact form submission
+   * @param {Event} e - Form submit event
+   */
+  const handleContactSubmit = useCallback((e) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.email || !contactForm.message) return;
+
+    // Simulate API call
     setTimeout(() => {
       setContactSubmitted(true);
       setTimeout(() => {
@@ -104,30 +189,55 @@ const IntegrationsSection3 = ({ config }) => {
         setContactForm({ name: '', email: '', integration: '', message: '' });
       }, 2000);
     }, 500);
-  };
+  }, [contactForm]);
 
-  const handleExport = () => {
-    const exportData = filteredFaqs.map(faq => ({
-      question: faq.question,
-      answer: faq.answer,
-      category: categories.find(c => c.id === faq.category)?.name || faq.category,
-      tags: faq.tags
-    }));
-    const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', 'integrations-faq-export.json');
-    linkElement.click();
-  };
+  /**
+   * Clear search query
+   */
+  const clearSearch = useCallback(() => {
+    setSearchQuery('');
+    searchRef.current?.focus();
+  }, []);
 
-  const handlePrint = () => {
-    window.print();
-  };
+  /**
+   * Clear all filters
+   */
+  const clearFilters = useCallback(() => {
+    setSearchQuery('');
+    setActiveCategory('all');
+    setSortBy('recent');
+  }, []);
 
-  const handleApiTest = async (endpoint) => {
+  /**
+   * Highlight search matches in text
+   * @param {string} text - Text to highlight
+   * @param {string} query - Search query to highlight
+   * @returns {JSX.Element|string} Text with highlighted matches
+   */
+  const highlightText = useCallback((text, query) => {
+    if (!query || !text) return text;
+    const parts = text.split(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'));
+    return parts.map((part, i) =>
+      part.toLowerCase() === query.toLowerCase() ? (
+        <mark key={i} className="bg-yellow-200 dark:bg-yellow-800 text-gray-900 dark:text-white px-0.5 rounded">
+          {part}
+        </mark>
+      ) : (
+        part
+      )
+    );
+  }, []);
+
+  // ==================== API HANDLER (USES STATE, NOT filteredFaqs) ====================
+  /**
+   * Handle API endpoint test
+   * @param {Object} endpoint - API endpoint object
+   */
+  const handleApiTest = useCallback(async (endpoint) => {
     setIsLoading(true);
     setApiResponse('');
+
+    // Simulate API call
     setTimeout(() => {
       setApiResponse(JSON.stringify({
         status: 'success',
@@ -140,42 +250,88 @@ const IntegrationsSection3 = ({ config }) => {
       }, null, 2));
       setIsLoading(false);
     }, 800);
-  };
+  }, []);
 
-  const filteredFaqs = faqs
-    .filter(faq => {
-      const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
-      const matchesSearch = searchQuery === '' ||
-        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (faq.tags && faq.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
-      return matchesCategory && matchesSearch;
-    })
-    .sort((a, b) => {
-      if (sortBy === 'recent') return b.updatedAt?.localeCompare(a.updatedAt) || 0;
-      if (sortBy === 'popular') return (b.views || 0) - (a.views || 0);
-      if (sortBy === 'helpful') return (helpfulVotes[b.id] ? 1 : 0) - (helpfulVotes[a.id] ? 1 : 0);
-      return 0;
-    });
+  // ==================== FILTERED AND SORTED FAQS (MUST BE BEFORE HANDLEEXPORT) ====================
+  const filteredFaqs = useMemo(() => {
+    return faqs
+      .filter(faq => {
+        const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
+        const matchesSearch = searchQuery === '' ||
+          faq.question?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          faq.answer?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (faq.tags && faq.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
+        return matchesCategory && matchesSearch;
+      })
+      .sort((a, b) => {
+        if (sortBy === 'recent') return (b.updatedAt || '').localeCompare(a.updatedAt || '');
+        if (sortBy === 'popular') return (b.views || 0) - (a.views || 0);
+        if (sortBy === 'helpful') {
+          const aHelpful = helpfulVotes[a.id] === true ? 1 : 0;
+          const bHelpful = helpfulVotes[b.id] === true ? 1 : 0;
+          return bHelpful - aHelpful;
+        }
+        return 0;
+      });
+  }, [faqs, activeCategory, searchQuery, sortBy, helpfulVotes]);
 
-  const highlightedText = (text, query) => {
-    if (!query) return text;
-    const parts = text.split(new RegExp(`(${query})`, 'gi'));
-    return parts.map((part, i) =>
-      part.toLowerCase() === query.toLowerCase() ? (
-        <mark key={i} className="bg-yellow-200 dark:bg-yellow-800 text-gray-900 dark:text-white px-0.5 rounded">
-          {part}
-        </mark>
-      ) : (
-        part
-      )
-    );
-  };
+  // ==================== EXPORT HANDLER (AFTER FILTERED_FAQS) ====================
+  /**
+   * Export FAQs to JSON file
+   */
+  const handleExport = useCallback(() => {
+    const exportData = filteredFaqs.map(faq => ({
+      question: faq.question,
+      answer: faq.answer,
+      category: categories.find(c => c.id === faq.category)?.name || faq.category,
+      tags: faq.tags
+    }));
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', 'integrations-faq-export.json');
+    linkElement.click();
+  }, [filteredFaqs, categories]);
 
-  const groupedFaqs = categories.reduce((acc, category) => {
-    acc[category.id] = filteredFaqs.filter(faq => faq.category === category.id);
-    return acc;
-  }, {});
+  /**
+   * Print FAQs
+   */
+  const handlePrint = useCallback(() => {
+    window.print();
+  }, []);
+
+  // ==================== GROUPED FAQS (AFTER FILTERED_FAQS) ====================
+  // Group FAQs by category
+  const groupedFaqs = useMemo(() => {
+    return categories.reduce((acc, category) => {
+      acc[category.id] = filteredFaqs.filter(faq => faq.category === category.id);
+      return acc;
+    }, {});
+  }, [categories, filteredFaqs]);
+
+  // ==================== LOCAL STORAGE EFFECTS ====================
+  useEffect(() => {
+    const savedVotes = localStorage.getItem('integrationFaqHelpfulVotes');
+    if (savedVotes) {
+      setHelpfulVotes(JSON.parse(savedVotes));
+    }
+    const saved = localStorage.getItem('savedIntegrationFaqs');
+    if (saved) {
+      setSavedFaqs(JSON.parse(saved));
+    }
+  }, []);
+
+  // Auto-expand categories when searching
+  useEffect(() => {
+    if (searchQuery) {
+      const expanded = {};
+      categories.forEach(category => {
+        expanded[category.id] = true;
+      });
+      setExpandedCategories(expanded);
+    }
+  }, [searchQuery, categories]);
 
   return (
     <section
@@ -183,16 +339,19 @@ const IntegrationsSection3 = ({ config }) => {
       role="region"
       aria-label="Integrations Knowledge Base"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute top-1/3 left-10 w-64 h-64 bg-blue-300/5 dark:bg-blue-500/5 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
+          {/* Badge */}
           <div
-            className={`inline-flex items-center ${config?.badge?.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor}`}
+            className={`inline-flex items-center ${config?.badge?.backgroundColor || 'bg-blue-100 dark:bg-blue-900/30'} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor || 'border-blue-200 dark:border-blue-800'}`}
+            aria-label="Integrations badge"
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
@@ -200,46 +359,62 @@ const IntegrationsSection3 = ({ config }) => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
             )}
-            <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
-              {config?.badge?.text}
+            <span className={`text-sm font-medium ${config?.badge?.textColor || 'text-blue-700 dark:text-blue-300'}`}>
+              {config?.badge?.text || "Integrations"}
             </span>
           </div>
+
+          {/* Title */}
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            {config?.title?.prefix}{' '}
-            <span className={`bg-linear-to-r ${config?.title?.highlightGradient} bg-clip-text text-transparent`}>
-              {config?.title?.highlightedText}
+            {config?.title?.prefix || 'Connect Your'}{' '}
+            <span className={`bg-linear-to-r ${config?.title?.highlightGradient || 'from-blue-600 to-indigo-600'} bg-clip-text text-transparent`}>
+              {config?.title?.highlightedText || 'Tech Stack'}
             </span>{' '}
-            {config?.title?.suffix}
+            {config?.title?.suffix || 'Knowledge Base'}
           </h2>
+
+          {/* Description */}
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            {config?.description}
+            {config?.description || "Learn how to connect our platform with your favorite tools and systems. Find answers to common integration questions."}
           </p>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        {/* ==================== STATS ROW ==================== */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all">
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{stat.value}</div>
+            <div
+              key={index}
+              className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700"
+            >
+              <div className="flex justify-center mb-3 text-blue-600 dark:text-blue-400">
+                {getIcon(stat.icon, "w-8 h-8")}
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">
+                {stat.value}
+              </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Popular Integrations Grid */}
+        {/* ==================== POPULAR INTEGRATIONS GRID ==================== */}
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
             Popular Integrations
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {allIntegrations.slice(0, 8).map((integration, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all p-4 text-center group">
-                <div className="text-4xl mb-2">{integration.icon}</div>
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 p-4 text-center border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
+                  {getIcon(integration.icon, "w-8 h-8")}
+                </div>
                 <div className="font-semibold text-gray-900 dark:text-white text-sm">{integration.name}</div>
-                <div className="text-xs text-gray-500 mt-1">{integration.category}</div>
-                <div className="mt-2 text-xs text-green-600">{integration.status}</div>
-                <button className="mt-3 opacity-0 group-hover:opacity-100 text-blue-600 text-xs font-semibold transition-all">
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{integration.category}</div>
+                <div className="mt-2 text-xs text-green-600 dark:text-green-400">{integration.status}</div>
+                <button className="mt-3 opacity-0 group-hover:opacity-100 text-blue-600 dark:text-blue-400 text-xs font-semibold transition-all duration-200">
                   View Details
                 </button>
               </div>
@@ -248,31 +423,32 @@ const IntegrationsSection3 = ({ config }) => {
           <div className="text-center mt-6">
             <Link
               href="/integrations"
-              className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all duration-200 group"
             >
               View all {allIntegrations.length}+ integrations
-              <HiOutlineArrowRight className="w-4 h-4" />
+              {getIcon("arrow-right", "w-4 h-4 group-hover:translate-x-0.5 transition-transform")}
             </Link>
           </div>
         </div>
 
-        {/* API Playground Toggle */}
-        <div className="mb-8">
+        {/* ==================== API PLAYGROUND TOGGLE ==================== */}
+        <div className="mb-8 text-center">
           <button
             onClick={() => setShowApiPlayground(!showApiPlayground)}
-            className="mx-auto block px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all items-center gap-2"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+            aria-label={showApiPlayground ? "Hide API playground" : "Try API playground"}
           >
-            <HiOutlineCode className="w-5 h-5" />
+            {getIcon("code", "w-5 h-5")}
             {showApiPlayground ? 'Hide API Playground' : 'Try API Playground'}
           </button>
         </div>
 
-        {/* API Playground */}
+        {/* ==================== API PLAYGROUND ==================== */}
         {showApiPlayground && (
-          <div className="mb-12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+          <div className="mb-12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 animate-fadeIn">
             <div className="bg-linear-to-r from-gray-800 to-gray-900 p-4 text-white">
               <div className="flex items-center gap-2">
-                <HiOutlineCode className="w-5 h-5" />
+                {getIcon("code", "w-5 h-5")}
                 <span className="font-mono text-sm">API Playground</span>
               </div>
             </div>
@@ -285,29 +461,29 @@ const IntegrationsSection3 = ({ config }) => {
                       <button
                         key={idx}
                         onClick={() => handleApiTest(endpoint)}
-                        className="w-full text-left p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all group"
+                        className="w-full text-left p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200 group"
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className={`text-xs font-mono px-2 py-1 rounded ${endpoint.method === 'GET' ? 'bg-green-100 text-green-700' :
-                                endpoint.method === 'POST' ? 'bg-blue-100 text-blue-700' :
-                                  endpoint.method === 'PUT' ? 'bg-yellow-100 text-yellow-700' :
-                                    'bg-red-100 text-red-700'
+                            <span className={`text-xs font-mono px-2 py-1 rounded ${endpoint.method === 'GET' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+                              endpoint.method === 'POST' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+                                endpoint.method === 'PUT' ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400' :
+                                  'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
                               }`}>
                               {endpoint.method}
                             </span>
-                            <span className="font-mono text-sm">{endpoint.path}</span>
+                            <span className="font-mono text-sm text-gray-700 dark:text-gray-300">{endpoint.path}</span>
                           </div>
-                          <HiOutlineArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                          {getIcon("arrow-right", "w-4 h-4 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors")}
                         </div>
-                        <div className="text-xs text-gray-500 mt-1">{endpoint.description}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{endpoint.description}</div>
                       </button>
                     ))}
                   </div>
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Response</h3>
-                  <div className="bg-gray-900 rounded-lg p-4 min-h-75">
+                  <div className="bg-gray-900 dark:bg-gray-950 rounded-lg p-4 min-h-75">
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full">
                         <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent" />
@@ -320,63 +496,76 @@ const IntegrationsSection3 = ({ config }) => {
                   </div>
                 </div>
               </div>
-              <div className="mt-4 text-center text-xs text-gray-500">
-                <HiOutlineShieldCheck className="inline w-3 h-3 mr-1" />
+              <div className="mt-4 text-center text-xs text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
+                {getIcon("shield", "w-3 h-3")}
                 This is a simulation. Real API calls require authentication.
               </div>
             </div>
           </div>
         )}
 
-        {/* Popular Questions */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
-            Popular Integration Questions
-          </h3>
-          <div className="flex flex-wrap justify-center gap-2">
-            {popularQuestions.map((question, index) => (
-              <button
-                key={index}
-                onClick={() => setSearchQuery(question)}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-gray-200 transition-all"
-              >
-                {question}
-              </button>
-            ))}
+        {/* ==================== POPULAR QUESTIONS SECTION ==================== */}
+        {popularQuestions.length > 0 && searchQuery === '' && (
+          <div className="mb-8">
+            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 text-center mb-3">
+              Popular Integration Questions
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2">
+              {popularQuestions.map((question, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSearchQuery(question)}
+                  className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105"
+                  aria-label={`Search for: ${question}`}
+                >
+                  {question}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Search and Action Bar */}
+        {/* ==================== SEARCH AND ACTION BAR ==================== */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1 relative" ref={searchRef}>
-            <HiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+              {getIcon("search", "w-5 h-5")}
+            </div>
             <input
               type="text"
               placeholder="Search integration questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              aria-label="Search integration questions"
             />
             {searchQuery && (
               <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                onClick={clearSearch}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                aria-label="Clear search"
               >
-                ✕
+                {getIcon("x", "w-5 h-5")}
               </button>
             )}
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
+              className={`px-4 py-3 border rounded-xl transition-all duration-300 flex items-center gap-2 ${showFilters
+                ? 'bg-blue-600 text-white border-blue-600'
+                : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+              aria-label="Toggle filters"
             >
-              <HiOutlineFilter className="w-4 h-4" />
+              {getIcon("filter", "w-4 h-4")}
+              Filters
             </button>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 transition-all"
+              aria-label="Sort by"
             >
               <option value="recent">Most Recent</option>
               <option value="popular">Most Popular</option>
@@ -384,33 +573,35 @@ const IntegrationsSection3 = ({ config }) => {
             </select>
             <button
               onClick={handleExport}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
+              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
               title="Export FAQs"
+              aria-label="Export FAQs"
             >
-              <HiOutlineDownload className="w-4 h-4" />
+              {getIcon("download", "w-4 h-4")}
             </button>
             <button
               onClick={handlePrint}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
+              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
               title="Print FAQs"
+              aria-label="Print FAQs"
             >
-              <HiOutlinePrinter className="w-4 h-4" />
+              {getIcon("printer", "w-4 h-4")}
             </button>
           </div>
         </div>
 
-        {/* Expanded Filters */}
+        {/* ==================== EXPANDED FILTERS PANEL ==================== */}
         {showFilters && (
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-100 dark:border-gray-700 animate-fadeIn">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Category</label>
                 <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => setActiveCategory('all')}
-                    className={`px-3 py-1 rounded-full text-sm transition-all ${activeCategory === 'all'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                    className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${activeCategory === 'all'
+                      ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-md'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                   >
                     All
@@ -419,23 +610,23 @@ const IntegrationsSection3 = ({ config }) => {
                     <button
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
-                      className={`px-3 py-1 rounded-full text-sm transition-all flex items-center gap-1 ${activeCategory === category.id
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 flex items-center gap-1 ${activeCategory === category.id
+                        ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-md'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                         }`}
                     >
-                      <span>{category.icon}</span>
+                      {getIcon(category.icon, "w-3 h-3")}
                       {category.name}
                     </button>
                   ))}
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sort By</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Sort By</label>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 transition-all"
                 >
                   <option value="recent">Most Recent</option>
                   <option value="popular">Most Popular</option>
@@ -443,146 +634,171 @@ const IntegrationsSection3 = ({ config }) => {
                 </select>
               </div>
             </div>
+            {(activeCategory !== 'all' || sortBy !== 'recent') && (
+              <div className="mt-4 text-right">
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            )}
           </div>
         )}
 
-        {/* Results Count */}
+        {/* ==================== RESULTS COUNT ==================== */}
         {searchQuery && (
-          <div className="text-center mb-4 text-sm text-gray-500">
-            Found {filteredFaqs.length} results for "{searchQuery}"
+          <div className="text-center mb-4 text-sm text-gray-500 dark:text-gray-400">
+            Found {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''} for "{searchQuery}"
           </div>
         )}
 
-        {/* Category Accordion View */}
+        {/* ==================== CATEGORY ACCORDION VIEW ==================== */}
         <div className="space-y-6 mb-12">
           {categories.map((category) => {
             const categoryFaqs = groupedFaqs[category.id] || [];
             if (categoryFaqs.length === 0 && searchQuery) return null;
+            if (categoryFaqs.length === 0 && !searchQuery) return null;
 
             const isExpanded = expandedCategories[category.id] || searchQuery !== '';
 
             return (
-              <div key={category.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+              <div key={category.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
                 <button
                   onClick={() => toggleCategory(category.id)}
-                  className="w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  className="w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
+                  aria-label={isExpanded ? `Collapse ${category.name} category` : `Expand ${category.name} category`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{category.icon}</span>
+                    <div className="text-blue-600 dark:text-blue-400">
+                      {getIcon(category.icon, "w-6 h-6")}
+                    </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white">{category.name}</h3>
-                      <p className="text-sm text-gray-500">{category.description}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">{category.description}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm text-gray-400">{categoryFaqs.length} questions</span>
+                    <span className="text-sm text-gray-400 dark:text-gray-500">{categoryFaqs.length} questions</span>
                     {isExpanded ? (
-                      <HiOutlineChevronUp className="w-5 h-5 text-gray-400" />
+                      getIcon("chevron-up", "w-5 h-5 text-gray-400")
                     ) : (
-                      <HiOutlineChevronDown className="w-5 h-5 text-gray-400" />
+                      getIcon("chevron-down", "w-5 h-5 text-gray-400")
                     )}
                   </div>
                 </button>
 
                 {isExpanded && (
                   <div className="border-t border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700">
-                    {categoryFaqs.map((faq, idx) => (
-                      <div key={idx} className="p-5 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                        <button
-                          onClick={() => toggleFaq(`${category.id}-${idx}`)}
-                          className="w-full text-left flex justify-between items-center"
-                        >
-                          <div className="flex items-start gap-3 pr-4">
-                            <div className="text-xl mt-0.5">{faq.icon}</div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-gray-900 dark:text-white">
-                                {highlightedText(faq.question, searchQuery)}
+                    {categoryFaqs.map((faq, idx) => {
+                      const faqKey = `${category.id}-${idx}`;
+                      const isSaved = savedFaqs.includes(faq.id);
+
+                      return (
+                        <div key={faqKey} className="p-5 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200">
+                          <button
+                            onClick={() => toggleFaq(faqKey)}
+                            className="w-full text-left flex justify-between items-start"
+                            aria-label={openFaq === faqKey ? "Collapse answer" : "Expand answer"}
+                          >
+                            <div className="flex items-start gap-3 pr-4">
+                              <div className="text-blue-600 dark:text-blue-400 mt-0.5">
+                                {getIcon(faq.icon || "plug", "w-5 h-5")}
                               </div>
-                              {faq.tags && (
-                                <div className="flex flex-wrap gap-1 mt-1">
-                                  {faq.tags.slice(0, 2).map((tag, tagIdx) => (
-                                    <span key={tagIdx} className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 rounded-full">
-                                      {tag}
-                                    </span>
-                                  ))}
+                              <div className="flex-1">
+                                <div className="font-semibold text-gray-900 dark:text-white">
+                                  {highlightText(faq.question, searchQuery)}
+                                </div>
+                                {faq.tags && faq.tags.length > 0 && (
+                                  <div className="flex flex-wrap gap-1 mt-1">
+                                    {faq.tags.slice(0, 3).map((tag, tagIdx) => (
+                                      <span key={tagIdx} className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full">
+                                        {tag}
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleSaveFaq(faq.id);
+                                }}
+                                className={`transition-colors duration-200 ${isSaved ? 'text-blue-600' : 'text-gray-400 hover:text-blue-600'}`}
+                                aria-label={isSaved ? "Remove from saved" : "Save question"}
+                              >
+                                {getIcon("bookmark", `w-4 h-4 ${isSaved ? 'fill-blue-600' : ''}`)}
+                              </button>
+                              <div className="text-blue-500 dark:text-blue-400">
+                                {openFaq === faqKey ? (
+                                  getIcon("chevron-up", "w-5 h-5")
+                                ) : (
+                                  getIcon("chevron-down", "w-5 h-5")
+                                )}
+                              </div>
+                            </div>
+                          </button>
+
+                          {openFaq === faqKey && (
+                            <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
+                              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                {highlightText(faq.answer, searchQuery)}
+                              </p>
+                              {faq.link && (
+                                <Link
+                                  href={faq.link}
+                                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 text-sm font-semibold mt-3 hover:gap-2 transition-all duration-200 group"
+                                >
+                                  Learn more
+                                  {getIcon("external-link", "w-3 h-3 group-hover:translate-x-0.5 transition-transform")}
+                                </Link>
+                              )}
+
+                              {/* Code Snippet Example for API Questions */}
+                              {faq.codeSnippet && (
+                                <div className="mt-3 bg-gray-900 dark:bg-gray-950 rounded-lg p-3 overflow-x-auto">
+                                  <pre className="text-green-400 text-xs font-mono">
+                                    <code>{faq.codeSnippet}</code>
+                                  </pre>
                                 </div>
                               )}
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleSaveFaq(faq.id);
-                              }}
-                              className="text-gray-400 hover:text-blue-600 transition-colors"
-                            >
-                              <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                            </button>
-                            <div className="text-blue-500">
-                              {openFaq === `${category.id}-${idx}` ? (
-                                <HiOutlineChevronUp className="w-5 h-5" />
-                              ) : (
-                                <HiOutlineChevronDown className="w-5 h-5" />
-                              )}
-                            </div>
-                          </div>
-                        </button>
 
-                        {openFaq === `${category.id}-${idx}` && (
-                          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                              {highlightedText(faq.answer, searchQuery)}
-                            </p>
-                            {faq.link && (
-                              <Link
-                                href={faq.link}
-                                className="inline-flex items-center gap-1 text-blue-600 text-sm font-semibold mt-3 hover:gap-2 transition-all"
-                              >
-                                Learn more
-                                <HiOutlineExternalLink className="w-3 h-3" />
-                              </Link>
-                            )}
-
-                            {/* Code Snippet for API Questions */}
-                            {faq.codeSnippet && (
-                              <div className="mt-3 bg-gray-900 rounded-lg p-3 overflow-x-auto">
-                                <pre className="text-green-400 text-xs font-mono">
-                                  <code>{faq.codeSnippet}</code>
-                                </pre>
-                              </div>
-                            )}
-
-                            {/* Helpful Section */}
-                            <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                              <div className="flex items-center gap-4">
-                                <span className="text-xs text-gray-500">Was this helpful?</span>
-                                <button
-                                  onClick={() => handleHelpful(faq.id, true)}
-                                  className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                                      ? 'text-green-600'
-                                      : 'text-gray-400 hover:text-green-600'
-                                    }`}
-                                >
-                                  <HiOutlineThumbUp className="w-4 h-4" />
-                                  Yes
-                                </button>
-                                <button
-                                  onClick={() => handleHelpful(faq.id, false)}
-                                  className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                                      ? 'text-red-600'
-                                      : 'text-gray-400 hover:text-red-600'
-                                    }`}
-                                >
-                                  <HiOutlineThumbDown className="w-4 h-4" />
-                                  No
-                                </button>
+                              {/* Helpful Section */}
+                              <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                <div className="flex items-center gap-4">
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">Was this helpful?</span>
+                                  <button
+                                    onClick={() => handleHelpful(faq.id, true)}
+                                    className={`flex items-center gap-1 text-xs transition-colors duration-200 ${helpfulVotes[faq.id] === true
+                                      ? 'text-green-600 dark:text-green-400'
+                                      : 'text-gray-400 hover:text-green-600 dark:hover:text-green-400'
+                                      }`}
+                                    aria-label="Mark as helpful"
+                                  >
+                                    {getIcon("thumb-up", "w-4 h-4")}
+                                    Yes
+                                  </button>
+                                  <button
+                                    onClick={() => handleHelpful(faq.id, false)}
+                                    className={`flex items-center gap-1 text-xs transition-colors duration-200 ${helpfulVotes[faq.id] === false
+                                      ? 'text-red-600 dark:text-red-400'
+                                      : 'text-gray-400 hover:text-red-600 dark:hover:text-red-400'
+                                      }`}
+                                    aria-label="Mark as not helpful"
+                                  >
+                                    {getIcon("thumb-down", "w-4 h-4")}
+                                    No
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -590,33 +806,45 @@ const IntegrationsSection3 = ({ config }) => {
           })}
         </div>
 
-        {/* Empty State */}
+        {/* ==================== EMPTY STATE ==================== */}
         {filteredFaqs.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🔌</div>
+          <div className="text-center py-12 bg-gray-50 dark:bg-gray-800/50 rounded-2xl mb-12">
+            <div className="flex justify-center mb-4 text-gray-400">
+              {getIcon("search", "w-12 h-12")}
+            </div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No questions found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
-            <button
-              onClick={() => setShowContactForm(true)}
-              className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
-            >
-              Ask about an Integration
-            </button>
+            <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you're looking for.</p>
+            <div className="flex flex-wrap justify-center gap-3 mt-4">
+              <button
+                onClick={clearFilters}
+                className="px-4 py-2 text-blue-600 dark:text-blue-400 font-semibold text-sm hover:underline"
+              >
+                Clear all filters
+              </button>
+              <button
+                onClick={() => setShowContactForm(true)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+              >
+                Ask about an Integration
+              </button>
+            </div>
           </div>
         )}
 
-        {/* Saved FAQs Section */}
+        {/* ==================== SAVED FAQS SECTION ==================== */}
         {savedFaqs.length > 0 && searchQuery === '' && activeCategory === 'all' && (
           <div className="mb-12">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineBookmark className="w-5 h-5 text-blue-600" />
+              {getIcon("bookmark", "w-5 h-5 text-blue-600")}
               Saved Questions
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {faqs.filter(f => savedFaqs.includes(f.id)).slice(0, 4).map((faq, idx) => (
-                <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4">
-                  <div className="flex items-start gap-2">
-                    <div className="text-xl">{faq.icon}</div>
+                <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-start gap-3">
+                    <div className="text-blue-600 dark:text-blue-400">
+                      {getIcon(faq.icon || "plug", "w-5 h-5")}
+                    </div>
                     <div className="flex-1">
                       <div className="font-semibold text-gray-900 dark:text-white text-sm">{faq.question}</div>
                       <button
@@ -624,17 +852,19 @@ const IntegrationsSection3 = ({ config }) => {
                           setActiveCategory(faq.category);
                           setSearchQuery('');
                           setOpenFaq(null);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className="text-xs text-blue-600 mt-1 hover:underline"
+                        className="text-xs text-blue-600 dark:text-blue-400 mt-1 hover:underline"
                       >
                         View in {categories.find(c => c.id === faq.category)?.name}
                       </button>
                     </div>
                     <button
                       onClick={() => handleSaveFaq(faq.id)}
-                      className="text-gray-400 hover:text-red-600"
+                      className="text-gray-400 hover:text-red-600 transition-colors duration-200"
+                      aria-label="Remove from saved"
                     >
-                      <HiOutlineX className="w-4 h-4" />
+                      {getIcon("x", "w-4 h-4")}
                     </button>
                   </div>
                 </div>
@@ -643,11 +873,13 @@ const IntegrationsSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* API Documentation CTA */}
-        <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8 mb-12">
+        {/* ==================== API DOCUMENTATION CTA ==================== */}
+        <div className="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8 mb-12 border border-blue-100 dark:border-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
-              <div className="text-4xl mb-3">🔌</div>
+              <div className="flex mb-3 text-blue-600 dark:text-blue-400">
+                {getIcon("code", "w-10 h-10")}
+              </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Developer API</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Build custom integrations with our comprehensive RESTful API. Complete documentation, SDKs, and code examples available.
@@ -655,38 +887,53 @@ const IntegrationsSection3 = ({ config }) => {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/developers/api"
-                  className="inline-flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                 >
-                  <HiOutlineCode className="w-4 h-4" />
+                  {getIcon("code", "w-4 h-4")}
                   View API Documentation
                 </Link>
                 <Link
                   href="/developers/sdks"
-                  className="inline-flex items-center gap-2 px-6 py-2 border border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 border border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 transform hover:scale-105"
                 >
-                  <HiOutlineChip className="w-4 h-4" />
+                  {getIcon("chip", "w-4 h-4")}
                   SDKs & Libraries
                 </Link>
               </div>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700">
               <div className="text-sm font-mono text-gray-600 dark:text-gray-400">
-                <div className="text-green-600">GET /api/v1/inventory</div>
-                <div className="text-blue-600 mt-2">POST /api/v1/orders</div>
-                <div className="text-purple-600 mt-2">PUT /api/v1/products/{'{id}'}</div>
-                <div className="text-gray-400 mt-2">...and 50+ more endpoints</div>
+                <div className="text-green-600 dark:text-green-400">GET /api/v1/inventory</div>
+                <div className="text-blue-600 dark:text-blue-400 mt-2">POST /api/v1/orders</div>
+                <div className="text-purple-600 dark:text-purple-400 mt-2">PUT /api/v1/products/{'{id}'}</div>
+                <div className="text-gray-400 dark:text-gray-500 mt-2">...and 50+ more endpoints</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Contact Form Modal */}
+        {/* ==================== CONTACT FORM MODAL ==================== */}
         {showContactForm && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowContactForm(false)}>
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-md w-full p-8" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+            onClick={() => setShowContactForm(false)}
+            role="dialog"
+            aria-label="Integration question form"
+            aria-modal="true"
+          >
+            <div
+              className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-md w-full p-8"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Integration Question</h3>
-                <button onClick={() => setShowContactForm(false)} className="text-gray-500 hover:text-gray-700">✕</button>
+                <button
+                  onClick={() => setShowContactForm(false)}
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                  aria-label="Close modal"
+                >
+                  ✕
+                </button>
               </div>
               {!contactSubmitted ? (
                 <form onSubmit={handleContactSubmit} className="space-y-4">
@@ -696,7 +943,7 @@ const IntegrationsSection3 = ({ config }) => {
                       type="text"
                       value={contactForm.name}
                       onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -706,7 +953,7 @@ const IntegrationsSection3 = ({ config }) => {
                       type="email"
                       value={contactForm.email}
                       onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -717,7 +964,7 @@ const IntegrationsSection3 = ({ config }) => {
                       value={contactForm.integration}
                       onChange={(e) => setContactForm({ ...contactForm, integration: e.target.value })}
                       placeholder="e.g., Shopify, SAP, Custom API"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -727,49 +974,69 @@ const IntegrationsSection3 = ({ config }) => {
                       rows={4}
                       value={contactForm.message}
                       onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                       placeholder="Please describe your integration needs..."
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
+                    className="w-full py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
                   >
                     Submit Question
                   </button>
                 </form>
               ) : (
                 <div className="text-center py-6">
-                  <div className="text-5xl mb-3">✅</div>
+                  <div className="flex justify-center mb-3 text-green-500">
+                    {getIcon("check", "w-12 h-12")}
+                  </div>
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Question Sent!</h4>
                   <p className="text-gray-600 dark:text-gray-400">Our integration team will respond within 24 hours.</p>
                 </div>
               )}
-              <p className="text-xs text-gray-500 text-center mt-4">We'll never share your information with third parties.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
+                We'll never share your information with third parties.
+              </p>
             </div>
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== CALL TO ACTION ==================== */}
         <div className="text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineQuestionMarkCircle className="w-6 h-6 text-blue-600" />
-            <span className="text-gray-700 dark:text-gray-300 font-medium">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-5 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl border border-blue-100 dark:border-gray-700">
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+              {getIcon("question", "w-6 h-6 text-blue-600")}
+            </div>
+            <span className="text-gray-700 dark:text-gray-300 font-medium text-center sm:text-left">
               {config?.contactText || "Need help with integrations? Our team is here to assist."}
             </span>
             <Link
               href={config?.contactLink || "/contact"}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+              className="px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
             >
               {config?.contactButtonText || "Contact Integration Support"}
-              <HiOutlineArrowRight aria-hidden="true" />
+              {getIcon("arrow-right", "w-4 h-4")}
             </Link>
           </div>
         </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         mark {
           background-color: #fef08a;
           color: #1e293b;
@@ -792,11 +1059,14 @@ const IntegrationsSection3 = ({ config }) => {
           }
         }
         @media print {
-          .no-print, button, .bg-noise-pattern {
+          .no-print, button:not(.print-button), .bg-noise-pattern {
             display: none !important;
           }
           body {
             background: white;
+          }
+          .bg-white, .dark\\:bg-gray-800 {
+            background: white !important;Hey, Cortana. 
           }
         }
         .bg-noise-pattern {

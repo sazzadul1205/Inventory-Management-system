@@ -1,4 +1,4 @@
-// frontend/FAQ/GeneralQuestionsSection/GeneralQuestionsSection2.jsx
+// pages/frontend/FAQ/GeneralQuestionsSection/GeneralQuestionsSection2.jsx
 
 /**
  * General Questions Section Component with Advanced Features
@@ -346,7 +346,7 @@ const GeneralQuestionsSection2 = ({ config }) => {
         </div>
 
         {/* ==================== FAQ ACCORDION ==================== */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-12">
+        <div className="max-w-6xl mx-auto space-y-4 mb-12">
           {filteredFaqs.map((faq, index) => (
             <div
               key={index}

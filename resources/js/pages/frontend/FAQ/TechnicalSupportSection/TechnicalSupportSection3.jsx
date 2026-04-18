@@ -1,3 +1,5 @@
+// pages/frontend/FAQ/TechnicalSupportSection/TechnicalSupportSection3.jsx
+
 /**
  * Technical Support Section Component - Knowledge Base with Advanced Features
  * A comprehensive technical support knowledge base featuring:

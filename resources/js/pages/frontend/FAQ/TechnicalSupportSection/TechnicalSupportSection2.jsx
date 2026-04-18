@@ -1,4 +1,4 @@
-// frontend/FAQ/TechnicalSupportSection/TechnicalSupportSection2.jsx
+// pages/frontend/FAQ/TechnicalSupportSection/TechnicalSupportSection2.jsx
 
 /**
  * Technical Support Section Component with Advanced Features
@@ -355,7 +355,7 @@ const TechnicalSupportSection2 = ({ config }) => {
         </div>
 
         {/* ==================== FAQ ACCORDION ==================== */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-12">
+        <div className="max-w-6xl mx-auto space-y-4 mb-12">
           {filteredFaqs.map((faq, index) => (
             <div
               key={index}

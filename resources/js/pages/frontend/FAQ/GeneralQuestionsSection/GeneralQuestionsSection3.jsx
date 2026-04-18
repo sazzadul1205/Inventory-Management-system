@@ -1,3 +1,5 @@
+// pages/frontend/FAQ/GeneralQuestionsSection/GeneralQuestionsSection3.jsx
+
 /**
  * General Questions Section Component - Knowledge Base Style
  * A comprehensive FAQ knowledge base section featuring:
