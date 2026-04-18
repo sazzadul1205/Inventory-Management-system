@@ -12,6 +12,7 @@ use Database\Seeders\PageRelatedSeeders\PageSectionsSeeder;
 // Page Related Seeders
 use Database\Seeders\PageRelatedSeeders\FAQPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\HomePageSectionVariantSeeder;
+use Database\Seeders\PageRelatedSeeders\ContactPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\ServicesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\FeaturesPageSectionVariantSeeder;
 use Database\Seeders\PageRelatedSeeders\HowItWorksPageSectionVariantSeeder;
@@ -126,6 +127,9 @@ class DatabaseSeeder extends Seeder
 
             // Call FAQ Page Section Variant Seeders
             $this->call(FAQPageSectionVariantSeeder::class);
+
+            // Call Contact Page Section Variant Seeders
+            $this->call(ContactPageSectionVariantSeeder::class);
 
             $this->command->info('✅ Pages and Sections seeded successfully!');
         } else {
