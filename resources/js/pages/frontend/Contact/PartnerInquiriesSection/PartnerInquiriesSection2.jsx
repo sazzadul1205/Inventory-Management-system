@@ -588,7 +588,7 @@ const PartnerInquiriesSection2 = ({ config }) => {
         )}
 
         {/* ==================== FAQ ACCORDION ==================== */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-16">
+        <div className="max-w-6xl mx-auto space-y-4 mb-16">
           {filteredFaqs.map((faq, index) => {
             const isSaved = savedFaqs.includes(faq.id);
 

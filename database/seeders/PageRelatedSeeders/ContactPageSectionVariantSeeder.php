@@ -1924,6 +1924,2103 @@ class ContactPageSectionVariantSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
+            // Office Locations Section
+            [
+                'id' => 321,
+                'section_key' => 'officeLocations',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-sky-100 dark:bg-sky-900/30',
+                        'borderColor' => 'border-sky-200 dark:border-sky-800',
+                        'textColor' => 'text-sky-700 dark:text-sky-300',
+                        'text' => 'Global Presence',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Find Us',
+                        'highlightGradient' => 'from-sky-600 to-blue-600',
+                        'highlightedText' => 'Around the World',
+                        'suffix' => 'We\'re Everywhere You Need Us'
+                    ],
+                    'description' => 'With strategic offices across the globe, we\'re always nearby to serve you better. Visit us at any of our locations or connect with our regional teams.',
+                    'stats' => [
+                        ['icon' => 'office-building', 'value' => '15+', 'label' => 'Global Offices'],
+                        ['icon' => 'users', 'value' => '500+', 'label' => 'Team Members'],
+                        ['icon' => 'globe', 'value' => '30+', 'label' => 'Countries Served'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Global Support']
+                    ],
+                    'regions' => [
+                        ['id' => 'north-america', 'name' => 'North America', 'icon' => 'globe', 'officeCount' => 4],
+                        ['id' => 'europe', 'name' => 'Europe', 'icon' => 'globe', 'officeCount' => 3],
+                        ['id' => 'asia-pacific', 'name' => 'Asia Pacific', 'icon' => 'globe', 'officeCount' => 3],
+                        ['id' => 'middle-east', 'name' => 'Middle East', 'icon' => 'globe', 'officeCount' => 1]
+                    ],
+                    'offices' => [
+                        [
+                            'city' => 'San Francisco',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '500 Market Street, Suite 300, San Francisco, CA 94105',
+                            'phone' => '+1 (415) 555-0100',
+                            'email' => 'sf@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm PST',
+                            'mapLink' => '/maps/sf',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 4500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0200',
+                            'email' => 'ny@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'mapLink' => '/maps/ny',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Toronto',
+                            'country' => 'Canada',
+                            'region' => 'north-america',
+                            'address' => '120 Adelaide Street West, Suite 2500, Toronto, ON M5H 1T1',
+                            'phone' => '+1 (416) 555-0300',
+                            'email' => 'toronto@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'mapLink' => '/maps/toronto',
+                            'image' => 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '30 St Mary Axe, 20th Floor, London EC3A 8BF',
+                            'phone' => '+44 20 7946 0400',
+                            'email' => 'london@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm GMT',
+                            'mapLink' => '/maps/london',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Berlin',
+                            'country' => 'Germany',
+                            'region' => 'europe',
+                            'address' => 'Potsdamer Platz 10, 10785 Berlin',
+                            'phone' => '+49 30 1234 5678',
+                            'email' => 'berlin@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm CET',
+                            'mapLink' => '/maps/berlin',
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Paris',
+                            'country' => 'France',
+                            'region' => 'europe',
+                            'address' => '15 Rue de la Paix, 75002 Paris',
+                            'phone' => '+33 1 42 96 15 00',
+                            'email' => 'paris@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm CET',
+                            'mapLink' => '/maps/paris',
+                            'image' => 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '1 Raffles Place, #30-00, Singapore 048616',
+                            'phone' => '+65 6221 1234',
+                            'email' => 'singapore@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm SGT',
+                            'mapLink' => '/maps/singapore',
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Sydney',
+                            'country' => 'Australia',
+                            'region' => 'asia-pacific',
+                            'address' => '1 Martin Place, Level 50, Sydney NSW 2000',
+                            'phone' => '+61 2 8296 1234',
+                            'email' => 'sydney@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm AEST',
+                            'mapLink' => '/maps/sydney',
+                            'image' => 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Dubai',
+                            'country' => 'United Arab Emirates',
+                            'region' => 'middle-east',
+                            'address' => 'Burj Khalifa, 123rd Floor, Downtown Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@example.com',
+                            'hours' => 'Sun-Thu: 9am - 6pm GST',
+                            'mapLink' => '/maps/dubai',
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'icon' => 'location',
+                            'question' => 'Do you have offices outside the US?',
+                            'answer' => 'Yes, we have global offices in London, Berlin, Paris, Singapore, Sydney, and Dubai. Each office serves its regional customers with local teams who understand local business practices and languages.',
+                            'tags' => ['international', 'global', 'offices'],
+                            'link' => '/locations'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'icon' => 'clock',
+                            'question' => 'What are your office hours?',
+                            'answer' => 'Office hours vary by location. Generally, our offices are open Monday through Friday from 9am to 6pm local time. Our global support team is available 24/7 via phone, email, and live chat regardless of office hours.',
+                            'tags' => ['hours', 'schedule', 'business hours'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'icon' => 'users',
+                            'question' => 'Can I visit your office for support?',
+                            'answer' => 'Yes, you can visit any of our offices during business hours for in-person support. For enterprise customers, we recommend scheduling an appointment with your account manager to ensure the right team members are available.',
+                            'tags' => ['visit', 'in-person', 'appointment'],
+                            'link' => '/contact'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'icon' => 'mail',
+                            'question' => 'How do I contact a specific office?',
+                            'answer' => 'Each office has its own direct phone number and email address listed on this page. You can also use our general contact form and specify which office you\'d like to reach, and we\'ll route your inquiry appropriately.',
+                            'tags' => ['contact', 'email', 'phone'],
+                            'link' => '/contact'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer support in multiple languages?',
+                            'answer' => 'Yes, our regional offices provide support in local languages. We offer support in English, Spanish, French, German, Mandarin, Japanese, Arabic, and more depending on the region. Our global support team can also arrange translation services.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support'
+                        ]
+                    ],
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'Global presence with local expertise — we\'re here to serve you wherever you are.',
+                    'contactText' => 'Can\'t find what you\'re looking for? Contact our global support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 322,
+                'section_key' => 'officeLocations',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-violet-100 dark:bg-violet-900/30',
+                        'borderColor' => 'border-violet-200 dark:border-violet-800',
+                        'textColor' => 'text-violet-700 dark:text-violet-300',
+                        'text' => 'Our Offices',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Visit Our',
+                        'highlightGradient' => 'from-violet-600 to-purple-600',
+                        'highlightedText' => 'Global Offices',
+                        'suffix' => 'We\'re Here to Welcome You'
+                    ],
+                    'description' => 'With offices spanning across continents, we\'re always within reach. Visit us for meetings, events, or just to say hello. Our doors are open to partners and customers alike.',
+                    'stats' => [
+                        ['icon' => 'office-building', 'value' => '12+', 'label' => 'Office Locations'],
+                        ['icon' => 'users', 'value' => '1,200+', 'label' => 'Global Employees'],
+                        ['icon' => 'globe', 'value' => '25+', 'label' => 'Countries'],
+                        ['icon' => 'calendar', 'value' => '15+', 'label' => 'Years of Excellence']
+                    ],
+                    'regions' => [
+                        ['id' => 'nam', 'name' => 'North America', 'icon' => '🌎', 'officeCount' => 4, 'flag' => '🇺🇸🇨🇦'],
+                        ['id' => 'emea', 'name' => 'Europe', 'icon' => '🌍', 'officeCount' => 3, 'flag' => '🇬🇧🇩🇪🇫🇷'],
+                        ['id' => 'apac', 'name' => 'Asia Pacific', 'icon' => '🌏', 'officeCount' => 3, 'flag' => '🇸🇬🇦🇺🇯🇵'],
+                        ['id' => 'latam', 'name' => 'Latin America', 'icon' => '🌎', 'officeCount' => 2, 'flag' => '🇧🇷🇲🇽']
+                    ],
+                    'countries' => ['United States', 'Canada', 'United Kingdom', 'Germany', 'France', 'Singapore', 'Australia', 'Japan', 'Brazil', 'Mexico'],
+                    'offices' => [
+                        [
+                            'city' => 'San Francisco',
+                            'country' => 'United States',
+                            'flag' => '🇺🇸',
+                            'region' => 'nam',
+                            'address' => '500 Market Street, Suite 300, San Francisco, CA 94105',
+                            'phone' => '+1 (415) 555-0100',
+                            'email' => 'sf@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm PST',
+                            'mapLink' => '/maps/sf',
+                            'teamSize' => '150',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'flag' => '🇺🇸',
+                            'region' => 'nam',
+                            'address' => '350 Fifth Avenue, Suite 4500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0200',
+                            'email' => 'ny@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'mapLink' => '/maps/ny',
+                            'teamSize' => '200',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Toronto',
+                            'country' => 'Canada',
+                            'flag' => '🇨🇦',
+                            'region' => 'nam',
+                            'address' => '120 Adelaide Street West, Suite 2500, Toronto, ON M5H 1T1',
+                            'phone' => '+1 (416) 555-0300',
+                            'email' => 'toronto@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'mapLink' => '/maps/toronto',
+                            'teamSize' => '80',
+                            'image' => 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Vancouver',
+                            'country' => 'Canada',
+                            'flag' => '🇨🇦',
+                            'region' => 'nam',
+                            'address' => '1095 West Pender Street, Suite 800, Vancouver, BC V6E 2M6',
+                            'phone' => '+1 (604) 555-0400',
+                            'email' => 'vancouver@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm PST',
+                            'mapLink' => '/maps/vancouver',
+                            'teamSize' => '60',
+                            'image' => 'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'flag' => '🇬🇧',
+                            'region' => 'emea',
+                            'address' => '30 St Mary Axe, 20th Floor, London EC3A 8BF',
+                            'phone' => '+44 20 7946 0400',
+                            'email' => 'london@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm GMT',
+                            'mapLink' => '/maps/london',
+                            'teamSize' => '120',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Berlin',
+                            'country' => 'Germany',
+                            'flag' => '🇩🇪',
+                            'region' => 'emea',
+                            'address' => 'Potsdamer Platz 10, 10785 Berlin',
+                            'phone' => '+49 30 1234 5678',
+                            'email' => 'berlin@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm CET',
+                            'mapLink' => '/maps/berlin',
+                            'teamSize' => '90',
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Paris',
+                            'country' => 'France',
+                            'flag' => '🇫🇷',
+                            'region' => 'emea',
+                            'address' => '15 Rue de la Paix, 75002 Paris',
+                            'phone' => '+33 1 42 96 15 00',
+                            'email' => 'paris@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm CET',
+                            'mapLink' => '/maps/paris',
+                            'teamSize' => '70',
+                            'image' => 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'flag' => '🇸🇬',
+                            'region' => 'apac',
+                            'address' => '1 Raffles Place, #30-00, Singapore 048616',
+                            'phone' => '+65 6221 1234',
+                            'email' => 'singapore@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm SGT',
+                            'mapLink' => '/maps/singapore',
+                            'teamSize' => '100',
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Sydney',
+                            'country' => 'Australia',
+                            'flag' => '🇦🇺',
+                            'region' => 'apac',
+                            'address' => '1 Martin Place, Level 50, Sydney NSW 2000',
+                            'phone' => '+61 2 8296 1234',
+                            'email' => 'sydney@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm AEST',
+                            'mapLink' => '/maps/sydney',
+                            'teamSize' => '85',
+                            'image' => 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Tokyo',
+                            'country' => 'Japan',
+                            'flag' => '🇯🇵',
+                            'region' => 'apac',
+                            'address' => '6-10-1 Roppongi, Minato-ku, Tokyo 106-6108',
+                            'phone' => '+81 3 1234 5678',
+                            'email' => 'tokyo@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm JST',
+                            'mapLink' => '/maps/tokyo',
+                            'teamSize' => '75',
+                            'image' => 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'icon' => 'location',
+                            'question' => 'Can I visit your offices for business meetings?',
+                            'answer' => 'Yes, we welcome customers and partners for scheduled business meetings at all our global offices. Please contact the specific office in advance to arrange a meeting time and ensure the appropriate team members are available.',
+                            'tags' => ['meetings', 'visits', 'appointments'],
+                            'link' => '/contact'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'icon' => 'clock',
+                            'question' => 'What are your office hours across different time zones?',
+                            'answer' => 'Our offices operate Monday through Friday from 9am to 6pm local time. For urgent support outside business hours, our 24/7 global support team is always available via phone, email, or live chat regardless of office hours.',
+                            'tags' => ['hours', 'time zones', 'support'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'icon' => 'users',
+                            'question' => 'Do you have parking facilities at your offices?',
+                            'answer' => 'Parking availability varies by location. Most of our urban offices are in central business districts with nearby public parking garages. Please check with the specific office when scheduling your visit for detailed parking information.',
+                            'tags' => ['parking', 'transportation', 'directions'],
+                            'link' => '/locations'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'icon' => 'mail',
+                            'question' => 'How do I contact a specific office directly?',
+                            'answer' => 'Each office has its own direct phone number and email address listed on this page. You can also use our general contact form and specify which office you\'d like to reach, and we\'ll route your inquiry appropriately.',
+                            'tags' => ['contact', 'email', 'phone'],
+                            'link' => '/contact'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer tours of your offices?',
+                            'answer' => 'Yes, we offer guided tours of our major offices for prospective customers and partners. Tours typically take 30-45 minutes and include our workspaces, collaboration areas, and innovation labs. Please schedule in advance through your account manager or via our contact form.',
+                            'tags' => ['tours', 'visits', 'showroom'],
+                            'link' => '/contact'
+                        ]
+                    ],
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'Global presence with local expertise — we\'re here to serve you wherever you are.',
+                    'contactText' => 'Can\'t find what you\'re looking for? Contact our global support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 323,
+                'section_key' => 'officeLocations',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-rose-100 dark:bg-rose-900/30',
+                        'borderColor' => 'border-rose-200 dark:border-rose-800',
+                        'textColor' => 'text-rose-700 dark:text-rose-300',
+                        'text' => 'Global Network',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlightGradient' => 'from-rose-600 to-pink-600',
+                        'highlightedText' => 'Global Footprint',
+                        'suffix' => 'Serving You Worldwide'
+                    ],
+                    'description' => 'With strategic offices and service centers across the globe, we deliver localized support and expertise wherever you need us. Find your nearest location and connect with our team.',
+                    'stats' => [
+                        ['icon' => 'office-building', 'value' => '18+', 'label' => 'Office Locations'],
+                        ['icon' => 'truck', 'value' => '12+', 'label' => 'Service Centers'],
+                        ['icon' => 'users', 'value' => '2,500+', 'label' => 'Global Employees'],
+                        ['icon' => 'globe', 'value' => '35+', 'label' => 'Countries Served']
+                    ],
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=400&fit=crop',
+                    'mapImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=500&fit=crop',
+                    'regions' => [
+                        ['id' => 'nam', 'name' => 'North America', 'icon' => '🌎', 'officeCount' => 5],
+                        ['id' => 'emea', 'name' => 'Europe', 'icon' => '🌍', 'officeCount' => 4],
+                        ['id' => 'apac', 'name' => 'Asia Pacific', 'icon' => '🌏', 'officeCount' => 4],
+                        ['id' => 'latam', 'name' => 'Latin America', 'icon' => '🌎', 'officeCount' => 3]
+                    ],
+                    'countries' => ['United States', 'Canada', 'Mexico', 'United Kingdom', 'Germany', 'France', 'Netherlands', 'Singapore', 'Australia', 'Japan', 'India', 'Brazil'],
+                    'offices' => [
+                        [
+                            'city' => 'San Francisco',
+                            'country' => 'United States',
+                            'flag' => '🇺🇸',
+                            'region' => 'nam',
+                            'address' => '500 Market Street, Suite 300, San Francisco, CA 94105',
+                            'phone' => '+1 (415) 555-0100',
+                            'email' => 'sf@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm PST',
+                            'mapLink' => '/maps/sf',
+                            'teamSize' => '180',
+                            'services' => ['Sales', 'Support', 'R&D', 'Training'],
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'flag' => '🇺🇸',
+                            'region' => 'nam',
+                            'address' => '350 Fifth Avenue, Suite 4500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0200',
+                            'email' => 'ny@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'mapLink' => '/maps/ny',
+                            'teamSize' => '220',
+                            'services' => ['Sales', 'Support', 'Marketing'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'flag' => '🇬🇧',
+                            'region' => 'emea',
+                            'address' => '30 St Mary Axe, 20th Floor, London EC3A 8BF',
+                            'phone' => '+44 20 7946 0400',
+                            'email' => 'london@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm GMT',
+                            'mapLink' => '/maps/london',
+                            'teamSize' => '150',
+                            'services' => ['Sales', 'Support', 'Professional Services'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'flag' => '🇸🇬',
+                            'region' => 'apac',
+                            'address' => '1 Raffles Place, #30-00, Singapore 048616',
+                            'phone' => '+65 6221 1234',
+                            'email' => 'singapore@example.com',
+                            'hours' => 'Mon-Fri: 9am - 6pm SGT',
+                            'mapLink' => '/maps/singapore',
+                            'teamSize' => '120',
+                            'services' => ['Sales', 'Support', 'APAC Operations'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'serviceCenters' => [
+                        [
+                            'name' => 'Americas Distribution Center',
+                            'icon' => '🏭',
+                            'location' => 'Dallas, Texas, USA',
+                            'hours' => 'Mon-Fri: 8am - 8pm CST',
+                            'phone' => '+1 (972) 555-1000',
+                            'services' => ['Parts Distribution', 'Repair Services', 'Logistics'],
+                            'mapLink' => '/maps/dallas',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'name' => 'EMEA Service Hub',
+                            'icon' => '🔧',
+                            'location' => 'Amsterdam, Netherlands',
+                            'hours' => 'Mon-Fri: 8am - 6pm CET',
+                            'phone' => '+31 20 123 4567',
+                            'services' => ['Technical Support', 'Repair Services', 'Training'],
+                            'mapLink' => '/maps/amsterdam',
+                            'image' => 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'name' => 'Asia Pacific Logistics Center',
+                            'icon' => '📦',
+                            'location' => 'Shanghai, China',
+                            'hours' => 'Mon-Fri: 8am - 8pm CST',
+                            'phone' => '+86 21 1234 5678',
+                            'services' => ['Distribution', 'Local Assembly', 'Quality Control'],
+                            'mapLink' => '/maps/shanghai',
+                            'image' => 'https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'name' => 'Latin America Support Center',
+                            'icon' => '🛠️',
+                            'location' => 'Sao Paulo, Brazil',
+                            'hours' => 'Mon-Fri: 9am - 7pm BRT',
+                            'phone' => '+55 11 2345 6789',
+                            'services' => ['Technical Support', 'Sales Support', 'Training'],
+                            'mapLink' => '/maps/saopaulo',
+                            'image' => 'https://images.unsplash.com/photo-1549208614-3d2cd153e2e3?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'headquarters' => [
+                        'address' => '123 Main Street, Suite 100, San Francisco, CA 94105, USA',
+                        'phone' => '+1 (888) 123-4567',
+                        'email' => 'corporate@example.com',
+                        'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=500&fit=crop'
+                    ],
+                    'faqCategories' => [
+                        ['id' => 'locations', 'name' => 'Office Locations', 'icon' => 'location', 'description' => 'Finding and visiting our offices'],
+                        ['id' => 'services', 'name' => 'Services Offered', 'icon' => 'sparkles', 'description' => 'What services are available'],
+                        ['id' => 'support', 'name' => 'Support & Assistance', 'icon' => 'support', 'description' => 'Getting help from our teams']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'locations',
+                            'icon' => 'location',
+                            'question' => 'How do I find the nearest office to me?',
+                            'answer' => 'Use our interactive map or region filters above to browse all our global office locations. You can also enter your city or country in the search bar to find the closest office. Each office listing includes full address, contact details, and directions via Google Maps.',
+                            'tags' => ['nearest', 'directions', 'find'],
+                            'link' => '/locations',
+                            'updatedAt' => '2024-01-15',
+                            'views' => 1250
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'services',
+                            'icon' => 'sparkles',
+                            'question' => 'What services are available at each office?',
+                            'answer' => 'Services vary by location. Major offices offer sales, support, training, and professional services. Our service centers provide technical support, repair services, parts distribution, and logistics. Check each office\'s service tags or contact them directly for specific capabilities.',
+                            'tags' => ['services', 'offerings', 'capabilities'],
+                            'link' => '/services',
+                            'updatedAt' => '2024-01-10',
+                            'views' => 980
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'support',
+                            'icon' => 'support',
+                            'question' => 'Do I need an appointment to visit an office?',
+                            'answer' => 'For general inquiries, you\'re welcome during business hours. For specific meetings with sales, support, or technical teams, we recommend scheduling an appointment to ensure the right people are available. Use the \'Contact This Office\' button to arrange a visit.',
+                            'tags' => ['appointment', 'visit', 'meeting'],
+                            'link' => '/contact',
+                            'updatedAt' => '2024-01-18',
+                            'views' => 750
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'locations',
+                            'icon' => 'clock',
+                            'question' => 'What are your office hours across different time zones?',
+                            'answer' => 'Our offices operate Monday through Friday from 9am to 6pm local time. For urgent support outside business hours, our 24/7 global support team is always available via phone, email, or live chat regardless of office hours.',
+                            'tags' => ['hours', 'time zones', 'support'],
+                            'link' => '/support',
+                            'updatedAt' => '2024-01-20',
+                            'views' => 620
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'services',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer support in multiple languages?',
+                            'answer' => 'Yes, our regional offices provide support in local languages. We offer support in English, Spanish, French, German, Mandarin, Japanese, Portuguese, and more depending on the region. Our global support team can also arrange translation services.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support',
+                            'updatedAt' => '2024-01-25',
+                            'views' => 890
+                        ]
+                    ],
+                    'contactImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'Global presence with local expertise — we\'re here to serve you wherever you are.',
+                    'contactText' => 'Can\'t find what you\'re looking for? Contact our global support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 324,
+                'section_key' => 'officeLocations',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Phone Numbers Section
+            [
+                'id' => 325,
+                'section_key' => 'phoneNumbers',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-blue-100 dark:bg-blue-900/30',
+                        'borderColor' => 'border-blue-200 dark:border-blue-800',
+                        'textColor' => 'text-blue-700 dark:text-blue-300',
+                        'text' => 'Global Support Lines',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Connect with',
+                        'highlightGradient' => 'from-blue-600 to-cyan-600',
+                        'highlightedText' => 'Our Support Team',
+                        'suffix' => 'Worldwide'
+                    ],
+                    'description' => 'Get immediate assistance from our global support network. Find the right phone number for your region and get connected with our expert team members who speak your language.',
+                    'stats' => [
+                        ['icon' => 'phone', 'value' => '25+', 'label' => 'Support Lines'],
+                        ['icon' => 'globe', 'value' => '15+', 'label' => 'Countries'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Global Coverage'],
+                        ['icon' => 'users', 'value' => '200+', 'label' => 'Support Agents']
+                    ],
+                    'emergencyNumber' => '+1 (888) 999-9999',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557425493-6f90ae4659fc?w=1200&h=400&fit=crop',
+                    'regions' => [
+                        ['id' => 'north-america', 'name' => 'North America', 'icon' => '🌎'],
+                        ['id' => 'europe', 'name' => 'Europe', 'icon' => '🌍'],
+                        ['id' => 'asia-pacific', 'name' => 'Asia Pacific', 'icon' => '🌏'],
+                        ['id' => 'latin-america', 'name' => 'Latin America', 'icon' => '🌎']
+                    ],
+                    'phoneNumbers' => [
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'north-america',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0100',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'languages' => ['English', 'Spanish', 'French']
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'north-america',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0200',
+                            'hours' => 'Mon-Fri: 9am - 8pm EST',
+                            'email' => 'sales@example.com',
+                            'languages' => ['English', 'Spanish']
+                        ],
+                        [
+                            'department' => 'Billing Support',
+                            'type' => 'billing',
+                            'icon' => 'credit-card',
+                            'region' => 'north-america',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0300',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'email' => 'billing@example.com',
+                            'languages' => ['English']
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'europe',
+                            'regionName' => 'Europe',
+                            'phone' => '+44 20 7946 0123',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'languages' => ['English', 'French', 'German', 'Spanish']
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'europe',
+                            'regionName' => 'Europe',
+                            'phone' => '+44 20 7946 0456',
+                            'hours' => 'Mon-Fri: 9am - 6pm GMT',
+                            'email' => 'sales@example.com',
+                            'languages' => ['English', 'French', 'German']
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'asia-pacific',
+                            'regionName' => 'Asia Pacific',
+                            'phone' => '+65 6221 7890',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'languages' => ['English', 'Mandarin', 'Japanese', 'Korean']
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'asia-pacific',
+                            'regionName' => 'Asia Pacific',
+                            'phone' => '+65 6221 1234',
+                            'hours' => 'Mon-Fri: 9am - 6pm SGT',
+                            'email' => 'sales@example.com',
+                            'languages' => ['English', 'Mandarin']
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'latin-america',
+                            'regionName' => 'Latin America',
+                            'phone' => '+55 11 2345 6789',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'languages' => ['Spanish', 'Portuguese', 'English']
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'latin-america',
+                            'regionName' => 'Latin America',
+                            'phone' => '+55 11 2345 0123',
+                            'hours' => 'Mon-Fri: 9am - 6pm BRT',
+                            'email' => 'sales@example.com',
+                            'languages' => ['Spanish', 'Portuguese']
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'icon' => 'clock',
+                            'question' => 'What are your support hours?',
+                            'answer' => 'Technical support is available 24/7/365 for all customers with active subscriptions. Sales and billing support are available Monday through Friday from 9am to 6pm local time in each region. Enterprise customers receive priority 24/7 support.',
+                            'tags' => ['hours', 'availability', 'schedule'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer support in multiple languages?',
+                            'answer' => 'Yes, our global support team provides assistance in over 12 languages including English, Spanish, French, German, Mandarin, Japanese, Portuguese, and more. Each regional office is staffed with local language speakers.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'icon' => 'shield',
+                            'question' => 'Is there an emergency support number?',
+                            'answer' => 'Yes, enterprise customers have access to our 24/7 emergency hotline at +1 (888) 999-9999. This line is for critical system outages affecting business operations. Please use standard support channels for non-urgent issues.',
+                            'tags' => ['emergency', 'critical', 'urgent'],
+                            'link' => '/emergency'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'icon' => 'cash',
+                            'question' => 'Is there a charge for support calls?',
+                            'answer' => 'Support calls are free for all customers with an active subscription. Standard calling rates may apply depending on your phone carrier and location. We recommend using our toll-free numbers when available in your region.',
+                            'tags' => ['cost', 'free', 'charges'],
+                            'link' => '/pricing'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'icon' => 'mail',
+                            'question' => 'What if I can\'t reach anyone by phone?',
+                            'answer' => 'If you\'re unable to reach us by phone, you can submit a support ticket via email, use our live chat feature, or request a callback through our website. Our support team will respond to all inquiries within the SLA timeframe.',
+                            'tags' => ['callback', 'alternative', 'contact'],
+                            'link' => '/contact'
+                        ]
+                    ],
+                    'showSecurityNote' => true,
+                    'securityText' => 'We never ask for passwords or sensitive information over the phone',
+                    'contactText' => 'Need help finding the right number? Contact our support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 326,
+                'section_key' => 'phoneNumbers',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-teal-100 dark:bg-teal-900/30',
+                        'borderColor' => 'border-teal-200 dark:border-teal-800',
+                        'textColor' => 'text-teal-700 dark:text-teal-300',
+                        'text' => 'Contact Center',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Reach Us',
+                        'highlightGradient' => 'from-teal-600 to-emerald-600',
+                        'highlightedText' => 'Instantly',
+                        'suffix' => 'Global Phone Support'
+                    ],
+                    'description' => 'Connect with our expert support team instantly. Our global phone network ensures you\'re always connected to the right person, no matter where you are in the world.',
+                    'stats' => [
+                        ['icon' => 'phone', 'value' => '30+', 'label' => 'Direct Lines'],
+                        ['icon' => 'globe', 'value' => '20+', 'label' => 'Countries'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Availability'],
+                        ['icon' => 'users', 'value' => '350+', 'label' => 'Support Agents']
+                    ],
+                    'emergencyNumber' => '+1 (888) 777-8888',
+                    'departments' => [
+                        ['type' => 'support', 'name' => 'Technical Support', 'icon' => 'cog'],
+                        ['type' => 'sales', 'name' => 'Sales', 'icon' => 'shopping-bag'],
+                        ['type' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card'],
+                        ['type' => 'partnership', 'name' => 'Partnerships', 'icon' => 'handshake']
+                    ],
+                    'regions' => [
+                        ['id' => 'nam', 'name' => 'North America', 'icon' => '🌎', 'officeCount' => 4],
+                        ['id' => 'emea', 'name' => 'Europe', 'icon' => '🌍', 'officeCount' => 3],
+                        ['id' => 'apac', 'name' => 'Asia Pacific', 'icon' => '🌏', 'officeCount' => 3],
+                        ['id' => 'latam', 'name' => 'Latin America', 'icon' => '🌎', 'officeCount' => 2]
+                    ],
+                    'phoneNumbers' => [
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'nam',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0100',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'alternateNumber' => '+1 (888) 555-0101',
+                            'languages' => ['English', 'Spanish', 'French']
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'nam',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0200',
+                            'hours' => 'Mon-Fri: 8am - 8pm EST',
+                            'email' => 'sales@example.com',
+                            'alternateNumber' => '+1 (888) 555-0201',
+                            'languages' => ['English', 'Spanish']
+                        ],
+                        [
+                            'department' => 'Billing Support',
+                            'type' => 'billing',
+                            'icon' => 'credit-card',
+                            'region' => 'nam',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0300',
+                            'hours' => 'Mon-Fri: 9am - 6pm EST',
+                            'email' => 'billing@example.com',
+                            'languages' => ['English']
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'emea',
+                            'regionName' => 'Europe',
+                            'phone' => '+44 20 7946 0123',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'alternateNumber' => '+44 20 7946 0124',
+                            'languages' => ['English', 'French', 'German', 'Spanish']
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'emea',
+                            'regionName' => 'Europe',
+                            'phone' => '+44 20 7946 0456',
+                            'hours' => 'Mon-Fri: 9am - 6pm GMT',
+                            'email' => 'sales@example.com',
+                            'languages' => ['English', 'French', 'German']
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'apac',
+                            'regionName' => 'Asia Pacific',
+                            'phone' => '+65 6221 7890',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'alternateNumber' => '+65 6221 7891',
+                            'languages' => ['English', 'Mandarin', 'Japanese', 'Korean']
+                        ],
+                        [
+                            'department' => 'Partnership Inquiries',
+                            'type' => 'partnership',
+                            'icon' => 'handshake',
+                            'region' => 'apac',
+                            'regionName' => 'Asia Pacific',
+                            'phone' => '+65 6221 3456',
+                            'hours' => 'Mon-Fri: 9am - 6pm SGT',
+                            'email' => 'partners@example.com',
+                            'languages' => ['English', 'Mandarin']
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'latam',
+                            'regionName' => 'Latin America',
+                            'phone' => '+55 11 2345 6789',
+                            'hours' => '24/7',
+                            'email' => 'tech.support@example.com',
+                            'alternateNumber' => '+55 11 2345 6790',
+                            'languages' => ['Spanish', 'Portuguese', 'English']
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'icon' => 'clock',
+                            'question' => 'What are your support hours?',
+                            'answer' => 'Technical support is available 24/7/365 for all customers with active subscriptions. Sales and billing support are available Monday through Friday from 9am to 6pm local time in each region. Enterprise customers receive priority 24/7 support.',
+                            'tags' => ['hours', 'availability', 'schedule'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer support in multiple languages?',
+                            'answer' => 'Yes, our global support team provides assistance in over 15 languages including English, Spanish, French, German, Mandarin, Japanese, Portuguese, Italian, Dutch, and more. Each regional office is staffed with local language speakers.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'icon' => 'shield',
+                            'question' => 'Is there an emergency support number?',
+                            'answer' => 'Yes, enterprise customers have access to our 24/7 emergency hotline at +1 (888) 777-8888. This line is reserved for critical system outages affecting business operations. Please use standard support channels for non-urgent issues.',
+                            'tags' => ['emergency', 'critical', 'urgent'],
+                            'link' => '/emergency'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'icon' => 'cash',
+                            'question' => 'Are there any charges for support calls?',
+                            'answer' => 'Support calls are completely free for all customers with an active subscription. Standard long-distance calling rates may apply depending on your phone carrier and location. We recommend using our toll-free numbers when available in your region.',
+                            'tags' => ['cost', 'free', 'charges', 'toll-free'],
+                            'link' => '/pricing'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'icon' => 'device-mobile',
+                            'question' => 'What if I can\'t reach anyone by phone?',
+                            'answer' => 'If you\'re unable to reach us by phone, you can submit a support ticket via email, use our live chat feature, or request a callback through our website. Our support team will respond to all inquiries within the SLA timeframe.',
+                            'tags' => ['callback', 'alternative', 'contact'],
+                            'link' => '/contact'
+                        ]
+                    ],
+                    'showSecurityNote' => true,
+                    'securityText' => 'We never ask for passwords, credit card numbers, or sensitive information over the phone',
+                    'contactText' => 'Need help finding the right number? Contact our support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 327,
+                'section_key' => 'phoneNumbers',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-amber-100 dark:bg-amber-900/30',
+                        'borderColor' => 'border-amber-200 dark:border-amber-800',
+                        'textColor' => 'text-amber-700 dark:text-amber-300',
+                        'text' => 'Voice Support',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Talk to',
+                        'highlightGradient' => 'from-amber-600 to-orange-600',
+                        'highlightedText' => 'Our Experts',
+                        'suffix' => 'Global Phone Support Network'
+                    ],
+                    'description' => 'Get instant answers from our global support team. With dedicated lines for every department and region, you\'re always just a call away from the help you need.',
+                    'stats' => [
+                        ['icon' => 'phone', 'value' => '45+', 'label' => 'Direct Lines'],
+                        ['icon' => 'globe', 'value' => '25+', 'label' => 'Countries'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Global Coverage'],
+                        ['icon' => 'users', 'value' => '500+', 'label' => 'Support Agents']
+                    ],
+                    'heroImage' => 'https://images.unsplash.com/photo-1557425493-6f90ae4659fc?w=1200&h=400&fit=crop',
+                    'contactCenterImage' => 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=600&h=400&fit=crop',
+                    'emergencyNumber' => '+1 (888) 777-6666',
+                    'departments' => [
+                        ['type' => 'support', 'name' => 'Technical Support', 'icon' => 'cog'],
+                        ['type' => 'sales', 'name' => 'Sales', 'icon' => 'shopping-bag'],
+                        ['type' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card'],
+                        ['type' => 'partnership', 'name' => 'Partnerships', 'icon' => 'handshake']
+                    ],
+                    'regions' => [
+                        ['id' => 'nam', 'name' => 'North America', 'icon' => '🌎', 'officeCount' => 5],
+                        ['id' => 'emea', 'name' => 'Europe', 'icon' => '🌍', 'officeCount' => 4],
+                        ['id' => 'apac', 'name' => 'Asia Pacific', 'icon' => '🌏', 'officeCount' => 4],
+                        ['id' => 'latam', 'name' => 'Latin America', 'icon' => '🌎', 'officeCount' => 3]
+                    ],
+                    'languages' => [
+                        ['code' => 'en', 'name' => 'English'],
+                        ['code' => 'es', 'name' => 'Español'],
+                        ['code' => 'fr', 'name' => 'Français'],
+                        ['code' => 'de', 'name' => 'Deutsch'],
+                        ['code' => 'zh', 'name' => '中文'],
+                        ['code' => 'ja', 'name' => '日本語'],
+                        ['code' => 'pt', 'name' => 'Português'],
+                        ['code' => 'ar', 'name' => 'العربية']
+                    ],
+                    'callbackReasons' => [
+                        ['value' => 'general', 'label' => 'General Inquiry'],
+                        ['value' => 'technical', 'label' => 'Technical Issue'],
+                        ['value' => 'sales', 'label' => 'Sales Question'],
+                        ['value' => 'billing', 'label' => 'Billing Issue'],
+                        ['value' => 'partnership', 'label' => 'Partnership Opportunity']
+                    ],
+                    'supportHours' => [
+                        ['days' => 'Monday - Friday', 'hours' => '24/7 Support'],
+                        ['days' => 'Saturday', 'hours' => '24/7 Support'],
+                        ['days' => 'Sunday', 'hours' => '24/7 Support'],
+                        ['days' => 'Enterprise Priority', 'hours' => '15-minute response SLA']
+                    ],
+                    'phoneNumbers' => [
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'nam',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0100',
+                            'hours' => '24/7',
+                            'email' => 'tech@example.com',
+                            'priority' => 1,
+                            'languages' => ['en', 'es', 'fr'],
+                            'alternateNumber' => '+1 (888) 555-0101',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'nam',
+                            'regionName' => 'North America',
+                            'phone' => '+1 (800) 555-0200',
+                            'hours' => 'Mon-Fri: 8am - 8pm EST',
+                            'email' => 'sales@example.com',
+                            'priority' => 2,
+                            'languages' => ['en', 'es'],
+                            'image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'emea',
+                            'regionName' => 'Europe',
+                            'phone' => '+44 20 7946 0123',
+                            'hours' => '24/7',
+                            'email' => 'tech@example.com',
+                            'priority' => 1,
+                            'languages' => ['en', 'fr', 'de', 'es'],
+                            'alternateNumber' => '+44 20 7946 0124',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'apac',
+                            'regionName' => 'Asia Pacific',
+                            'phone' => '+65 6221 7890',
+                            'hours' => '24/7',
+                            'email' => 'tech@example.com',
+                            'priority' => 1,
+                            'languages' => ['en', 'zh', 'ja'],
+                            'alternateNumber' => '+65 6221 7891',
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Partnership Inquiries',
+                            'type' => 'partnership',
+                            'icon' => 'handshake',
+                            'region' => 'emea',
+                            'regionName' => 'Europe',
+                            'phone' => '+44 20 7946 0456',
+                            'hours' => 'Mon-Fri: 9am - 6pm GMT',
+                            'email' => 'partners@example.com',
+                            'priority' => 3,
+                            'languages' => ['en', 'fr', 'de'],
+                            'image' => 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'latam',
+                            'regionName' => 'Latin America',
+                            'phone' => '+55 11 2345 6789',
+                            'hours' => '24/7',
+                            'email' => 'tech@example.com',
+                            'priority' => 1,
+                            'languages' => ['es', 'pt', 'en'],
+                            'alternateNumber' => '+55 11 2345 6790',
+                            'image' => 'https://images.unsplash.com/photo-1549208614-3d2cd153e2e3?w=400&h=300&fit=crop'
+                        ]
+                    ],
+                    'faqCategories' => [
+                        ['id' => 'general', 'name' => 'General Questions', 'icon' => 'question', 'description' => 'Common questions about phone support'],
+                        ['id' => 'emergency', 'name' => 'Emergency Support', 'icon' => 'shield', 'description' => 'Critical issue response'],
+                        ['id' => 'callback', 'name' => 'Callback Service', 'icon' => 'calendar', 'description' => 'Scheduling and callback requests']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'What are your support hours?',
+                            'answer' => 'Technical support is available 24/7/365 for all customers with active subscriptions. Sales and billing support are available Monday through Friday from 9am to 6pm local time in each region. Enterprise customers receive priority 24/7 support with a 15-minute response SLA.',
+                            'tags' => ['hours', 'availability', 'schedule', 'sla'],
+                            'link' => '/support',
+                            'updatedAt' => '2024-01-15',
+                            'views' => 1250
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer support in multiple languages?',
+                            'answer' => 'Yes, our global support team provides assistance in over 20 languages including English, Spanish, French, German, Mandarin, Japanese, Portuguese, Arabic, Italian, Dutch, and more. Each regional office is staffed with native or fluent local language speakers.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support',
+                            'updatedAt' => '2024-01-10',
+                            'views' => 980
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'emergency',
+                            'icon' => 'shield',
+                            'question' => 'Is there an emergency support number?',
+                            'answer' => 'Yes, enterprise customers have access to our 24/7 emergency hotline at +1 (888) 777-6666. This line is reserved for critical system outages affecting business operations. When calling, please have your account ID ready for verification. Standard support channels should be used for non-urgent issues.',
+                            'tags' => ['emergency', 'critical', 'urgent', 'hotline'],
+                            'link' => '/emergency',
+                            'updatedAt' => '2024-01-18',
+                            'views' => 750
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'callback',
+                            'icon' => 'calendar',
+                            'question' => 'How do I request a callback?',
+                            'answer' => 'You can request a callback by filling out the callback form on this page. Simply provide your name, phone number, and reason for the callback. Our team will contact you within 30 minutes during business hours. Enterprise customers receive priority callback within 10 minutes.',
+                            'tags' => ['callback', 'scheduling', 'request'],
+                            'link' => '/callback',
+                            'updatedAt' => '2024-01-20',
+                            'views' => 620
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'general',
+                            'icon' => 'cash',
+                            'question' => 'Are support calls free?',
+                            'answer' => 'Support calls are completely free for all customers with an active subscription. Standard long-distance calling rates may apply depending on your phone carrier and location. We recommend using our toll-free numbers when available in your region. Enterprise customers have access to dedicated toll-free lines.',
+                            'tags' => ['cost', 'free', 'charges', 'toll-free'],
+                            'link' => '/pricing',
+                            'updatedAt' => '2024-01-25',
+                            'views' => 890
+                        ]
+                    ],
+                    'contactImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                    'showSecurityNote' => true,
+                    'securityText' => 'We never ask for passwords, credit card numbers, or sensitive information over the phone',
+                    'contactText' => 'Need help finding the right number? Contact our support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 328,
+                'section_key' => 'phoneNumbers',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Email Addresses Section
+            [
+                'id' => 329,
+                'section_key' => 'emailAddresses',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-sky-100 dark:bg-sky-900/30',
+                        'borderColor' => 'border-sky-200 dark:border-sky-800',
+                        'textColor' => 'text-sky-700 dark:text-sky-300',
+                        'text' => 'Email Support',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Reach Out',
+                        'highlightGradient' => 'from-sky-600 to-blue-600',
+                        'highlightedText' => 'Via Email',
+                        'suffix' => 'We\'re Just a Message Away'
+                    ],
+                    'description' => 'Send us an email and our team will get back to you promptly. Choose the right department for your inquiry and expect a response within our guaranteed response times.',
+                    'stats' => [
+                        ['icon' => 'mail', 'value' => '15+', 'label' => 'Email Channels'],
+                        ['icon' => 'clock', 'value' => '< 24hrs', 'label' => 'Response Time'],
+                        ['icon' => 'globe', 'value' => '24/7', 'label' => 'Monitoring'],
+                        ['icon' => 'users', 'value' => '98%', 'label' => 'Satisfaction Rate']
+                    ],
+                    'heroImage' => 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=1200&h=400&fit=crop',
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'question'],
+                        ['id' => 'technical', 'name' => 'Technical', 'icon' => 'cog'],
+                        ['id' => 'security', 'name' => 'Security', 'icon' => 'shield'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card']
+                    ],
+                    'emailAddresses' => [
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'Global',
+                            'email' => 'tech.support@example.com',
+                            'description' => 'For technical issues, bug reports, and platform assistance',
+                            'responseTime' => 'Response within 4 hours (24/7)',
+                            'priority' => 1,
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'Global',
+                            'email' => 'sales@example.com',
+                            'description' => 'For pricing questions, demos, and sales support',
+                            'responseTime' => 'Response within 8 business hours',
+                            'priority' => 2,
+                            'image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Billing Support',
+                            'type' => 'billing',
+                            'icon' => 'credit-card',
+                            'region' => 'Global',
+                            'email' => 'billing@example.com',
+                            'description' => 'For invoice questions, payment issues, and refunds',
+                            'responseTime' => 'Response within 8 business hours',
+                            'priority' => 2,
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Security Team',
+                            'type' => 'security',
+                            'icon' => 'shield',
+                            'region' => 'Global',
+                            'email' => 'security@example.com',
+                            'description' => 'For security vulnerabilities, incident reports, and security questions',
+                            'responseTime' => 'Response within 1 hour (24/7)',
+                            'priority' => 1,
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Partnerships',
+                            'type' => 'partnership',
+                            'icon' => 'handshake',
+                            'region' => 'Global',
+                            'email' => 'partners@example.com',
+                            'description' => 'For partnership opportunities and alliance inquiries',
+                            'responseTime' => 'Response within 12 business hours',
+                            'priority' => 3,
+                            'image' => 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Press & Media',
+                            'type' => 'press',
+                            'icon' => 'newspaper',
+                            'region' => 'Global',
+                            'email' => 'press@example.com',
+                            'description' => 'For media inquiries, press releases, and interview requests',
+                            'responseTime' => 'Response within 4 business hours',
+                            'priority' => 2,
+                            'image' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'How quickly will I get a response?',
+                            'answer' => 'Our response times vary by department: Technical Support responds within 4 hours (24/7), Security within 1 hour, Sales and Billing within 8 business hours, and Partnerships within 12 business hours. Enterprise customers receive priority responses.',
+                            'tags' => ['response time', 'sla', 'speed'],
+                            'link' => '/sla'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer support in multiple languages?',
+                            'answer' => 'Yes, our email support is available in English, Spanish, French, German, Japanese, and Portuguese. Please indicate your preferred language in the subject line, and we\'ll route your inquiry to the appropriate team.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'security',
+                            'icon' => 'shield',
+                            'question' => 'How do I report a security vulnerability?',
+                            'answer' => 'Please email security@example.com with the details of the vulnerability. We have a responsible disclosure program and will acknowledge your report within 1 hour. Do not share security vulnerabilities on public forums.',
+                            'tags' => ['security', 'vulnerability', 'disclosure'],
+                            'link' => '/security'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'technical',
+                            'icon' => 'cog',
+                            'question' => 'What information should I include in my email?',
+                            'answer' => 'To help us resolve your issue quickly, please include: your account email, a detailed description of the issue, steps to reproduce (for bugs), screenshots if applicable, and your browser/device information.',
+                            'tags' => ['troubleshooting', 'information', 'details'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'billing',
+                            'icon' => 'credit-card',
+                            'question' => 'How do I request a refund?',
+                            'answer' => 'Please email billing@example.com with your account email, invoice number, and reason for the refund request. Refunds are processed within 5-7 business days. Our 14-day money-back guarantee applies to monthly plans.',
+                            'tags' => ['refund', 'money back', 'billing'],
+                            'link' => '/refund-policy'
+                        ]
+                    ],
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'All emails receive a response within 24 hours. Enterprise customers get priority response within 4 hours.',
+                    'contactText' => 'Need help finding the right email address? Contact our support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 330,
+                'section_key' => 'emailAddresses',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-indigo-100 dark:bg-indigo-900/30',
+                        'borderColor' => 'border-indigo-200 dark:border-indigo-800',
+                        'textColor' => 'text-indigo-700 dark:text-indigo-300',
+                        'text' => 'Email Support Center',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Get in',
+                        'highlightGradient' => 'from-indigo-600 to-purple-600',
+                        'highlightedText' => 'Touch',
+                        'suffix' => 'Via Email'
+                    ],
+                    'description' => 'Connect with the right team through our department-specific email addresses. Whether you need technical support, have sales questions, or want to discuss partnerships, we\'re just an email away.',
+                    'stats' => [
+                        ['icon' => 'mail', 'value' => '20+', 'label' => 'Email Channels'],
+                        ['icon' => 'clock', 'value' => '< 12hrs', 'label' => 'Avg Response'],
+                        ['icon' => 'globe', 'value' => '24/7', 'label' => 'Monitoring'],
+                        ['icon' => 'users', 'value' => '99%', 'label' => 'Customer Satisfaction']
+                    ],
+                    'emailTypes' => [
+                        ['value' => 'support', 'label' => 'Technical Support', 'icon' => 'cog'],
+                        ['value' => 'sales', 'label' => 'Sales', 'icon' => 'shopping-bag'],
+                        ['value' => 'billing', 'label' => 'Billing', 'icon' => 'credit-card'],
+                        ['value' => 'security', 'label' => 'Security', 'icon' => 'shield'],
+                        ['value' => 'partnership', 'label' => 'Partnerships', 'icon' => 'handshake']
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General'],
+                        ['id' => 'technical', 'name' => 'Technical'],
+                        ['id' => 'security', 'name' => 'Security'],
+                        ['id' => 'billing', 'name' => 'Billing']
+                    ],
+                    'emailAddresses' => [
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'Global',
+                            'email' => 'tech@example.com',
+                            'description' => 'For technical issues, bug reports, API questions, and platform assistance',
+                            'responseTime' => 'Response within 4 hours (24/7)',
+                            'priority' => 1,
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'Global',
+                            'email' => 'sales@example.com',
+                            'description' => 'For pricing questions, product demos, and enterprise sales',
+                            'responseTime' => 'Response within 8 business hours',
+                            'priority' => 2,
+                            'image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Billing Support',
+                            'type' => 'billing',
+                            'icon' => 'credit-card',
+                            'region' => 'Global',
+                            'email' => 'billing@example.com',
+                            'description' => 'For invoice questions, payment issues, and refund requests',
+                            'responseTime' => 'Response within 8 business hours',
+                            'priority' => 2,
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Security Team',
+                            'type' => 'security',
+                            'icon' => 'shield',
+                            'region' => 'Global',
+                            'email' => 'security@example.com',
+                            'description' => 'For security vulnerabilities, incident reports, and security questions',
+                            'responseTime' => 'Response within 1 hour (24/7)',
+                            'priority' => 1,
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Partnerships',
+                            'type' => 'partnership',
+                            'icon' => 'handshake',
+                            'region' => 'Global',
+                            'email' => 'partners@example.com',
+                            'description' => 'For partnership opportunities and alliance inquiries',
+                            'responseTime' => 'Response within 12 business hours',
+                            'priority' => 3,
+                            'image' => 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Press & Media',
+                            'type' => 'press',
+                            'icon' => 'newspaper',
+                            'region' => 'Global',
+                            'email' => 'press@example.com',
+                            'description' => 'For media inquiries and interview requests',
+                            'responseTime' => 'Response within 4 business hours',
+                            'priority' => 2,
+                            'image' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'How quickly will I get a response?',
+                            'answer' => 'Response times vary by department: Technical Support responds within 4 hours (24/7), Security within 1 hour, Sales and Billing within 8 business hours, and Partnerships within 12 business hours. Enterprise customers receive priority responses.',
+                            'tags' => ['response time', 'sla', 'speed'],
+                            'link' => '/sla'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer email support in multiple languages?',
+                            'answer' => 'Yes, our email support is available in English, Spanish, French, German, Japanese, and Portuguese. Please indicate your preferred language in the subject line, and we\'ll route your inquiry to the appropriate team.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'security',
+                            'icon' => 'shield',
+                            'question' => 'How do I report a security vulnerability?',
+                            'answer' => 'Please email security@example.com with the details of the vulnerability. We have a responsible disclosure program and will acknowledge your report within 1 hour. Do not share security vulnerabilities on public forums.',
+                            'tags' => ['security', 'vulnerability', 'disclosure'],
+                            'link' => '/security'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'technical',
+                            'icon' => 'cog',
+                            'question' => 'What information should I include in my email?',
+                            'answer' => 'To help us resolve your issue quickly, please include: your account email, a detailed description of the issue, steps to reproduce (for bugs), screenshots if applicable, and your browser/device information.',
+                            'tags' => ['troubleshooting', 'information', 'details'],
+                            'link' => '/support'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'billing',
+                            'icon' => 'credit-card',
+                            'question' => 'How do I request a refund?',
+                            'answer' => 'Please email billing@example.com with your account email, invoice number, and reason for the refund request. Refunds are processed within 5-7 business days. Our 14-day money-back guarantee applies to monthly plans.',
+                            'tags' => ['refund', 'money back', 'billing'],
+                            'link' => '/refund-policy'
+                        ]
+                    ],
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'All emails receive a response within 24 hours. Enterprise customers get priority response within 4 hours.',
+                    'contactText' => 'Need help finding the right email address? Contact our support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 331,
+                'section_key' => 'emailAddresses',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-emerald-100 dark:bg-emerald-900/30',
+                        'borderColor' => 'border-emerald-200 dark:border-emerald-800',
+                        'textColor' => 'text-emerald-700 dark:text-emerald-300',
+                        'text' => 'Email Support Hub',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Send Us',
+                        'highlightGradient' => 'from-emerald-600 to-teal-600',
+                        'highlightedText' => 'a Message',
+                        'suffix' => 'We\'re Here to Help'
+                    ],
+                    'description' => 'Connect with our global support team via email. Choose the right department, include relevant details, and expect a prompt response. Your questions matter to us.',
+                    'stats' => [
+                        ['icon' => 'mail', 'value' => '25+', 'label' => 'Email Channels'],
+                        ['icon' => 'clock', 'value' => '< 24hrs', 'label' => 'Response SLA'],
+                        ['icon' => 'globe', 'value' => '24/7', 'label' => 'Monitoring'],
+                        ['icon' => 'users', 'value' => '500+', 'label' => 'Team Members']
+                    ],
+                    'heroImage' => 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=1200&h=400&fit=crop',
+                    'emailTypes' => [
+                        ['value' => 'support', 'label' => 'Technical Support', 'icon' => 'cog'],
+                        ['value' => 'sales', 'label' => 'Sales', 'icon' => 'shopping-bag'],
+                        ['value' => 'billing', 'label' => 'Billing', 'icon' => 'credit-card'],
+                        ['value' => 'security', 'label' => 'Security', 'icon' => 'shield'],
+                        ['value' => 'partnership', 'label' => 'Partnerships', 'icon' => 'handshake']
+                    ],
+                    'regions' => [
+                        ['id' => 'nam', 'name' => 'North America', 'icon' => '🌎'],
+                        ['id' => 'emea', 'name' => 'Europe', 'icon' => '🌍'],
+                        ['id' => 'apac', 'name' => 'Asia Pacific', 'icon' => '🌏'],
+                        ['id' => 'latam', 'name' => 'Latin America', 'icon' => '🌎']
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'question', 'description' => 'General email support questions'],
+                        ['id' => 'technical', 'name' => 'Technical', 'icon' => 'cog', 'description' => 'Technical issue resolution'],
+                        ['id' => 'security', 'name' => 'Security', 'icon' => 'shield', 'description' => 'Security and privacy concerns'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card', 'description' => 'Billing and payment questions']
+                    ],
+                    'emailAddresses' => [
+                        [
+                            'department' => 'Technical Support',
+                            'type' => 'support',
+                            'icon' => 'cog',
+                            'region' => 'Global',
+                            'email' => 'tech@example.com',
+                            'description' => 'For technical issues, bug reports, API questions, and platform assistance',
+                            'responseTime' => 'Response within 4 hours (24/7)',
+                            'priority' => 1,
+                            'languages' => ['en', 'es', 'fr', 'de'],
+                            'availability' => '24/7',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Sales Inquiries',
+                            'type' => 'sales',
+                            'icon' => 'shopping-bag',
+                            'region' => 'Global',
+                            'email' => 'sales@example.com',
+                            'description' => 'For pricing questions, product demos, and enterprise sales',
+                            'responseTime' => 'Response within 8 business hours',
+                            'priority' => 2,
+                            'languages' => ['en', 'es', 'fr'],
+                            'availability' => 'Mon-Fri, 9am-6pm local',
+                            'image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Billing Support',
+                            'type' => 'billing',
+                            'icon' => 'credit-card',
+                            'region' => 'Global',
+                            'email' => 'billing@example.com',
+                            'description' => 'For invoice questions, payment issues, and refund requests',
+                            'responseTime' => 'Response within 8 business hours',
+                            'priority' => 2,
+                            'languages' => ['en'],
+                            'availability' => 'Mon-Fri, 9am-6pm EST',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Security Team',
+                            'type' => 'security',
+                            'icon' => 'shield',
+                            'region' => 'Global',
+                            'email' => 'security@example.com',
+                            'description' => 'For security vulnerabilities, incident reports, and security questions',
+                            'responseTime' => 'Response within 1 hour (24/7)',
+                            'priority' => 1,
+                            'languages' => ['en'],
+                            'availability' => '24/7',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Partnerships',
+                            'type' => 'partnership',
+                            'icon' => 'handshake',
+                            'region' => 'Global',
+                            'email' => 'partners@example.com',
+                            'description' => 'For partnership opportunities and alliance inquiries',
+                            'responseTime' => 'Response within 12 business hours',
+                            'priority' => 3,
+                            'languages' => ['en'],
+                            'availability' => 'Mon-Fri, 9am-6pm',
+                            'image' => 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'department' => 'Press & Media',
+                            'type' => 'press',
+                            'icon' => 'newspaper',
+                            'region' => 'Global',
+                            'email' => 'press@example.com',
+                            'description' => 'For media inquiries and interview requests',
+                            'responseTime' => 'Response within 4 business hours',
+                            'priority' => 2,
+                            'languages' => ['en'],
+                            'availability' => 'Mon-Fri, 9am-6pm',
+                            'image' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop'
+                        ]
+                    ],
+                    'autoResponses' => [
+                        'You\'ll receive an automated acknowledgment within 5 minutes',
+                        'Our team reviews your message and assigns it to the right specialist',
+                        'A support agent responds with a solution or requests more information',
+                        'We follow up to ensure your issue is fully resolved'
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'How quickly will I get a response?',
+                            'answer' => 'Response times vary by department: Technical Support responds within 4 hours (24/7), Security within 1 hour, Sales and Billing within 8 business hours, and Partnerships within 12 business hours. Enterprise customers receive priority responses within 2 hours.',
+                            'tags' => ['response time', 'sla', 'speed'],
+                            'link' => '/sla',
+                            'updatedAt' => '2024-01-15',
+                            'views' => 1250
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'Do you offer email support in multiple languages?',
+                            'answer' => 'Yes, our email support is available in English, Spanish, French, German, Japanese, Portuguese, and Italian. Please indicate your preferred language in the subject line (e.g., [FR] for French), and we\'ll route your inquiry to the appropriate team.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support',
+                            'updatedAt' => '2024-01-10',
+                            'views' => 980
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'security',
+                            'icon' => 'shield',
+                            'question' => 'How do I report a security vulnerability?',
+                            'answer' => 'Please email security@example.com with the details of the vulnerability. Use PGP encryption if possible (our public key is available on our security page). We have a responsible disclosure program and will acknowledge your report within 1 hour. Do not share security vulnerabilities on public forums.',
+                            'tags' => ['security', 'vulnerability', 'disclosure', 'pgp'],
+                            'link' => '/security',
+                            'updatedAt' => '2024-01-18',
+                            'views' => 750
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'technical',
+                            'icon' => 'cog',
+                            'question' => 'What information should I include in my email?',
+                            'answer' => 'To help us resolve your issue quickly, please include: your account email, a detailed description of the issue, steps to reproduce (for bugs), screenshots if applicable, your browser/device information, and any error messages you\'re seeing. The more detail, the faster we can help.',
+                            'tags' => ['troubleshooting', 'information', 'details'],
+                            'link' => '/support',
+                            'updatedAt' => '2024-01-20',
+                            'views' => 620
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'billing',
+                            'icon' => 'credit-card',
+                            'question' => 'How do I request a refund?',
+                            'answer' => 'Please email billing@example.com with your account email, invoice number, and reason for the refund request. Refunds are processed within 5-7 business days. Our 14-day money-back guarantee applies to monthly plans. Annual plans are non-refundable but can be cancelled to prevent renewal.',
+                            'tags' => ['refund', 'money back', 'billing', 'cancellation'],
+                            'link' => '/refund-policy',
+                            'updatedAt' => '2024-01-25',
+                            'views' => 890
+                        ]
+                    ],
+                    'contactImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'All emails receive a response within 24 hours. Enterprise customers get priority response within 4 hours.',
+                    'contactText' => 'Need help finding the right email address? Contact our support team.',
+                    'contactButtonText' => 'Contact Us',
+                    'contactLink' => '/contact'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 332,
+                'section_key' => 'emailAddresses',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Live Chat Option Section
+            [
+                'id' => 333,
+                'section_key' => 'liveChatOption',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-purple-100 dark:bg-purple-900/30',
+                        'borderColor' => 'border-purple-200 dark:border-purple-800',
+                        'textColor' => 'text-purple-700 dark:text-purple-300',
+                        'text' => 'Live Chat',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Chat with',
+                        'highlightGradient' => 'from-purple-600 to-pink-600',
+                        'highlightedText' => 'Our Team',
+                        'suffix' => 'Real-Time Support'
+                    ],
+                    'description' => 'Get instant answers from our support specialists. Live chat is the fastest way to resolve your questions and get the help you need, right when you need it.',
+                    'stats' => [
+                        ['icon' => 'chat', 'value' => '< 2min', 'label' => 'Avg Response Time'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Enterprise Support'],
+                        ['icon' => 'users', 'value' => '15+', 'label' => 'Agents Online'],
+                        ['icon' => 'globe', 'value' => '98%', 'label' => 'Satisfaction Rate']
+                    ],
+                    'heroImage' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&h=400&fit=crop',
+                    'agentsOnline' => 15,
+                    'chatHours' => [
+                        ['days' => 'Monday - Friday', 'hours' => '24/7 Support'],
+                        ['days' => 'Saturday', 'hours' => '24/7 Support'],
+                        ['days' => 'Sunday', 'hours' => '24/7 Support'],
+                        ['days' => 'Enterprise Priority', 'hours' => '15-minute response SLA']
+                    ],
+                    'languages' => ['English', 'Spanish', 'French', 'German', 'Japanese', 'Portuguese', 'Italian', 'Dutch'],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'question'],
+                        ['id' => 'technical', 'name' => 'Technical', 'icon' => 'cog'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card'],
+                        ['id' => 'account', 'name' => 'Account', 'icon' => 'user']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'How fast is the live chat response?',
+                            'answer' => 'Our average response time is under 2 minutes. During peak hours, wait times may be slightly longer, but we always have multiple agents available. Enterprise customers receive priority routing with response times under 30 seconds.',
+                            'tags' => ['response time', 'speed', 'wait time'],
+                            'link' => '/chat',
+                            'views' => 1250,
+                            'updatedAt' => '2024-01-15'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'What languages do you support in chat?',
+                            'answer' => 'Our live chat support is available in English, Spanish, French, German, Japanese, Portuguese, Italian, and Dutch. When you start a chat, you can select your preferred language, and we\'ll route you to an agent who speaks it.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support',
+                            'views' => 980,
+                            'updatedAt' => '2024-01-20'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'technical',
+                            'icon' => 'cog',
+                            'question' => 'Can I share screenshots or files in chat?',
+                            'answer' => 'Yes, our chat system supports file sharing. You can upload screenshots, error logs, and documents up to 10MB. This helps our support team diagnose issues faster and provide more accurate solutions.',
+                            'tags' => ['screenshots', 'files', 'attachments'],
+                            'link' => '/chat',
+                            'views' => 750,
+                            'updatedAt' => '2024-01-10'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'general',
+                            'icon' => 'users',
+                            'question' => 'Is live chat available 24/7?',
+                            'answer' => 'Live chat is available 24/7 for all customers. Enterprise customers receive priority routing with guaranteed response within 15 minutes. Standard support may have slightly longer wait times during off-peak hours.',
+                            'tags' => ['hours', 'availability', '24/7'],
+                            'link' => '/support',
+                            'views' => 890,
+                            'updatedAt' => '2024-01-18'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'account',
+                            'icon' => 'user',
+                            'question' => 'Do I need an account to use live chat?',
+                            'answer' => 'You don\'t need an account to start a chat, but providing your email helps us follow up if the chat gets disconnected. Having an account allows us to access your account information and provide faster, more personalized support.',
+                            'tags' => ['account', 'login', 'registration'],
+                            'link' => '/signup',
+                            'views' => 620,
+                            'updatedAt' => '2024-01-25'
+                        ]
+                    ],
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'Enterprise customers get priority chat routing and 24/7 live chat support with <15 minute response SLA',
+                    'contactText' => 'Need immediate assistance? Start a live chat with our support team.',
+                    'contactButtonText' => 'Start Live Chat',
+                    'contactLink' => '/chat'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 334,
+                'section_key' => 'liveChatOption',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-rose-100 dark:bg-rose-900/30',
+                        'borderColor' => 'border-rose-200 dark:border-rose-800',
+                        'textColor' => 'text-rose-700 dark:text-rose-300',
+                        'text' => 'Live Support',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Instant',
+                        'highlightGradient' => 'from-rose-600 to-pink-600',
+                        'highlightedText' => 'Live Chat',
+                        'suffix' => 'Support Anytime'
+                    ],
+                    'description' => 'Get real-time answers from our support specialists. Live chat is the fastest way to resolve your questions, with average response times under 2 minutes.',
+                    'stats' => [
+                        ['icon' => 'chat', 'value' => '< 2min', 'label' => 'Avg Response'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Enterprise Support'],
+                        ['icon' => 'users', 'value' => '12+', 'label' => 'Agents Online'],
+                        ['icon' => 'globe', 'value' => '99%', 'label' => 'Satisfaction Rate']
+                    ],
+                    'agentsOnline' => 12,
+                    'chatHours' => [
+                        ['days' => 'Monday - Friday', 'hours' => '24/7 Support'],
+                        ['days' => 'Saturday', 'hours' => '24/7 Support'],
+                        ['days' => 'Sunday', 'hours' => '24/7 Support']
+                    ],
+                    'languages' => [
+                        ['code' => 'en', 'name' => 'English'],
+                        ['code' => 'es', 'name' => 'Español'],
+                        ['code' => 'fr', 'name' => 'Français'],
+                        ['code' => 'de', 'name' => 'Deutsch'],
+                        ['code' => 'ja', 'name' => '日本語'],
+                        ['code' => 'pt', 'name' => 'Português']
+                    ],
+                    'quickResponses' => [
+                        'I need help with a technical issue',
+                        'I have a billing question',
+                        'How do I reset my password?',
+                        'I want to upgrade my plan'
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'question'],
+                        ['id' => 'technical', 'name' => 'Technical', 'icon' => 'cog'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card'],
+                        ['id' => 'account', 'name' => 'Account', 'icon' => 'user']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'How fast is the live chat response?',
+                            'answer' => 'Our average response time is under 2 minutes. During peak hours, wait times may be slightly longer, but we always have multiple agents available. Enterprise customers receive priority routing with response times under 30 seconds.',
+                            'tags' => ['response time', 'speed', 'wait time'],
+                            'link' => '/chat',
+                            'views' => 1250,
+                            'updatedAt' => '2024-01-15'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'What languages do you support in chat?',
+                            'answer' => 'Our live chat support is available in English, Spanish, French, German, Japanese, and Portuguese. When you start a chat, you can select your preferred language, and we\'ll route you to an agent who speaks it.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support',
+                            'views' => 980,
+                            'updatedAt' => '2024-01-20'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'technical',
+                            'icon' => 'cog',
+                            'question' => 'Can I share screenshots or files in chat?',
+                            'answer' => 'Yes, our chat system supports file sharing. You can upload screenshots, error logs, and documents up to 10MB. This helps our support team diagnose issues faster and provide more accurate solutions.',
+                            'tags' => ['screenshots', 'files', 'attachments'],
+                            'link' => '/chat',
+                            'views' => 750,
+                            'updatedAt' => '2024-01-10'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'general',
+                            'icon' => 'users',
+                            'question' => 'Is live chat available 24/7?',
+                            'answer' => 'Live chat is available 24/7 for all customers. Enterprise customers receive priority routing with guaranteed response within 15 minutes. Standard support may have slightly longer wait times during off-peak hours.',
+                            'tags' => ['hours', 'availability', '24/7'],
+                            'link' => '/support',
+                            'views' => 890,
+                            'updatedAt' => '2024-01-18'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'account',
+                            'icon' => 'user',
+                            'question' => 'Do I need an account to use live chat?',
+                            'answer' => 'You don\'t need an account to start a chat, but providing your email helps us follow up if the chat gets disconnected. Having an account allows us to access your account information and provide faster, more personalized support.',
+                            'tags' => ['account', 'login', 'registration'],
+                            'link' => '/signup',
+                            'views' => 620,
+                            'updatedAt' => '2024-01-25'
+                        ]
+                    ],
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'Enterprise customers get priority chat routing and 24/7 live chat support with <15 minute response SLA',
+                    'contactText' => 'Need immediate assistance? Start a live chat with our support team.',
+                    'contactButtonText' => 'Start Live Chat',
+                    'contactLink' => '/chat'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 335,
+                'section_key' => 'liveChatOption',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => [
+                        'backgroundColor' => 'bg-cyan-100 dark:bg-cyan-900/30',
+                        'borderColor' => 'border-cyan-200 dark:border-cyan-800',
+                        'textColor' => 'text-cyan-700 dark:text-cyan-300',
+                        'text' => 'Live Support',
+                        'showPulse' => true
+                    ],
+                    'title' => [
+                        'prefix' => 'Real-Time',
+                        'highlightGradient' => 'from-cyan-600 to-blue-600',
+                        'highlightedText' => 'Chat Support',
+                        'suffix' => 'Get Help Instantly'
+                    ],
+                    'description' => 'Connect with our support specialists in real-time. Live chat is the fastest way to get answers, resolve issues, and get back to business.',
+                    'stats' => [
+                        ['icon' => 'chat', 'value' => '< 2min', 'label' => 'Avg Response'],
+                        ['icon' => 'clock', 'value' => '24/7', 'label' => 'Enterprise Support'],
+                        ['icon' => 'users', 'value' => '10+', 'label' => 'Agents Online'],
+                        ['icon' => 'globe', 'value' => '98%', 'label' => 'Satisfaction Rate']
+                    ],
+                    'heroImage' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&h=400&fit=crop',
+                    'agentsOnline' => 10,
+                    'chatHours' => [
+                        ['days' => 'Monday - Friday', 'hours' => '24/7 Support'],
+                        ['days' => 'Saturday', 'hours' => '24/7 Support'],
+                        ['days' => 'Sunday', 'hours' => '24/7 Support']
+                    ],
+                    'languages' => [
+                        ['code' => 'en', 'name' => 'English'],
+                        ['code' => 'es', 'name' => 'Español'],
+                        ['code' => 'fr', 'name' => 'Français'],
+                        ['code' => 'de', 'name' => 'Deutsch'],
+                        ['code' => 'ja', 'name' => '日本語'],
+                        ['code' => 'pt', 'name' => 'Português'],
+                        ['code' => 'it', 'name' => 'Italiano'],
+                        ['code' => 'nl', 'name' => 'Nederlands']
+                    ],
+                    'resources' => [
+                        ['icon' => '📘', 'title' => 'Chat Guide', 'description' => 'Learn how to get the most out of live chat', 'linkText' => 'Read Guide', 'link' => '/guides/chat'],
+                        ['icon' => '🎥', 'title' => 'Video Tutorial', 'description' => 'Watch how our chat support works', 'linkText' => 'Watch Video', 'link' => '/videos/chat'],
+                        ['icon' => '📋', 'title' => 'Best Practices', 'description' => 'Tips for effective chat communication', 'linkText' => 'Learn More', 'link' => '/best-practices/chat']
+                    ],
+                    'categories' => [
+                        ['id' => 'general', 'name' => 'General', 'icon' => 'question', 'description' => 'General chat support questions'],
+                        ['id' => 'technical', 'name' => 'Technical', 'icon' => 'cog', 'description' => 'Technical issue resolution'],
+                        ['id' => 'billing', 'name' => 'Billing', 'icon' => 'credit-card', 'description' => 'Billing and payment questions'],
+                        ['id' => 'account', 'name' => 'Account', 'icon' => 'user', 'description' => 'Account management help']
+                    ],
+                    'faqs' => [
+                        [
+                            'id' => 'faq-1',
+                            'category' => 'general',
+                            'icon' => 'clock',
+                            'question' => 'How fast is the live chat response?',
+                            'answer' => 'Our average response time is under 2 minutes. During peak hours, wait times may be slightly longer, but we always have multiple agents available. Enterprise customers receive priority routing with response times under 30 seconds.',
+                            'tags' => ['response time', 'speed', 'wait time'],
+                            'link' => '/chat',
+                            'views' => 1250,
+                            'updatedAt' => '2024-01-15'
+                        ],
+                        [
+                            'id' => 'faq-2',
+                            'category' => 'general',
+                            'icon' => 'globe',
+                            'question' => 'What languages do you support in chat?',
+                            'answer' => 'Our live chat support is available in English, Spanish, French, German, Japanese, Portuguese, Italian, and Dutch. When you start a chat, you can select your preferred language, and we\'ll route you to an agent who speaks it.',
+                            'tags' => ['languages', 'translation', 'multilingual'],
+                            'link' => '/support',
+                            'views' => 980,
+                            'updatedAt' => '2024-01-20'
+                        ],
+                        [
+                            'id' => 'faq-3',
+                            'category' => 'technical',
+                            'icon' => 'cog',
+                            'question' => 'Can I share screenshots or files in chat?',
+                            'answer' => 'Yes, our chat system supports file sharing. You can upload screenshots, error logs, and documents up to 10MB. This helps our support team diagnose issues faster and provide more accurate solutions.',
+                            'tags' => ['screenshots', 'files', 'attachments'],
+                            'link' => '/chat',
+                            'views' => 750,
+                            'updatedAt' => '2024-01-10'
+                        ],
+                        [
+                            'id' => 'faq-4',
+                            'category' => 'general',
+                            'icon' => 'users',
+                            'question' => 'Is live chat available 24/7?',
+                            'answer' => 'Live chat is available 24/7 for all customers. Enterprise customers receive priority routing with guaranteed response within 15 minutes. Standard support may have slightly longer wait times during off-peak hours.',
+                            'tags' => ['hours', 'availability', '24/7'],
+                            'link' => '/support',
+                            'views' => 890,
+                            'updatedAt' => '2024-01-18'
+                        ],
+                        [
+                            'id' => 'faq-5',
+                            'category' => 'account',
+                            'icon' => 'user',
+                            'question' => 'Do I need an account to use live chat?',
+                            'answer' => 'You don\'t need an account to start a chat, but providing your email helps us follow up if the chat gets disconnected. Having an account allows us to access your account information and provide faster, more personalized support.',
+                            'tags' => ['account', 'login', 'registration'],
+                            'link' => '/signup',
+                            'views' => 620,
+                            'updatedAt' => '2024-01-25'
+                        ]
+                    ],
+                    'agentImage' => 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=600&h=400&fit=crop',
+                    'contactImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                    'showGuarantee' => true,
+                    'guaranteeText' => 'Enterprise customers get priority chat routing and 24/7 live chat support with <15 minute response SLA',
+                    'contactText' => 'Need immediate assistance? Start a live chat with our support team.',
+                    'contactButtonText' => 'Start Live Chat',
+                    'contactLink' => '/chat'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 336,
+                'section_key' => 'liveChatOption',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
 
         ];
 

@@ -1,10 +1,35 @@
 // frontend/Contact/LiveChatOptionSection/LiveChatOptionSection3.jsx
 
-// React
-import { Link } from '@inertiajs/react';
-import { useState, useRef, useEffect } from 'react';
+/**
+ * Live Chat Option Section Component - Advanced Chat with Multi-Tab Interface
+ * A comprehensive live chat support center featuring:
+ * - Multi-tab interface (FAQs, Resources, Hours & Languages)
+ * - Full-featured chat widget with pre-chat form and language selection
+ * - Queue position display during peak times
+ * - Real-time message exchange with typing indicators
+ * - Emoji picker for rich message expression
+ * - File attachment support with preview
+ * - Sound notifications for new messages
+ * - Chat transcript saving and download functionality
+ * - Post-chat rating system with feedback collection
+ * - Agent avatar display in chat header
+ * - Expandable FAQ accordion with category grouping
+ * - Save/bookmark favorite FAQs with localStorage persistence
+ * - Helpful/Not helpful voting on FAQs
+ * - Export FAQs to JSON and print-friendly view
+ * - Resources section with helpful links
+ * - Live chat hours and multi-language support display
+ * - Agents online counter with real-time status
+ * - End chat with rating and transcript review modal
+ * - Fully responsive chat modal with dark mode support
+ *
+ * All icons from react-icons library (no emojis, no custom icons)
+ */
 
-// Icons
+import { Link } from '@inertiajs/react';
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+
+// React Icons - All from react-icons library
 import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
@@ -31,89 +56,172 @@ import {
   HiOutlineVolumeOff,
   HiOutlineTranslate,
   HiOutlinePhotograph,
+  HiOutlineCog,
+  HiOutlineCreditCard,
+  HiOutlineUserCircle,
+  HiOutlineGlobeAlt,
 } from 'react-icons/hi';
 
 const LiveChatOptionSection3 = ({ config }) => {
+  // ==================== STATE MANAGEMENT ====================
   const [openFaq, setOpenFaq] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('recent');
-  const [showFilters, setShowFilters] = useState(false);
-  const [showChatModal, setShowChatModal] = useState(false);
-  const [chatMessage, setChatMessage] = useState('');
-  const [chatMessages, setChatMessages] = useState([]);
-  const [chatConnected, setChatConnected] = useState(false);
-  const [chatTyping, setChatTyping] = useState(false);
   const [chatName, setChatName] = useState('');
+  const [sortBy, setSortBy] = useState('recent');
   const [chatEmail, setChatEmail] = useState('');
-  const [chatStarted, setChatStarted] = useState(false);
-  const [chatQueue, setChatQueue] = useState(false);
-  const [queuePosition, setQueuePosition] = useState(0);
   const [agentName, setAgentName] = useState('');
-  const [agentAvatar, setAgentAvatar] = useState('');
-  const [chatSound, setChatSound] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [showFileMenu, setShowFileMenu] = useState(false);
-  const [attachedFiles, setAttachedFiles] = useState([]);
-  const [chatRating, setChatRating] = useState(null);
-  const [showRatingModal, setShowRatingModal] = useState(false);
-  const [chatFeedback, setChatFeedback] = useState('');
-  const [helpfulVotes, setHelpfulVotes] = useState({});
   const [savedFaqs, setSavedFaqs] = useState([]);
-  const [showTranscriptModal, setShowTranscriptModal] = useState(false);
   const [transcript, setTranscript] = useState([]);
+  const [chatSound, setChatSound] = useState(true);
   const [activeTab, setActiveTab] = useState('faq');
+  const [chatQueue, setChatQueue] = useState(false);
+  const [chatMessage, setChatMessage] = useState('');
+  const [agentAvatar, setAgentAvatar] = useState('');
+  const [chatRating, setChatRating] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [chatTyping, setChatTyping] = useState(false);
+  const [chatMessages, setChatMessages] = useState([]);
+  const [helpfulVotes, setHelpfulVotes] = useState({});
+  const [chatFeedback, setChatFeedback] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
+  const [chatStarted, setChatStarted] = useState(false);
+  const [queuePosition, setQueuePosition] = useState(0);
+  const [attachedFiles, setAttachedFiles] = useState([]);
+  const [showFileMenu, setShowFileMenu] = useState(false);
+  const [showChatModal, setShowChatModal] = useState(false);
+  const [chatConnected, setChatConnected] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [expandedCategories, setExpandedCategories] = useState({});
-  const chatContainerRef = useRef(null);
-  const searchRef = useRef(null);
-  const audioRef = useRef(null);
-  const fileInputRef = useRef(null);
+  const [showTranscriptModal, setShowTranscriptModal] = useState(false);
 
-  const faqs = config?.faqs || [];
-  const categories = config?.categories || [];
+  // ==================== REFS ====================
+  const audioRef = useRef(null);
+  const searchRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const chatContainerRef = useRef(null);
+
+  // ==================== MEMOIZED DATA ====================
   const stats = config?.stats || [];
   const chatHours = config?.chatHours || [];
   const languages = config?.languages || [];
-  const emojis = ['😊', '👍', '❤️', '😂', '😮', '😢', '🙏', '🎉', '🔥', '✨'];
+  const resources = config?.resources || [];
+  const faqs = useMemo(() => config?.faqs || [], [config?.faqs]);
+  const categories = useMemo(() => config?.categories || [], [config?.categories]); // config?.categories || [];
 
-  useEffect(() => {
-    const savedVotes = localStorage.getItem('chatFaqHelpfulVotes');
-    if (savedVotes) {
-      setHelpfulVotes(JSON.parse(savedVotes));
-    }
-    const saved = localStorage.getItem('savedChatFaqs');
-    if (saved) {
-      setSavedFaqs(JSON.parse(saved));
-    }
+  // ==================== FILTERED DATA ====================
+  const filteredFaqs = useMemo(() => {
+    return faqs
+      .filter(faq => {
+        const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
+        const matchesSearch = searchQuery === '' ||
+          faq.question?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          faq.answer?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (faq.tags && faq.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
+        return matchesCategory && matchesSearch;
+      })
+      .sort((a, b) => {
+        if (sortBy === 'recent') return (b.updatedAt || '').localeCompare(a.updatedAt || '');
+        if (sortBy === 'popular') return (b.views || 0) - (a.views || 0);
+        if (sortBy === 'helpful') {
+          const aHelpful = helpfulVotes[a.id] === true ? 1 : 0;
+          const bHelpful = helpfulVotes[b.id] === true ? 1 : 0;
+          return bHelpful - aHelpful;
+        }
+        return 0;
+      });
+  }, [faqs, activeCategory, searchQuery, sortBy, helpfulVotes]);
+
+  const groupedFaqs = useMemo(() => {
+    return categories.reduce((acc, category) => {
+      acc[category.id] = filteredFaqs.filter(faq => faq.category === category.id);
+      return acc;
+    }, {});
+  }, [categories, filteredFaqs]);
+
+  // ==================== HELPER FUNCTIONS ====================
+
+  /**
+   * Get icon component by name
+   */
+  const getIcon = useCallback((iconName, className = "w-5 h-5") => {
+    const icons = {
+      HiOutlineChevronDown,
+      HiOutlineChevronUp,
+      HiOutlineSearch,
+      HiOutlineChat,
+      HiOutlineClock,
+      HiOutlineArrowRight,
+      HiOutlineQuestionMarkCircle,
+      HiOutlinePaperAirplane,
+      HiOutlineX,
+      HiOutlineThumbUp,
+      HiOutlineThumbDown,
+      HiOutlineExternalLink,
+      HiOutlineFilter,
+      HiOutlineBookmark,
+      HiOutlinePrinter,
+      HiOutlineDownload,
+      HiOutlineUsers,
+      HiOutlineCheckCircle,
+      HiOutlineEmojiHappy,
+      HiOutlineDocumentText,
+      HiOutlinePaperClip,
+      HiOutlineVolumeUp,
+      HiOutlineVolumeOff,
+      HiOutlineTranslate,
+      HiOutlinePhotograph,
+      HiOutlineCog,
+      HiOutlineCreditCard,
+      HiOutlineUserCircle,
+      HiOutlineGlobeAlt,
+    };
+    const IconComponent = icons[iconName] || HiOutlineChat;
+    return <IconComponent className={className} />;
   }, []);
 
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  /**
+   * Play notification sound
+   */
+  const playNotificationSound = useCallback(() => {
+    if (chatSound && audioRef.current) {
+      audioRef.current.play().catch(e => console.error('Audio play failed:', e));
     }
-  }, [chatMessages]);
+  }, [chatSound]);
 
-  const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
+  /**
+   * Toggle FAQ accordion item
+   */
+  const toggleFaq = useCallback((key) => {
+    setOpenFaq(prev => prev === key ? null : key);
+  }, []);
 
-  const toggleCategory = (categoryId) => {
+  /**
+   * Toggle category expansion
+   */
+  const toggleCategory = useCallback((categoryId) => {
     setExpandedCategories(prev => ({
       ...prev,
       [categoryId]: !prev[categoryId]
     }));
-  };
+  }, []);
 
-  const handleHelpful = (faqId, isHelpful) => {
+  /**
+   * Handle helpful/unhelpful vote
+   */
+  const handleHelpful = useCallback((faqId, isHelpful) => {
     setHelpfulVotes(prev => {
       const newVotes = { ...prev, [faqId]: isHelpful };
       localStorage.setItem('chatFaqHelpfulVotes', JSON.stringify(newVotes));
       return newVotes;
     });
-  };
+  }, []);
 
-  const handleSaveFaq = (faqId) => {
+  /**
+   * Handle save/unsave FAQ bookmark
+   */
+  const handleSaveFaq = useCallback((faqId) => {
     setSavedFaqs(prev => {
       const newSaved = prev.includes(faqId)
         ? prev.filter(id => id !== faqId)
@@ -121,22 +229,18 @@ const LiveChatOptionSection3 = ({ config }) => {
       localStorage.setItem('savedChatFaqs', JSON.stringify(newSaved));
       return newSaved;
     });
-  };
+  }, []);
 
-  const playNotificationSound = () => {
-    if (chatSound && audioRef.current) {
-      // eslint-disable-next-line no-console
-      audioRef.current.play().catch(e => console.log('Audio play failed:', e));
-    }
-  };
-
-  const startChat = (e) => {
+  /**
+   * Start chat session with queue simulation
+   */
+  const startChat = useCallback((e) => {
     e.preventDefault();
     if (!chatName || !chatEmail) return;
     setChatStarted(true);
     setChatQueue(true);
     setQueuePosition(3);
-    
+
     const interval = setInterval(() => {
       setQueuePosition(prev => {
         if (prev <= 1) {
@@ -167,11 +271,31 @@ const LiveChatOptionSection3 = ({ config }) => {
         return prev - 1;
       });
     }, 2000);
-  };
+  }, [chatName, chatEmail, playNotificationSound]);
 
-  const sendMessage = () => {
+  /**
+   * Add emoji to chat message
+   */
+  const addEmoji = useCallback((emoji) => {
+    setChatMessage(prev => prev + emoji);
+    setShowEmojiPicker(false);
+  }, []);
+
+  /**
+   * Handle file upload
+   */
+  const handleFileUpload = useCallback((e) => {
+    const files = Array.from(e.target.files);
+    setAttachedFiles(prev => [...prev, ...files]);
+    setShowFileMenu(false);
+  }, []);
+
+  /**
+   * Send chat message
+   */
+  const sendMessage = useCallback(() => {
     if (!chatMessage.trim() && attachedFiles.length === 0) return;
-    
+
     const newMessages = [];
     if (chatMessage.trim()) {
       newMessages.push({
@@ -181,7 +305,7 @@ const LiveChatOptionSection3 = ({ config }) => {
         timestamp: new Date().toLocaleTimeString(),
       });
     }
-    
+
     attachedFiles.forEach(file => {
       newMessages.push({
         id: Date.now() + Math.random(),
@@ -191,13 +315,13 @@ const LiveChatOptionSection3 = ({ config }) => {
         isFile: true,
       });
     });
-    
+
     setChatMessages(prev => [...prev, ...newMessages]);
     setChatMessage('');
     setAttachedFiles([]);
     setChatTyping(true);
     playNotificationSound();
-    
+
     setTimeout(() => {
       setChatTyping(false);
       const responses = [
@@ -218,38 +342,39 @@ const LiveChatOptionSection3 = ({ config }) => {
         },
       ]);
     }, 1500);
-  };
+  }, [chatMessage, attachedFiles, playNotificationSound]);
 
-  const handleKeyPress = (e) => {
+  /**
+   * Handle Enter key press for message sending
+   */
+  const handleKeyPress = useCallback((e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
-  };
+  }, [sendMessage]);
 
-  const addEmoji = (emoji) => {
-    setChatMessage(prev => prev + emoji);
-    setShowEmojiPicker(false);
-  };
-
-  const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files);
-    setAttachedFiles(prev => [...prev, ...files]);
-    setShowFileMenu(false);
-  };
-
-  const endChat = () => {
+  /**
+   * End chat and show rating modal
+   */
+  const endChat = useCallback(() => {
     setTranscript(chatMessages);
     setShowRatingModal(true);
-  };
+  }, [chatMessages]);
 
-  const submitRating = () => {
+  /**
+   * Submit rating and show transcript
+   */
+  const submitRating = useCallback(() => {
     setShowRatingModal(false);
     setShowTranscriptModal(true);
-  };
+  }, []);
 
-  const downloadTranscript = () => {
-    const transcriptText = transcript.map(msg => 
+  /**
+   * Download chat transcript
+   */
+  const downloadTranscript = useCallback(() => {
+    const transcriptText = transcript.map(msg =>
       `[${msg.timestamp}] ${msg.type === 'user' ? chatName : agentName}: ${msg.message}`
     ).join('\n');
     const blob = new Blob([transcriptText], { type: 'text/plain' });
@@ -259,9 +384,12 @@ const LiveChatOptionSection3 = ({ config }) => {
     a.download = `chat-transcript-${new Date().toISOString().slice(0, 19)}.txt`;
     a.click();
     URL.revokeObjectURL(url);
-  };
+  }, [transcript, chatName, agentName]);
 
-  const closeTranscript = () => {
+  /**
+   * Close transcript modal and reset chat
+   */
+  const closeTranscript = useCallback(() => {
     setShowTranscriptModal(false);
     setChatStarted(false);
     setChatConnected(false);
@@ -271,9 +399,12 @@ const LiveChatOptionSection3 = ({ config }) => {
     setTranscript([]);
     setChatRating(null);
     setChatFeedback('');
-  };
+  }, []);
 
-  const handleExport = () => {
+  /**
+   * Export FAQs to JSON file
+   */
+  const handleExport = useCallback(() => {
     const exportData = filteredFaqs.map(faq => ({
       question: faq.question,
       answer: faq.answer,
@@ -281,213 +412,249 @@ const LiveChatOptionSection3 = ({ config }) => {
       tags: faq.tags
     }));
     const dataStr = JSON.stringify(exportData, null, 2);
-    const dataUri = `data:application/json;charset=utf-8,${  encodeURIComponent(dataStr)}`;
+    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', 'chat-faq-export.json');
     linkElement.click();
-  };
+  }, [filteredFaqs, categories]);
 
-  const handlePrint = () => {
+  /**
+   * Print FAQs
+   */
+  const handlePrint = useCallback(() => {
     window.print();
-  };
+  }, []);
 
-  const filteredFaqs = faqs
-    .filter(faq => {
-      const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
-      const matchesSearch = searchQuery === '' ||
-        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (faq.tags && faq.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
-      return matchesCategory && matchesSearch;
-    })
-    .sort((a, b) => {
-      if (sortBy === 'recent') return b.updatedAt?.localeCompare(a.updatedAt) || 0;
-      if (sortBy === 'popular') return (b.views || 0) - (a.views || 0);
-      if (sortBy === 'helpful') return (helpfulVotes[b.id] ? 1 : 0) - (helpfulVotes[a.id] ? 1 : 0);
-      return 0;
-    });
+  /**
+   * Clear search and filters
+   */
+  const clearFilters = useCallback(() => {
+    setSearchQuery('');
+    setActiveCategory('all');
+    setSortBy('recent');
+  }, []);
 
-  const groupedFaqs = categories.reduce((acc, category) => {
-    acc[category.id] = filteredFaqs.filter(faq => faq.category === category.id);
-    return acc;
-  }, {});
-
-  const highlightedText = (text, query) => {
-    if (!query) return text;
-    const parts = text.split(new RegExp(`(${query})`, 'gi'));
+  /**
+   * Highlight search matches in text
+   */
+  const highlightText = useCallback((text, query) => {
+    if (!query || !text) return text;
+    const parts = text.split(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'));
     return parts.map((part, i) =>
       part.toLowerCase() === query.toLowerCase() ? (
-        <mark key={i} className="bg-yellow-200 dark:bg-yellow-800 text-gray-900 dark:text-white px-0.5 rounded">
+        <mark key={i} className="bg-cyan-200 dark:bg-cyan-800 text-gray-900 dark:text-white px-0.5 rounded">
           {part}
         </mark>
       ) : (
         part
       )
     );
-  };
+  }, []);
+
+  // Auto-scroll to bottom of chat when new messages arrive
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [chatMessages, chatTyping]);
+
+  // Load saved votes and bookmarks from localStorage
+  useEffect(() => {
+    const savedVotes = localStorage.getItem('chatFaqHelpfulVotes');
+    if (savedVotes) setHelpfulVotes(JSON.parse(savedVotes));
+    const saved = localStorage.getItem('savedChatFaqs');
+    if (saved) setSavedFaqs(JSON.parse(saved));
+  }, []);
+
+  // Auto-expand categories when searching
+  useEffect(() => {
+    if (searchQuery) {
+      const expanded = {};
+      categories.forEach(category => {
+        expanded[category.id] = true;
+      });
+      setExpandedCategories(expanded);
+    }
+  }, [searchQuery, categories]);
+
+  const emojis = ['😊', '👍', '❤️', '😂', '😮', '😢', '🙏', '🎉', '🔥', '✨'];
 
   return (
     <section
-      className="relative py-20 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden"
+      className="relative py-20 bg-linear-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden"
       role="region"
       aria-label="Live Chat Support Knowledge Base"
     >
       {/* Hidden audio element for notifications */}
       <audio ref={audioRef} src="/notification.mp3" preload="auto" />
 
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-noise-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
-      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-blue-50/30 to-transparent dark:from-blue-900/10 pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-cyan-50/30 to-transparent dark:from-cyan-900/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/10 rounded-full filter blur-3xl" aria-hidden="true" />
+      <div className="absolute top-1/3 left-10 w-64 h-64 bg-cyan-300/5 dark:bg-cyan-500/5 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div
-            className={`inline-flex items-center ${config?.badge?.backgroundColor} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor}`}
+            className={`inline-flex items-center ${config?.badge?.backgroundColor || 'bg-cyan-100 dark:bg-cyan-900/30'} rounded-full px-4 py-2 mb-6 border ${config?.badge?.borderColor || 'border-cyan-200 dark:border-cyan-800'}`}
+            aria-label="Live chat badge"
           >
             {config?.badge?.showPulse && (
               <span className="relative flex h-2 w-2 mr-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
               </span>
             )}
-            <span className={`text-sm font-medium ${config?.badge?.textColor}`}>
-              {config?.badge?.text}
+            <span className={`text-sm font-medium ${config?.badge?.textColor || 'text-cyan-700 dark:text-cyan-300'}`}>
+              {config?.badge?.text || "Live Support"}
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            {config?.title?.prefix}{' '}
-            <span className={`bg-linear-to-r ${config?.title?.highlightGradient} bg-clip-text text-transparent`}>
-              {config?.title?.highlightedText}
+            {config?.title?.prefix || 'Real-Time'}{' '}
+            <span className={`bg-linear-to-r ${config?.title?.highlightGradient || 'from-cyan-600 to-blue-600'} bg-clip-text text-transparent`}>
+              {config?.title?.highlightedText || 'Chat Support'}
             </span>{' '}
-            {config?.title?.suffix}
+            {config?.title?.suffix || 'Get Help Instantly'}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            {config?.description}
+            {config?.description || "Connect with our support specialists in real-time. Live chat is the fastest way to get answers, resolve issues, and get back to business."}
           </p>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        {/* ==================== STATS ROW ==================== */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all">
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{stat.value}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+            <div
+              key={index}
+              className="text-center p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700"
+            >
+              <div className="flex justify-center mb-2 text-cyan-600 dark:text-cyan-400">
+                {getIcon(stat.icon, "w-6 h-6 md:w-8 md:h-8")}
+              </div>
+              <div className="text-xl md:text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-1">{stat.value}</div>
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Live Chat CTA */}
+        {/* ==================== LIVE CHAT CTA ==================== */}
         <div className="mb-12">
-          <div className="bg-linear-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-center text-white">
-            <div className="text-5xl mb-4">💬</div>
+          <div className="bg-linear-to-r from-cyan-600 to-blue-600 rounded-2xl p-8 text-center text-white shadow-xl">
+            <div className="flex justify-center mb-4">
+              <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+                {getIcon("HiOutlineChat", "w-10 h-10")}
+              </div>
+            </div>
             <h3 className="text-2xl font-bold mb-2">Chat with Support</h3>
-            <p className="text-blue-100 mb-6 max-w-lg mx-auto">
+            <p className="text-cyan-100 mb-6 max-w-lg mx-auto">
               Get instant answers from our support team. Available during business hours.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <button
                 onClick={() => setShowChatModal(true)}
-                className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-all inline-flex items-center gap-2 shadow-lg"
+                className="px-8 py-3 bg-white text-cyan-600 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2 shadow-lg"
               >
-                <HiOutlineChat className="w-5 h-5" />
+                {getIcon("HiOutlineChat", "w-5 h-5")}
                 Start Live Chat
               </button>
-              <div className="flex items-center gap-2 bg-white/20 rounded-lg px-4">
-                <HiOutlineUsers className="w-4 h-4" />
-                <span className="text-sm">{config?.agentsOnline || "8"} agents online</span>
+              <div className="flex items-center gap-2 bg-white/20 rounded-xl px-4">
+                {getIcon("HiOutlineUsers", "w-4 h-4")}
+                <span className="text-sm">{config?.agentsOnline || "10"} agents online</span>
               </div>
             </div>
-            <div className="mt-4 text-xs text-blue-200 flex items-center justify-center gap-4">
-              <span className="flex items-center gap-1">
-                <HiOutlineClock className="w-3 h-3" />
+            <div className="mt-4 text-xs text-cyan-200 flex items-center justify-center gap-4">
+              <span className="inline-flex items-center gap-1">
+                {getIcon("HiOutlineClock", "w-3 h-3")}
                 Avg response: &lt; 2 min
               </span>
               <button
                 onClick={() => setChatSound(!chatSound)}
-                className="flex items-center gap-1 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1 hover:text-white transition-colors"
               >
-                {chatSound ? <HiOutlineVolumeUp className="w-3 h-3" /> : <HiOutlineVolumeOff className="w-3 h-3" />}
+                {chatSound ? getIcon("HiOutlineVolumeUp", "w-3 h-3") : getIcon("HiOutlineVolumeOff", "w-3 h-3")}
                 {chatSound ? "Sound on" : "Sound off"}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex justify-center gap-4 mb-8">
+        {/* ==================== TAB NAVIGATION ==================== */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
           <button
             onClick={() => setActiveTab('faq')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'faq'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2 ${activeTab === 'faq'
+              ? 'bg-linear-to-r from-cyan-600 to-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
           >
-            <HiOutlineQuestionMarkCircle className="inline w-4 h-4 mr-2" />
+            {getIcon("HiOutlineQuestionMarkCircle", "w-4 h-4")}
             FAQs
           </button>
           <button
             onClick={() => setActiveTab('resources')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'resources'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2 ${activeTab === 'resources'
+              ? 'bg-linear-to-r from-cyan-600 to-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
           >
-            <HiOutlineDocumentText className="inline w-4 h-4 mr-2" />
+            {getIcon("HiOutlineDocumentText", "w-4 h-4")}
             Resources
           </button>
           <button
             onClick={() => setActiveTab('hours')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === 'hours'
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-            }`}
+            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2 ${activeTab === 'hours'
+              ? 'bg-linear-to-r from-cyan-600 to-blue-600 text-white shadow-lg'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
           >
-            <HiOutlineClock className="inline w-4 h-4 mr-2" />
+            {getIcon("HiOutlineClock", "w-4 h-4")}
             Hours & Languages
           </button>
         </div>
 
-        {/* FAQ Section */}
+        {/* ==================== FAQ SECTION ==================== */}
         {activeTab === 'faq' && (
           <>
             {/* Search and Action Bar */}
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               <div className="flex-1 relative" ref={searchRef}>
-                <HiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                  {getIcon("HiOutlineSearch", "w-5 h-5")}
+                </div>
                 <input
                   type="text"
                   placeholder="Search chat FAQs..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                   >
-                    ✕
+                    {getIcon("HiOutlineX", "w-5 h-5")}
                   </button>
                 )}
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
+                  className={`px-4 py-3 border rounded-xl transition-all duration-300 flex items-center gap-2 ${showFilters
+                    ? 'bg-cyan-600 text-white border-cyan-600'
+                    : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    }`}
                 >
-                  <HiOutlineFilter className="w-4 h-4" />
+                  {getIcon("HiOutlineFilter", "w-4 h-4")}
+                  Filters
                 </button>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 transition-all"
                 >
                   <option value="recent">Most Recent</option>
                   <option value="popular">Most Popular</option>
@@ -495,33 +662,33 @@ const LiveChatOptionSection3 = ({ config }) => {
                 </select>
                 <button
                   onClick={handleExport}
-                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
+                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
                   title="Export FAQs"
                 >
-                  <HiOutlineDownload className="w-4 h-4" />
+                  {getIcon("HiOutlineDownload", "w-4 h-4")}
                 </button>
                 <button
                   onClick={handlePrint}
-                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all"
+                  className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
                   title="Print FAQs"
                 >
-                  <HiOutlinePrinter className="w-4 h-4" />
+                  {getIcon("HiOutlinePrinter", "w-4 h-4")}
                 </button>
               </div>
             </div>
 
-            {/* Expanded Filters */}
+            {/* Expanded Filters Panel */}
             {showFilters && (
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 border border-gray-100 dark:border-gray-700 animate-fadeIn">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Category</label>
                     <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() => setActiveCategory('all')}
-                        className={`px-3 py-1 rounded-full text-sm transition-all ${activeCategory === 'all'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                        className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${activeCategory === 'all'
+                          ? 'bg-linear-to-r from-cyan-600 to-blue-600 text-white shadow-md'
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                           }`}
                       >
                         All
@@ -530,23 +697,23 @@ const LiveChatOptionSection3 = ({ config }) => {
                         <button
                           key={category.id}
                           onClick={() => setActiveCategory(category.id)}
-                          className={`px-3 py-1 rounded-full text-sm transition-all flex items-center gap-1 ${activeCategory === category.id
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                          className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 flex items-center gap-1 ${activeCategory === category.id
+                            ? 'bg-linear-to-r from-cyan-600 to-blue-600 text-white shadow-md'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                             }`}
                         >
-                          <span>{category.icon}</span>
+                          {getIcon(category.icon, "w-3 h-3")}
                           {category.name}
                         </button>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sort By</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Sort By</label>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 transition-all"
                     >
                       <option value="recent">Most Recent</option>
                       <option value="popular">Most Popular</option>
@@ -554,147 +721,153 @@ const LiveChatOptionSection3 = ({ config }) => {
                     </select>
                   </div>
                 </div>
+                {(activeCategory !== 'all' || sortBy !== 'recent') && (
+                  <div className="mt-4 text-right">
+                    <button
+                      onClick={clearFilters}
+                      className="text-sm text-cyan-600 dark:text-cyan-400 hover:underline"
+                    >
+                      Clear all filters
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
             {/* Results Count */}
             {searchQuery && (
-              <div className="text-center mb-4 text-sm text-gray-500">
-                Found {filteredFaqs.length} results for "{searchQuery}"
+              <div className="text-center mb-4 text-sm text-gray-500 dark:text-gray-400">
+                Found {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''} for "{searchQuery}"
               </div>
             )}
 
             {/* FAQ Category Accordion */}
-            <div className="space-y-6 mb-12">
+            <div className="space-y-6 mb-16">
               {categories.map((category) => {
                 const categoryFaqs = groupedFaqs[category.id] || [];
                 if (categoryFaqs.length === 0 && searchQuery) return null;
+                if (categoryFaqs.length === 0 && !searchQuery) return null;
 
                 const isExpanded = expandedCategories[category.id] || searchQuery !== '';
 
                 return (
-                  <div key={category.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                  <div key={category.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
                     <button
                       onClick={() => toggleCategory(category.id)}
-                      className="w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                      className="w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl">{category.icon}</span>
+                        <div className="text-cyan-600 dark:text-cyan-400 text-2xl">
+                          {getIcon(category.icon, "w-6 h-6")}
+                        </div>
                         <div>
                           <h3 className="text-lg font-bold text-gray-900 dark:text-white">{category.name}</h3>
-                          <p className="text-sm text-gray-500">{category.description}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">{category.description}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-sm text-gray-400">{categoryFaqs.length} questions</span>
-                        {isExpanded ? (
-                          <HiOutlineChevronUp className="w-5 h-5 text-gray-400" />
-                        ) : (
-                          <HiOutlineChevronDown className="w-5 h-5 text-gray-400" />
-                        )}
+                        <span className="text-sm text-gray-400 dark:text-gray-500">{categoryFaqs.length} questions</span>
+                        {isExpanded ? getIcon("HiOutlineChevronUp", "w-5 h-5 text-gray-400") : getIcon("HiOutlineChevronDown", "w-5 h-5 text-gray-400")}
                       </div>
                     </button>
 
                     {isExpanded && (
                       <div className="border-t border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700">
-                        {categoryFaqs.map((faq, idx) => (
-                          <div key={idx} className="p-5 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                            <button
-                              onClick={() => toggleFaq(`${category.id}-${idx}`)}
-                              className="w-full text-left flex justify-between items-center"
-                            >
-                              <div className="flex items-start gap-3 pr-4">
-                                <div className="text-xl mt-0.5">{faq.icon}</div>
-                                <div className="flex-1">
-                                  <div className="font-semibold text-gray-900 dark:text-white">
-                                    {highlightedText(faq.question, searchQuery)}
+                        {categoryFaqs.map((faq, idx) => {
+                          const faqKey = `${category.id}-${idx}`;
+                          const isSaved = savedFaqs.includes(faq.id);
+
+                          return (
+                            <div key={faqKey} className="p-5 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200">
+                              <div
+                                onClick={() => toggleFaq(faqKey)}
+                                className="w-full text-left flex justify-between items-start cursor-pointer"
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleFaq(faqKey)}
+                              >
+                                <div className="flex items-start gap-3 pr-4">
+                                  <div className="text-cyan-600 dark:text-cyan-400 mt-0.5">
+                                    {getIcon(faq.icon, "w-5 h-5")}
                                   </div>
-                                  {faq.tags && (
-                                    <div className="flex flex-wrap gap-1 mt-1">
-                                      {faq.tags.slice(0, 2).map((tag, tagIdx) => (
-                                        <span key={tagIdx} className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 rounded-full">
-                                          {tag}
-                                        </span>
-                                      ))}
+                                  <div className="flex-1">
+                                    <div className="font-semibold text-gray-900 dark:text-white">
+                                      {highlightText(faq.question, searchQuery)}
                                     </div>
-                                  )}
+                                    {faq.tags && faq.tags.length > 0 && (
+                                      <div className="flex flex-wrap gap-1 mt-1">
+                                        {faq.tags.slice(0, 3).map((tag, tagIdx) => (
+                                          <span key={tagIdx} className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full">
+                                            {tag}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <span
-                    role="button"
-                    tabIndex={0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSaveFaq(faq.id);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleSaveFaq(faq.id);
-                      }
-                    }}
-                    className="text-gray-400 hover:text-blue-600 transition-colors"
-                    aria-label={savedFaqs.includes(faq.id) ? 'Remove bookmark' : 'Save bookmark'}
-                  >
-                    <HiOutlineBookmark className={`w-4 h-4 ${savedFaqs.includes(faq.id) ? 'fill-blue-600 text-blue-600' : ''}`} />
-                  </span>
-                                <div className="text-blue-500">
-                                  {openFaq === `${category.id}-${idx}` ? (
-                                    <HiOutlineChevronUp className="w-5 h-5" />
-                                  ) : (
-                                    <HiOutlineChevronDown className="w-5 h-5" />
-                                  )}
-                                </div>
-                              </div>
-                            </button>
-
-                            {openFaq === `${category.id}-${idx}` && (
-                              <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                  {highlightedText(faq.answer, searchQuery)}
-                                </p>
-                                {faq.link && (
-                                  <Link
-                                    href={faq.link}
-                                    className="inline-flex items-center gap-1 text-blue-600 text-sm font-semibold mt-3 hover:gap-2 transition-all"
+                                <div className="flex items-center gap-2 shrink-0">
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleSaveFaq(faq.id);
+                                    }}
+                                    className={`transition-colors duration-200 p-1 rounded-lg ${isSaved ? 'text-cyan-600' : 'text-gray-400 hover:text-cyan-600 hover:bg-gray-100 dark:hover:bg-gray-700'
+                                      }`}
                                   >
-                                    Learn more
-                                    <HiOutlineExternalLink className="w-3 h-3" />
-                                  </Link>
-                                )}
-
-                                {/* Helpful Section */}
-                                <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                                  <div className="flex items-center gap-4">
-                                    <span className="text-xs text-gray-500">Was this helpful?</span>
-                                    <button
-                                      onClick={() => handleHelpful(faq.id, true)}
-                                      className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === true
-                                          ? 'text-green-600'
-                                          : 'text-gray-400 hover:text-green-600'
-                                        }`}
-                                    >
-                                      <HiOutlineThumbUp className="w-4 h-4" />
-                                      Yes
-                                    </button>
-                                    <button
-                                      onClick={() => handleHelpful(faq.id, false)}
-                                      className={`flex items-center gap-1 text-xs transition-colors ${helpfulVotes[faq.id] === false
-                                          ? 'text-red-600'
-                                          : 'text-gray-400 hover:text-red-600'
-                                        }`}
-                                    >
-                                      <HiOutlineThumbDown className="w-4 h-4" />
-                                      No
-                                    </button>
+                                    {getIcon("HiOutlineBookmark", `w-4 h-4 ${isSaved ? 'fill-cyan-600' : ''}`)}
+                                  </button>
+                                  <div className="text-cyan-500 dark:text-cyan-400">
+                                    {openFaq === faqKey ? getIcon("HiOutlineChevronUp", "w-5 h-5") : getIcon("HiOutlineChevronDown", "w-5 h-5")}
                                   </div>
                                 </div>
                               </div>
-                            )}
-                          </div>
-                        ))}
+
+                              {openFaq === faqKey && (
+                                <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
+                                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    {highlightText(faq.answer, searchQuery)}
+                                  </p>
+                                  {faq.link && (
+                                    <Link
+                                      href={faq.link}
+                                      className="inline-flex items-center gap-1 text-cyan-600 dark:text-cyan-400 text-sm font-semibold mt-3 hover:gap-2 transition-all duration-200 group"
+                                    >
+                                      Learn more
+                                      {getIcon("HiOutlineExternalLink", "w-3 h-3 group-hover:translate-x-0.5 transition-transform")}
+                                    </Link>
+                                  )}
+
+                                  {/* Helpful Section */}
+                                  <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                    <div className="flex items-center gap-4">
+                                      <span className="text-xs text-gray-500 dark:text-gray-400">Was this helpful?</span>
+                                      <button
+                                        onClick={() => handleHelpful(faq.id, true)}
+                                        className={`flex items-center gap-1 text-xs transition-colors duration-200 ${helpfulVotes[faq.id] === true
+                                          ? 'text-green-600 dark:text-green-400'
+                                          : 'text-gray-400 hover:text-green-600 dark:hover:text-green-400'
+                                          }`}
+                                      >
+                                        {getIcon("HiOutlineThumbUp", "w-4 h-4")}
+                                        Yes
+                                      </button>
+                                      <button
+                                        onClick={() => handleHelpful(faq.id, false)}
+                                        className={`flex items-center gap-1 text-xs transition-colors duration-200 ${helpfulVotes[faq.id] === false
+                                          ? 'text-red-600 dark:text-red-400'
+                                          : 'text-gray-400 hover:text-red-600 dark:hover:text-red-400'
+                                          }`}
+                                      >
+                                        {getIcon("HiOutlineThumbDown", "w-4 h-4")}
+                                        No
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -703,14 +876,16 @@ const LiveChatOptionSection3 = ({ config }) => {
             </div>
 
             {/* Empty State */}
-            {filteredFaqs.length === 0 && (
-              <div className="text-center py-12">
-                <div className="text-6xl mb-4">💬</div>
+            {filteredFaqs.length === 0 && searchQuery && (
+              <div className="text-center py-12 bg-gray-50 dark:bg-gray-800/50 rounded-2xl mb-16">
+                <div className="flex justify-center mb-4 text-gray-400">
+                  {getIcon("HiOutlineSearch", "w-12 h-12")}
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No questions found</h3>
-                <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                <p className="text-gray-500 dark:text-gray-400">Try adjusting your search to find what you're looking for.</p>
                 <button
                   onClick={() => setShowChatModal(true)}
-                  className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
+                  className="mt-4 px-6 py-2.5 bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                 >
                   Start Live Chat
                 </button>
@@ -719,16 +894,18 @@ const LiveChatOptionSection3 = ({ config }) => {
 
             {/* Saved FAQs Section */}
             {savedFaqs.length > 0 && searchQuery === '' && activeCategory === 'all' && (
-              <div className="mb-12">
+              <div className="mb-16">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                  <HiOutlineBookmark className="w-5 h-5 text-blue-600" />
+                  {getIcon("HiOutlineBookmark", "w-5 h-5 text-cyan-600")}
                   Saved Questions
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {faqs.filter(f => savedFaqs.includes(f.id)).slice(0, 4).map((faq, idx) => (
-                    <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4">
-                      <div className="flex items-start gap-2">
-                        <div className="text-xl">{faq.icon}</div>
+                    <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                      <div className="flex items-start gap-3">
+                        <div className="text-cyan-600 dark:text-cyan-400">
+                          {getIcon(faq.icon, "w-5 h-5")}
+                        </div>
                         <div className="flex-1">
                           <div className="font-semibold text-gray-900 dark:text-white text-sm">{faq.question}</div>
                           <button
@@ -736,16 +913,16 @@ const LiveChatOptionSection3 = ({ config }) => {
                               setSearchQuery(faq.question.substring(0, 30));
                               setOpenFaq(null);
                             }}
-                            className="text-xs text-blue-600 mt-1 hover:underline"
+                            className="text-xs text-cyan-600 dark:text-cyan-400 mt-1 hover:underline"
                           >
                             View Answer
                           </button>
                         </div>
                         <button
                           onClick={() => handleSaveFaq(faq.id)}
-                          className="text-gray-400 hover:text-red-600"
+                          className="text-gray-400 hover:text-red-600 transition-colors duration-200"
                         >
-                          <HiOutlineX className="w-4 h-4" />
+                          {getIcon("HiOutlineX", "w-4 h-4")}
                         </button>
                       </div>
                     </div>
@@ -756,21 +933,21 @@ const LiveChatOptionSection3 = ({ config }) => {
           </>
         )}
 
-        {/* Resources Section */}
+        {/* ==================== RESOURCES SECTION ==================== */}
         {activeTab === 'resources' && (
-          <div className="mb-12">
+          <div className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {config?.resources?.map((resource, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all">
+              {resources.map((resource, index) => (
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700">
                   <div className="text-4xl mb-3">{resource.icon}</div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{resource.title}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{resource.description}</p>
                   <Link
                     href={resource.link}
-                    className="inline-flex items-center gap-1 text-blue-600 text-sm font-semibold hover:gap-2 transition-all"
+                    className="inline-flex items-center gap-1 text-cyan-600 dark:text-cyan-400 text-sm font-semibold hover:gap-2 transition-all duration-200 group"
                   >
                     {resource.linkText}
-                    <HiOutlineArrowRight className="w-3 h-3" />
+                    {getIcon("HiOutlineArrowRight", "w-3 h-3 group-hover:translate-x-0.5 transition-transform")}
                   </Link>
                 </div>
               ))}
@@ -778,17 +955,19 @@ const LiveChatOptionSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Hours & Languages Section */}
+        {/* ==================== HOURS & LANGUAGES SECTION ==================== */}
         {activeTab === 'hours' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineClock className="w-6 h-6 text-blue-600" />
+                <div className="w-10 h-10 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
+                  {getIcon("HiOutlineClock", "w-5 h-5 text-cyan-600")}
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Live Chat Hours</h3>
               </div>
               <div className="space-y-3">
                 {chatHours.map((hour, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <div key={index} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                     <span className="text-gray-600 dark:text-gray-400">{hour.days}</span>
                     <span className="font-semibold text-gray-900 dark:text-white">{hour.hours}</span>
                   </div>
@@ -796,38 +975,49 @@ const LiveChatOptionSection3 = ({ config }) => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
-                <HiOutlineTranslate className="w-6 h-6 text-blue-600" />
+                <div className="w-10 h-10 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
+                  {getIcon("HiOutlineTranslate", "w-5 h-5 text-cyan-600")}
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Supported Languages</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {languages.map((lang, idx) => (
-                  <span key={idx} className="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm">
+                  <span key={idx} className="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-xl text-sm">
                     {lang.name}
                   </span>
                 ))}
               </div>
-              <p className="text-sm text-gray-500 mt-4">
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
                 Select your preferred language when starting a chat, and we'll connect you with an available agent.
               </p>
             </div>
           </div>
         )}
 
-        {/* Chat Modal */}
+        {/* ==================== CHAT MODAL ==================== */}
         {showChatModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowChatModal(false)}>
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl w-full max-w-lg h-162.5 flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+            onClick={() => setShowChatModal(false)}
+            role="dialog"
+            aria-label="Live chat"
+            aria-modal="true"
+          >
+            <div
+              className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl w-full max-w-lg h-162.5 flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
               {/* Chat Header */}
-              <div className="bg-linear-to-r from-blue-600 to-indigo-600 p-4 rounded-t-3xl flex justify-between items-center">
+              <div className="bg-linear-to-r from-cyan-600 to-blue-600 p-5 rounded-t-3xl flex justify-between items-center">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl">
                     {chatConnected ? agentAvatar : "💬"}
                   </div>
                   <div>
                     <h3 className="text-white font-semibold">Live Support</h3>
-                    <div className="flex items-center gap-1 text-xs text-blue-100">
+                    <div className="flex items-center gap-1 text-xs text-cyan-100">
                       {chatConnected ? (
                         <>
                           <span className="relative flex h-2 w-2">
@@ -844,16 +1034,23 @@ const LiveChatOptionSection3 = ({ config }) => {
                     </div>
                   </div>
                 </div>
-                <button onClick={() => setShowChatModal(false)} className="text-white hover:text-gray-200">
-                  <HiOutlineX className="w-5 h-5" />
+                <button
+                  onClick={() => setShowChatModal(false)}
+                  className="text-white hover:text-gray-200 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20"
+                >
+                  {getIcon("HiOutlineX", "w-5 h-5")}
                 </button>
               </div>
 
-              {/* Chat Messages */}
+              {/* Chat Content */}
               {!chatStarted ? (
                 <div className="flex-1 p-6 flex flex-col justify-center">
                   <div className="text-center">
-                    <div className="text-5xl mb-4">💬</div>
+                    <div className="flex justify-center mb-4">
+                      <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
+                        {getIcon("HiOutlineChat", "w-8 h-8 text-cyan-600")}
+                      </div>
+                    </div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Start a Conversation</h3>
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
                       Fill out the form below to connect with a support specialist.
@@ -864,7 +1061,7 @@ const LiveChatOptionSection3 = ({ config }) => {
                         placeholder="Your Name"
                         value={chatName}
                         onChange={(e) => setChatName(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                        className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                         required
                       />
                       <input
@@ -872,13 +1069,13 @@ const LiveChatOptionSection3 = ({ config }) => {
                         placeholder="Your Email"
                         value={chatEmail}
                         onChange={(e) => setChatEmail(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                        className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                         required
                       />
                       <select
                         value={selectedLanguage}
                         onChange={(e) => setSelectedLanguage(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700"
+                        className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                       >
                         {languages.map((lang, idx) => (
                           <option key={idx} value={lang.code}>{lang.name}</option>
@@ -886,26 +1083,27 @@ const LiveChatOptionSection3 = ({ config }) => {
                       </select>
                       <button
                         type="submit"
-                        className="w-full py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
+                        className="w-full py-2.5 bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                       >
                         Start Chat
                       </button>
                     </form>
-                    <p className="text-xs text-gray-500 mt-4">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
                       By starting a chat, you agree to our Privacy Policy. Chat transcripts are saved for quality assurance.
                     </p>
                   </div>
                 </div>
               ) : (
                 <>
+                  {/* Chat Messages */}
                   <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 space-y-3">
                     {chatQueue && !chatConnected && (
                       <div className="text-center py-4">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 rounded-full">
-                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent" />
-                          <span className="text-sm text-blue-600">Connecting you with an agent...</span>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-50 dark:bg-cyan-900/20 rounded-full">
+                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-cyan-600 border-t-transparent" />
+                          <span className="text-sm text-cyan-600">Connecting you with an agent...</span>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">Queue position: {queuePosition}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Queue position: {queuePosition}</p>
                       </div>
                     )}
                     {chatMessages.map((msg) => (
@@ -914,11 +1112,10 @@ const LiveChatOptionSection3 = ({ config }) => {
                         className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div
-                          className={`max-w-[80%] p-3 rounded-2xl ${
-                            msg.type === 'user'
-                              ? 'bg-blue-600 text-white rounded-br-none'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-bl-none'
-                          }`}
+                          className={`max-w-[80%] p-3 rounded-2xl ${msg.type === 'user'
+                            ? 'bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-br-none'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-bl-none'
+                            }`}
                         >
                           <p className="text-sm">{msg.message}</p>
                           <span className="text-xs opacity-70 mt-1 block">{msg.timestamp}</span>
@@ -944,17 +1141,17 @@ const LiveChatOptionSection3 = ({ config }) => {
                       <div className="relative">
                         <button
                           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                          className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+                          className="p-2 text-gray-400 hover:text-cyan-600 transition-colors"
                         >
-                          <HiOutlineEmojiHappy className="w-5 h-5" />
+                          {getIcon("HiOutlineEmojiHappy", "w-5 h-5")}
                         </button>
                         {showEmojiPicker && (
-                          <div className="absolute bottom-12 left-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 grid grid-cols-5 gap-1 z-10">
+                          <div className="absolute bottom-12 left-0 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-2 grid grid-cols-5 gap-1 z-10 border border-gray-100 dark:border-gray-700">
                             {emojis.map((emoji, idx) => (
                               <button
                                 key={idx}
                                 onClick={() => addEmoji(emoji)}
-                                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-xl"
+                                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-xl transition-colors"
                               >
                                 {emoji}
                               </button>
@@ -965,17 +1162,17 @@ const LiveChatOptionSection3 = ({ config }) => {
                       <div className="relative">
                         <button
                           onClick={() => setShowFileMenu(!showFileMenu)}
-                          className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+                          className="p-2 text-gray-400 hover:text-cyan-600 transition-colors"
                         >
-                          <HiOutlinePaperClip className="w-5 h-5" />
+                          {getIcon("HiOutlinePaperClip", "w-5 h-5")}
                         </button>
                         {showFileMenu && (
-                          <div className="absolute bottom-12 left-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 w-40 z-10">
+                          <div className="absolute bottom-12 left-0 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-2 w-40 z-10 border border-gray-100 dark:border-gray-700">
                             <button
                               onClick={() => fileInputRef.current?.click()}
-                              className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex items-center gap-2"
+                              className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex items-center gap-2 transition-colors"
                             >
-                              <HiOutlinePhotograph className="w-4 h-4" />
+                              {getIcon("HiOutlinePhotograph", "w-4 h-4")}
                               Upload File
                             </button>
                             <input
@@ -994,14 +1191,14 @@ const LiveChatOptionSection3 = ({ config }) => {
                         onChange={(e) => setChatMessage(e.target.value)}
                         onKeyPress={handleKeyPress}
                         placeholder="Type your message..."
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
+                        className="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                       />
                       <button
                         onClick={sendMessage}
                         disabled={!chatMessage.trim() && attachedFiles.length === 0}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-4 py-2.5 bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <HiOutlinePaperAirplane className="w-5 h-5" />
+                        {getIcon("HiOutlinePaperAirplane", "w-5 h-5")}
                       </button>
                     </div>
                     {attachedFiles.length > 0 && (
@@ -1013,7 +1210,7 @@ const LiveChatOptionSection3 = ({ config }) => {
                         ))}
                       </div>
                     )}
-                    <div className="flex justify-between mt-2 text-xs text-gray-500">
+                    <div className="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
                       <button onClick={endChat} className="text-red-500 hover:underline">
                         End Chat
                       </button>
@@ -1026,21 +1223,34 @@ const LiveChatOptionSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Rating Modal */}
+        {/* ==================== RATING MODAL ==================== */}
         {showRatingModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowRatingModal(false)}>
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+            onClick={() => setShowRatingModal(false)}
+            role="dialog"
+            aria-label="Rate chat experience"
+            aria-modal="true"
+          >
+            <div
+              className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-md w-full p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="text-center mb-4">
-                <div className="text-4xl mb-2">⭐</div>
+                <div className="flex justify-center mb-4">
+                  <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center">
+                    <span className="text-3xl">⭐</span>
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Rate Your Chat Experience</h3>
-                <p className="text-sm text-gray-500 mt-1">How was your support experience?</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">How was your support experience?</p>
               </div>
               <div className="flex justify-center gap-2 mb-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
                     onClick={() => setChatRating(star)}
-                    className={`text-3xl transition-all ${chatRating >= star ? 'text-yellow-400' : 'text-gray-300'}`}
+                    className={`text-3xl transition-all duration-200 transform hover:scale-110 ${chatRating >= star ? 'text-yellow-400' : 'text-gray-300'}`}
                   >
                     ★
                   </button>
@@ -1051,11 +1261,11 @@ const LiveChatOptionSection3 = ({ config }) => {
                 value={chatFeedback}
                 onChange={(e) => setChatFeedback(e.target.value)}
                 placeholder="Any additional feedback? (Optional)"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 mb-4"
+                className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all resize-none mb-4"
               />
               <button
                 onClick={submitRating}
-                className="w-full py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
+                className="w-full py-2.5 bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
               >
                 Submit & View Transcript
               </button>
@@ -1063,23 +1273,35 @@ const LiveChatOptionSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Transcript Modal */}
+        {/* ==================== TRANSCRIPT MODAL ==================== */}
         {showTranscriptModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => closeTranscript()}>
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[80vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
-              <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+            onClick={() => closeTranscript()}
+            role="dialog"
+            aria-label="Chat transcript"
+            aria-modal="true"
+          >
+            <div
+              className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[80vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                  <HiOutlineDocumentText className="w-5 h-5 text-blue-600" />
+                  {getIcon("HiOutlineDocumentText", "w-5 h-5 text-cyan-600")}
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white">Chat Transcript</h3>
                 </div>
-                <button onClick={() => closeTranscript()} className="text-gray-500 hover:text-gray-700">
-                  <HiOutlineX className="w-5 h-5" />
+                <button
+                  onClick={() => closeTranscript()}
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  {getIcon("HiOutlineX", "w-5 h-5")}
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto p-4 space-y-2">
                 {transcript.map((msg, idx) => (
                   <div key={idx} className="border-b border-gray-100 dark:border-gray-700 pb-2">
-                    <div className="flex justify-between text-xs text-gray-500">
+                    <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                       <span className="font-medium">{msg.type === 'user' ? chatName : agentName}</span>
                       <span>{msg.timestamp}</span>
                     </div>
@@ -1090,14 +1312,14 @@ const LiveChatOptionSection3 = ({ config }) => {
               <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex gap-3">
                 <button
                   onClick={downloadTranscript}
-                  className="flex-1 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all inline-flex items-center justify-center gap-2"
+                  className="flex-1 py-2.5 bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 inline-flex items-center justify-center gap-2"
                 >
-                  <HiOutlineDownload className="w-4 h-4" />
+                  {getIcon("HiOutlineDownload", "w-4 h-4")}
                   Download Transcript
                 </button>
                 <button
                   onClick={() => closeTranscript()}
-                  className="flex-1 py-2 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition-all"
+                  className="flex-1 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
                 >
                   Close
                 </button>
@@ -1106,28 +1328,30 @@ const LiveChatOptionSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== CTA SECTION ==================== */}
         <div className="text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl">
-            <HiOutlineQuestionMarkCircle className="w-6 h-6 text-blue-600" />
-            <span className="text-gray-700 dark:text-gray-300 font-medium">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-5 p-6 bg-linear-to-r from-cyan-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl border border-cyan-100 dark:border-gray-700">
+            <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
+              {getIcon("HiOutlineQuestionMarkCircle", "w-6 h-6 text-cyan-600")}
+            </div>
+            <span className="text-gray-700 dark:text-gray-300 font-medium text-center sm:text-left">
               {config?.contactText || "Need immediate assistance? Start a live chat with our support team."}
             </span>
             <button
               onClick={() => setShowChatModal(true)}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+              className="px-6 py-3 bg-linear-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
             >
-              <HiOutlineChat className="w-4 h-4" />
+              {getIcon("HiOutlineChat", "w-4 h-4")}
               {config?.contactButtonText || "Start Live Chat"}
             </button>
           </div>
         </div>
 
-        {/* Chat Guarantee */}
+        {/* ==================== CHAT GUARANTEE ==================== */}
         {config?.showGuarantee && (
           <div className="text-center mt-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 rounded-full">
-              <HiOutlineCheckCircle className="w-4 h-4 text-green-600" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 rounded-full border border-green-100 dark:border-green-800">
+              {getIcon("HiOutlineCheckCircle", "w-4 h-4 text-green-600")}
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 {config?.guaranteeText || "Enterprise customers get priority chat routing and 24/7 live chat support"}
               </span>
@@ -1136,7 +1360,21 @@ const LiveChatOptionSection3 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         mark {
           background-color: #fef08a;
           color: #1e293b;
@@ -1160,6 +1398,17 @@ const LiveChatOptionSection3 = ({ config }) => {
         }
         .animate-spin {
           animation: spin 1s linear infinite;
+        }
+        @media print {
+          .no-print, button:not(.print-button), .bg-noise-pattern {
+            display: none !important;
+          }
+          body {
+            background: white;
+          }
+          .bg-white, .dark\\:bg-gray-800 {
+            background: white !important;
+          }
         }
         .bg-noise-pattern {
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");

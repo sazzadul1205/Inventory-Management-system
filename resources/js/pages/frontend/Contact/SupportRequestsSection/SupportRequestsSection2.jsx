@@ -515,7 +515,7 @@ const SupportRequestsSection2 = ({ config }) => {
         )}
 
         {/* ==================== FAQ ACCORDION ==================== */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-12">
+        <div className="max-w-6xl mx-auto space-y-4 mb-12">
           {filteredFaqs.map((faq, index) => {
             const isSaved = savedFaqs.includes(faq.id);
 

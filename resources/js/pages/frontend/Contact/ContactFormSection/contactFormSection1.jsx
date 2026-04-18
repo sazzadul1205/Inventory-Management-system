@@ -590,7 +590,7 @@ const ContactFormSection1 = ({ config }) => {
 
           {/* FAQ Accordion - FAQ Mode */}
           {!showGlossary && (
-            <div className="max-w-4xl mx-auto space-y-4 mb-12">
+            <div className="max-w-6xl mx-auto space-y-4 mb-12">
               {filteredFaqs.map((faq, index) => {
                 const isSaved = savedFaqs.includes(faq.id);
 
@@ -717,7 +717,7 @@ const ContactFormSection1 = ({ config }) => {
 
           {/* Saved Questions Section - FAQ Mode */}
           {!showGlossary && savedFaqs.length > 0 && searchQuery === '' && activeCategory === 'all' && (
-            <div className="max-w-4xl mx-auto mb-12">
+            <div className="max-w-6xl mx-auto mb-12">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 {getIcon("bookmark", "w-5 h-5 text-purple-600")}
                 Saved Questions
@@ -759,7 +759,7 @@ const ContactFormSection1 = ({ config }) => {
 
           {/* Glossary Mode */}
           {showGlossary && (
-            <div className="max-w-4xl mx-auto mb-12">
+            <div className="max-w-6xl mx-auto mb-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {glossary.map((term, index) => (
                   <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 dark:border-gray-700">
