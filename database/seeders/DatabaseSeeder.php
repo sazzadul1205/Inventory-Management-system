@@ -4,60 +4,99 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
-// Seeder Classes
-use Database\Seeders\PageRelatedSeeders\PageSeeders;
-use Database\Seeders\PageRelatedSeeders\PageSectionsSeeder;
+use Illuminate\Support\Facades\App;
 
 // Page Related Seeders
-use Database\Seeders\PageRelatedSeeders\FAQPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\HomePageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\ContactPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\ServicesPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\FeaturesPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\HowItWorksPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\IndustriesPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\PricingPlansPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\TestimonialsPageSectionVariantSeeder;
-use Database\Seeders\PageRelatedSeeders\SuccessStoriesPageSectionVariantSeeder;
+use Database\Seeders\PageRelatedSeeders\{
+    AboutUsPageSectionVariantSeeder,
+    ContactPageSectionVariantSeeder,
+    FAQPageSectionVariantSeeder,
+    FeaturesPageSectionVariantSeeder,
+    HomePageSectionVariantSeeder,
+    HowItWorksPageSectionVariantSeeder,
+    IndustriesPageSectionVariantSeeder,
+    PageSeeders,
+    PageSectionsSeeder,
+    PricingPlansPageSectionVariantSeeder,
+    ServicesPageSectionVariantSeeder,
+    SuccessStoriesPageSectionVariantSeeder,
+    TestimonialsPageSectionVariantSeeder,
+};
 
 class DatabaseSeeder extends Seeder
 {
     /**
+     * Available seeding options
+     */
+    private const SEEDING_OPTIONS = [
+        'all' => '🚀 Seed Everything (Pages + Data)',
+        'pages' => '📄 Seed Only Pages & Sections',
+        'data' => '📦 Seed Only Data (Products, Orders, etc.)',
+        'cancel' => '❌ Cancel',
+    ];
+
+    /**
+     * Available data seeding options
+     */
+    private const DATA_SEEDING_OPTIONS = [
+        'all_data' => '📦 Seed All Data',
+        'selective' => '🎯 Select Specific Data',
+        'skip' => '⏭️  Skip',
+    ];
+
+    /**
+     * Available selective data categories
+     */
+    private const SELECTIVE_DATA_CATEGORIES = [
+        '1' => ['name' => '🏢 Foundation (Settings, Roles)', 'seeders' => ['SettingSeeder', 'RoleSeeder']],
+        '2' => ['name' => '👤 Core (Users, Departments)', 'seeders' => ['UserSeeder', 'DepartmentSeeder']],
+        '3' => ['name' => '🏭 Warehouse & Locations', 'seeders' => ['WarehouseSeeder', 'LocationSeeder']],
+        '4' => ['name' => '📦 Product Catalog', 'seeders' => ['CategorySeeder', 'ProductSeeder']],
+        '5' => ['name' => '🤝 Suppliers & Customers', 'seeders' => ['SupplierSeeder', 'CustomerSeeder']],
+        '6' => ['name' => '🔗 Product-Supplier Relationships', 'seeders' => ['ProductSupplierSeeder']],
+        '7' => ['name' => '📊 Inventory', 'seeders' => ['InventorySeeder']],
+        '8' => ['name' => '🔄 Stock Operations', 'seeders' => ['StockCountSeeder', 'StockCountItemSeeder', 'StockTransferSeeder', 'StockTransferItemSeeder']],
+        '9' => ['name' => '📋 Orders & Fulfillment', 'seeders' => [
+            'PurchaseOrderSeeder',
+            'PurchaseOrderItemSeeder',
+            'PurchaseReceiptSeeder',
+            'PurchaseReceiptItemSeeder',
+            'SalesOrderSeeder',
+            'SalesOrderItemSeeder',
+            'ShipmentSeeder',
+            'ShipmentItemSeeder'
+        ]],
+        '10' => ['name' => '📝 Movements & Logs', 'seeders' => ['InventoryMovementSeeder', 'AuditLogSeeder']],
+    ];
+
+    /**
+     * Page section variant seeders in correct order
+     */
+    private const PAGE_VARIANT_SEEDERS = [
+        HomePageSectionVariantSeeder::class,
+        ServicesPageSectionVariantSeeder::class,
+        FeaturesPageSectionVariantSeeder::class,
+        HowItWorksPageSectionVariantSeeder::class,
+        IndustriesPageSectionVariantSeeder::class,
+        SuccessStoriesPageSectionVariantSeeder::class,
+        TestimonialsPageSectionVariantSeeder::class,
+        PricingPlansPageSectionVariantSeeder::class,
+        FAQPageSectionVariantSeeder::class,
+        ContactPageSectionVariantSeeder::class,
+        AboutUsPageSectionVariantSeeder::class,
+    ];
+
+    /**
      * Seed the application's database.
-     * 
-     * IMPORTANT: This master seeder controls the order.
-     * DO NOT call other seeders from within individual seeders.
      */
     public function run(): void
     {
-        // Check if running in production
-        if (app()->environment('production')) {
-            $confirm = $this->command->confirm('⚠️  You are in PRODUCTION environment! Seeding will modify your database. Are you sure you want to continue?');
+        $this->validateProductionEnvironment();
 
-            if (!$confirm) {
-                $this->command->error('❌ Seeding cancelled.');
-                return;
-            }
-        }
+        $this->displayHeader();
 
-        $this->command->newLine();
-        $this->command->info('🎯 Database Seeder Menu');
-        $this->command->line('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        $choice = $this->getSeedingChoice();
 
-        // Ask which part to seed
-        $choice = $this->command->choice(
-            'What would you like to seed?',
-            [
-                'all' => '🚀 Seed Everything (Pages + Data)',
-                'pages' => '📄 Seed Only Pages & Sections',
-                'data' => '📦 Seed Only Data (Products, Orders, etc.)',
-                'cancel' => '❌ Cancel',
-            ],
-            'all'
-        );
-
-        // Handle cancellation
         if ($choice === 'cancel') {
             $this->command->info('❌ Seeding cancelled.');
             return;
@@ -65,87 +104,125 @@ class DatabaseSeeder extends Seeder
 
         $this->command->newLine();
 
-        // ===========================================
-        // SEED PAGES & SECTIONS
-        // ===========================================
-        if ($choice === 'all' || $choice === 'pages') {
-            $this->seedPagesAndSections();
+        $this->executeSeedingStrategy($choice);
+
+        $this->displayCompletionMessage();
+    }
+
+    /**
+     * Validate production environment seeding
+     */
+    private function validateProductionEnvironment(): void
+    {
+        if (!App::environment('production')) {
+            return;
         }
 
-        // ===========================================
-        // SEED DATA (Products, Orders, etc.)
-        // ===========================================
-        if ($choice === 'all' || $choice === 'data') {
-            $this->seedData();
-        }
+        $confirm = $this->command->confirm(
+            '⚠️  You are in PRODUCTION environment! Seeding will modify your database. Are you sure you want to continue?'
+        );
 
+        if (!$confirm) {
+            $this->command->error('❌ Seeding cancelled.');
+            exit(0);
+        }
+    }
+
+    /**
+     * Display header with styling
+     */
+    private function displayHeader(): void
+    {
+        $this->command->newLine();
+        $this->command->info('🎯 Database Seeder Menu');
+        $this->command->line('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    }
+
+    /**
+     * Display completion message
+     */
+    private function displayCompletionMessage(): void
+    {
         $this->command->newLine();
         $this->command->info('✅ Database seeding completed successfully!');
+        $this->command->newLine();
+    }
+
+    /**
+     * Get seeding choice from user
+     */
+    private function getSeedingChoice(): string
+    {
+        return $this->command->choice(
+            'What would you like to seed?',
+            self::SEEDING_OPTIONS,
+            'all'
+        );
+    }
+
+    /**
+     * Execute seeding based on chosen strategy
+     */
+    private function executeSeedingStrategy(string $choice): void
+    {
+        match ($choice) {
+            'all' => $this->seedAll(),
+            'pages' => $this->seedPagesAndSections(),
+            'data' => $this->seedData(),
+            default => null,
+        };
+    }
+
+    /**
+     * Seed everything
+     */
+    private function seedAll(): void
+    {
+        $this->seedPagesAndSections();
+        $this->seedData();
     }
 
     /**
      * Seed Pages and Sections only
      */
-    protected function seedPagesAndSections(): void
+    private function seedPagesAndSections(): void
     {
         $this->command->info('📄 Seeding Pages and Sections...');
         $this->command->line('──────────────────────────────────────');
 
-        // Confirm pages seeding
         $confirm = $this->command->confirm('Do you want to seed Pages?', true);
-        if ($confirm) {
 
-            // Call Page Seeders
-            $this->call(PageSeeders::class);
-
-            // Call Page Section Seeders
-            $this->call(PageSectionsSeeder::class);
-
-            // Call Home Page Section Variant Seeders
-            $this->call(HomePageSectionVariantSeeder::class);
-
-            // Call Services Page Section Variant Seeders
-            $this->call(ServicesPageSectionVariantSeeder::class);
-
-            // Call Features Page Section Variant Seeders
-            $this->call(FeaturesPageSectionVariantSeeder::class);
-
-            // Call HowItWorks Page Section Variant Seeders
-            $this->call(HowItWorksPageSectionVariantSeeder::class);
-
-            // Call Industries Page Section Variant Seeders
-            $this->call(IndustriesPageSectionVariantSeeder::class);
-
-            // Call Success Stories Page Section Variant Seeders
-            $this->call(SuccessStoriesPageSectionVariantSeeder::class);
-
-            // Call Testimonials Page Section Variant Seeders
-            $this->call(TestimonialsPageSectionVariantSeeder::class);
-
-            // Call Pricing Plans Page Section Variant Seeders
-            $this->call(PricingPlansPageSectionVariantSeeder::class);
-
-            // Call FAQ Page Section Variant Seeders
-            $this->call(FAQPageSectionVariantSeeder::class);
-
-            // Call Contact Page Section Variant Seeders
-            $this->call(ContactPageSectionVariantSeeder::class);
-
-            $this->command->info('✅ Pages and Sections seeded successfully!');
-        } else {
+        if (!$confirm) {
             $this->command->warn('⚠️  Skipped Pages and Sections seeding.');
+            return;
+        }
+
+        $this->callSafely(PageSeeders::class);
+        $this->callSafely(PageSectionsSeeder::class);
+
+        $this->seedPageVariants();
+
+        $this->command->info('✅ Pages and Sections seeded successfully!');
+    }
+
+    /**
+     * Seed all page variant seeders
+     */
+    private function seedPageVariants(): void
+    {
+        foreach (self::PAGE_VARIANT_SEEDERS as $seeder) {
+            $this->callSafely($seeder);
         }
     }
 
     /**
      * Seed Data (Products, Orders, etc.)
      */
-    protected function seedData(): void
+    private function seedData(): void
     {
         $this->command->info('📦 Seeding Data (Products, Orders, etc.)...');
         $this->command->line('──────────────────────────────────────────');
 
-        // Confirm data seeding
         $confirm = $this->command->confirm('Do you want to seed all data?', true);
 
         if (!$confirm) {
@@ -153,133 +230,124 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
-        // Ask for specific data seeding
         $seedOption = $this->command->choice(
             'What data would you like to seed?',
-            [
-                'all_data' => '📦 Seed All Data',
-                'selective' => '🎯 Select Specific Data',
-                'skip' => '⏭️  Skip',
-            ],
+            self::DATA_SEEDING_OPTIONS,
             'all_data'
         );
 
-        if ($seedOption === 'skip') {
-            $this->command->warn('⚠️  Skipped Data seeding.');
-            return;
-        }
-
-        if ($seedOption === 'selective') {
-            $this->seedSelectiveData();
-            return;
-        }
-
-        // Seed all data
-        $this->seedAllData();
+        match ($seedOption) {
+            'skip' => $this->command->warn('⚠️  Skipped Data seeding.'),
+            'selective' => $this->seedSelectiveData(),
+            default => $this->seedAllData(),
+        };
     }
 
     /**
-     * Seed all data
+     * Seed all data in correct order
      */
-    protected function seedAllData(): void
+    private function seedAllData(): void
     {
-        // ===========================================
-        // STEP 1: Foundation Data (No Dependencies)
-        // ===========================================
-        $this->command->info('📦 Seeding foundation data...');
-        $this->callIfExists('SettingSeeder');
-        $this->callIfExists('RoleSeeder');
+        $dataSeeders = $this->getOrderedDataSeeders();
 
-        // ===========================================
-        // STEP 2: Core Structure (Depends on Foundation)
-        // ===========================================
-        $this->command->info('🏗️  Seeding core structure...');
-        $this->callIfExists('UserSeeder');
-        $this->callIfExists('DepartmentSeeder');
+        foreach ($dataSeeders as $step => $seeders) {
+            $this->command->info($step);
 
-        // ===========================================
-        // STEP 3: Warehouse & Locations
-        // ===========================================
-        $this->command->info('🏭 Seeding warehouse structure...');
-        $this->callIfExists('WarehouseSeeder');
-        $this->callIfExists('LocationSeeder');
+            foreach ($seeders as $seeder) {
+                $this->callSafely($seeder);
+            }
+        }
+    }
 
-        // ===========================================
-        // STEP 4: Product Catalog
-        // ===========================================
-        $this->command->info('📦 Seeding product catalog...');
-        $this->callIfExists('CategorySeeder');
-        $this->callIfExists('ProductSeeder');
-
-        // ===========================================
-        // STEP 5: Suppliers & Customers
-        // ===========================================
-        $this->command->info('🤝 Seeding suppliers and customers...');
-        $this->callIfExists('SupplierSeeder');
-        $this->callIfExists('CustomerSeeder');
-
-        // ===========================================
-        // STEP 6: Product-Supplier Relationships
-        // ===========================================
-        $this->command->info('🔗 Seeding product-supplier relationships...');
-        $this->callIfExists('ProductSupplierSeeder');
-
-        // ===========================================
-        // STEP 7: Inventory
-        // ===========================================
-        $this->command->info('📊 Seeding inventory...');
-        $this->callIfExists('InventorySeeder');
-
-        // ===========================================
-        // STEP 8: Stock Operations
-        // ===========================================
-        $this->command->info('🔄 Seeding stock operations...');
-        $this->callIfExists('StockCountSeeder');
-        $this->callIfExists('StockCountItemSeeder');
-        $this->callIfExists('StockTransferSeeder');
-        $this->callIfExists('StockTransferItemSeeder');
-
-        // ===========================================
-        // STEP 9: Orders & Fulfillment
-        // ===========================================
-        $this->command->info('📋 Seeding orders and fulfillment...');
-        $this->callIfExists('PurchaseOrderSeeder');
-        $this->callIfExists('PurchaseOrderItemSeeder');
-        $this->callIfExists('PurchaseReceiptSeeder');
-        $this->callIfExists('PurchaseReceiptItemSeeder');
-        $this->callIfExists('SalesOrderSeeder');
-        $this->callIfExists('SalesOrderItemSeeder');
-        $this->callIfExists('ShipmentSeeder');
-        $this->callIfExists('ShipmentItemSeeder');
-
-        // ===========================================
-        // STEP 10: Movements & Logs
-        // ===========================================
-        $this->command->info('📝 Seeding movements and logs...');
-        $this->callIfExists('InventoryMovementSeeder');
-        $this->callIfExists('AuditLogSeeder');
+    /**
+     * Get ordered data seeders with descriptive steps
+     */
+    private function getOrderedDataSeeders(): array
+    {
+        return [
+            '📦 Seeding foundation data...' => [
+                SettingSeeder::class,
+                RoleSeeder::class,
+            ],
+            '🏗️  Seeding core structure...' => [
+                UserSeeder::class,
+                DepartmentSeeder::class,
+            ],
+            '🏭 Seeding warehouse structure...' => [
+                WarehouseSeeder::class,
+                LocationSeeder::class,
+            ],
+            '📦 Seeding product catalog...' => [
+                CategorySeeder::class,
+                ProductSeeder::class,
+            ],
+            '🤝 Seeding suppliers and customers...' => [
+                SupplierSeeder::class,
+                CustomerSeeder::class,
+            ],
+            '🔗 Seeding product-supplier relationships...' => [
+                ProductSupplierSeeder::class,
+            ],
+            '📊 Seeding inventory...' => [
+                InventorySeeder::class,
+            ],
+            '🔄 Seeding stock operations...' => [
+                StockCountSeeder::class,
+                StockCountItemSeeder::class,
+                StockTransferSeeder::class,
+                StockTransferItemSeeder::class,
+            ],
+            '📋 Seeding orders and fulfillment...' => [
+                PurchaseOrderSeeder::class,
+                PurchaseOrderItemSeeder::class,
+                PurchaseReceiptSeeder::class,
+                PurchaseReceiptItemSeeder::class,
+                SalesOrderSeeder::class,
+                SalesOrderItemSeeder::class,
+                ShipmentSeeder::class,
+                ShipmentItemSeeder::class,
+            ],
+            '📝 Seeding movements and logs...' => [
+                InventoryMovementSeeder::class,
+                AuditLogSeeder::class,
+            ],
+        ];
     }
 
     /**
      * Seed selective data with interactive prompts
      */
-    protected function seedSelectiveData(): void
+    private function seedSelectiveData(): void
+    {
+        $selectedCategories = $this->getSelectedCategories();
+
+        if (empty($selectedCategories) || in_array('all', $selectedCategories)) {
+            $this->seedAllData();
+            return;
+        }
+
+        foreach ($selectedCategories as $categoryKey) {
+            if (!isset(self::SELECTIVE_DATA_CATEGORIES[$categoryKey])) {
+                continue;
+            }
+
+            $category = self::SELECTIVE_DATA_CATEGORIES[$categoryKey];
+            $this->command->info($category['name']);
+
+            foreach ($category['seeders'] as $seeder) {
+                $this->callSafely($seeder);
+            }
+        }
+    }
+
+    /**
+     * Get selected categories from user input
+     */
+    private function getSelectedCategories(): array
     {
         $choices = $this->command->choice(
             'Select which data to seed (comma separated numbers or type "all")',
-            [
-                '1' => '🏢 Foundation (Settings, Roles)',
-                '2' => '👤 Core (Users, Departments)',
-                '3' => '🏭 Warehouse & Locations',
-                '4' => '📦 Product Catalog',
-                '5' => '🤝 Suppliers & Customers',
-                '6' => '🔗 Product-Supplier Relationships',
-                '7' => '📊 Inventory',
-                '8' => '🔄 Stock Operations',
-                '9' => '📋 Orders & Fulfillment',
-                '10' => '📝 Movements & Logs',
-                'all' => '📦 Seed All Data',
-            ],
+            $this->buildSelectiveDataOptions(),
             'all',
             null,
             true // Multiple selections allowed
@@ -287,93 +355,49 @@ class DatabaseSeeder extends Seeder
 
         // Convert to array if string
         if (is_string($choices)) {
-            $choices = explode(',', $choices);
+            $choices = array_map('trim', explode(',', $choices));
         }
 
-        if (in_array('all', $choices) || $choices === 'all') {
-            $this->seedAllData();
-            return;
-        }
-
-        // Seed selected categories
-        if (in_array('1', $choices)) {
-            $this->command->info('📦 Seeding foundation data...');
-            $this->callIfExists('SettingSeeder');
-            $this->callIfExists('RoleSeeder');
-        }
-
-        if (in_array('2', $choices)) {
-            $this->command->info('🏗️  Seeding core structure...');
-            $this->callIfExists('UserSeeder');
-            $this->callIfExists('DepartmentSeeder');
-        }
-
-        if (in_array('3', $choices)) {
-            $this->command->info('🏭 Seeding warehouse structure...');
-            $this->callIfExists('WarehouseSeeder');
-            $this->callIfExists('LocationSeeder');
-        }
-
-        if (in_array('4', $choices)) {
-            $this->command->info('📦 Seeding product catalog...');
-            $this->callIfExists('CategorySeeder');
-            $this->callIfExists('ProductSeeder');
-        }
-
-        if (in_array('5', $choices)) {
-            $this->command->info('🤝 Seeding suppliers and customers...');
-            $this->callIfExists('SupplierSeeder');
-            $this->callIfExists('CustomerSeeder');
-        }
-
-        if (in_array('6', $choices)) {
-            $this->command->info('🔗 Seeding product-supplier relationships...');
-            $this->callIfExists('ProductSupplierSeeder');
-        }
-
-        if (in_array('7', $choices)) {
-            $this->command->info('📊 Seeding inventory...');
-            $this->callIfExists('InventorySeeder');
-        }
-
-        if (in_array('8', $choices)) {
-            $this->command->info('🔄 Seeding stock operations...');
-            $this->callIfExists('StockCountSeeder');
-            $this->callIfExists('StockCountItemSeeder');
-            $this->callIfExists('StockTransferSeeder');
-            $this->callIfExists('StockTransferItemSeeder');
-        }
-
-        if (in_array('9', $choices)) {
-            $this->command->info('📋 Seeding orders and fulfillment...');
-            $this->callIfExists('PurchaseOrderSeeder');
-            $this->callIfExists('PurchaseOrderItemSeeder');
-            $this->callIfExists('PurchaseReceiptSeeder');
-            $this->callIfExists('PurchaseReceiptItemSeeder');
-            $this->callIfExists('SalesOrderSeeder');
-            $this->callIfExists('SalesOrderItemSeeder');
-            $this->callIfExists('ShipmentSeeder');
-            $this->callIfExists('ShipmentItemSeeder');
-        }
-
-        if (in_array('10', $choices)) {
-            $this->command->info('📝 Seeding movements and logs...');
-            $this->callIfExists('InventoryMovementSeeder');
-            $this->callIfExists('AuditLogSeeder');
-        }
+        return $choices;
     }
 
     /**
-     * Call seeder if it exists
+     * Build selective data options array for choice menu
      */
-    protected function callIfExists(string $seederClass): void
+    private function buildSelectiveDataOptions(): array
     {
-        $fullClass = "Database\\Seeders\\{$seederClass}";
+        $options = [];
 
-        if (class_exists($fullClass)) {
-            $this->call($fullClass);
-        } else {
+        foreach (self::SELECTIVE_DATA_CATEGORIES as $key => $category) {
+            $options[$key] = $category['name'];
+        }
+
+        $options['all'] = '📦 Seed All Data';
+
+        return $options;
+    }
+
+    /**
+     * Safely call a seeder if it exists
+     */
+    private function callSafely(string $seederClass): void
+    {
+        if (!class_exists($seederClass)) {
             $this->command->warn("⚠️  Seeder not found: {$seederClass}");
+            return;
+        }
+
+        try {
+            $this->call($seederClass);
+        } catch (\Exception $e) {
+            $this->command->error("❌ Failed to seed: {$seederClass}");
+            $this->command->error("   Error: {$e->getMessage()}");
+
+            if ($this->command->confirm('Continue with remaining seeders?', true)) {
+                return;
+            }
+
+            throw $e;
         }
     }
 }
