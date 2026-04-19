@@ -19,8 +19,6 @@ Route::controller(FrontEndController::class)->group(function () {
 
     // Home
     Route::get('/', 'home')->name('home.index');
-    Route::get('/pricing', 'pricingPlans')->name('pricing.index');
-
     // Static Pages
     $pages = [
         'services',

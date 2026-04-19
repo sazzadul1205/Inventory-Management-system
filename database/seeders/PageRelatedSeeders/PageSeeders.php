@@ -129,7 +129,7 @@ class PageSeeders extends Seeder
             [
                 'id' => 8,
                 'name' => 'Pricing Plans',
-                'slug' => 'pricing',
+                'slug' => 'pricing-plans',
                 'meta' => json_encode([
                     'title' => 'Pricing Plans | Flexible & Affordable',
                     'description' => 'Choose the perfect pricing plan for your business. Flexible options for startups, growing businesses, and enterprises.',
@@ -174,7 +174,7 @@ class PageSeeders extends Seeder
             [
                 'id' => 11,
                 'name' => 'About Us',
-                'slug' => 'about',
+                'slug' => 'about-us',
                 'meta' => json_encode([
                     'title' => 'About Us | Our Story & Mission',
                     'description' => 'Learn about our company, mission, values, and the team behind our innovative inventory and logistics platform.',

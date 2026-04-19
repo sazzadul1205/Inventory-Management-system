@@ -8,6 +8,9 @@ import { useEffect } from 'react';
 import { FiHome, FiRefreshCw, FiMail, FiArrowLeft } from 'react-icons/fi';
 import { WiDayThunderstorm } from 'react-icons/wi';
 
+// Layout
+import FrontEnd_Layout from '../../layouts/FrontEnd_Layout';
+
 const PageBroken = ({ reason, errorCode = 500, errorMessage = "Page Error" }) => {
   const errorId = `ERR_PAGE_BROKEN_${Math.random()
     .toString(36)
@@ -35,7 +38,7 @@ const PageBroken = ({ reason, errorCode = 500, errorMessage = "Page Error" }) =>
   const pageTitle = `${errorCode}: ${errorMessage} | Page Error`;
 
   return (
-    <>
+    <FrontEnd_Layout>
       {/* Page-specific meta tags for error page */}
       <Head>
         <title>{pageTitle}</title>
@@ -137,7 +140,7 @@ const PageBroken = ({ reason, errorCode = 500, errorMessage = "Page Error" }) =>
           </p>
         </div>
       </div>
-    </>
+    </FrontEnd_Layout>
   );
 };
 

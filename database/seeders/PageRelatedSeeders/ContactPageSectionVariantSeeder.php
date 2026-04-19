@@ -4021,7 +4021,6 @@ class ContactPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
         ];
 
         // Add the new Services variants
