@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\App;
 
 // Page Related Seeders
 use Database\Seeders\PageRelatedSeeders\{
-    AboutUsPageSectionVariantSeeder,
-    ContactPageSectionVariantSeeder,
-    FAQPageSectionVariantSeeder,
-    FeaturesPageSectionVariantSeeder,
-    HomePageSectionVariantSeeder,
-    HowItWorksPageSectionVariantSeeder,
-    IndustriesPageSectionVariantSeeder,
     PageSeeders,
     PageSectionsSeeder,
-    PricingPlansPageSectionVariantSeeder,
+    FAQPageSectionVariantSeeder,
+    HomePageSectionVariantSeeder,
+    AboutUsPageSectionVariantSeeder,
+    ContactPageSectionVariantSeeder,
     ServicesPageSectionVariantSeeder,
-    SuccessStoriesPageSectionVariantSeeder,
+    FeaturesPageSectionVariantSeeder,
+    HowItWorksPageSectionVariantSeeder,
+    IndustriesPageSectionVariantSeeder,
+    WhyChooseUsPageSectionVariantSeeder,
+    PricingPlansPageSectionVariantSeeder,
     TestimonialsPageSectionVariantSeeder,
+    SuccessStoriesPageSectionVariantSeeder,
 };
 
 class DatabaseSeeder extends Seeder
@@ -73,17 +74,18 @@ class DatabaseSeeder extends Seeder
      * Page section variant seeders in correct order
      */
     private const PAGE_VARIANT_SEEDERS = [
+        FAQPageSectionVariantSeeder::class,
         HomePageSectionVariantSeeder::class,
+        ContactPageSectionVariantSeeder::class,
+        AboutUsPageSectionVariantSeeder::class,
         ServicesPageSectionVariantSeeder::class,
         FeaturesPageSectionVariantSeeder::class,
         HowItWorksPageSectionVariantSeeder::class,
         IndustriesPageSectionVariantSeeder::class,
-        SuccessStoriesPageSectionVariantSeeder::class,
-        TestimonialsPageSectionVariantSeeder::class,
+        WhyChooseUsPageSectionVariantSeeder::class,
         PricingPlansPageSectionVariantSeeder::class,
-        FAQPageSectionVariantSeeder::class,
-        ContactPageSectionVariantSeeder::class,
-        AboutUsPageSectionVariantSeeder::class,
+        TestimonialsPageSectionVariantSeeder::class,
+        SuccessStoriesPageSectionVariantSeeder::class,
     ];
 
     /**
