@@ -422,7 +422,7 @@ const UniqueSellingPointsSection1 = ({ config }) => {
         </div>
 
         {/* ==================== FAQ SECTION ==================== */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center mb-4">
             Frequently Asked Questions
           </h3>

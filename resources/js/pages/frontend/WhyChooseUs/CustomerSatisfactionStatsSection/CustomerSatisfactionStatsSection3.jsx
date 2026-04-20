@@ -145,7 +145,7 @@ const CustomerSatisfactionStatsSection3 = ({ config }) => {
       HiOutlineHeart, HiOutlineTrendingUp, HiOutlineX, HiOutlineThumbUp, HiOutlineThumbDown,
       HiOutlineExternalLink, HiOutlineFilter, HiOutlineBookmark, HiOutlinePrinter, HiOutlineDownload,
       HiOutlinePlay, HiOutlineCalendar, HiOutlineQuestionMarkCircle,
-      // Tabler Icons
+      
       TbChartBar, TbMessage2, TbStarFilled, TbUsers, TbStopwatch, TbHeadset, TbCloudCheck, TbChartCandle, TbTrendingUp,
       // Material Design
       MdVerified, MdOutlineRateReview,

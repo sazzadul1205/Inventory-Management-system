@@ -119,7 +119,7 @@ const UniqueSellingPointsSection2 = ({ config }) => {
       HiOutlineArrowRight, HiOutlineCheckCircle, HiOutlineX, HiOutlineThumbUp, HiOutlineThumbDown,
       HiOutlineExternalLink, HiOutlineFilter, HiOutlineBookmark, HiOutlinePrinter, HiOutlineDownload,
       HiOutlineStar, HiOutlineClock, HiOutlineChartBar,
-      // Tabler Icons
+      
       TbBrain, TbPlugConnected, TbClock, TbApi, TbChartInfographic,
       // Material Design
       MdOutlinePeopleAlt, MdOutlineSavings, MdOutlineVerifiedUser,
@@ -419,7 +419,7 @@ const UniqueSellingPointsSection2 = ({ config }) => {
         </div>
 
         {/* ==================== FAQ SECTION ==================== */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center mb-4">
             Frequently Asked Questions
           </h3>
