@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\App;
 use Database\Seeders\PageRelatedSeeders\{
     PageSeeders,
     PageSectionsSeeder,
+};
+
+use Database\Seeders\PageRelatedSeeders\SectionVariantSeeder\{
     FAQPageSectionVariantSeeder,
     HomePageSectionVariantSeeder,
-    AboutUsPageSectionVariantSeeder,
+    BlogPageSectionVariantSeeder,
     ContactPageSectionVariantSeeder,
+    AboutUsPageSectionVariantSeeder,
     ServicesPageSectionVariantSeeder,
     FeaturesPageSectionVariantSeeder,
     HowItWorksPageSectionVariantSeeder,
@@ -74,6 +78,7 @@ class DatabaseSeeder extends Seeder
      * Page section variant seeders in correct order
      */
     private const PAGE_VARIANT_SEEDERS = [
+        BlogPageSectionVariantSeeder::class,
         FAQPageSectionVariantSeeder::class,
         HomePageSectionVariantSeeder::class,
         ContactPageSectionVariantSeeder::class,

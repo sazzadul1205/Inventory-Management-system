@@ -1,5 +1,5 @@
 <?php
-// database/seeders/PageRelatedSeeders/PageSeeders.php
+
 namespace Database\Seeders\PageRelatedSeeders;
 
 use Illuminate\Database\Seeder;

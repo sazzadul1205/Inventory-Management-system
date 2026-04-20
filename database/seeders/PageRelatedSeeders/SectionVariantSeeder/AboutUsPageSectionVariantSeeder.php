@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\PageRelatedSeeders;
+namespace Database\Seeders\PageRelatedSeeders\SectionVariantSeeder;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

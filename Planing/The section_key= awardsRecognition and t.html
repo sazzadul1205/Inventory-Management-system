@@ -1,6 +1,601 @@
-The section_key= support24x7 and the First Id Will be id=> 385
+The section_key= howToGuides and the First Id Will be id=> 401
 1>
-
+{
+  "badge": "Step-by-Step Tutorials",
+  "title": {
+    "prefix": "How-to",
+    "highlight": "Guides"
+  },
+  "description": "Master supply chain operations with our comprehensive step-by-step guides. From setup to advanced optimization, we've got you covered.",
+  "searchPlaceholder": "Search guides by title, topic, or keyword...",
+  "categories": [
+    { "id": "all", "label": "All Guides" },
+    { "id": "getting-started", "label": "Getting Started" },
+    { "id": "warehouse", "label": "Warehouse" },
+    { "id": "fulfillment", "label": "Fulfillment" },
+    { "id": "analytics", "label": "Analytics" },
+    { "id": "api", "label": "API & Integration" }
+  ],
+  "showViewAll": true,
+  "viewAllLink": "/guides",
+  "showResourceHub": true,
+  "resourceHub": {
+    "title": "Need more help?",
+    "description": "Explore our comprehensive library of video tutorials, templates, and downloadable resources.",
+    "videoLink": "/videos",
+    "templateLink": "/templates",
+    "stats": [
+      { "value": "50+", "label": "Video Tutorials" },
+      { "value": "25+", "label": "Downloadable Templates" },
+      { "value": "100+", "label": "FAQ Articles" },
+      { "value": "24/7", "label": "Support Available" }
+    ]
+  },
+  "featuredGuide": {
+    "id": "feat-001",
+    "title": "Mastering Multi-Warehouse Inventory Management",
+    "description": "Learn how to optimize inventory across multiple locations, automate transfers, and maintain perfect stock visibility.",
+    "date": "2024-03-15",
+    "readTime": "15 min read",
+    "views": "3.2k",
+    "difficulty": "intermediate",
+    "category": "warehouse",
+    "image": "https://placehold.co/600x400/0f172a/3b82f6?text=Multi-Warehouse",
+    "link": "/guides/multi-warehouse-inventory",
+    "videoUrl": "https://example.com/video",
+    "author": {
+      "name": "Sarah Chen",
+      "avatar": "https://placehold.co/80x80/3b82f6/ffffff?text=SC"
+    }
+  },
+  "guides": [
+    {
+      "id": "guide-001",
+      "title": "Setting Up Your First Inventory Dashboard",
+      "description": "Create custom dashboards to track real-time stock levels, turnover rates, and reorder points.",
+      "date": "2024-03-14",
+      "readTime": "8 min read",
+      "views": "2.1k",
+      "difficulty": "beginner",
+      "category": "analytics",
+      "image": "https://placehold.co/400x300/1e293b/10b981?text=Dashboard",
+      "link": "/guides/first-inventory-dashboard",
+      "tags": ["dashboard", "analytics", "reporting"],
+      "steps": [
+        "Navigate to Analytics > Dashboards",
+        "Click 'Create New Dashboard'",
+        "Select pre-built widgets or add custom metrics",
+        "Configure refresh rate and data sources",
+        "Save and share with team members"
+      ],
+      "author": {
+        "name": "John Smith",
+        "avatar": "https://placehold.co/80x80/8b5cf6/ffffff?text=JS"
+      }
+    },
+    {
+      "id": "guide-002",
+      "title": "Optimizing Warehouse Picking Routes",
+      "description": "Reduce travel time by 40% with dynamic slotting and optimized pick paths.",
+      "date": "2024-03-12",
+      "readTime": "12 min read",
+      "views": "1.8k",
+      "difficulty": "intermediate",
+      "category": "warehouse",
+      "image": "https://placehold.co/400x300/2d3748/f59e0b?text=Picking",
+      "link": "/guides/optimize-picking-routes",
+      "tags": ["warehouse", "efficiency", "picking"],
+      "steps": [
+        "Analyze current pick data for velocity zones",
+        "Implement ABC slotting for fast-movers",
+        "Configure pick-to-light or voice picking",
+        "Test batch picking vs zone picking",
+        "Monitor metrics and iterate weekly"
+      ],
+      "author": {
+        "name": "Maria Rodriguez",
+        "avatar": "https://placehold.co/80x80/ec4899/ffffff?text=MR"
+      }
+    },
+    {
+      "id": "guide-003",
+      "title": "Connecting Your E-commerce Store",
+      "description": "Step-by-step integration for Shopify, WooCommerce, Magento, and custom APIs.",
+      "date": "2024-03-10",
+      "readTime": "10 min read",
+      "views": "4.2k",
+      "difficulty": "beginner",
+      "category": "api",
+      "image": "https://placehold.co/400x300/334155/8b5cf6?text=Ecommerce",
+      "link": "/guides/connect-ecommerce-store",
+      "tags": ["api", "integration", "ecommerce"],
+      "steps": [
+        "Generate API credentials from your store",
+        "Navigate to Integrations > Add New",
+        "Select your platform from the list",
+        "Enter store URL and API keys",
+        "Test connection and sync initial inventory"
+      ],
+      "author": {
+        "name": "Alex Rivera",
+        "avatar": "https://placehold.co/80x80/06b6d4/ffffff?text=AR"
+      }
+    },
+    {
+      "id": "guide-004",
+      "title": "Automating Reorder Point Calculations",
+      "description": "Set up dynamic safety stock that adjusts automatically for demand variability and lead times.",
+      "date": "2024-03-08",
+      "readTime": "14 min read",
+      "views": "2.9k",
+      "difficulty": "advanced",
+      "category": "fulfillment",
+      "image": "https://placehold.co/400x300/0f172a/ef4444?text=Reorder",
+      "link": "/guides/automated-reorder-points",
+      "tags": ["automation", "replenishment", "forecasting"],
+      "steps": [
+        "Configure lead time variance tracking",
+        "Set demand forecasting parameters",
+        "Define service level targets by SKU class",
+        "Enable automatic PO generation",
+        "Create approval workflows for exceptions"
+      ],
+      "author": {
+        "name": "Dr. Emily Park",
+        "avatar": "https://placehold.co/80x80/14b8a6/ffffff?text=EP"
+      }
+    },
+    {
+      "id": "guide-005",
+      "title": "Conducting Cycle Counts with Mobile Scanner",
+      "description": "Use our mobile app for efficient cycle counting with offline support and real-time validation.",
+      "date": "2024-03-05",
+      "readTime": "7 min read",
+      "views": "1.5k",
+      "difficulty": "beginner",
+      "category": "warehouse",
+      "image": "https://placehold.co/400x300/1e293b/22c55e?text=Cycle+Count",
+      "link": "/guides/mobile-cycle-counts",
+      "tags": ["mobile", "scanning", "inventory"],
+      "steps": [
+        "Download the mobile app from app stores",
+        "Log in with your warehouse credentials",
+        "Select 'Cycle Count' from menu",
+        "Scan barcode or search for SKU",
+        "Enter counted quantity and submit"
+      ],
+      "author": {
+        "name": "John Smith",
+        "avatar": "https://placehold.co/80x80/3b82f6/ffffff?text=JS"
+      }
+    },
+    {
+      "id": "guide-006",
+      "title": "Building Custom Analytics Reports",
+      "description": "Create powerful custom reports with our drag-and-drop report builder and scheduled exports.",
+      "date": "2024-03-01",
+      "readTime": "11 min read",
+      "views": "2.3k",
+      "difficulty": "intermediate",
+      "category": "analytics",
+      "image": "https://placehold.co/400x300/2d3748/8b5cf6?text=Reports",
+      "link": "/guides/custom-analytics-reports",
+      "tags": ["analytics", "reporting", "data"],
+      "steps": [
+        "Navigate to Analytics > Custom Reports",
+        "Select metrics from the available library",
+        "Drag and drop to arrange layout",
+        "Apply filters and date ranges",
+        "Schedule automated email delivery"
+      ],
+      "author": {
+        "name": "Maria Rodriguez",
+        "avatar": "https://placehold.co/80x80/ec4899/ffffff?text=MR"
+      }
+    }
+  ]
+}
 2>
-
+{
+  "badge": "Interactive Tutorials",
+  "title": {
+    "prefix": "Learn",
+    "highlight": "Supply Chain",
+    "suffix": "Operations"
+  },
+  "description": "Master supply chain management with our interactive tutorials, video walkthroughs, and step-by-step guides. Learn at your own pace.",
+  "searchPlaceholder": "Search tutorials, guides, or topics...",
+  "defaultViewMode": "grid",
+  "stats": {
+    "totalGuides": 50,
+    "videoTutorials": 25,
+    "students": "10k+"
+  },
+  "showLearningPaths": true,
+  "showNewsletter": true,
+  "newsletter": {
+    "title": "Get new guides in your inbox",
+    "description": "Subscribe to receive weekly tutorials, tips, and best practices delivered straight to your inbox.",
+    "disclaimer": "No spam, unsubscribe anytime. Get 1-2 emails per week."
+  },
+  "popularTopics": ["Inventory Optimization", "Warehouse Automation", "Demand Forecasting", "Supplier Collaboration", "Returns Management"],
+  "categories": [
+    { "id": "all", "label": "All Guides", "icon": "sparkles" },
+    { "id": "getting-started", "label": "Getting Started", "icon": "rocket" },
+    { "id": "warehouse", "label": "Warehouse", "icon": "cube" },
+    { "id": "fulfillment", "label": "Fulfillment", "icon": "truck" },
+    { "id": "analytics", "label": "Analytics", "icon": "chart" },
+    { "id": "api", "label": "API & Integration", "icon": "code" }
+  ],
+  "learningPaths": [
+    {
+      "id": "lp-001",
+      "title": "Inventory Management Fundamentals",
+      "description": "Master the core concepts of inventory control, safety stock, and reorder points.",
+      "icon": "cube",
+      "bgColor": "bg-blue-600",
+      "guides": 8,
+      "duration": "4 hours",
+      "progress": 35,
+      "link": "/learning-paths/inventory-fundamentals"
+    },
+    {
+      "id": "lp-002",
+      "title": "Warehouse Operations Excellence",
+      "description": "Optimize picking, packing, and putaway processes for maximum efficiency.",
+      "icon": "truck",
+      "bgColor": "bg-purple-600",
+      "guides": 6,
+      "duration": "3 hours",
+      "progress": 15,
+      "link": "/learning-paths/warehouse-excellence"
+    },
+    {
+      "id": "lp-003",
+      "title": "Analytics & Reporting Mastery",
+      "description": "Transform data into actionable insights with custom dashboards and reports.",
+      "icon": "chart",
+      "bgColor": "bg-green-600",
+      "guides": 5,
+      "duration": "2.5 hours",
+      "progress": 60,
+      "link": "/learning-paths/analytics-mastery"
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide-001",
+      "title": "Setting Up Your First Inventory Dashboard",
+      "description": "Create custom dashboards to track real-time stock levels, turnover rates, and reorder points.",
+      "readTime": "8 min read",
+      "views": "2.1k",
+      "rating": "4.9",
+      "reviews": 124,
+      "difficulty": "beginner",
+      "category": "analytics",
+      "image": "https://placehold.co/600x400/0f172a/3b82f6?text=Dashboard",
+      "link": "/guides/first-inventory-dashboard",
+      "videoUrl": "https://example.com/video",
+      "tags": ["dashboard", "analytics", "reporting", "kpi"],
+      "steps": [
+        "Navigate to Analytics > Dashboards",
+        "Click 'Create New Dashboard' from template gallery",
+        "Select pre-built widgets or add custom metrics",
+        "Configure refresh rate and data sources",
+        "Set up user permissions and sharing",
+        "Schedule automated email reports"
+      ],
+      "author": {
+        "name": "Sarah Chen",
+        "role": "Analytics Lead",
+        "avatar": "https://placehold.co/80x80/3b82f6/ffffff?text=SC"
+      }
+    },
+    {
+      "id": "guide-002",
+      "title": "Optimizing Warehouse Picking Routes",
+      "description": "Reduce travel time by 40% with dynamic slotting and optimized pick paths.",
+      "readTime": "12 min read",
+      "views": "1.8k",
+      "rating": "4.7",
+      "reviews": 89,
+      "difficulty": "intermediate",
+      "category": "warehouse",
+      "image": "https://placehold.co/600x400/1e293b/10b981?text=Picking",
+      "link": "/guides/optimize-picking-routes",
+      "videoUrl": "https://example.com/video",
+      "tags": ["warehouse", "efficiency", "picking", "slotting"],
+      "steps": [
+        "Analyze current pick data for velocity zones",
+        "Implement ABC slotting for fast-movers",
+        "Configure pick-to-light or voice picking",
+        "Test batch picking vs zone picking",
+        "Monitor metrics and iterate weekly"
+      ],
+      "author": {
+        "name": "Marcus Thorne",
+        "role": "Warehouse Operations",
+        "avatar": "https://placehold.co/80x80/10b981/ffffff?text=MT"
+      }
+    },
+    {
+      "id": "guide-003",
+      "title": "Connecting Your E-commerce Store",
+      "description": "Step-by-step integration for Shopify, WooCommerce, Magento, and custom APIs.",
+      "readTime": "10 min read",
+      "views": "4.2k",
+      "rating": "4.8",
+      "reviews": 203,
+      "difficulty": "beginner",
+      "category": "api",
+      "image": "https://placehold.co/600x400/2d3748/8b5cf6?text=Ecommerce",
+      "link": "/guides/connect-ecommerce-store",
+      "tags": ["api", "integration", "ecommerce", "shopify"],
+      "steps": [
+        "Generate API credentials from your store",
+        "Navigate to Integrations > Add New",
+        "Select your platform from the list",
+        "Enter store URL and API keys",
+        "Test connection and sync initial inventory",
+        "Configure sync frequency and conflict resolution"
+      ],
+      "author": {
+        "name": "Alex Rivera",
+        "role": "Integration Specialist",
+        "avatar": "https://placehold.co/80x80/8b5cf6/ffffff?text=AR"
+      }
+    },
+    {
+      "id": "guide-004",
+      "title": "Automating Reorder Point Calculations",
+      "description": "Set up dynamic safety stock that adjusts automatically for demand variability and lead times.",
+      "readTime": "14 min read",
+      "views": "2.9k",
+      "rating": "4.9",
+      "reviews": 156,
+      "difficulty": "advanced",
+      "category": "fulfillment",
+      "image": "https://placehold.co/600x400/334155/f59e0b?text=Reorder",
+      "link": "/guides/automated-reorder-points",
+      "tags": ["automation", "replenishment", "forecasting"],
+      "steps": [
+        "Configure lead time variance tracking",
+        "Set demand forecasting parameters",
+        "Define service level targets by SKU class",
+        "Enable automatic PO generation",
+        "Create approval workflows for exceptions",
+        "Set up email alerts for critical thresholds"
+      ],
+      "author": {
+        "name": "Dr. Emily Park",
+        "role": "Data Science Lead",
+        "avatar": "https://placehold.co/80x80/ec4899/ffffff?text=EP"
+      }
+    }
+  ]
+}
 3>
+{
+  "badge": "Learning Center",
+  "title": {
+    "prefix": "Master",
+    "highlight": "Supply Chain",
+    "suffix": "Operations"
+  },
+  "description": "Comprehensive video courses, interactive tutorials, and hands-on exercises to help you become a supply chain expert.",
+  "searchPlaceholder": "Search courses, tutorials, or topics...",
+  "showFeaturedCourses": true,
+  "showNewsletter": true,
+  "newsletter": {
+    "title": "Get new tutorials in your inbox",
+    "description": "Subscribe to receive weekly tutorials, expert tips, and exclusive resources.",
+    "stats": {
+      "tutorials": "50+",
+      "videos": "25+"
+    }
+  },
+  "categories": [
+    { "id": "all", "label": "All Guides", "icon": "sparkles", "count": 12 },
+    { "id": "getting-started", "label": "Getting Started", "icon": "rocket" },
+    { "id": "warehouse", "label": "Warehouse", "icon": "cube" },
+    { "id": "fulfillment", "label": "Fulfillment", "icon": "truck" },
+    { "id": "analytics", "label": "Analytics", "icon": "chart" },
+    { "id": "automation", "label": "Automation", "icon": "cog" }
+  ],
+  "featuredCourses": [
+    {
+      "id": "course-001",
+      "title": "Inventory Management Fundamentals",
+      "description": "Master the core concepts of safety stock, reorder points, and demand forecasting.",
+      "image": "https://placehold.co/600x400/0f172a/3b82f6?text=Inventory+Fundamentals",
+      "category": "getting-started",
+      "difficulty": "beginner",
+      "duration": "4 hours",
+      "rating": 4.9,
+      "reviews": 1240,
+      "badge": "Most Popular",
+      "progress": 0,
+      "author": {
+        "name": "Sarah Chen",
+        "avatar": "https://placehold.co/80x80/3b82f6/ffffff?text=SC"
+      }
+    },
+    {
+      "id": "course-002",
+      "title": "Warehouse Automation & Robotics",
+      "description": "Learn how to integrate ASRS, AMRs, and pick-to-light systems into your warehouse.",
+      "image": "https://placehold.co/600x400/1e293b/10b981?text=Automation",
+      "category": "automation",
+      "difficulty": "intermediate",
+      "duration": "6 hours",
+      "rating": 4.8,
+      "reviews": 890,
+      "badge": "Trending",
+      "progress": 0,
+      "author": {
+        "name": "Marcus Thorne",
+        "avatar": "https://placehold.co/80x80/10b981/ffffff?text=MT"
+      }
+    },
+    {
+      "id": "course-003",
+      "title": "Supply Chain Analytics Dashboard",
+      "description": "Build powerful dashboards to visualize KPIs and identify optimization opportunities.",
+      "image": "https://placehold.co/600x400/2d3748/8b5cf6?text=Analytics",
+      "category": "analytics",
+      "difficulty": "intermediate",
+      "duration": "5 hours",
+      "rating": 4.7,
+      "reviews": 560,
+      "badge": "New",
+      "progress": 0,
+      "author": {
+        "name": "Dr. Emily Park",
+        "avatar": "https://placehold.co/80x80/8b5cf6/ffffff?text=EP"
+      }
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide-001",
+      "title": "Setting Up Safety Stock Calculations",
+      "description": "Learn how to calculate optimal safety stock levels using demand variability and lead time data.",
+      "date": "2024-03-15",
+      "readTime": "15 min read",
+      "views": "3.2k",
+      "rating": 4.9,
+      "reviews": 234,
+      "difficulty": "intermediate",
+      "category": "getting-started",
+      "image": "https://placehold.co/600x400/0f172a/3b82f6?text=Safety+Stock",
+      "link": "/guides/safety-stock-calculations",
+      "videoUrl": "https://example.com/video",
+      "videoPoster": "https://placehold.co/600x400/0f172a/3b82f6?text=Video",
+      "tags": ["inventory", "safety-stock", "forecasting"],
+      "learningObjectives": [
+        "Calculate safety stock using standard deviation method",
+        "Apply service level targets to determine Z-scores",
+        "Adjust calculations for lead time variability"
+      ],
+      "steps": [
+        { "title": "Gather Historical Demand Data", "description": "Export at least 12 months of SKU-level demand data from your system." },
+        { "title": "Calculate Demand Standard Deviation", "description": "Use the STDEV function to measure demand variability." },
+        { "title": "Determine Target Service Level", "description": "Select Z-score based on your business requirements (90% = 1.28, 95% = 1.65, 99% = 2.33)." },
+        { "title": "Calculate Lead Time Variability", "description": "Measure the standard deviation of supplier lead times." }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "text": "What Z-score corresponds to a 95% service level?",
+            "options": ["1.28", "1.65", "2.33", "1.96"],
+            "correctAnswer": 1
+          },
+          {
+            "text": "Which of the following increases safety stock requirements?",
+            "options": ["Lower demand variability", "Shorter lead times", "Higher demand variability", "Lower service level target"],
+            "correctAnswer": 2
+          }
+        ]
+      },
+      "resources": [
+        { "title": "Safety Stock Calculator Template", "description": "Excel template with formulas", "icon": "document", "link": "/resources/safety-stock-calculator" },
+        { "title": "Service Level Guide", "description": "PDF guide to selecting targets", "icon": "download", "link": "/resources/service-level-guide" }
+      ],
+      "proTip": "Always recalculate safety stock quarterly as demand patterns change with seasons.",
+      "author": {
+        "name": "Sarah Chen",
+        "role": "Inventory Analytics Lead",
+        "avatar": "https://placehold.co/80x80/3b82f6/ffffff?text=SC"
+      }
+    },
+    {
+      "id": "guide-002",
+      "title": "Optimizing Warehouse Picking Routes",
+      "description": "Reduce travel time by 40% with dynamic slotting and optimized pick paths.",
+      "date": "2024-03-12",
+      "readTime": "12 min read",
+      "views": "2.1k",
+      "rating": 4.7,
+      "reviews": 156,
+      "difficulty": "intermediate",
+      "category": "warehouse",
+      "image": "https://placehold.co/600x400/1e293b/10b981?text=Picking",
+      "link": "/guides/picking-optimization",
+      "videoUrl": "https://example.com/video",
+      "tags": ["warehouse", "picking", "efficiency"],
+      "learningObjectives": [
+        "Implement ABC analysis for slotting",
+        "Design efficient pick paths using clustering",
+        "Measure pick productivity metrics"
+      ],
+      "steps": [
+        { "title": "Analyze Order Data", "description": "Export last 90 days of order lines to identify fast-moving SKUs." },
+        { "title": "Implement ABC Slotting", "description": "Place A-items in primary pick faces closest to shipping." },
+        { "title": "Configure Batch Picking", "description": "Group similar orders together to reduce travel." },
+        { "title": "Measure and Iterate", "description": "Track picks per hour before and after changes." }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "text": "Which items should be placed in the most accessible locations?",
+            "options": ["A-items (fastest moving)", "C-items (slowest moving)", "New items", "Heavy items"],
+            "correctAnswer": 0
+          }
+        ]
+      },
+      "resources": [
+        { "title": "ABC Analysis Template", "description": "Excel template", "icon": "document", "link": "/resources/abc-analysis" }
+      ],
+      "proTip": "Run ABC analysis monthly as product velocity changes.",
+      "author": {
+        "name": "Marcus Thorne",
+        "role": "Warehouse Operations",
+        "avatar": "https://placehold.co/80x80/10b981/ffffff?text=MT"
+      }
+    },
+    {
+      "id": "guide-003",
+      "title": "Connecting Your E-commerce Store API",
+      "description": "Step-by-step integration for Shopify, WooCommerce, and custom APIs.",
+      "date": "2024-03-10",
+      "readTime": "10 min read",
+      "views": "4.5k",
+      "rating": 4.8,
+      "reviews": 312,
+      "difficulty": "beginner",
+      "category": "api",
+      "image": "https://placehold.co/600x400/2d3748/8b5cf6?text=API",
+      "link": "/guides/ecommerce-api",
+      "tags": ["api", "integration", "ecommerce"],
+      "learningObjectives": [
+        "Generate API credentials from your store",
+        "Configure webhook endpoints for real-time sync",
+        "Test and monitor integration health"
+      ],
+      "steps": [
+        { "title": "Generate API Credentials", "description": "Navigate to your store's developer settings to create API keys." },
+        { "title": "Configure Webhook Endpoints", "description": "Set up inventory update webhooks for real-time sync." },
+        { "title": "Test Connection", "description": "Run a test sync with a single SKU to validate." },
+        { "title": "Monitor Sync Health", "description": "Check logs regularly for failed webhooks." }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "text": "What should you do first when integrating a new store?",
+            "options": ["Configure webhooks", "Generate API credentials", "Sync all inventory", "Test with one SKU"],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      "resources": [
+        { "title": "API Integration Checklist", "description": "Step-by-step checklist", "icon": "clipboard", "link": "/resources/api-checklist" }
+      ],
+      "proTip": "Start with a sandbox environment before connecting production.",
+      "author": {
+        "name": "Alex Rivera",
+        "role": "Integration Specialist",
+        "avatar": "https://placehold.co/80x80/8b5cf6/ffffff?text=AR"
+      }
+    }
+  ]
+}
