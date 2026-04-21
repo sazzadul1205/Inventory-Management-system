@@ -15,6 +15,7 @@ use Database\Seeders\PageRelatedSeeders\{
 use Database\Seeders\PageRelatedSeeders\SectionVariantSeeder\{
     FAQPageSectionVariantSeeder,
     HomePageSectionVariantSeeder,
+    NewsPageSectionVariantSeeder,
     BlogPageSectionVariantSeeder,
     ContactPageSectionVariantSeeder,
     AboutUsPageSectionVariantSeeder,
@@ -81,6 +82,7 @@ class DatabaseSeeder extends Seeder
         BlogPageSectionVariantSeeder::class,
         FAQPageSectionVariantSeeder::class,
         HomePageSectionVariantSeeder::class,
+        NewsPageSectionVariantSeeder::class,
         ContactPageSectionVariantSeeder::class,
         AboutUsPageSectionVariantSeeder::class,
         ServicesPageSectionVariantSeeder::class,
