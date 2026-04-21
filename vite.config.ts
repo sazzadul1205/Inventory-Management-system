@@ -20,4 +20,9 @@ export default defineConfig({
     esbuild: {
         jsx: 'automatic',
     },
+    server: {
+        watch: {
+            ignored: ['**/Planing/**'], // 👈 this stops reloads from that folder
+        },
+    },
 });

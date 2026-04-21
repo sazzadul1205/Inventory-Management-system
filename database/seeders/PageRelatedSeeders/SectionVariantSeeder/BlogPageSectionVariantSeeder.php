@@ -1719,6 +1719,2127 @@ class BlogPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+
+            // Best Practices Section 
+            [
+                'id' => 405,
+                'section_key' => 'bestPractices',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Industry Best Practices',
+                    'title' => [
+                        'prefix' => 'Proven',
+                        'highlight' => 'Best Practices',
+                        'suffix' => 'for Supply Chain Excellence'
+                    ],
+                    'description' => 'Discover proven strategies and expert-recommended approaches to optimize your supply chain operations, reduce costs, and improve efficiency.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search best practices by topic, benefit, or keyword...',
+                    'showResources' => true,
+                    'resourcesLink' => '/resources/best-practices',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Weekly Best Practices',
+                        'description' => 'Subscribe to receive curated best practices, expert insights, and implementation guides delivered to your inbox.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per week.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Practices', 'icon' => 'sparkles'],
+                        ['id' => 'inventory', 'label' => 'Inventory', 'icon' => 'cube'],
+                        ['id' => 'warehouse', 'label' => 'Warehouse', 'icon' => 'cube'],
+                        ['id' => 'transportation', 'label' => 'Transportation', 'icon' => 'truck'],
+                        ['id' => 'fulfillment', 'label' => 'Fulfillment', 'icon' => 'check'],
+                        ['id' => 'technology', 'label' => 'Technology', 'icon' => 'cog']
+                    ],
+                    'featuredPractice' => [
+                        'id' => 'feat-001',
+                        'title' => 'Demand-Driven Inventory Optimization',
+                        'description' => 'Transition from forecast-driven to demand-driven inventory management to reduce carrying costs by 25% while maintaining service levels.',
+                        'date' => '2024-03-15',
+                        'readTime' => '12 min read',
+                        'views' => '3.2k',
+                        'category' => 'inventory',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                        'link' => '/best-practices/demand-driven-inventory',
+                        'impact' => [
+                            ['value' => '25%', 'label' => 'Carrying Cost Reduction'],
+                            ['value' => '99.5%', 'label' => 'Service Level'],
+                            ['value' => '30%', 'label' => 'Faster Turnover']
+                        ],
+                        'author' => [
+                            'name' => 'Sarah Chen',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'practices' => [
+                        [
+                            'id' => 'practice-001',
+                            'title' => 'ABC-XYZ Segmentation for Inventory Control',
+                            'description' => 'Classify inventory based on revenue contribution and demand variability to optimize service levels and safety stock.',
+                            'category' => 'inventory',
+                            'benefits' => ['20-30% inventory reduction', 'Improved cash flow', 'Higher fill rates'],
+                            'details' => 'ABC analysis categorizes items by annual consumption value (A=70%, B=20%, C=10%). XYZ analysis adds demand variability dimension. The intersection creates 9 strategic zones for differentiated policies.',
+                            'implementation' => [
+                                'Run ABC analysis on 12 months of sales data',
+                                'Calculate coefficient of variation for each SKU',
+                                'Create 3x3 segmentation matrix',
+                                'Define service level targets per segment'
+                            ],
+                            'impactValue' => '25% reduction',
+                            'tags' => ['inventory', 'segmentation', 'analytics'],
+                            'link' => '/best-practices/abc-xyz-segmentation',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
+                            'author' => [
+                                'name' => 'Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-002',
+                            'title' => 'Cross-Docking for High-Velocity SKUs',
+                            'description' => 'Implement cross-docking operations for fast-moving items to eliminate storage costs and reduce lead times.',
+                            'category' => 'warehouse',
+                            'benefits' => ['50% less handling', '24-hour turnaround', 'Reduced storage needs'],
+                            'details' => 'Cross-docking transfers incoming shipments directly to outbound shipping without storage. Best for predictable, high-volume SKUs with stable demand patterns.',
+                            'implementation' => [
+                                'Identify SKUs with daily turnover >10 units',
+                                'Design dedicated receiving-to-shipping flow',
+                                'Implement wave planning for outbound consolidation',
+                                'Train staff on direct transfer procedures'
+                            ],
+                            'impactValue' => '50% faster',
+                            'tags' => ['warehouse', 'cross-docking', 'efficiency'],
+                            'link' => '/best-practices/cross-docking',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop',
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-003',
+                            'title' => 'Vendor-Managed Inventory (VMI) Programs',
+                            'description' => 'Empower key suppliers to manage inventory levels based on real-time consumption data and agreed targets.',
+                            'category' => 'fulfillment',
+                            'benefits' => ['40% fewer stockouts', 'Reduced admin costs', 'Better supplier relationships'],
+                            'details' => 'VMI shifts replenishment responsibility to suppliers who access your inventory data. Suppliers proactively ship to maintain agreed levels.',
+                            'implementation' => [
+                                'Select strategic suppliers for pilot program',
+                                'Establish data sharing protocols and APIs',
+                                'Define min/max levels and service agreements',
+                                'Set up exception alerts and performance dashboards'
+                            ],
+                            'impactValue' => '40% improvement',
+                            'tags' => ['suppliers', 'vmi', 'replenishment'],
+                            'link' => '/best-practices/vendor-managed-inventory',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop',
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-004',
+                            'title' => 'Dynamic Slotting for Warehouse Efficiency',
+                            'description' => 'Continuously optimize product placement based on demand velocity, physical characteristics, and order profiles.',
+                            'category' => 'warehouse',
+                            'benefits' => ['30% travel reduction', 'Higher pick rates', 'Better space utilization'],
+                            'details' => 'Dynamic slotting moves products based on real-time demand patterns. Fast-movers go to prime locations near shipping, slow-movers to reserve storage.',
+                            'implementation' => [
+                                'Analyze pick density by location zone',
+                                'Run slotting optimization weekly',
+                                'Implement wave-based replenishment',
+                                'Measure travel distance reduction'
+                            ],
+                            'impactValue' => '30% less travel',
+                            'tags' => ['warehouse', 'slotting', 'productivity'],
+                            'link' => '/best-practices/dynamic-slotting',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop',
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-005',
+                            'title' => 'Real-Time Inventory Visibility Across Channels',
+                            'description' => 'Implement unified inventory platform to provide single source of truth across all sales channels and warehouses.',
+                            'category' => 'technology',
+                            'benefits' => ['Zero overselling', 'Better customer experience', 'Optimized fulfillment'],
+                            'details' => 'Real-time visibility prevents overselling by allocating inventory across channels based on demand and proximity to customers.',
+                            'implementation' => [
+                                'Connect all warehouses and POS systems',
+                                'Implement inventory buffer logic for each channel',
+                                'Set up webhooks for real-time updates',
+                                'Configure safety stock by channel'
+                            ],
+                            'impactValue' => '99.99% accuracy',
+                            'tags' => ['visibility', 'omni-channel', 'real-time'],
+                            'link' => '/best-practices/real-time-visibility',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
+                            'author' => [
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-006',
+                            'title' => 'Sustainable Packaging Optimization',
+                            'description' => 'Reduce packaging waste and shipping costs through right-sizing and material selection strategies.',
+                            'category' => 'sustainability',
+                            'benefits' => ['25% less waste', 'Lower shipping costs', 'Better brand perception'],
+                            'details' => 'Analyze product dimensions to select optimal box sizes. Use automated packaging equipment for consistency and waste reduction.',
+                            'implementation' => [
+                                'Audit current packaging usage by SKU',
+                                'Implement dimensional weight pricing analysis',
+                                'Train packers on right-sizing protocols',
+                                'Track waste reduction metrics monthly'
+                            ],
+                            'impactValue' => '25% waste reduction',
+                            'tags' => ['sustainability', 'packaging', 'cost'],
+                            'link' => '/best-practices/sustainable-packaging',
+                            'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop',
+                            'author' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 406,
+                'section_key' => 'bestPractices',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Industry Best Practices',
+                    'title' => [
+                        'prefix' => 'Proven',
+                        'highlight' => 'Best Practices'
+                    ],
+                    'description' => 'Data-driven strategies and real-world case studies to help you optimize your supply chain operations.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search best practices, case studies, or topics...',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        'practices' => 50,
+                        'caseStudies' => 25,
+                        'companies' => '500+'
+                    ],
+                    'showCalculator' => true,
+                    'showCaseStudies' => true,
+                    'showExpertInsights' => true,
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Weekly Best Practices',
+                        'description' => 'Subscribe to receive curated best practices, case studies, and implementation guides.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per week.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'expertInsights' => [
+                        'title' => 'Get personalized recommendations',
+                        'description' => 'Schedule a free consultation with our supply chain experts to get tailored best practices for your business.',
+                        'link' => '/consultation',
+                        'experts' => [
+                            ['name' => 'Sarah Chen', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                            ['name' => 'Marcus Thorne', 'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'],
+                            ['name' => 'Alex Rivera', 'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop']
+                        ]
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Practices', 'icon' => 'sparkles', 'count' => 50],
+                        ['id' => 'inventory', 'label' => 'Inventory', 'icon' => 'cube'],
+                        ['id' => 'warehouse', 'label' => 'Warehouse', 'icon' => 'cube'],
+                        ['id' => 'transportation', 'label' => 'Transportation', 'icon' => 'truck'],
+                        ['id' => 'fulfillment', 'label' => 'Fulfillment', 'icon' => 'check'],
+                        ['id' => 'technology', 'label' => 'Technology', 'icon' => 'cog']
+                    ],
+                    'caseStudies' => [
+                        [
+                            'id' => 'cs-001',
+                            'company' => 'Global Logistics Inc.',
+                            'industry' => 'Transportation',
+                            'description' => 'Reduced freight costs by 28% through route optimization and carrier consolidation.',
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'category' => 'transportation',
+                            'results' => [
+                                ['value' => '28%', 'label' => 'Cost Reduction'],
+                                ['value' => '15%', 'label' => 'Faster Delivery'],
+                                ['value' => '99.5%', 'label' => 'On-Time Rate']
+                            ],
+                            'link' => '/case-studies/global-logistics'
+                        ],
+                        [
+                            'id' => 'cs-002',
+                            'company' => 'Retail Chain Co.',
+                            'industry' => 'Retail',
+                            'description' => 'Inventory turnover increased 40% with demand-driven replenishment system.',
+                            'image' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop',
+                            'category' => 'inventory',
+                            'results' => [
+                                ['value' => '40%', 'label' => 'Turnover Increase'],
+                                ['value' => '25%', 'label' => 'Stock Reduction'],
+                                ['value' => '98%', 'label' => 'Fill Rate']
+                            ],
+                            'link' => '/case-studies/retail-chain'
+                        ],
+                        [
+                            'id' => 'cs-003',
+                            'company' => 'Manufacturing Solutions',
+                            'industry' => 'Manufacturing',
+                            'description' => 'Warehouse productivity improved 35% with dynamic slotting and pick optimization.',
+                            'image' => 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop',
+                            'category' => 'warehouse',
+                            'results' => [
+                                ['value' => '35%', 'label' => 'Productivity Gain'],
+                                ['value' => '50%', 'label' => 'Travel Reduction'],
+                                ['value' => '3x', 'label' => 'Picks per Hour']
+                            ],
+                            'link' => '/case-studies/manufacturing-solutions'
+                        ]
+                    ],
+                    'practices' => [
+                        [
+                            'id' => 'practice-001',
+                            'title' => 'Demand-Driven Inventory Optimization',
+                            'description' => 'Transition from forecast-driven to demand-driven inventory management to reduce carrying costs while maintaining service levels.',
+                            'category' => 'inventory',
+                            'readTime' => '12 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'impactBadge' => '25% Cost Reduction',
+                            'link' => '/best-practices/demand-driven-inventory',
+                            'tags' => ['inventory', 'forecasting', 'optimization'],
+                            'metrics' => [
+                                ['value' => '25%', 'label' => 'Cost Reduction'],
+                                ['value' => '99.5%', 'label' => 'Service Level'],
+                                ['value' => '30%', 'label' => 'Faster Turnover']
+                            ],
+                            'steps' => ['Analyze demand patterns', 'Set service levels', 'Calculate safety stock', 'Monitor and adjust'],
+                            'downloadable' => true,
+                            'author' => [
+                                'name' => 'Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-002',
+                            'title' => 'Cross-Docking for High-Velocity SKUs',
+                            'description' => 'Implement cross-docking operations for fast-moving items to eliminate storage costs and reduce lead times.',
+                            'category' => 'warehouse',
+                            'readTime' => '10 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'impactBadge' => '50% Faster Throughput',
+                            'link' => '/best-practices/cross-docking',
+                            'tags' => ['warehouse', 'cross-docking', 'efficiency'],
+                            'metrics' => [
+                                ['value' => '50%', 'label' => 'Faster Throughput'],
+                                ['value' => '30%', 'label' => 'Labor Savings'],
+                                ['value' => '24h', 'label' => 'Turnaround']
+                            ],
+                            'steps' => ['Identify high-velocity SKUs', 'Design direct flow', 'Train staff', 'Monitor metrics'],
+                            'downloadable' => true,
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-003',
+                            'title' => 'Vendor-Managed Inventory Programs',
+                            'description' => 'Empower key suppliers to manage inventory levels based on real-time consumption data.',
+                            'category' => 'fulfillment',
+                            'readTime' => '8 min read',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop',
+                            'impactBadge' => '40% Fewer Stockouts',
+                            'link' => '/best-practices/vendor-managed-inventory',
+                            'tags' => ['suppliers', 'vmi', 'replenishment'],
+                            'metrics' => [
+                                ['value' => '40%', 'label' => 'Fewer Stockouts'],
+                                ['value' => '25%', 'label' => 'Admin Reduction'],
+                                ['value' => '15%', 'label' => 'Inventory Reduction']
+                            ],
+                            'steps' => ['Select strategic suppliers', 'Set up data sharing', 'Define service levels', 'Monitor performance'],
+                            'downloadable' => true,
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 407,
+                'section_key' => 'bestPractices',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Best Practices Hub',
+                    'title' => [
+                        'prefix' => 'Supply Chain',
+                        'highlight' => 'Best Practices'
+                    ],
+                    'description' => 'Comprehensive resources, expert insights, and proven frameworks to help you achieve supply chain excellence.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search best practices, webinars, or toolkits...',
+                    'defaultViewMode' => 'grid',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get the latest best practices',
+                        'description' => 'Subscribe to receive weekly best practices, case studies, and expert insights.',
+                        'stats' => [
+                            'practices' => '50+',
+                            'experts' => '25+'
+                        ],
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Practices', 'icon' => 'sparkles', 'count' => 12],
+                        ['id' => 'inventory', 'label' => 'Inventory', 'icon' => 'cube'],
+                        ['id' => 'warehouse', 'label' => 'Warehouse', 'icon' => 'cube'],
+                        ['id' => 'transportation', 'label' => 'Transportation', 'icon' => 'truck'],
+                        ['id' => 'fulfillment', 'label' => 'Fulfillment', 'icon' => 'check'],
+                        ['id' => 'technology', 'label' => 'Technology', 'icon' => 'cog']
+                    ],
+                    'maturityAssessment' => [
+                        'questions' => [
+                            'How well do you track inventory accuracy across all locations?',
+                            'How automated are your replenishment decisions?',
+                            'How integrated are your supply chain systems?',
+                            'How effectively do you forecast demand?',
+                            'How mature is your supplier collaboration process?'
+                        ],
+                        'recommendations' => [
+                            'initial' => ['Establish baseline inventory accuracy metrics', 'Implement basic cycle counting', 'Document current processes'],
+                            'developing' => ['Automate reorder point calculations', 'Integrate sales and inventory data', 'Set service level targets'],
+                            'defined' => ['Implement demand forecasting', 'Establish supplier scorecards', 'Create exception management workflows'],
+                            'managed' => ['Deploy predictive analytics', 'Enable real-time visibility', 'Optimize safety stock dynamically'],
+                            'optimizing' => ['Implement AI-driven replenishment', 'Build digital twin capabilities', 'Create autonomous exception resolution']
+                        ],
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                    ],
+                    'practices' => [
+                        [
+                            'id' => 'practice-001',
+                            'title' => 'Demand-Driven Inventory Optimization',
+                            'description' => 'Transition from forecast-driven to demand-driven inventory management to reduce carrying costs while maintaining service levels.',
+                            'category' => 'inventory',
+                            'readTime' => '12 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/best-practices/demand-driven-inventory',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['inventory', 'forecasting', 'optimization'],
+                            'keyMetrics' => [
+                                ['value' => '25%', 'label' => 'Cost Reduction'],
+                                ['value' => '99.5%', 'label' => 'Service Level'],
+                                ['value' => '30%', 'label' => 'Turnover']
+                            ],
+                            'author' => [
+                                'name' => 'Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-002',
+                            'title' => 'Warehouse Slotting Optimization',
+                            'description' => 'Continuously optimize product placement based on demand velocity to reduce travel time and increase throughput.',
+                            'category' => 'warehouse',
+                            'readTime' => '10 min read',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/best-practices/slotting-optimization',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['warehouse', 'slotting', 'efficiency'],
+                            'keyMetrics' => [
+                                ['value' => '30%', 'label' => 'Less Travel'],
+                                ['value' => '25%', 'label' => 'Higher Picks'],
+                                ['value' => '15%', 'label' => 'Space Savings']
+                            ],
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-003',
+                            'title' => 'Vendor-Managed Inventory',
+                            'description' => 'Empower key suppliers to manage inventory levels based on real-time consumption data and agreed targets.',
+                            'category' => 'fulfillment',
+                            'readTime' => '8 min read',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop',
+                            'link' => '/best-practices/vendor-managed-inventory',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['suppliers', 'vmi', 'replenishment'],
+                            'keyMetrics' => [
+                                ['value' => '40%', 'label' => 'Fewer Stockouts'],
+                                ['value' => '25%', 'label' => 'Admin Reduction'],
+                                ['value' => '15%', 'label' => 'Inventory Reduction']
+                            ],
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'practice-004',
+                            'title' => 'Real-Time Inventory Visibility',
+                            'description' => 'Implement unified inventory platform for single source of truth across all sales channels and warehouses.',
+                            'category' => 'technology',
+                            'readTime' => '11 min read',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/best-practices/real-time-visibility',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['visibility', 'omni-channel', 'real-time'],
+                            'keyMetrics' => [
+                                ['value' => '100%', 'label' => 'Accuracy'],
+                                ['value' => '0', 'label' => 'Overselling'],
+                                ['value' => '99.9%', 'label' => 'Uptime']
+                            ],
+                            'author' => [
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'webinars' => [
+                        [
+                            'id' => 'web-001',
+                            'title' => 'The Future of Inventory Management',
+                            'description' => 'Join industry experts as they discuss AI-driven forecasting and autonomous replenishment.',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video',
+                            'duration' => '45 min',
+                            'date' => 'Mar 15, 2024',
+                            'category' => 'technology',
+                            'speaker' => [
+                                'name' => 'Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'web-002',
+                            'title' => 'Warehouse Automation Strategies',
+                            'description' => 'Learn how to implement robotics and automation in your warehouse operations.',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video',
+                            'duration' => '60 min',
+                            'date' => 'Mar 10, 2024',
+                            'category' => 'warehouse',
+                            'speaker' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'web-003',
+                            'title' => 'Supply Chain Sustainability',
+                            'description' => 'Reduce carbon footprint while improving efficiency and reducing costs.',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video',
+                            'duration' => '50 min',
+                            'date' => 'Mar 5, 2024',
+                            'category' => 'sustainability',
+                            'speaker' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'toolkits' => [
+                        [
+                            'id' => 'tk-001',
+                            'title' => 'Inventory Optimization Toolkit',
+                            'description' => 'Templates, calculators, and checklists for implementing demand-driven inventory management.',
+                            'format' => 'PDF + Excel',
+                            'pages' => 45,
+                            'icon' => 'calculator',
+                            'downloadLink' => '/toolkits/inventory-optimization',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop'
+                        ],
+                        [
+                            'id' => 'tk-002',
+                            'title' => 'Warehouse Efficiency Guide',
+                            'description' => 'Step-by-step implementation guide for slotting optimization and process improvement.',
+                            'format' => 'PDF + Video',
+                            'pages' => 38,
+                            'icon' => 'template',
+                            'downloadLink' => '/toolkits/warehouse-efficiency',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 408,
+                'section_key' => 'bestPractices',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Company News Section 
+            [
+                'id' => 409,
+                'section_key' => 'companyNews',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Latest News',
+                    'title' => [
+                        'prefix' => 'Company',
+                        'highlight' => 'News',
+                        'suffix' => '& Announcements'
+                    ],
+                    'description' => 'Stay updated with the latest company announcements, product releases, partnerships, and industry recognition.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search news by title, category, or keyword...',
+                    'showViewAll' => true,
+                    'viewAllLink' => '/news',
+                    'showPressMentions' => true,
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Subscribe to Our Newsletter',
+                        'description' => 'Get the latest company news, product updates, and industry insights delivered straight to your inbox.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. We respect your privacy.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All News', 'icon' => 'newspaper'],
+                        ['id' => 'announcement', 'label' => 'Announcements', 'icon' => 'sparkles'],
+                        ['id' => 'product', 'label' => 'Product Updates', 'icon' => 'chip'],
+                        ['id' => 'partnership', 'label' => 'Partnerships', 'icon' => 'handshake'],
+                        ['id' => 'award', 'label' => 'Awards', 'icon' => 'trophy'],
+                        ['id' => 'event', 'label' => 'Events', 'icon' => 'calendar']
+                    ],
+                    'pressMentions' => [
+                        ['name' => 'TechCrunch', 'logo' => 'https://placehold.co/120x40/1e293b/ffffff?text=TechCrunch', 'link' => 'https://techcrunch.com'],
+                        ['name' => 'Forbes', 'logo' => 'https://placehold.co/120x40/1e293b/ffffff?text=Forbes', 'link' => 'https://forbes.com'],
+                        ['name' => 'VentureBeat', 'logo' => 'https://placehold.co/120x40/1e293b/ffffff?text=VentureBeat', 'link' => 'https://venturebeat.com'],
+                        ['name' => 'Supply Chain Dive', 'logo' => 'https://placehold.co/140x40/1e293b/ffffff?text=Supply+Chain+Dive', 'link' => 'https://supplychaindive.com']
+                    ],
+                    'featuredNews' => [
+                        'id' => 'feat-001',
+                        'title' => 'Inventory Platform Raises $50M Series C to Transform Supply Chain Intelligence',
+                        'excerpt' => 'The funding will accelerate AI product development and global expansion to serve enterprise customers across North America, Europe, and Asia-Pacific.',
+                        'date' => '2024-03-18',
+                        'views' => '5.2k',
+                        'category' => 'announcement',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+                        'link' => '/news/series-c-funding',
+                        'author' => [
+                            'name' => 'Sarah Chen',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'news' => [
+                        [
+                            'id' => 'news-001',
+                            'title' => 'Strategic Partnership with Global Logistics Provider',
+                            'excerpt' => 'New integration enables real-time freight tracking and automated carrier selection across 50+ countries.',
+                            'date' => '2024-03-15',
+                            'views' => '2.1k',
+                            'category' => 'partnership',
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'link' => '/news/strategic-partnership-logistics',
+                            'tags' => ['partnership', 'logistics', 'integration'],
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-002',
+                            'title' => 'Named G2 Leader for Inventory Management 2024',
+                            'excerpt' => 'Recognized as a Leader in the Winter 2024 Grid Report with highest customer satisfaction score.',
+                            'date' => '2024-03-12',
+                            'views' => '3.4k',
+                            'category' => 'award',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop',
+                            'link' => '/news/g2-leader-2024',
+                            'tags' => ['award', 'recognition', 'g2'],
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-003',
+                            'title' => 'Introducing AI-Powered Demand Forecasting',
+                            'excerpt' => 'New machine learning models achieve 96% forecast accuracy with automated exception handling.',
+                            'date' => '2024-03-10',
+                            'views' => '4.2k',
+                            'category' => 'product',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/news/ai-demand-forecasting',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['product', 'ai', 'forecasting'],
+                            'author' => [
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-004',
+                            'title' => 'Supply Chain Summit 2024 - Save the Date',
+                            'excerpt' => 'Join us in San Francisco for our annual user conference featuring keynotes from industry leaders.',
+                            'date' => '2024-03-05',
+                            'views' => '1.8k',
+                            'category' => 'event',
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
+                            'link' => '/news/supply-chain-summit-2024',
+                            'tags' => ['event', 'conference', 'community'],
+                            'author' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-005',
+                            'title' => 'New European Data Center Now Live',
+                            'excerpt' => 'Frankfurt-based facility ensures GDPR compliance and reduces latency for EU customers by 70%.',
+                            'date' => '2024-02-28',
+                            'views' => '2.3k',
+                            'category' => 'announcement',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+                            'link' => '/news/europe-data-center',
+                            'tags' => ['infrastructure', 'europe', 'compliance'],
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-006',
+                            'title' => 'Celebrating 10 Years of Innovation',
+                            'excerpt' => 'A decade of transforming supply chain management with customer-first technology and continuous improvement.',
+                            'date' => '2024-02-20',
+                            'views' => '3.1k',
+                            'category' => 'announcement',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/news/10-year-anniversary',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['milestone', 'anniversary', 'company'],
+                            'author' => [
+                                'name' => 'Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 410,
+                'section_key' => 'companyNews',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Newsroom',
+                    'title' => [
+                        'prefix' => 'Latest',
+                        'highlight' => 'News',
+                        'suffix' => '& Press Releases'
+                    ],
+                    'description' => 'Stay informed about our latest announcements, product innovations, partnerships, and company milestones.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search news, press releases, or topics...',
+                    'defaultViewMode' => 'grid',
+                    'heroStats' => [
+                        ['value' => '150+', 'label' => 'News Articles'],
+                        ['value' => '50+', 'label' => 'Press Releases'],
+                        ['value' => '30+', 'label' => 'Awards Received'],
+                        ['value' => '100+', 'label' => 'Media Mentions']
+                    ],
+                    'showPressKit' => true,
+                    'pressKitLink' => '/press-kit',
+                    'showMediaContact' => true,
+                    'mediaContact' => [
+                        'name' => 'Sarah Johnson',
+                        'title' => 'Head of Communications',
+                        'email' => 'media@supplychainpro.com',
+                        'phone' => '+1 (555) 123-4567',
+                        'image' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All News', 'icon' => 'newspaper'],
+                        ['id' => 'announcement', 'label' => 'Announcements', 'icon' => 'sparkles'],
+                        ['id' => 'product', 'label' => 'Product Updates', 'icon' => 'chip'],
+                        ['id' => 'partnership', 'label' => 'Partnerships', 'icon' => 'handshake'],
+                        ['id' => 'award', 'label' => 'Awards', 'icon' => 'trophy'],
+                        ['id' => 'event', 'label' => 'Events', 'icon' => 'calendar']
+                    ],
+                    'news' => [
+                        [
+                            'id' => 'news-001',
+                            'title' => 'Series C Funding: $75M to Accelerate Global Expansion',
+                            'excerpt' => 'New funding round led by Global Ventures to expand AI capabilities and enter three new international markets.',
+                            'content' => 'The oversubscribed round brings total funding to $150M and will be used to double our engineering team and open offices in Singapore, London, and São Paulo.',
+                            'date' => '2024-03-18',
+                            'views' => '8.2k',
+                            'category' => 'announcement',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/news/series-c-funding',
+                            'isPressRelease' => true,
+                            'tags' => ['funding', 'expansion', 'ai'],
+                            'author' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-002',
+                            'title' => 'Strategic Partnership with Global Logistics Leader',
+                            'excerpt' => 'Integration with Maersk enables real-time shipment tracking and automated carrier selection across 100+ countries.',
+                            'content' => 'This partnership will provide mutual customers with seamless visibility from warehouse to final delivery, reducing transit times by up to 30%.',
+                            'date' => '2024-03-14',
+                            'views' => '4.5k',
+                            'category' => 'partnership',
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'link' => '/news/global-logistics-partnership',
+                            'isPressRelease' => true,
+                            'tags' => ['partnership', 'logistics', 'integration'],
+                            'author' => [
+                                'name' => 'Marcus Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-003',
+                            'title' => 'Named G2 Leader for Fifth Consecutive Quarter',
+                            'excerpt' => 'Highest customer satisfaction score in inventory management category with 98% recommendation rate.',
+                            'content' => 'We\'re honored to be recognized as a Leader in the G2 Spring 2024 Grid Report. Our customers consistently rate us highest for ease of use, quality of support, and ROI.',
+                            'date' => '2024-03-10',
+                            'views' => '3.2k',
+                            'category' => 'award',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop',
+                            'link' => '/news/g2-leader-2024',
+                            'tags' => ['award', 'g2', 'recognition'],
+                            'author' => [
+                                'name' => 'Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-004',
+                            'title' => 'AI-Powered Demand Forecasting Now Generally Available',
+                            'excerpt' => 'New machine learning models achieve 96% forecast accuracy with automated exception handling.',
+                            'content' => 'After six months in beta with 50+ enterprise customers, our AI Demand Forecasting engine is now available to all customers.',
+                            'date' => '2024-03-05',
+                            'views' => '5.8k',
+                            'category' => 'product',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/news/ai-demand-forecasting',
+                            'videoUrl' => 'https://example.com/video',
+                            'tags' => ['product', 'ai', 'forecasting'],
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-005',
+                            'title' => 'Supply Chain Summit 2024 Agenda Announced',
+                            'excerpt' => 'Join industry leaders in San Francisco for two days of keynotes, workshops, and networking.',
+                            'content' => 'The summit will feature keynotes from Fortune 500 supply chain executives, hands-on workshops on AI and automation, and exclusive previews of our 2025 product roadmap.',
+                            'date' => '2024-02-28',
+                            'views' => '2.4k',
+                            'category' => 'event',
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
+                            'link' => '/news/supply-chain-summit-2024',
+                            'tags' => ['event', 'conference', 'community'],
+                            'author' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-006',
+                            'title' => 'New European Data Center Launches in Frankfurt',
+                            'excerpt' => 'GDPR-compliant infrastructure reduces latency for EU customers by 70% and adds regional failover capabilities.',
+                            'content' => 'The new data center is part of our commitment to data sovereignty and performance for European customers.',
+                            'date' => '2024-02-20',
+                            'views' => '1.9k',
+                            'category' => 'announcement',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+                            'link' => '/news/europe-data-center',
+                            'isPressRelease' => true,
+                            'tags' => ['infrastructure', 'europe', 'compliance'],
+                            'author' => [
+                                'name' => 'Marcus Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 411,
+                'section_key' => 'companyNews',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Media Center',
+                    'title' => [
+                        'prefix' => 'News',
+                        'highlight' => 'Media Center'
+                    ],
+                    'description' => 'Latest news, press releases, media assets, and company announcements.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'showNewsletter' => true,
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All News', 'icon' => 'newspaper'],
+                        ['id' => 'announcement', 'label' => 'Announcements', 'icon' => 'sparkles'],
+                        ['id' => 'product', 'label' => 'Product Updates', 'icon' => 'chip'],
+                        ['id' => 'partnership', 'label' => 'Partnerships', 'icon' => 'handshake'],
+                        ['id' => 'award', 'label' => 'Awards', 'icon' => 'trophy'],
+                        ['id' => 'event', 'label' => 'Events', 'icon' => 'calendar'],
+                        ['id' => 'financial', 'label' => 'Financial', 'icon' => 'chart']
+                    ],
+                    'featuredNews' => [
+                        [
+                            'id' => 'feat-001',
+                            'title' => 'Inventory Platform Raises $75M Series C',
+                            'excerpt' => 'Oversubscribed round led by Global Ventures to accelerate AI development and global expansion.',
+                            'date' => '2024-03-18',
+                            'category' => 'financial',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
+                            'link' => '/news/series-c-funding',
+                            'isPressRelease' => true
+                        ],
+                        [
+                            'id' => 'feat-002',
+                            'title' => 'Strategic Partnership with Global Logistics Provider',
+                            'excerpt' => 'Integration enables real-time tracking across 100+ countries with automated carrier selection.',
+                            'date' => '2024-03-14',
+                            'category' => 'partnership',
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&h=600&fit=crop',
+                            'link' => '/news/global-logistics-partnership',
+                            'isPressRelease' => false
+                        ]
+                    ],
+                    'news' => [
+                        [
+                            'id' => 'news-001',
+                            'title' => 'AI-Powered Demand Forecasting Now GA',
+                            'excerpt' => 'Machine learning models achieve 96% forecast accuracy with automated exception handling.',
+                            'date' => '2024-03-10',
+                            'views' => '4.2k',
+                            'category' => 'product',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/news/ai-demand-forecasting',
+                            'author' => [
+                                'name' => 'Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-002',
+                            'title' => 'Named G2 Leader for Fifth Consecutive Quarter',
+                            'excerpt' => 'Highest customer satisfaction score in inventory management category.',
+                            'date' => '2024-03-05',
+                            'views' => '3.1k',
+                            'category' => 'award',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop',
+                            'link' => '/news/g2-leader-2024',
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'news-003',
+                            'title' => 'New European Data Center Launches',
+                            'excerpt' => 'GDPR-compliant infrastructure reduces latency for EU customers by 70%.',
+                            'date' => '2024-02-28',
+                            'views' => '2.3k',
+                            'category' => 'announcement',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+                            'link' => '/news/europe-data-center',
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'pressReleases' => [
+                        [
+                            'id' => 'pr-001',
+                            'title' => 'Company Announces Q4 2023 Financial Results',
+                            'excerpt' => 'Revenue grew 45% YoY with record customer acquisition and retention.',
+                            'date' => '2024-02-15',
+                            'link' => '/press/q4-2023-earnings'
+                        ],
+                        [
+                            'id' => 'pr-002',
+                            'title' => 'Appointment of New Chief Technology Officer',
+                            'excerpt' => 'Former Google AI leader joins to accelerate product innovation.',
+                            'date' => '2024-01-20',
+                            'link' => '/press/new-cto-appointment'
+                        ]
+                    ],
+                    'mediaGallery' => [
+                        [
+                            'id' => 'media-001',
+                            'title' => 'Product Demo - AI Forecasting',
+                            'type' => 'video',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'date' => '2024-03-01',
+                            'downloadUrl' => '/media/video-001.mp4'
+                        ],
+                        [
+                            'id' => 'media-002',
+                            'title' => 'Company Logo Package',
+                            'type' => 'image',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop',
+                            'date' => '2024-02-15',
+                            'downloadUrl' => '/media/logos.zip'
+                        ]
+                    ],
+                    'brandAssets' => [
+                        ['name' => 'Logo - Primary', 'format' => 'PNG, SVG', 'icon' => 'photo', 'link' => '/assets/logo-primary.zip'],
+                        ['name' => 'Logo - Secondary', 'format' => 'PNG, SVG', 'icon' => 'photo', 'link' => '/assets/logo-secondary.zip'],
+                        ['name' => 'Brand Guidelines', 'format' => 'PDF', 'icon' => 'document', 'link' => '/assets/brand-guidelines.pdf'],
+                        ['name' => 'Product Screenshots', 'format' => 'ZIP', 'icon' => 'archive', 'link' => '/assets/screenshots.zip']
+                    ],
+                    'stockInfo' => [
+                        'symbol' => 'SCP',
+                        'price' => '$45.67',
+                        'marketCap' => '$2.5B',
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop'
+                    ],
+                    'financialReports' => [
+                        ['title' => 'Annual Report 2023', 'date' => 'Feb 2024', 'link' => '/reports/annual-2023.pdf'],
+                        ['title' => 'Q4 2023 Earnings', 'date' => 'Feb 2024', 'link' => '/reports/q4-2023.pdf'],
+                        ['title' => 'Investor Presentation', 'date' => 'Jan 2024', 'link' => '/reports/investor-presentation.pdf']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 412,
+                'section_key' => 'companyNews',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Expert Articles Section 
+            [
+                'id' => 413,
+                'section_key' => 'expertArticles',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Expert Insights',
+                    'title' => [
+                        'prefix' => 'Thought',
+                        'highlight' => 'Leadership',
+                        'suffix' => 'Articles'
+                    ],
+                    'description' => 'Expert perspectives, industry insights, and actionable advice from supply chain leaders and innovators.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search articles by title, topic, or expert...',
+                    'showExperts' => true,
+                    'showViewAll' => true,
+                    'viewAllLink' => '/expert-articles',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Expert Insights Delivered',
+                        'description' => 'Subscribe to receive the latest expert articles, industry insights, and thought leadership content.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per week.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Topics', 'icon' => 'newspaper'],
+                        ['id' => 'strategy', 'label' => 'Strategy', 'icon' => 'chart'],
+                        ['id' => 'technology', 'label' => 'Technology', 'icon' => 'chip'],
+                        ['id' => 'operations', 'label' => 'Operations', 'icon' => 'cog'],
+                        ['id' => 'sustainability', 'label' => 'Sustainability', 'icon' => 'globe'],
+                        ['id' => 'leadership', 'label' => 'Leadership', 'icon' => 'users'],
+                        ['id' => 'innovation', 'label' => 'Innovation', 'icon' => 'rocket']
+                    ],
+                    'experts' => [
+                        [
+                            'id' => 'exp-001',
+                            'name' => 'Dr. Sarah Chen',
+                            'title' => 'Chief Supply Chain Officer',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ],
+                        [
+                            'id' => 'exp-002',
+                            'name' => 'Marcus Thorne',
+                            'title' => 'VP of Operations',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                        ],
+                        [
+                            'id' => 'exp-003',
+                            'name' => 'Alex Rivera',
+                            'title' => 'Technology Innovation Lead',
+                            'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                        ],
+                        [
+                            'id' => 'exp-004',
+                            'name' => 'Dr. Emily Park',
+                            'title' => 'AI Research Director',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'featuredArticle' => [
+                        'id' => 'feat-001',
+                        'title' => 'The AI Revolution in Supply Chain: Beyond the Hype',
+                        'excerpt' => 'How generative AI and machine learning are transforming demand forecasting, inventory optimization, and logistics planning.',
+                        'date' => '2024-03-18',
+                        'readTime' => '12 min read',
+                        'views' => '4.2k',
+                        'category' => 'technology',
+                        'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop',
+                        'link' => '/expert-articles/ai-supply-chain-revolution',
+                        'author' => [
+                            'name' => 'Dr. Sarah Chen',
+                            'title' => 'Chief Supply Chain Officer',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'articles' => [
+                        [
+                            'id' => 'art-001',
+                            'title' => 'Building Resilient Supply Chains in a Volatile World',
+                            'excerpt' => 'Strategies for creating adaptive, multi-sourced supply networks that withstand disruptions.',
+                            'date' => '2024-03-15',
+                            'readTime' => '10 min read',
+                            'views' => '2.8k',
+                            'category' => 'strategy',
+                            'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/resilient-supply-chains',
+                            'tags' => ['resilience', 'risk', 'strategy'],
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'title' => 'VP of Operations',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-002',
+                            'title' => 'Sustainable Logistics: Reducing Carbon Footprint',
+                            'excerpt' => 'Practical approaches to green logistics, electric fleets, and carbon-neutral shipping.',
+                            'date' => '2024-03-12',
+                            'readTime' => '8 min read',
+                            'views' => '1.9k',
+                            'category' => 'sustainability',
+                            'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/sustainable-logistics',
+                            'tags' => ['sustainability', 'logistics', 'green'],
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'title' => 'Technology Innovation Lead',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-003',
+                            'title' => 'Predictive Analytics for Inventory Optimization',
+                            'excerpt' => 'Leveraging machine learning to reduce stockouts while minimizing carrying costs.',
+                            'date' => '2024-03-10',
+                            'readTime' => '11 min read',
+                            'views' => '3.4k',
+                            'category' => 'technology',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/predictive-analytics',
+                            'tags' => ['analytics', 'forecasting', 'ai'],
+                            'author' => [
+                                'name' => 'Dr. Emily Park',
+                                'title' => 'AI Research Director',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-004',
+                            'title' => 'Leading Through Uncertainty: Supply Chain Leadership',
+                            'excerpt' => 'How effective leaders navigate disruption, build trust, and drive transformation.',
+                            'date' => '2024-03-05',
+                            'readTime' => '9 min read',
+                            'views' => '2.1k',
+                            'category' => 'leadership',
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/leadership-through-uncertainty',
+                            'tags' => ['leadership', 'culture', 'change'],
+                            'author' => [
+                                'name' => 'Dr. Sarah Chen',
+                                'title' => 'Chief Supply Chain Officer',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-005',
+                            'title' => 'Warehouse Automation: ROI and Implementation',
+                            'excerpt' => 'Real-world case studies on ASRS, AMRs, and pick-to-light systems.',
+                            'date' => '2024-02-28',
+                            'readTime' => '10 min read',
+                            'views' => '2.5k',
+                            'category' => 'operations',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/warehouse-automation',
+                            'tags' => ['warehouse', 'automation', 'roi'],
+                            'author' => [
+                                'name' => 'Marcus Thorne',
+                                'title' => 'VP of Operations',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-006',
+                            'title' => 'The Circular Economy: Redesigning Returns',
+                            'excerpt' => 'How leading retailers are turning reverse logistics into a profit center.',
+                            'date' => '2024-02-25',
+                            'readTime' => '7 min read',
+                            'views' => '1.7k',
+                            'category' => 'sustainability',
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/circular-economy',
+                            'tags' => ['circular', 'returns', 'sustainability'],
+                            'author' => [
+                                'name' => 'Alex Rivera',
+                                'title' => 'Technology Innovation Lead',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 414,
+                'section_key' => 'expertArticles',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Expert Voices',
+                    'title' => [
+                        'prefix' => 'Insights from',
+                        'highlight' => 'Industry Leaders'
+                    ],
+                    'description' => 'Exclusive interviews, deep-dive analysis, and expert perspectives on the future of supply chain management.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=500&fit=crop',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get the latest expert articles',
+                        'description' => 'Subscribe to receive weekly insights from industry leaders delivered to your inbox.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Topics', 'icon' => 'newspaper'],
+                        ['id' => 'strategy', 'label' => 'Strategy', 'icon' => 'chart'],
+                        ['id' => 'technology', 'label' => 'Technology', 'icon' => 'chip'],
+                        ['id' => 'operations', 'label' => 'Operations', 'icon' => 'cog'],
+                        ['id' => 'sustainability', 'label' => 'Sustainability', 'icon' => 'globe'],
+                        ['id' => 'leadership', 'label' => 'Leadership', 'icon' => 'users'],
+                        ['id' => 'innovation', 'label' => 'Innovation', 'icon' => 'rocket']
+                    ],
+                    'experts' => [
+                        [
+                            'id' => 'exp-001',
+                            'name' => 'Dr. Sarah Chen',
+                            'title' => 'Chief Supply Chain Officer',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'bio' => 'Former VP at Fortune 500 retailer with 20+ years of experience in global supply chain transformation.',
+                            'articles' => 24,
+                            'views' => '15k+',
+                            'linkedin' => 'https://linkedin.com/in/sarahchen',
+                            'videoIntro' => 'https://example.com/intro-sarah.mp4'
+                        ],
+                        [
+                            'id' => 'exp-002',
+                            'name' => 'Marcus Thorne',
+                            'title' => 'VP of Operations',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'bio' => 'Operations leader specializing in warehouse automation and lean methodologies.',
+                            'articles' => 18,
+                            'views' => '12k+',
+                            'linkedin' => 'https://linkedin.com/in/marcusthorne'
+                        ],
+                        [
+                            'id' => 'exp-003',
+                            'name' => 'Dr. Emily Park',
+                            'title' => 'AI Research Director',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'bio' => 'PhD in Machine Learning, leading AI innovation for supply chain optimization.',
+                            'articles' => 31,
+                            'views' => '22k+',
+                            'linkedin' => 'https://linkedin.com/in/emilypark'
+                        ]
+                    ],
+                    'qaItems' => [
+                        [
+                            'question' => 'What\'s the biggest challenge facing supply chains today?',
+                            'answer' => 'The lack of real-time visibility across multi-tier supplier networks. Most companies still operate with weeks-old data, making proactive risk management impossible.',
+                            'expert' => [
+                                'name' => 'Dr. Sarah Chen',
+                                'title' => 'Chief Supply Chain Officer',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'question' => 'How can small businesses compete with larger competitors on inventory management?',
+                            'answer' => 'Leverage cloud-based inventory platforms that offer enterprise-grade features without the overhead. Focus on your niche and use data to optimize what matters most.',
+                            'expert' => [
+                                'name' => 'Marcus Thorne',
+                                'title' => 'VP of Operations',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'question' => 'What\'s the ROI of AI in inventory management?',
+                            'answer' => 'Our research shows 15-25% reduction in carrying costs, 30-40% fewer stockouts, and 10-15% improvement in forecast accuracy within the first 6 months.',
+                            'expert' => [
+                                'name' => 'Dr. Emily Park',
+                                'title' => 'AI Research Director',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'videoLibrary' => [
+                        [
+                            'id' => 'vid-001',
+                            'title' => 'The Future of Predictive Inventory',
+                            'duration' => '15:23',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'url' => 'https://example.com/video1.mp4',
+                            'expert' => [
+                                'name' => 'Dr. Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-002',
+                            'title' => 'Warehouse Automation Walkthrough',
+                            'duration' => '12:45',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'url' => 'https://example.com/video2.mp4',
+                            'expert' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'articles' => [
+                        [
+                            'id' => 'art-001',
+                            'title' => 'Building Resilient Supply Chains in a Volatile World',
+                            'excerpt' => 'Strategies for creating adaptive, multi-sourced supply networks that withstand disruptions.',
+                            'date' => '2024-03-15',
+                            'readTime' => '10 min read',
+                            'category' => 'strategy',
+                            'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/resilient-supply-chains',
+                            'tags' => ['resilience', 'risk', 'strategy'],
+                            'author' => [
+                                'id' => 'exp-002',
+                                'name' => 'Marcus Thorne',
+                                'title' => 'VP of Operations',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-002',
+                            'title' => 'Predictive Analytics for Inventory Optimization',
+                            'excerpt' => 'Leveraging machine learning to reduce stockouts while minimizing carrying costs.',
+                            'date' => '2024-03-10',
+                            'readTime' => '11 min read',
+                            'category' => 'technology',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/predictive-analytics',
+                            'tags' => ['analytics', 'forecasting', 'ai'],
+                            'author' => [
+                                'id' => 'exp-003',
+                                'name' => 'Dr. Emily Park',
+                                'title' => 'AI Research Director',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-003',
+                            'title' => 'The AI Revolution in Supply Chain',
+                            'excerpt' => 'How generative AI is transforming demand forecasting and inventory planning.',
+                            'date' => '2024-03-05',
+                            'readTime' => '12 min read',
+                            'category' => 'innovation',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/ai-supply-chain',
+                            'tags' => ['ai', 'innovation', 'future'],
+                            'author' => [
+                                'id' => 'exp-001',
+                                'name' => 'Dr. Sarah Chen',
+                                'title' => 'Chief Supply Chain Officer',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 415,
+                'section_key' => 'expertArticles',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Expert Knowledge Hub',
+                    'title' => [
+                        'prefix' => 'Learn from',
+                        'highlight' => 'World-Class Experts'
+                    ],
+                    'description' => 'Access masterclasses, research papers, and exclusive content from leading supply chain experts and practitioners.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=500&fit=crop',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Expert Insights',
+                        'description' => 'Subscribe to receive exclusive masterclasses, research papers, and expert articles.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Topics', 'icon' => 'newspaper'],
+                        ['id' => 'strategy', 'label' => 'Strategy', 'icon' => 'chart'],
+                        ['id' => 'technology', 'label' => 'Technology', 'icon' => 'chip'],
+                        ['id' => 'operations', 'label' => 'Operations', 'icon' => 'cog'],
+                        ['id' => 'sustainability', 'label' => 'Sustainability', 'icon' => 'globe'],
+                        ['id' => 'leadership', 'label' => 'Leadership', 'icon' => 'users'],
+                        ['id' => 'innovation', 'label' => 'Innovation', 'icon' => 'rocket']
+                    ],
+                    'featuredMasterclass' => [
+                        'id' => 'mc-feat',
+                        'title' => 'Supply Chain Digital Transformation',
+                        'description' => 'A comprehensive 8-week program covering AI, automation, and analytics for modern supply chains.',
+                        'level' => 'Advanced',
+                        'duration' => '8 weeks',
+                        'lessons' => 24,
+                        'rating' => 4.9,
+                        'reviews' => 1240,
+                        'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                        'link' => '/masterclasses/digital-transformation',
+                        'instructor' => [
+                            'name' => 'Dr. Sarah Chen',
+                            'title' => 'Chief Supply Chain Officer',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'masterclasses' => [
+                        [
+                            'id' => 'mc-001',
+                            'title' => 'AI-Powered Demand Forecasting',
+                            'description' => 'Master machine learning techniques for accurate demand prediction and inventory optimization.',
+                            'level' => 'Intermediate',
+                            'duration' => '6 hours',
+                            'lessons' => 12,
+                            'rating' => 4.8,
+                            'reviews' => 890,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/masterclasses/ai-demand-forecasting',
+                            'instructor' => [
+                                'name' => 'Dr. Emily Park',
+                                'title' => 'AI Research Director',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'mc-002',
+                            'title' => 'Warehouse Automation Strategy',
+                            'description' => 'Learn to design and implement robotics and automation solutions for distribution centers.',
+                            'level' => 'Advanced',
+                            'duration' => '5 hours',
+                            'lessons' => 10,
+                            'rating' => 4.7,
+                            'reviews' => 560,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/masterclasses/warehouse-automation',
+                            'instructor' => [
+                                'name' => 'Marcus Thorne',
+                                'title' => 'VP of Operations',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'mc-003',
+                            'title' => 'Supply Chain Sustainability',
+                            'description' => 'Practical frameworks for reducing carbon footprint while improving efficiency.',
+                            'level' => 'Beginner',
+                            'duration' => '4 hours',
+                            'lessons' => 8,
+                            'rating' => 4.9,
+                            'reviews' => 430,
+                            'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'link' => '/masterclasses/supply-chain-sustainability',
+                            'instructor' => [
+                                'name' => 'Elena Volkov',
+                                'title' => 'Sustainability Lead',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'researchPapers' => [
+                        [
+                            'id' => 'rp-001',
+                            'title' => 'The Impact of AI on Inventory Optimization',
+                            'excerpt' => 'A comprehensive study of 500+ enterprises showing 25% reduction in carrying costs.',
+                            'abstract' => 'This research analyzes implementation of AI-based inventory optimization across retail, manufacturing, and distribution sectors, revealing key success factors and ROI metrics.',
+                            'authors' => ['Dr. Sarah Chen', 'Dr. Emily Park'],
+                            'citations' => 127,
+                            'date' => '2024-01-15',
+                            'category' => 'technology',
+                            'downloadUrl' => '/papers/ai-inventory-optimization.pdf',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'rp-002',
+                            'title' => 'Resilience in Global Supply Chains',
+                            'excerpt' => 'Post-pandemic analysis of supply chain disruption mitigation strategies.',
+                            'abstract' => 'This paper examines how companies built resilience through multi-sourcing, inventory buffers, and nearshoring strategies during global disruptions.',
+                            'authors' => ['Marcus Thorne', 'Elena Volkov'],
+                            'citations' => 89,
+                            'date' => '2023-12-10',
+                            'category' => 'strategy',
+                            'downloadUrl' => '/papers/resilience-supply-chains.pdf',
+                            'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'experts' => [
+                        [
+                            'id' => 'exp-001',
+                            'name' => 'Dr. Sarah Chen',
+                            'title' => 'Chief Supply Chain Officer',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'bio' => 'Former VP at Fortune 500 with 20+ years in global supply chain transformation.',
+                            'articles' => 24,
+                            'yearsExperience' => 20
+                        ],
+                        [
+                            'id' => 'exp-002',
+                            'name' => 'Marcus Thorne',
+                            'title' => 'VP of Operations',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'bio' => 'Operations leader specializing in warehouse automation and lean methodologies.',
+                            'articles' => 18,
+                            'yearsExperience' => 15
+                        ],
+                        [
+                            'id' => 'exp-003',
+                            'name' => 'Dr. Emily Park',
+                            'title' => 'AI Research Director',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'bio' => 'PhD in Machine Learning, leading AI innovation for supply chain optimization.',
+                            'articles' => 31,
+                            'yearsExperience' => 12
+                        ]
+                    ],
+                    'upcomingEvents' => [
+                        [
+                            'id' => 'evt-001',
+                            'title' => 'Supply Chain AI Summit 2024',
+                            'description' => 'Join industry leaders to explore the future of AI in supply chain management.',
+                            'date' => '2024-04-15',
+                            'time' => '10:00 AM EST',
+                            'location' => 'Virtual',
+                            'type' => 'Conference',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/events/ai-summit-2024',
+                            'speaker' => [
+                                'name' => 'Dr. Sarah Chen',
+                                'title' => 'Chief Supply Chain Officer',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'evt-002',
+                            'title' => 'Warehouse Automation Workshop',
+                            'description' => 'Hand-on workshop on implementing robotics and automation in distribution centers.',
+                            'date' => '2024-04-22',
+                            'time' => '2:00 PM EST',
+                            'location' => 'San Francisco, CA',
+                            'type' => 'Workshop',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/events/automation-workshop',
+                            'speaker' => [
+                                'name' => 'Marcus Thorne',
+                                'title' => 'VP of Operations',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'articles' => [
+                        [
+                            'id' => 'art-001',
+                            'title' => 'The AI Revolution in Supply Chain',
+                            'excerpt' => 'How generative AI is transforming demand forecasting and inventory planning.',
+                            'date' => '2024-03-18',
+                            'readTime' => '12 min read',
+                            'category' => 'technology',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/ai-supply-chain',
+                            'tags' => ['ai', 'innovation'],
+                            'author' => [
+                                'id' => 'exp-001',
+                                'name' => 'Dr. Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-002',
+                            'title' => 'Building Resilient Supply Chains',
+                            'excerpt' => 'Strategies for creating adaptive networks that withstand disruptions.',
+                            'date' => '2024-03-15',
+                            'readTime' => '10 min read',
+                            'category' => 'strategy',
+                            'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/resilient-supply-chains',
+                            'tags' => ['resilience', 'strategy'],
+                            'author' => [
+                                'id' => 'exp-002',
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'art-003',
+                            'title' => 'Predictive Analytics for Inventory',
+                            'excerpt' => 'Leveraging ML to reduce stockouts while minimizing carrying costs.',
+                            'date' => '2024-03-10',
+                            'readTime' => '11 min read',
+                            'category' => 'technology',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/expert-articles/predictive-analytics',
+                            'tags' => ['analytics', 'forecasting'],
+                            'author' => [
+                                'id' => 'exp-003',
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 416,
+                'section_key' => 'expertArticles',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Video Content Section
+            [
+                'id' => 417,
+                'section_key' => 'videoContent',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Video Library',
+                    'title' => [
+                        'prefix' => 'Watch &',
+                        'highlight' => 'Learn',
+                        'suffix' => 'from Our Experts'
+                    ],
+                    'description' => 'Explore our collection of video tutorials, webinars, case studies, and expert interviews to enhance your supply chain knowledge.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search videos by title, topic, or expert...',
+                    'showViewAll' => true,
+                    'viewAllLink' => '/videos',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get New Videos Delivered',
+                        'description' => 'Subscribe to receive notifications when we release new video content, tutorials, and webinars.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per week.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Videos', 'icon' => 'video', 'count' => 12],
+                        ['id' => 'tutorial', 'label' => 'Tutorials', 'icon' => 'play'],
+                        ['id' => 'webinar', 'label' => 'Webinars', 'icon' => 'video'],
+                        ['id' => 'case-study', 'label' => 'Case Studies', 'icon' => 'briefcase'],
+                        ['id' => 'interview', 'label' => 'Interviews', 'icon' => 'microphone'],
+                        ['id' => 'product-demo', 'label' => 'Product Demos', 'icon' => 'chip']
+                    ],
+                    'featuredVideo' => [
+                        'id' => 'feat-001',
+                        'title' => 'The Future of Supply Chain: AI-Driven Inventory Management',
+                        'description' => 'Join our experts as they explore how artificial intelligence is transforming inventory optimization and demand forecasting.',
+                        'duration' => '45:32',
+                        'views' => 15234,
+                        'date' => '2024-03-18',
+                        'category' => 'webinar',
+                        'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&h=720&fit=crop',
+                        'videoUrl' => 'https://example.com/video.mp4',
+                        'presenter' => [
+                            'name' => 'Dr. Sarah Chen',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'playlists' => [
+                        [
+                            'id' => 'pl-001',
+                            'title' => 'Supply Chain Fundamentals',
+                            'description' => 'Essential concepts and best practices for inventory management beginners.',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'videoCount' => 8,
+                            'totalDuration' => '2h 15m',
+                            'link' => '/playlists/supply-chain-fundamentals'
+                        ],
+                        [
+                            'id' => 'pl-002',
+                            'title' => 'Advanced Analytics Series',
+                            'description' => 'Deep dive into predictive analytics and demand forecasting techniques.',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'videoCount' => 6,
+                            'totalDuration' => '3h 20m',
+                            'link' => '/playlists/advanced-analytics'
+                        ],
+                        [
+                            'id' => 'pl-003',
+                            'title' => 'Warehouse Automation',
+                            'description' => 'Learn about robotics, ASRS, and pick-to-light systems.',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'videoCount' => 5,
+                            'totalDuration' => '1h 45m',
+                            'link' => '/playlists/warehouse-automation'
+                        ]
+                    ],
+                    'videos' => [
+                        [
+                            'id' => 'vid-001',
+                            'title' => 'Getting Started with Inventory Management',
+                            'description' => 'Learn the basics of setting up your inventory, managing stock levels, and tracking products.',
+                            'duration' => '12:34',
+                            'views' => 8450,
+                            'date' => '2024-03-15',
+                            'category' => 'tutorial',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['basics', 'setup', 'onboarding'],
+                            'presenter' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-002',
+                            'title' => 'Predictive Analytics for Demand Forecasting',
+                            'description' => 'How machine learning models can predict demand with 96% accuracy and reduce stockouts.',
+                            'duration' => '28:45',
+                            'views' => 12450,
+                            'date' => '2024-03-12',
+                            'category' => 'webinar',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['analytics', 'forecasting', 'ai'],
+                            'presenter' => [
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-003',
+                            'title' => 'Global Retailer: 40% Inventory Reduction Case Study',
+                            'description' => 'How a major retailer reduced inventory by 40% while maintaining 99% service levels.',
+                            'duration' => '18:22',
+                            'views' => 9870,
+                            'date' => '2024-03-10',
+                            'category' => 'case-study',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['case-study', 'retail', 'success'],
+                            'presenter' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-004',
+                            'title' => 'Interview with Supply Chain Director: Resilience Strategies',
+                            'description' => 'Expert discussion on building resilient supply chains in a volatile global market.',
+                            'duration' => '35:12',
+                            'views' => 5670,
+                            'date' => '2024-03-05',
+                            'category' => 'interview',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['interview', 'resilience', 'leadership'],
+                            'presenter' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-005',
+                            'title' => 'Product Demo: AI Demand Forecasting Engine',
+                            'description' => 'See our AI-powered demand forecasting tool in action with real-world data.',
+                            'duration' => '15:45',
+                            'views' => 7340,
+                            'date' => '2024-03-01',
+                            'category' => 'product-demo',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['demo', 'ai', 'product'],
+                            'presenter' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-006',
+                            'title' => 'Warehouse Slotting Optimization Tutorial',
+                            'description' => 'Step-by-step guide to optimizing product placement for maximum picking efficiency.',
+                            'duration' => '22:18',
+                            'views' => 6230,
+                            'date' => '2024-02-25',
+                            'category' => 'tutorial',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['warehouse', 'slotting', 'optimization'],
+                            'presenter' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 418,
+                'section_key' => 'videoContent',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Video Hub',
+                    'title' => [
+                        'prefix' => 'Video',
+                        'highlight' => 'Library'
+                    ],
+                    'description' => 'Watch tutorials, webinars, and expert interviews to master supply chain management.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        'videos' => 50,
+                        'hours' => 100,
+                        'learners' => '50K'
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Videos', 'icon' => 'video'],
+                        ['id' => 'tutorial', 'label' => 'Tutorials', 'icon' => 'play'],
+                        ['id' => 'webinar', 'label' => 'Webinars', 'icon' => 'video'],
+                        ['id' => 'case-study', 'label' => 'Case Studies', 'icon' => 'briefcase'],
+                        ['id' => 'interview', 'label' => 'Interviews', 'icon' => 'microphone'],
+                        ['id' => 'product-demo', 'label' => 'Product Demos', 'icon' => 'chip']
+                    ],
+                    'heroVideos' => [
+                        [
+                            'id' => 'hero-001',
+                            'title' => 'The Future of Supply Chain: AI-Driven Inventory Management',
+                            'description' => 'Join our experts as they explore how artificial intelligence is transforming inventory optimization and demand forecasting.',
+                            'duration' => '45:32',
+                            'views' => 15234,
+                            'date' => '2024-03-18',
+                            'category' => 'webinar',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&h=720&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4'
+                        ],
+                        [
+                            'id' => 'hero-002',
+                            'title' => 'Warehouse Automation: From Manual to Autonomous',
+                            'description' => 'Learn how robotics and automation can transform your warehouse operations.',
+                            'duration' => '38:15',
+                            'views' => 12450,
+                            'date' => '2024-03-10',
+                            'category' => 'tutorial',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1280&h=720&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4'
+                        ]
+                    ],
+                    'videos' => [
+                        [
+                            'id' => 'vid-001',
+                            'title' => 'Getting Started with Inventory Management',
+                            'description' => 'Learn the basics of setting up your inventory, managing stock levels, and tracking products.',
+                            'duration' => '12:34',
+                            'views' => 8450,
+                            'date' => '2024-03-15',
+                            'category' => 'tutorial',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['basics', 'setup'],
+                            'presenter' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-002',
+                            'title' => 'Predictive Analytics for Demand Forecasting',
+                            'description' => 'How machine learning models can predict demand with 96% accuracy.',
+                            'duration' => '28:45',
+                            'views' => 12450,
+                            'date' => '2024-03-12',
+                            'category' => 'webinar',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['analytics', 'forecasting'],
+                            'presenter' => [
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-003',
+                            'title' => 'Global Retailer Case Study: 40% Inventory Reduction',
+                            'description' => 'How a major retailer reduced inventory by 40% while maintaining 99% service levels.',
+                            'duration' => '18:22',
+                            'views' => 9870,
+                            'date' => '2024-03-10',
+                            'category' => 'case-study',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['retail', 'success'],
+                            'presenter' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-004',
+                            'title' => 'Supply Chain Resilience Interview',
+                            'description' => 'Expert discussion on building resilient supply chains in a volatile global market.',
+                            'duration' => '35:12',
+                            'views' => 5670,
+                            'date' => '2024-03-05',
+                            'category' => 'interview',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['resilience', 'leadership'],
+                            'presenter' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-005',
+                            'title' => 'AI Demand Forecasting Product Demo',
+                            'description' => 'See our AI-powered demand forecasting tool in action with real-world data.',
+                            'duration' => '15:45',
+                            'views' => 7340,
+                            'date' => '2024-03-01',
+                            'category' => 'product-demo',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['demo', 'ai'],
+                            'presenter' => [
+                                'name' => 'Alex Rivera',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-006',
+                            'title' => 'Warehouse Slotting Optimization',
+                            'description' => 'Step-by-step guide to optimizing product placement for maximum picking efficiency.',
+                            'duration' => '22:18',
+                            'views' => 6230,
+                            'date' => '2024-02-25',
+                            'category' => 'tutorial',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'tags' => ['warehouse', 'optimization'],
+                            'presenter' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 419,
+                'section_key' => 'videoContent',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Learning Platform',
+                    'title' => [
+                        'prefix' => 'Video',
+                        'highlight' => 'Learning',
+                        'suffix' => 'Platform'
+                    ],
+                    'description' => 'Comprehensive video courses, live streams, and certification programs to advance your supply chain career.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&h=500&fit=crop',
+                    'featuredCourses' => [
+                        [
+                            'id' => 'course-001',
+                            'title' => 'Supply Chain Analytics Masterclass',
+                            'description' => 'Master data-driven decision making with hands-on analytics projects and real-world datasets.',
+                            'duration' => '8 hours',
+                            'lessons' => 24,
+                            'rating' => 4.9,
+                            'reviews' => 1240,
+                            'category' => 'course',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'instructor' => [
+                                'name' => 'Dr. Sarah Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ],
+                            'chapters' => [
+                                ['title' => 'Introduction to Supply Chain Analytics', 'duration' => '15:30', 'time' => 0, 'description' => 'Course overview and key concepts'],
+                                ['title' => 'Data Collection & Preparation', 'duration' => '25:45', 'time' => 930, 'description' => 'Gathering and cleaning supply chain data'],
+                                ['title' => 'Demand Forecasting Techniques', 'duration' => '32:20', 'time' => 2850, 'description' => 'Statistical and ML forecasting methods'],
+                                ['title' => 'Inventory Optimization Models', 'duration' => '28:15', 'time' => 4545, 'description' => 'Safety stock and reorder point calculations']
+                            ],
+                            'quiz' => [
+                                'questions' => [
+                                    ['text' => 'What is the standard method for measuring forecast accuracy?', 'options' => ['MAD', 'MAPE', 'RMSE', 'All of the above'], 'correctAnswer' => 3],
+                                    ['text' => 'Which distribution is commonly used for demand modeling?', 'options' => ['Normal', 'Poisson', 'Gamma', 'All of the above'], 'correctAnswer' => 3]
+                                ]
+                            ],
+                            'transcript' => [
+                                ['time' => 0, 'timestamp' => '00:00', 'text' => 'Welcome to the Supply Chain Analytics Masterclass...'],
+                                ['time' => 30, 'timestamp' => '00:30', 'text' => 'In this course, you\'ll learn how to leverage data for better decisions...']
+                            ]
+                        ],
+                        [
+                            'id' => 'course-002',
+                            'title' => 'Warehouse Automation & Robotics',
+                            'description' => 'Learn to implement ASRS, AMRs, and pick-to-light systems in modern distribution centers.',
+                            'duration' => '6 hours',
+                            'lessons' => 18,
+                            'rating' => 4.8,
+                            'reviews' => 890,
+                            'category' => 'course',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'instructor' => [
+                                'name' => 'Marcus Thorne',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ],
+                            'chapters' => [
+                                ['title' => 'Warehouse Automation Overview', 'duration' => '12:30', 'time' => 0, 'description' => 'Types of automation technologies'],
+                                ['title' => 'ASRS Implementation', 'duration' => '22:15', 'time' => 750, 'description' => 'Automated Storage and Retrieval Systems'],
+                                ['title' => 'AMR Deployment', 'duration' => '18:45', 'time' => 2085, 'description' => 'Autonomous Mobile Robots']
+                            ],
+                            'quiz' => [
+                                'questions' => [
+                                    ['text' => 'What does ASRS stand for?', 'options' => ['Automated Storage and Retrieval System', 'Automated Sortation and Routing System', 'Automatic Storage and Retrieval Solution'], 'correctAnswer' => 0]
+                                ]
+                            ]
+                        ],
+                        [
+                            'id' => 'course-003',
+                            'title' => 'Sustainable Supply Chain Management',
+                            'description' => 'Reduce carbon footprint while improving efficiency and reducing costs.',
+                            'duration' => '5 hours',
+                            'lessons' => 14,
+                            'rating' => 4.9,
+                            'reviews' => 560,
+                            'category' => 'course',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'instructor' => [
+                                'name' => 'Elena Volkov',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ],
+                    'liveStream' => [
+                        'id' => 'live-001',
+                        'title' => 'AI in Supply Chain: Live Q&A with Experts',
+                        'description' => 'Join our experts for a live discussion on implementing AI in inventory management.',
+                        'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&h=720&fit=crop',
+                        'videoUrl' => 'https://example.com/live.mp4',
+                        'nextDate' => 'April 15, 2024',
+                        'nextTopic' => 'Predictive Analytics for Inventory',
+                        'host' => [
+                            'name' => 'Dr. Sarah Chen',
+                            'title' => 'Chief Supply Chain Officer',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                        ]
+                    ],
+                    'certifications' => [
+                        [
+                            'id' => 'cert-001',
+                            'title' => 'Certified Supply Chain Professional',
+                            'description' => 'Industry-recognized certification covering end-to-end supply chain management.',
+                            'duration' => '40 hours',
+                            'modules' => 12,
+                            'popularity' => 85,
+                            'students' => '10k',
+                            'link' => '/certifications/cscp',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'cert-002',
+                            'title' => 'Inventory Optimization Specialist',
+                            'description' => 'Master demand forecasting, safety stock, and replenishment strategies.',
+                            'duration' => '25 hours',
+                            'modules' => 8,
+                            'popularity' => 92,
+                            'students' => '5k',
+                            'link' => '/certifications/inventory-specialist',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'videos' => [
+                        [
+                            'id' => 'vid-001',
+                            'title' => 'Getting Started with Inventory Management',
+                            'description' => 'Learn the basics of setting up your inventory, managing stock levels, and tracking products.',
+                            'duration' => '12:34',
+                            'views' => 8450,
+                            'date' => '2024-03-15',
+                            'category' => 'tutorial',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'presenter' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ],
+                        [
+                            'id' => 'vid-002',
+                            'title' => 'Predictive Analytics Webinar',
+                            'description' => 'How machine learning models can predict demand with 96% accuracy.',
+                            'duration' => '28:45',
+                            'views' => 12450,
+                            'date' => '2024-03-12',
+                            'category' => 'webinar',
+                            'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'videoUrl' => 'https://example.com/video.mp4',
+                            'presenter' => [
+                                'name' => 'Dr. Emily Park',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ]
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 420,
+                'section_key' => 'videoContent',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         // Add the new Services variants
