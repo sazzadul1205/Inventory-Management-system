@@ -1589,6 +1589,1594 @@ class NewsPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Industry Events Section 
+            [
+                'id' => 433,
+                'section_key' => 'industryEvents',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Upcoming Events',
+                    'title' => [
+                        'prefix' => 'Industry',
+                        'highlight' => 'Events',
+                        'suffix' => '& Conferences'
+                    ],
+                    'description' => 'Join us at premier industry events, conferences, and webinars. Connect with supply chain leaders, discover innovations, and advance your career.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search events by title, topic, or location...',
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Annual Events', 'icon' => 'calendar'],
+                        ['value' => '50+', 'label' => 'Expert Speakers', 'icon' => 'microphone'],
+                        ['value' => '10k+', 'label' => 'Attendees', 'icon' => 'users'],
+                        ['value' => '30+', 'label' => 'Countries', 'icon' => 'globe']
+                    ],
+                    'eventTypes' => [
+                        ['id' => 'all', 'label' => 'All Events', 'icon' => 'calendar'],
+                        ['id' => 'conference', 'label' => 'Conferences', 'icon' => 'users'],
+                        ['id' => 'webinar', 'label' => 'Webinars', 'icon' => 'video'],
+                        ['id' => 'workshop', 'label' => 'Workshops', 'icon' => 'academic'],
+                        ['id' => 'summit', 'label' => 'Summits', 'icon' => 'rocket'],
+                        ['id' => 'expo', 'label' => 'Expos', 'icon' => 'globe']
+                    ],
+                    'eventFormats' => [
+                        ['id' => 'all', 'label' => 'All Formats'],
+                        ['id' => 'in-person', 'label' => 'In-Person'],
+                        ['id' => 'virtual', 'label' => 'Virtual'],
+                        ['id' => 'hybrid', 'label' => 'Hybrid']
+                    ],
+                    'events' => [
+                        [
+                            'id' => 'event-1',
+                            'title' => 'SupplyChainPro Global Summit 2024',
+                            'description' => 'Join industry leaders for our annual flagship event featuring keynotes, panel discussions, and networking opportunities with supply chain professionals from around the world.',
+                            'startDate' => '2024-06-10',
+                            'endDate' => '2024-06-12',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'San Francisco, CA + Virtual',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+                            'link' => '/events/global-summit-2024',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Michael Chen', 'title' => 'VP of Product', 'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['summit', 'leadership', 'innovation', 'networking'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'event-2',
+                            'title' => 'AI in Supply Chain Webinar Series',
+                            'description' => 'Learn how artificial intelligence is transforming supply chain operations. Discover practical applications and success stories from industry experts.',
+                            'startDate' => '2024-04-15',
+                            'endDate' => null,
+                            'type' => 'webinar',
+                            'format' => 'virtual',
+                            'location' => 'Online',
+                            'region' => 'Global',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop',
+                            'link' => '/events/ai-webinar',
+                            'speakers' => [
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'David Kim', 'title' => 'AI Research Lead', 'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['ai', 'webinar', 'technology', 'innovation'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-3',
+                            'title' => 'Supply Chain Innovation Workshop',
+                            'description' => 'Hands-on workshop covering best practices in inventory optimization, demand forecasting, and supply chain resilience.',
+                            'startDate' => '2024-05-20',
+                            'endDate' => '2024-05-21',
+                            'type' => 'workshop',
+                            'format' => 'in-person',
+                            'location' => 'Chicago, IL',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/events/innovation-workshop',
+                            'speakers' => [
+                                ['name' => 'Emily Rodriguez', 'title' => 'VP of Customer Success', 'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'],
+                                ['name' => 'Michael Chen', 'title' => 'VP of Product', 'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['workshop', 'training', 'best-practices'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-4',
+                            'title' => 'European Supply Chain Expo 2024',
+                            'description' => 'Europe\'s largest supply chain exhibition featuring 200+ exhibitors and 50+ educational sessions on the latest trends and technologies.',
+                            'startDate' => '2024-09-15',
+                            'endDate' => '2024-09-17',
+                            'type' => 'expo',
+                            'format' => 'in-person',
+                            'location' => 'Amsterdam, Netherlands',
+                            'region' => 'Europe',
+                            'image' => 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&h=400&fit=crop',
+                            'link' => '/events/europe-expo',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['expo', 'networking', 'europe'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-5',
+                            'title' => 'Supply Chain Leaders Forum',
+                            'description' => 'Executive-level forum for supply chain leaders to discuss challenges, share insights, and shape the future of the industry.',
+                            'startDate' => '2024-07-10',
+                            'endDate' => '2024-07-12',
+                            'type' => 'conference',
+                            'format' => 'in-person',
+                            'location' => 'New York, NY',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'link' => '/events/leaders-forum',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['leadership', 'executive', 'strategy'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-6',
+                            'title' => 'Sustainable Supply Chain Summit',
+                            'description' => 'Explore strategies for building environmentally responsible and socially sustainable supply chains.',
+                            'startDate' => '2024-08-05',
+                            'endDate' => '2024-08-06',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'London, UK + Virtual',
+                            'region' => 'Europe',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'link' => '/events/sustainability-summit',
+                            'speakers' => [
+                                ['name' => 'Emily Rodriguez', 'title' => 'VP of Customer Success', 'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['sustainability', 'green', 'esg'],
+                            'isFeatured' => false
+                        ]
+                    ],
+                    'featuredEvent' => null,
+                    'showViewAll' => true,
+                    'viewAllLink' => '/events',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Event Updates',
+                        'description' => 'Subscribe to receive notifications about upcoming events, webinars, and industry conferences.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 434,
+                'section_key' => 'industryEvents',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Event Calendar',
+                    'title' => [
+                        'prefix' => 'Industry',
+                        'highlight' => 'Events',
+                        'suffix' => 'Calendar'
+                    ],
+                    'description' => 'Discover and register for upcoming industry conferences, webinars, workshops, and networking events. Connect with supply chain leaders worldwide.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search events by title, topic, or speaker...',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Annual Events', 'icon' => 'calendar', 'trend' => '+5', 'trendUp' => true],
+                        ['value' => '50+', 'label' => 'Expert Speakers', 'icon' => 'microphone', 'trend' => '+12', 'trendUp' => true],
+                        ['value' => '10k+', 'label' => 'Attendees', 'icon' => 'users', 'trend' => '+2k', 'trendUp' => true],
+                        ['value' => '30+', 'label' => 'Countries', 'icon' => 'globe', 'trend' => '+8', 'trendUp' => true]
+                    ],
+                    'eventTypes' => [
+                        ['id' => 'all', 'label' => 'All Events', 'icon' => 'calendar', 'count' => 6],
+                        ['id' => 'conference', 'label' => 'Conferences', 'icon' => 'users'],
+                        ['id' => 'webinar', 'label' => 'Webinars', 'icon' => 'video'],
+                        ['id' => 'workshop', 'label' => 'Workshops', 'icon' => 'academic'],
+                        ['id' => 'summit', 'label' => 'Summits', 'icon' => 'rocket'],
+                        ['id' => 'expo', 'label' => 'Expos', 'icon' => 'globe']
+                    ],
+                    'eventFormats' => [
+                        ['id' => 'all', 'label' => 'All Formats', 'icon' => 'globe'],
+                        ['id' => 'in-person', 'label' => 'In-Person', 'icon' => 'location'],
+                        ['id' => 'virtual', 'label' => 'Virtual', 'icon' => 'video'],
+                        ['id' => 'hybrid', 'label' => 'Hybrid', 'icon' => 'globe']
+                    ],
+                    'events' => [
+                        [
+                            'id' => 'event-1',
+                            'title' => 'SupplyChainPro Global Summit 2024',
+                            'description' => 'Join industry leaders for our annual flagship event featuring keynotes, panel discussions, and networking opportunities.',
+                            'startDate' => '2024-06-10',
+                            'endDate' => '2024-06-12',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'San Francisco, CA + Virtual',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+                            'link' => '/events/global-summit-2024',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Michael Chen', 'title' => 'VP of Product', 'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['summit', 'leadership', 'innovation', 'networking'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'event-2',
+                            'title' => 'AI in Supply Chain Webinar Series',
+                            'description' => 'Learn how artificial intelligence is transforming supply chain operations.',
+                            'startDate' => '2024-04-15',
+                            'endDate' => null,
+                            'type' => 'webinar',
+                            'format' => 'virtual',
+                            'location' => 'Online',
+                            'region' => 'Global',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop',
+                            'link' => '/events/ai-webinar',
+                            'speakers' => [
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'David Kim', 'title' => 'AI Research Lead', 'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['ai', 'webinar', 'technology', 'innovation'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-3',
+                            'title' => 'Supply Chain Innovation Workshop',
+                            'description' => 'Hands-on workshop covering best practices in inventory optimization and demand forecasting.',
+                            'startDate' => '2024-05-20',
+                            'endDate' => '2024-05-21',
+                            'type' => 'workshop',
+                            'format' => 'in-person',
+                            'location' => 'Chicago, IL',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/events/innovation-workshop',
+                            'speakers' => [
+                                ['name' => 'Emily Rodriguez', 'title' => 'VP of Customer Success', 'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'],
+                                ['name' => 'Michael Chen', 'title' => 'VP of Product', 'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['workshop', 'training', 'best-practices'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-4',
+                            'title' => 'European Supply Chain Expo 2024',
+                            'description' => 'Europe\'s largest supply chain exhibition featuring 200+ exhibitors.',
+                            'startDate' => '2024-09-15',
+                            'endDate' => '2024-09-17',
+                            'type' => 'expo',
+                            'format' => 'in-person',
+                            'location' => 'Amsterdam, Netherlands',
+                            'region' => 'Europe',
+                            'image' => 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&h=400&fit=crop',
+                            'link' => '/events/europe-expo',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['expo', 'networking', 'europe'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-5',
+                            'title' => 'Supply Chain Leaders Forum',
+                            'description' => 'Executive-level forum for supply chain leaders to discuss challenges and share insights.',
+                            'startDate' => '2024-07-10',
+                            'endDate' => '2024-07-12',
+                            'type' => 'conference',
+                            'format' => 'in-person',
+                            'location' => 'New York, NY',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'link' => '/events/leaders-forum',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO, SupplyChainPro', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['leadership', 'executive', 'strategy'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-6',
+                            'title' => 'Sustainable Supply Chain Summit',
+                            'description' => 'Explore strategies for building environmentally responsible supply chains.',
+                            'startDate' => '2024-08-05',
+                            'endDate' => '2024-08-06',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'London, UK + Virtual',
+                            'region' => 'Europe',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'link' => '/events/sustainability-summit',
+                            'speakers' => [
+                                ['name' => 'Emily Rodriguez', 'title' => 'VP of Customer Success', 'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['sustainability', 'green', 'esg'],
+                            'isFeatured' => false
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Event Updates',
+                        'description' => 'Subscribe to receive notifications about upcoming events, webinars, and industry conferences.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 435,
+                'section_key' => 'industryEvents',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Events Hub',
+                    'title' => [
+                        'prefix' => 'Industry',
+                        'highlight' => 'Events'
+                    ],
+                    'description' => 'Discover and register for premier industry events, conferences, and webinars. Connect with supply chain leaders and stay ahead of the curve.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Annual Events', 'icon' => 'calendar'],
+                        ['value' => '50+', 'label' => 'Expert Speakers', 'icon' => 'microphone'],
+                        ['value' => '10k+', 'label' => 'Attendees', 'icon' => 'users'],
+                        ['value' => '30+', 'label' => 'Countries', 'icon' => 'globe']
+                    ],
+                    'eventTypes' => [
+                        ['id' => 'all', 'label' => 'All Events', 'icon' => 'calendar', 'count' => 6],
+                        ['id' => 'conference', 'label' => 'Conferences', 'icon' => 'users'],
+                        ['id' => 'webinar', 'label' => 'Webinars', 'icon' => 'video'],
+                        ['id' => 'workshop', 'label' => 'Workshops', 'icon' => 'academic'],
+                        ['id' => 'summit', 'label' => 'Summits', 'icon' => 'rocket'],
+                        ['id' => 'expo', 'label' => 'Expos', 'icon' => 'globe']
+                    ],
+                    'eventFormats' => [
+                        ['id' => 'all', 'label' => 'All Formats', 'icon' => 'globe'],
+                        ['id' => 'in-person', 'label' => 'In-Person', 'icon' => 'location'],
+                        ['id' => 'virtual', 'label' => 'Virtual', 'icon' => 'video'],
+                        ['id' => 'hybrid', 'label' => 'Hybrid', 'icon' => 'globe']
+                    ],
+                    'featuredEvents' => [
+                        [
+                            'id' => 'featured-1',
+                            'title' => 'SupplyChainPro Global Summit 2024',
+                            'description' => 'Join industry leaders for our annual flagship event featuring keynotes, panel discussions, and networking opportunities.',
+                            'startDate' => '2024-06-10',
+                            'endDate' => '2024-06-12',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'San Francisco, CA + Virtual',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop',
+                            'link' => '/events/global-summit-2024',
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ]
+                        ],
+                        [
+                            'id' => 'featured-2',
+                            'title' => 'AI in Supply Chain Webinar Series',
+                            'description' => 'Learn how artificial intelligence is transforming supply chain operations.',
+                            'startDate' => '2024-04-15',
+                            'type' => 'webinar',
+                            'format' => 'virtual',
+                            'location' => 'Online',
+                            'region' => 'Global',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&h=600&fit=crop',
+                            'link' => '/events/ai-webinar',
+                            'speakers' => [
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ]
+                        ]
+                    ],
+                    'events' => [
+                        [
+                            'id' => 'event-1',
+                            'title' => 'SupplyChainPro Global Summit 2024',
+                            'description' => 'Join industry leaders for our annual flagship event featuring keynotes, panel discussions, and networking opportunities.',
+                            'startDate' => '2024-06-10',
+                            'endDate' => '2024-06-12',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'San Francisco, CA + Virtual',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+                            'link' => '/events/global-summit-2024',
+                            'recordingLink' => null,
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'],
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['summit', 'leadership', 'innovation'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'event-2',
+                            'title' => 'AI in Supply Chain Webinar',
+                            'description' => 'Learn how artificial intelligence is transforming supply chain operations.',
+                            'startDate' => '2024-04-15',
+                            'type' => 'webinar',
+                            'format' => 'virtual',
+                            'location' => 'Online',
+                            'region' => 'Global',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop',
+                            'link' => '/events/ai-webinar',
+                            'recordingLink' => '/recordings/ai-webinar',
+                            'speakers' => [
+                                ['name' => 'Dr. Lisa Wang', 'title' => 'CTO', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['ai', 'webinar', 'technology'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'event-3',
+                            'title' => 'Supply Chain Innovation Workshop',
+                            'description' => 'Hands-on workshop covering best practices in inventory optimization and demand forecasting.',
+                            'startDate' => '2024-05-20',
+                            'endDate' => '2024-05-21',
+                            'type' => 'workshop',
+                            'format' => 'in-person',
+                            'location' => 'Chicago, IL',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/events/innovation-workshop',
+                            'recordingLink' => null,
+                            'speakers' => [
+                                ['name' => 'Emily Rodriguez', 'title' => 'VP of Customer Success', 'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['workshop', 'training', 'best-practices'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-4',
+                            'title' => 'European Supply Chain Expo',
+                            'description' => 'Europe\'s largest supply chain exhibition featuring 200+ exhibitors.',
+                            'startDate' => '2024-09-15',
+                            'endDate' => '2024-09-17',
+                            'type' => 'expo',
+                            'format' => 'in-person',
+                            'location' => 'Amsterdam, Netherlands',
+                            'region' => 'Europe',
+                            'image' => 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&h=400&fit=crop',
+                            'link' => '/events/europe-expo',
+                            'recordingLink' => null,
+                            'speakers' => [],
+                            'tags' => ['expo', 'networking', 'europe'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-5',
+                            'title' => 'Supply Chain Leaders Forum',
+                            'description' => 'Executive-level forum for supply chain leaders to discuss challenges and share insights.',
+                            'startDate' => '2024-07-10',
+                            'endDate' => '2024-07-12',
+                            'type' => 'conference',
+                            'format' => 'in-person',
+                            'location' => 'New York, NY',
+                            'region' => 'North America',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'link' => '/events/leaders-forum',
+                            'recordingLink' => null,
+                            'speakers' => [
+                                ['name' => 'Sarah Johnson', 'title' => 'CEO', 'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['leadership', 'executive', 'strategy'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'event-6',
+                            'title' => 'Sustainable Supply Chain Summit',
+                            'description' => 'Explore strategies for building environmentally responsible supply chains.',
+                            'startDate' => '2024-08-05',
+                            'endDate' => '2024-08-06',
+                            'type' => 'summit',
+                            'format' => 'hybrid',
+                            'location' => 'London, UK + Virtual',
+                            'region' => 'Europe',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'link' => '/events/sustainability-summit',
+                            'recordingLink' => null,
+                            'speakers' => [
+                                ['name' => 'Emily Rodriguez', 'title' => 'VP of Customer Success', 'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop']
+                            ],
+                            'tags' => ['sustainability', 'green', 'esg'],
+                            'isFeatured' => false
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Event Updates',
+                        'description' => 'Subscribe to receive notifications about upcoming events, webinars, and industry conferences.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 436,
+                'section_key' => 'industryEvents',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Product Launches Section 
+            [
+                'id' => 437,
+                'section_key' => 'productLaunches',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'What\'s New',
+                    'title' => [
+                        'prefix' => 'Latest',
+                        'highlight' => 'Product Launches'
+                    ],
+                    'description' => 'Discover our newest innovations, features, and capabilities designed to transform your supply chain operations.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search products by name, category, or feature...',
+                    'stats' => [
+                        ['value' => '12', 'label' => 'New Products', 'icon' => 'rocket'],
+                        ['value' => '8', 'label' => 'AI Features', 'icon' => 'chip'],
+                        ['value' => '45+', 'label' => 'Improvements', 'icon' => 'cog'],
+                        ['value' => '100k+', 'label' => 'Users Impacted', 'icon' => 'users']
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Products', 'icon' => 'rocket'],
+                        ['id' => 'ai', 'label' => 'AI & ML', 'icon' => 'chip'],
+                        ['id' => 'automation', 'label' => 'Automation', 'icon' => 'cog'],
+                        ['id' => 'analytics', 'label' => 'Analytics', 'icon' => 'chart'],
+                        ['id' => 'integration', 'label' => 'Integration', 'icon' => 'cloud'],
+                        ['id' => 'mobile', 'label' => 'Mobile', 'icon' => 'download']
+                    ],
+                    'statuses' => [
+                        ['id' => 'all', 'label' => 'All Status'],
+                        ['id' => 'live', 'label' => 'Now Live'],
+                        ['id' => 'beta', 'label' => 'Beta'],
+                        ['id' => 'coming-soon', 'label' => 'Coming Soon'],
+                        ['id' => 'preview', 'label' => 'Preview']
+                    ],
+                    'launches' => [
+                        [
+                            'id' => 'launch-1',
+                            'title' => 'AI-Powered Demand Forecasting Engine',
+                            'description' => 'Revolutionary machine learning model that predicts demand with 95% accuracy, reducing stockouts by 40% and inventory costs by 25%.',
+                            'date' => '2024-03-15',
+                            'category' => 'ai',
+                            'status' => 'live',
+                            'views' => '3.2k',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/products/ai-forecasting',
+                            'demoUrl' => '/demos/ai-forecasting',
+                            'features' => [
+                                'Real-time demand prediction',
+                                'Multi-echelon inventory optimization',
+                                'Automated replenishment recommendations',
+                                'Seasonality and trend detection',
+                                'What-if scenario analysis'
+                            ],
+                            'tags' => ['ai', 'forecasting', 'inventory', 'machine-learning'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'launch-2',
+                            'title' => 'Supply Chain Control Tower',
+                            'description' => 'End-to-end visibility platform providing real-time tracking, predictive alerts, and actionable insights across your entire supply network.',
+                            'date' => '2024-03-10',
+                            'category' => 'analytics',
+                            'status' => 'live',
+                            'views' => '2.1k',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/products/control-tower',
+                            'demoUrl' => '/demos/control-tower',
+                            'features' => [
+                                'Real-time shipment tracking',
+                                'Predictive delay alerts',
+                                'Carbon emission monitoring',
+                                'Supplier performance dashboards',
+                                'Automated exception management'
+                            ],
+                            'tags' => ['analytics', 'visibility', 'tracking', 'dashboard'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-3',
+                            'title' => 'Warehouse Automation Suite',
+                            'description' => 'Intelligent warehouse management system with robotic process automation, optimizing picking routes and reducing labor costs.',
+                            'date' => '2024-03-05',
+                            'category' => 'automation',
+                            'status' => 'beta',
+                            'views' => '1.8k',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/products/warehouse-automation',
+                            'demoUrl' => '/demos/warehouse-automation',
+                            'features' => [
+                                'Automated pick-to-light systems',
+                                'Dynamic slotting optimization',
+                                'Voice-directed picking',
+                                'Labor productivity analytics',
+                                'Cross-docking optimization'
+                            ],
+                            'tags' => ['warehouse', 'automation', 'wms', 'robotics'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-4',
+                            'title' => 'Supplier Collaboration Portal',
+                            'description' => 'Cloud-based platform connecting buyers and suppliers for seamless order management, forecasting, and communication.',
+                            'date' => '2024-02-28',
+                            'category' => 'integration',
+                            'status' => 'live',
+                            'views' => '1.5k',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop',
+                            'link' => '/products/supplier-portal',
+                            'demoUrl' => '/demos/supplier-portal',
+                            'features' => [
+                                'Supplier onboarding automation',
+                                'Real-time order collaboration',
+                                'Shared forecasting',
+                                'Performance scorecards',
+                                'Document management'
+                            ],
+                            'tags' => ['supplier', 'collaboration', 'portal', 'integration'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-5',
+                            'title' => 'Mobile Inventory Scanner',
+                            'description' => 'iOS and Android app for real-time inventory counts, cycle counting, and barcode scanning with offline capabilities.',
+                            'date' => '2024-02-20',
+                            'category' => 'mobile',
+                            'status' => 'preview',
+                            'views' => '1.2k',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/products/mobile-scanner',
+                            'demoUrl' => '/demos/mobile-scanner',
+                            'features' => [
+                                'Barcode and QR code scanning',
+                                'Offline inventory counting',
+                                'Cycle counting schedules',
+                                'Photo capture for damaged goods',
+                                'Real-time sync when online'
+                            ],
+                            'tags' => ['mobile', 'inventory', 'scanning', 'ios', 'android'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-6',
+                            'title' => 'Blockchain Track & Trace',
+                            'description' => 'Enterprise-grade blockchain solution providing immutable traceability for pharmaceutical and food supply chains.',
+                            'date' => '2024-02-15',
+                            'category' => 'integration',
+                            'status' => 'coming-soon',
+                            'views' => '2.5k',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+                            'link' => '/products/blockchain-trace',
+                            'demoUrl' => null,
+                            'features' => [
+                                'Immutable product provenance',
+                                'Temperature excursion tracking',
+                                'Regulatory compliance reporting',
+                                'Smart contract automation',
+                                'Multi-party data sharing'
+                            ],
+                            'tags' => ['blockchain', 'traceability', 'compliance', 'security'],
+                            'isFeatured' => false
+                        ]
+                    ],
+                    'featuredLaunch' => null,
+                    'showViewAll' => true,
+                    'viewAllLink' => '/product-launches',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Be the First to Know',
+                        'description' => 'Subscribe to receive product launch announcements, feature updates, and exclusive early access invitations.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 438,
+                'section_key' => 'productLaunches',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'New Releases',
+                    'title' => [
+                        'prefix' => 'Latest',
+                        'highlight' => 'Product Releases'
+                    ],
+                    'description' => 'Discover our newest innovations, features, and capabilities designed to transform your supply chain operations.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search products by name, category, or feature...',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        ['value' => '12', 'label' => 'New Products', 'icon' => 'rocket', 'trend' => '+3', 'trendUp' => true],
+                        ['value' => '8', 'label' => 'AI Features', 'icon' => 'chip', 'trend' => '+5', 'trendUp' => true],
+                        ['value' => '45+', 'label' => 'Improvements', 'icon' => 'cog', 'trend' => '+12', 'trendUp' => true],
+                        ['value' => '100k+', 'label' => 'Users Impacted', 'icon' => 'users', 'trend' => '+25k', 'trendUp' => true]
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Products', 'icon' => 'rocket', 'count' => 6],
+                        ['id' => 'ai', 'label' => 'AI & ML', 'icon' => 'chip'],
+                        ['id' => 'automation', 'label' => 'Automation', 'icon' => 'cog'],
+                        ['id' => 'analytics', 'label' => 'Analytics', 'icon' => 'chart'],
+                        ['id' => 'integration', 'label' => 'Integration', 'icon' => 'cloud'],
+                        ['id' => 'mobile', 'label' => 'Mobile', 'icon' => 'mobile']
+                    ],
+                    'statuses' => [
+                        ['id' => 'all', 'label' => 'All Status', 'icon' => 'sparkles'],
+                        ['id' => 'live', 'label' => 'Now Live', 'icon' => 'rocket'],
+                        ['id' => 'beta', 'label' => 'Beta', 'icon' => 'chip'],
+                        ['id' => 'coming-soon', 'label' => 'Coming Soon', 'icon' => 'clock'],
+                        ['id' => 'preview', 'label' => 'Preview', 'icon' => 'eye']
+                    ],
+                    'launches' => [
+                        [
+                            'id' => 'launch-1',
+                            'title' => 'AI-Powered Demand Forecasting Engine',
+                            'description' => 'Revolutionary machine learning model that predicts demand with 95% accuracy, reducing stockouts by 40% and inventory costs by 25%.',
+                            'date' => '2024-03-15',
+                            'category' => 'ai',
+                            'status' => 'live',
+                            'views' => '3.2k',
+                            'likes' => 89,
+                            'trendingScore' => 95,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/products/ai-forecasting',
+                            'demoUrl' => '/demos/ai-forecasting',
+                            'features' => [
+                                'Real-time demand prediction',
+                                'Multi-echelon inventory optimization',
+                                'Automated replenishment recommendations',
+                                'Seasonality and trend detection',
+                                'What-if scenario analysis'
+                            ],
+                            'tags' => ['ai', 'forecasting', 'inventory', 'machine-learning'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'launch-2',
+                            'title' => 'Supply Chain Control Tower',
+                            'description' => 'End-to-end visibility platform providing real-time tracking, predictive alerts, and actionable insights across your entire supply network.',
+                            'date' => '2024-03-10',
+                            'category' => 'analytics',
+                            'status' => 'live',
+                            'views' => '2.1k',
+                            'likes' => 45,
+                            'trendingScore' => 72,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/products/control-tower',
+                            'demoUrl' => '/demos/control-tower',
+                            'features' => [
+                                'Real-time shipment tracking',
+                                'Predictive delay alerts',
+                                'Carbon emission monitoring',
+                                'Supplier performance dashboards'
+                            ],
+                            'tags' => ['analytics', 'visibility', 'tracking', 'dashboard'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-3',
+                            'title' => 'Warehouse Automation Suite',
+                            'description' => 'Intelligent warehouse management system with robotic process automation, optimizing picking routes and reducing labor costs.',
+                            'date' => '2024-03-05',
+                            'category' => 'automation',
+                            'status' => 'beta',
+                            'views' => '1.8k',
+                            'likes' => 34,
+                            'trendingScore' => 58,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/products/warehouse-automation',
+                            'demoUrl' => '/demos/warehouse-automation',
+                            'features' => [
+                                'Automated pick-to-light systems',
+                                'Dynamic slotting optimization',
+                                'Voice-directed picking',
+                                'Labor productivity analytics'
+                            ],
+                            'tags' => ['warehouse', 'automation', 'wms', 'robotics'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-4',
+                            'title' => 'Supplier Collaboration Portal',
+                            'description' => 'Cloud-based platform connecting buyers and suppliers for seamless order management, forecasting, and communication.',
+                            'date' => '2024-02-28',
+                            'category' => 'integration',
+                            'status' => 'live',
+                            'views' => '1.5k',
+                            'likes' => 67,
+                            'trendingScore' => 65,
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop',
+                            'link' => '/products/supplier-portal',
+                            'demoUrl' => '/demos/supplier-portal',
+                            'features' => [
+                                'Supplier onboarding automation',
+                                'Real-time order collaboration',
+                                'Shared forecasting',
+                                'Performance scorecards'
+                            ],
+                            'tags' => ['supplier', 'collaboration', 'portal', 'integration'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-5',
+                            'title' => 'Mobile Inventory Scanner',
+                            'description' => 'iOS and Android app for real-time inventory counts, cycle counting, and barcode scanning with offline capabilities.',
+                            'date' => '2024-02-20',
+                            'category' => 'mobile',
+                            'status' => 'preview',
+                            'views' => '1.2k',
+                            'likes' => 89,
+                            'trendingScore' => 82,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/products/mobile-scanner',
+                            'demoUrl' => '/demos/mobile-scanner',
+                            'features' => [
+                                'Barcode and QR code scanning',
+                                'Offline inventory counting',
+                                'Cycle counting schedules',
+                                'Photo capture for damaged goods'
+                            ],
+                            'tags' => ['mobile', 'inventory', 'scanning', 'ios', 'android'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-6',
+                            'title' => 'Blockchain Track & Trace',
+                            'description' => 'Enterprise-grade blockchain solution providing immutable traceability for pharmaceutical and food supply chains.',
+                            'date' => '2024-02-15',
+                            'category' => 'integration',
+                            'status' => 'coming-soon',
+                            'views' => '2.5k',
+                            'likes' => 112,
+                            'trendingScore' => 78,
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+                            'link' => '/products/blockchain-trace',
+                            'demoUrl' => null,
+                            'features' => [
+                                'Immutable product provenance',
+                                'Temperature excursion tracking',
+                                'Regulatory compliance reporting',
+                                'Smart contract automation'
+                            ],
+                            'tags' => ['blockchain', 'traceability', 'compliance', 'security'],
+                            'isFeatured' => false
+                        ]
+                    ],
+                    'featuredLaunch' => null,
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Be the First to Know',
+                        'description' => 'Subscribe to receive product launch announcements, feature updates, and exclusive early access invitations.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 439,
+                'section_key' => 'productLaunches',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Launch Hub',
+                    'title' => [
+                        'prefix' => 'Product',
+                        'highlight' => 'Launches'
+                    ],
+                    'description' => 'Discover our newest innovations, features, and capabilities designed to transform your supply chain operations.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '12', 'label' => 'New Products', 'icon' => 'rocket'],
+                        ['value' => '8', 'label' => 'AI Features', 'icon' => 'chip'],
+                        ['value' => '45+', 'label' => 'Improvements', 'icon' => 'cog'],
+                        ['value' => '100k+', 'label' => 'Users Impacted', 'icon' => 'users']
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Products', 'icon' => 'rocket'],
+                        ['id' => 'ai', 'label' => 'AI & ML', 'icon' => 'chip'],
+                        ['id' => 'automation', 'label' => 'Automation', 'icon' => 'cog'],
+                        ['id' => 'analytics', 'label' => 'Analytics', 'icon' => 'chart'],
+                        ['id' => 'integration', 'label' => 'Integration', 'icon' => 'cloud'],
+                        ['id' => 'mobile', 'label' => 'Mobile', 'icon' => 'mobile']
+                    ],
+                    'statuses' => [
+                        ['id' => 'all', 'label' => 'All', 'icon' => 'sparkles'],
+                        ['id' => 'live', 'label' => 'Live', 'icon' => 'rocket'],
+                        ['id' => 'beta', 'label' => 'Beta', 'icon' => 'chip'],
+                        ['id' => 'coming-soon', 'label' => 'Coming Soon', 'icon' => 'clock']
+                    ],
+                    'tabs' => [
+                        ['id' => 'all', 'label' => 'All Products', 'icon' => 'rocket'],
+                        ['id' => 'live', 'label' => 'Now Live', 'icon' => 'rocket'],
+                        ['id' => 'beta', 'label' => 'Beta', 'icon' => 'chip'],
+                        ['id' => 'upcoming', 'label' => 'Coming Soon', 'icon' => 'clock'],
+                        ['id' => 'saved', 'label' => 'Saved', 'icon' => 'bookmark']
+                    ],
+                    'featuredLaunches' => [
+                        [
+                            'id' => 'featured-1',
+                            'title' => 'AI-Powered Demand Forecasting Engine',
+                            'description' => 'Revolutionary machine learning model that predicts demand with 95% accuracy, reducing stockouts by 40% and inventory costs by 25%.',
+                            'date' => '2024-03-15',
+                            'category' => 'ai',
+                            'status' => 'live',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop',
+                            'link' => '/products/ai-forecasting',
+                            'demoUrl' => '/demos/ai-forecasting'
+                        ],
+                        [
+                            'id' => 'featured-2',
+                            'title' => 'Supply Chain Control Tower',
+                            'description' => 'End-to-end visibility platform providing real-time tracking, predictive alerts, and actionable insights across your entire supply network.',
+                            'date' => '2024-03-10',
+                            'category' => 'analytics',
+                            'status' => 'live',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
+                            'link' => '/products/control-tower',
+                            'demoUrl' => '/demos/control-tower'
+                        ]
+                    ],
+                    'launches' => [
+                        [
+                            'id' => 'launch-1',
+                            'title' => 'AI-Powered Demand Forecasting Engine',
+                            'description' => 'Revolutionary machine learning model that predicts demand with 95% accuracy, reducing stockouts by 40% and inventory costs by 25%.',
+                            'date' => '2024-03-15',
+                            'category' => 'ai',
+                            'status' => 'live',
+                            'views' => '3.2k',
+                            'likes' => 89,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/products/ai-forecasting',
+                            'demoUrl' => '/demos/ai-forecasting',
+                            'features' => [
+                                'Real-time demand prediction',
+                                'Multi-echelon inventory optimization',
+                                'Automated replenishment recommendations',
+                                'Seasonality and trend detection',
+                                'What-if scenario analysis'
+                            ],
+                            'tags' => ['ai', 'forecasting', 'inventory', 'machine-learning'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'launch-2',
+                            'title' => 'Supply Chain Control Tower',
+                            'description' => 'End-to-end visibility platform providing real-time tracking, predictive alerts, and actionable insights across your entire supply network.',
+                            'date' => '2024-03-10',
+                            'category' => 'analytics',
+                            'status' => 'live',
+                            'views' => '2.1k',
+                            'likes' => 45,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/products/control-tower',
+                            'demoUrl' => '/demos/control-tower',
+                            'features' => [
+                                'Real-time shipment tracking',
+                                'Predictive delay alerts',
+                                'Carbon emission monitoring',
+                                'Supplier performance dashboards'
+                            ],
+                            'tags' => ['analytics', 'visibility', 'tracking', 'dashboard'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-3',
+                            'title' => 'Warehouse Automation Suite',
+                            'description' => 'Intelligent warehouse management system with robotic process automation, optimizing picking routes and reducing labor costs.',
+                            'date' => '2024-03-05',
+                            'category' => 'automation',
+                            'status' => 'beta',
+                            'views' => '1.8k',
+                            'likes' => 34,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/products/warehouse-automation',
+                            'demoUrl' => '/demos/warehouse-automation',
+                            'features' => [
+                                'Automated pick-to-light systems',
+                                'Dynamic slotting optimization',
+                                'Voice-directed picking',
+                                'Labor productivity analytics'
+                            ],
+                            'tags' => ['warehouse', 'automation', 'wms', 'robotics'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-4',
+                            'title' => 'Supplier Collaboration Portal',
+                            'description' => 'Cloud-based platform connecting buyers and suppliers for seamless order management, forecasting, and communication.',
+                            'date' => '2024-02-28',
+                            'category' => 'integration',
+                            'status' => 'live',
+                            'views' => '1.5k',
+                            'likes' => 67,
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop',
+                            'link' => '/products/supplier-portal',
+                            'demoUrl' => '/demos/supplier-portal',
+                            'features' => [
+                                'Supplier onboarding automation',
+                                'Real-time order collaboration',
+                                'Shared forecasting',
+                                'Performance scorecards'
+                            ],
+                            'tags' => ['supplier', 'collaboration', 'portal', 'integration'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-5',
+                            'title' => 'Mobile Inventory Scanner',
+                            'description' => 'iOS and Android app for real-time inventory counts, cycle counting, and barcode scanning with offline capabilities.',
+                            'date' => '2024-02-20',
+                            'category' => 'mobile',
+                            'status' => 'preview',
+                            'views' => '1.2k',
+                            'likes' => 89,
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
+                            'link' => '/products/mobile-scanner',
+                            'demoUrl' => '/demos/mobile-scanner',
+                            'features' => [
+                                'Barcode and QR code scanning',
+                                'Offline inventory counting',
+                                'Cycle counting schedules',
+                                'Photo capture for damaged goods'
+                            ],
+                            'tags' => ['mobile', 'inventory', 'scanning', 'ios', 'android'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'launch-6',
+                            'title' => 'Blockchain Track & Trace',
+                            'description' => 'Enterprise-grade blockchain solution providing immutable traceability for pharmaceutical and food supply chains.',
+                            'date' => '2024-02-15',
+                            'category' => 'integration',
+                            'status' => 'coming-soon',
+                            'views' => '2.5k',
+                            'likes' => 112,
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+                            'link' => '/products/blockchain-trace',
+                            'demoUrl' => null,
+                            'features' => [
+                                'Immutable product provenance',
+                                'Temperature excursion tracking',
+                                'Regulatory compliance reporting',
+                                'Smart contract automation'
+                            ],
+                            'tags' => ['blockchain', 'traceability', 'compliance', 'security'],
+                            'isFeatured' => false
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Be the First to Know',
+                        'description' => 'Subscribe to receive product launch announcements, feature updates, and exclusive early access invitations.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 440,
+                'section_key' => 'productLaunches',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Awards & Recognition Section 
+            [
+                'id' => 441,
+                'section_key' => 'awardsAndRecognition',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Awards & Recognition',
+                    'title' => [
+                        'prefix' => 'Industry',
+                        'highlight' => 'Recognition'
+                    ],
+                    'description' => 'We\'re honored to be recognized by leading industry organizations for our innovation, excellence, and commitment to customer success.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search awards by name, category, or organization...',
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Industry Awards', 'icon' => 'trophy'],
+                        ['value' => '10+', 'label' => 'Product Awards', 'icon' => 'chip'],
+                        ['value' => '8', 'label' => 'Innovation Awards', 'icon' => 'lightbulb'],
+                        ['value' => '5', 'label' => 'Leadership Awards', 'icon' => 'briefcase']
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Awards', 'icon' => 'trophy'],
+                        ['id' => 'product', 'label' => 'Product Awards', 'icon' => 'chip'],
+                        ['id' => 'company', 'label' => 'Company Recognition', 'icon' => 'building'],
+                        ['id' => 'innovation', 'label' => 'Innovation', 'icon' => 'lightbulb'],
+                        ['id' => 'leadership', 'label' => 'Leadership', 'icon' => 'briefcase'],
+                        ['id' => 'sustainability', 'label' => 'Sustainability', 'icon' => 'globe']
+                    ],
+                    'awards' => [
+                        [
+                            'id' => 'award-1',
+                            'title' => 'Gartner Magic Quadrant Leader for Supply Chain Planning',
+                            'description' => 'Recognized as a Leader for the second consecutive year based on completeness of vision and ability to execute.',
+                            'content' => 'The Gartner Magic Quadrant evaluates vendors based on their ability to execute and completeness of vision. We believe this recognition validates our commitment to innovation and customer success in supply chain planning.',
+                            'date' => '2024-03-15',
+                            'category' => 'product',
+                            'views' => '3.2k',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop',
+                            'link' => '/awards/gartner-leader',
+                            'presenter' => 'Gartner',
+                            'author' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ],
+                            'tags' => ['gartner', 'supply-chain', 'leader'],
+                            'isFeatured' => true,
+                            'quote' => [
+                                'text' => 'Being named a Leader validates our approach to supply chain planning.',
+                                'author' => 'Sarah Johnson',
+                                'title' => 'CEO'
+                            ]
+                        ],
+                        [
+                            'id' => 'award-2',
+                            'title' => 'Forbes Cloud 100 - Top Private Cloud Companies',
+                            'description' => 'Named to Forbes Cloud 100 list recognizing the world\'s top private cloud companies driving innovation.',
+                            'content' => 'The Forbes Cloud 100 list celebrates the most innovative and fastest-growing private cloud companies. SupplyChainPro was recognized for its AI-powered supply chain platform and rapid customer adoption.',
+                            'date' => '2024-03-10',
+                            'category' => 'company',
+                            'views' => '2.1k',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/awards/forbes-cloud-100',
+                            'presenter' => 'Forbes',
+                            'author' => [
+                                'name' => 'Michael Chen',
+                                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+                            ],
+                            'tags' => ['forbes', 'cloud', 'startup'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'award-3',
+                            'title' => 'Best AI Solution for Supply Chain - Supply & Demand Chain Executive',
+                            'description' => 'Awarded Best AI Solution for our machine learning-powered demand forecasting engine.',
+                            'content' => 'The Supply & Demand Chain Executive awards recognize excellence in supply chain innovation. Our AI-powered forecasting engine was recognized for reducing stockouts by 40% and inventory costs by 25%.',
+                            'date' => '2024-03-05',
+                            'category' => 'innovation',
+                            'views' => '1.8k',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/awards/best-ai-solution',
+                            'presenter' => 'Supply & Demand Chain Executive',
+                            'author' => [
+                                'name' => 'Emily Rodriguez',
+                                'avatar' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop'
+                            ],
+                            'tags' => ['ai', 'innovation', 'award'],
+                            'isFeatured' => false,
+                            'quote' => [
+                                'text' => 'This award highlights our team\'s dedication to pushing the boundaries of AI in supply chain.',
+                                'author' => 'Emily Rodriguez',
+                                'title' => 'VP of Product'
+                            ]
+                        ],
+                        [
+                            'id' => 'award-4',
+                            'title' => 'Inc. 5000 Fastest-Growing Private Companies',
+                            'description' => 'Ranked among America\'s fastest-growing private companies with 300% revenue growth over three years.',
+                            'content' => 'The Inc. 5000 list recognizes the most successful private companies in America. SupplyChainPro was ranked in the top 500 with 300% three-year revenue growth.',
+                            'date' => '2024-02-28',
+                            'category' => 'company',
+                            'views' => '1.5k',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/awards/inc-5000',
+                            'presenter' => 'Inc. Magazine',
+                            'author' => [
+                                'name' => 'David Kim',
+                                'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop'
+                            ],
+                            'tags' => ['growth', 'fastest-growing', 'inc'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'award-5',
+                            'title' => 'Supply Chain Excellence Award - Logistics Tech',
+                            'description' => 'Recognized for outstanding achievement in logistics technology innovation and customer impact.',
+                            'content' => 'The Supply Chain Excellence Awards celebrate organizations that have achieved measurable results through supply chain innovation. We were recognized for our real-time visibility platform.',
+                            'date' => '2024-02-20',
+                            'category' => 'innovation',
+                            'views' => '1.2k',
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'link' => '/awards/supply-chain-excellence',
+                            'presenter' => 'Logistics Tech',
+                            'author' => [
+                                'name' => 'Lisa Wang',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ],
+                            'tags' => ['excellence', 'logistics', 'innovation'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'award-6',
+                            'title' => 'Best Place to Work - Great Place to Work Certified',
+                            'description' => 'Certified as a Great Place to Work based on employee surveys and workplace culture assessment.',
+                            'content' => 'Great Place to Work certification recognizes employers who create an outstanding employee experience. 95% of our employees said SupplyChainPro is a great place to work.',
+                            'date' => '2024-02-15',
+                            'category' => 'leadership',
+                            'views' => '2.9k',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/awards/best-place-to-work',
+                            'presenter' => 'Great Place to Work',
+                            'author' => [
+                                'name' => 'Sarah Johnson',
+                                'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+                            ],
+                            'tags' => ['culture', 'workplace', 'employee'],
+                            'isFeatured' => true
+                        ]
+                    ],
+                    'featuredAward' => null,
+                    'showViewAll' => true,
+                    'viewAllLink' => '/awards',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Award Updates',
+                        'description' => 'Subscribe to receive notifications about our latest awards and industry recognition.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 442,
+                'section_key' => 'awardsAndRecognition',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Awards & Recognition',
+                    'title' => [
+                        'prefix' => 'Celebrating',
+                        'highlight' => 'Excellence'
+                    ],
+                    'description' => 'We\'re honored to be recognized by leading industry organizations for our innovation, excellence, and commitment to customer success.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search awards by name, category, or organization...',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Industry Awards', 'icon' => 'trophy', 'trend' => '+5', 'trendUp' => true],
+                        ['value' => '10+', 'label' => 'Product Awards', 'icon' => 'chip', 'trend' => '+3', 'trendUp' => true],
+                        ['value' => '8', 'label' => 'Innovation Awards', 'icon' => 'lightbulb', 'trend' => '+2', 'trendUp' => true],
+                        ['value' => '5', 'label' => 'Leadership Awards', 'icon' => 'briefcase', 'trend' => '+1', 'trendUp' => true]
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Awards', 'icon' => 'trophy', 'count' => 6],
+                        ['id' => 'product', 'label' => 'Product Awards', 'icon' => 'chip'],
+                        ['id' => 'company', 'label' => 'Company Recognition', 'icon' => 'building'],
+                        ['id' => 'innovation', 'label' => 'Innovation', 'icon' => 'lightbulb'],
+                        ['id' => 'leadership', 'label' => 'Leadership', 'icon' => 'briefcase'],
+                        ['id' => 'sustainability', 'label' => 'Sustainability', 'icon' => 'globe']
+                    ],
+                    'awards' => [
+                        [
+                            'id' => 'award-1',
+                            'title' => 'Gartner Magic Quadrant Leader for Supply Chain Planning',
+                            'description' => 'Recognized as a Leader for the second consecutive year based on completeness of vision and ability to execute.',
+                            'content' => 'The Gartner Magic Quadrant evaluates vendors based on their ability to execute and completeness of vision.',
+                            'date' => '2024-03-15',
+                            'category' => 'product',
+                            'views' => '3.2k',
+                            'likes' => 89,
+                            'trendingScore' => 95,
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop',
+                            'link' => '/awards/gartner-leader',
+                            'presenter' => 'Gartner',
+                            'tags' => ['gartner', 'supply-chain', 'leader'],
+                            'isFeatured' => true,
+                            'quote' => [
+                                'text' => 'Being named a Leader validates our approach to supply chain planning.',
+                                'author' => 'Sarah Johnson, CEO'
+                            ]
+                        ],
+                        [
+                            'id' => 'award-2',
+                            'title' => 'Forbes Cloud 100 - Top Private Cloud Companies',
+                            'description' => 'Named to Forbes Cloud 100 list recognizing the world\'s top private cloud companies driving innovation.',
+                            'date' => '2024-03-10',
+                            'category' => 'company',
+                            'views' => '2.1k',
+                            'likes' => 45,
+                            'trendingScore' => 72,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/awards/forbes-cloud-100',
+                            'presenter' => 'Forbes',
+                            'tags' => ['forbes', 'cloud', 'startup'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'award-3',
+                            'title' => 'Best AI Solution for Supply Chain',
+                            'description' => 'Awarded Best AI Solution for our machine learning-powered demand forecasting engine.',
+                            'date' => '2024-03-05',
+                            'category' => 'innovation',
+                            'views' => '1.8k',
+                            'likes' => 34,
+                            'trendingScore' => 58,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/awards/best-ai-solution',
+                            'presenter' => 'Supply & Demand Chain Executive',
+                            'tags' => ['ai', 'innovation', 'award'],
+                            'isFeatured' => false,
+                            'quote' => [
+                                'text' => 'This award highlights our team\'s dedication to pushing the boundaries of AI.',
+                                'author' => 'Emily Rodriguez, VP of Product'
+                            ]
+                        ],
+                        [
+                            'id' => 'award-4',
+                            'title' => 'Inc. 5000 Fastest-Growing Private Companies',
+                            'description' => 'Ranked among America\'s fastest-growing private companies with 300% revenue growth over three years.',
+                            'date' => '2024-02-28',
+                            'category' => 'company',
+                            'views' => '1.5k',
+                            'likes' => 67,
+                            'trendingScore' => 65,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/awards/inc-5000',
+                            'presenter' => 'Inc. Magazine',
+                            'tags' => ['growth', 'fastest-growing', 'inc'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'award-5',
+                            'title' => 'Supply Chain Excellence Award',
+                            'description' => 'Recognized for outstanding achievement in logistics technology innovation and customer impact.',
+                            'date' => '2024-02-20',
+                            'category' => 'innovation',
+                            'views' => '1.2k',
+                            'likes' => 89,
+                            'trendingScore' => 82,
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'link' => '/awards/supply-chain-excellence',
+                            'presenter' => 'Logistics Tech',
+                            'tags' => ['excellence', 'logistics', 'innovation'],
+                            'isFeatured' => false
+                        ],
+                        [
+                            'id' => 'award-6',
+                            'title' => 'Best Place to Work - Great Place to Work Certified',
+                            'description' => 'Certified as a Great Place to Work based on employee surveys and workplace culture assessment.',
+                            'date' => '2024-02-15',
+                            'category' => 'leadership',
+                            'views' => '2.9k',
+                            'likes' => 112,
+                            'trendingScore' => 78,
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/awards/best-place-to-work',
+                            'presenter' => 'Great Place to Work',
+                            'tags' => ['culture', 'workplace', 'employee'],
+                            'isFeatured' => true
+                        ]
+                    ],
+                    'awardOfTheYear' => null,
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Award Updates',
+                        'description' => 'Subscribe to receive notifications about our latest awards and industry recognition.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 443,
+                'section_key' => 'awardsAndRecognition',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Awards Hub',
+                    'title' => [
+                        'prefix' => 'Awards &',
+                        'highlight' => 'Recognition'
+                    ],
+                    'description' => 'We\'re honored to be recognized by leading industry organizations for our innovation, excellence, and commitment to customer success.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Total Awards', 'icon' => 'trophy'],
+                        ['value' => '10+', 'label' => 'Product Awards', 'icon' => 'chip'],
+                        ['value' => '8', 'label' => 'Innovation Awards', 'icon' => 'lightbulb'],
+                        ['value' => '5', 'label' => 'Leadership Awards', 'icon' => 'briefcase']
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Awards', 'icon' => 'trophy'],
+                        ['id' => 'product', 'label' => 'Product Awards', 'icon' => 'chip'],
+                        ['id' => 'company', 'label' => 'Company Recognition', 'icon' => 'building'],
+                        ['id' => 'innovation', 'label' => 'Innovation', 'icon' => 'lightbulb'],
+                        ['id' => 'leadership', 'label' => 'Leadership', 'icon' => 'briefcase'],
+                        ['id' => 'sustainability', 'label' => 'Sustainability', 'icon' => 'globe']
+                    ],
+                    'tabs' => [
+                        ['id' => 'all', 'label' => 'All Awards', 'icon' => 'trophy'],
+                        ['id' => 'hall-of-fame', 'label' => 'Hall of Fame', 'icon' => 'star'],
+                        ['id' => 'yearly', 'label' => 'Awards 2024', 'icon' => 'calendar'],
+                        ['id' => 'saved', 'label' => 'Saved', 'icon' => 'bookmark']
+                    ],
+                    'featuredAwards' => [
+                        [
+                            'id' => 'featured-1',
+                            'title' => 'Gartner Magic Quadrant Leader for Supply Chain Planning',
+                            'description' => 'Recognized as a Leader for the second consecutive year based on completeness of vision and ability to execute.',
+                            'date' => '2024-03-15',
+                            'category' => 'product',
+                            'presenter' => 'Gartner',
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=600&fit=crop',
+                            'link' => '/awards/gartner-leader',
+                            'isHallOfFame' => true
+                        ],
+                        [
+                            'id' => 'featured-2',
+                            'title' => 'Forbes Cloud 100 - Top Private Cloud Companies',
+                            'description' => 'Named to Forbes Cloud 100 list recognizing the world\'s top private cloud companies driving innovation.',
+                            'date' => '2024-03-10',
+                            'category' => 'company',
+                            'presenter' => 'Forbes',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
+                            'link' => '/awards/forbes-cloud-100',
+                            'isHallOfFame' => true
+                        ]
+                    ],
+                    'awards' => [
+                        [
+                            'id' => 'award-1',
+                            'title' => 'Gartner Magic Quadrant Leader for Supply Chain Planning',
+                            'description' => 'Recognized as a Leader for the second consecutive year based on completeness of vision and ability to execute.',
+                            'content' => 'The Gartner Magic Quadrant evaluates vendors based on their ability to execute and completeness of vision. We believe this recognition validates our commitment to innovation and customer success in supply chain planning.',
+                            'date' => '2024-03-15',
+                            'category' => 'product',
+                            'views' => '3.2k',
+                            'likes' => 89,
+                            'image' => 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop',
+                            'link' => '/awards/gartner-leader',
+                            'presenter' => 'Gartner',
+                            'tags' => ['gartner', 'supply-chain', 'leader'],
+                            'isFeatured' => true,
+                            'isHallOfFame' => true,
+                            'quote' => [
+                                'text' => 'Being named a Leader validates our approach to supply chain planning.',
+                                'author' => 'Sarah Johnson, CEO'
+                            ]
+                        ],
+                        [
+                            'id' => 'award-2',
+                            'title' => 'Forbes Cloud 100 - Top Private Cloud Companies',
+                            'description' => 'Named to Forbes Cloud 100 list recognizing the world\'s top private cloud companies driving innovation.',
+                            'content' => 'The Forbes Cloud 100 list celebrates the most innovative and fastest-growing private cloud companies. SupplyChainPro was recognized for its AI-powered supply chain platform and rapid customer adoption.',
+                            'date' => '2024-03-10',
+                            'category' => 'company',
+                            'views' => '2.1k',
+                            'likes' => 45,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/awards/forbes-cloud-100',
+                            'presenter' => 'Forbes',
+                            'tags' => ['forbes', 'cloud', 'startup'],
+                            'isFeatured' => false,
+                            'isHallOfFame' => true
+                        ],
+                        [
+                            'id' => 'award-3',
+                            'title' => 'Best AI Solution for Supply Chain',
+                            'description' => 'Awarded Best AI Solution for our machine learning-powered demand forecasting engine.',
+                            'content' => 'The Supply & Demand Chain Executive awards recognize excellence in supply chain innovation. Our AI-powered forecasting engine was recognized for reducing stockouts by 40% and inventory costs by 25%.',
+                            'date' => '2024-03-05',
+                            'category' => 'innovation',
+                            'views' => '1.8k',
+                            'likes' => 34,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
+                            'link' => '/awards/best-ai-solution',
+                            'presenter' => 'Supply & Demand Chain Executive',
+                            'tags' => ['ai', 'innovation', 'award'],
+                            'isFeatured' => false,
+                            'isHallOfFame' => false,
+                            'quote' => [
+                                'text' => 'This award highlights our team\'s dedication to pushing the boundaries of AI in supply chain.',
+                                'author' => 'Emily Rodriguez, VP of Product'
+                            ]
+                        ],
+                        [
+                            'id' => 'award-4',
+                            'title' => 'Inc. 5000 Fastest-Growing Private Companies',
+                            'description' => 'Ranked among America\'s fastest-growing private companies with 300% revenue growth over three years.',
+                            'content' => 'The Inc. 5000 list recognizes the most successful private companies in America. SupplyChainPro was ranked in the top 500 with 300% three-year revenue growth.',
+                            'date' => '2024-02-28',
+                            'category' => 'company',
+                            'views' => '1.5k',
+                            'likes' => 67,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                            'link' => '/awards/inc-5000',
+                            'presenter' => 'Inc. Magazine',
+                            'tags' => ['growth', 'fastest-growing', 'inc'],
+                            'isFeatured' => false,
+                            'isHallOfFame' => false
+                        ],
+                        [
+                            'id' => 'award-5',
+                            'title' => 'Supply Chain Excellence Award',
+                            'description' => 'Recognized for outstanding achievement in logistics technology innovation and customer impact.',
+                            'content' => 'The Supply Chain Excellence Awards celebrate organizations that have achieved measurable results through supply chain innovation. We were recognized for our real-time visibility platform.',
+                            'date' => '2024-02-20',
+                            'category' => 'innovation',
+                            'views' => '1.2k',
+                            'likes' => 89,
+                            'image' => 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&h=400&fit=crop',
+                            'link' => '/awards/supply-chain-excellence',
+                            'presenter' => 'Logistics Tech',
+                            'tags' => ['excellence', 'logistics', 'innovation'],
+                            'isFeatured' => false,
+                            'isHallOfFame' => false
+                        ],
+                        [
+                            'id' => 'award-6',
+                            'title' => 'Best Place to Work - Great Place to Work Certified',
+                            'description' => 'Certified as a Great Place to Work based on employee surveys and workplace culture assessment.',
+                            'content' => 'Great Place to Work certification recognizes employers who create an outstanding employee experience. 95% of our employees said SupplyChainPro is a great place to work.',
+                            'date' => '2024-02-15',
+                            'category' => 'leadership',
+                            'views' => '2.9k',
+                            'likes' => 112,
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                            'link' => '/awards/best-place-to-work',
+                            'presenter' => 'Great Place to Work',
+                            'tags' => ['culture', 'workplace', 'employee'],
+                            'isFeatured' => true,
+                            'isHallOfFame' => false
+                        ]
+                    ],
+                    'awardTimeline' => [
+                        ['year' => '2024', 'title' => 'Gartner Magic Quadrant Leader', 'description' => 'Recognized as a Leader for supply chain planning', 'presenter' => 'Gartner'],
+                        ['year' => '2024', 'title' => 'Forbes Cloud 100', 'description' => 'Named to top private cloud companies', 'presenter' => 'Forbes'],
+                        ['year' => '2023', 'title' => 'Best AI Solution', 'description' => 'Awarded for demand forecasting engine', 'presenter' => 'Supply & Demand Chain Executive'],
+                        ['year' => '2023', 'title' => 'Inc. 5000', 'description' => 'Ranked among fastest-growing companies', 'presenter' => 'Inc. Magazine'],
+                        ['year' => '2022', 'title' => 'Supply Chain Excellence Award', 'description' => 'Recognized for logistics innovation', 'presenter' => 'Logistics Tech']
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Award Updates',
+                        'description' => 'Subscribe to receive notifications about our latest awards and industry recognition.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 444,
+                'section_key' => 'awardsAndRecognition',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         // Add the new Services variants
