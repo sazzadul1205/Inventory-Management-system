@@ -1,577 +1,819 @@
 // page/frontend/Partners/IntegrationPartnersSection/IntegrationPartnersSection1.jsx
 
-// React
-import { Link } from '@inertiajs/react';
-import { useState } from 'react';
+/**
+ * Integration Partners Section - Integration Ecosystem Hub
+ *
+ * Unique design elements:
+ * - Stats cards for integration metrics (pre-built integrations, partners, API calls, uptime)
+ * - Featured integration spotlight with hero layout
+ * - Category filter chips with custom icons (ERP, E-commerce, CRM, WMS, TMS, Payment)
+ * - Integration type filter (REST API, Pre-built Connector, SDK, Webhook)
+ * - Integration features expansion with checkmark list
+ * - Save/bookmark functionality for partners
+ * - Documentation link with document icon
+ * - Search across partner names, descriptions, and tags
+ * - Newsletter subscription integration
+ * - Become a partner CTA banner with dual buttons
+ * - Animated gradient background orbs (purple/blue theme)
+ * - Responsive grid layout for partner cards
+ * - Integration type badges with emoji-like icons
+ * - API feature tags with color coding
+ *
+ * All icons from react-icons (hi, hi2, fa)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { Link } from '@inertiajs/react';
+import { useState, useCallback, useMemo } from 'react';
+
+// React Icons - Heroicons, Heroicons 2, FontAwesome, Ant Design
+import { FaQuoteLeft as HiOutlineQuote, FaCertificate as HiOutlineCertificate } from 'react-icons/fa';
 import {
-    FaQuoteLeft as HiOutlineQuote,
-    FaCertificate as HiOutlineCertificate,
-} from "react-icons/fa";
-import {
-    HiOutlineLink,
-    HiOutlineGlobe,
-    HiOutlineChip,
-    HiOutlineCloudUpload,
-    HiOutlineShieldCheck,
-    HiOutlineLightningBolt,
-    HiOutlineChartBar,
-    HiOutlineUsers,
-    HiOutlineCalendar,
-    HiOutlineTag,
-    HiArrowRight,
-    HiOutlineCheckCircle,
-    HiOutlineClock,
-    HiOutlineEye,
-    HiOutlineBell,
-    HiOutlineDownload,
-    HiOutlinePlay,
-    HiOutlineDocumentText,
-    HiOutlineCode,
-    HiOutlineCog,
-    HiOutlineRefresh,
-    HiOutlineStar,
-    HiOutlineFlag,
-    HiOutlineGift,
-    HiOutlineFilter,
-    HiOutlineSearch,
-    HiOutlineShare,
-    HiOutlineBookmark,
-    HiOutlineExternalLink,
-    HiOutlineMail,
-    HiOutlineThumbUp,
-    HiOutlineChat,
-    HiOutlineVideoCamera,
-    HiOutlineMicrophone,
-    HiOutlineNewspaper,
-    HiOutlineAcademicCap,
-    HiOutlineBriefcase,
-    HiOutlineLocationMarker,
-    HiOutlineCreditCard,
-    HiOutlineChartPie,
-    HiOutlineTemplate,
-    HiOutlineBadgeCheck,
-    HiOutlineDatabase,
-    HiOutlineServer,
-    HiOutlineDesktopComputer,
-    HiOutlineDeviceMobile,
-    HiOutlineWifi
+  HiOutlineLink,
+  HiOutlineGlobe,
+  HiOutlineChip,
+  HiOutlineCloudUpload,
+  HiOutlineShieldCheck,
+  HiOutlineLightningBolt,
+  HiOutlineChartBar,
+  HiOutlineUsers,
+  HiOutlineCalendar,
+  HiOutlineTag,
+  HiArrowRight,
+  HiOutlineCheckCircle,
+  HiOutlineClock,
+  HiOutlineEye,
+  HiOutlineBell,
+  HiOutlineDownload,
+  HiOutlinePlay,
+  HiOutlineDocumentText,
+  HiOutlineCode,
+  HiOutlineCog,
+  HiOutlineRefresh,
+  HiOutlineStar,
+  HiOutlineFlag,
+  HiOutlineGift,
+  HiOutlineFilter,
+  HiOutlineSearch,
+  HiOutlineShare,
+  HiOutlineBookmark,
+  HiOutlineExternalLink,
+  HiOutlineMail,
+  HiOutlineThumbUp,
+  HiOutlineChat,
+  HiOutlineVideoCamera,
+  HiOutlineMicrophone,
+  HiOutlineNewspaper,
+  HiOutlineAcademicCap,
+  HiOutlineBriefcase,
+  HiOutlineLocationMarker,
+  HiOutlineCreditCard,
+  HiOutlineChartPie,
+  HiOutlineTemplate,
+  HiOutlineBadgeCheck,
+  HiOutlineDatabase,
+  HiOutlineServer,
+  HiOutlineDesktopComputer,
+  HiOutlineDeviceMobile,
+  HiOutlineWifi,
 } from 'react-icons/hi';
-import { HiOutlinePhone, HiOutlineTrophy, HiOutlineBuildingOffice } from 'react-icons/hi2';
+import { HiOutlinePhone, HiOutlineTrophy, HiOutlineBuildingOffice, HiOutlineRocketLaunch } from 'react-icons/hi2';
 
 const IntegrationPartnersSection1 = ({ config }) => {
-    const [selectedCategory, setSelectedCategory] = useState('all');
-    const [selectedType, setSelectedType] = useState('all');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [expandedPartner, setExpandedPartner] = useState(null);
-    const [savedPartners, setSavedPartners] = useState([]);
+  // ==================== STATE MANAGEMENT ====================
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedType, setSelectedType] = useState('all');
+  const [savedPartners, setSavedPartners] = useState([]);
+  const [expandedPartner, setExpandedPartner] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-    // Icon mapping function
-    const getIcon = (iconName, className = "w-5 h-5") => {
-        const icons = {
-            link: <HiOutlineLink className={className} />,
-            globe: <HiOutlineGlobe className={className} />,
-            trophy: <HiOutlineTrophy className={className} />,
-            chip: <HiOutlineChip className={className} />,
-            cloud: <HiOutlineCloudUpload className={className} />,
-            shield: <HiOutlineShieldCheck className={className} />,
-            bolt: <HiOutlineLightningBolt className={className} />,
-            chart: <HiOutlineChartBar className={className} />,
-            users: <HiOutlineUsers className={className} />,
-            calendar: <HiOutlineCalendar className={className} />,
-            tag: <HiOutlineTag className={className} />,
-            check: <HiOutlineCheckCircle className={className} />,
-            clock: <HiOutlineClock className={className} />,
-            eye: <HiOutlineEye className={className} />,
-            bell: <HiOutlineBell className={className} />,
-            download: <HiOutlineDownload className={className} />,
-            play: <HiOutlinePlay className={className} />,
-            document: <HiOutlineDocumentText className={className} />,
-            code: <HiOutlineCode className={className} />,
-            cog: <HiOutlineCog className={className} />,
-            refresh: <HiOutlineRefresh className={className} />,
-            star: <HiOutlineStar className={className} />,
-            flag: <HiOutlineFlag className={className} />,
-            gift: <HiOutlineGift className={className} />,
-            filter: <HiOutlineFilter className={className} />,
-            search: <HiOutlineSearch className={className} />,
-            share: <HiOutlineShare className={className} />,
-            bookmark: <HiOutlineBookmark className={className} />,
-            external: <HiOutlineExternalLink className={className} />,
-            mail: <HiOutlineMail className={className} />,
-            'thumbs-up': <HiOutlineThumbUp className={className} />,
-            chat: <HiOutlineChat className={className} />,
-            quote: <HiOutlineQuote className={className} />,
-            video: <HiOutlineVideoCamera className={className} />,
-            microphone: <HiOutlineMicrophone className={className} />,
-            newspaper: <HiOutlineNewspaper className={className} />,
-            academic: <HiOutlineAcademicCap className={className} />,
-            briefcase: <HiOutlineBriefcase className={className} />,
-            location: <HiOutlineLocationMarker className={className} />,
-            credit: <HiOutlineCreditCard className={className} />,
-            pie: <HiOutlineChartPie className={className} />,
-            template: <HiOutlineTemplate className={className} />,
-            badge: <HiOutlineBadgeCheck className={className} />,
-            certificate: <HiOutlineCertificate className={className} />,
-            building: <HiOutlineBuildingOffice className={className} />,
-            phone: <HiOutlinePhone className={className} />,
-            database: <HiOutlineDatabase className={className} />,
-            server: <HiOutlineServer className={className} />,
-            desktop: <HiOutlineDesktopComputer className={className} />,
-            mobile: <HiOutlineDeviceMobile className={className} />,
-            wifi: <HiOutlineWifi className={className} />
-        };
-        return icons[iconName] || <HiOutlineLink className={className} />;
-    };
+  // ==================== MEMOIZED DATA ====================
+  const allPartners = useMemo(() => config?.partners || [], [config?.partners]);
 
-    // Get category configuration
-    const getCategoryConfig = (category) => {
-        const configs = {
-            'erp': { color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400', icon: 'building', label: 'ERP Systems' },
-            'ecommerce': { color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400', icon: 'globe', label: 'E-commerce Platforms' },
-            'crm': { color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400', icon: 'users', label: 'CRM Systems' },
-            'wms': { color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400', icon: 'building', label: 'WMS Providers' },
-            'tms': { color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400', icon: 'globe', label: 'TMS Providers' },
-            'payment': { color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400', icon: 'credit', label: 'Payment Gateways' }
-        };
-        return configs[category] || configs.erp;
-    };
-
-    // Get integration type configuration
-    const getTypeConfig = (type) => {
-        const configs = {
-            'api': { color: 'bg-blue-100 text-blue-700', label: 'REST API', badge: '🔌 API' },
-            'pre-built': { color: 'bg-green-100 text-green-700', label: 'Pre-built Connector', badge: '⚡ Connector' },
-            'sdk': { color: 'bg-purple-100 text-purple-700', label: 'SDK', badge: '📦 SDK' },
-            'webhook': { color: 'bg-orange-100 text-orange-700', label: 'Webhook', badge: '🪝 Webhook' }
-        };
-        return configs[type] || { color: 'bg-gray-100 text-gray-700', label: type, badge: type };
-    };
-
-    // Handle save partner
-    const handleSavePartner = (partnerId) => {
-        if (savedPartners.includes(partnerId)) {
-            setSavedPartners(savedPartners.filter(id => id !== partnerId));
-        } else {
-            setSavedPartners([...savedPartners, partnerId]);
-        }
-    };
-
-    // Filter partners
-    const getFilteredPartners = () => {
-        let partners = config?.partners || [];
-
-        if (searchQuery) {
-            partners = partners.filter(p =>
-                p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                p.tags?.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
-            );
-        }
-
-        if (selectedCategory !== 'all') {
-            partners = partners.filter(p => p.category === selectedCategory);
-        }
-
-        if (selectedType !== 'all') {
-            partners = partners.filter(p => p.integrationType === selectedType);
-        }
-
-        return partners;
-    };
-
-    const filteredPartners = getFilteredPartners();
-    const categories = config?.categories || [
+  const categories = useMemo(
+    () =>
+      config?.categories || [
         { id: 'all', label: 'All Integrations', icon: 'link' },
         { id: 'erp', label: 'ERP Systems', icon: 'building' },
-        { id: 'ecommerce', label: 'E-commerce', icon: 'globe' },
+        { id: 'ecommerce', label: 'E-commerce Platforms', icon: 'globe' },
         { id: 'crm', label: 'CRM Systems', icon: 'users' },
-        { id: 'wms', label: 'WMS', icon: 'building' },
-        { id: 'tms', label: 'TMS', icon: 'globe' }
-    ];
+        { id: 'wms', label: 'WMS Providers', icon: 'building' },
+        { id: 'tms', label: 'TMS Providers', icon: 'globe' },
+        { id: 'payment', label: 'Payment Gateways', icon: 'credit' },
+      ],
+    [config?.categories]
+  );
 
-    const integrationTypes = [
+  const integrationTypes = useMemo(
+    () =>
+      config?.integrationTypes || [
         { id: 'all', label: 'All Types' },
         { id: 'api', label: 'REST API' },
         { id: 'pre-built', label: 'Pre-built Connector' },
         { id: 'sdk', label: 'SDK' },
-        { id: 'webhook', label: 'Webhook' }
-    ];
+        { id: 'webhook', label: 'Webhook' },
+      ],
+    [config?.integrationTypes]
+  );
 
-    // Featured partner
-    const featuredPartner = config?.featuredPartner || filteredPartners[0];
+  const stats = useMemo(
+    () =>
+      config?.stats || [
+        { value: '150+', label: 'Pre-built Integrations', icon: 'link' },
+        { value: '50+', label: 'Technology Partners', icon: 'chip' },
+        { value: '10k+', label: 'API Calls Daily', icon: 'code' },
+        { value: '99.9%', label: 'Uptime', icon: 'shield' },
+      ],
+    [config?.stats]
+  );
 
-    // Stats
-    const stats = config?.stats || [
-        { value: "150+", label: "Pre-built Integrations", icon: "link" },
-        { value: "50+", label: "Technology Partners", icon: "chip" },
-        { value: "10k+", label: "API Calls Daily", icon: "code" },
-        { value: "99.9%", label: "Uptime", icon: "shield" }
-    ];
+  // ==================== HELPER FUNCTIONS ====================
 
+  /**
+   * Resolves icon component from string name
+   * Supports Heroicons, Heroicons 2, FontAwesome, and Ant Design
+   */
+  const getIcon = useCallback((iconName, className = 'w-5 h-5') => {
+    const icons = {
+      link: <HiOutlineLink className={className} />,
+      globe: <HiOutlineGlobe className={className} />,
+      trophy: <HiOutlineTrophy className={className} />,
+      chip: <HiOutlineChip className={className} />,
+      cloud: <HiOutlineCloudUpload className={className} />,
+      shield: <HiOutlineShieldCheck className={className} />,
+      bolt: <HiOutlineLightningBolt className={className} />,
+      chart: <HiOutlineChartBar className={className} />,
+      users: <HiOutlineUsers className={className} />,
+      calendar: <HiOutlineCalendar className={className} />,
+      tag: <HiOutlineTag className={className} />,
+      check: <HiOutlineCheckCircle className={className} />,
+      clock: <HiOutlineClock className={className} />,
+      eye: <HiOutlineEye className={className} />,
+      bell: <HiOutlineBell className={className} />,
+      download: <HiOutlineDownload className={className} />,
+      play: <HiOutlinePlay className={className} />,
+      document: <HiOutlineDocumentText className={className} />,
+      code: <HiOutlineCode className={className} />,
+      cog: <HiOutlineCog className={className} />,
+      refresh: <HiOutlineRefresh className={className} />,
+      star: <HiOutlineStar className={className} />,
+      flag: <HiOutlineFlag className={className} />,
+      gift: <HiOutlineGift className={className} />,
+      filter: <HiOutlineFilter className={className} />,
+      search: <HiOutlineSearch className={className} />,
+      share: <HiOutlineShare className={className} />,
+      bookmark: <HiOutlineBookmark className={className} />,
+      external: <HiOutlineExternalLink className={className} />,
+      mail: <HiOutlineMail className={className} />,
+      'thumbs-up': <HiOutlineThumbUp className={className} />,
+      chat: <HiOutlineChat className={className} />,
+      quote: <HiOutlineQuote className={className} />,
+      video: <HiOutlineVideoCamera className={className} />,
+      microphone: <HiOutlineMicrophone className={className} />,
+      newspaper: <HiOutlineNewspaper className={className} />,
+      academic: <HiOutlineAcademicCap className={className} />,
+      briefcase: <HiOutlineBriefcase className={className} />,
+      location: <HiOutlineLocationMarker className={className} />,
+      credit: <HiOutlineCreditCard className={className} />,
+      pie: <HiOutlineChartPie className={className} />,
+      template: <HiOutlineTemplate className={className} />,
+      badge: <HiOutlineBadgeCheck className={className} />,
+      certificate: <HiOutlineCertificate className={className} />,
+      building: <HiOutlineBuildingOffice className={className} />,
+      phone: <HiOutlinePhone className={className} />,
+      database: <HiOutlineDatabase className={className} />,
+      server: <HiOutlineServer className={className} />,
+      desktop: <HiOutlineDesktopComputer className={className} />,
+      mobile: <HiOutlineDeviceMobile className={className} />,
+      wifi: <HiOutlineWifi className={className} />,
+      rocket: <HiOutlineRocketLaunch className={className} />,
+    };
+    return icons[iconName] || <HiOutlineLink className={className} />;
+  }, []);
+
+  /**
+   * Returns category badge configuration with color and label
+   */
+  const getCategoryConfig = useCallback((categoryId) => {
+    const configs = {
+      erp: {
+        color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+        icon: 'building',
+        label: 'ERP Systems',
+      },
+      ecommerce: {
+        color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+        icon: 'globe',
+        label: 'E-commerce Platforms',
+      },
+      crm: {
+        color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+        icon: 'users',
+        label: 'CRM Systems',
+      },
+      wms: {
+        color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
+        icon: 'building',
+        label: 'WMS Providers',
+      },
+      tms: {
+        color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+        icon: 'globe',
+        label: 'TMS Providers',
+      },
+      payment: {
+        color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400',
+        icon: 'credit',
+        label: 'Payment Gateways',
+      },
+    };
     return (
-        <section
-            className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"
-            role="region"
-            aria-label="Integration Partners Section"
-        >
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
-            <div className="absolute top-40 left-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
-            <div className="absolute bottom-40 right-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
+      configs[categoryId] || {
+        color: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400',
+        icon: 'link',
+        label: 'Integration',
+      }
+    );
+  }, []);
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-12">
-                    <div className="inline-flex items-center bg-purple-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-purple-100 dark:border-gray-700">
-                        <HiOutlineLink className="w-4 h-4 text-purple-600 dark:text-purple-400 mr-2" />
-                        <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
-                            {config?.badge || "Integration Partners"}
-                        </span>
-                    </div>
+  /**
+   * Returns integration type badge configuration
+   */
+  const getTypeConfig = useCallback((typeId) => {
+    const configs = {
+      api: {
+        color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+        label: 'REST API',
+        badge: 'REST API',
+      },
+      'pre-built': {
+        color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+        label: 'Pre-built Connector',
+        badge: 'Pre-built Connector',
+      },
+      sdk: {
+        color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+        label: 'SDK',
+        badge: 'SDK',
+      },
+      webhook: {
+        color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
+        label: 'Webhook',
+        badge: 'Webhook',
+      },
+    };
+    return (
+      configs[typeId] || {
+        color: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400',
+        label: typeId,
+        badge: typeId,
+      }
+    );
+  }, []);
 
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                        {config?.title?.prefix || "Connect Your"} <span className="bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">{config?.title?.highlight || "Ecosystem"}</span> {config?.title?.suffix || ""}
-                    </h2>
+  /**
+   * Toggle save/bookmark status for a partner
+   */
+  const handleSavePartner = useCallback((partnerId) => {
+    setSavedPartners((prev) =>
+      prev.includes(partnerId) ? prev.filter((id) => id !== partnerId) : [...prev, partnerId]
+    );
+  }, []);
 
-                    <p className="text-xl text-gray-600 dark:text-gray-400">
-                        {config?.description || "Seamlessly connect SupplyChainPro with your existing business applications. Our integration partners provide pre-built connectors and APIs for rapid deployment."}
-                    </p>
-                </div>
+  /**
+   * Toggle expanded state for a partner
+   */
+  const toggleExpanded = useCallback((partnerId) => {
+    setExpandedPartner((prev) => (prev === partnerId ? null : partnerId));
+  }, []);
 
-                {/* Stats Row */}
-                <div className="flex flex-wrap justify-center gap-6 mb-12">
-                    {stats.map((stat, idx) => (
-                        <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
-                            <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                                {getIcon(stat.icon, "w-5 h-5 text-purple-600")}
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+  /**
+   * Clear all active filters
+   */
+  const clearAllFilters = useCallback(() => {
+    setSearchQuery('');
+    setSelectedCategory('all');
+    setSelectedType('all');
+  }, []);
 
-                {/* Search Bar */}
-                <div className="relative max-w-2xl mx-auto mb-8">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <HiOutlineSearch className="w-5 h-5 text-gray-400" />
-                    </div>
-                    <input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder={config?.searchPlaceholder || "Search integrations by name, category, or technology..."}
-                        className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500"
-                        aria-label="Search integration partners"
-                    />
-                </div>
+  // ==================== FILTERING LOGIC ====================
 
-                {/* Category Filters */}
-                <div className="flex flex-wrap justify-center gap-2 mb-8">
-                    {categories.map((category) => (
-                        <button
-                            key={category.id}
-                            onClick={() => setSelectedCategory(category.id)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === category.id
-                                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/25'
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                                }`}
-                        >
-                            {getIcon(category.icon, "w-4 h-4")}
-                            {category.label}
-                        </button>
-                    ))}
-                </div>
+  const filteredPartners = useMemo(() => {
+    let partners = [...allPartners];
 
-                {/* Integration Type Filters */}
-                <div className="flex flex-wrap justify-center gap-2 mb-12">
-                    {integrationTypes.map((type) => (
-                        <button
-                            key={type.id}
-                            onClick={() => setSelectedType(type.id)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedType === type.id
-                                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/25'
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                                }`}
-                        >
-                            {type.label}
-                        </button>
-                    ))}
-                </div>
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      partners = partners.filter(
+        (p) =>
+          p.name?.toLowerCase().includes(query) ||
+          p.description?.toLowerCase().includes(query) ||
+          p.tags?.some((tag) => tag.toLowerCase().includes(query))
+      );
+    }
 
-                {/* Featured Integration Partner */}
-                {featuredPartner && (
-                    <div className="mb-16">
-                        <div className="relative bg-linear-to-br from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl" aria-hidden="true" />
+    if (selectedCategory !== 'all') {
+      partners = partners.filter((p) => p.category === selectedCategory);
+    }
 
-                            <div className="relative p-8 md:p-10">
-                                <div className="grid lg:grid-cols-2 gap-8 items-center">
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <span className="px-3 py-1 bg-purple-600 text-white text-xs font-semibold rounded-full">
-                                                Featured Integration
-                                            </span>
-                                            <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getCategoryConfig(featuredPartner.category).color}`}>
-                                                    {getCategoryConfig(featuredPartner.category).label}
-                                                </span>
-                                            </div>
-                                        </div>
+    if (selectedType !== 'all') {
+      partners = partners.filter((p) => p.integrationType === selectedType);
+    }
 
-                                        <div className="flex items-center gap-3 mb-4">
-                                            {featuredPartner.logo && (
-                                                <img src={featuredPartner.logo} alt={featuredPartner.name} className="h-12 w-auto object-contain" />
-                                            )}
-                                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                                                {featuredPartner.name}
-                                            </h3>
-                                        </div>
+    return partners;
+  }, [allPartners, searchQuery, selectedCategory, selectedType]);
 
-                                        <p className="text-gray-600 dark:text-gray-400 mb-6">
-                                            {featuredPartner.description}
-                                        </p>
+  // Get featured partner (first marked as featured, otherwise first in filtered list)
+  const featuredPartner = useMemo(() => {
+    const featured = allPartners.find((p) => p.isFeatured);
+    return featured || filteredPartners[0];
+  }, [allPartners, filteredPartners]);
 
-                                        <div className="flex flex-wrap gap-2 mb-6">
-                                            {featuredPartner.features?.map((feature, idx) => (
-                                                <span key={idx} className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-2 py-1 rounded-full">
-                                                    {feature}
-                                                </span>
-                                            ))}
-                                        </div>
+  // Regular partners (excluding featured partner)
+  const regularPartners = useMemo(() => {
+    if (!featuredPartner) return filteredPartners;
+    return filteredPartners.filter((p) => p.id !== featuredPartner.id);
+  }, [filteredPartners, featuredPartner]);
 
-                                        <div className="flex flex-wrap gap-3">
-                                            <Link
-                                                href={featuredPartner.link}
-                                                className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
-                                            >
-                                                Learn More
-                                                <HiArrowRight className="w-4 h-4" />
-                                            </Link>
-                                            <a
-                                                href={featuredPartner.docsLink}
-                                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-purple-600 hover:text-purple-600"
-                                            >
-                                                <HiOutlineDocumentText className="w-4 h-4" />
-                                                View Documentation
-                                            </a>
-                                        </div>
-                                    </div>
+  return (
+    <section
+      className="relative py-24 bg-white dark:bg-gray-900 overflow-hidden"
+      role="region"
+      aria-label="Integration Partners - Integration Ecosystem Hub"
+      itemScope
+      itemType="https://schema.org/Organization"
+    >
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
+      <div
+        className="absolute top-40 left-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-40 right-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"
+        aria-hidden="true"
+      />
 
-                                    <div className="relative">
-                                        <div className="absolute -inset-4 bg-purple-600/20 rounded-2xl blur-2xl" aria-hidden="true" />
-                                        <img
-                                            src={featuredPartner.image}
-                                            alt={featuredPartner.name}
-                                            className="relative rounded-2xl shadow-2xl w-full object-cover"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ==================== SECTION HEADER ==================== */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          {/* Section Badge */}
+          <div className="inline-flex items-center bg-purple-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-purple-100 dark:border-gray-700">
+            {getIcon('link', 'w-4 h-4 text-purple-600 dark:text-purple-400 mr-2')}
+            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
+              {config?.badge || 'Integration Partners'}
+            </span>
+          </div>
 
-                {/* Integration Partners Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {filteredPartners.map((partner) => {
-                        const categoryConfig = getCategoryConfig(partner.category);
-                        const typeConfig = getTypeConfig(partner.integrationType);
-                        const isExpanded = expandedPartner === partner.id;
-                        const isSaved = savedPartners.includes(partner.id);
+          {/* Section Title */}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            {config?.title?.prefix || 'Connect Your'}{' '}
+            <span className="bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              {config?.title?.highlight || 'Ecosystem'}
+            </span>{' '}
+            {config?.title?.suffix || ''}
+          </h2>
 
-                        return (
-                            <div
-                                key={partner.id}
-                                className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
-                            >
-                                <div className="p-6">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div className="flex items-center gap-3">
-                                            {partner.logo ? (
-                                                <img src={partner.logo} alt={partner.name} className="h-10 w-auto object-contain" />
-                                            ) : (
-                                                <div className={`w-10 h-10 rounded-xl ${categoryConfig.color} flex items-center justify-center`}>
-                                                    {getIcon(categoryConfig.icon, "w-5 h-5")}
-                                                </div>
-                                            )}
-                                            <div>
-                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                    {partner.name}
-                                                </h3>
-                                                <span className={`text-xs px-2 py-0.5 rounded-full ${categoryConfig.color}`}>
-                                                    {categoryConfig.label}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={() => handleSavePartner(partner.id)}
-                                            className={`transition-colors ${isSaved ? 'text-yellow-500' : 'text-gray-400 hover:text-yellow-500'}`}
-                                        >
-                                            <HiOutlineBookmark className="w-4 h-4" />
-                                        </button>
-                                    </div>
+          {/* Section Description */}
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            {config?.description ||
+              'Seamlessly connect SupplyChainPro with your existing business applications. Our integration partners provide pre-built connectors and APIs for rapid deployment.'}
+          </p>
+        </div>
 
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
-                                        {partner.description}
-                                    </p>
-
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <span className={`text-xs px-2 py-1 rounded-full ${typeConfig.color}`}>
-                                            {typeConfig.badge}
-                                        </span>
-                                    </div>
-
-                                    {/* Integration Features */}
-                                    {partner.features && partner.features.length > 0 && (
-                                        <div className="mb-4">
-                                            <button
-                                                onClick={() => setExpandedPartner(isExpanded ? null : partner.id)}
-                                                className="flex items-center gap-1 text-sm text-purple-600 dark:text-purple-400 font-medium hover:gap-2 transition-all duration-300"
-                                            >
-                                                {isExpanded ? 'Show less' : `View ${partner.features.length} features`}
-                                                <HiArrowRight className="w-4 h-4" />
-                                            </button>
-
-                                            {isExpanded && (
-                                                <ul className="mt-3 space-y-2">
-                                                    {partner.features.map((feature, idx) => (
-                                                        <li key={idx} className="flex items-start gap-2 text-sm">
-                                                            <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                                                            <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {/* Tags */}
-                                    {partner.tags && partner.tags.length > 0 && (
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            {partner.tags.slice(0, 3).map((tag, idx) => (
-                                                <span key={idx} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-full">
-                                                    #{tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-                                        <Link
-                                            href={partner.link}
-                                            className="inline-flex items-center gap-1 text-purple-600 dark:text-purple-400 text-sm font-semibold hover:gap-2 transition-all duration-300"
-                                        >
-                                            Learn More
-                                            <HiArrowRight className="w-4 h-4" />
-                                        </Link>
-                                        {partner.docsLink && (
-                                            <a
-                                                href={partner.docsLink}
-                                                className="text-gray-400 hover:text-purple-600 transition-colors"
-                                                aria-label="View documentation"
-                                            >
-                                                <HiOutlineDocumentText className="w-4 h-4" />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* No Results */}
-                {filteredPartners.length === 0 && (
-                    <div className="text-center py-12">
-                        <HiOutlineLink className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No integration partners found</h3>
-                        <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter criteria</p>
-                        <button
-                            onClick={() => {
-                                setSearchQuery('');
-                                setSelectedCategory('all');
-                                setSelectedType('all');
-                            }}
-                            className="mt-4 text-purple-600 dark:text-purple-400 hover:underline"
-                        >
-                            Clear all filters
-                        </button>
-                    </div>
-                )}
-
-                {/* Become an Integration Partner CTA */}
-                <div className="mt-12 bg-linear-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 rounded-3xl p-8 md:p-12 text-white text-center">
-                    <HiOutlineLink className="w-12 h-12 mx-auto mb-4" />
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                        {config?.ctaTitle || "Become an Integration Partner"}
-                    </h3>
-                    <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
-                        {config?.ctaDescription || "Join our ecosystem of integration partners. Build pre-built connectors and reach thousands of SupplyChainPro customers."}
-                    </p>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                        <Link
-                            href="/become-integration-partner"
-                            className="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                        >
-                            Apply Now
-                            <HiArrowRight className="w-4 h-4" />
-                        </Link>
-                        <Link
-                            href="/partner-program"
-                            className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
-                        >
-                            Learn About Program
-                            <HiOutlineExternalLink className="w-4 h-4" />
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Newsletter Subscription */}
-                {config?.showNewsletter && (
-                    <div className="mt-12 bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 text-center">
-                        <HiOutlineBell className="w-12 h-12 mx-auto text-purple-600 dark:text-purple-400 mb-4" />
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                            {config?.newsletter?.title || "Integration Partner Updates"}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-                            {config?.newsletter?.description || "Subscribe to receive updates on new integrations, API changes, and developer resources."}
-                        </p>
-                        <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                            <input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="flex-1 px-6 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                aria-label="Email for integration updates"
-                            />
-                            <button
-                                type="submit"
-                                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
-                            >
-                                Subscribe
-                            </button>
-                        </form>
-                        <p className="text-xs text-gray-500 dark:text-gray-500 mt-4">
-                            {config?.newsletter?.disclaimer || "No spam, unsubscribe anytime. Get 1-2 emails per month."}
-                        </p>
-                    </div>
-                )}
+        {/* ==================== STATS ROW ==================== */}
+        <div className="flex flex-wrap justify-center gap-6 mb-12">
+          {stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700"
+            >
+              <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                {getIcon(stat.icon, 'w-5 h-5 text-purple-600 dark:text-purple-400')}
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
+              </div>
             </div>
+          ))}
+        </div>
 
-            <style>{`
+        {/* ==================== SEARCH BAR ==================== */}
+        <div className="relative max-w-2xl mx-auto mb-8">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            {getIcon('search', 'w-5 h-5 text-gray-400')}
+          </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={
+              config?.searchPlaceholder || 'Search integrations by name, category, or technology...'
+            }
+            className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500"
+            aria-label="Search integration partners"
+          />
+        </div>
+
+        {/* ==================== CATEGORY FILTERS ==================== */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === category.id
+                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/25'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              aria-label={`Show ${category.label}`}
+            >
+              {getIcon(category.icon, 'w-4 h-4')}
+              {category.label}
+            </button>
+          ))}
+        </div>
+
+        {/* ==================== INTEGRATION TYPE FILTERS ==================== */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {integrationTypes.map((type) => (
+            <button
+              key={type.id}
+              onClick={() => setSelectedType(type.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedType === type.id
+                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/25'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              aria-label={`Show ${type.label} integrations`}
+            >
+              {type.label}
+            </button>
+          ))}
+        </div>
+
+        {/* ==================== FEATURED INTEGRATION PARTNER ==================== */}
+        {featuredPartner && (
+          <div className="mb-16">
+            <div className="relative bg-linear-to-br from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
+              <div
+                className="absolute top-0 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl"
+                aria-hidden="true"
+              />
+
+              <div className="relative p-8 md:p-10">
+                <div className="grid lg:grid-cols-2 gap-8 items-center">
+                  {/* Featured Content */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="px-3 py-1 bg-purple-600 text-white text-xs font-semibold rounded-full">
+                        Featured Integration
+                      </span>
+                      <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs font-semibold ${getCategoryConfig(featuredPartner.category).color}`}
+                        >
+                          {getCategoryConfig(featuredPartner.category).label}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 mb-4">
+                      {featuredPartner.logo && (
+                        <img
+                          src={featuredPartner.logo}
+                          alt={featuredPartner.name}
+                          className="h-12 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      )}
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                        {featuredPartner.name}
+                      </h3>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                      {featuredPartner.description}
+                    </p>
+
+                    {/* Integration Features */}
+                    {featuredPartner.features && featuredPartner.features.length > 0 && (
+                      <div className="mb-6">
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                          Integration Features:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {featuredPartner.features.map((feature, idx) => (
+                            <span
+                              key={idx}
+                              className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-2 py-1 rounded-full"
+                            >
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-3">
+                      <Link
+                        href={featuredPartner.link}
+                        className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      >
+                        Learn More
+                        <HiArrowRight className="w-4 h-4" />
+                      </Link>
+                      <button
+                        onClick={() => handleSavePartner(featuredPartner.id)}
+                        className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 border ${savedPartners.includes(featuredPartner.id)
+                          ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-300 text-amber-700 dark:text-amber-400'
+                          : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-purple-600'
+                          }`}
+                        aria-label={
+                          savedPartners.includes(featuredPartner.id)
+                            ? 'Remove from saved'
+                            : 'Save for later'
+                        }
+                      >
+                        {getIcon('bookmark', 'w-4 h-4')}
+                        {savedPartners.includes(featuredPartner.id) ? 'Saved' : 'Save for Later'}
+                      </button>
+                      {featuredPartner.docsLink && (
+                        <a
+                          href={featuredPartner.docsLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-purple-600 hover:text-purple-600 dark:hover:text-purple-400"
+                        >
+                          {getIcon('document', 'w-4 h-4')}
+                          View Documentation
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Featured Image */}
+                  <div className="relative">
+                    <div
+                      className="absolute -inset-4 bg-purple-600/20 rounded-2xl blur-2xl"
+                      aria-hidden="true"
+                    />
+                    <img
+                      src={featuredPartner.image}
+                      alt={featuredPartner.name}
+                      className="relative rounded-2xl shadow-2xl w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ==================== INTEGRATION PARTNERS GRID ==================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {regularPartners.map((partner) => {
+            const categoryConfig = getCategoryConfig(partner.category);
+            const typeConfig = getTypeConfig(partner.integrationType);
+            const isExpanded = expandedPartner === partner.id;
+            const isSaved = savedPartners.includes(partner.id);
+
+            return (
+              <div
+                key={partner.id}
+                className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              >
+                <div className="p-6">
+                  {/* Partner Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      {partner.logo ? (
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="h-10 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div
+                          className={`w-10 h-10 rounded-xl ${categoryConfig.color} flex items-center justify-center`}
+                        >
+                          {getIcon(categoryConfig.icon, 'w-5 h-5')}
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                          {partner.name}
+                        </h3>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${categoryConfig.color}`}>
+                          {categoryConfig.label}
+                        </span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleSavePartner(partner.id)}
+                      className={`transition-colors ${isSaved ? 'text-amber-500' : 'text-gray-400 hover:text-amber-500'
+                        }`}
+                      aria-label={isSaved ? 'Remove from saved' : 'Save partner'}
+                    >
+                      {getIcon('bookmark', 'w-4 h-4')}
+                    </button>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                    {partner.description}
+                  </p>
+
+                  {/* Integration Type Badge */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className={`text-xs px-2 py-1 rounded-full ${typeConfig.color}`}>
+                      {typeConfig.badge}
+                    </span>
+                  </div>
+
+                  {/* Expandable Integration Features */}
+                  {partner.features && partner.features.length > 0 && (
+                    <div className="mb-4">
+                      <button
+                        onClick={() => toggleExpanded(partner.id)}
+                        className="flex items-center gap-1 text-sm text-purple-600 dark:text-purple-400 font-medium hover:gap-2 transition-all duration-300"
+                        aria-label={
+                          isExpanded
+                            ? 'Show less'
+                            : `View ${partner.features.length} features`
+                        }
+                      >
+                        {isExpanded
+                          ? 'Show less'
+                          : `View ${partner.features.length} features`}
+                        <HiArrowRight className="w-4 h-4" />
+                      </button>
+
+                      {isExpanded && (
+                        <div className="mt-3 animate-fadeIn">
+                          <ul className="space-y-2">
+                            {partner.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-sm">
+                                {getIcon('check', 'w-4 h-4 text-emerald-500 mt-0.5 shrink-0')}
+                                <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Tags */}
+                  {partner.tags && partner.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {partner.tags.slice(0, 3).map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-full"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Footer Actions */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <Link
+                      href={partner.link}
+                      className="inline-flex items-center gap-1 text-purple-600 dark:text-purple-400 text-sm font-semibold hover:gap-2 transition-all duration-300"
+                    >
+                      Learn More
+                      <HiArrowRight className="w-4 h-4" />
+                    </Link>
+                    {partner.docsLink && (
+                      <a
+                        href={partner.docsLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-purple-600 transition-colors"
+                        aria-label="View documentation"
+                      >
+                        {getIcon('document', 'w-4 h-4')}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ==================== EMPTY STATE ==================== */}
+        {regularPartners.length === 0 && (
+          <div className="text-center py-16 bg-gray-50 dark:bg-gray-800/50 rounded-2xl mb-12">
+            <div className="flex justify-center mb-4 text-gray-400">
+              {getIcon('link', 'w-16 h-16')}
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              No integration partners found
+            </h3>
+            <p className="text-gray-500 dark:text-gray-400">
+              Try adjusting your search or filter criteria
+            </p>
+            <button
+              onClick={clearAllFilters}
+              className="mt-4 text-purple-600 dark:text-purple-400 font-semibold hover:underline"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
+
+        {/* ==================== BECOME AN INTEGRATION PARTNER CTA ==================== */}
+        <div className="mt-12 bg-linear-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 rounded-3xl p-8 md:p-12 text-white text-center">
+          {getIcon('link', 'w-12 h-12 mx-auto mb-4')}
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            {config?.ctaTitle || 'Become an Integration Partner'}
+          </h3>
+          <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
+            {config?.ctaDescription ||
+              'Join our ecosystem of integration partners. Build pre-built connectors and reach thousands of SupplyChainPro customers.'}
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href={config?.applyLink || '/become-integration-partner'}
+              className="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Apply Now
+              <HiArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href={config?.programLink || '/partner-program'}
+              className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
+            >
+              Learn About Program
+              {getIcon('external', 'w-4 h-4')}
+            </Link>
+          </div>
+        </div>
+
+        {/* ==================== NEWSLETTER SUBSCRIPTION ==================== */}
+        {config?.showNewsletter && (
+          <div className="mt-12 bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 text-center">
+            {getIcon('bell', 'w-12 h-12 mx-auto text-purple-600 dark:text-purple-400 mb-4')}
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              {config?.newsletter?.title || 'Integration Partner Updates'}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+              {config?.newsletter?.description ||
+                'Subscribe to receive updates on new integrations, API changes, and developer resources.'}
+            </p>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const email = formData.get('email');
+                if (email && email.includes('@')) {
+                  // Handle subscription logic here
+                  e.target.reset();
+                }
+              }}
+              className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                className="flex-1 px-6 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 dark:text-white placeholder-gray-500"
+                aria-label="Email for integration updates"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+            <p className="text-xs text-gray-500 dark:text-gray-500 mt-4">
+              {config?.newsletter?.disclaimer ||
+                'No spam, unsubscribe anytime. Get 1-2 emails per month.'}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* ==================== STYLES ==================== */}
+      <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-blob { animation: blob 7s infinite; }
         .animation-delay-2000 { animation-delay: 2s; }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
@@ -587,9 +829,14 @@ const IntegrationPartnersSection1 = ({ config }) => {
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+        @media print {
+          .no-print, button:not(.print-button) {
+            display: none !important;
+          }
+        }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default IntegrationPartnersSection1;
