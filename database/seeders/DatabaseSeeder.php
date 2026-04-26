@@ -21,6 +21,7 @@ use Database\Seeders\PageRelatedSeeders\SectionVariantSeeder\{
     AboutUsPageSectionVariantSeeder,
     ServicesPageSectionVariantSeeder,
     FeaturesPageSectionVariantSeeder,
+    PartnersPageSectionVariantSeeder,
     HowItWorksPageSectionVariantSeeder,
     IndustriesPageSectionVariantSeeder,
     WhyChooseUsPageSectionVariantSeeder,
@@ -79,12 +80,13 @@ class DatabaseSeeder extends Seeder
      * Page section variant seeders in correct order
      */
     private const PAGE_VARIANT_SEEDERS = [
-        BlogPageSectionVariantSeeder::class,
         FAQPageSectionVariantSeeder::class,
+        BlogPageSectionVariantSeeder::class,
         HomePageSectionVariantSeeder::class,
         NewsPageSectionVariantSeeder::class,
         ContactPageSectionVariantSeeder::class,
         AboutUsPageSectionVariantSeeder::class,
+        PartnersPageSectionVariantSeeder::class,
         ServicesPageSectionVariantSeeder::class,
         FeaturesPageSectionVariantSeeder::class,
         HowItWorksPageSectionVariantSeeder::class,
