@@ -28,6 +28,7 @@ use Database\Seeders\PageRelatedSeeders\SectionVariantSeeder\{
     PricingPlansPageSectionVariantSeeder,
     TestimonialsPageSectionVariantSeeder,
     SuccessStoriesPageSectionVariantSeeder,
+    GlobalPresencePageSectionVariantSeeder,
 };
 
 class DatabaseSeeder extends Seeder
@@ -95,6 +96,7 @@ class DatabaseSeeder extends Seeder
         PricingPlansPageSectionVariantSeeder::class,
         TestimonialsPageSectionVariantSeeder::class,
         SuccessStoriesPageSectionVariantSeeder::class,
+        GlobalPresencePageSectionVariantSeeder::class,
     ];
 
     /**

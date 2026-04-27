@@ -1,0 +1,1423 @@
+<?php
+
+namespace Database\Seeders\PageRelatedSeeders\SectionVariantSeeder;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class GlobalPresencePageSectionVariantSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+
+        // Upsert only this page's variants so other page seeders do not get wiped out.
+        $variants = [
+
+            // Worldwide Locations Section
+            [
+                'id' => 473,
+                'section_key' => 'worldwideLocations',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Global Presence',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Global Footprint'
+                    ],
+                    'description' => 'With offices across the globe, we\'re strategically positioned to serve our customers wherever they are. Find a location near you.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search by city, country, or address...',
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'icon' => 'globe'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe']
+                    ],
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'building'],
+                        ['value' => '1000+', 'label' => 'Global Employees', 'icon' => 'users'],
+                        ['value' => '24/7', 'label' => 'Global Support', 'icon' => 'clock']
+                    ],
+                    'locations' => [
+                        [
+                            'id' => 'new-york',
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 5500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0100',
+                            'email' => 'nyc@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'details' => 'Our global headquarters houses our executive leadership, sales team, and product development center.',
+                            'tags' => ['headquarters', 'sales', 'product'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=New+York+NY',
+                            'mapX' => 320,
+                            'mapY' => 260,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'london',
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '10 Lower Thames Street, London, EC3R 6AF',
+                            'phone' => '+44 (20) 7946 0100',
+                            'email' => 'london@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM GMT',
+                            'details' => 'Our European headquarters serving clients across the UK and Europe with dedicated support teams.',
+                            'tags' => ['europe', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=London+UK',
+                            'mapX' => 520,
+                            'mapY' => 290,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'singapore',
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '9 Raffles Place, #26-01, Republic Plaza, Singapore 048619',
+                            'phone' => '+65 6808 6100',
+                            'email' => 'singapore@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM SGT',
+                            'details' => 'Our Asia-Pacific hub supporting clients across Southeast Asia, Australia, and New Zealand.',
+                            'tags' => ['asia-pacific', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Singapore',
+                            'mapX' => 850,
+                            'mapY' => 300,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'sao-paulo',
+                            'city' => 'São Paulo',
+                            'country' => 'Brazil',
+                            'region' => 'latin-america',
+                            'address' => 'Av. Paulista, 1578, 10th Floor, São Paulo, SP 01310-200',
+                            'phone' => '+55 (11) 3500-0100',
+                            'email' => 'saopaulo@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM BRT',
+                            'details' => 'Our Latin American headquarters serving clients across Brazil and South America.',
+                            'tags' => ['latin-america', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=S%C3%A3o+Paulo+Brazil',
+                            'mapX' => 360,
+                            'mapY' => 430
+                        ],
+                        [
+                            'id' => 'dubai',
+                            'city' => 'Dubai',
+                            'country' => 'UAE',
+                            'region' => 'middle-east',
+                            'address' => 'Dubai Internet City, Building 1, Office 502, Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@supplychainpro.com',
+                            'hours' => 'Sunday-Thursday, 9:00 AM - 6:00 PM GST',
+                            'details' => 'Our Middle East hub serving clients across the Gulf region and Africa.',
+                            'tags' => ['middle-east', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Dubai+UAE',
+                            'mapX' => 650,
+                            'mapY' => 300
+                        ],
+                        [
+                            'id' => 'johannesburg',
+                            'city' => 'Johannesburg',
+                            'country' => 'South Africa',
+                            'region' => 'africa',
+                            'address' => 'Sandton City, 5th Floor, Johannesburg, 2196',
+                            'phone' => '+27 (11) 234 5678',
+                            'email' => 'johannesburg@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 8:00 AM - 5:00 PM SAST',
+                            'details' => 'Our African headquarters supporting clients across the continent with localized expertise.',
+                            'tags' => ['africa', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Johannesburg+South+Africa',
+                            'mapX' => 560,
+                            'mapY' => 410
+                        ],
+                        [
+                            'id' => 'tokyo',
+                            'city' => 'Tokyo',
+                            'country' => 'Japan',
+                            'region' => 'asia-pacific',
+                            'address' => 'Marunouchi Trust Tower, 1-8-1 Marunouchi, Chiyoda-ku, Tokyo 100-0005',
+                            'phone' => '+81 (3) 4567 8901',
+                            'email' => 'tokyo@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM JST',
+                            'details' => 'Our Japan office serving clients across the Japanese market with dedicated Japanese-speaking support.',
+                            'tags' => ['japan', 'asia', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Tokyo+Japan',
+                            'mapX' => 920,
+                            'mapY' => 290
+                        ],
+                        [
+                            'id' => 'sydney',
+                            'city' => 'Sydney',
+                            'country' => 'Australia',
+                            'region' => 'asia-pacific',
+                            'address' => '1 Martin Place, Level 25, Sydney, NSW 2000',
+                            'phone' => '+61 (2) 8123 4567',
+                            'email' => 'sydney@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM AEDT',
+                            'details' => 'Our Australian office supporting clients across Australia and New Zealand.',
+                            'tags' => ['australia', 'oceania', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Sydney+Australia',
+                            'mapX' => 1000,
+                            'mapY' => 380
+                        ]
+                    ],
+                    'supportTitle' => '24/7 Global Support',
+                    'supportDescription' => 'No matter where you are, our global team is ready to assist you with dedicated support in your time zone.',
+                    'supportLink' => '/contact',
+                    'supportImage' => 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=600&h=400&fit=crop',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Global Updates',
+                        'description' => 'Subscribe to receive news about new office openings, regional events, and global initiatives.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 474,
+                'section_key' => 'worldwideLocations',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Global Presence',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Global Footprint'
+                    ],
+                    'description' => 'With offices across the globe, we\'re strategically positioned to serve our customers wherever they are. Find a location near you.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search by city, country, or address...',
+                    'defaultViewMode' => 'grid',
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'icon' => 'globe'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe']
+                    ],
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe', 'trend' => '+5', 'trendUp' => true],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'building', 'trend' => '+8', 'trendUp' => true],
+                        ['value' => '1000+', 'label' => 'Global Employees', 'icon' => 'users', 'trend' => '+200', 'trendUp' => true],
+                        ['value' => '24/7', 'label' => 'Global Support', 'icon' => 'clock', 'trend' => 'Always', 'trendUp' => true]
+                    ],
+                    'locations' => [
+                        [
+                            'id' => 'new-york',
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 5500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0100',
+                            'email' => 'nyc@supplychainpro.com',
+                            'employees' => 250,
+                            'timeZone' => 'EST',
+                            'tags' => ['headquarters', 'sales', 'product'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=New+York+NY',
+                            'mapX' => 320,
+                            'mapY' => 260,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'london',
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '10 Lower Thames Street, London, EC3R 6AF',
+                            'phone' => '+44 (20) 7946 0100',
+                            'email' => 'london@supplychainpro.com',
+                            'employees' => 180,
+                            'timeZone' => 'GMT',
+                            'tags' => ['europe', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=London+UK',
+                            'mapX' => 520,
+                            'mapY' => 290,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'singapore',
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '9 Raffles Place, #26-01, Republic Plaza, Singapore 048619',
+                            'phone' => '+65 6808 6100',
+                            'email' => 'singapore@supplychainpro.com',
+                            'employees' => 120,
+                            'timeZone' => 'SGT',
+                            'tags' => ['asia-pacific', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Singapore',
+                            'mapX' => 850,
+                            'mapY' => 300,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'sao-paulo',
+                            'city' => 'São Paulo',
+                            'country' => 'Brazil',
+                            'region' => 'latin-america',
+                            'address' => 'Av. Paulista, 1578, 10th Floor, São Paulo, SP 01310-200',
+                            'phone' => '+55 (11) 3500-0100',
+                            'email' => 'saopaulo@supplychainpro.com',
+                            'employees' => 95,
+                            'timeZone' => 'BRT',
+                            'tags' => ['latin-america', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=S%C3%A3o+Paulo+Brazil',
+                            'mapX' => 360,
+                            'mapY' => 430
+                        ],
+                        [
+                            'id' => 'dubai',
+                            'city' => 'Dubai',
+                            'country' => 'UAE',
+                            'region' => 'middle-east',
+                            'address' => 'Dubai Internet City, Building 1, Office 502, Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@supplychainpro.com',
+                            'employees' => 75,
+                            'timeZone' => 'GST',
+                            'tags' => ['middle-east', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Dubai+UAE',
+                            'mapX' => 650,
+                            'mapY' => 300
+                        ],
+                        [
+                            'id' => 'johannesburg',
+                            'city' => 'Johannesburg',
+                            'country' => 'South Africa',
+                            'region' => 'africa',
+                            'address' => 'Sandton City, 5th Floor, Johannesburg, 2196',
+                            'phone' => '+27 (11) 234 5678',
+                            'email' => 'johannesburg@supplychainpro.com',
+                            'employees' => 60,
+                            'timeZone' => 'SAST',
+                            'tags' => ['africa', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Johannesburg+South+Africa',
+                            'mapX' => 560,
+                            'mapY' => 410
+                        ],
+                        [
+                            'id' => 'tokyo',
+                            'city' => 'Tokyo',
+                            'country' => 'Japan',
+                            'region' => 'asia-pacific',
+                            'address' => 'Marunouchi Trust Tower, 1-8-1 Marunouchi, Chiyoda-ku, Tokyo 100-0005',
+                            'phone' => '+81 (3) 4567 8901',
+                            'email' => 'tokyo@supplychainpro.com',
+                            'employees' => 110,
+                            'timeZone' => 'JST',
+                            'tags' => ['japan', 'asia', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Tokyo+Japan',
+                            'mapX' => 920,
+                            'mapY' => 290
+                        ],
+                        [
+                            'id' => 'sydney',
+                            'city' => 'Sydney',
+                            'country' => 'Australia',
+                            'region' => 'asia-pacific',
+                            'address' => '1 Martin Place, Level 25, Sydney, NSW 2000',
+                            'phone' => '+61 (2) 8123 4567',
+                            'email' => 'sydney@supplychainpro.com',
+                            'employees' => 85,
+                            'timeZone' => 'AEDT',
+                            'tags' => ['australia', 'oceania', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Sydney+Australia',
+                            'mapX' => 1000,
+                            'mapY' => 380
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Global Updates',
+                        'description' => 'Subscribe to receive news about new office openings, regional events, and global initiatives.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 475,
+                'section_key' => 'worldwideLocations',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Global Presence',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Global Footprint'
+                    ],
+                    'description' => 'With offices across the globe, we\'re strategically positioned to serve our customers wherever they are. Find a location near you.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'tabs' => [
+                        ['id' => 'map', 'label' => 'Interactive Map', 'icon' => 'map'],
+                        ['id' => 'regions', 'label' => 'Regions', 'icon' => 'globe'],
+                        ['id' => 'locations', 'label' => 'All Locations', 'icon' => 'location'],
+                        ['id' => 'saved', 'label' => 'Saved', 'icon' => 'bookmark']
+                    ],
+                    'stats' => [
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'building'],
+                        ['value' => '1000+', 'label' => 'Global Employees', 'icon' => 'users'],
+                        ['value' => '24/7', 'label' => 'Global Support', 'icon' => 'clock']
+                    ],
+                    'regions' => [
+                        [
+                            'id' => 'north-america',
+                            'label' => 'North America',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 12, 'employees' => 850, 'countries' => 3],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'europe',
+                            'label' => 'Europe',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 18, 'employees' => 1200, 'countries' => 12],
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'asia-pacific',
+                            'label' => 'Asia Pacific',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 15, 'employees' => 950, 'countries' => 8],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'latin-america',
+                            'label' => 'Latin America',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 8, 'employees' => 450, 'countries' => 6],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'middle-east',
+                            'label' => 'Middle East',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 5, 'employees' => 280, 'countries' => 4],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'africa',
+                            'label' => 'Africa',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 4, 'employees' => 200, 'countries' => 3],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'locations' => [
+                        [
+                            'id' => 'new-york',
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 5500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0100',
+                            'email' => 'nyc@supplychainpro.com',
+                            'employees' => 250,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'tags' => ['headquarters', 'sales', 'product'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=New+York+NY',
+                            'mapX' => 320,
+                            'mapY' => 260,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'london',
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '10 Lower Thames Street, London, EC3R 6AF',
+                            'phone' => '+44 (20) 7946 0100',
+                            'email' => 'london@supplychainpro.com',
+                            'employees' => 180,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM GMT',
+                            'tags' => ['europe', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=London+UK',
+                            'mapX' => 520,
+                            'mapY' => 290,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'singapore',
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '9 Raffles Place, #26-01, Republic Plaza, Singapore 048619',
+                            'phone' => '+65 6808 6100',
+                            'email' => 'singapore@supplychainpro.com',
+                            'employees' => 120,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM SGT',
+                            'tags' => ['asia-pacific', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Singapore',
+                            'mapX' => 850,
+                            'mapY' => 300,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'sao-paulo',
+                            'city' => 'São Paulo',
+                            'country' => 'Brazil',
+                            'region' => 'latin-america',
+                            'address' => 'Av. Paulista, 1578, 10th Floor, São Paulo, SP 01310-200',
+                            'phone' => '+55 (11) 3500-0100',
+                            'email' => 'saopaulo@supplychainpro.com',
+                            'employees' => 95,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM BRT',
+                            'tags' => ['latin-america', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=S%C3%A3o+Paulo+Brazil',
+                            'mapX' => 360,
+                            'mapY' => 430
+                        ],
+                        [
+                            'id' => 'dubai',
+                            'city' => 'Dubai',
+                            'country' => 'UAE',
+                            'region' => 'middle-east',
+                            'address' => 'Dubai Internet City, Building 1, Office 502, Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@supplychainpro.com',
+                            'employees' => 75,
+                            'hours' => 'Sunday-Thursday, 9:00 AM - 6:00 PM GST',
+                            'tags' => ['middle-east', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Dubai+UAE',
+                            'mapX' => 650,
+                            'mapY' => 300
+                        ],
+                        [
+                            'id' => 'johannesburg',
+                            'city' => 'Johannesburg',
+                            'country' => 'South Africa',
+                            'region' => 'africa',
+                            'address' => 'Sandton City, 5th Floor, Johannesburg, 2196',
+                            'phone' => '+27 (11) 234 5678',
+                            'email' => 'johannesburg@supplychainpro.com',
+                            'employees' => 60,
+                            'hours' => 'Monday-Friday, 8:00 AM - 5:00 PM SAST',
+                            'tags' => ['africa', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Johannesburg+South+Africa',
+                            'mapX' => 560,
+                            'mapY' => 410
+                        ],
+                        [
+                            'id' => 'tokyo',
+                            'city' => 'Tokyo',
+                            'country' => 'Japan',
+                            'region' => 'asia-pacific',
+                            'address' => 'Marunouchi Trust Tower, 1-8-1 Marunouchi, Chiyoda-ku, Tokyo 100-0005',
+                            'phone' => '+81 (3) 4567 8901',
+                            'email' => 'tokyo@supplychainpro.com',
+                            'employees' => 110,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM JST',
+                            'tags' => ['japan', 'asia', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Tokyo+Japan',
+                            'mapX' => 920,
+                            'mapY' => 290
+                        ],
+                        [
+                            'id' => 'sydney',
+                            'city' => 'Sydney',
+                            'country' => 'Australia',
+                            'region' => 'asia-pacific',
+                            'address' => '1 Martin Place, Level 25, Sydney, NSW 2000',
+                            'phone' => '+61 (2) 8123 4567',
+                            'email' => 'sydney@supplychainpro.com',
+                            'employees' => 85,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM AEDT',
+                            'tags' => ['australia', 'oceania', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Sydney+Australia',
+                            'mapX' => 1000,
+                            'mapY' => 380
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Get Global Updates',
+                        'description' => 'Subscribe to receive news about new office openings, regional events, and global initiatives.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 476,
+                'section_key' => 'worldwideLocations',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Regional Offices Section
+            [
+                'id' => 477,
+                'section_key' => 'regionalOffices',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Regional Offices',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Regional Hubs'
+                    ],
+                    'description' => 'Connect with our regional teams around the world. Our local experts understand your market and are ready to help you succeed.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search by city, country, or region...',
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'icon' => 'globe'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe']
+                    ],
+                    'stats' => [
+                        ['value' => '6', 'label' => 'Regional Hubs', 'icon' => 'globe'],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'office'],
+                        ['value' => '1000+', 'label' => 'Local Experts', 'icon' => 'users'],
+                        ['value' => '24/7', 'label' => 'Regional Support', 'icon' => 'clock']
+                    ],
+                    'offices' => [
+                        [
+                            'id' => 'new-york',
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 5500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0100',
+                            'email' => 'nyc@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'details' => 'Our North American headquarters houses our executive leadership, sales team, and product development center serving clients across the US and Canada.',
+                            'services' => ['Sales', 'Support', 'Product Development', 'Training'],
+                            'tags' => ['headquarters', 'sales', 'product'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=New+York+NY',
+                            'mapX' => 320,
+                            'mapY' => 260,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'london',
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '10 Lower Thames Street, London, EC3R 6AF',
+                            'phone' => '+44 (20) 7946 0100',
+                            'email' => 'london@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM GMT',
+                            'details' => 'Our European headquarters serving clients across the UK and Europe with dedicated sales and support teams.',
+                            'services' => ['Sales', 'Support', 'Consulting', 'Training'],
+                            'tags' => ['europe', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=London+UK',
+                            'mapX' => 520,
+                            'mapY' => 290,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'singapore',
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '9 Raffles Place, #26-01, Republic Plaza, Singapore 048619',
+                            'phone' => '+65 6808 6100',
+                            'email' => 'singapore@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM SGT',
+                            'details' => 'Our Asia-Pacific hub supporting clients across Southeast Asia, Australia, and New Zealand with localized expertise.',
+                            'services' => ['Sales', 'Support', 'Solutions', 'Training'],
+                            'tags' => ['asia-pacific', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Singapore',
+                            'mapX' => 850,
+                            'mapY' => 300,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'sao-paulo',
+                            'city' => 'São Paulo',
+                            'country' => 'Brazil',
+                            'region' => 'latin-america',
+                            'address' => 'Av. Paulista, 1578, 10th Floor, São Paulo, SP 01310-200',
+                            'phone' => '+55 (11) 3500-0100',
+                            'email' => 'saopaulo@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM BRT',
+                            'details' => 'Our Latin American headquarters serving clients across Brazil and South America with Portuguese and Spanish support.',
+                            'services' => ['Sales', 'Support', 'Consulting'],
+                            'tags' => ['latin-america', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=S%C3%A3o+Paulo+Brazil',
+                            'mapX' => 360,
+                            'mapY' => 430,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'dubai',
+                            'city' => 'Dubai',
+                            'country' => 'UAE',
+                            'region' => 'middle-east',
+                            'address' => 'Dubai Internet City, Building 1, Office 502, Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@supplychainpro.com',
+                            'hours' => 'Sunday-Thursday, 9:00 AM - 6:00 PM GST',
+                            'details' => 'Our Middle East hub serving clients across the Gulf region and Africa with dedicated support teams.',
+                            'services' => ['Sales', 'Support', 'Implementation'],
+                            'tags' => ['middle-east', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Dubai+UAE',
+                            'mapX' => 650,
+                            'mapY' => 300,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'johannesburg',
+                            'city' => 'Johannesburg',
+                            'country' => 'South Africa',
+                            'region' => 'africa',
+                            'address' => 'Sandton City, 5th Floor, Johannesburg, 2196',
+                            'phone' => '+27 (11) 234 5678',
+                            'email' => 'johannesburg@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 8:00 AM - 5:00 PM SAST',
+                            'details' => 'Our African headquarters supporting clients across the continent with localized expertise and support.',
+                            'services' => ['Sales', 'Support', 'Consulting'],
+                            'tags' => ['africa', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Johannesburg+South+Africa',
+                            'mapX' => 560,
+                            'mapY' => 410,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'toronto',
+                            'city' => 'Toronto',
+                            'country' => 'Canada',
+                            'region' => 'north-america',
+                            'address' => 'Bay Street, Suite 200, Toronto, ON M5H 2Y2',
+                            'phone' => '+1 (416) 555-0200',
+                            'email' => 'toronto@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'details' => 'Our Canadian office serving clients across Canada with dedicated support in English and French.',
+                            'services' => ['Sales', 'Support', 'Training'],
+                            'tags' => ['canada', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Toronto+ON',
+                            'mapX' => 290,
+                            'mapY' => 270
+                        ],
+                        [
+                            'id' => 'frankfurt',
+                            'city' => 'Frankfurt',
+                            'country' => 'Germany',
+                            'region' => 'europe',
+                            'address' => 'Neue Mainzer Straße 66-68, 60311 Frankfurt am Main',
+                            'phone' => '+49 69 1234 5678',
+                            'email' => 'frankfurt@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM CET',
+                            'details' => 'Our German office serving clients across the DACH region with German-speaking support teams.',
+                            'services' => ['Sales', 'Support', 'Implementation'],
+                            'tags' => ['germany', 'dach', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Frankfurt+Germany',
+                            'mapX' => 540,
+                            'mapY' => 285
+                        ],
+                        [
+                            'id' => 'mumbai',
+                            'city' => 'Mumbai',
+                            'country' => 'India',
+                            'region' => 'asia-pacific',
+                            'address' => 'Bandra Kurla Complex, Mumbai, Maharashtra 400051',
+                            'phone' => '+91 22 1234 5678',
+                            'email' => 'mumbai@supplychainpro.com',
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM IST',
+                            'details' => 'Our India office serving clients across the subcontinent with dedicated support teams.',
+                            'services' => ['Sales', 'Support', 'Development'],
+                            'tags' => ['india', 'asia', 'development'],
+                            'image' => 'https://images.unsplash.com/photo-1529253355930-dbe14d8d46ec?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Mumbai+India',
+                            'mapX' => 780,
+                            'mapY' => 340
+                        ]
+                    ],
+                    'supportTitle' => 'Need Regional Support?',
+                    'supportDescription' => 'Connect with your local regional office for personalized support and service in your language and time zone.',
+                    'supportLink' => '/contact',
+                    'supportImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Regional Updates',
+                        'description' => 'Subscribe to receive news about regional events, office openings, and local initiatives.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 478,
+                'section_key' => 'regionalOffices',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Regional Offices',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Regional Hubs'
+                    ],
+                    'description' => 'Connect with our regional teams around the world. Our local experts understand your market and are ready to help you succeed.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search by city, country, or address...',
+                    'defaultViewMode' => 'grid',
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'icon' => 'globe'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe']
+                    ],
+                    'stats' => [
+                        ['value' => '6', 'label' => 'Regional Hubs', 'icon' => 'globe', 'trend' => '+1', 'trendUp' => true],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'office', 'trend' => '+8', 'trendUp' => true],
+                        ['value' => '1000+', 'label' => 'Local Experts', 'icon' => 'users', 'trend' => '+150', 'trendUp' => true],
+                        ['value' => '24/7', 'label' => 'Regional Support', 'icon' => 'clock', 'trend' => 'Always', 'trendUp' => true]
+                    ],
+                    'offices' => [
+                        [
+                            'id' => 'new-york',
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 5500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0100',
+                            'email' => 'nyc@supplychainpro.com',
+                            'employees' => 250,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'services' => ['Sales', 'Support', 'Product Development', 'Training'],
+                            'tags' => ['headquarters', 'sales', 'product'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=New+York+NY',
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'london',
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '10 Lower Thames Street, London, EC3R 6AF',
+                            'phone' => '+44 (20) 7946 0100',
+                            'email' => 'london@supplychainpro.com',
+                            'employees' => 180,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM GMT',
+                            'services' => ['Sales', 'Support', 'Consulting', 'Training'],
+                            'tags' => ['europe', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=London+UK',
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'singapore',
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '9 Raffles Place, #26-01, Republic Plaza, Singapore 048619',
+                            'phone' => '+65 6808 6100',
+                            'email' => 'singapore@supplychainpro.com',
+                            'employees' => 120,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM SGT',
+                            'services' => ['Sales', 'Support', 'Solutions', 'Training'],
+                            'tags' => ['asia-pacific', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Singapore',
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'sao-paulo',
+                            'city' => 'São Paulo',
+                            'country' => 'Brazil',
+                            'region' => 'latin-america',
+                            'address' => 'Av. Paulista, 1578, 10th Floor, São Paulo, SP 01310-200',
+                            'phone' => '+55 (11) 3500-0100',
+                            'email' => 'saopaulo@supplychainpro.com',
+                            'employees' => 95,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM BRT',
+                            'services' => ['Sales', 'Support', 'Consulting'],
+                            'tags' => ['latin-america', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=S%C3%A3o+Paulo+Brazil',
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'dubai',
+                            'city' => 'Dubai',
+                            'country' => 'UAE',
+                            'region' => 'middle-east',
+                            'address' => 'Dubai Internet City, Building 1, Office 502, Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@supplychainpro.com',
+                            'employees' => 75,
+                            'hours' => 'Sunday-Thursday, 9:00 AM - 6:00 PM GST',
+                            'services' => ['Sales', 'Support', 'Implementation'],
+                            'tags' => ['middle-east', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Dubai+UAE'
+                        ],
+                        [
+                            'id' => 'johannesburg',
+                            'city' => 'Johannesburg',
+                            'country' => 'South Africa',
+                            'region' => 'africa',
+                            'address' => 'Sandton City, 5th Floor, Johannesburg, 2196',
+                            'phone' => '+27 (11) 234 5678',
+                            'email' => 'johannesburg@supplychainpro.com',
+                            'employees' => 60,
+                            'hours' => 'Monday-Friday, 8:00 AM - 5:00 PM SAST',
+                            'services' => ['Sales', 'Support', 'Consulting'],
+                            'tags' => ['africa', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Johannesburg+South+Africa'
+                        ],
+                        [
+                            'id' => 'toronto',
+                            'city' => 'Toronto',
+                            'country' => 'Canada',
+                            'region' => 'north-america',
+                            'address' => 'Bay Street, Suite 200, Toronto, ON M5H 2Y2',
+                            'phone' => '+1 (416) 555-0200',
+                            'email' => 'toronto@supplychainpro.com',
+                            'employees' => 85,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'services' => ['Sales', 'Support', 'Training'],
+                            'tags' => ['canada', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Toronto+ON'
+                        ],
+                        [
+                            'id' => 'frankfurt',
+                            'city' => 'Frankfurt',
+                            'country' => 'Germany',
+                            'region' => 'europe',
+                            'address' => 'Neue Mainzer Straße 66-68, 60311 Frankfurt am Main',
+                            'phone' => '+49 69 1234 5678',
+                            'email' => 'frankfurt@supplychainpro.com',
+                            'employees' => 70,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM CET',
+                            'services' => ['Sales', 'Support', 'Implementation'],
+                            'tags' => ['germany', 'dach', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Frankfurt+Germany'
+                        ],
+                        [
+                            'id' => 'mumbai',
+                            'city' => 'Mumbai',
+                            'country' => 'India',
+                            'region' => 'asia-pacific',
+                            'address' => 'Bandra Kurla Complex, Mumbai, Maharashtra 400051',
+                            'phone' => '+91 22 1234 5678',
+                            'email' => 'mumbai@supplychainpro.com',
+                            'employees' => 110,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM IST',
+                            'services' => ['Sales', 'Support', 'Development'],
+                            'tags' => ['india', 'asia', 'development'],
+                            'image' => 'https://images.unsplash.com/photo-1529253355930-dbe14d8d46ec?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Mumbai+India'
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Regional Updates',
+                        'description' => 'Subscribe to receive news about regional events, office openings, and local initiatives.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 479,
+                'section_key' => 'regionalOffices',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Regional Offices',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Regional Hubs'
+                    ],
+                    'description' => 'Connect with our regional teams around the world. Our local experts understand your market and are ready to help you succeed.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'tabs' => [
+                        ['id' => 'map', 'label' => 'Interactive Map', 'icon' => 'map'],
+                        ['id' => 'regions', 'label' => 'Regions', 'icon' => 'globe'],
+                        ['id' => 'offices', 'label' => 'All Offices', 'icon' => 'office'],
+                        ['id' => 'saved', 'label' => 'Saved', 'icon' => 'bookmark']
+                    ],
+                    'stats' => [
+                        ['value' => '6', 'label' => 'Regional Hubs', 'icon' => 'globe'],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'office'],
+                        ['value' => '1000+', 'label' => 'Local Experts', 'icon' => 'users'],
+                        ['value' => '24/7', 'label' => 'Regional Support', 'icon' => 'clock']
+                    ],
+                    'regions' => [
+                        [
+                            'id' => 'north-america',
+                            'label' => 'North America',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 8, 'employees' => 650, 'countries' => 3],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'europe',
+                            'label' => 'Europe',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 12, 'employees' => 850, 'countries' => 8],
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'asia-pacific',
+                            'label' => 'Asia Pacific',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 10, 'employees' => 620, 'countries' => 6],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'latin-america',
+                            'label' => 'Latin America',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 5, 'employees' => 280, 'countries' => 4],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'middle-east',
+                            'label' => 'Middle East',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 4, 'employees' => 220, 'countries' => 3],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'africa',
+                            'label' => 'Africa',
+                            'icon' => 'globe',
+                            'stats' => ['offices' => 3, 'employees' => 150, 'countries' => 2],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'offices' => [
+                        [
+                            'id' => 'new-york',
+                            'city' => 'New York',
+                            'country' => 'United States',
+                            'region' => 'north-america',
+                            'address' => '350 Fifth Avenue, Suite 5500, New York, NY 10118',
+                            'phone' => '+1 (212) 555-0100',
+                            'email' => 'nyc@supplychainpro.com',
+                            'employees' => 250,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'services' => ['Sales', 'Support', 'Product Development', 'Training'],
+                            'tags' => ['headquarters', 'sales', 'product'],
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=New+York+NY',
+                            'mapX' => 320,
+                            'mapY' => 260,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'london',
+                            'city' => 'London',
+                            'country' => 'United Kingdom',
+                            'region' => 'europe',
+                            'address' => '10 Lower Thames Street, London, EC3R 6AF',
+                            'phone' => '+44 (20) 7946 0100',
+                            'email' => 'london@supplychainpro.com',
+                            'employees' => 180,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM GMT',
+                            'services' => ['Sales', 'Support', 'Consulting', 'Training'],
+                            'tags' => ['europe', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=London+UK',
+                            'mapX' => 520,
+                            'mapY' => 290,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'singapore',
+                            'city' => 'Singapore',
+                            'country' => 'Singapore',
+                            'region' => 'asia-pacific',
+                            'address' => '9 Raffles Place, #26-01, Republic Plaza, Singapore 048619',
+                            'phone' => '+65 6808 6100',
+                            'email' => 'singapore@supplychainpro.com',
+                            'employees' => 120,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM SGT',
+                            'services' => ['Sales', 'Support', 'Solutions', 'Training'],
+                            'tags' => ['asia-pacific', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Singapore',
+                            'mapX' => 850,
+                            'mapY' => 300,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'sao-paulo',
+                            'city' => 'São Paulo',
+                            'country' => 'Brazil',
+                            'region' => 'latin-america',
+                            'address' => 'Av. Paulista, 1578, 10th Floor, São Paulo, SP 01310-200',
+                            'phone' => '+55 (11) 3500-0100',
+                            'email' => 'saopaulo@supplychainpro.com',
+                            'employees' => 95,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM BRT',
+                            'services' => ['Sales', 'Support', 'Consulting'],
+                            'tags' => ['latin-america', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=S%C3%A3o+Paulo+Brazil',
+                            'mapX' => 360,
+                            'mapY' => 430,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'dubai',
+                            'city' => 'Dubai',
+                            'country' => 'UAE',
+                            'region' => 'middle-east',
+                            'address' => 'Dubai Internet City, Building 1, Office 502, Dubai',
+                            'phone' => '+971 4 567 8901',
+                            'email' => 'dubai@supplychainpro.com',
+                            'employees' => 75,
+                            'hours' => 'Sunday-Thursday, 9:00 AM - 6:00 PM GST',
+                            'services' => ['Sales', 'Support', 'Implementation'],
+                            'tags' => ['middle-east', 'regional-hub', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Dubai+UAE',
+                            'mapX' => 650,
+                            'mapY' => 300,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'johannesburg',
+                            'city' => 'Johannesburg',
+                            'country' => 'South Africa',
+                            'region' => 'africa',
+                            'address' => 'Sandton City, 5th Floor, Johannesburg, 2196',
+                            'phone' => '+27 (11) 234 5678',
+                            'email' => 'johannesburg@supplychainpro.com',
+                            'employees' => 60,
+                            'hours' => 'Monday-Friday, 8:00 AM - 5:00 PM SAST',
+                            'services' => ['Sales', 'Support', 'Consulting'],
+                            'tags' => ['africa', 'regional-hub', 'sales'],
+                            'image' => 'https://images.unsplash.com/photo-1576485290814-1c72aa2b8d6f?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Johannesburg+South+Africa',
+                            'mapX' => 560,
+                            'mapY' => 410,
+                            'isRegionalHub' => true
+                        ],
+                        [
+                            'id' => 'toronto',
+                            'city' => 'Toronto',
+                            'country' => 'Canada',
+                            'region' => 'north-america',
+                            'address' => 'Bay Street, Suite 200, Toronto, ON M5H 2Y2',
+                            'phone' => '+1 (416) 555-0200',
+                            'email' => 'toronto@supplychainpro.com',
+                            'employees' => 85,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM EST',
+                            'services' => ['Sales', 'Support', 'Training'],
+                            'tags' => ['canada', 'sales', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Toronto+ON',
+                            'mapX' => 290,
+                            'mapY' => 270
+                        ],
+                        [
+                            'id' => 'frankfurt',
+                            'city' => 'Frankfurt',
+                            'country' => 'Germany',
+                            'region' => 'europe',
+                            'address' => 'Neue Mainzer Straße 66-68, 60311 Frankfurt am Main',
+                            'phone' => '+49 69 1234 5678',
+                            'email' => 'frankfurt@supplychainpro.com',
+                            'employees' => 70,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM CET',
+                            'services' => ['Sales', 'Support', 'Implementation'],
+                            'tags' => ['germany', 'dach', 'support'],
+                            'image' => 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Frankfurt+Germany',
+                            'mapX' => 540,
+                            'mapY' => 285
+                        ],
+                        [
+                            'id' => 'mumbai',
+                            'city' => 'Mumbai',
+                            'country' => 'India',
+                            'region' => 'asia-pacific',
+                            'address' => 'Bandra Kurla Complex, Mumbai, Maharashtra 400051',
+                            'phone' => '+91 22 1234 5678',
+                            'email' => 'mumbai@supplychainpro.com',
+                            'employees' => 110,
+                            'hours' => 'Monday-Friday, 9:00 AM - 6:00 PM IST',
+                            'services' => ['Sales', 'Support', 'Development'],
+                            'tags' => ['india', 'asia', 'development'],
+                            'image' => 'https://images.unsplash.com/photo-1529253355930-dbe14d8d46ec?w=600&h=400&fit=crop',
+                            'mapLink' => 'https://maps.google.com/?q=Mumbai+India',
+                            'mapX' => 780,
+                            'mapY' => 340
+                        ]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Regional Updates',
+                        'description' => 'Subscribe to receive news about regional events, office openings, and local initiatives.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 480,
+                'section_key' => 'regionalOffices',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Global Coverage Map Section
+            [
+                'id' => 481,
+                'section_key' => 'globalCoverageMap',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Global Coverage',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Global Footprint'
+                    ],
+                    'description' => 'With a presence across 45+ countries and 6 continents, we deliver supply chain solutions wherever you need them.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '45+', 'label' => 'Countries Served', 'icon' => 'globe'],
+                        ['value' => '6', 'label' => 'Continents', 'icon' => 'globe'],
+                        ['value' => '50+', 'label' => 'Office Locations', 'icon' => 'office'],
+                        ['value' => '1000+', 'label' => 'Global Team Members', 'icon' => 'users']
+                    ],
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'Global', 'icon' => 'globe'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe']
+                    ],
+                    'countryCoverage' => [
+                        ['name' => 'United States', 'code' => 'US', 'region' => 'north-america', 'offices' => 8, 'employees' => 650, 'customers' => 1200],
+                        ['name' => 'Canada', 'code' => 'CA', 'region' => 'north-america', 'offices' => 3, 'employees' => 180, 'customers' => 450],
+                        ['name' => 'Mexico', 'code' => 'MX', 'region' => 'north-america', 'offices' => 2, 'employees' => 120, 'customers' => 280],
+                        ['name' => 'United Kingdom', 'code' => 'GB', 'region' => 'europe', 'offices' => 4, 'employees' => 250, 'customers' => 580],
+                        ['name' => 'Germany', 'code' => 'DE', 'region' => 'europe', 'offices' => 3, 'employees' => 200, 'customers' => 520],
+                        ['name' => 'France', 'code' => 'FR', 'region' => 'europe', 'offices' => 2, 'employees' => 140, 'customers' => 380],
+                        ['name' => 'Italy', 'code' => 'IT', 'region' => 'europe', 'offices' => 2, 'employees' => 110, 'customers' => 290],
+                        ['name' => 'Spain', 'code' => 'ES', 'region' => 'europe', 'offices' => 2, 'employees' => 95, 'customers' => 260],
+                        ['name' => 'Netherlands', 'code' => 'NL', 'region' => 'europe', 'offices' => 1, 'employees' => 65, 'customers' => 180],
+                        ['name' => 'China', 'code' => 'CN', 'region' => 'asia-pacific', 'offices' => 4, 'employees' => 320, 'customers' => 680],
+                        ['name' => 'Japan', 'code' => 'JP', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 210, 'customers' => 520],
+                        ['name' => 'Singapore', 'code' => 'SG', 'region' => 'asia-pacific', 'offices' => 2, 'employees' => 150, 'customers' => 380],
+                        ['name' => 'Australia', 'code' => 'AU', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 180, 'customers' => 420],
+                        ['name' => 'India', 'code' => 'IN', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 280, 'customers' => 620],
+                        ['name' => 'South Korea', 'code' => 'KR', 'region' => 'asia-pacific', 'offices' => 2, 'employees' => 140, 'customers' => 350],
+                        ['name' => 'Brazil', 'code' => 'BR', 'region' => 'latin-america', 'offices' => 3, 'employees' => 220, 'customers' => 480],
+                        ['name' => 'Argentina', 'code' => 'AR', 'region' => 'latin-america', 'offices' => 1, 'employees' => 65, 'customers' => 150],
+                        ['name' => 'Chile', 'code' => 'CL', 'region' => 'latin-america', 'offices' => 1, 'employees' => 55, 'customers' => 130],
+                        ['name' => 'UAE', 'code' => 'AE', 'region' => 'middle-east', 'offices' => 2, 'employees' => 120, 'customers' => 280],
+                        ['name' => 'Saudi Arabia', 'code' => 'SA', 'region' => 'middle-east', 'offices' => 1, 'employees' => 70, 'customers' => 160],
+                        ['name' => 'South Africa', 'code' => 'ZA', 'region' => 'africa', 'offices' => 2, 'employees' => 110, 'customers' => 250],
+                        ['name' => 'Nigeria', 'code' => 'NG', 'region' => 'africa', 'offices' => 1, 'employees' => 55, 'customers' => 130]
+                    ],
+                    'supportTitle' => 'Global Support, Local Expertise',
+                    'supportDescription' => 'No matter where you are, our local teams are ready to provide personalized support in your language and time zone.',
+                    'supportLink' => '/contact',
+                    'supportImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop',
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Global Updates',
+                        'description' => 'Subscribe to receive updates about our global expansion, new office openings, and international events.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 482,
+                'section_key' => 'globalCoverageMap',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Global Coverage',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Global Footprint'
+                    ],
+                    'description' => 'With a presence across 45+ countries and 6 continents, we deliver supply chain solutions wherever you need them.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'defaultViewMode' => 'map',
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'icon' => 'globe'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe']
+                    ],
+                    'countryCoverage' => [
+                        ['name' => 'United States', 'code' => 'US', 'region' => 'north-america', 'offices' => 8, 'employees' => 650, 'customers' => 1200, 'growth' => '+15%', 'mapX' => 320, 'mapY' => 260],
+                        ['name' => 'Canada', 'code' => 'CA', 'region' => 'north-america', 'offices' => 3, 'employees' => 180, 'customers' => 450, 'growth' => '+12%', 'mapX' => 290, 'mapY' => 240],
+                        ['name' => 'Mexico', 'code' => 'MX', 'region' => 'north-america', 'offices' => 2, 'employees' => 120, 'customers' => 280, 'growth' => '+20%', 'mapX' => 340, 'mapY' => 310],
+                        ['name' => 'United Kingdom', 'code' => 'GB', 'region' => 'europe', 'offices' => 4, 'employees' => 250, 'customers' => 580, 'growth' => '+10%', 'mapX' => 520, 'mapY' => 290],
+                        ['name' => 'Germany', 'code' => 'DE', 'region' => 'europe', 'offices' => 3, 'employees' => 200, 'customers' => 520, 'growth' => '+8%', 'mapX' => 540, 'mapY' => 285],
+                        ['name' => 'France', 'code' => 'FR', 'region' => 'europe', 'offices' => 2, 'employees' => 140, 'customers' => 380, 'growth' => '+14%', 'mapX' => 530, 'mapY' => 300],
+                        ['name' => 'Italy', 'code' => 'IT', 'region' => 'europe', 'offices' => 2, 'employees' => 110, 'customers' => 290, 'growth' => '+11%', 'mapX' => 560, 'mapY' => 310],
+                        ['name' => 'Spain', 'code' => 'ES', 'region' => 'europe', 'offices' => 2, 'employees' => 95, 'customers' => 260, 'growth' => '+16%', 'mapX' => 510, 'mapY' => 320],
+                        ['name' => 'Netherlands', 'code' => 'NL', 'region' => 'europe', 'offices' => 1, 'employees' => 65, 'customers' => 180, 'growth' => '+22%', 'mapX' => 525, 'mapY' => 275],
+                        ['name' => 'China', 'code' => 'CN', 'region' => 'asia-pacific', 'offices' => 4, 'employees' => 320, 'customers' => 680, 'growth' => '+25%', 'mapX' => 800, 'mapY' => 290],
+                        ['name' => 'Japan', 'code' => 'JP', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 210, 'customers' => 520, 'growth' => '+9%', 'mapX' => 880, 'mapY' => 290],
+                        ['name' => 'Singapore', 'code' => 'SG', 'region' => 'asia-pacific', 'offices' => 2, 'employees' => 150, 'customers' => 380, 'growth' => '+18%', 'mapX' => 850, 'mapY' => 340],
+                        ['name' => 'Australia', 'code' => 'AU', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 180, 'customers' => 420, 'growth' => '+13%', 'mapX' => 980, 'mapY' => 420],
+                        ['name' => 'India', 'code' => 'IN', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 280, 'customers' => 620, 'growth' => '+32%', 'mapX' => 760, 'mapY' => 340],
+                        ['name' => 'South Korea', 'code' => 'KR', 'region' => 'asia-pacific', 'offices' => 2, 'employees' => 140, 'customers' => 350, 'growth' => '+17%', 'mapX' => 860, 'mapY' => 280],
+                        ['name' => 'Brazil', 'code' => 'BR', 'region' => 'latin-america', 'offices' => 3, 'employees' => 220, 'customers' => 480, 'growth' => '+21%', 'mapX' => 370, 'mapY' => 430],
+                        ['name' => 'Argentina', 'code' => 'AR', 'region' => 'latin-america', 'offices' => 1, 'employees' => 65, 'customers' => 150, 'growth' => '+15%', 'mapX' => 340, 'mapY' => 460],
+                        ['name' => 'Chile', 'code' => 'CL', 'region' => 'latin-america', 'offices' => 1, 'employees' => 55, 'customers' => 130, 'growth' => '+12%', 'mapX' => 330, 'mapY' => 470],
+                        ['name' => 'UAE', 'code' => 'AE', 'region' => 'middle-east', 'offices' => 2, 'employees' => 120, 'customers' => 280, 'growth' => '+28%', 'mapX' => 650, 'mapY' => 300],
+                        ['name' => 'Saudi Arabia', 'code' => 'SA', 'region' => 'middle-east', 'offices' => 1, 'employees' => 70, 'customers' => 160, 'growth' => '+24%', 'mapX' => 640, 'mapY' => 320],
+                        ['name' => 'South Africa', 'code' => 'ZA', 'region' => 'africa', 'offices' => 2, 'employees' => 110, 'customers' => 250, 'growth' => '+19%', 'mapX' => 580, 'mapY' => 450],
+                        ['name' => 'Nigeria', 'code' => 'NG', 'region' => 'africa', 'offices' => 1, 'employees' => 55, 'customers' => 130, 'growth' => '+30%', 'mapX' => 540, 'mapY' => 390]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Global Updates',
+                        'description' => 'Subscribe to receive updates about our global expansion, new office openings, and international events.',
+                        'disclaimer' => 'No spam, unsubscribe anytime. Get 1-2 emails per month.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 483,
+                'section_key' => 'globalCoverageMap',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Global Coverage',
+                    'title' => [
+                        'prefix' => 'Our',
+                        'highlight' => 'Global Footprint'
+                    ],
+                    'description' => 'With a presence across 45+ countries and 6 continents, we deliver supply chain solutions wherever you need them.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'tabs' => [
+                        ['id' => 'map', 'label' => 'Interactive Map', 'icon' => 'map'],
+                        ['id' => 'stats', 'label' => 'Global Statistics', 'icon' => 'chart'],
+                        ['id' => 'growth', 'label' => 'Growth Markets', 'icon' => 'trending'],
+                        ['id' => 'favorites', 'label' => 'Saved Countries', 'icon' => 'heart']
+                    ],
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'Global', 'icon' => 'globe', 'color' => '#3B82F6'],
+                        ['id' => 'north-america', 'label' => 'North America', 'icon' => 'globe', 'color' => '#3B82F6'],
+                        ['id' => 'europe', 'label' => 'Europe', 'icon' => 'globe', 'color' => '#8B5CF6'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'icon' => 'globe', 'color' => '#10B981'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'icon' => 'globe', 'color' => '#F97316'],
+                        ['id' => 'middle-east', 'label' => 'Middle East', 'icon' => 'globe', 'color' => '#EF4444'],
+                        ['id' => 'africa', 'label' => 'Africa', 'icon' => 'globe', 'color' => '#10B981']
+                    ],
+                    'countryCoverage' => [
+                        ['name' => 'United States', 'code' => 'US', 'region' => 'north-america', 'offices' => 8, 'employees' => 650, 'customers' => 1200, 'growth' => '+15%', 'marketShare' => '32%', 'mapX' => 320, 'mapY' => 260],
+                        ['name' => 'Canada', 'code' => 'CA', 'region' => 'north-america', 'offices' => 3, 'employees' => 180, 'customers' => 450, 'growth' => '+12%', 'marketShare' => '8%', 'mapX' => 290, 'mapY' => 240],
+                        ['name' => 'Mexico', 'code' => 'MX', 'region' => 'north-america', 'offices' => 2, 'employees' => 120, 'customers' => 280, 'growth' => '+20%', 'marketShare' => '5%', 'mapX' => 340, 'mapY' => 310],
+                        ['name' => 'United Kingdom', 'code' => 'GB', 'region' => 'europe', 'offices' => 4, 'employees' => 250, 'customers' => 580, 'growth' => '+10%', 'marketShare' => '15%', 'mapX' => 520, 'mapY' => 290],
+                        ['name' => 'Germany', 'code' => 'DE', 'region' => 'europe', 'offices' => 3, 'employees' => 200, 'customers' => 520, 'growth' => '+8%', 'marketShare' => '14%', 'mapX' => 540, 'mapY' => 285],
+                        ['name' => 'France', 'code' => 'FR', 'region' => 'europe', 'offices' => 2, 'employees' => 140, 'customers' => 380, 'growth' => '+14%', 'marketShare' => '10%', 'mapX' => 530, 'mapY' => 300],
+                        ['name' => 'China', 'code' => 'CN', 'region' => 'asia-pacific', 'offices' => 4, 'employees' => 320, 'customers' => 680, 'growth' => '+25%', 'marketShare' => '18%', 'mapX' => 800, 'mapY' => 290],
+                        ['name' => 'Japan', 'code' => 'JP', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 210, 'customers' => 520, 'growth' => '+9%', 'marketShare' => '14%', 'mapX' => 880, 'mapY' => 290],
+                        ['name' => 'Singapore', 'code' => 'SG', 'region' => 'asia-pacific', 'offices' => 2, 'employees' => 150, 'customers' => 380, 'growth' => '+18%', 'marketShare' => '10%', 'mapX' => 850, 'mapY' => 340],
+                        ['name' => 'India', 'code' => 'IN', 'region' => 'asia-pacific', 'offices' => 3, 'employees' => 280, 'customers' => 620, 'growth' => '+32%', 'marketShare' => '16%', 'mapX' => 760, 'mapY' => 340],
+                        ['name' => 'Brazil', 'code' => 'BR', 'region' => 'latin-america', 'offices' => 3, 'employees' => 220, 'customers' => 480, 'growth' => '+21%', 'marketShare' => '35%', 'mapX' => 370, 'mapY' => 430],
+                        ['name' => 'UAE', 'code' => 'AE', 'region' => 'middle-east', 'offices' => 2, 'employees' => 120, 'customers' => 280, 'growth' => '+28%', 'marketShare' => '25%', 'mapX' => 650, 'mapY' => 300],
+                        ['name' => 'South Africa', 'code' => 'ZA', 'region' => 'africa', 'offices' => 2, 'employees' => 110, 'customers' => 250, 'growth' => '+19%', 'marketShare' => '30%', 'mapX' => 580, 'mapY' => 450]
+                    ],
+                    'showNewsletter' => true,
+                    'newsletter' => [
+                        'title' => 'Global Updates',
+                        'description' => 'Subscribe to receive updates about our global expansion, new office openings, and international events.',
+                        'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 484,
+                'section_key' => 'globalCoverageMap',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+        ];
+
+
+        // Add the new Services variants
+        DB::table('section_variants')->upsert(
+            $variants,
+            ['section_key', 'variant'],
+            ['config', 'updated_at']
+        );
+    }
+}
