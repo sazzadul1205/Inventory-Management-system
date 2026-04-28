@@ -353,13 +353,20 @@ const DocumentationSection3 = ({ config }) => {
   // Code Playground
   const executePlayground = () => {
     setPlaygroundOutput('Running...');
+
     setTimeout(() => {
       try {
         if (playgroundLanguage === 'javascript') {
-          const result = eval(playgroundCode);
+          const safeExecute = (code) => {
+            return Function(`"use strict"; return (${code})`)();
+          };
+
+          const result = safeExecute(playgroundCode);
           setPlaygroundOutput(String(result));
         } else {
-          setPlaygroundOutput(`[${playgroundLanguage.toUpperCase()} output simulation]\n\nYour code:\n${playgroundCode}`);
+          setPlaygroundOutput(
+            `[${playgroundLanguage.toUpperCase()} output simulation]\n\nYour code:\n${playgroundCode}`
+          );
         }
       } catch (error) {
         setPlaygroundOutput(`Error: ${error.message}`);

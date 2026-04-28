@@ -9,12 +9,26 @@ import React, { Suspense, lazy } from "react";
 | Loads CMS components automatically from /components folder
 */
 
-const load = (path, exportName = "default") =>
-  lazy(() =>
-    import(`../../../components/CMS_Items/${path}`).then((m) => ({
+const modules = import.meta.glob(
+  '../../../components/CMS_Items/**/*.{jsx,tsx}'
+);
+
+const load = (path, exportName = "default") => {
+  const key = `../../../components/CMS_Items/${path}.jsx`;
+
+  const importer = modules[key];
+
+  if (!importer) {
+    console.error(`Component not found: ${key}`);
+    return () => null;
+  }
+
+  return lazy(() =>
+    importer().then((m) => ({
       default: exportName === "default" ? m.default : m[exportName],
     }))
   );
+};
 
 /*
 |--------------------------------------------------------------------------

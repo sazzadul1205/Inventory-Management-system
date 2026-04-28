@@ -217,16 +217,24 @@ const DocumentationSection2 = ({ config }) => {
   };
 
   // Code Playground - Execute code
+  // Code Playground - Execute code
   const executePlayground = () => {
     setPlaygroundOutput('Running...');
+
     setTimeout(() => {
       try {
-        // Simple JavaScript evaluation for demo
         if (playgroundLanguage === 'javascript') {
-          const result = eval(playgroundCode);
+          const safeExecute = (code) => {
+            return Function(`"use strict"; return (${code})`)();
+          };
+
+          const result = safeExecute(playgroundCode);
           setPlaygroundOutput(String(result));
         } else {
-          setPlaygroundOutput(`[${playgroundLanguage.toUpperCase()} output simulation]\n\nCode execution would happen here in a real environment.\n\nYour code:\n${playgroundCode}`);
+          setPlaygroundOutput(
+            `[${playgroundLanguage.toUpperCase()} output simulation]\n\n` +
+            `Code execution would happen here in a real environment.\n\nYour code:\n${playgroundCode}`
+          );
         }
       } catch (error) {
         setPlaygroundOutput(`Error: ${error.message}`);

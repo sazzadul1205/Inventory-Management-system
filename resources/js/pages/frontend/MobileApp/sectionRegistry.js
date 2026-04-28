@@ -5,13 +5,6 @@ import { lazy } from 'react';
 
 // Components Registry
 export const sectionRegistry = {
-    // subscribeForm
-    subscribeForm: {
-        variant1: lazy(() => import('./SubscribeFormSection/SubscribeFormSection1')),
-        variant2: lazy(() => import('./SubscribeFormSection/SubscribeFormSection2')),
-        variant3: lazy(() => import('./SubscribeFormSection/SubscribeFormSection3')),
-    },
-
     // appFeatures
     appFeatures: {
         variant1: lazy(() => import('./AppFeaturesSection/AppFeaturesSection1')),

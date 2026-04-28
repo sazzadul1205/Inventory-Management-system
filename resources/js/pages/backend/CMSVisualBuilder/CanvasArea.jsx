@@ -28,187 +28,187 @@ const loadComponent = (componentType) => {
   switch (componentType) {
     // Containers
     case 'CMS_Container':
-      Component = lazy(() => import('../../../components/CMS_Container'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Container'));
       break;
     case 'CMS_Grid':
       Component = lazy(() =>
-        import('../../../components/CMS_Container').then(m => ({ default: m.CMS_Grid }))
+        import('../../../components/CMS_Items/CMS_Container').then(m => ({ default: m.CMS_Grid }))
       );
       break;
     case 'CMS_Flex':
       Component = lazy(() =>
-        import('../../../components/CMS_Container').then(m => ({ default: m.CMS_Flex }))
+        import('../../../components/CMS_Items/CMS_Container').then(m => ({ default: m.CMS_Flex }))
       );
       break;
     case 'CMS_Section':
       Component = lazy(() =>
-        import('../../../components/CMS_Container').then(m => ({ default: m.CMS_Section }))
+        import('../../../components/CMS_Items/CMS_Container').then(m => ({ default: m.CMS_Section }))
       );
       break;
 
     // Cards
     case 'CMS_Card':
-      Component = lazy(() => import('../../../components/CMS_Card'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Card'));
       break;
 
     // Dividers
     case 'CMS_Divider':
-      Component = lazy(() => import('../../../components/CMS_Divider'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Divider'));
       break;
     case 'CMS_DividerWithText':
       Component = lazy(() =>
-        import('../../../components/CMS_Divider').then(m => ({ default: m.CMS_DividerWithText }))
+        import('../../../components/CMS_Items/CMS_Divider').then(m => ({ default: m.CMS_DividerWithText }))
       );
       break;
     case 'CMS_DividerWithIcon':
       Component = lazy(() =>
-        import('../../../components/CMS_Divider').then(m => ({ default: m.CMS_DividerWithIcon }))
+        import('../../../components/CMS_Items/CMS_Divider').then(m => ({ default: m.CMS_DividerWithIcon }))
       );
       break;
     case 'CMS_VerticalDivider':
       Component = lazy(() =>
-        import('../../../components/CMS_Divider').then(m => ({ default: m.CMS_VerticalDivider }))
+        import('../../../components/CMS_Items/CMS_Divider').then(m => ({ default: m.CMS_VerticalDivider }))
       );
       break;
     case 'CMS_GradientDivider':
       Component = lazy(() =>
-        import('../../../components/CMS_Divider').then(m => ({ default: m.CMS_GradientDivider }))
+        import('../../../components/CMS_Items/CMS_Divider').then(m => ({ default: m.CMS_GradientDivider }))
       );
       break;
     case 'CMS_DashedDivider':
       Component = lazy(() =>
-        import('../../../components/CMS_Divider').then(m => ({ default: m.CMS_DashedDivider }))
+        import('../../../components/CMS_Items/CMS_Divider').then(m => ({ default: m.CMS_DashedDivider }))
       );
       break;
 
     // Lists
     case 'CMS_List':
-      Component = lazy(() => import('../../../components/CMS_List'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_List'));
       break;
     case 'CMS_ListItem':
       Component = lazy(() =>
-        import('../../../components/CMS_List').then(m => ({ default: m.CMS_ListItem }))
+        import('../../../components/CMS_Items/CMS_List').then(m => ({ default: m.CMS_ListItem }))
       );
       break;
     case 'CMS_IconList':
       Component = lazy(() =>
-        import('../../../components/CMS_List').then(m => ({ default: m.CMS_IconList }))
+        import('../../../components/CMS_Items/CMS_List').then(m => ({ default: m.CMS_IconList }))
       );
       break;
 
     // Typography
     case 'CMS_Title':
-      Component = lazy(() => import('../../../components/CMS_Title'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Title'));
       break;
     case 'CMS_H1':
       Component = lazy(() =>
-        import('../../../components/CMS_Title').then(m => ({ default: m.CMS_H1 }))
+        import('../../../components/CMS_Items/CMS_Title').then(m => ({ default: m.CMS_H1 }))
       );
       break;
     case 'CMS_H2':
       Component = lazy(() =>
-        import('../../../components/CMS_Title').then(m => ({ default: m.CMS_H2 }))
+        import('../../../components/CMS_Items/CMS_Title').then(m => ({ default: m.CMS_H2 }))
       );
       break;
     case 'CMS_H3':
       Component = lazy(() =>
-        import('../../../components/CMS_Title').then(m => ({ default: m.CMS_H3 }))
+        import('../../../components/CMS_Items/CMS_Title').then(m => ({ default: m.CMS_H3 }))
       );
       break;
     case 'CMS_H4':
       Component = lazy(() =>
-        import('../../../components/CMS_Title').then(m => ({ default: m.CMS_H4 }))
+        import('../../../components/CMS_Items/CMS_Title').then(m => ({ default: m.CMS_H4 }))
       );
       break;
     case 'CMS_Text':
-      Component = lazy(() => import('../../../components/CMS_Text'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Text'));
       break;
     case 'CMS_Paragraph':
       Component = lazy(() =>
-        import('../../../components/CMS_Text').then(m => ({ default: m.CMS_Paragraph }))
+        import('../../../components/CMS_Items/CMS_Text').then(m => ({ default: m.CMS_Paragraph }))
       );
       break;
     case 'CMS_Span':
       Component = lazy(() =>
-        import('../../../components/CMS_Text').then(m => ({ default: m.CMS_Span }))
+        import('../../../components/CMS_Items/CMS_Text').then(m => ({ default: m.CMS_Span }))
       );
       break;
     case 'CMS_Quote':
       Component = lazy(() =>
-        import('../../../components/CMS_Text').then(m => ({ default: m.CMS_Quote }))
+        import('../../../components/CMS_Items/CMS_Text').then(m => ({ default: m.CMS_Quote }))
       );
       break;
     case 'CMS_Code':
       Component = lazy(() =>
-        import('../../../components/CMS_Text').then(m => ({ default: m.CMS_Code }))
+        import('../../../components/CMS_Items/CMS_Text').then(m => ({ default: m.CMS_Code }))
       );
       break;
     case 'CMS_Label':
       Component = lazy(() =>
-        import('../../../components/CMS_Text').then(m => ({ default: m.CMS_Label }))
+        import('../../../components/CMS_Items/CMS_Text').then(m => ({ default: m.CMS_Label }))
       );
       break;
     case 'CMS_TextListItem':
       Component = lazy(() =>
-        import('../../../components/CMS_Text').then(m => ({ default: m.CMS_ListItem }))
+        import('../../../components/CMS_Items/CMS_Text').then(m => ({ default: m.CMS_ListItem }))
       );
       break;
 
     // Interactive
     case 'CMS_Button':
-      Component = lazy(() => import('../../../components/CMS_Button'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Button'));
       break;
     case 'CMS_Badge':
-      Component = lazy(() => import('../../../components/CMS_Badge'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Badge'));
       break;
 
     // Media
     case 'CMS_Media':
-      Component = lazy(() => import('../../../components/CMS_Media'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Media'));
       break;
     case 'CMS_Image':
       Component = lazy(() =>
-        import('../../../components/CMS_Media').then(m => ({ default: m.CMS_Image }))
+        import('../../../components/CMS_Items/CMS_Media').then(m => ({ default: m.CMS_Image }))
       );
       break;
     case 'CMS_Video':
       Component = lazy(() =>
-        import('../../../components/CMS_Media').then(m => ({ default: m.CMS_Video }))
+        import('../../../components/CMS_Items/CMS_Media').then(m => ({ default: m.CMS_Video }))
       );
       break;
     case 'CMS_YouTube':
       Component = lazy(() =>
-        import('../../../components/CMS_Media').then(m => ({ default: m.CMS_YouTube }))
+        import('../../../components/CMS_Items/CMS_Media').then(m => ({ default: m.CMS_YouTube }))
       );
       break;
     case 'CMS_Vimeo':
       Component = lazy(() =>
-        import('../../../components/CMS_Media').then(m => ({ default: m.CMS_Vimeo }))
+        import('../../../components/CMS_Items/CMS_Media').then(m => ({ default: m.CMS_Vimeo }))
       );
       break;
 
     // Data
     case 'CMS_Table':
-      Component = lazy(() => import('../../../components/CMS_Table'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Table'));
       break;
 
     // Forms
     case 'CMS_Input':
-      Component = lazy(() => import('../../../components/CMS_Input'));
+      Component = lazy(() => import('../../../components/CMS_Items/CMS_Input'));
       break;
     case 'CMS_Textarea':
       Component = lazy(() =>
-        import('../../../components/CMS_Input').then(m => ({ default: m.CMS_Textarea }))
+        import('../../../components/CMS_Items/CMS_Input').then(m => ({ default: m.CMS_Textarea }))
       );
       break;
     case 'CMS_InputGroup':
       Component = lazy(() =>
-        import('../../../components/CMS_Input').then(m => ({ default: m.CMS_InputGroup }))
+        import('../../../components/CMS_Items/CMS_Input').then(m => ({ default: m.CMS_InputGroup }))
       );
       break;
     case 'CMS_InputAddon':
       Component = lazy(() =>
-        import('../../../components/CMS_Input').then(m => ({ default: m.CMS_InputAddon }))
+        import('../../../components/CMS_Items/CMS_Input').then(m => ({ default: m.CMS_InputAddon }))
       );
       break;
 
