@@ -28,6 +28,7 @@ use Database\Seeders\PageRelatedSeeders\SectionVariantSeeder\{
     WhyChooseUsPageSectionVariantSeeder,
     PricingPlansPageSectionVariantSeeder,
     TestimonialsPageSectionVariantSeeder,
+    TrustSignalsPageSectionVariantSeeder,
     SuccessStoriesPageSectionVariantSeeder,
     GlobalPresencePageSectionVariantSeeder,
 };
@@ -97,6 +98,7 @@ class DatabaseSeeder extends Seeder
         WhyChooseUsPageSectionVariantSeeder::class,
         PricingPlansPageSectionVariantSeeder::class,
         TestimonialsPageSectionVariantSeeder::class,
+        TrustSignalsPageSectionVariantSeeder::class,
         SuccessStoriesPageSectionVariantSeeder::class,
         GlobalPresencePageSectionVariantSeeder::class,
     ];
