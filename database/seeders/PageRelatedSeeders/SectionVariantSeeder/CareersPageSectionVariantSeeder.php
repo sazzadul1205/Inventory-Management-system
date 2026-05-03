@@ -1305,6 +1305,1854 @@ class CareersPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Life at Company Section 
+            [
+                'id' => 513,
+                'section_key' => 'lifeAtCompany',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Life at SupplyChainPro',
+                    'title' => [
+                        'prefix' => 'More Than Just',
+                        'highlight' => 'Work',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We\'re building a culture where innovation thrives, collaboration flourishes, and everyone feels valued. Join us and experience what makes SupplyChainPro a great place to work.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '500+', 'label' => 'Employees Worldwide', 'icon' => 'users'],
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '15+', 'label' => 'Years of Excellence', 'icon' => 'trophy'],
+                        ['value' => '95%', 'label' => 'Employee Satisfaction', 'icon' => 'star']
+                    ],
+                    'values' => [
+                        ['title' => 'Innovation First', 'description' => 'We embrace creativity and push boundaries to solve complex challenges.', 'icon' => 'bolt'],
+                        ['title' => 'Customer Obsession', 'description' => 'Our customers\' success is our success. We go above and beyond.', 'icon' => 'heart'],
+                        ['title' => 'One Team', 'description' => 'Collaboration and mutual respect drive our achievements.', 'icon' => 'users'],
+                        ['title' => 'Integrity Always', 'description' => 'We do the right thing, even when no one is watching.', 'icon' => 'shield']
+                    ],
+                    'perksTitle' => 'Perks & Benefits',
+                    'perks' => [
+                        ['title' => 'Remote-First Culture', 'description' => 'Work from anywhere with flexible hours and a global team.', 'icon' => 'wifi'],
+                        ['title' => 'Learning Stipend', 'description' => '$2,000 annual budget for courses, conferences, and books.', 'icon' => 'academic'],
+                        ['title' => 'Health & Wellness', 'description' => 'Comprehensive health coverage and gym reimbursement.', 'icon' => 'heart'],
+                        ['title' => 'Parental Leave', 'description' => 'Generous parental leave for all new parents.', 'icon' => 'gift'],
+                        ['title' => 'Team Offsites', 'description' => 'Quarterly team retreats in amazing locations.', 'icon' => 'globe'],
+                        ['title' => 'Stock Options', 'description' => 'Everyone is an owner with equity in the company.', 'icon' => 'chart']
+                    ],
+                    'testimonials' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Senior Software Engineer',
+                            'quote' => 'The culture here is truly special. I\'ve never worked in a place where I feel so supported and empowered to grow. The team genuinely cares about each other\'s success.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
+                            'location' => 'San Francisco, CA'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Michael Chen',
+                            'role' => 'Product Manager',
+                            'quote' => 'What I love most is the balance between hard work and fun. We\'re solving real problems, but we also take time to celebrate wins and enjoy each other\'s company.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+                            'location' => 'New York, NY'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Customer Success Lead',
+                            'quote' => 'From day one, I felt welcomed. The mentorship program helped me grow, and the flexible work culture has been a game-changer for my work-life balance.',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
+                            'location' => 'Austin, TX'
+                        ]
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Moments', 'icon' => 'camera'],
+                        ['id' => 'culture', 'label' => 'Culture', 'icon' => 'users'],
+                        ['id' => 'events', 'label' => 'Events', 'icon' => 'calendar'],
+                        ['id' => 'office', 'label' => 'Office Life', 'icon' => 'building'],
+                        ['id' => 'volunteer', 'label' => 'Volunteer', 'icon' => 'heart'],
+                        ['id' => 'celebrations', 'label' => 'Celebrations', 'icon' => 'gift']
+                    ],
+                    'galleryImages' => [
+                        ['src' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop', 'alt' => 'Team collaboration', 'caption' => 'Team brainstorming session', 'description' => 'Our engineering team collaborating on a new feature.', 'category' => 'culture'],
+                        ['src' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop', 'alt' => 'Office celebration', 'caption' => 'Company anniversary celebration', 'description' => 'Celebrating 10 years of innovation together.', 'category' => 'celebrations'],
+                        ['src' => 'https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=800&h=600&fit=crop', 'alt' => 'Volunteer event', 'caption' => 'Giving back to the community', 'description' => 'Volunteering at local food bank.', 'category' => 'volunteer'],
+                        ['src' => 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=600&fit=crop', 'alt' => 'Modern office', 'caption' => 'Our creative workspace', 'description' => 'Open and collaborative office environment.', 'category' => 'office'],
+                        ['src' => 'https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=800&h=600&fit=crop', 'alt' => 'Team event', 'caption' => 'Annual company retreat', 'description' => 'Team building activities in nature.', 'category' => 'events'],
+                        ['src' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop', 'alt' => 'Office culture', 'caption' => 'Casual Friday vibes', 'description' => 'Relaxed atmosphere with team bonding.', 'category' => 'culture']
+                    ],
+                    'ctaTitle' => 'Ready to Join Us?',
+                    'ctaDescription' => 'Explore open positions and become part of a team that\'s transforming supply chains worldwide.',
+                    'openingsLink' => '/careers/openings',
+                    'cultureLink' => '/careers/culture',
+                    'ctaImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 514,
+                'section_key' => 'lifeAtCompany',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Life at SupplyChainPro',
+                    'title' => [
+                        'prefix' => 'More Than Just',
+                        'highlight' => 'Work'
+                    ],
+                    'description' => 'We\'re building a culture where innovation thrives, collaboration flourishes, and everyone feels valued. Join us and experience what makes SupplyChainPro a great place to work.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        ['value' => '500+', 'label' => 'Employees Worldwide', 'icon' => 'users', 'trend' => '+15%', 'trendUp' => true],
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe', 'trend' => '+5', 'trendUp' => true],
+                        ['value' => '15+', 'label' => 'Years of Excellence', 'icon' => 'trophy', 'trend' => '15', 'trendUp' => true],
+                        ['value' => '95%', 'label' => 'Employee Satisfaction', 'icon' => 'star', 'trend' => '+2%', 'trendUp' => true]
+                    ],
+                    'featuredMoments' => [
+                        [
+                            'id' => 'featured-001',
+                            'src' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop',
+                            'alt' => 'Team collaboration',
+                            'caption' => 'Team Brainstorming Session',
+                            'description' => 'Our engineering team collaborating on a new supply chain optimization feature.',
+                            'category' => 'culture',
+                            'date' => 'March 15, 2024',
+                            'likes' => 234,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'featured-002',
+                            'src' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=600&fit=crop',
+                            'alt' => 'Office celebration',
+                            'caption' => 'Company Anniversary Celebration',
+                            'description' => 'Celebrating 10 years of innovation and growth together.',
+                            'category' => 'celebrations',
+                            'date' => 'February 10, 2024',
+                            'likes' => 312,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'featured-003',
+                            'src' => 'https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=1200&h=600&fit=crop',
+                            'alt' => 'Volunteer event',
+                            'caption' => 'Giving Back to Our Community',
+                            'description' => 'Volunteering at the local food bank with our amazing team.',
+                            'category' => 'volunteer',
+                            'date' => 'January 20, 2024',
+                            'likes' => 187,
+                            'isFeatured' => true
+                        ]
+                    ],
+                    'values' => [
+                        ['title' => 'Innovation First', 'description' => 'We embrace creativity and push boundaries to solve complex challenges.', 'icon' => 'bolt', 'trend' => '+45%', 'trendUp' => true],
+                        ['title' => 'Customer Obsession', 'description' => 'Our customers\' success is our success. We go above and beyond.', 'icon' => 'heart', 'trend' => '4.9/5', 'trendUp' => true],
+                        ['title' => 'One Team', 'description' => 'Collaboration and mutual respect drive our achievements.', 'icon' => 'users', 'trend' => '98%', 'trendUp' => true],
+                        ['title' => 'Integrity Always', 'description' => 'We do the right thing, even when no one is watching.', 'icon' => 'shield', 'trend' => '0', 'trendUp' => true]
+                    ],
+                    'perksTitle' => 'Perks & Benefits',
+                    'perks' => [
+                        ['title' => 'Remote-First Culture', 'description' => 'Work from anywhere with flexible hours and a global team.', 'icon' => 'wifi'],
+                        ['title' => 'Learning Stipend', 'description' => '$2,000 annual budget for courses, conferences, and books.', 'icon' => 'academic'],
+                        ['title' => 'Health & Wellness', 'description' => 'Comprehensive health coverage and gym reimbursement.', 'icon' => 'heart'],
+                        ['title' => 'Parental Leave', 'description' => 'Generous parental leave for all new parents.', 'icon' => 'gift'],
+                        ['title' => 'Team Offsites', 'description' => 'Quarterly team retreats in amazing locations.', 'icon' => 'globe'],
+                        ['title' => 'Stock Options', 'description' => 'Everyone is an owner with equity in the company.', 'icon' => 'chart']
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Senior Software Engineer',
+                            'quote' => 'The culture here is truly special. I\'ve never worked in a place where I feel so supported and empowered to grow.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                            'location' => 'San Francisco, CA'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Product Manager',
+                            'quote' => 'What I love most is the balance between hard work and fun. We\'re solving real problems, but we also take time to celebrate wins.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                            'location' => 'New York, NY'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Customer Success Lead',
+                            'quote' => 'From day one, I felt welcomed. The mentorship program helped me grow, and the flexible work culture has been a game-changer.',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                            'location' => 'Austin, TX'
+                        ]
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Moments', 'icon' => 'camera'],
+                        ['id' => 'culture', 'label' => 'Culture', 'icon' => 'users'],
+                        ['id' => 'events', 'label' => 'Events', 'icon' => 'calendar'],
+                        ['id' => 'office', 'label' => 'Office Life', 'icon' => 'building'],
+                        ['id' => 'volunteer', 'label' => 'Volunteer', 'icon' => 'heart'],
+                        ['id' => 'celebrations', 'label' => 'Celebrations', 'icon' => 'gift']
+                    ],
+                    'galleryImages' => [
+                        [
+                            'id' => 'img-001',
+                            'src' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
+                            'alt' => 'Team collaboration',
+                            'caption' => 'Team brainstorming session',
+                            'description' => 'Our engineering team collaborating on a new feature.',
+                            'category' => 'culture',
+                            'date' => 'March 15, 2024',
+                            'likes' => 234,
+                            'views' => 1234,
+                            'tags' => ['teamwork', 'collaboration', 'engineering']
+                        ],
+                        [
+                            'id' => 'img-002',
+                            'src' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop',
+                            'alt' => 'Office celebration',
+                            'caption' => 'Company anniversary celebration',
+                            'description' => 'Celebrating 10 years of innovation together.',
+                            'category' => 'celebrations',
+                            'date' => 'February 10, 2024',
+                            'likes' => 312,
+                            'views' => 2100,
+                            'tags' => ['celebration', 'anniversary', 'team'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'img-003',
+                            'src' => 'https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=800&h=600&fit=crop',
+                            'alt' => 'Volunteer event',
+                            'caption' => 'Giving back to the community',
+                            'description' => 'Volunteering at local food bank.',
+                            'category' => 'volunteer',
+                            'date' => 'January 20, 2024',
+                            'likes' => 187,
+                            'views' => 987,
+                            'tags' => ['volunteer', 'community', 'giving back']
+                        ],
+                        [
+                            'id' => 'img-004',
+                            'src' => 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=600&fit=crop',
+                            'alt' => 'Modern office',
+                            'caption' => 'Our creative workspace',
+                            'description' => 'Open and collaborative office environment.',
+                            'category' => 'office',
+                            'date' => 'March 5, 2024',
+                            'likes' => 156,
+                            'views' => 876,
+                            'tags' => ['office', 'workspace', 'creative']
+                        ],
+                        [
+                            'id' => 'img-005',
+                            'src' => 'https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=800&h=600&fit=crop',
+                            'alt' => 'Team event',
+                            'caption' => 'Annual company retreat',
+                            'description' => 'Team building activities in nature.',
+                            'category' => 'events',
+                            'date' => 'December 10, 2023',
+                            'likes' => 234,
+                            'views' => 1543,
+                            'tags' => ['retreat', 'team building', 'events']
+                        ],
+                        [
+                            'id' => 'img-006',
+                            'src' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop',
+                            'alt' => 'Office culture',
+                            'caption' => 'Casual Friday vibes',
+                            'description' => 'Relaxed atmosphere with team bonding.',
+                            'category' => 'culture',
+                            'date' => 'February 25, 2024',
+                            'likes' => 198,
+                            'views' => 1100,
+                            'tags' => ['culture', 'casual friday', 'team bonding']
+                        ]
+                    ],
+                    'openingsLink' => '/careers/openings',
+                    'cultureLink' => '/careers/culture'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 515,
+                'section_key' => 'lifeAtCompany',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Life at SupplyChainPro',
+                    'title' => [
+                        'prefix' => 'More Than Just',
+                        'highlight' => 'Work'
+                    ],
+                    'description' => 'We\'re building a culture where innovation thrives, collaboration flourishes, and everyone feels valued. Join us and experience what makes SupplyChainPro a great place to work.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '500+', 'label' => 'Employees Worldwide', 'icon' => 'users'],
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '15+', 'label' => 'Years of Excellence', 'icon' => 'trophy'],
+                        ['value' => '95%', 'label' => 'Employee Satisfaction', 'icon' => 'star']
+                    ],
+                    'autoPlayCarousel' => true,
+                    'featuredMoments' => [
+                        [
+                            'id' => 'featured-001',
+                            'src' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop',
+                            'alt' => 'Team collaboration',
+                            'caption' => 'Team Brainstorming Session',
+                            'description' => 'Our engineering team collaborating on a new supply chain optimization feature.',
+                            'category' => 'culture',
+                            'type' => 'image',
+                            'date' => 'March 15, 2024',
+                            'likes' => 234,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'featured-002',
+                            'src' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=600&fit=crop',
+                            'alt' => 'Office celebration',
+                            'caption' => 'Company Anniversary Celebration',
+                            'description' => 'Celebrating 10 years of innovation and growth together.',
+                            'category' => 'celebrations',
+                            'type' => 'image',
+                            'date' => 'February 10, 2024',
+                            'likes' => 312,
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'featured-003',
+                            'src' => 'https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=1200&h=600&fit=crop',
+                            'alt' => 'Volunteer event',
+                            'caption' => 'Giving Back to Our Community',
+                            'description' => 'Volunteering at the local food bank with our amazing team.',
+                            'category' => 'volunteer',
+                            'type' => 'image',
+                            'date' => 'January 20, 2024',
+                            'likes' => 187,
+                            'isFeatured' => true
+                        ]
+                    ],
+                    'categories' => [
+                        ['id' => 'all', 'label' => 'All Moments', 'icon' => 'camera'],
+                        ['id' => 'culture', 'label' => 'Culture', 'icon' => 'users'],
+                        ['id' => 'events', 'label' => 'Events', 'icon' => 'calendar'],
+                        ['id' => 'office', 'label' => 'Office Life', 'icon' => 'building'],
+                        ['id' => 'volunteer', 'label' => 'Volunteer', 'icon' => 'heart'],
+                        ['id' => 'celebrations', 'label' => 'Celebrations', 'icon' => 'gift']
+                    ],
+                    'values' => [
+                        [
+                            'title' => 'Innovation First',
+                            'description' => 'We embrace creativity and push boundaries to solve complex challenges.',
+                            'icon' => 'bolt',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'quote' => 'Innovation is at the heart of everything we do.',
+                            'author' => 'Sarah Johnson, CTO',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Customer Obsession',
+                            'description' => 'Our customers\' success is our success. We go above and beyond.',
+                            'icon' => 'heart',
+                            'gradient' => 'from-rose-500 to-pink-500',
+                            'quote' => 'We put our customers first in every decision.',
+                            'author' => 'Michael Chen, VP of Product',
+                            'image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'One Team',
+                            'description' => 'Collaboration and mutual respect drive our achievements.',
+                            'icon' => 'users',
+                            'gradient' => 'from-purple-500 to-indigo-500',
+                            'quote' => 'Together we achieve more than we ever could alone.',
+                            'author' => 'Emily Rodriguez, Engineering Lead',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Integrity Always',
+                            'description' => 'We do the right thing, even when no one is watching.',
+                            'icon' => 'shield',
+                            'gradient' => 'from-emerald-500 to-green-500',
+                            'quote' => 'Trust is our most valuable currency.',
+                            'author' => 'David Kim, Head of Operations',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'employeeStories' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Senior Software Engineer',
+                            'location' => 'San Francisco, CA',
+                            'quote' => 'The culture here is truly special. I\'ve never worked in a place where I feel so supported and empowered to grow.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                            'tenure' => '3 years',
+                            'rating' => 5,
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Product Manager',
+                            'location' => 'New York, NY',
+                            'quote' => 'What I love most is the balance between hard work and fun. We\'re solving real problems, but we also take time to celebrate wins.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                            'tenure' => '2 years',
+                            'rating' => 5,
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Customer Success Lead',
+                            'location' => 'Austin, TX',
+                            'quote' => 'From day one, I felt welcomed. The mentorship program helped me grow, and the flexible work culture has been a game-changer.',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                            'tenure' => '1.5 years',
+                            'rating' => 5,
+                            'image' => 'https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'galleryImages' => [
+                        [
+                            'id' => 'img-001',
+                            'src' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
+                            'alt' => 'Team collaboration',
+                            'caption' => 'Team brainstorming session',
+                            'description' => 'Our engineering team collaborating on a new feature.',
+                            'category' => 'culture',
+                            'type' => 'image',
+                            'date' => 'March 15, 2024',
+                            'views' => 1234,
+                            'likes' => 234,
+                            'tags' => ['teamwork', 'collaboration', 'engineering']
+                        ],
+                        [
+                            'id' => 'img-002',
+                            'src' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop',
+                            'alt' => 'Office celebration',
+                            'caption' => 'Company anniversary celebration',
+                            'description' => 'Celebrating 10 years of innovation together.',
+                            'category' => 'celebrations',
+                            'type' => 'image',
+                            'date' => 'February 10, 2024',
+                            'views' => 2100,
+                            'likes' => 312,
+                            'tags' => ['celebration', 'anniversary', 'team'],
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'img-003',
+                            'src' => 'https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=800&h=600&fit=crop',
+                            'alt' => 'Volunteer event',
+                            'caption' => 'Giving back to the community',
+                            'description' => 'Volunteering at local food bank.',
+                            'category' => 'volunteer',
+                            'type' => 'image',
+                            'date' => 'January 20, 2024',
+                            'views' => 987,
+                            'likes' => 187,
+                            'tags' => ['volunteer', 'community', 'giving back']
+                        ],
+                        [
+                            'id' => 'img-004',
+                            'src' => 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=600&fit=crop',
+                            'alt' => 'Modern office',
+                            'caption' => 'Our creative workspace',
+                            'description' => 'Open and collaborative office environment.',
+                            'category' => 'office',
+                            'type' => 'image',
+                            'date' => 'March 5, 2024',
+                            'views' => 876,
+                            'likes' => 156,
+                            'tags' => ['office', 'workspace', 'creative']
+                        ],
+                        [
+                            'id' => 'img-005',
+                            'src' => 'https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=800&h=600&fit=crop',
+                            'alt' => 'Team event',
+                            'caption' => 'Annual company retreat',
+                            'description' => 'Team building activities in nature.',
+                            'category' => 'events',
+                            'type' => 'image',
+                            'date' => 'December 10, 2023',
+                            'views' => 1543,
+                            'likes' => 234,
+                            'tags' => ['retreat', 'team building', 'events']
+                        ],
+                        [
+                            'id' => 'img-006',
+                            'src' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop',
+                            'alt' => 'Office culture',
+                            'caption' => 'Casual Friday vibes',
+                            'description' => 'Relaxed atmosphere with team bonding.',
+                            'category' => 'culture',
+                            'type' => 'image',
+                            'date' => 'February 25, 2024',
+                            'views' => 1100,
+                            'likes' => 198,
+                            'tags' => ['culture', 'casual friday', 'team bonding']
+                        ]
+                    ],
+                    'openingsLink' => '/careers/openings',
+                    'cultureLink' => '/careers/culture'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 516,
+                'section_key' => 'lifeAtCompany',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Internship Programs Section 
+            [
+                'id' => 517,
+                'section_key' => 'internshipPrograms',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Internship Programs',
+                    'title' => [
+                        'prefix' => 'Launch Your',
+                        'highlight' => 'Career',
+                        'suffix' => 'with Us'
+                    ],
+                    'description' => 'Gain real-world experience, work on impactful projects, and learn from industry experts. Our internship programs are designed to help you grow and succeed.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search programs by title, department, or skills...',
+                    'stats' => [
+                        ['value' => '200+', 'label' => 'Interns Hired', 'icon' => 'users'],
+                        ['value' => '85%', 'label' => 'Conversion Rate', 'icon' => 'trophy'],
+                        ['value' => '15+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '4.9', 'label' => 'Program Rating', 'icon' => 'star']
+                    ],
+                    'programTypes' => [
+                        ['id' => 'all', 'label' => 'All Programs', 'icon' => 'academic'],
+                        ['id' => 'engineering', 'label' => 'Software Engineering', 'icon' => 'code'],
+                        ['id' => 'product', 'label' => 'Product Management', 'icon' => 'briefcase'],
+                        ['id' => 'data', 'label' => 'Data Science & Analytics', 'icon' => 'chart'],
+                        ['id' => 'marketing', 'label' => 'Marketing', 'icon' => 'trending'],
+                        ['id' => 'design', 'label' => 'Product Design', 'icon' => 'template']
+                    ],
+                    'locations' => [
+                        ['id' => 'all', 'label' => 'All Locations', 'flag' => '🌐'],
+                        ['id' => 'remote', 'label' => 'Remote', 'flag' => '🌍'],
+                        ['id' => 'sf', 'label' => 'San Francisco, CA', 'flag' => '🇺🇸'],
+                        ['id' => 'nyc', 'label' => 'New York, NY', 'flag' => '🇺🇸'],
+                        ['id' => 'london', 'label' => 'London, UK', 'flag' => '🇬🇧'],
+                        ['id' => 'bangalore', 'label' => 'Bangalore, India', 'flag' => '🇮🇳']
+                    ],
+                    'featuredProgram' => [
+                        'id' => 'prog-001',
+                        'title' => 'Software Engineering Intern',
+                        'type' => 'engineering',
+                        'location' => 'sf',
+                        'duration' => 'Summer (12 weeks)',
+                        'startDate' => 'June 3, 2024',
+                        'deadline' => 'Apply by March 15',
+                        'description' => 'Join our engineering team to build scalable supply chain solutions. Work on real-world projects, collaborate with experienced engineers, and gain hands-on experience with modern technologies including React, Node.js, and GraphQL.',
+                        'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                        'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop',
+                        'isFeatured' => true
+                    ],
+                    'programs' => [
+                        [
+                            'id' => 'prog-001',
+                            'title' => 'Software Engineering Intern',
+                            'type' => 'engineering',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'Apply by March 15',
+                            'description' => 'Join our engineering team to build scalable supply chain solutions. Work on real-world projects, collaborate with experienced engineers, and gain hands-on experience.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop',
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'prog-002',
+                            'title' => 'Product Management Intern',
+                            'type' => 'product',
+                            'location' => 'remote',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'Apply by March 15',
+                            'description' => 'Work closely with product leaders to define features, analyze user data, and help shape the future of our platform.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile', 'Communication'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-003',
+                            'title' => 'Data Science Intern',
+                            'type' => 'data',
+                            'location' => 'nyc',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'Apply by March 15',
+                            'description' => 'Apply machine learning and statistical techniques to solve complex supply chain problems and drive business insights.',
+                            'skills' => ['Python', 'SQL', 'Machine Learning', 'Statistics', 'Pandas', 'TensorFlow'],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-004',
+                            'title' => 'Marketing Intern',
+                            'type' => 'marketing',
+                            'location' => 'london',
+                            'duration' => 'Fall (12 weeks)',
+                            'startDate' => 'September 9, 2024',
+                            'deadline' => 'Apply by July 1',
+                            'description' => 'Support our marketing team in campaign execution, content creation, and social media strategy.',
+                            'skills' => ['Content Creation', 'Social Media', 'Analytics', 'SEO', 'Email Marketing'],
+                            'image' => 'https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-005',
+                            'title' => 'Product Design Intern',
+                            'type' => 'design',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'Apply by March 15',
+                            'description' => 'Help design intuitive user experiences for our supply chain platform. Work alongside senior designers and product managers.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems'],
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-006',
+                            'title' => 'Sales Intern',
+                            'type' => 'sales',
+                            'location' => 'remote',
+                            'duration' => 'Year-Round (6 months)',
+                            'startDate' => 'Flexible',
+                            'deadline' => 'Rolling',
+                            'description' => 'Learn the fundamentals of B2B sales, support account executives, and help drive revenue growth.',
+                            'skills' => ['Communication', 'CRM', 'Lead Generation', 'Negotiation', 'Sales Process'],
+                            'image' => 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Software Engineering Intern',
+                            'university' => 'Stanford University',
+                            'quote' => 'The internship program gave me real ownership over impactful projects. I learned more in 12 weeks than in a full semester of classes.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Product Management Intern',
+                            'university' => 'University of Michigan',
+                            'quote' => 'The mentorship and culture at SupplyChainPro are incredible. I felt valued from day one and received amazing guidance throughout.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Data Science Intern',
+                            'university' => 'UC Berkeley',
+                            'quote' => 'Working on real supply chain data and seeing my models in production was an incredible experience. I accepted my full-time offer!',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'formTitle' => 'Apply for Internship',
+                    'formDescription' => 'Fill out the form below and our recruiting team will review your application.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 518,
+                'section_key' => 'internshipPrograms',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Internship Programs',
+                    'title' => [
+                        'prefix' => 'Launch Your',
+                        'highlight' => 'Career',
+                        'suffix' => 'with Us'
+                    ],
+                    'description' => 'Gain real-world experience, work on impactful projects, and learn from industry experts. Our internship programs are designed to help you grow and succeed.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search programs by title, department, or skills...',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        ['value' => '200+', 'label' => 'Interns Hired', 'icon' => 'users', 'trend' => '+25%', 'trendUp' => true],
+                        ['value' => '85%', 'label' => 'Conversion Rate', 'icon' => 'trophy', 'trend' => '+5%', 'trendUp' => true],
+                        ['value' => '15+', 'label' => 'Countries', 'icon' => 'globe', 'trend' => '+3', 'trendUp' => true],
+                        ['value' => '4.9', 'label' => 'Program Rating', 'icon' => 'star', 'trend' => '4.9', 'trendUp' => true]
+                    ],
+                    'programTypes' => [
+                        ['id' => 'all', 'label' => 'All Programs', 'icon' => 'academic'],
+                        ['id' => 'engineering', 'label' => 'Engineering', 'icon' => 'code'],
+                        ['id' => 'product', 'label' => 'Product', 'icon' => 'briefcase'],
+                        ['id' => 'data', 'label' => 'Data Science', 'icon' => 'chart'],
+                        ['id' => 'marketing', 'label' => 'Marketing', 'icon' => 'trending'],
+                        ['id' => 'design', 'label' => 'Design', 'icon' => 'template']
+                    ],
+                    'locations' => [
+                        ['id' => 'all', 'label' => 'All Locations', 'flag' => '🌐'],
+                        ['id' => 'remote', 'label' => 'Remote', 'flag' => '🌍'],
+                        ['id' => 'sf', 'label' => 'San Francisco, CA', 'flag' => '🇺🇸'],
+                        ['id' => 'nyc', 'label' => 'New York, NY', 'flag' => '🇺🇸'],
+                        ['id' => 'london', 'label' => 'London, UK', 'flag' => '🇬🇧'],
+                        ['id' => 'bangalore', 'label' => 'Bangalore, India', 'flag' => '🇮🇳']
+                    ],
+                    'featuredPrograms' => [
+                        [
+                            'id' => 'prog-001',
+                            'title' => 'Software Engineering Intern',
+                            'type' => 'engineering',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 15, 2024',
+                            'deadlineDate' => '2024-03-15',
+                            'description' => 'Join our engineering team to build scalable supply chain solutions. Work on real-world projects and collaborate with experienced engineers.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-002',
+                            'title' => 'Product Management Intern',
+                            'type' => 'product',
+                            'location' => 'remote',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 20, 2024',
+                            'deadlineDate' => '2024-03-20',
+                            'description' => 'Work closely with product leaders to define features, analyze user data, and help shape the future of our platform.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-003',
+                            'title' => 'Data Science Intern',
+                            'type' => 'data',
+                            'location' => 'nyc',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'April 1, 2024',
+                            'deadlineDate' => '2024-04-01',
+                            'description' => 'Apply machine learning and statistical techniques to solve complex supply chain problems and drive business insights.',
+                            'skills' => ['Python', 'SQL', 'Machine Learning', 'Statistics'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'programs' => [
+                        [
+                            'id' => 'prog-001',
+                            'title' => 'Software Engineering Intern',
+                            'type' => 'engineering',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 15, 2024',
+                            'deadlineDate' => '2024-03-15',
+                            'description' => 'Join our engineering team to build scalable supply chain solutions. Work on real-world projects and collaborate with experienced engineers.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-002',
+                            'title' => 'Product Management Intern',
+                            'type' => 'product',
+                            'location' => 'remote',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 20, 2024',
+                            'deadlineDate' => '2024-03-20',
+                            'description' => 'Work closely with product leaders to define features, analyze user data, and help shape the future of our platform.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile', 'Communication'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-003',
+                            'title' => 'Data Science Intern',
+                            'type' => 'data',
+                            'location' => 'nyc',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'April 1, 2024',
+                            'deadlineDate' => '2024-04-01',
+                            'description' => 'Apply machine learning and statistical techniques to solve complex supply chain problems and drive business insights.',
+                            'skills' => ['Python', 'SQL', 'Machine Learning', 'Statistics', 'Pandas', 'TensorFlow'],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-004',
+                            'title' => 'Marketing Intern',
+                            'type' => 'marketing',
+                            'location' => 'london',
+                            'duration' => 'Fall (12 weeks)',
+                            'startDate' => 'September 9, 2024',
+                            'deadline' => 'July 1, 2024',
+                            'deadlineDate' => '2024-07-01',
+                            'description' => 'Support our marketing team in campaign execution, content creation, and social media strategy.',
+                            'skills' => ['Content Creation', 'Social Media', 'Analytics', 'SEO', 'Email Marketing'],
+                            'image' => 'https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-005',
+                            'title' => 'Product Design Intern',
+                            'type' => 'design',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 25, 2024',
+                            'deadlineDate' => '2024-03-25',
+                            'description' => 'Help design intuitive user experiences for our supply chain platform. Work alongside senior designers and product managers.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems'],
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-006',
+                            'title' => 'Sales Intern',
+                            'type' => 'sales',
+                            'location' => 'remote',
+                            'duration' => 'Year-Round (6 months)',
+                            'startDate' => 'Flexible',
+                            'deadline' => 'Rolling',
+                            'deadlineDate' => '2024-12-31',
+                            'description' => 'Learn the fundamentals of B2B sales, support account executives, and help drive revenue growth.',
+                            'skills' => ['Communication', 'CRM', 'Lead Generation', 'Negotiation', 'Sales Process'],
+                            'image' => 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&h=500&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 519,
+                'section_key' => 'internshipPrograms',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Internship Programs',
+                    'title' => [
+                        'prefix' => 'Launch Your',
+                        'highlight' => 'Career'
+                    ],
+                    'description' => 'Gain real-world experience, work on impactful projects, and learn from industry experts. Our internship programs are designed to help you grow and succeed.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '200+', 'label' => 'Interns Hired', 'icon' => 'users'],
+                        ['value' => '85%', 'label' => 'Conversion Rate', 'icon' => 'trophy'],
+                        ['value' => '15+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '4.9', 'label' => 'Program Rating', 'icon' => 'star']
+                    ],
+                    'autoPlayCarousel' => true,
+                    'programTypes' => [
+                        ['id' => 'all', 'label' => 'All Programs', 'icon' => 'academic'],
+                        ['id' => 'engineering', 'label' => 'Software Engineering', 'icon' => 'code'],
+                        ['id' => 'product', 'label' => 'Product Management', 'icon' => 'briefcase'],
+                        ['id' => 'data', 'label' => 'Data Science & Analytics', 'icon' => 'chart'],
+                        ['id' => 'marketing', 'label' => 'Marketing', 'icon' => 'trending'],
+                        ['id' => 'design', 'label' => 'Product Design', 'icon' => 'template']
+                    ],
+                    'locations' => [
+                        ['id' => 'all', 'label' => 'All Locations', 'flag' => '🌐'],
+                        ['id' => 'remote', 'label' => 'Remote', 'flag' => '🌍'],
+                        ['id' => 'sf', 'label' => 'San Francisco, CA', 'flag' => '🇺🇸'],
+                        ['id' => 'nyc', 'label' => 'New York, NY', 'flag' => '🇺🇸'],
+                        ['id' => 'london', 'label' => 'London, UK', 'flag' => '🇬🇧'],
+                        ['id' => 'bangalore', 'label' => 'Bangalore, India', 'flag' => '🇮🇳']
+                    ],
+                    'successStories' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Software Engineering Intern → Full-Time Engineer',
+                            'university' => 'Stanford University',
+                            'quote' => 'The internship gave me real ownership over impactful projects. I learned more in 12 weeks than in a full semester of classes.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                            'metrics' => [
+                                ['value' => '3', 'label' => 'Projects Shipped'],
+                                ['value' => '2', 'label' => 'Patents Filed'],
+                                ['value' => '100%', 'label' => 'Offer Rate']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Product Management Intern → Product Manager',
+                            'university' => 'University of Michigan',
+                            'quote' => 'The mentorship and culture at SupplyChainPro are incredible. I felt valued from day one and received amazing guidance.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                            'metrics' => [
+                                ['value' => '5', 'label' => 'Features Launched'],
+                                ['value' => '95%', 'label' => 'User Satisfaction'],
+                                ['value' => '3', 'label' => 'Team Projects']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Data Science Intern → Data Scientist',
+                            'university' => 'UC Berkeley',
+                            'quote' => 'Working on real supply chain data and seeing my models in production was an incredible experience.',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                            'metrics' => [
+                                ['value' => '2', 'label' => 'ML Models'],
+                                ['value' => '$1M', 'label' => 'Cost Savings'],
+                                ['value' => '98%', 'label' => 'Accuracy']
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'programs' => [
+                        [
+                            'id' => 'prog-001',
+                            'title' => 'Software Engineering Intern',
+                            'type' => 'engineering',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 15, 2024',
+                            'deadlineDate' => '2024-03-15',
+                            'description' => 'Join our engineering team to build scalable supply chain solutions. Work on real-world projects and collaborate with experienced engineers.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-002',
+                            'title' => 'Product Management Intern',
+                            'type' => 'product',
+                            'location' => 'remote',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 20, 2024',
+                            'deadlineDate' => '2024-03-20',
+                            'description' => 'Work closely with product leaders to define features, analyze user data, and help shape the future of our platform.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile', 'Communication'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-003',
+                            'title' => 'Data Science Intern',
+                            'type' => 'data',
+                            'location' => 'nyc',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'April 1, 2024',
+                            'deadlineDate' => '2024-04-01',
+                            'description' => 'Apply machine learning and statistical techniques to solve complex supply chain problems and drive business insights.',
+                            'skills' => ['Python', 'SQL', 'Machine Learning', 'Statistics', 'Pandas', 'TensorFlow'],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-004',
+                            'title' => 'Marketing Intern',
+                            'type' => 'marketing',
+                            'location' => 'london',
+                            'duration' => 'Fall (12 weeks)',
+                            'startDate' => 'September 9, 2024',
+                            'deadline' => 'July 1, 2024',
+                            'deadlineDate' => '2024-07-01',
+                            'description' => 'Support our marketing team in campaign execution, content creation, and social media strategy.',
+                            'skills' => ['Content Creation', 'Social Media', 'Analytics', 'SEO', 'Email Marketing'],
+                            'image' => 'https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-005',
+                            'title' => 'Product Design Intern',
+                            'type' => 'design',
+                            'location' => 'sf',
+                            'duration' => 'Summer (12 weeks)',
+                            'startDate' => 'June 3, 2024',
+                            'deadline' => 'March 25, 2024',
+                            'deadlineDate' => '2024-03-25',
+                            'description' => 'Help design intuitive user experiences for our supply chain platform. Work alongside senior designers and product managers.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems'],
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'prog-006',
+                            'title' => 'Sales Intern',
+                            'type' => 'sales',
+                            'location' => 'remote',
+                            'duration' => 'Year-Round (6 months)',
+                            'startDate' => 'Flexible',
+                            'deadline' => 'Rolling',
+                            'deadlineDate' => '2024-12-31',
+                            'description' => 'Learn the fundamentals of B2B sales, support account executives, and help drive revenue growth.',
+                            'skills' => ['Communication', 'CRM', 'Lead Generation', 'Negotiation', 'Sales Process'],
+                            'image' => 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&h=500&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 520,
+                'section_key' => 'internshipPrograms',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Remote Opportunities Section
+            [
+                'id' => 521,
+                'section_key' => 'remoteOpportunities',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Remote Opportunities',
+                    'title' => [
+                        'prefix' => 'Work from',
+                        'highlight' => 'Anywhere',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Join our fully remote team and build your career from anywhere in the world. We\'re hiring across multiple departments and time zones.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search jobs by title, department, or skills...',
+                    'stats' => [
+                        ['value' => '100%', 'label' => 'Remote-First', 'icon' => 'wifi'],
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '40+', 'label' => 'Open Roles', 'icon' => 'briefcase'],
+                        ['value' => '4.9', 'label' => 'Employee Rating', 'icon' => 'star']
+                    ],
+                    'benefitsTitle' => 'Remote Work Benefits',
+                    'benefits' => [
+                        ['title' => 'Work from Anywhere', 'description' => 'Choose your ideal workspace, whether at home, a co-working space, or while traveling.', 'icon' => 'wifi', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'],
+                        ['title' => 'Flexible Hours', 'description' => 'Focus on outcomes, not hours. Design your schedule around what works best for you.', 'icon' => 'clock', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['title' => 'Home Office Stipend', 'description' => '$1,000 annual budget for home office equipment and setup.', 'icon' => 'desktop', 'image' => 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=400&fit=crop'],
+                        ['title' => 'Wellness Reimbursement', 'description' => 'Monthly stipend for gym memberships, mental health support, and wellness activities.', 'icon' => 'heart', 'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'],
+                        ['title' => 'Global Meetups', 'description' => 'Annual team retreats in amazing locations around the world.', 'icon' => 'globe', 'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop'],
+                        ['title' => 'Learning & Development', 'description' => '$2,000 annual budget for courses, conferences, and professional development.', 'icon' => 'academic', 'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop']
+                    ],
+                    'departments' => [
+                        ['id' => 'all', 'label' => 'All Departments', 'icon' => 'users'],
+                        ['id' => 'engineering', 'label' => 'Engineering', 'icon' => 'code'],
+                        ['id' => 'product', 'label' => 'Product', 'icon' => 'briefcase'],
+                        ['id' => 'design', 'label' => 'Design', 'icon' => 'template'],
+                        ['id' => 'marketing', 'label' => 'Marketing', 'icon' => 'chart'],
+                        ['id' => 'sales', 'label' => 'Sales', 'icon' => 'briefcase'],
+                        ['id' => 'customer-success', 'label' => 'Customer Success', 'icon' => 'users']
+                    ],
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'flag' => '🌐'],
+                        ['id' => 'north-america', 'label' => 'North America', 'flag' => '🇺🇸'],
+                        ['id' => 'europe', 'label' => 'Europe', 'flag' => '🇪🇺'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'flag' => '🌏'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'flag' => '🌎'],
+                        ['id' => 'global', 'label' => 'Global', 'flag' => '🌍']
+                    ],
+                    'featuredJob' => [
+                        'id' => 'job-001',
+                        'title' => 'Senior Full Stack Engineer',
+                        'department' => 'engineering',
+                        'level' => 'senior',
+                        'region' => 'global',
+                        'remoteType' => 'Fully Remote',
+                        'postedDate' => 'January 15, 2024',
+                        'description' => 'Join our core engineering team to build scalable supply chain solutions. You\'ll work with modern technologies including React, Node.js, and GraphQL. As a fully remote role, you can work from anywhere with a reliable internet connection.',
+                        'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript', 'Docker', 'Kubernetes'],
+                        'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop',
+                        'isFeatured' => true
+                    ],
+                    'jobs' => [
+                        [
+                            'id' => 'job-001',
+                            'title' => 'Senior Full Stack Engineer',
+                            'department' => 'engineering',
+                            'level' => 'senior',
+                            'region' => 'global',
+                            'remoteType' => 'Fully Remote',
+                            'postedDate' => 'January 15, 2024',
+                            'description' => 'Join our core engineering team to build scalable supply chain solutions. You\'ll work with modern technologies including React, Node.js, and GraphQL.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop',
+                            'isFeatured' => true
+                        ],
+                        [
+                            'id' => 'job-002',
+                            'title' => 'Product Manager',
+                            'department' => 'product',
+                            'level' => 'mid',
+                            'region' => 'north-america',
+                            'remoteType' => 'Remote (North America)',
+                            'postedDate' => 'January 10, 2024',
+                            'description' => 'Lead product strategy for our supply chain optimization suite. Work closely with customers and engineering to deliver impactful features.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile', 'Communication'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-003',
+                            'title' => 'UX/UI Designer',
+                            'department' => 'design',
+                            'level' => 'mid',
+                            'region' => 'europe',
+                            'remoteType' => 'Remote (Europe)',
+                            'postedDate' => 'January 8, 2024',
+                            'description' => 'Design intuitive user experiences for our supply chain platform. Work alongside product managers and engineers to create beautiful, functional interfaces.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems'],
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-004',
+                            'title' => 'Content Marketing Specialist',
+                            'department' => 'marketing',
+                            'level' => 'entry',
+                            'region' => 'global',
+                            'remoteType' => 'Fully Remote',
+                            'postedDate' => 'January 12, 2024',
+                            'description' => 'Create engaging content for our blog, social media, and email campaigns. Help tell the story of how we\'re transforming supply chain management.',
+                            'skills' => ['Content Writing', 'SEO', 'Social Media', 'Email Marketing', 'Analytics'],
+                            'image' => 'https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-005',
+                            'title' => 'Enterprise Sales Representative',
+                            'department' => 'sales',
+                            'level' => 'senior',
+                            'region' => 'north-america',
+                            'remoteType' => 'Remote (USA)',
+                            'postedDate' => 'January 5, 2024',
+                            'description' => 'Drive enterprise sales and build relationships with Fortune 500 companies. Lead complex sales cycles and negotiate contracts.',
+                            'skills' => ['Enterprise Sales', 'SaaS', 'Negotiation', 'CRM', 'Account Management'],
+                            'image' => 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-006',
+                            'title' => 'Customer Success Manager',
+                            'department' => 'customer-success',
+                            'level' => 'mid',
+                            'region' => 'asia-pacific',
+                            'remoteType' => 'Remote (APAC)',
+                            'postedDate' => 'January 3, 2024',
+                            'description' => 'Ensure customer success and adoption of our platform. Work with clients to understand their needs and help them achieve their business goals.',
+                            'skills' => ['Customer Success', 'Account Management', 'Problem Solving', 'Communication', 'SaaS'],
+                            'image' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'formTitle' => 'Apply for Remote Position',
+                    'formDescription' => 'Fill out the form below and our recruiting team will review your application.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 522,
+                'section_key' => 'remoteOpportunities',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Remote Opportunities',
+                    'title' => [
+                        'prefix' => 'Work from',
+                        'highlight' => 'Anywhere'
+                    ],
+                    'description' => 'Join our fully remote team and build your career from anywhere in the world. We\'re hiring across multiple departments and time zones.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'searchPlaceholder' => 'Search jobs by title, department, or skills...',
+                    'defaultViewMode' => 'grid',
+                    'stats' => [
+                        ['value' => '100%', 'label' => 'Remote-First', 'icon' => 'wifi', 'trend' => '100%', 'trendUp' => true],
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe', 'trend' => '+5', 'trendUp' => true],
+                        ['value' => '40+', 'label' => 'Open Roles', 'icon' => 'briefcase', 'trend' => '+12', 'trendUp' => true],
+                        ['value' => '4.9', 'label' => 'Employee Rating', 'icon' => 'star', 'trend' => '+0.2', 'trendUp' => true]
+                    ],
+                    'departments' => [
+                        ['id' => 'all', 'label' => 'All Departments', 'icon' => 'users'],
+                        ['id' => 'engineering', 'label' => 'Engineering', 'icon' => 'code'],
+                        ['id' => 'product', 'label' => 'Product', 'icon' => 'briefcase'],
+                        ['id' => 'design', 'label' => 'Design', 'icon' => 'template'],
+                        ['id' => 'marketing', 'label' => 'Marketing', 'icon' => 'chart'],
+                        ['id' => 'sales', 'label' => 'Sales', 'icon' => 'briefcase'],
+                        ['id' => 'customer-success', 'label' => 'Customer Success', 'icon' => 'users']
+                    ],
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'flag' => '🌐'],
+                        ['id' => 'north-america', 'label' => 'North America', 'flag' => '🇺🇸'],
+                        ['id' => 'europe', 'label' => 'Europe', 'flag' => '🇪🇺'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'flag' => '🌏'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'flag' => '🌎'],
+                        ['id' => 'global', 'label' => 'Global', 'flag' => '🌍']
+                    ],
+                    'featuredJobs' => [
+                        [
+                            'id' => 'job-001',
+                            'title' => 'Senior Full Stack Engineer',
+                            'department' => 'engineering',
+                            'level' => 'senior',
+                            'region' => 'global',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$150k - $200k',
+                            'postedDate' => 'Jan 15',
+                            'postedDateRaw' => '2024-01-15',
+                            'description' => 'Join our core engineering team to build scalable supply chain solutions. You\'ll work with modern technologies including React, Node.js, and GraphQL.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-002',
+                            'title' => 'Product Manager',
+                            'department' => 'product',
+                            'level' => 'mid',
+                            'region' => 'north-america',
+                            'remoteType' => 'remote-first',
+                            'salary' => '$120k - $160k',
+                            'postedDate' => 'Jan 10',
+                            'postedDateRaw' => '2024-01-10',
+                            'description' => 'Lead product strategy for our supply chain optimization suite. Work closely with customers and engineering.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-003',
+                            'title' => 'UX/UI Designer',
+                            'department' => 'design',
+                            'level' => 'mid',
+                            'region' => 'europe',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$90k - $130k',
+                            'postedDate' => 'Jan 8',
+                            'postedDateRaw' => '2024-01-08',
+                            'description' => 'Design intuitive user experiences for our supply chain platform. Work alongside product managers and engineers.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research'],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ]
+                    ],
+                    'jobs' => [
+                        [
+                            'id' => 'job-001',
+                            'title' => 'Senior Full Stack Engineer',
+                            'department' => 'engineering',
+                            'level' => 'senior',
+                            'region' => 'global',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$150k - $200k',
+                            'postedDate' => 'Jan 15',
+                            'postedDateRaw' => '2024-01-15',
+                            'description' => 'Join our core engineering team to build scalable supply chain solutions. You\'ll work with modern technologies including React, Node.js, and GraphQL.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'isFeatured' => true,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-002',
+                            'title' => 'Product Manager',
+                            'department' => 'product',
+                            'level' => 'mid',
+                            'region' => 'north-america',
+                            'remoteType' => 'remote-first',
+                            'salary' => '$120k - $160k',
+                            'postedDate' => 'Jan 10',
+                            'postedDateRaw' => '2024-01-10',
+                            'description' => 'Lead product strategy for our supply chain optimization suite. Work closely with customers and engineering to deliver impactful features.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile', 'Communication'],
+                            'isFeatured' => false,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-003',
+                            'title' => 'UX/UI Designer',
+                            'department' => 'design',
+                            'level' => 'mid',
+                            'region' => 'europe',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$90k - $130k',
+                            'postedDate' => 'Jan 8',
+                            'postedDateRaw' => '2024-01-08',
+                            'description' => 'Design intuitive user experiences for our supply chain platform. Work alongside product managers and engineers.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems'],
+                            'isFeatured' => false,
+                            'isUrgent' => true,
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-004',
+                            'title' => 'Content Marketing Specialist',
+                            'department' => 'marketing',
+                            'level' => 'entry',
+                            'region' => 'global',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$60k - $80k',
+                            'postedDate' => 'Jan 12',
+                            'postedDateRaw' => '2024-01-12',
+                            'description' => 'Create engaging content for our blog, social media, and email campaigns.',
+                            'skills' => ['Content Writing', 'SEO', 'Social Media', 'Email Marketing'],
+                            'isFeatured' => false,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-005',
+                            'title' => 'Enterprise Sales Representative',
+                            'department' => 'sales',
+                            'level' => 'senior',
+                            'region' => 'north-america',
+                            'remoteType' => 'timezone-specific',
+                            'salary' => '$100k - $150k + Commission',
+                            'postedDate' => 'Jan 5',
+                            'postedDateRaw' => '2024-01-05',
+                            'description' => 'Drive enterprise sales and build relationships with Fortune 500 companies.',
+                            'skills' => ['Enterprise Sales', 'SaaS', 'Negotiation', 'CRM', 'Account Management'],
+                            'isFeatured' => false,
+                            'isUrgent' => true,
+                            'image' => 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-006',
+                            'title' => 'Customer Success Manager',
+                            'department' => 'customer-success',
+                            'level' => 'mid',
+                            'region' => 'asia-pacific',
+                            'remoteType' => 'flexible',
+                            'salary' => '$70k - $100k',
+                            'postedDate' => 'Jan 3',
+                            'postedDateRaw' => '2024-01-03',
+                            'description' => 'Ensure customer success and adoption of our platform.',
+                            'skills' => ['Customer Success', 'Account Management', 'Problem Solving', 'Communication'],
+                            'isFeatured' => false,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=500&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 523,
+                'section_key' => 'remoteOpportunities',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Remote Opportunities',
+                    'title' => [
+                        'prefix' => 'Work from',
+                        'highlight' => 'Anywhere'
+                    ],
+                    'description' => 'Join our fully remote team and build your career from anywhere in the world. We\'re hiring across multiple departments and time zones.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '100%', 'label' => 'Remote-First', 'icon' => 'wifi'],
+                        ['value' => '25+', 'label' => 'Countries', 'icon' => 'globe'],
+                        ['value' => '40+', 'label' => 'Open Roles', 'icon' => 'briefcase'],
+                        ['value' => '4.9', 'label' => 'Employee Rating', 'icon' => 'star']
+                    ],
+                    'autoPlayCarousel' => true,
+                    'departments' => [
+                        ['id' => 'all', 'label' => 'All Departments', 'icon' => 'users'],
+                        ['id' => 'engineering', 'label' => 'Engineering', 'icon' => 'code'],
+                        ['id' => 'product', 'label' => 'Product', 'icon' => 'briefcase'],
+                        ['id' => 'design', 'label' => 'Design', 'icon' => 'template'],
+                        ['id' => 'marketing', 'label' => 'Marketing', 'icon' => 'chart'],
+                        ['id' => 'sales', 'label' => 'Sales', 'icon' => 'briefcase'],
+                        ['id' => 'customer-success', 'label' => 'Customer Success', 'icon' => 'users']
+                    ],
+                    'regions' => [
+                        ['id' => 'all', 'label' => 'All Regions', 'flag' => '🌐'],
+                        ['id' => 'north-america', 'label' => 'North America', 'flag' => '🇺🇸'],
+                        ['id' => 'europe', 'label' => 'Europe', 'flag' => '🇪🇺'],
+                        ['id' => 'asia-pacific', 'label' => 'Asia Pacific', 'flag' => '🌏'],
+                        ['id' => 'latin-america', 'label' => 'Latin America', 'flag' => '🌎'],
+                        ['id' => 'global', 'label' => 'Global', 'flag' => '🌍']
+                    ],
+                    'remoteStories' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Senior Software Engineer',
+                            'region' => 'north-america',
+                            'yearsRemote' => 4,
+                            'quote' => 'Working remotely has given me the freedom to design my day around my peak productivity hours. I\'ve never been more focused or fulfilled in my career.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Marcus Chen',
+                            'role' => 'Product Manager',
+                            'region' => 'asia-pacific',
+                            'yearsRemote' => 3,
+                            'quote' => 'Being able to work from Bali while collaborating with a global team has been life-changing. The flexibility and trust from the company are unmatched.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Elena Rodriguez',
+                            'role' => 'Marketing Lead',
+                            'region' => 'europe',
+                            'yearsRemote' => 5,
+                            'quote' => 'Remote work allows me to be present for my family while still growing my career. The work-life balance is incredible.',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'jobs' => [
+                        [
+                            'id' => 'job-001',
+                            'title' => 'Senior Full Stack Engineer',
+                            'department' => 'engineering',
+                            'level' => 'senior',
+                            'region' => 'global',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$150k - $200k',
+                            'postedDate' => 'Jan 15',
+                            'description' => 'Join our core engineering team to build scalable supply chain solutions. You\'ll work with modern technologies including React, Node.js, and GraphQL.',
+                            'skills' => ['React', 'Node.js', 'GraphQL', 'PostgreSQL', 'AWS', 'TypeScript'],
+                            'isFeatured' => true,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-002',
+                            'title' => 'Product Manager',
+                            'department' => 'product',
+                            'level' => 'mid',
+                            'region' => 'north-america',
+                            'remoteType' => 'remote-first',
+                            'salary' => '$120k - $160k',
+                            'postedDate' => 'Jan 10',
+                            'description' => 'Lead product strategy for our supply chain optimization suite. Work closely with customers and engineering.',
+                            'skills' => ['Product Strategy', 'Data Analysis', 'User Research', 'Agile', 'Communication'],
+                            'isFeatured' => false,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-003',
+                            'title' => 'UX/UI Designer',
+                            'department' => 'design',
+                            'level' => 'mid',
+                            'region' => 'europe',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$90k - $130k',
+                            'postedDate' => 'Jan 8',
+                            'description' => 'Design intuitive user experiences for our supply chain platform.',
+                            'skills' => ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems'],
+                            'isFeatured' => false,
+                            'isUrgent' => true,
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-004',
+                            'title' => 'Content Marketing Specialist',
+                            'department' => 'marketing',
+                            'level' => 'entry',
+                            'region' => 'global',
+                            'remoteType' => 'fully-remote',
+                            'salary' => '$60k - $80k',
+                            'postedDate' => 'Jan 12',
+                            'description' => 'Create engaging content for our blog, social media, and email campaigns.',
+                            'skills' => ['Content Writing', 'SEO', 'Social Media', 'Email Marketing'],
+                            'isFeatured' => false,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-005',
+                            'title' => 'Enterprise Sales Representative',
+                            'department' => 'sales',
+                            'level' => 'senior',
+                            'region' => 'north-america',
+                            'remoteType' => 'timezone-specific',
+                            'salary' => '$100k - $150k + Commission',
+                            'postedDate' => 'Jan 5',
+                            'description' => 'Drive enterprise sales and build relationships with Fortune 500 companies.',
+                            'skills' => ['Enterprise Sales', 'SaaS', 'Negotiation', 'CRM', 'Account Management'],
+                            'isFeatured' => false,
+                            'isUrgent' => true,
+                            'image' => 'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=800&h=500&fit=crop'
+                        ],
+                        [
+                            'id' => 'job-006',
+                            'title' => 'Customer Success Manager',
+                            'department' => 'customer-success',
+                            'level' => 'mid',
+                            'region' => 'asia-pacific',
+                            'remoteType' => 'flexible',
+                            'salary' => '$70k - $100k',
+                            'postedDate' => 'Jan 3',
+                            'description' => 'Ensure customer success and adoption of our platform.',
+                            'skills' => ['Customer Success', 'Account Management', 'Problem Solving', 'Communication'],
+                            'isFeatured' => false,
+                            'isUrgent' => false,
+                            'image' => 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=500&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 524,
+                'section_key' => 'remoteOpportunities',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Application Process Section 
+            [
+                'id' => 525,
+                'section_key' => 'applicationProcess',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Application Process',
+                    'title' => [
+                        'prefix' => 'Your Journey to',
+                        'highlight' => 'Joining Us',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We\'ve designed a transparent and supportive application process to help you showcase your best self. Here\'s what to expect when you apply.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '2-4', 'label' => 'Weeks to Offer', 'icon' => 'clock'],
+                        ['value' => '95%', 'label' => 'Candidate Satisfaction', 'icon' => 'star'],
+                        ['value' => '24h', 'label' => 'Response Time', 'icon' => 'bolt'],
+                        ['value' => '5', 'label' => 'Steps to Join', 'icon' => 'check']
+                    ],
+                    'stepsTitle' => 'How to Apply',
+                    'steps' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Submit Application',
+                            'description' => 'Complete the online application form with your resume and cover letter.',
+                            'icon' => 'document',
+                            'duration' => '15-20 min',
+                            'tips' => ['Tailor your resume to the role', 'Highlight relevant experience', 'Proofread before submitting'],
+                            'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Initial Screening',
+                            'description' => 'Recruiting team reviews applications and reaches out to qualified candidates.',
+                            'icon' => 'users',
+                            'duration' => '3-5 business days',
+                            'tips' => ['Check your email regularly', 'Be ready to discuss your background', 'Prepare questions about the role'],
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Technical Assessment',
+                            'description' => 'Complete a skills assessment or technical challenge relevant to the role.',
+                            'icon' => 'code',
+                            'duration' => '2-4 hours',
+                            'tips' => ['Review core concepts', 'Practice problem-solving', 'Show your thought process'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Team Interviews',
+                            'description' => 'Meet with hiring manager and potential team members to discuss fit and culture.',
+                            'icon' => 'chat',
+                            'duration' => '2-3 rounds',
+                            'tips' => ['Research the company', 'Prepare examples of your work', 'Ask thoughtful questions'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Offer & Onboarding',
+                            'description' => 'Receive offer and begin the onboarding process to join the team.',
+                            'icon' => 'gift',
+                            'duration' => '1-2 weeks',
+                            'tips' => ['Review offer details', 'Complete onboarding paperwork', 'Connect with your new team'],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'tipsTitle' => 'Tips for Success',
+                    'tips' => [
+                        ['title' => 'Research the Company', 'description' => 'Understand our mission, values, and products before your interview.', 'icon' => 'globe', 'image' => 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop'],
+                        ['title' => 'Show Your Impact', 'description' => 'Use specific examples and metrics to demonstrate your achievements.', 'icon' => 'chart', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['title' => 'Ask Questions', 'description' => 'Prepare thoughtful questions about the role, team, and company culture.', 'icon' => 'chat', 'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'],
+                        ['title' => 'Be Authentic', 'description' => 'Be yourself and share what makes you unique as a candidate.', 'icon' => 'heart', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop']
+                    ],
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How long does the application process typically take?',
+                            'answer' => 'The entire process usually takes 2-4 weeks from application to offer, depending on the role and number of candidates.'
+                        ],
+                        [
+                            'question' => 'What should I include in my resume?',
+                            'answer' => 'Include relevant work experience, projects, technical skills, and any accomplishments that demonstrate your impact. Tailor it to the specific role you\'re applying for.'
+                        ],
+                        [
+                            'question' => 'Do you provide feedback for rejected applications?',
+                            'answer' => 'Due to the volume of applications, we\'re unable to provide individual feedback for all candidates. However, candidates who advance to interviews will receive detailed feedback.'
+                        ],
+                        [
+                            'question' => 'Can I apply for multiple positions?',
+                            'answer' => 'Yes, you can apply for multiple positions that match your skills and experience. We recommend focusing on roles where you\'re most qualified.'
+                        ]
+                    ],
+                    'formTitle' => 'Start Your Application',
+                    'formDescription' => 'Ready to join us? Complete the form below to begin your application journey.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 526,
+                'section_key' => 'applicationProcess',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Application Process',
+                    'title' => [
+                        'prefix' => 'Your Journey to',
+                        'highlight' => 'Joining Us'
+                    ],
+                    'description' => 'We\'ve designed a transparent and supportive application process to help you showcase your best self. Here\'s what to expect when you apply.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '2-4', 'label' => 'Weeks to Offer', 'icon' => 'clock', 'trend' => 'Fast', 'trendUp' => true],
+                        ['value' => '95%', 'label' => 'Candidate Satisfaction', 'icon' => 'star', 'trend' => '+5%', 'trendUp' => true],
+                        ['value' => '24h', 'label' => 'Response Time', 'icon' => 'bolt', 'trend' => 'Average', 'trendUp' => true],
+                        ['value' => '85%', 'label' => 'Offer Acceptance', 'icon' => 'check', 'trend' => '+10%', 'trendUp' => true]
+                    ],
+                    'steps' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Submit Application',
+                            'description' => 'Complete the online application form with your resume and cover letter.',
+                            'icon' => 'document',
+                            'duration' => '15-20 min',
+                            'tips' => ['Tailor your resume to the role', 'Highlight relevant experience', 'Proofread before submitting'],
+                            'checklist' => ['Resume uploaded', 'Cover letter attached', 'Portfolio link added'],
+                            'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Initial Screening',
+                            'description' => 'Recruiting team reviews applications and reaches out to qualified candidates.',
+                            'icon' => 'users',
+                            'duration' => '3-5 business days',
+                            'tips' => ['Check your email regularly', 'Be ready to discuss your background', 'Prepare questions about the role'],
+                            'checklist' => ['Application reviewed', 'Screening call scheduled', 'Availability confirmed'],
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Technical Assessment',
+                            'description' => 'Complete a skills assessment or technical challenge relevant to the role.',
+                            'icon' => 'code',
+                            'duration' => '2-4 hours',
+                            'tips' => ['Review core concepts', 'Practice problem-solving', 'Show your thought process'],
+                            'checklist' => ['Assessment invitation received', 'Assessment completed', 'Results reviewed'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Team Interviews',
+                            'description' => 'Meet with hiring manager and potential team members to discuss fit and culture.',
+                            'icon' => 'chat',
+                            'duration' => '2-3 rounds',
+                            'tips' => ['Research the company', 'Prepare examples of your work', 'Ask thoughtful questions'],
+                            'checklist' => ['Interview scheduled', 'Interview completed', 'Feedback collected'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Offer & Onboarding',
+                            'description' => 'Receive offer and begin the onboarding process to join the team.',
+                            'icon' => 'gift',
+                            'duration' => '1-2 weeks',
+                            'tips' => ['Review offer details', 'Complete onboarding paperwork', 'Connect with your new team'],
+                            'checklist' => ['Offer extended', 'Offer accepted', 'Onboarding started'],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'resources' => [
+                        ['title' => 'Resume Writing Guide', 'description' => 'Tips for crafting an effective resume', 'icon' => 'document', 'link' => '/resources/resume-guide', 'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'],
+                        ['title' => 'Interview Preparation', 'description' => 'Common questions and how to prepare', 'icon' => 'chat', 'link' => '/resources/interview-prep', 'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'],
+                        ['title' => 'Portfolio Best Practices', 'description' => 'Showcase your work effectively', 'icon' => 'template', 'link' => '/resources/portfolio-guide', 'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop'],
+                        ['title' => 'Company Culture Guide', 'description' => 'Learn about our values and culture', 'icon' => 'heart', 'link' => '/resources/culture-guide', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop']
+                    ],
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How long does the application process typically take?',
+                            'answer' => 'The entire process usually takes 2-4 weeks from application to offer, depending on the role and number of candidates. We aim to provide timely updates at each stage.'
+                        ],
+                        [
+                            'question' => 'What should I include in my resume?',
+                            'answer' => 'Include relevant work experience, projects, technical skills, and any accomplishments that demonstrate your impact. Use metrics where possible to quantify your achievements. Tailor it to the specific role you\'re applying for.'
+                        ],
+                        [
+                            'question' => 'Do you provide feedback for rejected applications?',
+                            'answer' => 'Due to the volume of applications, we\'re unable to provide individual feedback for all candidates. However, candidates who advance to interviews will receive detailed feedback to help with future opportunities.'
+                        ],
+                        [
+                            'question' => 'Can I apply for multiple positions?',
+                            'answer' => 'Yes, you can apply for multiple positions that match your skills and experience. We recommend focusing on roles where you\'re most qualified and customizing your application for each.'
+                        ],
+                        [
+                            'question' => 'What happens after I submit my application?',
+                            'answer' => 'You\'ll receive a confirmation email immediately. Our recruiting team will review your application within 3-5 business days. If there\'s a match, you\'ll be contacted for an initial screening call.'
+                        ],
+                        [
+                            'question' => 'Do you offer remote positions?',
+                            'answer' => 'Yes! We\'re a remote-first company with team members across the globe. Most of our roles are fully remote, with some requiring timezone alignment for collaboration.'
+                        ]
+                    ],
+                    'positions' => ['Software Engineer', 'Product Manager', 'Data Scientist', 'UX Designer', 'Marketing Manager', 'Sales Representative', 'Customer Success Manager', 'DevOps Engineer'],
+                    'formTitle' => 'Start Your Application',
+                    'formDescription' => 'Ready to join us? Complete the form below to begin your application journey.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 527,
+                'section_key' => 'applicationProcess',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Application Process',
+                    'title' => [
+                        'prefix' => 'Your Journey to',
+                        'highlight' => 'Joining Us'
+                    ],
+                    'description' => 'We\'ve designed a transparent and supportive application process to help you showcase your best self. Here\'s what to expect when you apply.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '2-4', 'label' => 'Weeks to Offer', 'icon' => 'clock', 'trend' => 'Fast', 'trendUp' => true],
+                        ['value' => '95%', 'label' => 'Candidate Satisfaction', 'icon' => 'star', 'trend' => '+5%', 'trendUp' => true],
+                        ['value' => '24h', 'label' => 'Response Time', 'icon' => 'bolt', 'trend' => 'Average', 'trendUp' => true],
+                        ['value' => '85%', 'label' => 'Offer Acceptance', 'icon' => 'check', 'trend' => '+10%', 'trendUp' => true]
+                    ],
+                    'autoPlayCarousel' => true,
+                    'steps' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Submit Application',
+                            'description' => 'Complete the online application form with your resume and cover letter.',
+                            'icon' => 'document',
+                            'duration' => '15-20 min',
+                            'tips' => ['Tailor your resume to the role', 'Highlight relevant experience', 'Proofread before submitting'],
+                            'checklist' => ['Resume uploaded', 'Cover letter attached', 'Portfolio link added'],
+                            'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Initial Screening',
+                            'description' => 'Recruiting team reviews applications and reaches out to qualified candidates.',
+                            'icon' => 'users',
+                            'duration' => '3-5 business days',
+                            'tips' => ['Check your email regularly', 'Be ready to discuss your background', 'Prepare questions about the role'],
+                            'checklist' => ['Application reviewed', 'Screening call scheduled', 'Availability confirmed'],
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Technical Assessment',
+                            'description' => 'Complete a skills assessment or technical challenge relevant to the role.',
+                            'icon' => 'code',
+                            'duration' => '2-4 hours',
+                            'tips' => ['Review core concepts', 'Practice problem-solving', 'Show your thought process'],
+                            'checklist' => ['Assessment invitation received', 'Assessment completed', 'Results reviewed'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Team Interviews',
+                            'description' => 'Meet with hiring manager and potential team members to discuss fit and culture.',
+                            'icon' => 'chat',
+                            'duration' => '2-3 rounds',
+                            'tips' => ['Research the company', 'Prepare examples of your work', 'Ask thoughtful questions'],
+                            'checklist' => ['Interview scheduled', 'Interview completed', 'Feedback collected'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Offer & Onboarding',
+                            'description' => 'Receive offer and begin the onboarding process to join the team.',
+                            'icon' => 'gift',
+                            'duration' => '1-2 weeks',
+                            'tips' => ['Review offer details', 'Complete onboarding paperwork', 'Connect with your new team'],
+                            'checklist' => ['Offer extended', 'Offer accepted', 'Onboarding started'],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'candidateStories' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Senior Software Engineer',
+                            'hireDate' => 'March 2024',
+                            'processDuration' => '3 weeks',
+                            'quote' => 'The application process was transparent and efficient. I received regular updates and felt supported throughout.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+                            'tags' => ['Engineering', 'Remote'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Product Manager',
+                            'hireDate' => 'February 2024',
+                            'processDuration' => '4 weeks',
+                            'quote' => 'The team interviews were engaging and gave me great insight into the company culture. I knew this was the right place for me.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+                            'tags' => ['Product', 'Remote'],
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'UX Designer',
+                            'hireDate' => 'January 2024',
+                            'processDuration' => '2.5 weeks',
+                            'quote' => 'The technical assessment was well-designed and relevant to the actual work I\'d be doing. Great experience overall!',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
+                            'tags' => ['Design', 'Creative'],
+                            'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'resources' => [
+                        ['title' => 'Resume Writing Guide', 'description' => 'Tips for crafting an effective resume', 'icon' => 'document', 'link' => '/resources/resume-guide', 'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'],
+                        ['title' => 'Interview Preparation', 'description' => 'Common questions and how to prepare', 'icon' => 'chat', 'link' => '/resources/interview-prep', 'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'],
+                        ['title' => 'Portfolio Best Practices', 'description' => 'Showcase your work effectively', 'icon' => 'template', 'link' => '/resources/portfolio-guide', 'image' => 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop'],
+                        ['title' => 'Company Culture Guide', 'description' => 'Learn about our values and culture', 'icon' => 'heart', 'link' => '/resources/culture-guide', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop']
+                    ],
+                    'faqTitle' => 'Frequently Asked Questions',
+                    'faqs' => [
+                        [
+                            'question' => 'How long does the application process typically take?',
+                            'answer' => 'The entire process usually takes 2-4 weeks from application to offer, depending on the role and number of candidates.'
+                        ],
+                        [
+                            'question' => 'What should I include in my resume?',
+                            'answer' => 'Include relevant work experience, projects, technical skills, and any accomplishments that demonstrate your impact.'
+                        ],
+                        [
+                            'question' => 'Do you provide feedback for rejected applications?',
+                            'answer' => 'Candidates who advance to interviews will receive detailed feedback to help with future opportunities.'
+                        ],
+                        [
+                            'question' => 'Can I apply for multiple positions?',
+                            'answer' => 'Yes, you can apply for multiple positions that match your skills and experience.'
+                        ]
+                    ],
+                    'positions' => ['Software Engineer', 'Product Manager', 'Data Scientist', 'UX Designer', 'Marketing Manager', 'Sales Representative', 'Customer Success Manager', 'DevOps Engineer'],
+                    'formTitle' => 'Start Your Application',
+                    'formDescription' => 'Complete the form below to begin your journey with us.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 528,
+                'section_key' => 'applicationProcess',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         // Add the new Services variants
