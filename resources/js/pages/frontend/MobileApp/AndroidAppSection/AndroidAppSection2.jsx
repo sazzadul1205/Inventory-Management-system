@@ -214,7 +214,9 @@ const AndroidAppSection2 = ({ config }) => {
             <div className="inline-flex items-center gap-2 bg-green-50 dark:bg-green-900/30 rounded-full px-4 py-2 mb-4">
               <HiOutlineDeviceMobile className="w-4 h-4 text-green-600 dark:text-green-400" />
               <span className="text-sm font-medium text-green-700 dark:text-green-300">
-                {config?.badge || "Android App"}
+                {typeof config?.badge === "string"
+                  ? config.badge
+                  : config?.badge?.text || "Android App"}
               </span>
             </div>
 

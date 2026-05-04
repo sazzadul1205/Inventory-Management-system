@@ -295,7 +295,9 @@ const OfflineModeSection2 = ({ config }) => {
             <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 rounded-full px-4 py-2 mb-4">
               <HiOutlineWifi className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                {config?.badge || "Offline Mode"}
+                {typeof config?.badge === "string"
+                  ? config.badge
+                  : config?.badge?.text || "Offline Mode"}
               </span>
             </div>
 

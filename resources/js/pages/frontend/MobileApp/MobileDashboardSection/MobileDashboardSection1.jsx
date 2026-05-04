@@ -119,9 +119,11 @@ const MobileDashboardSection1 = ({ config }) => {
                     <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
                         <HiOutlineDeviceMobile className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
                         <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                            {config?.badge || "Mobile Dashboard"}
-                        </span>
-                    </div>
+                            {typeof config?.badge === "string"
+                              ? config.badge
+                              : config?.badge?.text || "Mobile Dashboard"}
+                            </span>
+                        </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                         {config?.title?.prefix || "Your Supply Chain"} <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{config?.title?.highlight || "At a Glance"}</span> {config?.title?.suffix || ""}

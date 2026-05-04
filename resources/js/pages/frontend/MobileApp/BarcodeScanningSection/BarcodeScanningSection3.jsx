@@ -360,7 +360,11 @@ const BarcodeScanningSection3 = ({ config }) => {
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineQrcode className="w-4 h-4" />
-            <span className="text-sm font-medium">{config?.badge || "Barcode Scanning"}</span>
+            <span className="text-sm font-medium">
+              {typeof config?.badge === "string"
+                ? config.badge
+                : config?.badge?.text || "Barcode Scanning"}
+            </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
