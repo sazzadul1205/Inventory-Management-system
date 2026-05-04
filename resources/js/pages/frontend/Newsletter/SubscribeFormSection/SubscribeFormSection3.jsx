@@ -72,8 +72,8 @@ const SubscribeFormSection3 = ({ config }) => {
   });
 
   // ==================== REFERENCE MANAGEMENT ====================
-  const carouselRef = useRef(null);
   const videoRef = useRef(null);
+  const carouselRef = useRef(null);
 
   // ==================== MEMOIZED DATA ====================
 
@@ -163,7 +163,7 @@ const SubscribeFormSection3 = ({ config }) => {
       sparkles: <HiOutlineSparkles className={className} />,
       calendar: <HiOutlineCalendar className={className} />,
       document: <HiOutlineDocumentText className={className} />,
-      academic: <HiOutlineAcademicCap className={className} />,
+      academic: <HiOutlineAcademicCap className={className} />
     };
     return icons[iconName] || <HiOutlineBell className={className} />;
   };

@@ -72,7 +72,7 @@ export const getSkeletonProps = (type, config = {}) => {
         },
 
         // Unsubscribe Option - Unsubscribe management
-        unsubscribeOption: {
+        unsubscribeOptions: {
             showHeader: true,
             showStats: false,
             showCards: false,
@@ -136,7 +136,7 @@ export const skeletonRegistry = {
     subscriptionBenefits: SectionSkeleton,
 
     // Unsubscribe Option
-    unsubscribeOption: SectionSkeleton,
+    unsubscribeOptions: SectionSkeleton,
 
     // Email Preferences
     emailPreferences: SectionSkeleton,

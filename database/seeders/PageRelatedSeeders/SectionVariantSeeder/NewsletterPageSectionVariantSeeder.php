@@ -982,6 +982,653 @@ class NewsletterPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Subscription Benefits Section
+            [
+                'id' => 573,
+                'section_key' => 'subscriptionBenefits',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Exclusive Perks',
+                    'title' => [
+                        'prefix' => 'Unlock',
+                        'highlight' => 'Premium Benefits'
+                    ],
+                    'description' => 'Join 15,000+ supply chain professionals who get exclusive insights, expert strategies, and valuable resources delivered straight to their inbox every week.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '15,000+', 'label' => 'Active Readers', 'icon' => 'users'],
+                        ['value' => '94%', 'label' => 'Open Rate', 'icon' => 'eye'],
+                        ['value' => '45%', 'label' => 'CTR', 'icon' => 'chart'],
+                        ['value' => '4.9/5', 'label' => 'Reader Rating', 'icon' => 'star']
+                    ],
+                    'benefits' => [
+                        [
+                            'title' => 'Weekly Industry Insights',
+                            'description' => 'Stay ahead with the latest supply chain trends, news, and analysis delivered every Tuesday.',
+                            'icon' => 'newspaper',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'stats' => '52 issues/year',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Expert Tips & Strategies',
+                            'description' => 'Actionable advice from industry leaders and supply chain experts to improve your operations.',
+                            'icon' => 'academic',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'stats' => '200+ tips shared',
+                            'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Product Updates',
+                            'description' => 'Be the first to know about new features, integrations, and platform enhancements.',
+                            'icon' => 'chip',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'stats' => 'Monthly releases',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Exclusive Content',
+                            'description' => 'Access subscriber-only resources including case studies, templates, and whitepapers.',
+                            'icon' => 'gift',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'stats' => '25+ resources',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Early Access',
+                            'description' => 'Get early access to new features, beta programs, and special events before the general public.',
+                            'icon' => 'bolt',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'stats' => 'Beta access',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Community Network',
+                            'description' => 'Connect with thousands of supply chain professionals in our subscriber community.',
+                            'icon' => 'users',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'stats' => '15,000+ members',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Supply Chain Director',
+                            'company' => 'Global Retail Corp',
+                            'quote' => 'This newsletter has become essential reading for our team. The insights are always relevant and actionable.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Operations Manager',
+                            'company' => 'HealthTech Solutions',
+                            'quote' => 'I\'ve implemented several strategies from this newsletter. The ROI has been tremendous.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Logistics Director',
+                            'company' => 'EuroLogistics',
+                            'quote' => 'The expert tips alone are worth the subscription. Highly recommended for any supply chain professional.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 574,
+                'section_key' => 'subscriptionBenefits',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Unlock Exclusive Access',
+                    'title' => [
+                        'prefix' => 'Discover',
+                        'highlight' => 'Premium Benefits'
+                    ],
+                    'description' => 'Join 15,000+ supply chain professionals who get exclusive insights, expert strategies, and valuable resources delivered straight to their inbox every week.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '15,000+', 'label' => 'Active Readers', 'icon' => 'users', 'trend' => '+22%', 'trendUp' => true],
+                        ['value' => '94%', 'label' => 'Open Rate', 'icon' => 'eye', 'trend' => '+5%', 'trendUp' => true],
+                        ['value' => '45%', 'label' => 'CTR', 'icon' => 'chart', 'trend' => '+8%', 'trendUp' => true],
+                        ['value' => '4.9/5', 'label' => 'Reader Rating', 'icon' => 'star', 'trend' => '4.9', 'trendUp' => true]
+                    ],
+                    'benefits' => [
+                        [
+                            'id' => 1,
+                            'title' => 'Weekly Industry Insights',
+                            'description' => 'Stay ahead with the latest supply chain trends, news, and analysis delivered every Tuesday.',
+                            'longDescription' => 'Each week, our team curates the most important developments in supply chain management, including emerging trends, regulatory changes, and innovative technologies.',
+                            'icon' => 'newspaper',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'stats' => '52 issues/year',
+                            'metrics' => ['views' => '2.4M', 'subscribers' => '15K+'],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Expert Tips & Strategies',
+                            'description' => 'Actionable advice from industry leaders and supply chain experts to improve your operations.',
+                            'longDescription' => 'Learn from experienced supply chain professionals who have successfully implemented strategies that drive results.',
+                            'icon' => 'academic',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'stats' => '200+ tips shared',
+                            'metrics' => ['saves' => '12K', 'shares' => '8.5K'],
+                            'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'title' => 'Product Updates',
+                            'description' => 'Be the first to know about new features, integrations, and platform enhancements.',
+                            'longDescription' => 'Get early access to product announcements, feature releases, and platform improvements.',
+                            'icon' => 'chip',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'stats' => 'Monthly releases',
+                            'metrics' => ['features' => '45+', 'integrations' => '30+'],
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 4,
+                            'title' => 'Exclusive Content',
+                            'description' => 'Access subscriber-only resources including case studies, templates, and whitepapers.',
+                            'longDescription' => 'Unlock a library of premium content including in-depth case studies, downloadable templates, and research reports.',
+                            'icon' => 'gift',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'stats' => '25+ resources',
+                            'metrics' => ['downloads' => '50K+', 'resources' => '25+'],
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 5,
+                            'title' => 'Early Access',
+                            'description' => 'Get early access to new features, beta programs, and special events before the general public.',
+                            'longDescription' => 'Be among the first to try new features, join beta programs, and register for exclusive events.',
+                            'icon' => 'bolt',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'stats' => 'Beta access',
+                            'metrics' => ['betaPrograms' => '12', 'events' => '8'],
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 6,
+                            'title' => 'Community Network',
+                            'description' => 'Connect with thousands of supply chain professionals in our subscriber community.',
+                            'longDescription' => 'Join a growing community of supply chain professionals who share insights, ask questions, and collaborate.',
+                            'icon' => 'users',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'stats' => '15,000+ members',
+                            'metrics' => ['members' => '15K+', 'discussions' => '2K+'],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'interestOptions' => [
+                        ['value' => 'supply-chain', 'label' => 'Supply Chain Trends', 'icon' => 'globe'],
+                        ['value' => 'technology', 'label' => 'Technology & AI', 'icon' => 'chip'],
+                        ['value' => 'product', 'label' => 'Product Updates', 'icon' => 'gift'],
+                        ['value' => 'events', 'label' => 'Events & Webinars', 'icon' => 'calendar'],
+                        ['value' => 'case-studies', 'label' => 'Case Studies', 'icon' => 'document'],
+                        ['value' => 'best-practices', 'label' => 'Best Practices', 'icon' => 'star']
+                    ],
+                    'roleOptions' => [
+                        'Supply Chain Manager',
+                        'Logistics Director',
+                        'Operations Manager',
+                        'Procurement Specialist',
+                        'CEO/Founder',
+                        'Consultant',
+                        'Student',
+                        'Other'
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Supply Chain Director',
+                            'company' => 'Global Retail Corp',
+                            'quote' => 'This newsletter has become essential reading for our team. The insights are always relevant and actionable.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Operations Manager',
+                            'company' => 'HealthTech Solutions',
+                            'quote' => 'I\'ve implemented several strategies from this newsletter. The ROI has been tremendous.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Logistics Director',
+                            'company' => 'EuroLogistics',
+                            'quote' => 'The expert tips alone are worth the subscription. Highly recommended for any supply chain professional.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'David Kim',
+                            'role' => 'Procurement Lead',
+                            'company' => 'AutoParts Inc.',
+                            'quote' => 'I look forward to this newsletter every week. The content is always timely and relevant.',
+                            'rating' => 5,
+                            'avatar' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 575,
+                'section_key' => 'subscriptionBenefits',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Weekly Digital Dispatch',
+                    'title' => [
+                        'prefix' => 'Join the',
+                        'highlight' => 'Insider Circle'
+                    ],
+                    'description' => 'Get exclusive supply chain analysis, early access to reports, and invites to private webinars. Join 50,000+ industry leaders who rely on our insights.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '50,000+', 'label' => 'Subscribers', 'icon' => 'users'],
+                        ['value' => '92%', 'label' => 'Open Rate', 'icon' => 'eye'],
+                        ['value' => '45%', 'label' => 'CTR', 'icon' => 'chart'],
+                        ['value' => '4.9/5', 'label' => 'Satisfaction', 'icon' => 'star']
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Supply Chain Director',
+                            'company' => 'Global Retail Corp',
+                            'quote' => 'This newsletter has become my go-to resource for industry insights. The weekly updates keep me informed about the latest trends and best practices.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Operations Manager',
+                            'company' => 'HealthTech Solutions',
+                            'quote' => 'The expert tips and case studies have helped me implement several process improvements. Highly recommended for any supply chain professional.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Logistics Director',
+                            'company' => 'EuroLogistics',
+                            'quote' => 'I\'ve been a subscriber for over two years. The content is always relevant, timely, and actionable. It\'s helped me stay ahead of industry changes.',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'interestOptions' => [
+                        ['value' => 'supply-chain', 'label' => 'Supply Chain Trends', 'icon' => 'globe'],
+                        ['value' => 'technology', 'label' => 'Technology & AI', 'icon' => 'chip'],
+                        ['value' => 'product', 'label' => 'Product Updates', 'icon' => 'sparkles'],
+                        ['value' => 'events', 'label' => 'Events & Webinars', 'icon' => 'calendar'],
+                        ['value' => 'case-studies', 'label' => 'Case Studies', 'icon' => 'document'],
+                        ['value' => 'best-practices', 'label' => 'Best Practices', 'icon' => 'academic']
+                    ],
+                    'roleOptions' => [
+                        'Supply Chain Manager',
+                        'Logistics Director',
+                        'Operations Manager',
+                        'Procurement Specialist',
+                        'CEO/Founder',
+                        'Consultant',
+                        'Student',
+                        'Other'
+                    ],
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 576,
+                'section_key' => 'subscriptionBenefits',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Unsubscribe Option Section 
+            [
+                'id' => 577,
+                'section_key' => 'unsubscribeOptions',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Subscription Center',
+                    'title' => [
+                        'prefix' => '',
+                        'highlight' => '',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We value your inbox. Update your preferences or unsubscribe at any time.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '0%', 'label' => 'Spam Rate', 'icon' => 'check'],
+                        ['value' => '24h', 'label' => 'Request Processing', 'icon' => 'clock'],
+                        ['value' => '100%', 'label' => 'Request Honored', 'icon' => 'heart'],
+                        ['value' => 'Instant', 'label' => 'Confirmation', 'icon' => 'mail']
+                    ],
+                    'reasons' => [
+                        ['id' => 'too-many-emails', 'label' => 'Too many emails', 'icon' => 'mail'],
+                        ['id' => 'not-relevant', 'label' => 'Content not relevant', 'icon' => 'eye'],
+                        ['id' => 'never-subscribed', 'label' => 'Never subscribed', 'icon' => 'x'],
+                        ['id' => 'spam', 'label' => 'Mark as spam', 'icon' => 'flag'],
+                        ['id' => 'other', 'label' => 'Other reason', 'icon' => 'question']
+                    ],
+                    'retentionOptions' => [
+                        ['id' => 'unsubscribe-all', 'label' => 'Unsubscribe from all emails', 'icon' => 'x'],
+                        ['id' => 'reduce-frequency', 'label' => 'Reduce email frequency (weekly instead of daily)', 'icon' => 'clock'],
+                        ['id' => 'pause-30-days', 'label' => 'Pause emails for 30 days', 'icon' => 'refresh'],
+                        ['id' => 'only-product-updates', 'label' => 'Only receive product updates', 'icon' => 'star']
+                    ],
+                    'formTitle' => 'Manage Your Subscription',
+                    'formDescription' => 'Please confirm your email address to manage your preferences.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 578,
+                'section_key' => 'unsubscribeOptions',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Subscription Center',
+                    'title' => [
+                        'prefix' => '',
+                        'highlight' => '',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We value your inbox. Update your preferences or unsubscribe at any time.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '0%', 'label' => 'Spam Rate', 'icon' => 'check', 'trend' => 'Industry best'],
+                        ['value' => '24h', 'label' => 'Request Processing', 'icon' => 'clock', 'trend' => 'Guaranteed'],
+                        ['value' => '100%', 'label' => 'Request Honored', 'icon' => 'heart', 'trend' => 'No questions asked'],
+                        ['value' => '50K+', 'label' => 'Preferences Updated', 'icon' => 'cog', 'trend' => 'Monthly']
+                    ],
+                    'reasons' => [
+                        ['id' => 'too-many-emails', 'label' => 'Too many emails', 'icon' => 'mail', 'description' => 'You receive more emails than you\'d like'],
+                        ['id' => 'not-relevant', 'label' => 'Content not relevant', 'icon' => 'eye', 'description' => 'The content doesn\'t match your interests'],
+                        ['id' => 'never-subscribed', 'label' => 'Never subscribed', 'icon' => 'x', 'description' => 'You don\'t remember signing up'],
+                        ['id' => 'spam', 'label' => 'Mark as spam', 'icon' => 'flag', 'description' => 'You consider these emails as spam'],
+                        ['id' => 'change-interests', 'label' => 'Change interests', 'icon' => 'refresh', 'description' => 'Your interests have changed'],
+                        ['id' => 'other', 'label' => 'Other reason', 'icon' => 'question', 'description' => 'Another reason not listed']
+                    ],
+                    'retentionOptions' => [
+                        ['id' => 'unsubscribe-all', 'label' => 'Unsubscribe from all emails', 'icon' => 'x'],
+                        ['id' => 'reduce-frequency', 'label' => 'Reduce email frequency (weekly instead of daily)', 'icon' => 'clock'],
+                        ['id' => 'pause-30-days', 'label' => 'Pause emails for 30 days', 'icon' => 'refresh'],
+                        ['id' => 'only-product-updates', 'label' => 'Only receive product updates', 'icon' => 'star'],
+                        ['id' => 'only-digests', 'label' => 'Receive monthly digest only', 'icon' => 'calendar']
+                    ],
+                    'formTitle' => 'Manage Your Subscription',
+                    'formDescription' => 'Please confirm your email address to manage your preferences.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 579,
+                'section_key' => 'unsubscribeOptions',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Subscription Center',
+                    'title' => [
+                        'prefix' => '',
+                        'highlight' => '',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We value your inbox. Update your preferences or unsubscribe at any time.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '94%', 'label' => 'Retention Rate', 'icon' => 'heart', 'trend' => '+5% after preferences', 'trendUp' => true],
+                        ['value' => '50K+', 'label' => 'Preferences Updated', 'icon' => 'cog', 'trend' => 'Monthly active', 'trendUp' => true],
+                        ['value' => '4.9/5', 'label' => 'User Satisfaction', 'icon' => 'star', 'trend' => 'Post-preference update', 'trendUp' => true],
+                        ['value' => 'Instant', 'label' => 'Update Time', 'icon' => 'clock', 'trend' => 'Real-time sync', 'trendUp' => true]
+                    ],
+                    'reasons' => [
+                        ['id' => 'too-many-emails', 'label' => 'Too many emails', 'icon' => 'mail', 'description' => 'You receive more emails than you\'d like'],
+                        ['id' => 'not-relevant', 'label' => 'Content not relevant', 'icon' => 'eye', 'description' => 'The content doesn\'t match your interests'],
+                        ['id' => 'never-subscribed', 'label' => 'Never subscribed', 'icon' => 'x', 'description' => 'You don\'t remember signing up'],
+                        ['id' => 'spam', 'label' => 'Mark as spam', 'icon' => 'flag', 'description' => 'You consider these emails as spam'],
+                        ['id' => 'change-interests', 'label' => 'Change interests', 'icon' => 'refresh', 'description' => 'Your interests have changed'],
+                        ['id' => 'other', 'label' => 'Other reason', 'icon' => 'question', 'description' => 'Another reason not listed']
+                    ],
+                    'retentionOptions' => [
+                        ['id' => 'unsubscribe-all', 'label' => 'Unsubscribe from all emails', 'icon' => 'x'],
+                        ['id' => 'reduce-frequency', 'label' => 'Reduce email frequency (weekly instead of daily)', 'icon' => 'clock'],
+                        ['id' => 'pause-30-days', 'label' => 'Pause emails for 30 days', 'icon' => 'refresh'],
+                        ['id' => 'only-product-updates', 'label' => 'Only receive product updates', 'icon' => 'star'],
+                        ['id' => 'only-digests', 'label' => 'Receive monthly digest only', 'icon' => 'calendar']
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Supply Chain Director',
+                            'quote' => 'I almost unsubscribed, but after adjusting my preferences, I\'m getting exactly the content I need. So glad I stayed!',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Operations Manager',
+                            'quote' => 'The ability to customize email frequency was a game-changer. Weekly digest is perfect for my schedule.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Logistics Director',
+                            'quote' => 'I switched to product updates only and now I never miss important announcements. Great flexibility!',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'formTitle' => 'Manage Your Subscription',
+                    'formDescription' => 'Please confirm your email address to manage your preferences.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 580,
+                'section_key' => 'unsubscribeOptions',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // Email Preferences Section - Variant 1
+            [
+                'id' => 581,
+                'section_key' => 'emailPreferences',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Personalize Your Inbox',
+                    'title' => [
+                        'prefix' => 'Tailor Your',
+                        'highlight' => 'Email Preferences'
+                    ],
+                    'description' => 'Take control of what you receive. Choose the topics you care about and how often you want to hear from us. Your preferences sync instantly.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '15,000+', 'label' => 'Active Subscribers', 'icon' => 'users'],
+                        ['value' => '94%', 'label' => 'Open Rate', 'icon' => 'eye'],
+                        ['value' => '45%', 'label' => 'CTR', 'icon' => 'chart'],
+                        ['value' => '4.9/5', 'label' => 'Satisfaction', 'icon' => 'star']
+                    ],
+                    'frequencyOptions' => [
+                        ['value' => 'daily', 'label' => 'Daily', 'description' => 'Get updates every day', 'icon' => 'calendar'],
+                        ['value' => 'weekly', 'label' => 'Weekly', 'description' => 'Get updates once a week (recommended)', 'icon' => 'clock', 'recommended' => true],
+                        ['value' => 'biweekly', 'label' => 'Bi-weekly', 'description' => 'Get updates every two weeks', 'icon' => 'refresh'],
+                        ['value' => 'monthly', 'label' => 'Monthly', 'description' => 'Get updates once a month', 'icon' => 'calendar']
+                    ],
+                    'categoryOptions' => [
+                        ['id' => 'trends', 'label' => 'Supply Chain Trends', 'description' => 'Latest industry trends and forecasts', 'icon' => 'chart', 'gradient' => 'from-blue-500 to-blue-600', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['id' => 'technology', 'label' => 'Technology & AI', 'description' => 'AI, automation, and digital transformation', 'icon' => 'chip', 'gradient' => 'from-purple-500 to-purple-600', 'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'],
+                        ['id' => 'product', 'label' => 'Product Updates', 'description' => 'New features and improvements', 'icon' => 'sparkles', 'gradient' => 'from-emerald-500 to-emerald-600', 'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'],
+                        ['id' => 'events', 'label' => 'Events & Webinars', 'description' => 'Upcoming conferences and online events', 'icon' => 'calendar', 'gradient' => 'from-amber-500 to-amber-600', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['id' => 'case-studies', 'label' => 'Case Studies', 'description' => 'Real-world success stories', 'icon' => 'document', 'gradient' => 'from-rose-500 to-rose-600', 'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'],
+                        ['id' => 'best-practices', 'label' => 'Best Practices', 'description' => 'Actionable tips and strategies', 'icon' => 'academic', 'gradient' => 'from-indigo-500 to-indigo-600', 'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop']
+                    ],
+                    'formTitle' => 'Update Email Preferences',
+                    'formDescription' => 'Please confirm your email address to update your preferences.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 582,
+                'section_key' => 'emailPreferences',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Subscription Center',
+                    'title' => [
+                        'prefix' => 'Personalize Your',
+                        'highlight' => 'Email Preferences'
+                    ],
+                    'description' => 'Take control of your inbox. Choose the topics you care about, set your preferred frequency, and manage your security settings all in one place.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '15,000+', 'label' => 'Active Subscribers', 'icon' => 'users', 'trend' => '+22%', 'trendUp' => true],
+                        ['value' => '94%', 'label' => 'Open Rate', 'icon' => 'eye', 'trend' => '+5%', 'trendUp' => true],
+                        ['value' => '45%', 'label' => 'Click-through Rate', 'icon' => 'chart', 'trend' => '+8%', 'trendUp' => true],
+                        ['value' => '4.9/5', 'label' => 'Reader Satisfaction', 'icon' => 'star', 'trend' => '4.9', 'trendUp' => true]
+                    ],
+                    'frequencyOptions' => [
+                        ['value' => 'daily', 'label' => 'Daily', 'description' => 'Get updates every day', 'icon' => 'calendar'],
+                        ['value' => 'weekly', 'label' => 'Weekly', 'description' => 'Get updates once a week (recommended)', 'icon' => 'clock', 'recommended' => true],
+                        ['value' => 'biweekly', 'label' => 'Bi-weekly', 'description' => 'Get updates every two weeks', 'icon' => 'refresh'],
+                        ['value' => 'monthly', 'label' => 'Monthly', 'description' => 'Get updates once a month', 'icon' => 'calendar']
+                    ],
+                    'categoryOptions' => [
+                        ['id' => 'trends', 'label' => 'Supply Chain Trends', 'description' => 'Latest industry trends and forecasts', 'icon' => 'chart', 'gradient' => 'from-blue-500 to-blue-600', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['id' => 'technology', 'label' => 'Technology & AI', 'description' => 'AI, automation, and digital transformation', 'icon' => 'chip', 'gradient' => 'from-purple-500 to-purple-600', 'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'],
+                        ['id' => 'product', 'label' => 'Product Updates', 'description' => 'New features and improvements', 'icon' => 'sparkles', 'gradient' => 'from-emerald-500 to-emerald-600', 'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'],
+                        ['id' => 'events', 'label' => 'Events & Webinars', 'description' => 'Upcoming conferences and online events', 'icon' => 'calendar', 'gradient' => 'from-amber-500 to-amber-600', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['id' => 'case-studies', 'label' => 'Case Studies', 'description' => 'Real-world success stories', 'icon' => 'document', 'gradient' => 'from-rose-500 to-rose-600', 'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'],
+                        ['id' => 'best-practices', 'label' => 'Best Practices', 'description' => 'Actionable tips and strategies', 'icon' => 'academic', 'gradient' => 'from-indigo-500 to-indigo-600', 'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop']
+                    ],
+                    'emailHistory' => [
+                        ['id' => 1, 'subject' => 'Supply Chain Trends 2024', 'date' => 'March 15, 2024', 'status' => 'delivered', 'category' => 'trends', 'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=300&fit=crop'],
+                        ['id' => 2, 'subject' => 'AI in Supply Chain', 'date' => 'March 8, 2024', 'status' => 'opened', 'category' => 'technology', 'image' => 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop'],
+                        ['id' => 3, 'subject' => 'Sustainability Strategies', 'date' => 'March 1, 2024', 'status' => 'clicked', 'category' => 'trends', 'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=300&fit=crop'],
+                        ['id' => 4, 'subject' => 'Digital Transformation', 'date' => 'February 16, 2024', 'status' => 'delivered', 'category' => 'technology', 'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=300&fit=crop']
+                    ],
+                    'formTitle' => 'Update Email Preferences',
+                    'formDescription' => 'Please confirm your email address to update your preferences.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 583,
+                'section_key' => 'emailPreferences',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Preference Center',
+                    'title' => [
+                        'prefix' => 'Take Control of Your',
+                        'highlight' => 'Inbox Experience'
+                    ],
+                    'description' => 'Personalize your email journey. Choose what topics you care about, how often you hear from us, and manage your subscription preferences all in one place.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '15,000+', 'label' => 'Active Subscribers', 'icon' => 'users', 'trend' => '+22%', 'trendUp' => true],
+                        ['value' => '94%', 'label' => 'Open Rate', 'icon' => 'eye', 'trend' => '+5%', 'trendUp' => true],
+                        ['value' => '45%', 'label' => 'Click-through Rate', 'icon' => 'chart', 'trend' => '+8%', 'trendUp' => true],
+                        ['value' => '4.9/5', 'label' => 'Reader Satisfaction', 'icon' => 'star', 'trend' => '4.9', 'trendUp' => true]
+                    ],
+                    'frequencyOptions' => [
+                        ['value' => 'daily', 'label' => 'Daily', 'description' => 'Get updates every day', 'icon' => 'calendar'],
+                        ['value' => 'weekly', 'label' => 'Weekly', 'description' => 'Get updates once a week (recommended)', 'icon' => 'clock', 'recommended' => true],
+                        ['value' => 'biweekly', 'label' => 'Bi-weekly', 'description' => 'Get updates every two weeks', 'icon' => 'refresh'],
+                        ['value' => 'monthly', 'label' => 'Monthly', 'description' => 'Get updates once a month', 'icon' => 'calendar']
+                    ],
+                    'categoryOptions' => [
+                        ['id' => 'trends', 'label' => 'Supply Chain Trends', 'description' => 'Latest industry trends and forecasts', 'icon' => 'chart', 'gradient' => 'from-blue-500 to-blue-600', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['id' => 'technology', 'label' => 'Technology & AI', 'description' => 'AI, automation, and digital transformation', 'icon' => 'chip', 'gradient' => 'from-purple-500 to-purple-600', 'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'],
+                        ['id' => 'product', 'label' => 'Product Updates', 'description' => 'New features and improvements', 'icon' => 'sparkles', 'gradient' => 'from-emerald-500 to-emerald-600', 'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'],
+                        ['id' => 'events', 'label' => 'Events & Webinars', 'description' => 'Upcoming conferences and online events', 'icon' => 'calendar', 'gradient' => 'from-amber-500 to-amber-600', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['id' => 'case-studies', 'label' => 'Case Studies', 'description' => 'Real-world success stories', 'icon' => 'document', 'gradient' => 'from-rose-500 to-rose-600', 'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'],
+                        ['id' => 'best-practices', 'label' => 'Best Practices', 'description' => 'Actionable tips and strategies', 'icon' => 'academic', 'gradient' => 'from-indigo-500 to-indigo-600', 'image' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop']
+                    ],
+                    'testimonials' => [
+                        [
+                            'name' => 'Sarah Johnson',
+                            'role' => 'Supply Chain Director',
+                            'quote' => 'The ability to customize my email preferences has been a game-changer. I get exactly the content I need, when I need it.',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Michael Chen',
+                            'role' => 'Operations Manager',
+                            'quote' => 'I love that I can choose weekly digests instead of daily emails. It fits perfectly with my workflow.',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'name' => 'Emily Rodriguez',
+                            'role' => 'Logistics Director',
+                            'quote' => 'The category selection lets me focus on what matters most to my role. Highly recommend!',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'emailHistory' => [
+                        ['id' => 1, 'subject' => 'Supply Chain Trends 2024', 'date' => 'March 15, 2024', 'status' => 'delivered', 'category' => 'trends', 'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=300&fit=crop'],
+                        ['id' => 2, 'subject' => 'AI in Supply Chain', 'date' => 'March 8, 2024', 'status' => 'opened', 'category' => 'technology', 'image' => 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop'],
+                        ['id' => 3, 'subject' => 'Sustainability Strategies', 'date' => 'March 1, 2024', 'status' => 'clicked', 'category' => 'trends', 'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=300&fit=crop'],
+                        ['id' => 4, 'subject' => 'Digital Transformation', 'date' => 'February 16, 2024', 'status' => 'delivered', 'category' => 'technology', 'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=300&fit=crop']
+                    ],
+                    'formTitle' => 'Update Email Preferences',
+                    'formDescription' => 'Please confirm your email address to update your preferences.',
+                    'formImage' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 584,
+                'section_key' => 'emailPreferences',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
         ];
 
         // Add the new Services variants

@@ -1947,7 +1947,7 @@ class PageSectionsSeeder extends Seeder
             [
                 'id' => 146,
                 'page_id' => 19,
-                'section_key' => 'unsubscribeOption',
+                'section_key' => 'unsubscribeOptions',
                 'variant' => 'variant1',
                 'order' => 5,
                 'enabled' => 1,

@@ -71,7 +71,7 @@ const Newsletter = ({ pageData = { meta: {}, sections: [] } }) => {
         contentPreview: "Content Preview",
 
         subscriptionBenefits: "Subscription Benefits",
-        unsubscribeOption: "Unsubscribe Option",
+        unsubscribeOptions: "Unsubscribe Option",
         emailPreferences: "Email Preferences",
       };
 
