@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\FrontEndController;
-use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\FrontEndController;
 
 
 // Route::inertia('/', 'welcome', [
@@ -38,6 +38,7 @@ Route::controller(FrontEndController::class)->group(function () {
         'global-presence' => 'globalPresence',
         'careers',
         'trust-signals' => 'trustSignals',
+        'newsletter' => 'newsletter',
     ];
 
     foreach ($pages as $uri => $method) {

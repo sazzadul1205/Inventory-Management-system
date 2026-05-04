@@ -27,9 +27,16 @@
  * @returns {JSX.Element} Rendered navigation bar
  */
 
+// Inertia
 import { Link, usePage } from '@inertiajs/react';
+
+// Query client
 import { useQuery } from '@tanstack/react-query';
+
+// HTTP client
 import axios from 'axios';
+
+// React icons
 import { useCallback, useRef, useState, useEffect, useMemo } from 'react';
 
 // =========================
