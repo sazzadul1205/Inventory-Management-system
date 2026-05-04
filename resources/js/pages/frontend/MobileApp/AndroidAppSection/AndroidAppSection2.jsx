@@ -1,10 +1,29 @@
 // page/frontend/MobileApp/AndroidAppSection/AndroidAppSection2.jsx
 
-// React
+/**
+ * Android App Section II - Advanced Android App Hub with Tabs & Features
+ *
+ * Unique Design Elements:
+ * - Stats Cards with Trend Indicators (Rating, Downloads, Uptime, Support)
+ * - Multi-tab UI (Overview, Features, Reviews, What's New)
+ * - Hero Section with Phone Mockup and Feature Highlights
+ * - Features Grid with Category Filters and Expandable Details
+ * - Compatibility Section with Device Requirements (Phone, Wear OS, Android Auto)
+ * - Reviews Section with Star Ratings, Verified Badges, and User Avatars
+ * - What's New Section with Version Release Notes
+ * - Email Form for Download Link Request
+ * - QR Code Modal for Direct Google Play Access
+ * - Animated Gradient Orbs (Green/Teal Theme) in Background
+ * - Responsive Grid Layout for Features
+ *
+ * All icons from react-icons (hi, hi2, fa, md)
+ * Fully responsive with dark mode support
+ */
+
 import { useState } from 'react';
 
-// Icons
-import { FaCar } from "react-icons/fa";
+// React Icons - Heroicons, FontAwesome, Material Design
+import { FaCar } from 'react-icons/fa';
 import {
   HiOutlineDownload,
   HiOutlineCheckCircle,
@@ -22,52 +41,31 @@ import {
   HiOutlineSparkles,
   HiOutlineRefresh,
   HiOutlineViewGrid,
+  HiOutlineBell,
+  HiOutlineClock,
+  HiOutlineChat,
 } from 'react-icons/hi';
 import { HiOutlineUser } from 'react-icons/hi2';
-import { MdOutlineWatchLater } from "react-icons/md";
+import { MdOutlineWatchLater } from 'react-icons/md';
 
 const AndroidAppSection2 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  // ==================== STATE MANAGEMENT ====================
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
   const [showQrModal, setShowQrModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [expandedFeature, setExpandedFeature] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Handle email input change
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    if (errors.email) {
-      setErrors({});
-    }
-  };
+  // ==================== MEMOIZED DATA ====================
 
-  // Handle download link request
-  const handleRequestLink = (e) => {
-    e.preventDefault();
-    if (!email) {
-      setErrors({ email: 'Email address is required' });
-      return;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setErrors({ email: 'Please enter a valid email address' });
-      return;
-    }
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setEmail('');
-    }, 3000);
-  };
-
-  // Features data
   const features = config?.features || [
     {
       title: "Real-time Tracking",
       description: "Track shipments and inventory in real-time with live updates and push notifications.",
       icon: "globe",
-      color: "from-green-500 to-green-600",
+      gradient: "from-green-500 to-green-600",
       category: "Tracking",
       details: [
         "Live GPS tracking of shipments",
@@ -80,7 +78,7 @@ const AndroidAppSection2 = ({ config }) => {
       title: "Offline Mode",
       description: "Access critical data and continue working even without an internet connection.",
       icon: "wifi",
-      color: "from-teal-500 to-teal-600",
+      gradient: "from-teal-500 to-teal-600",
       category: "Accessibility",
       details: [
         "Offline data synchronization",
@@ -93,7 +91,7 @@ const AndroidAppSection2 = ({ config }) => {
       title: "Barcode Scanning",
       description: "Quickly scan product barcodes using your device's camera for instant information.",
       icon: "qrcode",
-      color: "from-emerald-500 to-emerald-600",
+      gradient: "from-emerald-500 to-emerald-600",
       category: "Scanning",
       details: [
         "Support for all major barcode types",
@@ -106,7 +104,7 @@ const AndroidAppSection2 = ({ config }) => {
       title: "Analytics Dashboard",
       description: "View key metrics and performance indicators in a mobile-optimized dashboard.",
       icon: "chart",
-      color: "from-cyan-500 to-cyan-600",
+      gradient: "from-cyan-500 to-cyan-600",
       category: "Analytics",
       details: [
         "Customizable KPIs",
@@ -119,7 +117,7 @@ const AndroidAppSection2 = ({ config }) => {
       title: "Team Collaboration",
       description: "Communicate and collaborate with team members directly within the app.",
       icon: "users",
-      color: "from-blue-500 to-blue-600",
+      gradient: "from-blue-500 to-blue-600",
       category: "Collaboration",
       details: [
         "Team messaging",
@@ -132,7 +130,7 @@ const AndroidAppSection2 = ({ config }) => {
       title: "Secure Access",
       description: "Enterprise-grade security with biometric authentication and data encryption.",
       icon: "shield",
-      color: "from-indigo-500 to-indigo-600",
+      gradient: "from-indigo-500 to-indigo-600",
       category: "Security",
       details: [
         "Fingerprint / Face unlock",
@@ -143,22 +141,19 @@ const AndroidAppSection2 = ({ config }) => {
     }
   ];
 
-  // Reviews
   const reviews = config?.reviews || [
-    { name: "Sarah Johnson", rating: 5, title: "Best supply chain app on Android", comment: "This app has transformed how we manage our inventory. The offline mode is a lifesaver in our warehouses.", date: "March 15, 2024", verified: true },
-    { name: "Michael Chen", rating: 5, title: "Incredibly useful", comment: "The barcode scanning feature alone is worth the download. So fast and accurate!", date: "March 10, 2024", verified: true },
-    { name: "Emily Rodriguez", rating: 4, title: "Great app, keeps getting better", comment: "Love the Material Design and smooth animations. The team is constantly improving the app.", date: "March 5, 2024", verified: true },
-    { name: "David Kim", rating: 5, title: "Essential tool for supply chain", comment: "Real-time tracking and push notifications keep me updated on everything.", date: "February 28, 2024", verified: true }
+    { name: "Sarah Johnson", rating: 5, title: "Best supply chain app on Android", comment: "This app has transformed how we manage our inventory. The offline mode is a lifesaver in our warehouses.", date: "March 15, 2024", verified: true, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" },
+    { name: "Michael Chen", rating: 5, title: "Incredibly useful", comment: "The barcode scanning feature alone is worth the download. So fast and accurate!", date: "March 10, 2024", verified: true, avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" },
+    { name: "Emily Rodriguez", rating: 4, title: "Great app, keeps getting better", comment: "Love the Material Design and smooth animations. The team is constantly improving the app.", date: "March 5, 2024", verified: true, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" },
+    { name: "David Kim", rating: 5, title: "Essential tool for supply chain", comment: "Real-time tracking and push notifications keep me updated on everything.", date: "February 28, 2024", verified: true, avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop" }
   ];
 
-  // What's new in latest version
   const whatsNew = config?.whatsNew || [
     { version: "3.0.0", date: "March 15, 2024", features: ["Material You design", "Wear OS support", "Android Auto integration", "Performance improvements", "Dark mode enhancements"] },
     { version: "2.5.0", date: "February 1, 2024", features: ["Offline mode enhanced", "Batch scanning added", "Push notifications upgrade", "Tablet layout improvements"] },
     { version: "2.0.0", date: "December 10, 2023", features: ["Analytics dashboard", "Team collaboration tools", "Biometric authentication", "Widget support"] }
   ];
 
-  // Stats
   const stats = config?.stats || [
     { value: "4.8", label: "Play Store Rating", icon: "star", trend: "50,000+ reviews", trendUp: true },
     { value: "500K+", label: "Downloads", icon: "download", trend: "+50K this month", trendUp: true },
@@ -166,11 +161,10 @@ const AndroidAppSection2 = ({ config }) => {
     { value: "24/7", label: "Support", icon: "chat", trend: "Average 2-min response", trendUp: true }
   ];
 
-  // Compatibility
   const compatibility = config?.compatibility || [
-    { version: "Android 8.0 (Oreo) or later", device: "Phones & Tablets", icon: "mobile", color: "from-green-500 to-green-600" },
-    { version: "Wear OS 3.0 or later", device: "Smartwatches", icon: "watch", color: "from-teal-500 to-teal-600" },
-    { version: "Android Auto", device: "In-car support", icon: "car", color: "from-emerald-500 to-emerald-600" }
+    { version: "Android 8.0 (Oreo) or later", device: "Phones & Tablets", icon: "mobile", gradient: "from-green-500 to-green-600" },
+    { version: "Wear OS 3.0 or later", device: "Smartwatches", icon: "watch", gradient: "from-teal-500 to-teal-600" },
+    { version: "Android Auto", device: "In-car support", icon: "car", gradient: "from-emerald-500 to-emerald-600" }
   ];
 
   const tabs = [
@@ -194,49 +188,141 @@ const AndroidAppSection2 = ({ config }) => {
     ? features
     : features.filter(f => f.category === selectedCategory);
 
+  // ==================== HELPER FUNCTIONS ====================
+
+  /**
+   * Resolves icon component from string name
+   * Supports Heroicons, FontAwesome, and Material Design sets
+   */
+  const getIcon = (iconName, className = "w-5 h-5") => {
+    const icons = {
+      globe: <HiOutlineGlobe className={className} />,
+      wifi: <HiOutlineWifi className={className} />,
+      qrcode: <HiOutlineQrcode className={className} />,
+      bell: <HiOutlineBell className={className} />,
+      shield: <HiOutlineShieldCheck className={className} />,
+      chart: <HiOutlineChartBar className={className} />,
+      star: <HiOutlineStar className={className} />,
+      download: <HiOutlineDownload className={className} />,
+      clock: <HiOutlineClock className={className} />,
+      chat: <HiOutlineChat className={className} />,
+      mobile: <HiOutlineDeviceMobile className={className} />,
+      car: <FaCar className={className} />,
+      watch: <MdOutlineWatchLater className={className} />,
+      sparkles: <HiOutlineSparkles className={className} />,
+      mail: <HiOutlineMail className={className} />,
+      grid: <HiOutlineViewGrid className={className} />,
+      refresh: <HiOutlineRefresh className={className} />,
+      users: <HiOutlineUserGroup className={className} />,
+      user: <HiOutlineUser className={className} />,
+      x: <HiOutlineX className={className} />,
+      arrow: <HiOutlineArrowRight className={className} />,
+      check: <HiOutlineCheckCircle className={className} />,
+    };
+    return icons[iconName] || <HiOutlineDeviceMobile className={className} />;
+  };
+
+  /**
+   * Handle email input change
+   */
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (errors.email) {
+      setErrors({});
+    }
+  };
+
+  /**
+   * Handle download link request
+   */
+  const handleRequestLink = (e) => {
+    e.preventDefault();
+    if (!email) {
+      setErrors({ email: 'Email address is required' });
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setErrors({ email: 'Please enter a valid email address' });
+      return;
+    }
+    setFormSubmitted(true);
+    setTimeout(() => {
+      setFormSubmitted(false);
+      setEmail('');
+    }, 3000);
+  };
+
+  /**
+   * Close QR modal
+   */
+  const closeQrModal = () => {
+    setShowQrModal(false);
+  };
+
+  /**
+   * Toggle feature expansion
+   */
+  const toggleFeature = (index) => {
+    setExpandedFeature(expandedFeature === index ? null : index);
+  };
+
   return (
     <section
       className="relative py-24 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden"
       role="region"
       aria-label="Android App Center"
+      itemScope
+      itemType="https://schema.org/SoftwareApplication"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
-
-      {/* Animated Gradient Orbs */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
+      <div
+        className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-20 right-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl animate-blob"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-20 left-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full blur-3xl animate-blob animation-delay-2000"
+        aria-hidden="true"
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with Stats */}
+        {/* ==================== HEADER WITH STATS ==================== */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 dark:bg-green-900/30 rounded-full px-4 py-2 mb-4">
               <HiOutlineDeviceMobile className="w-4 h-4 text-green-600 dark:text-green-400" />
               <span className="text-sm font-medium text-green-700 dark:text-green-300">
-                {typeof config?.badge === "string"
-                  ? config.badge
-                  : config?.badge?.text || "Android App"}
+                {config?.badge || "Android App"}
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              {config?.title?.prefix || "SupplyChainPro for"} <span className="bg-linear-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">{config?.title?.highlight || "Android"}</span>
+              {config?.title?.prefix || "SupplyChainPro for"}{' '}
+              <span className="bg-linear-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                {config?.title?.highlight || "Android"}
+              </span>
             </h1>
 
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
-              {config?.description || "Manage your supply chain on the go with our native Android app. Available on Google Play for phones, tablets, and Wear OS. Download now and take control of your operations anywhere."}
+              {config?.description ||
+                "Manage your supply chain on the go with our native Android app. Available on Google Play for phones, tablets, and Wear OS. Download now and take control of your operations anywhere."}
             </p>
           </div>
 
-          {/* Stats Cards */}
+          {/* Stats Cards with Trend Indicators */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {stats.map((stat, idx) => (
-              <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-3 shadow-lg border border-gray-200 dark:border-gray-700 text-center min-w-24">
+              <div
+                key={idx}
+                className="bg-white dark:bg-gray-800 rounded-2xl p-3 shadow-lg border border-gray-200 dark:border-gray-700 text-center min-w-24"
+              >
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">{stat.value}</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
                 {stat.trend && (
-                  <div className={`text-xs mt-1 ${stat.trendUp ? 'text-green-500' : 'text-red-500'}`}>
+                  <div className={`text-xs mt-1 ${stat.trendUp ? 'text-emerald-500' : 'text-red-500'}`}>
                     {stat.trend}
                   </div>
                 )}
@@ -245,7 +331,7 @@ const AndroidAppSection2 = ({ config }) => {
           </div>
         </div>
 
-        {/* Quick Navigation Tabs */}
+        {/* ==================== QUICK NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <button
@@ -253,19 +339,17 @@ const AndroidAppSection2 = ({ config }) => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
                 ? 'bg-green-600 text-white shadow-lg shadow-green-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
-              {tab.icon === 'sparkles' ? <HiOutlineSparkles className="w-4 h-4" /> :
-                tab.icon === 'grid' ? <HiOutlineViewGrid className="w-4 h-4" /> :
-                  tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
-                    <HiOutlineRefresh className="w-4 h-4" />}
+              {getIcon(tab.icon, "w-4 h-4")}
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Overview Tab */}
+        {/* ==================== OVERVIEW TAB ==================== */}
         {activeTab === 'overview' && (
           <>
             {/* Hero Section with Phone Mockup */}
@@ -273,7 +357,7 @@ const AndroidAppSection2 = ({ config }) => {
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 rounded-full px-3 py-1 mb-4">
-                    <HiOutlineSparkles className="w-4 h-4 text-green-600" />
+                    <HiOutlineSparkles className="w-4 h-4 text-green-600 dark:text-green-400" />
                     <span className="text-xs font-medium text-green-700 dark:text-green-300">Available on Google Play</span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -285,15 +369,18 @@ const AndroidAppSection2 = ({ config }) => {
                   <div className="space-y-3 mb-8">
                     {features.slice(0, 4).map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                          <HiOutlineCheckCircle className="w-4 h-4 text-green-600" />
+                        <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                          <HiOutlineCheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                         </div>
                         <span className="text-sm text-gray-700 dark:text-gray-300">{feature.title}</span>
                       </div>
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-4">
-                    <button className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <button
+                      className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      aria-label="Get it on Google Play"
+                    >
                       <HiOutlineDownload className="w-5 h-5" />
                       Get it on Google Play
                       <HiOutlineArrowRight className="w-4 h-4" />
@@ -301,22 +388,25 @@ const AndroidAppSection2 = ({ config }) => {
                     <button
                       onClick={() => setShowQrModal(true)}
                       className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
+                      aria-label="Scan QR code"
                     >
                       <HiOutlineQrcode className="w-5 h-5" />
                       Scan QR Code
                     </button>
                   </div>
                 </div>
+
+                {/* Phone Mockup */}
                 <div className="relative flex justify-center">
                   <div className="relative w-72 h-auto">
                     <div className="absolute -inset-4 bg-green-600/20 rounded-3xl blur-2xl" />
-                    <div className="relative bg-gray-900 rounded-3xl p-2 shadow-2xl">
+                    <div className="relative bg-gray-900 dark:bg-gray-950 rounded-3xl p-2 shadow-2xl">
                       <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden">
                         <div className="bg-green-600 p-3 flex items-center justify-between">
                           <div className="flex gap-1">
                             <div className="w-2 h-2 rounded-full bg-red-500" />
-                            <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                            <div className="w-2 h-2 rounded-full bg-green-500" />
+                            <div className="w-2 h-2 rounded-full bg-amber-500" />
+                            <div className="w-2 h-2 rounded-full bg-emerald-500" />
                           </div>
                           <span className="text-white text-xs font-medium">SupplyChainPro</span>
                           <div className="w-12" />
@@ -341,17 +431,17 @@ const AndroidAppSection2 = ({ config }) => {
 
             {/* Compatibility Section */}
             <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 mb-12">
-              <h3 className="text-xl font-bold text-center text-gray-900 dark:text-white mb-6">Compatibility</h3>
+              <h3 className="text-xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                Compatibility
+              </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {compatibility.map((item, idx) => (
                   <div key={idx} className="text-center">
-                    <div className={`w-12 h-12 rounded-full bg-linear-to-r ${item.color} flex items-center justify-center mx-auto mb-3`}>
-                      {item.icon === 'mobile' ? <HiOutlineDeviceMobile className="w-6 h-6 text-white" /> :
-                        item.icon === 'watch' ? <MdOutlineWatchLater className="w-6 h-6 text-white" /> :
-                          <FaCar className="w-6 h-6 text-white" />}
+                    <div className={`w-12 h-12 rounded-full bg-linear-to-r ${item.gradient} flex items-center justify-center mx-auto mb-3`}>
+                      {getIcon(item.icon, "w-6 h-6 text-white")}
                     </div>
                     <p className="font-semibold text-gray-900 dark:text-white text-sm">{item.version}</p>
-                    <p className="text-xs text-gray-500">{item.device}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{item.device}</p>
                   </div>
                 ))}
               </div>
@@ -361,14 +451,18 @@ const AndroidAppSection2 = ({ config }) => {
             <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
               <div className="text-center mb-8">
                 <HiOutlineMail className="w-12 h-12 mx-auto text-green-600 dark:text-green-400 mb-4" />
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Get App Download Link</h3>
-                <p className="text-gray-600 dark:text-gray-400">Enter your email address and we'll send you a direct download link for the Google Play Store.</p>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                  Get App Download Link
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Enter your email address and we'll send you a direct download link for the Google Play Store.
+                </p>
               </div>
 
               {formSubmitted ? (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                <div className="text-center py-8 animate-fadeIn">
+                  <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <HiOutlineCheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Link Sent!</h4>
                   <p className="text-gray-600 dark:text-gray-400">Check your inbox for the Google Play Store download link.</p>
@@ -382,29 +476,34 @@ const AndroidAppSection2 = ({ config }) => {
                         value={email}
                         onChange={handleEmailChange}
                         placeholder="Enter your email address"
-                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
+                        aria-label="Email address"
                       />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
                     <button
                       type="submit"
                       className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                      aria-label="Send download link"
                     >
                       Send Link
                       <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
                     </button>
                   </div>
-                  <p className="text-center text-xs text-gray-500 mt-4">By providing your email, you agree to receive a one-time download link.</p>
+                  <p className="text-center text-xs text-gray-500 dark:text-gray-500 mt-4">
+                    By providing your email, you agree to receive a one-time download link.
+                  </p>
                 </form>
               )}
             </div>
           </>
         )}
 
-        {/* Features Tab */}
+        {/* ==================== FEATURES TAB ==================== */}
         {activeTab === 'features' && (
           <>
-            {/* Category Filters */}
+            {/* Category Filters with Count Badges */}
             <div className="flex flex-wrap justify-center gap-2 mb-8">
               {categories.map((category) => (
                 <button
@@ -414,14 +513,9 @@ const AndroidAppSection2 = ({ config }) => {
                     ? 'bg-green-600 text-white shadow-lg shadow-green-600/25'
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                     }`}
+                  aria-label={`Filter by ${category.label}`}
                 >
-                  {category.icon === 'grid' ? <HiOutlineViewGrid className="w-4 h-4" /> :
-                    category.icon === 'globe' ? <HiOutlineGlobe className="w-4 h-4" /> :
-                      category.icon === 'wifi' ? <HiOutlineWifi className="w-4 h-4" /> :
-                        category.icon === 'qrcode' ? <HiOutlineQrcode className="w-4 h-4" /> :
-                          category.icon === 'chart' ? <HiOutlineChartBar className="w-4 h-4" /> :
-                            category.icon === 'users' ? <HiOutlineUserGroup className="w-4 h-4" /> :
-                              <HiOutlineShieldCheck className="w-4 h-4" />}
+                  {getIcon(category.icon, "w-4 h-4")}
                   {category.label}
                   <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${selectedCategory === category.id
                     ? 'bg-white/20 text-white'
@@ -435,82 +529,95 @@ const AndroidAppSection2 = ({ config }) => {
 
             {/* Features Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {filteredFeatures.map((feature, idx) => (
-                <div
-                  key={idx}
-                  className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700 cursor-pointer"
-                  onClick={() => setExpandedFeature(expandedFeature === idx ? null : idx)}
-                >
-                  <div className={`h-1.5 bg-linear-to-r ${feature.color}`} />
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${feature.color} flex items-center justify-center`}>
-                        {feature.icon === 'globe' ? <HiOutlineGlobe className="w-6 h-6 text-white" /> :
-                          feature.icon === 'wifi' ? <HiOutlineWifi className="w-6 h-6 text-white" /> :
-                            feature.icon === 'qrcode' ? <HiOutlineQrcode className="w-6 h-6 text-white" /> :
-                              feature.icon === 'chart' ? <HiOutlineChartBar className="w-6 h-6 text-white" /> :
-                                feature.icon === 'users' ? <HiOutlineUserGroup className="w-6 h-6 text-white" /> :
-                                  <HiOutlineShieldCheck className="w-6 h-6 text-white" />}
+              {filteredFeatures.map((feature, idx) => {
+                const isExpanded = expandedFeature === idx;
+                return (
+                  <div
+                    key={idx}
+                    className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700 cursor-pointer"
+                    onClick={() => toggleFeature(idx)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleFeature(idx)}
+                  >
+                    <div className={`h-1.5 bg-linear-to-r ${feature.gradient}`} />
+                    <div className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${feature.gradient} flex items-center justify-center`}>
+                          {getIcon(feature.icon, "w-6 h-6 text-white")}
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{feature.title}</h3>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{feature.title}</h3>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{feature.description}</p>
-                    {expandedFeature === idx && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Features:</p>
-                        <ul className="space-y-2">
-                          {feature.details.map((detail, dIdx) => (
-                            <li key={dIdx} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
-                              <HiOutlineCheckCircle className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
-                              <span>{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{feature.description}</p>
+                      {isExpanded && (
+                        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
+                          <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Features:</p>
+                          <ul className="space-y-2">
+                            {feature.details.map((detail, dIdx) => (
+                              <li key={dIdx} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
+                                <HiOutlineCheckCircle className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0" />
+                                <span>{detail}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      <div className="mt-4 flex items-center justify-between">
+                        <span className="text-xs text-gray-500">Android native feature</span>
+                        <span className="text-green-600 dark:text-green-400 text-sm font-semibold">
+                          {isExpanded ? 'Show less' : 'Learn more'}
+                        </span>
                       </div>
-                    )}
-                    <div className="mt-4 flex items-center justify-between">
-                      <span className="text-xs text-gray-500">Android native feature</span>
-                      <span className="text-green-600 text-sm font-semibold">{expandedFeature === idx ? 'Show less' : 'Learn more'}</span>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </>
         )}
 
-        {/* Reviews Tab */}
+        {/* ==================== REVIEWS TAB ==================== */}
         {activeTab === 'reviews' && (
           <div className="space-y-6 mb-12">
             <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <HiOutlineStar key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                    <HiOutlineStar key={i} className="w-5 h-5 text-amber-500 fill-current" />
                   ))}
                 </div>
                 <span className="text-lg font-bold text-gray-900 dark:text-white">4.8</span>
                 <span className="text-sm text-gray-500">(50,000+ reviews)</span>
               </div>
-              <button className="text-green-600 font-semibold hover:underline">Write a review →</button>
+              <button className="text-green-600 dark:text-green-400 font-semibold hover:underline" aria-label="Write a review">
+                Write a review →
+              </button>
             </div>
             {reviews.map((review, idx) => (
               <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                    <HiOutlineUser className="w-5 h-5 text-green-600" />
-                  </div>
+                  <img
+                    src={review.avatar}
+                    alt={review.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                    loading="lazy"
+                  />
                   <div className="flex-1">
                     <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                       <h4 className="font-semibold text-gray-900 dark:text-white">{review.name}</h4>
                       <div className="flex items-center gap-2">
                         <div className="flex items-center gap-1">
                           {[...Array(5)].map((_, i) => (
-                            <HiOutlineStar key={i} className={`w-4 h-4 ${i < review.rating ? 'text-yellow-500 fill-current' : 'text-gray-300'}`} />
+                            <HiOutlineStar
+                              key={i}
+                              className={`w-4 h-4 ${i < review.rating ? 'text-amber-500 fill-current' : 'text-gray-300 dark:text-gray-600'}`}
+                            />
                           ))}
                         </div>
                         {review.verified && (
-                          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Verified</span>
+                          <span className="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full">
+                            Verified
+                          </span>
                         )}
                       </div>
                     </div>
@@ -522,19 +629,21 @@ const AndroidAppSection2 = ({ config }) => {
               </div>
             ))}
             <div className="text-center">
-              <button className="text-green-600 font-semibold hover:underline">Read all 50,000+ reviews on Google Play →</button>
+              <button className="text-green-600 dark:text-green-400 font-semibold hover:underline" aria-label="Read all reviews">
+                Read all 50,000+ reviews on Google Play →
+              </button>
             </div>
           </div>
         )}
 
-        {/* What's New Tab */}
+        {/* ==================== WHAT'S NEW TAB ==================== */}
         {activeTab === 'whatsnew' && (
           <div className="space-y-6 mb-12">
             {whatsNew.map((update, idx) => (
               <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
                   <div className="flex items-center gap-2">
-                    <HiOutlineSparkles className="w-5 h-5 text-green-600" />
+                    <HiOutlineSparkles className="w-5 h-5 text-green-600 dark:text-green-400" />
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">Version {update.version}</h3>
                   </div>
                   <span className="text-sm text-gray-500">{update.date}</span>
@@ -542,7 +651,7 @@ const AndroidAppSection2 = ({ config }) => {
                 <ul className="space-y-2">
                   {update.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -552,14 +661,27 @@ const AndroidAppSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* QR Code Modal */}
+        {/* ==================== QR CODE MODAL ==================== */}
         {showQrModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowQrModal(false)}>
-            <div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={closeQrModal}
+            role="dialog"
+            aria-label="Scan QR Code"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-green-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Scan QR Code</h3>
-                  <button onClick={() => setShowQrModal(false)} className="text-white hover:text-gray-200">
+                  <button
+                    onClick={closeQrModal}
+                    className="text-white hover:text-gray-200 transition-colors"
+                    aria-label="Close modal"
+                  >
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -577,11 +699,16 @@ const AndroidAppSection2 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-blob {
           animation: blob 7s infinite;
@@ -589,11 +716,18 @@ const AndroidAppSection2 = ({ config }) => {
         .animation-delay-2000 {
           animation-delay: 2s;
         }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .bg-grid-slate-100 {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
         }
         .dark .bg-grid-slate-800 {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.4)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+        }
+        .mask-radial-gradient {
+          mask-image: radial-gradient(ellipse at center, white, transparent);
+          -webkit-mask-image: radial-gradient(ellipse at center, white, transparent);
         }
       `}</style>
     </section>

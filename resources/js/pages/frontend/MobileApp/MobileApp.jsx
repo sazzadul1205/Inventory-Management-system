@@ -213,7 +213,7 @@ const MobileApp = ({ pageData = { meta: {}, sections: [] } }) => {
             const SkeletonComponent =
               skeletonRegistry[type] || skeletonRegistry.default;
 
-            const skeletonProps = getSkeletonProps(type, config);
+            const skeletonProps = getSkeletonProps(type, variant, config);
 
             // If component doesn't exist, show error with proper accessibility
             if (!SectionComponent) {
