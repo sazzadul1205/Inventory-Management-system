@@ -1673,6 +1673,1728 @@ class TrustSignalsPageSectionVariantSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // Compliance Standards Section 
+            [
+                'id' => 545,
+                'section_key' => 'complianceStandards',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'Compliance Standards',
+                    'title' => [
+                        'prefix' => 'Meeting Global',
+                        'highlight' => 'Compliance',
+                        'suffix' => 'Standards'
+                    ],
+                    'description' => 'We adhere to the highest industry standards and regulations to ensure your data is protected and your business remains compliant.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '6', 'label' => 'Global Standards', 'icon' => 'globe'],
+                        ['value' => '100%', 'label' => 'Compliance Rate', 'icon' => 'check'],
+                        ['value' => '24/7', 'label' => 'Monitoring', 'icon' => 'eye'],
+                        ['value' => 'Annual', 'label' => 'Audits', 'icon' => 'calendar']
+                    ],
+                    'standards' => [
+                        [
+                            'id' => 'gdpr',
+                            'name' => 'GDPR',
+                            'fullName' => 'General Data Protection Regulation',
+                            'region' => 'European Union',
+                            'category' => 'Data Privacy',
+                            'status' => 'Compliant',
+                            'description' => 'The GDPR is a comprehensive data protection law that sets guidelines for the collection, processing, and storage of personal information of individuals within the European Union.',
+                            'keyRequirements' => [
+                                'Data protection by design and default',
+                                'Right to access, rectification, and erasure',
+                                'Data breach notification within 72 hours',
+                                'Data Protection Officer (DPO) appointment',
+                                'Data Processing Agreements (DPAs)'
+                            ],
+                            'certifications' => ['GDPR Compliant'],
+                            'icon' => 'globe',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'color' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'lastAudit' => 'January 2024',
+                            'nextAudit' => 'January 2025',
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'ccpa',
+                            'name' => 'CCPA',
+                            'fullName' => 'California Consumer Privacy Act',
+                            'region' => 'California, USA',
+                            'category' => 'Data Privacy',
+                            'status' => 'Compliant',
+                            'description' => 'The CCPA grants California residents new rights regarding their personal information, including the right to know what data is collected, request deletion, and opt-out of data sales.',
+                            'keyRequirements' => [
+                                'Right to know what personal information is collected',
+                                'Right to delete personal information',
+                                'Right to opt-out of data sales',
+                                'Right to non-discrimination for exercising rights',
+                                'Notice at collection requirements'
+                            ],
+                            'certifications' => ['CCPA Ready'],
+                            'icon' => 'shield',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'color' => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                            'lastAudit' => 'February 2024',
+                            'nextAudit' => 'February 2025',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'soc2',
+                            'name' => 'SOC 2 Type II',
+                            'fullName' => 'Service Organization Control 2 Type II',
+                            'region' => 'Global',
+                            'category' => 'Security Compliance',
+                            'status' => 'Certified',
+                            'description' => 'SOC 2 Type II certification demonstrates our commitment to security, availability, processing integrity, confidentiality, and privacy over an extended period.',
+                            'keyRequirements' => [
+                                'Security controls validated quarterly',
+                                'Availability monitoring and incident response',
+                                'Confidentiality and privacy protections',
+                                'Processing integrity verification',
+                                'Continuous monitoring and auditing'
+                            ],
+                            'certifications' => ['SOC 2 Type II'],
+                            'icon' => 'certificate',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'color' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'lastAudit' => 'December 2023',
+                            'nextAudit' => 'December 2024',
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27001',
+                            'name' => 'ISO 27001',
+                            'fullName' => 'ISO/IEC 27001:2022',
+                            'region' => 'Global',
+                            'category' => 'Security Management',
+                            'status' => 'Certified',
+                            'description' => 'ISO 27001 is the international standard for information security management systems (ISMS), specifying requirements for establishing, implementing, maintaining, and improving security controls.',
+                            'keyRequirements' => [
+                                'Information security management system',
+                                'Risk assessment and treatment',
+                                'Security policy and controls',
+                                'Continuous improvement framework',
+                                'Management review and internal audits'
+                            ],
+                            'certifications' => ['ISO 27001:2022'],
+                            'icon' => 'badge',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'color' => 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            'lastAudit' => 'October 2023',
+                            'nextAudit' => 'October 2024',
+                            'image' => 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'hipaa',
+                            'name' => 'HIPAA',
+                            'fullName' => 'Health Insurance Portability and Accountability Act',
+                            'region' => 'United States',
+                            'category' => 'Healthcare Compliance',
+                            'status' => 'Ready',
+                            'description' => 'HIPAA establishes national standards to protect sensitive patient health information from being disclosed without patient consent or knowledge.',
+                            'keyRequirements' => [
+                                'Privacy Rule compliance',
+                                'Security Rule safeguards',
+                                'Breach notification procedures',
+                                'Business Associate Agreements',
+                                'Administrative, physical, and technical safeguards'
+                            ],
+                            'certifications' => ['HIPAA Ready'],
+                            'icon' => 'shield',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'color' => 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400',
+                            'lastAudit' => 'March 2024',
+                            'nextAudit' => 'March 2025',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'pci-dss',
+                            'name' => 'PCI DSS',
+                            'fullName' => 'Payment Card Industry Data Security Standard',
+                            'region' => 'Global',
+                            'category' => 'Payment Security',
+                            'status' => 'Compliant',
+                            'description' => 'PCI DSS is a set of security standards designed to ensure that all companies that accept, process, store, or transmit credit card information maintain a secure environment.',
+                            'keyRequirements' => [
+                                'Secure network infrastructure',
+                                'Cardholder data protection',
+                                'Vulnerability management',
+                                'Access control measures',
+                                'Regular monitoring and testing'
+                            ],
+                            'certifications' => ['PCI DSS Level 1'],
+                            'icon' => 'credit',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'color' => 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400',
+                            'lastAudit' => 'November 2023',
+                            'nextAudit' => 'November 2024',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 546,
+                'section_key' => 'complianceStandards',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'Compliance Standards',
+                    'title' => [
+                        'prefix' => 'Meeting Global',
+                        'highlight' => 'Compliance',
+                        'suffix' => 'Standards'
+                    ],
+                    'description' => 'We adhere to the highest industry standards and regulations to ensure your data is protected and your business remains compliant.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '6', 'label' => 'Active Standards', 'icon' => 'check', 'trend' => 'All Compliant', 'trendUp' => true],
+                        ['value' => '100%', 'label' => 'Audit Success Rate', 'icon' => 'chart', 'trend' => '+2%', 'trendUp' => true],
+                        ['value' => '24/7', 'label' => 'Compliance Monitoring', 'icon' => 'eye', 'trend' => 'Continuous', 'trendUp' => true],
+                        ['value' => 'Annual', 'label' => 'Third-Party Audits', 'icon' => 'calendar', 'trend' => 'Scheduled', 'trendUp' => true]
+                    ],
+                    'standards' => [
+                        [
+                            'id' => 'gdpr',
+                            'name' => 'GDPR',
+                            'fullName' => 'General Data Protection Regulation',
+                            'region' => 'European Union',
+                            'regionFlag' => '🇪🇺',
+                            'category' => 'Data Privacy',
+                            'status' => 'Compliant',
+                            'description' => 'The GDPR is a comprehensive data protection law that sets guidelines for the collection, processing, and storage of personal information of individuals within the European Union.',
+                            'keyRequirements' => [
+                                'Data protection by design and default',
+                                'Right to access, rectification, and erasure',
+                                'Data breach notification within 72 hours',
+                                'Data Protection Officer (DPO) appointment',
+                                'Data Processing Agreements (DPAs)'
+                            ],
+                            'certifications' => ['GDPR Compliant'],
+                            'icon' => 'globe',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'lastAudit' => 'January 2024',
+                            'nextAudit' => 'January 2025',
+                            'documentation' => '/compliance/gdpr-report.pdf',
+                            'auditor' => 'Internal',
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'ccpa',
+                            'name' => 'CCPA',
+                            'fullName' => 'California Consumer Privacy Act',
+                            'region' => 'California, USA',
+                            'regionFlag' => '🇺🇸',
+                            'category' => 'Data Privacy',
+                            'status' => 'Compliant',
+                            'description' => 'The CCPA grants California residents new rights regarding their personal information, including the right to know what data is collected, request deletion, and opt-out of data sales.',
+                            'keyRequirements' => [
+                                'Right to know what personal information is collected',
+                                'Right to delete personal information',
+                                'Right to opt-out of data sales',
+                                'Right to non-discrimination for exercising rights',
+                                'Notice at collection requirements'
+                            ],
+                            'certifications' => ['CCPA Ready'],
+                            'icon' => 'shield',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'lastAudit' => 'February 2024',
+                            'nextAudit' => 'February 2025',
+                            'documentation' => '/compliance/ccpa-report.pdf',
+                            'auditor' => 'Third Party',
+                            'image' => 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'soc2',
+                            'name' => 'SOC 2 Type II',
+                            'fullName' => 'Service Organization Control 2 Type II',
+                            'region' => 'Global',
+                            'regionFlag' => '🌐',
+                            'category' => 'Security Compliance',
+                            'status' => 'Certified',
+                            'description' => 'SOC 2 Type II certification demonstrates our commitment to security, availability, processing integrity, confidentiality, and privacy over an extended period.',
+                            'keyRequirements' => [
+                                'Security controls validated quarterly',
+                                'Availability monitoring and incident response',
+                                'Confidentiality and privacy protections',
+                                'Processing integrity verification',
+                                'Continuous monitoring and auditing'
+                            ],
+                            'certifications' => ['SOC 2 Type II'],
+                            'icon' => 'certificate',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'lastAudit' => 'December 2023',
+                            'nextAudit' => 'December 2024',
+                            'documentation' => '/compliance/soc2-report.pdf',
+                            'auditor' => 'Deloitte',
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27001',
+                            'name' => 'ISO 27001',
+                            'fullName' => 'ISO/IEC 27001:2022',
+                            'region' => 'Global',
+                            'regionFlag' => '🌐',
+                            'category' => 'Security Management',
+                            'status' => 'Certified',
+                            'description' => 'ISO 27001 is the international standard for information security management systems (ISMS), specifying requirements for establishing, implementing, maintaining, and improving security controls.',
+                            'keyRequirements' => [
+                                'Information security management system',
+                                'Risk assessment and treatment',
+                                'Security policy and controls',
+                                'Continuous improvement framework',
+                                'Management review and internal audits'
+                            ],
+                            'certifications' => ['ISO 27001:2022'],
+                            'icon' => 'badge',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'lastAudit' => 'October 2023',
+                            'nextAudit' => 'October 2024',
+                            'documentation' => '/compliance/iso27001-report.pdf',
+                            'auditor' => 'BSI',
+                            'image' => 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'hipaa',
+                            'name' => 'HIPAA',
+                            'fullName' => 'Health Insurance Portability and Accountability Act',
+                            'region' => 'United States',
+                            'regionFlag' => '🇺🇸',
+                            'category' => 'Healthcare Compliance',
+                            'status' => 'Ready',
+                            'description' => 'HIPAA establishes national standards to protect sensitive patient health information from being disclosed without patient consent or knowledge.',
+                            'keyRequirements' => [
+                                'Privacy Rule compliance',
+                                'Security Rule safeguards',
+                                'Breach notification procedures',
+                                'Business Associate Agreements',
+                                'Administrative, physical, and technical safeguards'
+                            ],
+                            'certifications' => ['HIPAA Ready'],
+                            'icon' => 'shield',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'lastAudit' => 'March 2024',
+                            'nextAudit' => 'March 2025',
+                            'documentation' => '/compliance/hipaa-readiness.pdf',
+                            'auditor' => 'Third Party',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'pci-dss',
+                            'name' => 'PCI DSS',
+                            'fullName' => 'Payment Card Industry Data Security Standard',
+                            'region' => 'Global',
+                            'regionFlag' => '🌐',
+                            'category' => 'Payment Security',
+                            'status' => 'Compliant',
+                            'description' => 'PCI DSS is a set of security standards designed to ensure that all companies that accept, process, store, or transmit credit card information maintain a secure environment.',
+                            'keyRequirements' => [
+                                'Secure network infrastructure',
+                                'Cardholder data protection',
+                                'Vulnerability management',
+                                'Access control measures',
+                                'Regular monitoring and testing'
+                            ],
+                            'certifications' => ['PCI DSS Level 1'],
+                            'icon' => 'credit',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'lastAudit' => 'November 2023',
+                            'nextAudit' => 'November 2024',
+                            'documentation' => '/compliance/pci-dss-report.pdf',
+                            'auditor' => 'Trustwave',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'auditHistory' => [
+                        ['year' => '2024', 'standard' => 'SOC 2 Type II', 'status' => 'passed', 'date' => 'December 2024', 'auditor' => 'Deloitte'],
+                        ['year' => '2024', 'standard' => 'ISO 27001', 'status' => 'passed', 'date' => 'October 2024', 'auditor' => 'BSI'],
+                        ['year' => '2024', 'standard' => 'PCI DSS', 'status' => 'passed', 'date' => 'November 2024', 'auditor' => 'Trustwave'],
+                        ['year' => '2023', 'standard' => 'GDPR', 'status' => 'passed', 'date' => 'January 2023', 'auditor' => 'Internal'],
+                        ['year' => '2023', 'standard' => 'SOC 2 Type II', 'status' => 'passed', 'date' => 'December 2023', 'auditor' => 'Deloitte']
+                    ],
+                    'certificates' => [
+                        ['name' => 'SOC 2 Type II', 'issuer' => 'AICPA', 'date' => 'December 2023', 'validUntil' => 'December 2024'],
+                        ['name' => 'ISO 27001:2022', 'issuer' => 'BSI', 'date' => 'October 2023', 'validUntil' => 'October 2026'],
+                        ['name' => 'PCI DSS Level 1', 'issuer' => 'PCI Council', 'date' => 'November 2023', 'validUntil' => 'November 2024']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 547,
+                'section_key' => 'complianceStandards',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'Compliance Standards',
+                    'title' => [
+                        'prefix' => 'Meeting Global',
+                        'highlight' => 'Compliance'
+                    ],
+                    'description' => 'We adhere to the highest industry standards and regulations to ensure your data is protected and your business remains compliant.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '5+', 'label' => 'Global Standards', 'icon' => 'globe'],
+                        ['value' => '100%', 'label' => 'Audit Pass Rate', 'icon' => 'check'],
+                        ['value' => '24/7', 'label' => 'Compliance Monitoring', 'icon' => 'eye'],
+                        ['value' => 'Annual', 'label' => 'Third-Party Audits', 'icon' => 'calendar']
+                    ],
+                    'standards' => [
+                        [
+                            'id' => 'gdpr',
+                            'name' => 'GDPR',
+                            'fullName' => 'General Data Protection Regulation',
+                            'region' => 'European Union',
+                            'regionFlag' => '🇪🇺',
+                            'category' => 'Data Privacy',
+                            'status' => 'Compliant',
+                            'description' => 'The GDPR is a comprehensive data protection law that sets guidelines for the collection, processing, and storage of personal information of individuals within the European Union.',
+                            'keyRequirements' => [
+                                'Data protection by design and default',
+                                'Right to access, rectification, and erasure',
+                                'Data breach notification within 72 hours',
+                                'Data Protection Officer (DPO) appointment',
+                                'Data Processing Agreements (DPAs)'
+                            ],
+                            'certifications' => ['GDPR Compliant'],
+                            'icon' => 'globe',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'lastAudit' => 'January 2024',
+                            'nextAudit' => 'January 2025',
+                            'documentation' => '/compliance/gdpr-report.pdf',
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'soc2',
+                            'name' => 'SOC 2 Type II',
+                            'fullName' => 'Service Organization Control 2 Type II',
+                            'region' => 'Global',
+                            'regionFlag' => '🌐',
+                            'category' => 'Security Compliance',
+                            'status' => 'Certified',
+                            'description' => 'SOC 2 Type II certification demonstrates our commitment to security, availability, processing integrity, confidentiality, and privacy over an extended period.',
+                            'keyRequirements' => [
+                                'Security controls validated quarterly',
+                                'Availability monitoring and incident response',
+                                'Confidentiality and privacy protections',
+                                'Processing integrity verification',
+                                'Continuous monitoring and auditing'
+                            ],
+                            'certifications' => ['SOC 2 Type II'],
+                            'icon' => 'certificate',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'lastAudit' => 'December 2023',
+                            'nextAudit' => 'December 2024',
+                            'documentation' => '/compliance/soc2-report.pdf',
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27001',
+                            'name' => 'ISO 27001',
+                            'fullName' => 'ISO/IEC 27001:2022',
+                            'region' => 'Global',
+                            'regionFlag' => '🌐',
+                            'category' => 'Security Management',
+                            'status' => 'Certified',
+                            'description' => 'ISO 27001 is the international standard for information security management systems (ISMS), specifying requirements for establishing, implementing, maintaining, and improving security controls.',
+                            'keyRequirements' => [
+                                'Information security management system',
+                                'Risk assessment and treatment',
+                                'Security policy and controls',
+                                'Continuous improvement framework',
+                                'Management review and internal audits'
+                            ],
+                            'certifications' => ['ISO 27001:2022'],
+                            'icon' => 'badge',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'lastAudit' => 'October 2023',
+                            'nextAudit' => 'October 2024',
+                            'documentation' => '/compliance/iso27001-report.pdf',
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'hipaa',
+                            'name' => 'HIPAA',
+                            'fullName' => 'Health Insurance Portability and Accountability Act',
+                            'region' => 'United States',
+                            'regionFlag' => '🇺🇸',
+                            'category' => 'Healthcare Compliance',
+                            'status' => 'Ready',
+                            'description' => 'HIPAA establishes national standards to protect sensitive patient health information from being disclosed without patient consent or knowledge.',
+                            'keyRequirements' => [
+                                'Privacy Rule compliance',
+                                'Security Rule safeguards',
+                                'Breach notification procedures',
+                                'Business Associate Agreements',
+                                'Administrative, physical, and technical safeguards'
+                            ],
+                            'certifications' => ['HIPAA Ready'],
+                            'icon' => 'shield',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'lastAudit' => 'March 2024',
+                            'nextAudit' => 'March 2025',
+                            'documentation' => '/compliance/hipaa-readiness.pdf',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'pci-dss',
+                            'name' => 'PCI DSS',
+                            'fullName' => 'Payment Card Industry Data Security Standard',
+                            'region' => 'Global',
+                            'regionFlag' => '🌐',
+                            'category' => 'Payment Security',
+                            'status' => 'Compliant',
+                            'description' => 'PCI DSS is a set of security standards designed to ensure that all companies that accept, process, store, or transmit credit card information maintain a secure environment.',
+                            'keyRequirements' => [
+                                'Secure network infrastructure',
+                                'Cardholder data protection',
+                                'Vulnerability management',
+                                'Access control measures',
+                                'Regular monitoring and testing'
+                            ],
+                            'certifications' => ['PCI DSS Level 1'],
+                            'icon' => 'credit',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'lastAudit' => 'November 2023',
+                            'nextAudit' => 'November 2024',
+                            'documentation' => '/compliance/pci-dss-report.pdf',
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'successStories' => [
+                        [
+                            'id' => 1,
+                            'company' => 'Global Retail Corp',
+                            'industry' => 'Retail',
+                            'logo' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=80&h=80&fit=crop',
+                            'quote' => 'SupplyChainPro\'s compliance with SOC 2 and ISO 27001 made them an easy choice for our enterprise security requirements.',
+                            'author' => 'Sarah Johnson, CTO',
+                            'standardsMet' => ['SOC 2 Type II', 'ISO 27001'],
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'company' => 'HealthTech Solutions',
+                            'industry' => 'Healthcare',
+                            'logo' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=80&h=80&fit=crop',
+                            'quote' => 'Their HIPAA readiness and GDPR compliance gave us confidence in handling sensitive healthcare data.',
+                            'author' => 'Michael Chen, VP of Security',
+                            'standardsMet' => ['HIPAA', 'GDPR'],
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'company' => 'EuroLogistics',
+                            'industry' => 'Logistics',
+                            'logo' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=80&h=80&fit=crop',
+                            'quote' => 'Managing cross-border compliance is complex, but SupplyChainPro\'s framework made it straightforward.',
+                            'author' => 'Elena Rodriguez, DPO',
+                            'standardsMet' => ['GDPR', 'PCI DSS'],
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 548,
+                'section_key' => 'complianceStandards',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // GDPR Compliance Section
+            [
+                'id' => 549,
+                'section_key' => 'gdprCompliance',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'GDPR Compliance',
+                    'title' => [
+                        'prefix' => 'Committed to',
+                        'highlight' => 'GDPR Compliance',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We fully comply with the General Data Protection Regulation (GDPR), ensuring your personal data is protected, processed lawfully, and that your privacy rights are respected.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '100%', 'label' => 'GDPR Compliant', 'icon' => 'globe'],
+                        ['value' => '72h', 'label' => 'Breach Notification', 'icon' => 'clock'],
+                        ['value' => '30', 'label' => 'Days Response Time', 'icon' => 'calendar'],
+                        ['value' => 'DPO', 'label' => 'Appointed', 'icon' => 'badge']
+                    ],
+                    'principles' => [
+                        [
+                            'title' => 'Lawfulness, Fairness & Transparency',
+                            'description' => 'Personal data must be processed lawfully, fairly, and in a transparent manner. We clearly communicate how we collect, use, and store your data.',
+                            'icon' => 'eye',
+                            'color' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'details' => [
+                                'Clear privacy notices',
+                                'Explicit consent mechanisms',
+                                'Transparent data processing',
+                                'Legal basis documentation'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Purpose Limitation',
+                            'description' => 'Data is collected for specified, explicit, and legitimate purposes only. We don\'t use data for purposes beyond what we\'ve disclosed.',
+                            'icon' => 'flag',
+                            'color' => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'details' => [
+                                'Specified purpose documentation',
+                                'No unauthorized secondary uses',
+                                'Regular purpose reviews',
+                                'Consent-based processing'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Data Minimization',
+                            'description' => 'We only collect data that is adequate, relevant, and limited to what is necessary for the intended purposes.',
+                            'icon' => 'database',
+                            'color' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'details' => [
+                                'Limited data collection',
+                                'Regular data retention reviews',
+                                'Automatic deletion policies',
+                                'Purpose-specific data usage'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Accuracy',
+                            'description' => 'We maintain processes to ensure personal data is accurate and kept up to date.',
+                            'icon' => 'check',
+                            'color' => 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'details' => [
+                                'User access to update data',
+                                'Automated validation checks',
+                                'Regular data quality reviews',
+                                'Correction procedures'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Storage Limitation',
+                            'description' => 'Data is retained only as long as necessary for the purposes for which it was collected.',
+                            'icon' => 'clock',
+                            'color' => 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'details' => [
+                                'Defined retention periods',
+                                'Automated deletion schedules',
+                                'Annual data reviews',
+                                'Secure data disposal'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Integrity & Confidentiality',
+                            'description' => 'Data is processed securely with appropriate technical and organizational measures.',
+                            'icon' => 'shield',
+                            'color' => 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'details' => [
+                                'AES-256 encryption at rest',
+                                'TLS 1.3 encryption in transit',
+                                'Access controls and authentication',
+                                'Regular security audits'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Accountability',
+                            'description' => 'We\'re responsible for compliance with GDPR principles and can demonstrate our compliance.',
+                            'icon' => 'badge',
+                            'color' => 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400',
+                            'gradient' => 'from-cyan-500 to-cyan-600',
+                            'details' => [
+                                'Designated Data Protection Officer',
+                                'Comprehensive documentation',
+                                'Regular compliance audits',
+                                'Transparent reporting'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'rights' => [
+                        ['title' => 'Right to be Informed', 'description' => 'You have the right to know how your data is being collected, used, and shared.', 'icon' => 'eye', 'action' => 'Learn More', 'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'],
+                        ['title' => 'Right of Access', 'description' => 'You can request a copy of all personal data we hold about you.', 'icon' => 'document', 'action' => 'Request Access', 'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Rectification', 'description' => 'You can correct inaccurate or incomplete personal data.', 'icon' => 'edit', 'action' => 'Correct Data', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Erasure', 'description' => 'You can request deletion of your personal data (right to be forgotten).', 'icon' => 'trash', 'action' => 'Request Deletion', 'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Restrict Processing', 'description' => 'You can limit how we use your personal data.', 'icon' => 'pause', 'action' => 'Restrict Processing', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Data Portability', 'description' => 'You can receive your data in a machine-readable format.', 'icon' => 'download', 'action' => 'Export Data', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Object', 'description' => 'You can object to data processing for specific purposes.', 'icon' => 'x', 'action' => 'Object to Processing', 'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'],
+                        ['title' => 'Rights Related to Automated Decision Making', 'description' => 'You have rights regarding automated decisions and profiling.', 'icon' => 'chip', 'action' => 'Learn More', 'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 550,
+                'section_key' => 'gdprCompliance',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'GDPR Compliance',
+                    'title' => [
+                        'prefix' => 'Committed to',
+                        'highlight' => 'GDPR Compliance'
+                    ],
+                    'description' => 'We fully comply with the General Data Protection Regulation (GDPR), ensuring your personal data is protected, processed lawfully, and that your privacy rights are respected.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '100%', 'label' => 'GDPR Compliant', 'icon' => 'globe', 'trend' => 'Certified', 'trendUp' => true],
+                        ['value' => '72h', 'label' => 'Breach Notification', 'icon' => 'clock', 'trend' => 'Compliant', 'trendUp' => true],
+                        ['value' => '30', 'label' => 'Days Response', 'icon' => 'calendar', 'trend' => 'Guaranteed', 'trendUp' => true],
+                        ['value' => 'DPO', 'label' => 'Appointed', 'icon' => 'badge', 'trend' => 'Available', 'trendUp' => true]
+                    ],
+                    'principles' => [
+                        [
+                            'title' => 'Lawfulness, Fairness & Transparency',
+                            'description' => 'Personal data must be processed lawfully, fairly, and in a transparent manner.',
+                            'icon' => 'eye',
+                            'status' => 'Implemented',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'details' => [
+                                'Clear privacy notices provided',
+                                'Explicit consent mechanisms in place',
+                                'Transparent data processing documented',
+                                'Legal basis for each processing activity'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Purpose Limitation',
+                            'description' => 'Data is collected for specified, explicit, and legitimate purposes only.',
+                            'icon' => 'flag',
+                            'status' => 'Implemented',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'details' => [
+                                'Specified purpose documentation',
+                                'No unauthorized secondary uses',
+                                'Regular purpose reviews conducted',
+                                'Consent-based processing'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Data Minimization',
+                            'description' => 'We only collect data that is adequate, relevant, and limited to what is necessary.',
+                            'icon' => 'database',
+                            'status' => 'Implemented',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'details' => [
+                                'Limited data collection practices',
+                                'Regular data retention reviews',
+                                'Automatic deletion policies',
+                                'Purpose-specific data usage'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Accuracy',
+                            'description' => 'We maintain processes to ensure personal data is accurate and kept up to date.',
+                            'icon' => 'check',
+                            'status' => 'Implemented',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'details' => [
+                                'User access to update data',
+                                'Automated validation checks',
+                                'Regular data quality reviews',
+                                'Correction procedures in place'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Storage Limitation',
+                            'description' => 'Data is retained only as long as necessary for the purposes for which it was collected.',
+                            'icon' => 'clock',
+                            'status' => 'Implemented',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'details' => [
+                                'Defined retention periods',
+                                'Automated deletion schedules',
+                                'Annual data reviews',
+                                'Secure data disposal'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Integrity & Confidentiality',
+                            'description' => 'Data is processed securely with appropriate technical and organizational measures.',
+                            'icon' => 'shield',
+                            'status' => 'Certified',
+                            'gradient' => 'from-indigo-500 to-indigo-600',
+                            'details' => [
+                                'AES-256 encryption at rest',
+                                'TLS 1.3 encryption in transit',
+                                'Access controls and authentication',
+                                'Regular security audits'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Accountability',
+                            'description' => 'We\'re responsible for compliance with GDPR principles and can demonstrate our compliance.',
+                            'icon' => 'badge',
+                            'status' => 'Certified',
+                            'gradient' => 'from-cyan-500 to-cyan-600',
+                            'details' => [
+                                'Designated Data Protection Officer',
+                                'Comprehensive documentation',
+                                'Regular compliance audits',
+                                'Transparent reporting'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'rights' => [
+                        [
+                            'title' => 'Right to be Informed',
+                            'description' => 'You have the right to know how your data is being collected, used, and shared.',
+                            'icon' => 'eye',
+                            'processTime' => 'Immediate',
+                            'legalBasis' => 'Articles 13 & 14',
+                            'details' => 'You have the right to be provided with clear, transparent, and easily understandable information about how we use your personal data and your rights.',
+                            'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Right of Access',
+                            'description' => 'You can request a copy of all personal data we hold about you.',
+                            'icon' => 'document',
+                            'processTime' => '30 days',
+                            'legalBasis' => 'Article 15',
+                            'details' => 'You have the right to obtain confirmation that your data is being processed, access to your personal data, and information about how it\'s being used.',
+                            'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Right to Rectification',
+                            'description' => 'You can correct inaccurate or incomplete personal data.',
+                            'icon' => 'edit',
+                            'processTime' => '15 days',
+                            'legalBasis' => 'Article 16',
+                            'details' => 'You have the right to have inaccurate personal data rectified and incomplete data completed.',
+                            'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Right to Erasure',
+                            'description' => 'You can request deletion of your personal data (right to be forgotten).',
+                            'icon' => 'trash',
+                            'processTime' => '30 days',
+                            'legalBasis' => 'Article 17',
+                            'details' => 'You have the right to request deletion of your data when it\'s no longer necessary, consent is withdrawn, or processing is unlawful.',
+                            'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Right to Restrict Processing',
+                            'description' => 'You can limit how we use your personal data.',
+                            'icon' => 'pause',
+                            'processTime' => '15 days',
+                            'legalBasis' => 'Article 18',
+                            'details' => 'You have the right to request that we stop processing your data while we verify its accuracy or the lawfulness of processing.',
+                            'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Right to Data Portability',
+                            'description' => 'You can receive your data in a machine-readable format.',
+                            'icon' => 'download',
+                            'processTime' => '30 days',
+                            'legalBasis' => 'Article 20',
+                            'details' => 'You have the right to receive your data in a structured, commonly used, machine-readable format and transmit it to another controller.',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Right to Object',
+                            'description' => 'You can object to data processing for specific purposes.',
+                            'icon' => 'x',
+                            'processTime' => '15 days',
+                            'legalBasis' => 'Article 21',
+                            'details' => 'You have the right to object to processing based on legitimate interests, direct marketing, or for scientific/historical research.',
+                            'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Automated Decision Making',
+                            'description' => 'You have rights regarding automated decisions and profiling.',
+                            'icon' => 'chip',
+                            'processTime' => '30 days',
+                            'legalBasis' => 'Article 22',
+                            'details' => 'You have the right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects.',
+                            'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 551,
+                'section_key' => 'gdprCompliance',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'GDPR Compliance',
+                    'title' => [
+                        'prefix' => 'Committed to',
+                        'highlight' => 'GDPR Compliance'
+                    ],
+                    'description' => 'We fully comply with the General Data Protection Regulation (GDPR), ensuring your personal data is protected, processed lawfully, and that your privacy rights are respected.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '100%', 'label' => 'GDPR Compliant', 'icon' => 'globe'],
+                        ['value' => '72h', 'label' => 'Breach Notification', 'icon' => 'clock'],
+                        ['value' => '30', 'label' => 'Days Response', 'icon' => 'calendar'],
+                        ['value' => 'DPO', 'label' => 'Appointed', 'icon' => 'badge']
+                    ],
+                    'principles' => [
+                        ['title' => 'Lawfulness, Fairness & Transparency', 'description' => 'Personal data must be processed lawfully, fairly, and in a transparent manner.', 'icon' => 'eye', 'gradient' => 'from-blue-500 to-blue-600', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'],
+                        ['title' => 'Purpose Limitation', 'description' => 'Data is collected for specified, explicit, and legitimate purposes only.', 'icon' => 'flag', 'gradient' => 'from-emerald-500 to-emerald-600', 'image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop'],
+                        ['title' => 'Data Minimization', 'description' => 'We only collect data that is adequate, relevant, and limited to what is necessary.', 'icon' => 'database', 'gradient' => 'from-purple-500 to-purple-600', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['title' => 'Accuracy', 'description' => 'We maintain processes to ensure personal data is accurate and kept up to date.', 'icon' => 'check', 'gradient' => 'from-amber-500 to-amber-600', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['title' => 'Storage Limitation', 'description' => 'Data is retained only as long as necessary for the purposes for which it was collected.', 'icon' => 'clock', 'gradient' => 'from-rose-500 to-rose-600', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['title' => 'Integrity & Confidentiality', 'description' => 'Data is processed securely with appropriate technical and organizational measures.', 'icon' => 'shield', 'gradient' => 'from-indigo-500 to-indigo-600', 'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'],
+                        ['title' => 'Accountability', 'description' => 'We\'re responsible for compliance with GDPR principles and can demonstrate our compliance.', 'icon' => 'badge', 'gradient' => 'from-cyan-500 to-cyan-600', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop']
+                    ],
+                    'rights' => [
+                        ['title' => 'Right to be Informed', 'description' => 'You have the right to know how your data is being collected, used, and shared.', 'icon' => 'eye', 'processTime' => 'Immediate', 'legalBasis' => 'Articles 13 & 14', 'image' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=600&h=400&fit=crop'],
+                        ['title' => 'Right of Access', 'description' => 'You can request a copy of all personal data we hold about you.', 'icon' => 'document', 'processTime' => '30 days', 'legalBasis' => 'Article 15', 'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Rectification', 'description' => 'You can correct inaccurate or incomplete personal data.', 'icon' => 'edit', 'processTime' => '15 days', 'legalBasis' => 'Article 16', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Erasure', 'description' => 'You can request deletion of your personal data (right to be forgotten).', 'icon' => 'trash', 'processTime' => '30 days', 'legalBasis' => 'Article 17', 'image' => 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Restrict Processing', 'description' => 'You can limit how we use your personal data.', 'icon' => 'pause', 'processTime' => '15 days', 'legalBasis' => 'Article 18', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Data Portability', 'description' => 'You can receive your data in a machine-readable format.', 'icon' => 'download', 'processTime' => '30 days', 'legalBasis' => 'Article 20', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'],
+                        ['title' => 'Right to Object', 'description' => 'You can object to data processing for specific purposes.', 'icon' => 'x', 'processTime' => '15 days', 'legalBasis' => 'Article 21', 'image' => 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'],
+                        ['title' => 'Automated Decision Making', 'description' => 'You have rights regarding automated decisions and profiling.', 'icon' => 'chip', 'processTime' => '30 days', 'legalBasis' => 'Article 22', 'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop']
+                    ],
+                    'successStories' => [
+                        [
+                            'id' => 1,
+                            'name' => 'Global Retail Corp',
+                            'role' => 'DPO',
+                            'company' => 'Global Retail Corp',
+                            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+                            'quote' => 'GDPR compliance was seamless with SupplyChainPro. Their transparent approach to data processing gave us complete confidence.',
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'HealthTech Solutions',
+                            'role' => 'Privacy Officer',
+                            'company' => 'HealthTech Solutions',
+                            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+                            'quote' => 'The ability to exercise our data subject rights through their portal made GDPR compliance straightforward and efficient.',
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'EuroLogistics',
+                            'role' => 'Data Protection Officer',
+                            'company' => 'EuroLogistics',
+                            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+                            'quote' => 'Their GDPR compliance framework and DPO support gave us peace of mind for our EU operations.',
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 552,
+                'section_key' => 'gdprCompliance',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
+            // SOC 2 Type II Section
+            [
+                'id' => 553,
+                'section_key' => 'soc2TypeII',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'SOC 2 Type II',
+                    'title' => [
+                        'prefix' => 'Validated by',
+                        'highlight' => 'SOC 2 Type II',
+                        'suffix' => ''
+                    ],
+                    'description' => 'Our SOC 2 Type II certification demonstrates our commitment to security, availability, processing integrity, confidentiality, and privacy. This independent audit validates our controls over an extended period.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => 'SOC 2', 'label' => 'Type II', 'icon' => 'certificate'],
+                        ['value' => '99.9%', 'label' => 'Uptime SLA', 'icon' => 'clock'],
+                        ['value' => '24/7', 'label' => 'Monitoring', 'icon' => 'eye'],
+                        ['value' => 'Annual', 'label' => 'Audit Cycle', 'icon' => 'calendar']
+                    ],
+                    'trustServices' => [
+                        [
+                            'title' => 'Security',
+                            'description' => 'The system is protected against unauthorized access, both logical and physical. Our security controls ensure data confidentiality and integrity.',
+                            'icon' => 'shield',
+                            'color' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'controls' => [
+                                'Access controls and authentication',
+                                'Firewalls and intrusion detection',
+                                'Encryption for data at rest and in transit',
+                                'Regular vulnerability assessments',
+                                'Security incident response plan'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Availability',
+                            'description' => 'The system is available for operation and use as committed or agreed. Our infrastructure is designed for high availability and resilience.',
+                            'icon' => 'clock',
+                            'color' => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'controls' => [
+                                '99.9% uptime SLA',
+                                'Redundant infrastructure',
+                                'Disaster recovery planning',
+                                'Performance monitoring',
+                                'Incident response procedures'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Processing Integrity',
+                            'description' => 'System processing is complete, accurate, timely, and authorized. Our processes ensure data processing integrity.',
+                            'icon' => 'check',
+                            'color' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'controls' => [
+                                'Data validation checks',
+                                'Processing monitoring',
+                                'Error handling procedures',
+                                'Data quality controls',
+                                'Audit trails'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Confidentiality',
+                            'description' => 'Information designated as confidential is protected as committed or agreed. We maintain strict confidentiality controls.',
+                            'icon' => 'lock',
+                            'color' => 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'controls' => [
+                                'Data classification policies',
+                                'Access controls',
+                                'Encryption standards',
+                                'Confidentiality agreements',
+                                'Data loss prevention'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Privacy',
+                            'description' => 'Personal information is collected, used, retained, disclosed, and disposed of in conformity with privacy principles.',
+                            'icon' => 'users',
+                            'color' => 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'controls' => [
+                                'Privacy by design',
+                                'Consent management',
+                                'Data subject rights',
+                                'Privacy impact assessments',
+                                'GDPR/CCPA compliance'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'auditDetails' => [
+                        'period' => 'December 1, 2023 - November 30, 2024',
+                        'auditor' => 'Deloitte & Touche LLP',
+                        'scope' => 'All core services and infrastructure',
+                        'result' => 'Unqualified Opinion'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 554,
+                'section_key' => 'soc2TypeII',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'SOC 2 Type II',
+                    'title' => [
+                        'prefix' => 'Validated by',
+                        'highlight' => 'SOC 2 Type II'
+                    ],
+                    'description' => 'Our SOC 2 Type II certification demonstrates our commitment to security, availability, processing integrity, confidentiality, and privacy. This independent audit validates our controls over an extended period.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => 'SOC 2', 'label' => 'Type II', 'icon' => 'certificate', 'trend' => 'Certified', 'trendUp' => true],
+                        ['value' => '99.9%', 'label' => 'Uptime SLA', 'icon' => 'clock', 'trend' => 'Exceeded', 'trendUp' => true],
+                        ['value' => '24/7', 'label' => 'Monitoring', 'icon' => 'eye', 'trend' => 'Continuous', 'trendUp' => true],
+                        ['value' => 'Annual', 'label' => 'Audit Cycle', 'icon' => 'calendar', 'trend' => 'Completed', 'trendUp' => true]
+                    ],
+                    'trustServices' => [
+                        [
+                            'title' => 'Security',
+                            'description' => 'The system is protected against unauthorized access, both logical and physical. Our security controls ensure data confidentiality and integrity.',
+                            'icon' => 'shield',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'controls' => [
+                                'Access controls and authentication',
+                                'Firewalls and intrusion detection',
+                                'Encryption for data at rest and in transit',
+                                'Regular vulnerability assessments',
+                                'Security incident response plan'
+                            ],
+                            'metrics' => '100% of controls implemented',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Availability',
+                            'description' => 'The system is available for operation and use as committed or agreed. Our infrastructure is designed for high availability and resilience.',
+                            'icon' => 'clock',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'controls' => [
+                                '99.9% uptime SLA',
+                                'Redundant infrastructure',
+                                'Disaster recovery planning',
+                                'Performance monitoring',
+                                'Incident response procedures'
+                            ],
+                            'metrics' => '99.99% actual uptime',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Processing Integrity',
+                            'description' => 'System processing is complete, accurate, timely, and authorized. Our processes ensure data processing integrity.',
+                            'icon' => 'check',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'controls' => [
+                                'Data validation checks',
+                                'Processing monitoring',
+                                'Error handling procedures',
+                                'Data quality controls',
+                                'Audit trails'
+                            ],
+                            'metrics' => '100% processing accuracy',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Confidentiality',
+                            'description' => 'Information designated as confidential is protected as committed or agreed. We maintain strict confidentiality controls.',
+                            'icon' => 'lock',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'controls' => [
+                                'Data classification policies',
+                                'Access controls',
+                                'Encryption standards',
+                                'Confidentiality agreements',
+                                'Data loss prevention'
+                            ],
+                            'metrics' => '0 confidentiality breaches',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Privacy',
+                            'description' => 'Personal information is collected, used, retained, disclosed, and disposed of in conformity with privacy principles.',
+                            'icon' => 'users',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'controls' => [
+                                'Privacy by design',
+                                'Consent management',
+                                'Data subject rights',
+                                'Privacy impact assessments',
+                                'GDPR/CCPA compliance'
+                            ],
+                            'metrics' => '100% privacy compliant',
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'question' => 'What is the difference between SOC 2 Type I and Type II?',
+                            'answer' => 'SOC 2 Type I evaluates the design of controls at a specific point in time, while Type II evaluates the operating effectiveness of controls over a period of time (typically 6-12 months). Type II provides greater assurance.',
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'question' => 'How often is the SOC 2 audit performed?',
+                            'answer' => 'We undergo a full SOC 2 Type II audit annually, with continuous monitoring and quarterly control testing throughout the year.'
+                        ],
+                        [
+                            'question' => 'Can I get a copy of the SOC 2 report?',
+                            'answer' => 'Yes, qualified customers and prospects can request the SOC 2 Type II report by completing the request form. We\'ll verify your request and provide access within 2 business days.'
+                        ],
+                        [
+                            'question' => 'What trust service criteria are included?',
+                            'answer' => 'Our SOC 2 report covers all five trust service criteria: Security, Availability, Processing Integrity, Confidentiality, and Privacy.'
+                        ],
+                        [
+                            'question' => 'Who performs the SOC 2 audit?',
+                            'answer' => 'Our SOC 2 Type II audit is performed by Deloitte & Touche LLP, a leading independent auditing firm.'
+                        ]
+                    ],
+                    'auditDetails' => [
+                        'period' => 'December 1, 2023 - November 30, 2024',
+                        'auditor' => 'Deloitte & Touche LLP',
+                        'scope' => 'All core services and infrastructure',
+                        'result' => 'Unqualified Opinion'
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 555,
+                'section_key' => 'soc2TypeII',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'SOC 2 Type II',
+                    'title' => [
+                        'prefix' => 'Validated by',
+                        'highlight' => 'SOC 2 Type II'
+                    ],
+                    'description' => 'Our SOC 2 Type II certification demonstrates our commitment to security, availability, processing integrity, confidentiality, and privacy. This independent audit validates our controls over an extended period.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => 'SOC 2', 'label' => 'Type II', 'icon' => 'certificate'],
+                        ['value' => '99.9%', 'label' => 'Uptime SLA', 'icon' => 'clock'],
+                        ['value' => '24/7', 'label' => 'Monitoring', 'icon' => 'eye'],
+                        ['value' => 'Annual', 'label' => 'Audit Cycle', 'icon' => 'calendar']
+                    ],
+                    'trustServices' => [
+                        [
+                            'title' => 'Security',
+                            'description' => 'The system is protected against unauthorized access, both logical and physical.',
+                            'icon' => 'shield',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'controls' => [
+                                'Access controls and authentication',
+                                'Firewalls and intrusion detection',
+                                'Encryption for data at rest and in transit',
+                                'Regular vulnerability assessments',
+                                'Security incident response plan'
+                            ],
+                            'metrics' => '100% of controls implemented',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Availability',
+                            'description' => 'The system is available for operation and use as committed or agreed.',
+                            'icon' => 'clock',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'controls' => [
+                                '99.9% uptime SLA',
+                                'Redundant infrastructure',
+                                'Disaster recovery planning',
+                                'Performance monitoring',
+                                'Incident response procedures'
+                            ],
+                            'metrics' => '99.99% actual uptime',
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Processing Integrity',
+                            'description' => 'System processing is complete, accurate, timely, and authorized.',
+                            'icon' => 'check',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'controls' => [
+                                'Data validation checks',
+                                'Processing monitoring',
+                                'Error handling procedures',
+                                'Data quality controls',
+                                'Audit trails'
+                            ],
+                            'metrics' => '100% processing accuracy',
+                            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Confidentiality',
+                            'description' => 'Information designated as confidential is protected as committed or agreed.',
+                            'icon' => 'lock',
+                            'gradient' => 'from-rose-500 to-rose-600',
+                            'controls' => [
+                                'Data classification policies',
+                                'Access controls',
+                                'Encryption standards',
+                                'Confidentiality agreements',
+                                'Data loss prevention'
+                            ],
+                            'metrics' => '0 confidentiality breaches',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'title' => 'Privacy',
+                            'description' => 'Personal information is collected, used, retained, disclosed, and disposed of in conformity with privacy principles.',
+                            'icon' => 'users',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'controls' => [
+                                'Privacy by design',
+                                'Consent management',
+                                'Data subject rights',
+                                'Privacy impact assessments',
+                                'GDPR/CCPA compliance'
+                            ],
+                            'metrics' => '100% privacy compliant',
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'customerStories' => [
+                        [
+                            'id' => 1,
+                            'company' => 'Global Retail Corp',
+                            'industry' => 'Retail',
+                            'logo' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=80&h=80&fit=crop',
+                            'quote' => 'SOC 2 Type II certification was a key requirement for our enterprise customers. SupplyChainPro\'s certification made the procurement process seamless.',
+                            'author' => 'Sarah Johnson, CTO',
+                            'standardsMet' => ['SOC 2 Type II', 'ISO 27001'],
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'company' => 'HealthTech Solutions',
+                            'industry' => 'Healthcare',
+                            'logo' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=80&h=80&fit=crop',
+                            'quote' => 'The SOC 2 Type II report gave our security team confidence in SupplyChainPro\'s control environment.',
+                            'author' => 'Michael Chen, VP of Security',
+                            'standardsMet' => ['SOC 2 Type II', 'HIPAA'],
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'company' => 'EuroLogistics',
+                            'industry' => 'Logistics',
+                            'logo' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=80&h=80&fit=crop',
+                            'quote' => 'Their SOC 2 certification covers all five trust service criteria, which aligned perfectly with our requirements.',
+                            'author' => 'Elena Rodriguez, Compliance Officer',
+                            'standardsMet' => ['SOC 2 Type II', 'GDPR'],
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'auditDetails' => [
+                        'period' => 'December 1, 2023 - November 30, 2024',
+                        'auditor' => 'Deloitte & Touche LLP',
+                        'scope' => 'All core services and infrastructure',
+                        'result' => 'Unqualified Opinion'
+                    ],
+                    'requestReportLink' => '/security/soc2-request',
+                    'contactEmail' => 'security@supplychainpro.com'
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 556,
+                'section_key' => 'soc2TypeII',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // ISO Certifications Section
+            [
+                'id' => 557,
+                'section_key' => 'isoCertifications',
+                'variant' => 'variant1',
+                'config' => json_encode([
+                    'badge' => 'ISO Certifications',
+                    'title' => [
+                        'prefix' => 'Certified by',
+                        'highlight' => 'International Standards',
+                        'suffix' => ''
+                    ],
+                    'description' => 'We maintain multiple ISO certifications demonstrating our commitment to information security, quality management, and data protection. These internationally recognized standards validate our operational excellence.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '4', 'label' => 'ISO Certifications', 'icon' => 'certificate'],
+                        ['value' => '100%', 'label' => 'Audit Success', 'icon' => 'check'],
+                        ['value' => 'BSI', 'label' => 'Certification Body', 'icon' => 'badge'],
+                        ['value' => 'Global', 'label' => 'Scope', 'icon' => 'globe']
+                    ],
+                    'standards' => [
+                        [
+                            'id' => 'iso27001',
+                            'title' => 'ISO/IEC 27001:2022',
+                            'description' => 'International standard for information security management systems (ISMS). It specifies requirements for establishing, implementing, maintaining, and continually improving an information security management system.',
+                            'scope' => 'Global operations, all products and services',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'shield',
+                            'color' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'requirements' => [
+                                'Information security policy',
+                                'Risk assessment and treatment',
+                                'Security controls implementation',
+                                'Continuous improvement process',
+                                'Management review and internal audits'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27017',
+                            'title' => 'ISO/IEC 27017',
+                            'description' => 'Code of practice for information security controls for cloud services. It provides additional guidance for cloud service providers and customers.',
+                            'scope' => 'Cloud infrastructure and services',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'cloud',
+                            'color' => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'requirements' => [
+                                'Cloud-specific security controls',
+                                'Customer relationship management',
+                                'Shared responsibility clarity',
+                                'Virtualization security',
+                                'Cloud data protection'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27018',
+                            'title' => 'ISO/IEC 27018',
+                            'description' => 'Code of practice for protection of personally identifiable information (PII) in public clouds. It establishes controls for protecting PII in cloud environments.',
+                            'scope' => 'Cloud-based PII processing',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'users',
+                            'color' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'requirements' => [
+                                'PII protection controls',
+                                'Consent management',
+                                'Data subject rights',
+                                'Transparency requirements',
+                                'Data breach notification'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso9001',
+                            'title' => 'ISO 9001:2015',
+                            'description' => 'Quality management systems standard. It demonstrates our commitment to quality, customer satisfaction, and continuous improvement.',
+                            'scope' => 'All products and services',
+                            'validUntil' => 'December 2025',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'badge',
+                            'color' => 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'requirements' => [
+                                'Quality management system',
+                                'Customer focus',
+                                'Process approach',
+                                'Continuous improvement',
+                                'Evidence-based decision making'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'benefits' => [
+                        ['title' => 'Enhanced Security', 'description' => 'Proven security controls and risk management practices', 'icon' => 'shield', 'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'],
+                        ['title' => 'Global Recognition', 'description' => 'Internationally accepted security framework', 'icon' => 'globe', 'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'],
+                        ['title' => 'Customer Trust', 'description' => 'Demonstrated commitment to security and quality', 'icon' => 'users', 'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop'],
+                        ['title' => 'Continuous Improvement', 'description' => 'Regular audits drive ongoing enhancement', 'icon' => 'refresh', 'image' => 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop']
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 558,
+                'section_key' => 'isoCertifications',
+                'variant' => 'variant2',
+                'config' => json_encode([
+                    'badge' => 'ISO Certifications',
+                    'title' => [
+                        'prefix' => 'Certified by',
+                        'highlight' => 'International Standards'
+                    ],
+                    'description' => 'We maintain multiple ISO certifications demonstrating our commitment to information security, quality management, and data protection.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=500&fit=crop',
+                    'stats' => [
+                        ['value' => '4', 'label' => 'ISO Certifications', 'icon' => 'certificate', 'trend' => 'Active', 'trendUp' => true],
+                        ['value' => '100%', 'label' => 'Audit Success', 'icon' => 'check', 'trend' => 'Pass Rate', 'trendUp' => true],
+                        ['value' => 'BSI', 'label' => 'Certification Body', 'icon' => 'badge', 'trend' => 'Global', 'trendUp' => true],
+                        ['value' => 'Global', 'label' => 'Scope', 'icon' => 'globe', 'trend' => 'Worldwide', 'trendUp' => true]
+                    ],
+                    'standards' => [
+                        [
+                            'id' => 'iso27001',
+                            'title' => 'ISO/IEC 27001:2022',
+                            'type' => 'Information Security',
+                            'description' => 'International standard for information security management systems (ISMS). It specifies requirements for establishing, implementing, maintaining, and continually improving an information security management system.',
+                            'scope' => 'Global operations, all products and services',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'shield',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'color' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'requirements' => [
+                                'Information security policy',
+                                'Risk assessment and treatment',
+                                'Security controls implementation',
+                                'Continuous improvement process',
+                                'Management review and internal audits'
+                            ],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27017',
+                            'title' => 'ISO/IEC 27017',
+                            'type' => 'Cloud Security',
+                            'description' => 'Code of practice for information security controls for cloud services. It provides additional guidance for cloud service providers and customers.',
+                            'scope' => 'Cloud infrastructure and services',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'cloud',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'color' => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                            'requirements' => [
+                                'Cloud-specific security controls',
+                                'Customer relationship management',
+                                'Shared responsibility clarity',
+                                'Virtualization security',
+                                'Cloud data protection'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27018',
+                            'title' => 'ISO/IEC 27018',
+                            'type' => 'Data Privacy',
+                            'description' => 'Code of practice for protection of personally identifiable information (PII) in public clouds. It establishes controls for protecting PII in cloud environments.',
+                            'scope' => 'Cloud-based PII processing',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'users',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'color' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'requirements' => [
+                                'PII protection controls',
+                                'Consent management',
+                                'Data subject rights',
+                                'Transparency requirements',
+                                'Data breach notification'
+                            ],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso9001',
+                            'title' => 'ISO 9001:2015',
+                            'type' => 'Quality Management',
+                            'description' => 'Quality management systems standard. It demonstrates our commitment to quality, customer satisfaction, and continuous improvement.',
+                            'scope' => 'All products and services',
+                            'validUntil' => 'December 2025',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'badge',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'color' => 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            'requirements' => [
+                                'Quality management system',
+                                'Customer focus',
+                                'Process approach',
+                                'Continuous improvement',
+                                'Evidence-based decision making'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'faqs' => [
+                        [
+                            'question' => 'What is ISO 27001 certification?',
+                            'answer' => 'ISO 27001 is the international standard for information security management systems (ISMS). It demonstrates that we have implemented a systematic approach to managing sensitive company and customer information.',
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'question' => 'How often are ISO certifications renewed?',
+                            'answer' => 'ISO certifications are valid for three years with annual surveillance audits. We undergo recertification every three years to maintain our certifications.'
+                        ],
+                        [
+                            'question' => 'What is the difference between ISO 27017 and ISO 27018?',
+                            'answer' => 'ISO 27017 focuses on cloud security controls, while ISO 27018 focuses specifically on protecting personally identifiable information (PII) in cloud environments.'
+                        ],
+                        [
+                            'question' => 'Can I get copies of your ISO certificates?',
+                            'answer' => 'Yes, qualified customers and prospects can request our ISO certificates by completing the request form. We\'ll verify your request and provide access within 2 business days.'
+                        ],
+                        [
+                            'question' => 'Who performs your ISO audits?',
+                            'answer' => 'All our ISO certifications are audited by BSI Group, a leading global certification body recognized for its rigorous assessment standards.'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 559,
+                'section_key' => 'isoCertifications',
+                'variant' => 'variant3',
+                'config' => json_encode([
+                    'badge' => 'ISO Certifications',
+                    'title' => [
+                        'prefix' => 'Certified by',
+                        'highlight' => 'International Standards'
+                    ],
+                    'description' => 'We maintain multiple ISO certifications demonstrating our commitment to information security, quality management, and data protection. These internationally recognized standards validate our operational excellence.',
+                    'heroImage' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=500&fit=crop',
+                    'autoPlayCarousel' => true,
+                    'stats' => [
+                        ['value' => '4', 'label' => 'ISO Certifications', 'icon' => 'certificate'],
+                        ['value' => '100%', 'label' => 'Audit Success', 'icon' => 'check'],
+                        ['value' => 'BSI', 'label' => 'Certification Body', 'icon' => 'badge'],
+                        ['value' => 'Global', 'label' => 'Scope', 'icon' => 'globe']
+                    ],
+                    'standards' => [
+                        [
+                            'id' => 'iso27001',
+                            'title' => 'ISO/IEC 27001:2022',
+                            'type' => 'Information Security',
+                            'description' => 'International standard for information security management systems (ISMS). It specifies requirements for establishing, implementing, maintaining, and continually improving an information security management system.',
+                            'scope' => 'Global operations, all products and services',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'shield',
+                            'gradient' => 'from-blue-500 to-blue-600',
+                            'color' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            'requirements' => [
+                                'Information security policy',
+                                'Risk assessment and treatment',
+                                'Security controls implementation',
+                                'Continuous improvement process',
+                                'Management review and internal audits'
+                            ],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27017',
+                            'title' => 'ISO/IEC 27017',
+                            'type' => 'Cloud Security',
+                            'description' => 'Code of practice for information security controls for cloud services. It provides additional guidance for cloud service providers and customers.',
+                            'scope' => 'Cloud infrastructure and services',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'cloud',
+                            'gradient' => 'from-emerald-500 to-emerald-600',
+                            'color' => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                            'requirements' => [
+                                'Cloud-specific security controls',
+                                'Customer relationship management',
+                                'Shared responsibility clarity',
+                                'Virtualization security',
+                                'Cloud data protection'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso27018',
+                            'title' => 'ISO/IEC 27018',
+                            'type' => 'Data Privacy',
+                            'description' => 'Code of practice for protection of personally identifiable information (PII) in public clouds. It establishes controls for protecting PII in cloud environments.',
+                            'scope' => 'Cloud-based PII processing',
+                            'validUntil' => 'October 2026',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'users',
+                            'gradient' => 'from-purple-500 to-purple-600',
+                            'color' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            'requirements' => [
+                                'PII protection controls',
+                                'Consent management',
+                                'Data subject rights',
+                                'Transparency requirements',
+                                'Data breach notification'
+                            ],
+                            'isFeatured' => true,
+                            'image' => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 'iso9001',
+                            'title' => 'ISO 9001:2015',
+                            'type' => 'Quality Management',
+                            'description' => 'Quality management systems standard. It demonstrates our commitment to quality, customer satisfaction, and continuous improvement.',
+                            'scope' => 'All products and services',
+                            'validUntil' => 'December 2025',
+                            'auditor' => 'BSI Group',
+                            'icon' => 'badge',
+                            'gradient' => 'from-amber-500 to-amber-600',
+                            'color' => 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            'requirements' => [
+                                'Quality management system',
+                                'Customer focus',
+                                'Process approach',
+                                'Continuous improvement',
+                                'Evidence-based decision making'
+                            ],
+                            'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop'
+                        ]
+                    ],
+                    'successStories' => [
+                        [
+                            'id' => 1,
+                            'company' => 'Global Retail Corp',
+                            'industry' => 'Retail',
+                            'logo' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=80&h=80&fit=crop',
+                            'quote' => 'ISO 27001 certification was a key requirement for our enterprise customers. SupplyChainPro\'s certification made the procurement process seamless.',
+                            'author' => 'Sarah Johnson, CTO',
+                            'standardsMet' => ['ISO 27001', 'ISO 9001'],
+                            'image' => 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 2,
+                            'company' => 'HealthTech Solutions',
+                            'industry' => 'Healthcare',
+                            'logo' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=80&h=80&fit=crop',
+                            'quote' => 'Their ISO 27018 certification gave us confidence in their ability to protect PII in the cloud.',
+                            'author' => 'Michael Chen, VP of Security',
+                            'standardsMet' => ['ISO 27017', 'ISO 27018'],
+                            'image' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop'
+                        ],
+                        [
+                            'id' => 3,
+                            'company' => 'EuroLogistics',
+                            'industry' => 'Logistics',
+                            'logo' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=80&h=80&fit=crop',
+                            'quote' => 'Their ISO certifications demonstrate a mature security and quality management program.',
+                            'author' => 'Elena Rodriguez, Compliance Officer',
+                            'standardsMet' => ['ISO 27001', 'ISO 9001'],
+                            'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop'
+                        ]
+                    ]
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 560,
+                'section_key' => 'isoCertifications',
+                'variant' => 'custom',
+                'config' => json_encode([]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
         ];
 
         // Add the new Services variants
