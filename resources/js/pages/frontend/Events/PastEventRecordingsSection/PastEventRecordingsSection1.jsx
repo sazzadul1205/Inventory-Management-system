@@ -1,9 +1,32 @@
 // page/frontend/Events/PastEventRecordingsSection/PastEventRecordingsSection1.jsx
 
-// React
+/**
+ * Past Event Recordings Section I - On-Demand Video Library & Learning Hub
+ *
+ * Unique Design Elements:
+ * - Stats Cards for Recording Metrics (Recordings, Hours, Views, Downloads)
+ * - Featured Recording Banner with Play Button
+ * - Video Player Modal with Custom Controls
+ *   - Play/Pause, Volume, Progress Bar, Playback Speed
+ *   - Transcript Panel with Timestamps
+ *   - Download Slides and Certificate Options
+ * - Recording Cards with Thumbnails and Metadata
+ * - Bookmark System for Saving Favorite Recordings
+ * - Notes Taking for Each Recording
+ * - Certificate Download for Verified Completion
+ * - Share Modal for Easy Content Promotion
+ * - Search and Filter System (Category, Year, Type)
+ * - Tab Navigation (All, Featured, Most Viewed, Bookmarks)
+ * - Grid/List View Toggle
+ * - Fully Responsive Design
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineCalendar,
   HiOutlineClock,
@@ -33,43 +56,44 @@ import {
   HiOutlineVolumeOff,
   HiOutlineTrendingUp,
 } from 'react-icons/hi';
-import { HiOutlineUser, HiOutlineRss, HiOutlineEye, HiOutlineTrophy, } from 'react-icons/hi2';
+import { HiOutlineUser, HiOutlineRss, HiOutlineEye, HiOutlineTrophy } from 'react-icons/hi2';
 
 const PastEventRecordingsSection1 = ({ config }) => {
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
+  // ==================== STATE MANAGEMENT ====================
+  const [notes, setNotes] = useState('');
   const [duration, setDuration] = useState(0);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
-  const [showTranscript, setShowTranscript] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [savedNotes, setSavedNotes] = useState({});
+  const [viewMode, setViewMode] = useState('grid');
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedYear, setSelectedYear] = useState('all');
-  const [selectedType, setSelectedType] = useState('all');
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
-  const [viewMode, setViewMode] = useState('grid');
-  const [bookmarkedRecordings, setBookmarkedRecordings] = useState([]);
-  const [showShareModal, setShowShareModal] = useState(false);
-  const [shareRecording, setShareRecording] = useState(null);
-  const [showNotesModal, setShowNotesModal] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [selectedType, setSelectedType] = useState('all');
+  const [selectedYear, setSelectedYear] = useState('all');
   const [notesRecording, setNotesRecording] = useState(null);
-  const [notes, setNotes] = useState('');
-  const [savedNotes, setSavedNotes] = useState({});
+  const [shareRecording, setShareRecording] = useState(null);
+  const [showTranscript, setShowTranscript] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showNotesModal, setShowNotesModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [bookmarkedRecordings, setBookmarkedRecordings] = useState([]);
   const [showCertificateModal, setShowCertificateModal] = useState(false);
   const [certificateRecording, setCertificateRecording] = useState(null);
+
+  // ===================== REFS ====================
   const videoRef = useRef(null);
 
-  // Get data from config
+  // ==================== MEMOIZED DATA ====================
   const recordings = useMemo(() => config?.recordings || [], [config?.recordings]);
   const stats = config?.stats || [];
   const featuredRecordingId = config?.featuredRecordingId || (recordings[0]?.id);
-
   const featuredRecording = recordings.find(r => r.id === featuredRecordingId) || recordings[0];
 
-  // Get unique categories, years, and types
   const categories = useMemo(() => {
     const cats = new Set(recordings.map(r => r.category).filter(Boolean));
     return ['all', ...Array.from(cats)];
@@ -92,11 +116,10 @@ const PastEventRecordingsSection1 = ({ config }) => {
     { id: 'bookmarked', label: 'My Bookmarks', icon: 'bookmark' },
   ];
 
-  // Load bookmarks and notes from localStorage
+  // ==================== LOCAL STORAGE & EFFECTS ====================
   useEffect(() => {
     const saved = localStorage.getItem('bookmarkedRecordings');
     if (saved) setBookmarkedRecordings(JSON.parse(saved));
-
     const savedNotes = localStorage.getItem('recordingNotes');
     if (savedNotes) setSavedNotes(JSON.parse(savedNotes));
   }, []);
@@ -109,23 +132,20 @@ const PastEventRecordingsSection1 = ({ config }) => {
     localStorage.setItem('recordingNotes', JSON.stringify(savedNotes));
   }, [savedNotes]);
 
-  // Filter recordings
+  // ==================== HELPER FUNCTIONS ====================
   const filterRecordings = (recordingList) => {
     return recordingList.filter((r) => {
       const matchesSearch = searchQuery === '' ||
         r.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         r.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         r.speaker?.name?.toLowerCase().includes(searchQuery.toLowerCase());
-
       const matchesCategory = selectedCategory === 'all' || r.category === selectedCategory;
       const matchesYear = selectedYear === 'all' || r.year === selectedYear;
       const matchesType = selectedType === 'all' || r.type === selectedType;
-
       return matchesSearch && matchesCategory && matchesYear && matchesType;
     });
   };
 
-  // Sort by view count for most viewed tab
   const mostViewedRecordings = [...recordings].sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0));
   const featuredRecordings = recordings.filter(r => r.isFeatured || r.id === featuredRecordingId);
 
@@ -140,7 +160,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
     displayedRecordings = filterRecordings(recordings.filter(r => bookmarkedRecordings.includes(r.id)));
   }
 
-  // Video player controls
+  // ==================== VIDEO PLAYER CONTROLS ====================
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -199,17 +219,14 @@ const PastEventRecordingsSection1 = ({ config }) => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Bookmark recording
+  // ==================== UI HANDLERS ====================
   const toggleBookmark = (recordingId, e) => {
     e.stopPropagation();
-    if (bookmarkedRecordings.includes(recordingId)) {
-      setBookmarkedRecordings(bookmarkedRecordings.filter(id => id !== recordingId));
-    } else {
-      setBookmarkedRecordings([...bookmarkedRecordings, recordingId]);
-    }
+    setBookmarkedRecordings(prev =>
+      prev.includes(recordingId) ? prev.filter(id => id !== recordingId) : [...prev, recordingId]
+    );
   };
 
-  // Save notes
   const saveNotes = () => {
     if (notesRecording) {
       setSavedNotes(prev => ({
@@ -221,7 +238,6 @@ const PastEventRecordingsSection1 = ({ config }) => {
     }
   };
 
-  // Share recording
   const shareRecordingHandler = (recording, e) => {
     e.stopPropagation();
     setShareRecording(recording);
@@ -235,25 +251,22 @@ const PastEventRecordingsSection1 = ({ config }) => {
     }
   };
 
-  // Download certificate
   const downloadCertificate = () => {
     alert('Certificate downloaded!');
     setShowCertificateModal(false);
   };
 
-  // Format date
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   };
 
-  // Get category badge color
   const getCategoryBadge = (category) => {
     switch (category?.toLowerCase()) {
       case 'webinar': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       case 'conference': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
-      case 'workshop': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+      case 'workshop': return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300';
       case 'summit': return 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300';
       case 'panel': return 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300';
       default: return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
@@ -266,13 +279,13 @@ const PastEventRecordingsSection1 = ({ config }) => {
       role="region"
       aria-label="Past Event Recordings Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineVideoCamera className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -290,16 +303,16 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Row */}
+        {/* ==================== STATS ROW ==================== */}
         {stats.length > 0 && (
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  {stat.icon === 'video' ? <HiOutlineVideoCamera className="w-5 h-5 text-blue-600" /> :
-                    stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600" /> :
-                      stat.icon === 'clock' ? <HiOutlineClock className="w-5 h-5 text-blue-600" /> :
-                        <HiOutlineDownload className="w-5 h-5 text-blue-600" />}
+                  {stat.icon === 'video' ? <HiOutlineVideoCamera className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                    stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'clock' ? <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                        <HiOutlineDownload className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
@@ -310,7 +323,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Featured Recording Banner */}
+        {/* ==================== FEATURED RECORDING BANNER ==================== */}
         {featuredRecording && activeTab !== 'featured' && (
           <div className="relative mb-12 rounded-3xl overflow-hidden bg-linear-to-r from-blue-600 to-purple-600 shadow-xl">
             <div className="absolute inset-0 opacity-10">
@@ -364,6 +377,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
                     setIsPlaying(true);
                   }}
                   className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  aria-label="Watch now"
                 >
                   <HiOutlinePlay className="w-5 h-5" />
                   Watch Now
@@ -373,6 +387,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
                   <button
                     onClick={() => window.open(featuredRecording.slidesUrl, '_blank')}
                     className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
+                    aria-label="Download slides"
                   >
                     <HiOutlineDocumentText className="w-5 h-5" />
                     Download Slides
@@ -383,7 +398,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Tabs */}
+        {/* ==================== QUICK NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -391,8 +406,9 @@ const PastEventRecordingsSection1 = ({ config }) => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'video' ? <HiOutlineVideoCamera className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -408,7 +424,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Search and Filters */}
+        {/* ==================== SEARCH AND FILTERS ==================== */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
@@ -420,13 +436,15 @@ const PastEventRecordingsSection1 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search recordings by title, description, or speaker..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                aria-label="Search recordings"
               />
             </div>
 
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+              aria-label="Toggle filters"
             >
               <HiOutlineFilter className="w-5 h-5" />
               Filters
@@ -453,14 +471,15 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
 
           {showFilters && (
-            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 animate-fadeIn">
               <div className="grid md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Filter by category"
                   >
                     {categories.map((cat) => (
                       <option key={cat} value={cat}>
@@ -474,7 +493,8 @@ const PastEventRecordingsSection1 = ({ config }) => {
                   <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Filter by year"
                   >
                     {years.map((year) => (
                       <option key={year} value={year}>
@@ -488,7 +508,8 @@ const PastEventRecordingsSection1 = ({ config }) => {
                   <select
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Filter by event type"
                   >
                     {types.map((type) => (
                       <option key={type} value={type}>
@@ -502,7 +523,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
           )}
         </div>
 
-        {/* Recordings Grid/List */}
+        {/* ==================== RECORDINGS GRID/LIST ==================== */}
         {displayedRecordings.length === 0 ? (
           <div className="text-center py-12">
             <HiOutlineVideoCamera className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
@@ -514,7 +535,8 @@ const PastEventRecordingsSection1 = ({ config }) => {
                 setSelectedYear('all');
                 setSelectedType('all');
               }}
-              className="mt-4 text-blue-600 hover:underline"
+              className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+              aria-label="Clear filters"
             >
               Clear filters
             </button>
@@ -530,12 +552,13 @@ const PastEventRecordingsSection1 = ({ config }) => {
                   className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700"
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-48 overflow-hidden cursor-pointer" onClick={() => { setCurrentVideo(recording); setShowVideoModal(true); setIsPlaying(true); }}>
+                  <div className="relative h-48 overflow-hidden cursor-pointer" onClick={() => { setCurrentVideo(recording); setShowVideoModal(true); setIsPlaying(true); }} role="button" tabIndex={0} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(recording)}>
                     {recording.thumbnail ? (
                       <img
                         src={recording.thumbnail}
                         alt={recording.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                     ) : (
                       <div className="w-full h-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center">
@@ -566,8 +589,9 @@ const PastEventRecordingsSection1 = ({ config }) => {
                       </h3>
                       <button
                         onClick={(e) => toggleBookmark(recording.id, e)}
-                        className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 hover:text-yellow-500 transition-colors"
+                        className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-yellow-500 transition-colors"
                         title={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
+                        aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark recording'}
                       >
                         <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500' : ''}`} />
                       </button>
@@ -578,7 +602,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
                     </p>
 
                     {/* Metadata */}
-                    <div className="flex flex-wrap gap-3 mb-4 text-xs text-gray-500">
+                    <div className="flex flex-wrap gap-3 mb-4 text-xs text-gray-500 dark:text-gray-400">
                       {recording.date && (
                         <div className="flex items-center gap-1">
                           <HiOutlineCalendar className="w-3 h-3" />
@@ -604,19 +628,22 @@ const PastEventRecordingsSection1 = ({ config }) => {
                       <button
                         onClick={() => { setCurrentVideo(recording); setShowVideoModal(true); setIsPlaying(true); }}
                         className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                        aria-label="Watch recording"
                       >
                         <HiOutlinePlay className="w-4 h-4" />
                         Watch Now
                       </button>
                       <button
                         onClick={(e) => shareRecordingHandler(recording, e)}
-                        className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                        className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm hover:bg-gray-200 dark:hover:bg-gray-600"
+                        aria-label="Share recording"
                       >
                         <HiOutlineShare className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => { setNotesRecording(recording); setNotes(savedNotes[recording.id] || ''); setShowNotesModal(true); }}
-                        className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                        className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm hover:bg-gray-200 dark:hover:bg-gray-600"
+                        aria-label="Take notes"
                       >
                         <HiOutlinePencil className="w-4 h-4" />
                       </button>
@@ -624,7 +651,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
 
                     {/* Certificate Badge */}
                     {recording.certificateAvailable && (
-                      <div className="mt-3 flex items-center justify-center gap-2 text-xs text-green-600 bg-green-50 dark:bg-green-900/20 py-1.5 rounded-lg">
+                      <div className="mt-3 flex items-center justify-center gap-2 text-xs text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 py-1.5 rounded-lg">
                         <HiOutlineBadgeCheck className="w-3 h-3" />
                         <span>Certificate available upon completion</span>
                       </div>
@@ -644,12 +671,15 @@ const PastEventRecordingsSection1 = ({ config }) => {
                   key={recording.id}
                   className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 cursor-pointer"
                   onClick={() => { setCurrentVideo(recording); setShowVideoModal(true); setIsPlaying(true); }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(recording)}
                 >
                   <div className="flex flex-col md:flex-row gap-6">
                     {/* Thumbnail */}
                     <div className="md:w-48 h-32 rounded-xl overflow-hidden shrink-0 relative">
                       {recording.thumbnail ? (
-                        <img src={recording.thumbnail} alt={recording.title} className="w-full h-full object-cover" />
+                        <img src={recording.thumbnail} alt={recording.title} className="w-full h-full object-cover" loading="lazy" />
                       ) : (
                         <div className="w-full h-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                           <HiOutlineVideoCamera className="w-8 h-8 text-white/50" />
@@ -666,20 +696,21 @@ const PastEventRecordingsSection1 = ({ config }) => {
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white">{recording.title}</h3>
                         <button
                           onClick={(e) => toggleBookmark(recording.id, e)}
-                          className="p-2 rounded-lg bg-gray-100 text-gray-600 hover:text-yellow-500"
+                          className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-yellow-500 transition-colors"
+                          aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark recording'}
                         >
                           <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500' : ''}`} />
                         </button>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">{recording.description}</p>
-                      <div className="flex flex-wrap gap-4 mb-3 text-sm text-gray-500">
+                      <div className="flex flex-wrap gap-4 mb-3 text-sm text-gray-500 dark:text-gray-400">
                         {recording.date && <div className="flex items-center gap-1"><HiOutlineCalendar className="w-4 h-4" />{formatDate(recording.date)}</div>}
                         {recording.speaker?.name && <div className="flex items-center gap-1"><HiOutlineUser className="w-4 h-4" />{recording.speaker.name}</div>}
                         {recording.viewCount && <div className="flex items-center gap-1"><HiOutlineEye className="w-4 h-4" />{recording.viewCount.toLocaleString()} views</div>}
                       </div>
                       <div className="flex flex-wrap gap-3">
-                        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold">Watch Now</button>
-                        <button onClick={(e) => shareRecordingHandler(recording, e)} className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold">Share</button>
+                        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors" aria-label="Watch recording">Watch Now</button>
+                        <button onClick={(e) => shareRecordingHandler(recording, e)} className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="Share recording">Share</button>
                       </div>
                     </div>
                   </div>
@@ -689,9 +720,15 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Player Modal */}
+        {/* ==================== VIDEO PLAYER MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95" onClick={() => setShowVideoModal(false)}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
             <div className="relative max-w-5xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
               {/* Video Header */}
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4 flex items-center justify-between">
@@ -701,7 +738,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
                     {currentVideo.speaker?.name} • {formatDate(currentVideo.date)} • {currentVideo.duration}
                   </p>
                 </div>
-                <button onClick={() => setShowVideoModal(false)} className="text-white hover:text-gray-200">
+                <button onClick={() => setShowVideoModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close video">
                   <HiOutlineX className="w-6 h-6" />
                 </button>
               </div>
@@ -724,12 +761,12 @@ const PastEventRecordingsSection1 = ({ config }) => {
                 <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
                   <div className="flex items-center gap-4">
                     {/* Play/Pause */}
-                    <button onClick={handlePlayPause} className="text-white hover:text-blue-400 transition-colors">
+                    <button onClick={handlePlayPause} className="text-white hover:text-blue-400 transition-colors" aria-label={isPlaying ? 'Pause' : 'Play'}>
                       {isPlaying ? <HiOutlinePause className="w-6 h-6" /> : <HiOutlinePlay className="w-6 h-6" />}
                     </button>
 
                     {/* Volume */}
-                    <button onClick={handleMute} className="text-white hover:text-blue-400 transition-colors">
+                    <button onClick={handleMute} className="text-white hover:text-blue-400 transition-colors" aria-label={isMuted ? 'Unmute' : 'Mute'}>
                       {isMuted ? <HiOutlineVolumeOff className="w-5 h-5" /> : <HiOutlineVolumeUp className="w-5 h-5" />}
                     </button>
 
@@ -743,23 +780,24 @@ const PastEventRecordingsSection1 = ({ config }) => {
                         value={currentTime}
                         onChange={handleSeek}
                         className="flex-1 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                        aria-label="Video progress"
                       />
                       <span className="text-white text-xs">{formatTime(duration)}</span>
                     </div>
 
                     {/* Speed */}
-                    <button onClick={handleSpeedChange} className="text-white text-sm hover:text-blue-400 transition-colors">
+                    <button onClick={handleSpeedChange} className="text-white text-sm hover:text-blue-400 transition-colors" aria-label="Playback speed">
                       {playbackSpeed}x
                     </button>
 
                     {/* Transcript Toggle */}
-                    <button onClick={() => setShowTranscript(!showTranscript)} className="text-white text-sm hover:text-blue-400 transition-colors">
+                    <button onClick={() => setShowTranscript(!showTranscript)} className="text-white text-sm hover:text-blue-400 transition-colors" aria-label="Toggle transcript">
                       Transcript
                     </button>
 
                     {/* Download */}
                     {currentVideo.downloadUrl && (
-                      <a href={currentVideo.downloadUrl} download className="text-white hover:text-blue-400 transition-colors">
+                      <a href={currentVideo.downloadUrl} download className="text-white hover:text-blue-400 transition-colors" aria-label="Download video">
                         <HiOutlineDownload className="w-5 h-5" />
                       </a>
                     )}
@@ -800,7 +838,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
                 </div>
                 {currentVideo.slidesUrl && (
                   <div className="mt-3">
-                    <a href={currentVideo.slidesUrl} download className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm">
+                    <a href={currentVideo.slidesUrl} download className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm" aria-label="Download slides">
                       <HiOutlineDocumentText className="w-4 h-4" />
                       Download Presentation Slides
                     </a>
@@ -808,7 +846,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
                 )}
                 {currentVideo.certificateAvailable && (
                   <div className="mt-3">
-                    <button onClick={() => { setCertificateRecording(currentVideo); setShowCertificateModal(true); }} className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 text-sm">
+                    <button onClick={() => { setCertificateRecording(currentVideo); setShowCertificateModal(true); }} className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm" aria-label="Claim certificate">
                       <HiOutlineBadgeCheck className="w-4 h-4" />
                       Claim Certificate
                     </button>
@@ -819,14 +857,20 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Notes Modal */}
+        {/* ==================== NOTES MODAL ==================== */}
         {showNotesModal && notesRecording && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowNotesModal(false)}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowNotesModal(false)}
+            role="dialog"
+            aria-label="Take Notes"
+            aria-modal="true"
+          >
             <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4">
+              <div className="bg-emerald-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">My Notes</h3>
-                  <button onClick={() => setShowNotesModal(false)} className="text-white">
+                  <button onClick={() => setShowNotesModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -840,11 +884,13 @@ const PastEventRecordingsSection1 = ({ config }) => {
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Take notes about this recording..."
                   rows="6"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900 dark:text-white placeholder-gray-500 resize-none"
+                  aria-label="Notes text"
                 />
                 <button
                   onClick={saveNotes}
-                  className="w-full mt-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all"
+                  className="w-full mt-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all duration-300"
+                  aria-label="Save notes"
                 >
                   Save Notes
                 </button>
@@ -853,14 +899,20 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Share Modal */}
+        {/* ==================== SHARE MODAL ==================== */}
         {showShareModal && shareRecording && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowShareModal(false)}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowShareModal(false)}
+            role="dialog"
+            aria-label="Share Recording"
+            aria-modal="true"
+          >
             <div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="bg-gray-100 dark:bg-gray-700 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-gray-900 dark:text-white">Share Recording</h3>
-                  <button onClick={() => setShowShareModal(false)} className="text-gray-500">
+                  <button onClick={() => setShowShareModal(false)} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-5 h-5" />
                   </button>
                 </div>
@@ -868,10 +920,10 @@ const PastEventRecordingsSection1 = ({ config }) => {
               <div className="p-6">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center line-clamp-2">{shareRecording.title}</p>
                 <div className="flex flex-col gap-3">
-                  <button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  <button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" aria-label="Copy link">
                     <HiOutlineLink className="w-4 h-4" />Copy Link
                   </button>
-                  <button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareRecording.title)}&body=${encodeURIComponent(`${shareRecording.title}\n${shareRecording.description}\n\nWatch here: ${window.location.origin}/recordings/${shareRecording.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200">
+                  <button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareRecording.title)}&body=${encodeURIComponent(`${shareRecording.title}\n${shareRecording.description}\n\nWatch here: ${window.location.origin}/recordings/${shareRecording.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="Share via email">
                     <HiOutlineMail className="w-4 h-4" />Share via Email
                   </button>
                 </div>
@@ -880,21 +932,27 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Certificate Modal */}
+        {/* ==================== CERTIFICATE MODAL ==================== */}
         {showCertificateModal && certificateRecording && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowCertificateModal(false)}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowCertificateModal(false)}
+            role="dialog"
+            aria-label="Certificate of Completion"
+            aria-modal="true"
+          >
             <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4">
+              <div className="bg-emerald-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Certificate of Completion</h3>
-                  <button onClick={() => setShowCertificateModal(false)} className="text-white">
+                  <button onClick={() => setShowCertificateModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <HiOutlineBadgeCheck className="w-10 h-10 text-green-600" />
+                <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <HiOutlineBadgeCheck className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{certificateRecording.title}</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
@@ -902,7 +960,8 @@ const PastEventRecordingsSection1 = ({ config }) => {
                 </p>
                 <button
                   onClick={downloadCertificate}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                  aria-label="Download certificate"
                 >
                   <HiOutlineDownload className="w-5 h-5" />
                   Download Certificate
@@ -912,7 +971,7 @@ const PastEventRecordingsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== CALL TO ACTION SECTION ==================== */}
         <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-3xl p-8 text-white text-center">
           <HiOutlineBell className="w-12 h-12 mx-auto mb-4" />
           <h3 className="text-2xl md:text-3xl font-bold mb-4">Never Miss a Recording</h3>
@@ -920,11 +979,11 @@ const PastEventRecordingsSection1 = ({ config }) => {
             Subscribe to our channel and get notified when new recordings are available. Access exclusive content and learning materials.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Subscribe for updates">
               <HiOutlineMail className="w-5 h-5" />
               Subscribe for Updates
             </button>
-            <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300">
+            <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300" aria-label="RSS feed">
               <HiOutlineRss className="w-5 h-5" />
               RSS Feed
             </button>
@@ -932,15 +991,26 @@ const PastEventRecordingsSection1 = ({ config }) => {
         </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;

@@ -1,9 +1,29 @@
 // page/frontend/Events/VirtualEventsSection/VirtualEventsSection1.jsx
 
-// React
+/**
+ * Virtual Events Section I - Online Conference & Webinar Hub
+ *
+ * Unique Design Elements:
+ * - Stats Cards for Event Metrics (Events, Attendees, Speakers, Hours)
+ * - Featured Event Banner with Countdown Timer
+ * - Virtual Event Cards with Category Badges and Countdown
+ * - Registration Modal with Form Validation
+ * - QR Code Ticket Generation for Registered Events
+ * - Share Modal for Easy Event Promotion
+ * - Tab Navigation for Upcoming, Featured, On-Demand, and My Events
+ * - Search and Filter System (by category and region)
+ * - On-Demand Event Recording Support
+ * - Call-to-Action for Calendar Subscription
+ * - Animated Gradient Background Orbs (Blue/Purple Theme)
+ * - Fully Responsive Grid and Card Layouts
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineCalendar,
   HiOutlineClock,
@@ -30,49 +50,38 @@ import {
   HiOutlinePlay,
   HiOutlineQrcode,
 } from 'react-icons/hi';
-import {
-  HiOutlineUser,
-  HiOutlineTrophy,
-} from 'react-icons/hi2';
+import { HiOutlineUser, HiOutlineTrophy } from 'react-icons/hi2';
 
 const VirtualEventsSection1 = ({ config }) => {
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    role: '',
-    country: '',
-    questions: '',
-    newsletter: false,
-    terms: false,
-  });
+  // ==================== STATE MANAGEMENT ====================
   const [errors, setErrors] = useState({});
-  const [activeTab, setActiveTab] = useState('upcoming');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedRegion, setSelectedRegion] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
-  const [registeredEvents, setRegisteredEvents] = useState([]);
-  const [showShareModal, setShowShareModal] = useState(false);
-  const [shareEvent, setShareEvent] = useState(null);
+  const [qrEvent, setQrEvent] = useState(null);
   const [viewMode, setViewMode] = useState('grid');
   const [countdowns, setCountdowns] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [shareEvent, setShareEvent] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
   const [showQrModal, setShowQrModal] = useState(false);
-  const [qrEvent, setQrEvent] = useState(null);
+  const [activeTab, setActiveTab] = useState('upcoming');
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState('all');
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [registeredEvents, setRegisteredEvents] = useState([]);
+  const [expandedEventId, setExpandedEventId] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', role: '', country: '', questions: '', newsletter: false, terms: false, });
+
+  // ====================== REFS ====================
   const modalRef = useRef(null);
 
-  // Get data from config
+  // ==================== MEMOIZED DATA ====================
   const virtualEvents = useMemo(() => config?.virtualEvents || [], [config?.virtualEvents]);
   const stats = config?.stats || [];
   const featuredEventId = config?.featuredEventId || (virtualEvents[0]?.id);
-
-  // Featured event
   const featuredEvent = virtualEvents.find(e => e.id === featuredEventId) || virtualEvents[0];
 
-  // Get unique categories and regions
   const categories = useMemo(() => {
     const cats = new Set(virtualEvents.map(e => e.category).filter(Boolean));
     return ['all', ...Array.from(cats)];
@@ -90,21 +99,24 @@ const VirtualEventsSection1 = ({ config }) => {
     { id: 'registered', label: 'My Events', icon: 'ticket' },
   ];
 
-  // Calculate countdown for each event
+  const countries = [
+    'United States', 'Canada', 'United Kingdom', 'Australia', 'Germany',
+    'France', 'Japan', 'China', 'India', 'Brazil', 'Mexico', 'Spain',
+    'Italy', 'Netherlands', 'Sweden', 'Norway', 'Denmark', 'Singapore',
+    'United Arab Emirates', 'South Africa', 'Nigeria', 'Kenya'
+  ];
+
+  // ==================== HELPER FUNCTIONS ====================
   const calculateCountdown = useCallback((dateStr) => {
     if (!dateStr) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-
     const eventDate = new Date(dateStr);
     const now = new Date();
     const diff = eventDate - now;
-
     if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
     return { days, hours, minutes, seconds, expired: false };
   }, []);
 
@@ -119,7 +131,6 @@ const VirtualEventsSection1 = ({ config }) => {
       });
       setCountdowns(newCountdowns);
     };
-
     updateCountdowns();
     const interval = setInterval(updateCountdowns, 1000);
     return () => clearInterval(interval);
@@ -128,12 +139,9 @@ const VirtualEventsSection1 = ({ config }) => {
   // Load registered events from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('registeredVirtualEvents');
-    if (saved) {
-      setRegisteredEvents(JSON.parse(saved));
-    }
+    if (saved) setRegisteredEvents(JSON.parse(saved));
   }, []);
 
-  // Save registered events to localStorage
   useEffect(() => {
     localStorage.setItem('registeredVirtualEvents', JSON.stringify(registeredEvents));
   }, [registeredEvents]);
@@ -160,10 +168,8 @@ const VirtualEventsSection1 = ({ config }) => {
         e.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         e.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         e.speaker?.name?.toLowerCase().includes(searchQuery.toLowerCase());
-
       const matchesCategory = selectedCategory === 'all' || e.category === selectedCategory;
       const matchesRegion = selectedRegion === 'all' || e.region === selectedRegion;
-
       return matchesSearch && matchesCategory && matchesRegion;
     });
   };
@@ -179,19 +185,16 @@ const VirtualEventsSection1 = ({ config }) => {
     displayedEvents = filterEvents(virtualEvents.filter(e => registeredEvents.includes(e.id)));
   }
 
-  // Handle form input change
+  // ==================== FORM HANDLERS ====================
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  // Handle registration
   const handleRegister = (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -220,14 +223,13 @@ const VirtualEventsSection1 = ({ config }) => {
     }, 3000);
   };
 
-  // Share event
+  // ==================== UI HANDLERS ====================
   const shareEventHandler = (event, e) => {
     e.stopPropagation();
     setShareEvent(event);
     setShowShareModal(true);
   };
 
-  // Copy link to clipboard
   const copyLink = () => {
     if (shareEvent) {
       navigator.clipboard.writeText(`${window.location.origin}/virtual-events/${shareEvent.id}`);
@@ -235,7 +237,6 @@ const VirtualEventsSection1 = ({ config }) => {
     }
   };
 
-  // Format date range
   const formatDateRange = (startDate, endDate) => {
     if (!startDate) return 'TBD';
     const start = new Date(startDate);
@@ -247,31 +248,21 @@ const VirtualEventsSection1 = ({ config }) => {
     return `${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
   };
 
-  // Format time
   const formatTime = (timeStr) => {
     if (!timeStr) return '';
     return timeStr;
   };
 
-  // Get category badge color
   const getCategoryBadge = (category) => {
     switch (category?.toLowerCase()) {
       case 'webinar': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       case 'conference': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
-      case 'workshop': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+      case 'workshop': return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300';
       case 'summit': return 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300';
       case 'panel': return 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300';
       default: return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
     }
   };
-
-  // Countries list
-  const countries = [
-    'United States', 'Canada', 'United Kingdom', 'Australia', 'Germany',
-    'France', 'Japan', 'China', 'India', 'Brazil', 'Mexico', 'Spain',
-    'Italy', 'Netherlands', 'Sweden', 'Norway', 'Denmark', 'Singapore',
-    'United Arab Emirates', 'South Africa', 'Nigeria', 'Kenya'
-  ];
 
   return (
     <section
@@ -279,13 +270,13 @@ const VirtualEventsSection1 = ({ config }) => {
       role="region"
       aria-label="Virtual Events Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineVideoCamera className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -303,16 +294,16 @@ const VirtualEventsSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Row */}
+        {/* ==================== STATS ROW ==================== */}
         {stats.length > 0 && (
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  {stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600" /> :
-                    stat.icon === 'calendar' ? <HiOutlineCalendar className="w-5 h-5 text-blue-600" /> :
-                      stat.icon === 'clock' ? <HiOutlineClock className="w-5 h-5 text-blue-600" /> :
-                        <HiOutlineVideoCamera className="w-5 h-5 text-blue-600" />}
+                  {stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                    stat.icon === 'calendar' ? <HiOutlineCalendar className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'clock' ? <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                        <HiOutlineVideoCamera className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
@@ -323,7 +314,7 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Featured Event Banner */}
+        {/* ==================== FEATURED EVENT BANNER ==================== */}
         {featuredEvent && activeTab !== 'featured' && (
           <div className="relative mb-12 rounded-3xl overflow-hidden bg-linear-to-r from-blue-600 to-purple-600 shadow-xl">
             <div className="absolute inset-0 opacity-10">
@@ -376,6 +367,7 @@ const VirtualEventsSection1 = ({ config }) => {
                     setShowRegisterModal(true);
                   }}
                   className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  aria-label="Register for featured event"
                 >
                   <HiOutlineTicket className="w-5 h-5" />
                   Register Now
@@ -387,6 +379,7 @@ const VirtualEventsSection1 = ({ config }) => {
                     setShowQrModal(true);
                   }}
                   className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
+                  aria-label="Get QR code ticket"
                 >
                   <HiOutlineQrcode className="w-5 h-5" />
                   Get QR Code
@@ -396,7 +389,7 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Tabs */}
+        {/* ==================== QUICK NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -404,8 +397,9 @@ const VirtualEventsSection1 = ({ config }) => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'calendar' ? <HiOutlineCalendar className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -421,7 +415,7 @@ const VirtualEventsSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Search and Filters */}
+        {/* ==================== SEARCH AND FILTERS ==================== */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
@@ -433,13 +427,15 @@ const VirtualEventsSection1 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search events by title, description, or speaker..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                aria-label="Search events"
               />
             </div>
 
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+              aria-label="Toggle filters"
             >
               <HiOutlineFilter className="w-5 h-5" />
               Filters
@@ -466,14 +462,15 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
 
           {showFilters && (
-            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 animate-fadeIn">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Filter by category"
                   >
                     {categories.map((cat) => (
                       <option key={cat} value={cat}>
@@ -487,7 +484,8 @@ const VirtualEventsSection1 = ({ config }) => {
                   <select
                     value={selectedRegion}
                     onChange={(e) => setSelectedRegion(e.target.value)}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Filter by region"
                   >
                     {regions.map((region) => (
                       <option key={region} value={region}>
@@ -501,7 +499,7 @@ const VirtualEventsSection1 = ({ config }) => {
           )}
         </div>
 
-        {/* Events Grid/List */}
+        {/* ==================== EVENTS GRID/LIST ==================== */}
         {displayedEvents.length === 0 ? (
           <div className="text-center py-12">
             <HiOutlineVideoCamera className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
@@ -512,7 +510,8 @@ const VirtualEventsSection1 = ({ config }) => {
                 setSelectedCategory('all');
                 setSelectedRegion('all');
               }}
-              className="mt-4 text-blue-600 hover:underline"
+              className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+              aria-label="Clear filters"
             >
               Clear filters
             </button>
@@ -523,19 +522,21 @@ const VirtualEventsSection1 = ({ config }) => {
               const countdown = countdowns[event.id];
               const isUpcoming = activeTab === 'upcoming' && countdown && !countdown.expired;
               const isRegistered = registeredEvents.includes(event.id);
+              const isExpanded = expandedEventId === event.id;
 
               return (
                 <div
                   key={event.id}
                   className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700"
                 >
-                  {/* Image */}
+                  {/* Card Image */}
                   {event.image && (
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={event.image}
                         alt={event.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                       {event.category && (
                         <span className={`absolute top-4 left-4 text-xs px-2 py-1 rounded-full ${getCategoryBadge(event.category)}`}>
@@ -543,7 +544,7 @@ const VirtualEventsSection1 = ({ config }) => {
                         </span>
                       )}
                       {event.isFree && (
-                        <span className="absolute top-4 right-4 text-xs bg-green-500 text-white px-2 py-1 rounded-full">
+                        <span className="absolute top-4 right-4 text-xs bg-emerald-500 text-white px-2 py-1 rounded-full">
                           Free
                         </span>
                       )}
@@ -553,6 +554,7 @@ const VirtualEventsSection1 = ({ config }) => {
                         <button
                           onClick={(e) => shareEventHandler(event, e)}
                           className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                          aria-label="Share event"
                         >
                           <HiOutlineShare className="w-4 h-4" />
                         </button>
@@ -623,14 +625,14 @@ const VirtualEventsSection1 = ({ config }) => {
                           />
                         ) : (
                           <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                            <HiOutlineUser className="w-5 h-5 text-blue-600" />
+                            <HiOutlineUser className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                           </div>
                         )}
                         <div>
                           <p className="font-semibold text-gray-900 dark:text-white text-sm">
                             {event.speaker.name}
                           </p>
-                          <p className="text-xs text-gray-500 line-clamp-1">
+                          <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
                             {event.speaker.title}, {event.speaker.company}
                           </p>
                         </div>
@@ -639,7 +641,7 @@ const VirtualEventsSection1 = ({ config }) => {
 
                     {/* Attendees Count */}
                     {event.expectedAttendees && (
-                      <div className="flex items-center gap-1 text-xs text-gray-500 mb-4">
+                      <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 mb-4">
                         <HiOutlineUserGroup className="w-3 h-3" />
                         <span>{event.expectedAttendees.toLocaleString()} registered</span>
                       </div>
@@ -654,7 +656,8 @@ const VirtualEventsSection1 = ({ config }) => {
                               setQrEvent(event);
                               setShowQrModal(true);
                             }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                            aria-label="View my ticket"
                           >
                             <HiOutlineQrcode className="w-4 h-4" />
                             My Ticket
@@ -663,6 +666,7 @@ const VirtualEventsSection1 = ({ config }) => {
                             <button
                               onClick={() => window.open(event.recordingUrl, '_blank')}
                               className="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                              aria-label="Watch recording"
                             >
                               <HiOutlinePlay className="w-4 h-4" />
                               Watch
@@ -676,22 +680,24 @@ const VirtualEventsSection1 = ({ config }) => {
                             setShowRegisterModal(true);
                           }}
                           className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                          aria-label="Register for event"
                         >
                           <HiOutlineTicket className="w-4 h-4" />
                           Register Now
                         </button>
                       )}
                       <button
-                        onClick={() => setSelectedEvent(selectedEvent === event.id ? null : event.id)}
+                        onClick={() => setExpandedEventId(isExpanded ? null : event.id)}
                         className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-semibold"
+                        aria-label={isExpanded ? "Show less details" : "Show more details"}
                       >
-                        {selectedEvent === event.id ? 'Less' : 'More'}
+                        {isExpanded ? 'Less' : 'More'}
                       </button>
                     </div>
 
                     {/* Expanded Details */}
-                    {selectedEvent === event.id && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                    {isExpanded && (
+                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
                         {event.agenda && event.agenda.length > 0 && (
                           <div className="mb-3">
                             <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Event Agenda:</p>
@@ -706,7 +712,7 @@ const VirtualEventsSection1 = ({ config }) => {
                           </div>
                         )}
                         {event.certificateAvailable && (
-                          <div className="mt-2 flex items-center gap-2 text-xs text-green-600">
+                          <div className="mt-2 flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
                             <HiOutlineBadgeCheck className="w-3 h-3" />
                             <span>Certificate of attendance available</span>
                           </div>
@@ -731,7 +737,7 @@ const VirtualEventsSection1 = ({ config }) => {
                   <div className="flex flex-col md:flex-row gap-6">
                     {event.image && (
                       <div className="md:w-48 h-32 rounded-xl overflow-hidden shrink-0">
-                        <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
+                        <img src={event.image} alt={event.title} className="w-full h-full object-cover" loading="lazy" />
                       </div>
                     )}
                     <div className="flex-1">
@@ -745,13 +751,13 @@ const VirtualEventsSection1 = ({ config }) => {
                           )}
                         </div>
                         <div className="flex gap-2">
-                          <button onClick={(e) => shareEventHandler(event, e)} className="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200">
+                          <button onClick={(e) => shareEventHandler(event, e)} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="Share event">
                             <HiOutlineShare className="w-4 h-4" />
                           </button>
                         </div>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{event.description}</p>
-                      <div className="flex flex-wrap gap-4 mb-3 text-sm text-gray-500">
+                      <div className="flex flex-wrap gap-4 mb-3 text-sm text-gray-500 dark:text-gray-400">
                         {event.startDate && (
                           <div className="flex items-center gap-1">
                             <HiOutlineCalendar className="w-4 h-4" />
@@ -767,11 +773,11 @@ const VirtualEventsSection1 = ({ config }) => {
                       </div>
                       <div className="flex flex-wrap gap-3">
                         {isRegistered ? (
-                          <button onClick={() => { setQrEvent(event); setShowQrModal(true); }} className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold">
+                          <button onClick={() => { setQrEvent(event); setShowQrModal(true); }} className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 transition-colors" aria-label="View ticket">
                             My Ticket
                           </button>
                         ) : (
-                          <button onClick={() => { setSelectedEvent(event); setShowRegisterModal(true); }} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold">
+                          <button onClick={() => { setSelectedEvent(event); setShowRegisterModal(true); }} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors" aria-label="Register now">
                             Register Now
                           </button>
                         )}
@@ -784,11 +790,14 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Registration Modal */}
+        {/* ==================== REGISTRATION MODAL ==================== */}
         {showRegisterModal && selectedEvent && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
             onClick={() => setShowRegisterModal(false)}
+            role="dialog"
+            aria-label="Event Registration"
+            aria-modal="true"
           >
             <div
               className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
@@ -801,7 +810,7 @@ const VirtualEventsSection1 = ({ config }) => {
                     <h3 className="text-white font-bold text-lg">Register for Event</h3>
                     <p className="text-blue-100 text-xs mt-1 line-clamp-1">{selectedEvent.title}</p>
                   </div>
-                  <button onClick={() => setShowRegisterModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowRegisterModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -809,9 +818,9 @@ const VirtualEventsSection1 = ({ config }) => {
 
               <div className="p-6">
                 {formSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <HiOutlineCheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Registration Confirmed!</h4>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -823,7 +832,8 @@ const VirtualEventsSection1 = ({ config }) => {
                         setQrEvent(selectedEvent);
                         setShowQrModal(true);
                       }}
-                      className="mt-4 inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold"
+                      className="mt-4 inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+                      aria-label="Get QR ticket"
                     >
                       <HiOutlineQrcode className="w-4 h-4" />
                       Get Your QR Ticket
@@ -836,9 +846,9 @@ const VirtualEventsSection1 = ({ config }) => {
                         <span className="font-semibold">{formatDateRange(selectedEvent.startDate, selectedEvent.endDate)}</span>
                         {selectedEvent.time && <> • {formatTime(selectedEvent.time)}</>}
                         {selectedEvent.isFree ? (
-                          <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Free Event</span>
+                          <span className="ml-2 text-xs bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-0.5 rounded-full">Free Event</span>
                         ) : (
-                          <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Paid Event</span>
+                          <span className="ml-2 text-xs bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 px-2 py-0.5 rounded-full">Paid Event</span>
                         )}
                       </p>
                     </div>
@@ -850,8 +860,9 @@ const VirtualEventsSection1 = ({ config }) => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Full name *"
-                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                           }`}
+                        aria-label="Your full name"
                       />
                       {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                     </div>
@@ -863,8 +874,9 @@ const VirtualEventsSection1 = ({ config }) => {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="Email address *"
-                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                           }`}
+                        aria-label="Your email address"
                       />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
@@ -876,7 +888,8 @@ const VirtualEventsSection1 = ({ config }) => {
                         value={formData.company}
                         onChange={handleInputChange}
                         placeholder="Company"
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                        aria-label="Your company name"
                       />
                       <input
                         type="text"
@@ -884,7 +897,8 @@ const VirtualEventsSection1 = ({ config }) => {
                         value={formData.role}
                         onChange={handleInputChange}
                         placeholder="Job title"
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                        aria-label="Your job title"
                       />
                     </div>
 
@@ -892,7 +906,8 @@ const VirtualEventsSection1 = ({ config }) => {
                       name="country"
                       value={formData.country}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                      aria-label="Select your country"
                     >
                       <option value="">Select country</option>
                       {countries.map(c => <option key={c} value={c}>{c}</option>)}
@@ -904,7 +919,8 @@ const VirtualEventsSection1 = ({ config }) => {
                       onChange={handleInputChange}
                       placeholder="Any questions for the speaker or organizer?"
                       rows="2"
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 resize-none"
+                      aria-label="Any questions for the speaker"
                     />
 
                     <label className="flex items-center gap-2 cursor-pointer">
@@ -914,6 +930,7 @@ const VirtualEventsSection1 = ({ config }) => {
                         checked={formData.newsletter}
                         onChange={handleInputChange}
                         className="w-4 h-4"
+                        aria-label="Subscribe to newsletter"
                       />
                       <span className="text-sm text-gray-600 dark:text-gray-400">
                         Subscribe to event updates and future announcements
@@ -927,6 +944,7 @@ const VirtualEventsSection1 = ({ config }) => {
                         checked={formData.terms}
                         onChange={handleInputChange}
                         className="w-4 h-4 mt-0.5"
+                        aria-label="Agree to terms"
                       />
                       <span className="text-sm text-gray-600 dark:text-gray-400">
                         I agree to the <a href="#" className="text-blue-600 hover:underline">Terms and Conditions</a> *
@@ -937,6 +955,7 @@ const VirtualEventsSection1 = ({ config }) => {
                     <button
                       type="submit"
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                      aria-label="Complete registration"
                     >
                       Complete Registration
                       <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
@@ -948,14 +967,20 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* QR Code Modal */}
+        {/* ==================== QR CODE MODAL ==================== */}
         {showQrModal && qrEvent && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowQrModal(false)}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowQrModal(false)}
+            role="dialog"
+            aria-label="Event Ticket"
+            aria-modal="true"
+          >
             <div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="bg-blue-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Your Event Ticket</h3>
-                  <button onClick={() => setShowQrModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowQrModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -965,20 +990,21 @@ const VirtualEventsSection1 = ({ config }) => {
                   <HiOutlineQrcode className="w-32 h-32 text-gray-400" />
                 </div>
                 <h4 className="font-bold text-gray-900 dark:text-white mb-1">{qrEvent.title}</h4>
-                <p className="text-xs text-gray-500 mb-2">
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
                   {formatDateRange(qrEvent.startDate, qrEvent.endDate)} • {qrEvent.time}
                 </p>
-                <p className="text-xs text-gray-500 mb-4">
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                   Ticket for: {formData.name || 'Attendee'}
                 </p>
                 <button
                   onClick={() => alert('Ticket saved!')}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300"
+                  aria-label="Save ticket"
                 >
                   <HiOutlineDownload className="w-4 h-4" />
                   Save Ticket
                 </button>
-                <p className="text-xs text-gray-400 mt-3">
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-3">
                   Show this QR code at the virtual event check-in
                 </p>
               </div>
@@ -986,14 +1012,20 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Share Modal */}
+        {/* ==================== SHARE MODAL ==================== */}
         {showShareModal && shareEvent && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowShareModal(false)}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowShareModal(false)}
+            role="dialog"
+            aria-label="Share Event"
+            aria-modal="true"
+          >
             <div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="bg-gray-100 dark:bg-gray-700 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-gray-900 dark:text-white">Share Event</h3>
-                  <button onClick={() => setShowShareModal(false)} className="text-gray-500">
+                  <button onClick={() => setShowShareModal(false)} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-5 h-5" />
                   </button>
                 </div>
@@ -1001,10 +1033,10 @@ const VirtualEventsSection1 = ({ config }) => {
               <div className="p-6">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center line-clamp-2">{shareEvent.title}</p>
                 <div className="flex flex-col gap-3">
-                  <button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  <button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" aria-label="Copy link">
                     <HiOutlineLink className="w-4 h-4" />Copy Link
                   </button>
-                  <button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareEvent.title)}&body=${encodeURIComponent(`${shareEvent.title}\n${shareEvent.description}\n\n${formatDateRange(shareEvent.startDate, shareEvent.endDate)} at ${shareEvent.time}\n\nRegister here: ${window.location.origin}/virtual-events/${shareEvent.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200">
+                  <button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareEvent.title)}&body=${encodeURIComponent(`${shareEvent.title}\n${shareEvent.description}\n\n${formatDateRange(shareEvent.startDate, shareEvent.endDate)} at ${shareEvent.time}\n\nRegister here: ${window.location.origin}/virtual-events/${shareEvent.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="Share via email">
                     <HiOutlineMail className="w-4 h-4" />Share via Email
                   </button>
                 </div>
@@ -1013,7 +1045,7 @@ const VirtualEventsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== CALL TO ACTION SECTION ==================== */}
         <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-3xl p-8 text-white text-center">
           <HiOutlineBell className="w-12 h-12 mx-auto mb-4" />
           <h3 className="text-2xl md:text-3xl font-bold mb-4">Never Miss a Virtual Event</h3>
@@ -1021,11 +1053,11 @@ const VirtualEventsSection1 = ({ config }) => {
             Subscribe to our event calendar and get notified about upcoming webinars, conferences, and workshops.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Subscribe to calendar">
               <HiOutlineCalendar className="w-5 h-5" />
               Subscribe to Calendar
             </button>
-            <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300">
+            <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300" aria-label="Get email updates">
               <HiOutlineMail className="w-5 h-5" />
               Email Updates
             </button>
@@ -1033,15 +1065,26 @@ const VirtualEventsSection1 = ({ config }) => {
         </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
