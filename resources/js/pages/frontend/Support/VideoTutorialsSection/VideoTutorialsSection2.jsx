@@ -1,9 +1,30 @@
 // page/frontend/Support/VideoTutorialsSection/VideoTutorialsSection2.jsx
 
-// React
+/**
+ * Video Tutorials Section II - Learning Management System with Courses & Certificates
+ *
+ * Unique Design Elements:
+ * - Learning Analytics Widget with Progress Dashboard
+ * - Featured Course Banner with Certificate Badge
+ * - Interactive Course Cards with Progress Tracking
+ * - Enroll/Continue Learning Functionality
+ * - Course Player with Sidebar Lesson Navigation
+ * - Integrated Quiz System with Score Calculation
+ * - Certificate Generation upon Quiz Pass
+ * - Instructor Profiles with Credentials
+ * - Bookmark and Share Functionality
+ * - Watch History with Progress Save
+ * - Search and Filter System (Category, Level, Duration)
+ * - Grid/List View Toggle
+ * - Fully Responsive Design with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineSearch,
   HiOutlinePlay,
@@ -43,60 +64,57 @@ import {
 } from 'react-icons/hi2';
 
 const VideoTutorialsSection2 = ({ config }) => {
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const [currentCourse, setCurrentCourse] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
+  // ==================== STATE MANAGEMENT ====================
   const [duration, setDuration] = useState(0);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState('all');
-  const [selectedDuration, setSelectedDuration] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [viewMode, setViewMode] = useState('grid');
-  const [bookmarkedVideos, setBookmarkedVideos] = useState([]);
-  const [enrolledCourses, setEnrolledCourses] = useState([]);
-  const [watchHistory, setWatchHistory] = useState([]);
-  const [watchProgress, setWatchProgress] = useState({});
-  const [quizResults, setQuizResults] = useState({});
-  const [certificates, setCertificates] = useState([]);
-  const [showShareModal, setShowShareModal] = useState(false);
-  const [shareVideo, setShareVideo] = useState(null);
-  const [showQuizModal, setShowQuizModal] = useState(false);
-  const [quizCourse, setQuizCourse] = useState(null);
-  const [quizAnswers, setQuizAnswers] = useState({});
   const [quizScore, setQuizScore] = useState(null);
-  const [showCertificateModal, setShowCertificateModal] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [shareVideo, setShareVideo] = useState(null);
+  const [quizAnswers, setQuizAnswers] = useState({});
+  const [quizCourse, setQuizCourse] = useState(null);
+  const [quizResults, setQuizResults] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [watchHistory, setWatchHistory] = useState([]);
+  const [certificates, setCertificates] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [watchProgress, setWatchProgress] = useState({});
+  const [currentCourse, setCurrentCourse] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState('all');
+  const [showQuizModal, setShowQuizModal] = useState(false);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [bookmarkedVideos, setBookmarkedVideos] = useState([]);
+  const [selectedDuration, setSelectedDuration] = useState('all');
   const [certificateCourse, setCertificateCourse] = useState(null);
-  const [showInstructorModal, setShowInstructorModal] = useState(false);
   const [selectedInstructor, setSelectedInstructor] = useState(null);
   const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
-  const [learningAnalytics, setLearningAnalytics] = useState({
-    totalHours: 0,
-    coursesCompleted: 0,
-    quizzesPassed: 0,
-    certificatesEarned: 0,
-    averageScore: 0,
-  });
+  const [showInstructorModal, setShowInstructorModal] = useState(false);
+  const [showCertificateModal, setShowCertificateModal] = useState(false);
+  const [learningAnalytics, setLearningAnalytics] = useState({totalHours: 0,coursesCompleted: 0,quizzesPassed: 0,certificatesEarned: 0,averageScore: 0,});
+
+  // ===================== REFS ====================
   const videoRef = useRef(null);
 
-  // Get data from config
-  const categories = config?.categories || [];
-  const videos = useEffect(() => config?.videos || [], [config]);
-  const courses = useEffect(() => config?.courses || [], [config]);
-  const stats = config?.stats || [];
-  const featuredCourse = config?.featuredCourse || courses[0];
+  // ==================== MEMOIZED DATA ====================
+  const categories = useMemo(() => config?.categories || [], [config?.categories]);
+  const videos = useMemo(() => config?.videos || [], [config?.videos]);
+  const courses = useMemo(() => config?.courses || [], [config?.courses]);
+  const stats = useMemo(() => config?.stats || [], [config?.stats]);
+  const featuredCourse = useMemo(() => config?.featuredCourse || courses[0], [courses, config?.featuredCourse]);
 
-  // Get unique levels and duration ranges
+  // Get unique levels
   const levels = useMemo(() => {
     const lev = new Set(videos.map(v => v.level).filter(Boolean));
     return ['all', ...Array.from(lev)];
   }, [videos]);
 
-  const durationRanges = useEffect(() => [
+  const durationRanges = useMemo(() => [
     { id: 'all', label: 'All Durations' },
     { id: 'short', label: 'Short (< 5 min)', max: 5 },
     { id: 'medium', label: 'Medium (5-15 min)', min: 5, max: 15 },
@@ -145,7 +163,7 @@ const VideoTutorialsSection2 = ({ config }) => {
     return groups;
   }, [filteredVideos]);
 
-  // Load data from localStorage
+  // ==================== LOCAL STORAGE & EFFECTS ====================
   useEffect(() => {
     const savedBookmarks = localStorage.getItem('videoBookmarks');
     if (savedBookmarks) setBookmarkedVideos(JSON.parse(savedBookmarks));
@@ -211,13 +229,12 @@ const VideoTutorialsSection2 = ({ config }) => {
     });
   }, [watchProgress, enrolledCourses, quizResults, certificates, courses]);
 
-  // Track video view
+  // ==================== HELPER FUNCTIONS ====================
   const trackVideoView = (video) => {
     const updatedHistory = [video, ...watchHistory.filter(v => v.id !== video.id)].slice(0, 20);
     setWatchHistory(updatedHistory);
   };
 
-  // Save watch progress
   const saveProgress = (videoId, progress, videoDuration) => {
     setWatchProgress(prev => ({
       ...prev,
@@ -225,14 +242,12 @@ const VideoTutorialsSection2 = ({ config }) => {
     }));
   };
 
-  // Enroll in course
   const enrollInCourse = (courseId) => {
     if (!enrolledCourses.includes(courseId)) {
       setEnrolledCourses([...enrolledCourses, courseId]);
     }
   };
 
-  // Check course completion
   const getCourseProgress = (course) => {
     if (!course || !course.videos) return 0;
     const totalProgress = course.videos.reduce((sum, videoId) => sum + (watchProgress[videoId]?.progress || 0), 0);
@@ -243,7 +258,6 @@ const VideoTutorialsSection2 = ({ config }) => {
     return getCourseProgress(course) >= 90;
   };
 
-  // Handle quiz submission
   const handleQuizSubmit = () => {
     const course = quizCourse;
     if (!course || !course.quiz) return;
@@ -263,7 +277,6 @@ const VideoTutorialsSection2 = ({ config }) => {
     setQuizScore(score);
 
     if (passed) {
-      // Generate certificate
       const certificate = {
         id: Date.now(),
         courseId: course.id,
@@ -275,7 +288,6 @@ const VideoTutorialsSection2 = ({ config }) => {
     }
   };
 
-  // Toggle bookmark
   const toggleBookmark = (videoId, e) => {
     e?.stopPropagation();
     if (bookmarkedVideos.includes(videoId)) {
@@ -285,7 +297,6 @@ const VideoTutorialsSection2 = ({ config }) => {
     }
   };
 
-  // Share video
   const shareVideoHandler = (video, e) => {
     e?.stopPropagation();
     setShareVideo(video);
@@ -299,7 +310,14 @@ const VideoTutorialsSection2 = ({ config }) => {
     }
   };
 
-  // Video player controls
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setActiveCategory('all');
+    setSelectedLevel('all');
+    setSelectedDuration('all');
+  };
+
+  // ==================== VIDEO PLAYER CONTROLS ====================
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -375,10 +393,10 @@ const VideoTutorialsSection2 = ({ config }) => {
 
   const getLevelBadge = (level) => {
     switch (level?.toLowerCase()) {
-      case 'beginner': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+      case 'beginner': return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300';
       case 'intermediate': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       case 'advanced': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
-      default: return 'bg-gray-100 text-gray-700';
+      default: return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
     }
   };
 
@@ -395,13 +413,13 @@ const VideoTutorialsSection2 = ({ config }) => {
 
   const getCategoryColor = (categoryId) => {
     const colors = {
-      'getting-started': 'bg-green-100 text-green-700',
-      'features': 'bg-blue-100 text-blue-700',
-      'integrations': 'bg-purple-100 text-purple-700',
-      'api': 'bg-orange-100 text-orange-700',
-      'best-practices': 'bg-yellow-100 text-yellow-700',
+      'getting-started': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+      'features': 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+      'integrations': 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+      'api': 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
+      'best-practices': 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
     };
-    return colors[categoryId] || 'bg-gray-100 text-gray-700';
+    return colors[categoryId] || 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
   };
 
   return (
@@ -410,27 +428,41 @@ const VideoTutorialsSection2 = ({ config }) => {
       role="region"
       aria-label="Video Tutorials Learning Hub"
     >
-      {/* Background Pattern */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
-      {/* Learning Analytics Widget */}
+      {/* ==================== LEARNING ANALYTICS WIDGET ==================== */}
       <div className="fixed top-20 right-4 z-40 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-3 min-w-48">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-xs text-gray-500">Your Learning Progress</p>
-          <button onClick={() => setShowAnalyticsModal(true)} className="text-blue-600 text-xs hover:underline">Details</button>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Your Learning Progress</p>
+          <button onClick={() => setShowAnalyticsModal(true)} className="text-blue-600 dark:text-blue-400 text-xs hover:underline" aria-label="View details">
+            Details
+          </button>
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <div className="text-center"><p className="text-lg font-bold text-blue-600">{learningAnalytics.totalHours}</p><p className="text-xs text-gray-500">Hours</p></div>
-          <div className="text-center"><p className="text-lg font-bold text-green-600">{learningAnalytics.coursesCompleted}</p><p className="text-xs text-gray-500">Completed</p></div>
-          <div className="text-center"><p className="text-lg font-bold text-purple-600">{learningAnalytics.quizzesPassed}</p><p className="text-xs text-gray-500">Quizzes</p></div>
-          <div className="text-center"><p className="text-lg font-bold text-yellow-600">{learningAnalytics.certificatesEarned}</p><p className="text-xs text-gray-500">Certificates</p></div>
+          <div className="text-center">
+            <p className="text-lg font-bold text-blue-600 dark:text-blue-400">{learningAnalytics.totalHours}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Hours</p>
+          </div>
+          <div className="text-center">
+            <p className="text-lg font-bold text-green-600 dark:text-green-400">{learningAnalytics.coursesCompleted}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Completed</p>
+          </div>
+          <div className="text-center">
+            <p className="text-lg font-bold text-purple-600 dark:text-purple-400">{learningAnalytics.quizzesPassed}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Quizzes</p>
+          </div>
+          <div className="text-center">
+            <p className="text-lg font-bold text-yellow-600 dark:text-yellow-400">{learningAnalytics.certificatesEarned}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Certificates</p>
+          </div>
         </div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 rounded-full px-4 py-2 mb-6">
             <HiOutlineAcademicCap className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -442,47 +474,86 @@ const VideoTutorialsSection2 = ({ config }) => {
           <p className="text-lg text-gray-600 dark:text-gray-400">{config?.description || "Comprehensive video courses with quizzes, certificates, and progress tracking. Learn at your own pace and earn professional credentials."}</p>
         </div>
 
-        {/* Stats Row */}
+        {/* ==================== STATS ROW ==================== */}
         {stats.length > 0 && (
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {stats.map((stat, idx) => (
-              <div key={idx} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                  {stat.icon === 'courses' ? <HiOutlineAcademicCap className="w-5 h-5 text-blue-600" /> :
-                    stat.icon === 'students' ? <HiOutlineUsers className="w-5 h-5 text-blue-600" /> :
-                      stat.icon === 'hours' ? <HiOutlineClock className="w-5 h-5 text-blue-600" /> :
-                        <HiOutlineBadgeCheck className="w-5 h-5 text-blue-600" />}
+              <div key={idx} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  {stat.icon === 'courses' ? <HiOutlineAcademicCap className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                    stat.icon === 'students' ? <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'hours' ? <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                        <HiOutlineBadgeCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                 </div>
-                <div><div className="text-2xl font-bold text-gray-900">{stat.value}</div><div className="text-xs text-gray-500">{stat.label}</div></div>
+                <div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
+                </div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Featured Course Banner */}
+        {/* ==================== FEATURED COURSE BANNER ==================== */}
         {featuredCourse && (
           <div className="relative mb-12 rounded-3xl overflow-hidden bg-linear-to-r from-blue-600 to-purple-600 shadow-xl">
-            <div className="absolute inset-0 opacity-10"><div className="absolute inset-0 bg-grid-white" /></div>
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-grid-white" />
+            </div>
             <div className="relative p-8 md:p-12 text-white">
               <div className="flex items-center gap-2 mb-4">
                 <HiOutlineTrophy className="w-5 h-5 text-yellow-300" />
                 <span className="text-sm font-semibold text-yellow-300">Featured Course</span>
-                {featuredCourse.level && <span className={`ml-2 text-xs px-2 py-1 rounded-full ${getLevelBadge(featuredCourse.level)}`}>{featuredCourse.level}</span>}
-                {featuredCourse.hasCertificate && <span className="ml-2 text-xs bg-green-500/30 px-2 py-1 rounded-full">🎓 Certificate</span>}
+                {featuredCourse.level && (
+                  <span className={`ml-2 text-xs px-2 py-1 rounded-full ${getLevelBadge(featuredCourse.level)}`}>
+                    {featuredCourse.level}
+                  </span>
+                )}
+                {featuredCourse.hasCertificate && (
+                  <span className="ml-2 text-xs bg-green-500/30 px-2 py-1 rounded-full">🎓 Certificate</span>
+                )}
               </div>
               <h2 className="text-2xl md:text-3xl font-bold mb-3">{featuredCourse.title}</h2>
               <p className="text-white/80 mb-6 max-w-2xl">{featuredCourse.description}</p>
               <div className="flex flex-wrap gap-6 mb-6 text-sm">
-                {featuredCourse.duration && <div className="flex items-center gap-2"><HiOutlineClock className="w-4 h-4" /><span>{featuredCourse.duration}</span></div>}
-                {featuredCourse.videos && <div className="flex items-center gap-2"><HiOutlinePlayCircle className="w-4 h-4" /><span>{featuredCourse.videos.length} lessons</span></div>}
-                {featuredCourse.quiz && <div className="flex items-center gap-2"><HiOutlineClipboardList className="w-4 h-4" /><span>Quiz included</span></div>}
-                {featuredCourse.instructor && <div className="flex items-center gap-2"><HiOutlineUser className="w-4 h-4" /><span>{featuredCourse.instructor.name}</span></div>}
+                {featuredCourse.duration && (
+                  <div className="flex items-center gap-2">
+                    <HiOutlineClock className="w-4 h-4" />
+                    <span>{featuredCourse.duration}</span>
+                  </div>
+                )}
+                {featuredCourse.videos && (
+                  <div className="flex items-center gap-2">
+                    <HiOutlinePlayCircle className="w-4 h-4" />
+                    <span>{featuredCourse.videos.length} lessons</span>
+                  </div>
+                )}
+                {featuredCourse.quiz && (
+                  <div className="flex items-center gap-2">
+                    <HiOutlineClipboardList className="w-4 h-4" />
+                    <span>Quiz included</span>
+                  </div>
+                )}
+                {featuredCourse.instructor && (
+                  <div className="flex items-center gap-2">
+                    <HiOutlineUser className="w-4 h-4" />
+                    <span>{featuredCourse.instructor.name}</span>
+                  </div>
+                )}
               </div>
               <div className="flex flex-wrap gap-4">
-                <button onClick={() => { setCurrentCourse(featuredCourse); enrollInCourse(featuredCourse.id); setShowVideoModal(true); setCurrentVideo(featuredCourse.videos?.[0]); setIsPlaying(true); }} className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                <button
+                  onClick={() => { setCurrentCourse(featuredCourse); enrollInCourse(featuredCourse.id); setShowVideoModal(true); setCurrentVideo(featuredCourse.videos?.[0]); setIsPlaying(true); }}
+                  className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  aria-label="Start learning"
+                >
                   <HiOutlinePlay className="w-5 h-5" />Start Learning
                 </button>
-                <button onClick={() => { setSelectedInstructor(featuredCourse.instructor); setShowInstructorModal(true); }} className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30">
+                <button
+                  onClick={() => { setSelectedInstructor(featuredCourse.instructor); setShowInstructorModal(true); }}
+                  className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
+                  aria-label="Meet instructor"
+                >
                   <HiOutlineUser className="w-5 h-5" />Meet Instructor
                 </button>
               </div>
@@ -490,33 +561,133 @@ const VideoTutorialsSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Search Bar */}
+        {/* ==================== SEARCH BAR ==================== */}
         <div className="max-w-2xl mx-auto mb-8">
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center"><HiOutlineSearch className="w-5 h-5 text-gray-400" /></div>
-            <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search courses, tutorials, or topics..." className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg shadow-sm" />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <HiOutlineSearch className="w-5 h-5 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search courses, tutorials, or topics..."
+              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg shadow-sm text-gray-900 dark:text-white"
+              aria-label="Search courses"
+            />
           </div>
         </div>
 
-        {/* Category Navigation */}
+        {/* ==================== CATEGORY NAVIGATION ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
-          <button onClick={() => setActiveCategory('all')} className={`px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2 ${activeCategory === 'all' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white dark:bg-gray-800 text-gray-700'}`}><HiOutlineCollection className="w-4 h-4" />All<span className="ml-1 px-2 py-0.5 rounded-full text-xs bg-white/20 text-white">{videos.length}</span></button>
-          {categories.map((category) => (<button key={category.id} onClick={() => setActiveCategory(category.id)} className={`px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2 ${activeCategory === category.id ? 'bg-blue-600 text-white' : 'bg-white dark:bg-gray-800 text-gray-700'}`}>{getCategoryIcon(category.id)}{category.name}<span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${activeCategory === category.id ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-600'}`}>{videos.filter(v => v.category === category.id).length}</span></button>))}
+          <button
+            onClick={() => setActiveCategory('all')}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeCategory === 'all'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+              }`}
+            aria-label="Show all content"
+          >
+            <HiOutlineCollection className="w-4 h-4" />
+            All
+            <span className="ml-1 px-2 py-0.5 rounded-full text-xs bg-white/20 text-white">{videos.length}</span>
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeCategory === category.id
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+              aria-label={`Show ${category.name} content`}
+            >
+              {getCategoryIcon(category.id)}
+              {category.name}
+              <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${activeCategory === category.id
+                ? 'bg-white/20 text-white'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                }`}>
+                {videos.filter(v => v.category === category.id).length}
+              </span>
+            </button>
+          ))}
         </div>
 
-        {/* Filters Bar */}
+        {/* ==================== FILTERS BAR ==================== */}
         <div className="flex justify-between items-center mb-6">
-          <div className="flex gap-2"><button onClick={() => setViewMode('grid')} className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-gray-100 shadow-md' : ''}`}><HiOutlineViewGrid className="w-5 h-5" /></button><button onClick={() => setViewMode('list')} className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-gray-100 shadow-md' : ''}`}><HiOutlineViewList className="w-5 h-5" /></button></div>
-          <button onClick={() => setShowFilters(!showFilters)} className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-50"><HiOutlineFilter className="w-4 h-4" />Filters{showFilters ? <HiOutlineChevronUp className="w-4 h-4" /> : <HiOutlineChevronDown className="w-4 h-4" />}</button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'grid' ? 'bg-gray-200 dark:bg-gray-700 shadow-md' : ''}`}
+              aria-label="Grid view"
+            >
+              <HiOutlineViewGrid className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'list' ? 'bg-gray-200 dark:bg-gray-700 shadow-md' : ''}`}
+              aria-label="List view"
+            >
+              <HiOutlineViewList className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+            </button>
+          </div>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+            aria-label="Toggle filters"
+          >
+            <HiOutlineFilter className="w-4 h-4" />
+            Filters
+            {showFilters ? <HiOutlineChevronUp className="w-4 h-4" /> : <HiOutlineChevronDown className="w-4 h-4" />}
+          </button>
         </div>
 
-        {/* Filter Panel */}
-        {showFilters && (<div className="mb-8 p-4 bg-white dark:bg-gray-800 rounded-xl"><div className="grid md:grid-cols-2 gap-4"><div><label className="block text-sm font-medium mb-2">Level</label><select value={selectedLevel} onChange={(e) => setSelectedLevel(e.target.value)} className="w-full px-4 py-2 bg-gray-50 border rounded-lg">{levels.map(level => (<option key={level} value={level}>{level === 'all' ? 'All Levels' : level}</option>))}</select></div><div><label className="block text-sm font-medium mb-2">Duration</label><select value={selectedDuration} onChange={(e) => setSelectedDuration(e.target.value)} className="w-full px-4 py-2 bg-gray-50 border rounded-lg">{durationRanges.map(range => (<option key={range.id} value={range.id}>{range.label}</option>))}</select></div></div></div>)}
+        {/* ==================== FILTER PANEL ==================== */}
+        {showFilters && (
+          <div className="mb-8 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 animate-fadeIn">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Level</label>
+                <select
+                  value={selectedLevel}
+                  onChange={(e) => setSelectedLevel(e.target.value)}
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                  aria-label="Filter by level"
+                >
+                  {levels.map(level => (
+                    <option key={level} value={level}>
+                      {level === 'all' ? 'All Levels' : level}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Duration</label>
+                <select
+                  value={selectedDuration}
+                  onChange={(e) => setSelectedDuration(e.target.value)}
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                  aria-label="Filter by duration"
+                >
+                  {durationRanges.map(range => (
+                    <option key={range.id} value={range.id}>
+                      {range.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+        )}
 
-        {/* Courses Section */}
+        {/* ==================== COURSES SECTION ==================== */}
         {courses.length > 0 && searchQuery === '' && activeCategory === 'all' && (
           <div className="mb-12">
-            <div className="flex items-center gap-2 mb-4"><HiOutlineAcademicCap className="w-5 h-5 text-blue-600" /><h3 className="text-lg font-semibold">Featured Courses</h3></div>
+            <div className="flex items-center gap-2 mb-4">
+              <HiOutlineAcademicCap className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Featured Courses</h3>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course) => {
                 const progress = getCourseProgress(course);
@@ -525,17 +696,73 @@ const VideoTutorialsSection2 = ({ config }) => {
                 const isEnrolled = enrolledCourses.includes(course.id);
 
                 return (
-                  <div key={course.id} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-gray-200">
+                  <div key={course.id} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
                     <div className="relative h-40 overflow-hidden">
-                      <img src={course.image} alt={course.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-                      {course.level && <span className={`absolute top-4 left-4 text-xs px-2 py-1 rounded-full ${getLevelBadge(course.level)}`}>{course.level}</span>}
-                      {course.hasCertificate && <span className="absolute top-4 right-4 text-xs bg-green-500 text-white px-2 py-1 rounded-full">Certificate</span>}
-                      {progress > 0 && (<div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600"><div className="h-full bg-blue-500 rounded-full" style={{ width: `${progress}%` }} /></div>)}
+                      <img src={course.image} alt={course.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                      {course.level && (
+                        <span className={`absolute top-4 left-4 text-xs px-2 py-1 rounded-full ${getLevelBadge(course.level)}`}>
+                          {course.level}
+                        </span>
+                      )}
+                      {course.hasCertificate && (
+                        <span className="absolute top-4 right-4 text-xs bg-green-500 text-white px-2 py-1 rounded-full">
+                          Certificate
+                        </span>
+                      )}
+                      {progress > 0 && (
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600">
+                          <div className="h-full bg-blue-500 rounded-full" style={{ width: `${progress}%` }} />
+                        </div>
+                      )}
                     </div>
-                    <div className="p-5"><h3 className="font-bold text-lg mb-2">{course.title}</h3><p className="text-sm text-gray-500 mb-3 line-clamp-2">{course.description}</p><div className="flex items-center gap-3 text-xs text-gray-400 mb-4"><span>{course.videos?.length} lessons</span><span>{course.duration}</span>{course.rating && <div className="flex items-center gap-1"><HiOutlineStar className="w-3 h-3 text-yellow-500" /><span>{course.rating}</span></div>}</div>
-                      <div className="flex gap-2">{isEnrolled ? (<button onClick={() => { setCurrentCourse(course); setCurrentVideo(course.videos?.[0]); setShowVideoModal(true); setIsPlaying(true); }} className="flex-1 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold">Continue</button>) : (<button onClick={() => enrollInCourse(course.id)} className="flex-1 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold">Enroll Now</button>)}
-                        {course.quiz && quizResults[course.id]?.passed && <div className="flex items-center gap-1 text-xs text-green-600"><HiOutlineBadgeCheck className="w-4 h-4" />Completed</div>}
-                        {completed && hasCertificate && (<button onClick={() => { setCertificateCourse(course); setShowCertificateModal(true); }} className="px-3 py-1 bg-yellow-500 text-white rounded-lg text-xs">Certificate</button>)}</div></div>
+                    <div className="p-5">
+                      <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 line-clamp-2">{course.title}</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 line-clamp-2">{course.description}</p>
+                      <div className="flex items-center gap-3 text-xs text-gray-400 dark:text-gray-500 mb-4">
+                        <span>{course.videos?.length} lessons</span>
+                        <span>{course.duration}</span>
+                        {course.rating && (
+                          <div className="flex items-center gap-1">
+                            <HiOutlineStar className="w-3 h-3 text-yellow-500 dark:text-yellow-400" />
+                            <span>{course.rating}</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex gap-2">
+                        {isEnrolled ? (
+                          <button
+                            onClick={() => { setCurrentCourse(course); setCurrentVideo(course.videos?.[0]); setShowVideoModal(true); setIsPlaying(true); }}
+                            className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-semibold transition-colors"
+                            aria-label="Continue course"
+                          >
+                            Continue
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => enrollInCourse(course.id)}
+                            className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors"
+                            aria-label="Enroll in course"
+                          >
+                            Enroll Now
+                          </button>
+                        )}
+                        {course.quiz && quizResults[course.id]?.passed && (
+                          <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
+                            <HiOutlineBadgeCheck className="w-4 h-4" />
+                            Completed
+                          </div>
+                        )}
+                        {completed && hasCertificate && (
+                          <button
+                            onClick={() => { setCertificateCourse(course); setShowCertificateModal(true); }}
+                            className="px-3 py-1 bg-yellow-500 text-white rounded-lg text-xs hover:bg-yellow-600 transition-colors"
+                            aria-label="Get certificate"
+                          >
+                            Certificate
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -543,18 +770,103 @@ const VideoTutorialsSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Videos Grid/List */}
-        {filteredVideos.length === 0 ? (<div className="text-center py-12"><HiOutlinePlayCircle className="w-16 h-16 mx-auto text-gray-300 mb-4" /><p className="text-gray-500">No videos found.</p><button onClick={() => { setSearchQuery(''); setActiveCategory('all'); setSelectedLevel('all'); setSelectedDuration('all'); }} className="mt-4 text-blue-600">Clear filters</button></div>) : viewMode === 'grid' ? (
+        {/* ==================== VIDEOS GRID/LIST ==================== */}
+        {filteredVideos.length === 0 ? (
+          <div className="text-center py-12">
+            <HiOutlinePlayCircle className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+            <p className="text-gray-500 dark:text-gray-400">No videos found.</p>
+            <button
+              onClick={clearAllFilters}
+              className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+              aria-label="Clear all filters"
+            >
+              Clear filters
+            </button>
+          </div>
+        ) : viewMode === 'grid' ? (
           <div className="space-y-12 mb-12">
             {Object.entries(groupedVideos).map(([categoryId, categoryVideos]) => {
               const category = categories.find(c => c.id === categoryId);
               if (!category || categoryVideos.length === 0) return null;
-              return (<div key={categoryId}><div className="flex items-center gap-2 mb-4 pb-2 border-b"><div className={`p-1.5 rounded-lg ${getCategoryColor(categoryId)}`}>{getCategoryIcon(categoryId)}</div><h3 className="text-lg font-semibold">{category.name}</h3><span className="text-sm text-gray-500">({categoryVideos.length} videos)</span></div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">{categoryVideos.map((video) => {
-                  const isBookmarked = bookmarkedVideos.includes(video.id);
-                  const progress = watchProgress[video.id]?.progress || 0;
-                  return (<div key={video.id} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-gray-200"><div className="relative h-48 overflow-hidden cursor-pointer" onClick={() => { setCurrentVideo(video); setShowVideoModal(true); setIsPlaying(true); trackVideoView(video); }}><img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" /><div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 flex items-center justify-center"><div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110"><HiOutlinePlay className="w-8 h-8 text-white ml-1" /></div></div>{video.duration && <span className="absolute bottom-4 right-4 text-xs bg-black/70 text-white px-2 py-1 rounded-lg">{formatDuration(video.duration)}</span>}{video.level && <span className={`absolute top-4 left-4 text-xs px-2 py-1 rounded-full ${getLevelBadge(video.level)}`}>{video.level}</span>}{progress > 0 && (<div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600"><div className="h-full bg-blue-500" style={{ width: `${progress}%` }} /></div>)}</div><div className="p-4"><div className="flex items-start justify-between gap-2"><h4 className="font-semibold line-clamp-2 flex-1">{video.title}</h4><button onClick={(e) => toggleBookmark(video.id, e)} className="p-1.5 rounded-lg text-gray-400 hover:text-yellow-500"><HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500' : ''}`} /></button></div><p className="text-sm text-gray-500 mt-2 line-clamp-2">{video.description}</p><div className="flex items-center justify-between mt-3 text-xs text-gray-400"><div className="flex items-center gap-2"><span>{video.views?.toLocaleString() || 0} views</span>{video.instructor && <span>• {video.instructor.name}</span>}</div><button onClick={(e) => shareVideoHandler(video, e)} className="p-1 hover:text-blue-600"><HiOutlineShare className="w-3 h-3" /></button></div></div></div>);
-                })}</div></div>);
+              return (
+                <div key={categoryId}>
+                  <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
+                    <div className={`p-1.5 rounded-lg ${getCategoryColor(categoryId)}`}>
+                      {getCategoryIcon(categoryId)}
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{category.name}</h3>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">({categoryVideos.length} videos)</span>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {categoryVideos.map((video) => {
+                      const isBookmarked = bookmarkedVideos.includes(video.id);
+                      const progress = watchProgress[video.id]?.progress || 0;
+
+                      return (
+                        <div key={video.id} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
+                          <div
+                            className="relative h-48 overflow-hidden cursor-pointer"
+                            onClick={() => { setCurrentVideo(video); setShowVideoModal(true); setIsPlaying(true); trackVideoView(video); }}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(video)}
+                          >
+                            <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <HiOutlinePlay className="w-8 h-8 text-white ml-1" />
+                              </div>
+                            </div>
+                            {video.duration && (
+                              <span className="absolute bottom-4 right-4 text-xs bg-black/70 text-white px-2 py-1 rounded-lg">
+                                {formatDuration(video.duration)} min
+                              </span>
+                            )}
+                            {video.level && (
+                              <span className={`absolute top-4 left-4 text-xs px-2 py-1 rounded-full ${getLevelBadge(video.level)}`}>
+                                {video.level}
+                              </span>
+                            )}
+                            {progress > 0 && (
+                              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600">
+                                <div className="h-full bg-blue-500 rounded-full" style={{ width: `${progress}%` }} />
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-4">
+                            <div className="flex items-start justify-between gap-2">
+                              <h4 className="font-semibold text-gray-900 dark:text-white line-clamp-2 flex-1">
+                                {video.title}
+                              </h4>
+                              <button
+                                onClick={(e) => toggleBookmark(video.id, e)}
+                                className="p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+                                aria-label={isBookmarked ? "Remove bookmark" : "Bookmark video"}
+                              >
+                                <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500 dark:text-yellow-400' : ''}`} />
+                              </button>
+                            </div>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 line-clamp-2">{video.description}</p>
+                            <div className="flex items-center justify-between mt-3 text-xs text-gray-400 dark:text-gray-500">
+                              <div className="flex items-center gap-2">
+                                <span>{video.views?.toLocaleString() || 0} views</span>
+                                {video.instructor && <span>• {video.instructor.name}</span>}
+                              </div>
+                              <button
+                                onClick={(e) => shareVideoHandler(video, e)}
+                                className="p-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                aria-label="Share video"
+                              >
+                                <HiOutlineShare className="w-3 h-3" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
             })}
           </div>
         ) : (
@@ -562,39 +874,204 @@ const VideoTutorialsSection2 = ({ config }) => {
             {filteredVideos.map((video) => {
               const isBookmarked = bookmarkedVideos.includes(video.id);
               const progress = watchProgress[video.id]?.progress || 0;
-              return (<div key={video.id} onClick={() => { setCurrentVideo(video); setShowVideoModal(true); setIsPlaying(true); trackVideoView(video); }} className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 hover:shadow-md transition-all cursor-pointer"><div className="relative w-40 h-24 rounded-lg overflow-hidden shrink-0"><img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />{video.duration && <span className="absolute bottom-1 right-1 text-xs bg-black/70 text-white px-1.5 py-0.5 rounded">{formatDuration(video.duration)}</span>}{progress > 0 && (<div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-600"><div className="h-full bg-blue-500" style={{ width: `${progress}%` }} /></div>)}</div><div className="flex-1"><h4 className="font-semibold">{video.title}</h4><p className="text-sm text-gray-500 line-clamp-1">{video.description}</p><div className="flex items-center gap-3 mt-1 text-xs text-gray-400"><span>{video.views?.toLocaleString() || 0} views</span>{video.level && <span className={`px-1.5 py-0.5 rounded-full ${getLevelBadge(video.level)}`}>{video.level}</span>}</div></div><div className="flex items-center gap-2"><button onClick={(e) => toggleBookmark(video.id, e)} className="p-2 rounded-lg text-gray-400 hover:text-yellow-500"><HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500' : ''}`} /></button><button onClick={(e) => shareVideoHandler(video, e)} className="p-2 rounded-lg text-gray-400 hover:text-blue-600"><HiOutlineShare className="w-4 h-4" /></button><HiOutlineArrowRight className="w-4 h-4 text-gray-400" /></div></div>);
+
+              return (
+                <div
+                  key={video.id}
+                  onClick={() => { setCurrentVideo(video); setShowVideoModal(true); setIsPlaying(true); trackVideoView(video); }}
+                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(video)}
+                >
+                  <div className="relative w-40 h-24 rounded-lg overflow-hidden shrink-0">
+                    <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" loading="lazy" />
+                    {video.duration && (
+                      <span className="absolute bottom-1 right-1 text-xs bg-black/70 text-white px-1.5 py-0.5 rounded">
+                        {formatDuration(video.duration)} min
+                      </span>
+                    )}
+                    {progress > 0 && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-600">
+                        <div className="h-full bg-blue-500 rounded-full" style={{ width: `${progress}%` }} />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {video.title}
+                    </h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">{video.description}</p>
+                    <div className="flex items-center gap-3 mt-1 text-xs">
+                      <span className="text-gray-400 dark:text-gray-500">{video.views?.toLocaleString() || 0} views</span>
+                      {video.level && (
+                        <span className={`px-1.5 py-0.5 rounded-full ${getLevelBadge(video.level)}`}>
+                          {video.level}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={(e) => toggleBookmark(video.id, e)}
+                      className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+                      aria-label={isBookmarked ? "Remove bookmark" : "Bookmark video"}
+                    >
+                      <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500 dark:text-yellow-400' : ''}`} />
+                    </button>
+                    <button
+                      onClick={(e) => shareVideoHandler(video, e)}
+                      className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      aria-label="Share video"
+                    >
+                      <HiOutlineShare className="w-4 h-4" />
+                    </button>
+                    <HiOutlineArrowRight className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              );
             })}
           </div>
         )}
 
-        {/* Video Player Modal with Course Navigation */}
+        {/* ==================== VIDEO PLAYER MODAL WITH COURSE NAVIGATION ==================== */}
         {showVideoModal && (currentVideo || currentCourse) && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-6xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-6xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4 flex items-center justify-between">
-                <div><h3 className="text-white font-bold text-lg">{currentVideo?.title || currentCourse?.title}</h3><p className="text-blue-100 text-xs">{currentVideo?.instructor?.name || currentCourse?.instructor?.name} • {currentVideo?.duration || currentCourse?.duration}</p></div>
-                <button onClick={() => setShowVideoModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button>
+                <div>
+                  <h3 className="text-white font-bold text-lg">{currentVideo?.title || currentCourse?.title}</h3>
+                  <p className="text-blue-100 text-xs">{currentVideo?.instructor?.name || currentCourse?.instructor?.name} • {currentVideo?.duration || currentCourse?.duration}</p>
+                </div>
+                <button onClick={() => setShowVideoModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close video">
+                  <HiOutlineX className="w-6 h-6" />
+                </button>
               </div>
               <div className="flex">
                 <div className="flex-1">
-                  <video ref={videoRef} src={currentVideo?.videoUrl || "https://www.w3schools.com/html/mov_bbb.mp4"} className="w-full aspect-video" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} controls={false} autoPlay />
+                  <video
+                    ref={videoRef}
+                    src={currentVideo?.videoUrl || "https://www.w3schools.com/html/mov_bbb.mp4"}
+                    className="w-full aspect-video"
+                    onTimeUpdate={handleTimeUpdate}
+                    onLoadedMetadata={handleLoadedMetadata}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    controls={false}
+                    autoPlay
+                  />
                   <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
-                    <div className="flex items-center gap-4"><button onClick={handlePlayPause} className="text-white hover:text-blue-400">{isPlaying ? <HiOutlinePause className="w-6 h-6" /> : <HiOutlinePlay className="w-6 h-6" />}</button><button onClick={handleMute} className="text-white hover:text-blue-400">{isMuted ? <HiOutlineVolumeOff className="w-5 h-5" /> : <HiOutlineVolumeUp className="w-5 h-5" />}</button><div className="flex-1 flex items-center gap-2"><span className="text-white text-xs">{formatTime(currentTime)}</span><input type="range" min="0" max={duration} value={currentTime} onChange={handleSeek} className="flex-1 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-blue-500" /><span className="text-white text-xs">{formatTime(duration)}</span></div><button onClick={handleSpeedChange} className="text-white text-sm hover:text-blue-400">{playbackSpeed}x</button></div>
+                    <div className="flex items-center gap-4">
+                      <button onClick={handlePlayPause} className="text-white hover:text-blue-400 transition-colors" aria-label={isPlaying ? "Pause" : "Play"}>
+                        {isPlaying ? <HiOutlinePause className="w-6 h-6" /> : <HiOutlinePlay className="w-6 h-6" />}
+                      </button>
+                      <button onClick={handleMute} className="text-white hover:text-blue-400 transition-colors" aria-label={isMuted ? "Unmute" : "Mute"}>
+                        {isMuted ? <HiOutlineVolumeOff className="w-5 h-5" /> : <HiOutlineVolumeUp className="w-5 h-5" />}
+                      </button>
+                      <div className="flex-1 flex items-center gap-2">
+                        <span className="text-white text-xs">{formatTime(currentTime)}</span>
+                        <input
+                          type="range"
+                          min="0"
+                          max={duration}
+                          value={currentTime}
+                          onChange={handleSeek}
+                          className="flex-1 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                          aria-label="Video progress"
+                        />
+                        <span className="text-white text-xs">{formatTime(duration)}</span>
+                      </div>
+                      <button onClick={handleSpeedChange} className="text-white text-sm hover:text-blue-400 transition-colors" aria-label="Playback speed">
+                        {playbackSpeed}x
+                      </button>
+                    </div>
                   </div>
-                  <div className="p-4 bg-gray-900 border-t border-gray-700"><div className="flex justify-between"><div className="flex gap-4 text-sm"><span className="text-gray-400">Instructor:</span><span className="text-white">{currentVideo?.instructor?.name || currentCourse?.instructor?.name}</span></div><div className="flex gap-2"><button onClick={() => { if (currentVideo) toggleBookmark(currentVideo.id); }} className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm"><HiOutlineBookmark className="w-4 h-4 inline mr-1" />Bookmark</button><button onClick={() => shareVideoHandler(currentVideo)} className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm"><HiOutlineShare className="w-4 h-4 inline mr-1" />Share</button></div></div></div>
+                  <div className="p-4 bg-gray-900 border-t border-gray-700">
+                    <div className="flex justify-between">
+                      <div className="flex gap-4 text-sm">
+                        <span className="text-gray-400">Instructor:</span>
+                        <span className="text-white">{currentVideo?.instructor?.name || currentCourse?.instructor?.name}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => { if (currentVideo) toggleBookmark(currentVideo.id); }}
+                          className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm flex items-center gap-1 hover:bg-gray-600 transition-colors"
+                          aria-label="Bookmark video"
+                        >
+                          <HiOutlineBookmark className="w-4 h-4 inline mr-1" />
+                          Bookmark
+                        </button>
+                        <button
+                          onClick={() => shareVideoHandler(currentVideo)}
+                          className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm flex items-center gap-1 hover:bg-gray-600 transition-colors"
+                          aria-label="Share video"
+                        >
+                          <HiOutlineShare className="w-4 h-4 inline mr-1" />
+                          Share
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 {currentCourse && currentCourse.videos && (
                   <div className="w-80 bg-gray-900 border-l border-gray-700 overflow-y-auto max-h-150">
-                    <div className="p-3 border-b border-gray-700"><h4 className="text-white font-semibold">Course Content ({currentCourse.videos.length} lessons)</h4></div>
+                    <div className="p-3 border-b border-gray-700">
+                      <h4 className="text-white font-semibold">Course Content ({currentCourse.videos.length} lessons)</h4>
+                    </div>
                     <div className="divide-y divide-gray-700">
                       {currentCourse.videos.map((video, idx) => {
                         const videoData = videos.find(v => v.id === video);
                         const progress = watchProgress[video]?.progress || 0;
-                        return (<div key={idx} onClick={() => { setCurrentVideo(videoData); setIsPlaying(true); }} className={`p-3 cursor-pointer hover:bg-gray-800 transition-colors ${currentVideo?.id === video ? 'bg-gray-800 border-l-4 border-blue-500' : ''}`}><div className="flex gap-3"><div className="w-16 h-12 bg-gray-800 rounded overflow-hidden flex items-center justify-center"><HiOutlinePlay className="w-4 h-4 text-gray-500" /></div><div><p className="text-sm text-white line-clamp-2">{videoData?.title}</p><p className="text-xs text-gray-400 mt-1">{videoData?.duration}</p>{progress > 0 && <div className="w-full h-0.5 bg-gray-600 mt-1"><div className="h-full bg-blue-500" style={{ width: `${progress}%` }} /></div>}</div></div></div>);
+                        return (
+                          <div
+                            key={idx}
+                            onClick={() => { setCurrentVideo(videoData); setIsPlaying(true); }}
+                            className={`p-3 cursor-pointer hover:bg-gray-800 transition-colors ${currentVideo?.id === video ? 'bg-gray-800 border-l-4 border-blue-500' : ''}`}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(videoData)}
+                          >
+                            <div className="flex gap-3">
+                              <div className="w-16 h-12 bg-gray-800 rounded overflow-hidden flex items-center justify-center">
+                                <HiOutlinePlay className="w-4 h-4 text-gray-500" />
+                              </div>
+                              <div>
+                                <p className="text-sm text-white line-clamp-2">{videoData?.title}</p>
+                                <p className="text-xs text-gray-400 mt-1">{videoData?.duration} min</p>
+                                {progress > 0 && (
+                                  <div className="w-full h-0.5 bg-gray-600 mt-1">
+                                    <div className="h-full bg-blue-500 rounded-full" style={{ width: `${progress}%` }} />
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
                       })}
                     </div>
-                    {currentCourse.quiz && !quizResults[currentCourse.id]?.passed && (<button onClick={() => { setQuizCourse(currentCourse); setShowQuizModal(true); }} className="w-full m-3 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold">Take Quiz →</button>)}
-                    {quizResults[currentCourse.id]?.passed && (<div className="m-3 p-2 bg-green-600/20 rounded-lg text-center"><p className="text-green-400 text-sm">✓ Quiz passed! Score: {quizResults[currentCourse.id].score}%</p></div>)}
+                    {currentCourse.quiz && !quizResults[currentCourse.id]?.passed && (
+                      <button
+                        onClick={() => { setQuizCourse(currentCourse); setShowQuizModal(true); }}
+                        className="w-full m-3 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700 transition-colors"
+                        aria-label="Take quiz"
+                      >
+                        Take Quiz →
+                      </button>
+                    )}
+                    {quizResults[currentCourse.id]?.passed && (
+                      <div className="m-3 p-2 bg-green-600/20 rounded-lg text-center">
+                        <p className="text-green-400 text-sm">✓ Quiz passed! Score: {quizResults[currentCourse.id].score}%</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -602,67 +1079,365 @@ const VideoTutorialsSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Quiz Modal */}
+        {/* ==================== QUIZ MODAL ==================== */}
         {showQuizModal && quizCourse && quizCourse.quiz && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto" onClick={() => setShowQuizModal(false)}>
-            <div className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-purple-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Quiz: {quizCourse.title}</h3><button onClick={() => setShowQuizModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto"
+            onClick={() => setShowQuizModal(false)}
+            role="dialog"
+            aria-label="Quiz"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-purple-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Quiz: {quizCourse.title}</h3>
+                  <button onClick={() => setShowQuizModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close quiz">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
               <div className="p-6">
-                {quizScore !== null ? (<div className="text-center py-8"><div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 ${quizScore >= 70 ? 'bg-green-500/20' : 'bg-yellow-500/20'}`}><span className={`text-3xl font-bold ${quizScore >= 70 ? 'text-green-500' : 'text-yellow-500'}`}>{Math.round(quizScore)}%</span></div><h4 className="text-xl font-bold mb-2">{quizScore >= 70 ? '🎉 Congratulations!' : '📚 Keep Learning!'}</h4><p className="text-gray-600 mb-4">{quizScore >= 70 ? 'You passed the quiz! Your certificate is ready.' : 'Review the course material and try again to earn your certificate.'}</p>{quizScore >= 70 && <button onClick={() => { setCertificateCourse(quizCourse); setShowCertificateModal(true); setShowQuizModal(false); }} className="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold">Get Certificate</button>}</div>) : (<div className="space-y-6"><p className="text-sm text-gray-500 mb-4">Passing score: {quizCourse.quiz.passingScore || 70}%</p>{quizCourse.quiz.questions.map((q, idx) => (<div key={q.id} className="p-4 bg-gray-50 rounded-lg"><p className="font-medium mb-3">{idx + 1}. {q.text}</p><div className="space-y-2">{q.options.map((opt, optIdx) => (<label key={optIdx} className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-lg cursor-pointer"><input type="radio" name={`q${q.id}`} value={opt} onChange={(e) => setQuizAnswers(prev => ({ ...prev, [q.id]: e.target.value }))} className="w-4 h-4 accent-purple-500" /><span className="text-sm">{opt}</span></label>))}</div></div>))}<button onClick={handleQuizSubmit} className="w-full py-3 bg-purple-600 text-white rounded-xl font-semibold">Submit Quiz</button></div>)}
+                {quizScore !== null ? (
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 ${quizScore >= 70 ? 'bg-green-100 dark:bg-green-900/30' : 'bg-yellow-100 dark:bg-yellow-900/30'}`}>
+                      <span className={`text-3xl font-bold ${quizScore >= 70 ? 'text-green-600 dark:text-green-400' : 'text-yellow-600 dark:text-yellow-400'}`}>
+                        {Math.round(quizScore)}%
+                      </span>
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                      {quizScore >= 70 ? '🎉 Congratulations!' : '📚 Keep Learning!'}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      {quizScore >= 70 ? 'You passed the quiz! Your certificate is ready.' : 'Review the course material and try again to earn your certificate.'}
+                    </p>
+                    {quizScore >= 70 && (
+                      <button
+                        onClick={() => { setCertificateCourse(quizCourse); setShowCertificateModal(true); setShowQuizModal(false); }}
+                        className="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                        aria-label="Get certificate"
+                      >
+                        Get Certificate
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Passing score: {quizCourse.quiz.passingScore || 70}%</p>
+                    {quizCourse.quiz.questions.map((q, idx) => (
+                      <div key={q.id} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p className="font-medium text-gray-900 dark:text-white mb-3">{idx + 1}. {q.text}</p>
+                        <div className="space-y-2">
+                          {q.options.map((opt, optIdx) => (
+                            <label key={optIdx} className="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg cursor-pointer transition-colors">
+                              <input
+                                type="radio"
+                                name={`q${q.id}`}
+                                value={opt}
+                                onChange={(e) => setQuizAnswers(prev => ({ ...prev, [q.id]: e.target.value }))}
+                                className="w-4 h-4 accent-purple-500"
+                                aria-label={`Select answer: ${opt}`}
+                              />
+                              <span className="text-sm text-gray-700 dark:text-gray-300">{opt}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                    <button
+                      onClick={handleQuizSubmit}
+                      className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold transition-all duration-300"
+                      aria-label="Submit quiz"
+                    >
+                      Submit Quiz
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         )}
 
-        {/* Certificate Modal */}
+        {/* ==================== CERTIFICATE MODAL ==================== */}
         {showCertificateModal && certificateCourse && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowCertificateModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Certificate of Completion</h3><button onClick={() => setShowCertificateModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
-              <div className="p-6 text-center"><div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><HiOutlineBadgeCheck className="w-10 h-10 text-green-600" /></div><h4 className="text-xl font-bold mb-2">{certificateCourse.title}</h4><p className="text-sm text-gray-600 mb-4">Congratulations on completing the course!</p><button onClick={() => alert('Certificate downloaded!')} className="w-full inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold"><HiOutlineDownload className="w-5 h-5" />Download Certificate</button></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowCertificateModal(false)}
+            role="dialog"
+            aria-label="Certificate of Completion"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-green-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Certificate of Completion</h3>
+                  <button onClick={() => setShowCertificateModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <HiOutlineBadgeCheck className="w-10 h-10 text-green-600 dark:text-green-400" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{certificateCourse.title}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Congratulations on completing the course!</p>
+                <button
+                  onClick={() => alert('Certificate downloaded!')}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                  aria-label="Download certificate"
+                >
+                  <HiOutlineDownload className="w-5 h-5" />
+                  Download Certificate
+                </button>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Instructor Modal */}
+        {/* ==================== INSTRUCTOR MODAL ==================== */}
         {showInstructorModal && selectedInstructor && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowInstructorModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-blue-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Instructor Profile</h3><button onClick={() => setShowInstructorModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
-              <div className="p-6 text-center"><div className="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4"><HiOutlineUserCircle className="w-16 h-16 text-blue-600" /></div><h4 className="text-xl font-bold mb-1">{selectedInstructor.name}</h4><p className="text-sm text-gray-500 mb-2">{selectedInstructor.title}</p><div className="flex justify-center gap-4 mb-4"><div className="text-center"><div className="text-2xl font-bold text-blue-600">{selectedInstructor.courses}</div><div className="text-xs text-gray-500">Courses</div></div><div className="text-center"><div className="text-2xl font-bold text-green-600">{selectedInstructor.students}</div><div className="text-xs text-gray-500">Students</div></div><div className="text-center"><div className="text-2xl font-bold text-yellow-600">{selectedInstructor.rating}</div><div className="text-xs text-gray-500">Rating</div></div></div><p className="text-gray-600 text-sm">{selectedInstructor.bio}</p><div className="mt-4 flex flex-wrap gap-1 justify-center">{selectedInstructor.expertise?.map(exp => (<span key={exp} className="px-2 py-1 bg-gray-100 rounded-full text-xs">{exp}</span>))}</div></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowInstructorModal(false)}
+            role="dialog"
+            aria-label="Instructor Profile"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-blue-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Instructor Profile</h3>
+                  <button onClick={() => setShowInstructorModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-4">
+                  <HiOutlineUserCircle className="w-16 h-16 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{selectedInstructor.name}</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{selectedInstructor.title}</p>
+                <div className="flex justify-center gap-4 mb-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{selectedInstructor.courses}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Courses</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">{selectedInstructor.students}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Students</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">{selectedInstructor.rating}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Rating</div>
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">{selectedInstructor.bio}</p>
+                <div className="mt-4 flex flex-wrap gap-1 justify-center">
+                  {selectedInstructor.expertise?.map(exp => (
+                    <span key={exp} className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs text-gray-600 dark:text-gray-400">
+                      {exp}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Analytics Modal */}
+        {/* ==================== ANALYTICS MODAL ==================== */}
         {showAnalyticsModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowAnalyticsModal(false)}>
-            <div className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-teal-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Learning Analytics</h3><button onClick={() => setShowAnalyticsModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
-              <div className="p-6"><div className="grid grid-cols-2 gap-4 mb-6"><div className="p-4 bg-blue-50 rounded-xl text-center"><p className="text-2xl font-bold text-blue-600">{learningAnalytics.totalHours}</p><p className="text-sm text-gray-500">Hours Learned</p></div><div className="p-4 bg-green-50 rounded-xl text-center"><p className="text-2xl font-bold text-green-600">{learningAnalytics.coursesCompleted}</p><p className="text-sm text-gray-500">Courses Completed</p></div><div className="p-4 bg-purple-50 rounded-xl text-center"><p className="text-2xl font-bold text-purple-600">{learningAnalytics.quizzesPassed}</p><p className="text-sm text-gray-500">Quizzes Passed</p></div><div className="p-4 bg-yellow-50 rounded-xl text-center"><p className="text-2xl font-bold text-yellow-600">{learningAnalytics.certificatesEarned}</p><p className="text-sm text-gray-500">Certificates Earned</p></div></div><div className="mb-6"><h4 className="font-semibold mb-3">Average Quiz Score</h4><div className="relative h-32"><div className="absolute inset-0 flex items-center justify-center"><div className="text-center"><div className="text-4xl font-bold text-purple-600">{learningAnalytics.averageScore}%</div><div className="w-32 h-32 rounded-full border-8 border-purple-200"><div className="w-full h-full rounded-full border-8 border-purple-600" style={{ clipPath: `inset(0 ${100 - learningAnalytics.averageScore}% 0 0)` }} /></div></div></div></div></div><div><h4 className="font-semibold mb-3">Recent Activity</h4><div className="space-y-2">{watchHistory.slice(0, 5).map((video, idx) => (<div key={idx} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg"><span className="text-sm">{video.title}</span><span className="text-xs text-gray-500">{new Date(watchProgress[video.id]?.lastWatched).toLocaleDateString()}</span></div>))}</div></div></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowAnalyticsModal(false)}
+            role="dialog"
+            aria-label="Learning Analytics"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[85vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="sticky top-0 bg-teal-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Learning Analytics</h3>
+                  <button onClick={() => setShowAnalyticsModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-xl text-center">
+                    <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{learningAnalytics.totalHours}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Hours Learned</p>
+                  </div>
+                  <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-xl text-center">
+                    <p className="text-2xl font-bold text-green-600 dark:text-green-400">{learningAnalytics.coursesCompleted}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Courses Completed</p>
+                  </div>
+                  <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-xl text-center">
+                    <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{learningAnalytics.quizzesPassed}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Quizzes Passed</p>
+                  </div>
+                  <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-xl text-center">
+                    <p className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">{learningAnalytics.certificatesEarned}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Certificates Earned</p>
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Average Quiz Score</h4>
+                  <div className="relative h-32">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-purple-600 dark:text-purple-400">{learningAnalytics.averageScore}%</div>
+                        <div className="w-32 h-32 rounded-full border-8 border-purple-200 dark:border-purple-800">
+                          <div className="w-full h-full rounded-full border-8 border-purple-600 dark:border-purple-400" style={{ clipPath: `inset(0 ${100 - learningAnalytics.averageScore}% 0 0)` }} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Recent Activity</h4>
+                  <div className="space-y-2">
+                    {watchHistory.slice(0, 5).map((video, idx) => (
+                      <div key={idx} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <span className="text-sm text-gray-700 dark:text-gray-300">{video.title}</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {new Date(watchProgress[video.id]?.lastWatched).toLocaleDateString()}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Share Modal */}
-        {showShareModal && shareVideo && (<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowShareModal(false)}><div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}><div className="bg-gray-100 p-4"><div className="flex items-center justify-between"><h3 className="font-bold">Share Video</h3><button onClick={() => setShowShareModal(false)}><HiOutlineX className="w-5 h-5" /></button></div></div><div className="p-6"><p className="text-sm text-gray-600 mb-4 text-center">{shareVideo.title}</p><div className="flex flex-col gap-3"><button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg"><HiOutlineLink className="w-4 h-4" />Copy Link</button><button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareVideo.title)}&body=${encodeURIComponent(`${shareVideo.title}\n\nWatch here: ${window.location.origin}/tutorials/${shareVideo.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg"><HiOutlineMail className="w-4 h-4" />Share via Email</button></div></div></div></div>)}
+        {/* ==================== SHARE MODAL ==================== */}
+        {showShareModal && shareVideo && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowShareModal(false)}
+            role="dialog"
+            aria-label="Share Video"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-gray-100 dark:bg-gray-700 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-gray-900 dark:text-white">Share Video</h3>
+                  <button onClick={() => setShowShareModal(false)} className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center line-clamp-2">{shareVideo.title}</p>
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={copyLink}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    aria-label="Copy link"
+                  >
+                    <HiOutlineLink className="w-4 h-4" />Copy Link
+                  </button>
+                  <button
+                    onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareVideo.title)}&body=${encodeURIComponent(`${shareVideo.title}\n\nWatch here: ${window.location.origin}/tutorials/${shareVideo.id}`)}`)}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Share via email"
+                  >
+                    <HiOutlineMail className="w-4 h-4" />Share via Email
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
-        {/* CTA */}
-        <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl p-8 text-white text-center"><HiOutlineAcademicCap className="w-12 h-12 mx-auto mb-4" /><h3 className="text-2xl md:text-3xl font-bold mb-4">Start Your Learning Journey Today</h3><p className="text-blue-100 mb-6">Get certified, track your progress, and advance your career.</p><button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all"><HiOutlinePlay className="w-5 h-5" />Browse All Courses</button></div>
+        {/* ==================== CTA SECTION ==================== */}
+        <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-3xl p-8 text-white text-center">
+          <HiOutlineAcademicCap className="w-12 h-12 mx-auto mb-4" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Start Your Learning Journey Today</h3>
+          <p className="text-blue-100 dark:text-blue-200 mb-6">Get certified, track your progress, and advance your career.</p>
+          <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Browse all courses">
+            <HiOutlinePlay className="w-5 h-5" />
+            Browse All Courses
+          </button>
+        </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
-        @keyframes blob { 0%, 100% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } }
+        @keyframes blob {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         .animate-blob { animation: blob 7s infinite; }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .bg-grid-slate-100 { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"); }
-        .dark .bg-grid-slate-800 { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.4)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"); }
-        .bg-grid-white { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='white' stroke-width='0.5'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"); }
-        input[type="range"] { -webkit-appearance: none; background: transparent; }
-        input[type="range"]:focus { outline: none; }
-        input[type="range"]::-webkit-slider-runnable-track { background: #4B5563; height: 4px; border-radius: 2px; }
-        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: 12px; width: 12px; border-radius: 50%; background: #3B82F6; margin-top: -4px; cursor: pointer; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .line-clamp-1 {
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .bg-grid-slate-100 {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+        }
+        .dark .bg-grid-slate-800 {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.4)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+        }
+        .bg-grid-white {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='white' stroke-width='0.5'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+        }
+        input[type="range"] {
+          -webkit-appearance: none;
+          background: transparent;
+        }
+        input[type="range"]:focus {
+          outline: none;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+          background: #4B5563;
+          height: 4px;
+          border-radius: 2px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          height: 12px;
+          width: 12px;
+          border-radius: 50%;
+          background: #3B82F6;
+          margin-top: -4px;
+          cursor: pointer;
+        }
       `}</style>
     </section>
   );

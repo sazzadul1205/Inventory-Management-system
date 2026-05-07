@@ -1,9 +1,30 @@
 // page/frontend/Support/HelpCenterSection/HelpCenterSection1.jsx
 
-// React
+/**
+ * Help Center Section I - Support Hub & Knowledge Base
+ *
+ * Unique Design Elements:
+ * - Stats Cards for Support Metrics (Articles, Satisfied Users, Response Time, Solutions)
+ * - Search Bar with Live Filtering
+ * - Category Tabs with Count Badges
+ * - Popular Articles Section with Quick Links
+ * - Video Tutorials Gallery with Play Button
+ * - FAQ Accordions with Helpful Feedback Buttons
+ * - Support Options Grid (Documentation, Live Chat, Submit Ticket)
+ * - Contact Information Cards
+ * - Submit Ticket Modal with Priority Selection
+ * - Contact Support Modal with Category Selection
+ * - Helpful Feedback Storage in localStorage
+ * - Animated Blur Background Orbs
+ * - Fully Responsive Layout
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineSearch,
   HiOutlineQuestionMarkCircle,
@@ -27,31 +48,26 @@ import {
   HiOutlineSparkles,
   HiOutlineUser,
 } from 'react-icons/hi';
-import { HiOutlineTicket, HiOutlinePlay, HiOutlineLifebuoy, } from 'react-icons/hi2';
+import { HiOutlineTicket, HiOutlinePlay, HiOutlineLifebuoy } from 'react-icons/hi2';
 
 const HelpCenterSection1 = ({ config }) => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  // ==================== STATE MANAGEMENT ====================
+  const [errors, setErrors] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFaq, setSelectedFaq] = useState(null);
-  const [showContactModal, setShowContactModal] = useState(false);
+  const [ticketNumber, setTicketNumber] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    category: 'general',
-    message: '',
-    priority: 'normal',
-    attachment: null,
-  });
-  const [errors, setErrors] = useState({});
   const [helpfulFeedback, setHelpfulFeedback] = useState({});
+  const [activeCategory, setActiveCategory] = useState('all');
   const [showTicketModal, setShowTicketModal] = useState(false);
   const [ticketSubmitted, setTicketSubmitted] = useState(false);
-  const [ticketNumber, setTicketNumber] = useState('');
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', category: 'general', message: '', priority: 'normal', attachment: null, });
+
+  // ===================== REFS =====================
   const modalRef = useRef(null);
 
-  // Get data from config
+  // ==================== MEMOIZED DATA ====================
   const faqs = useMemo(() => config?.faqs || [], [config?.faqs]);
   const categories = config?.categories || [
     { id: 'all', name: 'All Topics', icon: 'question', count: faqs.length },
@@ -97,7 +113,7 @@ const HelpCenterSection1 = ({ config }) => {
     return groups;
   }, [filteredFaqs]);
 
-  // Load helpful feedback from localStorage
+  // ==================== LOCAL STORAGE & EFFECTS ====================
   useEffect(() => {
     const saved = localStorage.getItem('faqHelpfulFeedback');
     if (saved) {
@@ -109,7 +125,7 @@ const HelpCenterSection1 = ({ config }) => {
     localStorage.setItem('faqHelpfulFeedback', JSON.stringify(helpfulFeedback));
   }, [helpfulFeedback]);
 
-  // Handle form input change
+  // ==================== FORM HANDLERS ====================
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
     setFormData((prev) => ({
@@ -121,7 +137,6 @@ const HelpCenterSection1 = ({ config }) => {
     }
   };
 
-  // Handle contact form submission
   const handleContactSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -146,7 +161,6 @@ const HelpCenterSection1 = ({ config }) => {
     }, 3000);
   };
 
-  // Handle ticket submission
   const handleTicketSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -174,7 +188,7 @@ const HelpCenterSection1 = ({ config }) => {
     }, 3000);
   };
 
-  // Handle helpful feedback
+  // ==================== HELPER FUNCTIONS ====================
   const markHelpful = (faqId, isHelpful) => {
     setHelpfulFeedback(prev => ({
       ...prev,
@@ -182,7 +196,6 @@ const HelpCenterSection1 = ({ config }) => {
     }));
   };
 
-  // Get category icon
   const getCategoryIcon = (iconName) => {
     const icons = {
       question: <HiOutlineQuestionMarkCircle className="w-5 h-5" />,
@@ -195,19 +208,24 @@ const HelpCenterSection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineQuestionMarkCircle className="w-5 h-5" />;
   };
 
+  const clearFilters = () => {
+    setSearchQuery('');
+    setActiveCategory('all');
+  };
+
   return (
     <section
       className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden"
       role="region"
       aria-label="Help Center Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineLifebuoy className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -225,16 +243,16 @@ const HelpCenterSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Row */}
+        {/* ==================== STATS ROW ==================== */}
         {stats.length > 0 && (
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  {stat.icon === 'articles' ? <HiOutlineDocumentText className="w-5 h-5 text-blue-600" /> :
-                    stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600" /> :
-                      stat.icon === 'clock' ? <HiOutlineClock className="w-5 h-5 text-blue-600" /> :
-                        <HiOutlineCheckCircle className="w-5 h-5 text-blue-600" />}
+                  {stat.icon === 'articles' ? <HiOutlineDocumentText className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                    stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'clock' ? <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                        <HiOutlineCheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
@@ -245,7 +263,7 @@ const HelpCenterSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Search Bar */}
+        {/* ==================== SEARCH BAR ==================== */}
         <div className="max-w-2xl mx-auto mb-12">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -256,15 +274,20 @@ const HelpCenterSection1 = ({ config }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for answers, articles, or topics..."
-              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg shadow-sm"
+              className="w-full pl-12 pr-32 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg shadow-sm text-gray-900 dark:text-white"
+              aria-label="Search for answers"
             />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-all">
+            <button
+              onClick={() => { }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-all duration-300"
+              aria-label="Search"
+            >
               Search
             </button>
           </div>
         </div>
 
-        {/* Category Tabs */}
+        {/* ==================== CATEGORY TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {categories.map((category) => (
             <button
@@ -272,8 +295,9 @@ const HelpCenterSection1 = ({ config }) => {
               onClick={() => setActiveCategory(category.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeCategory === category.id
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
+              aria-label={`Filter by ${category.name}`}
             >
               {getCategoryIcon(category.icon)}
               {category.name}
@@ -289,7 +313,7 @@ const HelpCenterSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Popular Articles Section */}
+        {/* ==================== POPULAR ARTICLES SECTION ==================== */}
         {popularArticles.length > 0 && searchQuery === '' && activeCategory === 'all' && (
           <div className="mb-12">
             <div className="flex items-center justify-between mb-4">
@@ -300,17 +324,23 @@ const HelpCenterSection1 = ({ config }) => {
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               {popularArticles.map((article, idx) => (
-                <div key={idx} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all cursor-pointer">
-                  <HiOutlineDocumentText className="w-5 h-5 text-blue-600 shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">{article.title}</span>
-                  <HiOutlineArrowRight className="w-4 h-4 text-gray-400 ml-auto shrink-0" />
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all cursor-pointer group"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && {}}
+                >
+                  <HiOutlineDocumentText className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <span className="text-gray-700 dark:text-gray-300 flex-1">{article.title}</span>
+                  <HiOutlineArrowRight className="w-4 h-4 text-gray-400 dark:text-gray-500 shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* Video Tutorials Section */}
+        {/* ==================== VIDEO TUTORIALS SECTION ==================== */}
         {videoTutorials.length > 0 && searchQuery === '' && activeCategory === 'all' && (
           <div className="mb-12">
             <div className="flex items-center justify-between mb-4">
@@ -321,15 +351,28 @@ const HelpCenterSection1 = ({ config }) => {
             </div>
             <div className="grid md:grid-cols-3 gap-4">
               {videoTutorials.slice(0, 3).map((video, idx) => (
-                <div key={idx} className="group cursor-pointer">
+                <div
+                  key={idx}
+                  className="group cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && {}}
+                >
                   <div className="relative rounded-xl overflow-hidden">
-                    <img src={video.thumbnail} alt={video.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <HiOutlinePlay className="w-6 h-6 text-white ml-0.5" />
                       </div>
                     </div>
-                    <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-0.5 rounded">{video.duration}</span>
+                    <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-0.5 rounded">
+                      {video.duration}
+                    </span>
                   </div>
                   <p className="text-sm font-medium text-gray-800 dark:text-gray-200 mt-2 line-clamp-2">{video.title}</p>
                 </div>
@@ -338,17 +381,15 @@ const HelpCenterSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQs Accordion */}
+        {/* ==================== FAQS ACCORDION ==================== */}
         {filteredFaqs.length === 0 ? (
           <div className="text-center py-12">
             <HiOutlineQuestionMarkCircle className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
             <p className="text-gray-500 dark:text-gray-400">No FAQs found matching your criteria.</p>
             <button
-              onClick={() => {
-                setSearchQuery('');
-                setActiveCategory('all');
-              }}
-              className="mt-4 text-blue-600 hover:underline"
+              onClick={clearFilters}
+              className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+              aria-label="Clear filters"
             >
               Clear filters
             </button>
@@ -366,17 +407,18 @@ const HelpCenterSection1 = ({ config }) => {
                     {categoryFaqs.map((faq) => (
                       <div
                         key={faq.id}
-                        className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"
+                        className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800"
                       >
                         <button
                           onClick={() => setSelectedFaq(selectedFaq === faq.id ? null : faq.id)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-300"
+                          aria-label={`Toggle answer for ${faq.question}`}
                         >
                           <span className="font-medium text-gray-900 dark:text-white">{faq.question}</span>
-                          <span className="text-gray-400">{selectedFaq === faq.id ? '−' : '+'}</span>
+                          <span className="text-gray-400 dark:text-gray-500 text-xl">{selectedFaq === faq.id ? '−' : '+'}</span>
                         </button>
                         {selectedFaq === faq.id && (
-                          <div className="px-6 pb-4 pt-0 border-t border-gray-100 dark:border-gray-800">
+                          <div className="px-6 pb-4 pt-0 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
                             <p className="text-gray-600 dark:text-gray-400 mb-4">{faq.answer}</p>
                             {faq.tags && faq.tags.length > 0 && (
                               <div className="flex flex-wrap gap-2 mb-3">
@@ -388,22 +430,24 @@ const HelpCenterSection1 = ({ config }) => {
                               </div>
                             )}
                             <div className="flex items-center gap-4">
-                              <span className="text-xs text-gray-500">Was this helpful?</span>
+                              <span className="text-xs text-gray-500 dark:text-gray-400">Was this helpful?</span>
                               <button
                                 onClick={() => markHelpful(faq.id, true)}
-                                className={`p-1 rounded-lg transition-colors ${helpfulFeedback[faq.id]?.helpful === true
-                                  ? 'text-green-600 bg-green-100'
-                                  : 'text-gray-400 hover:text-green-600'
+                                className={`p-1 rounded-lg transition-all duration-300 ${helpfulFeedback[faq.id]?.helpful === true
+                                  ? 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30'
+                                  : 'text-gray-400 hover:text-green-600 dark:hover:text-green-400'
                                   }`}
+                                aria-label="Mark as helpful"
                               >
                                 <HiOutlineThumbUp className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => markHelpful(faq.id, false)}
-                                className={`p-1 rounded-lg transition-colors ${helpfulFeedback[faq.id]?.helpful === false
-                                  ? 'text-red-600 bg-red-100'
-                                  : 'text-gray-400 hover:text-red-600'
+                                className={`p-1 rounded-lg transition-all duration-300 ${helpfulFeedback[faq.id]?.helpful === false
+                                  ? 'text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30'
+                                  : 'text-gray-400 hover:text-red-600 dark:hover:text-red-400'
                                   }`}
+                                aria-label="Mark as not helpful"
                               >
                                 <HiOutlineThumbDown className="w-4 h-4" />
                               </button>
@@ -419,31 +463,31 @@ const HelpCenterSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Support Options */}
+        {/* ==================== SUPPORT OPTIONS GRID ==================== */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 text-center">
+          <div className="bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1">
             <div className="w-14 h-14 rounded-xl bg-blue-600 text-white flex items-center justify-center mx-auto mb-4">
               <HiOutlineDocumentText className="w-7 h-7" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Documentation</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Browse our detailed documentation and user guides.</p>
-            <button className="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-              Browse Docs <HiOutlineArrowRight className="w-4 h-4" />
+            <button className="text-blue-600 dark:text-blue-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 transition-all duration-300 group" aria-label="Browse documentation">
+              Browse Docs <HiOutlineArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
 
-          <div className="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 text-center">
+          <div className="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1">
             <div className="w-14 h-14 rounded-xl bg-purple-600 text-white flex items-center justify-center mx-auto mb-4">
               <HiOutlineChat className="w-7 h-7" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Live Chat</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Chat with our support team for immediate assistance.</p>
-            <button className="text-purple-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-              Start Chat <HiOutlineArrowRight className="w-4 h-4" />
+            <button className="text-purple-600 dark:text-purple-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 transition-all duration-300 group" aria-label="Start live chat">
+              Start Chat <HiOutlineArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
 
-          <div className="bg-linear-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-6 text-center">
+          <div className="bg-linear-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1">
             <div className="w-14 h-14 rounded-xl bg-green-600 text-white flex items-center justify-center mx-auto mb-4">
               <HiOutlineTicket className="w-7 h-7" />
             </div>
@@ -451,68 +495,79 @@ const HelpCenterSection1 = ({ config }) => {
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Get personalized help from our support specialists.</p>
             <button
               onClick={() => setShowTicketModal(true)}
-              className="text-green-600 font-semibold text-sm hover:underline inline-flex items-center gap-1"
+              className="text-green-600 dark:text-green-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 transition-all duration-300 group"
+              aria-label="Submit support ticket"
             >
-              Submit Request <HiOutlineArrowRight className="w-4 h-4" />
+              Submit Request <HiOutlineArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
         </div>
 
-        {/* Contact Info */}
+        {/* ==================== CONTACT INFO CARDS ==================== */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 text-center">
           <div className="grid md:grid-cols-4 gap-6">
-            <div>
+            <div className="transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-3">
-                <HiOutlineMail className="w-6 h-6 text-blue-600" />
+                <HiOutlineMail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <p className="text-sm text-gray-500">Email Support</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Email Support</p>
               <p className="font-medium text-gray-900 dark:text-white">{contactInfo.email}</p>
-              <p className="text-xs text-gray-400">Response within 24h</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">Response within 24h</p>
             </div>
-            <div>
+            <div className="transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mx-auto mb-3">
-                <HiOutlinePhone className="w-6 h-6 text-purple-600" />
+                <HiOutlinePhone className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <p className="text-sm text-gray-500">Phone Support</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Phone Support</p>
               <p className="font-medium text-gray-900 dark:text-white">{contactInfo.phone}</p>
-              <p className="text-xs text-gray-400">{contactInfo.hours}</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">{contactInfo.hours}</p>
             </div>
-            <div>
+            <div className="transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-3">
-                <HiOutlineChat className="w-6 h-6 text-green-600" />
+                <HiOutlineChat className="w-6 h-6 text-green-600 dark:text-green-400" />
               </div>
-              <p className="text-sm text-gray-500">Live Chat</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Live Chat</p>
               <p className="font-medium text-gray-900 dark:text-white">{contactInfo.chat}</p>
-              <p className="text-xs text-gray-400">Instant response</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">Instant response</p>
             </div>
-            <div>
+            <div className="transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mx-auto mb-3">
-                <HiOutlineGlobe className="w-6 h-6 text-orange-600" />
+                <HiOutlineGlobe className="w-6 h-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <p className="text-sm text-gray-500">Community Forum</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Community Forum</p>
               <p className="font-medium text-gray-900 dark:text-white">Join Discussion</p>
-              <p className="text-xs text-gray-400">Connect with peers</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">Connect with peers</p>
             </div>
           </div>
         </div>
 
-        {/* Contact Modal */}
+        {/* ==================== CONTACT MODAL ==================== */}
         {showContactModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowContactModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()} ref={modalRef}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowContactModal(false)}
+            role="dialog"
+            aria-label="Contact Support"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              ref={modalRef}
+            >
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Contact Support</h3>
-                  <button onClick={() => setShowContactModal(false)} className="text-white">
+                  <button onClick={() => setShowContactModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6">
                 {formSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <HiOutlineCheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Message Sent!</h4>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -528,8 +583,9 @@ const HelpCenterSection1 = ({ config }) => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Full name *"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-200'
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                           }`}
+                        aria-label="Your full name"
                       />
                       {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                     </div>
@@ -540,8 +596,9 @@ const HelpCenterSection1 = ({ config }) => {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="Email address *"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email ? 'border-red-500' : 'border-gray-200'
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                           }`}
+                        aria-label="Your email address"
                       />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
@@ -552,7 +609,8 @@ const HelpCenterSection1 = ({ config }) => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         placeholder="Subject"
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                        aria-label="Subject"
                       />
                     </div>
                     <div>
@@ -560,7 +618,8 @@ const HelpCenterSection1 = ({ config }) => {
                         name="category"
                         value={formData.category}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                        aria-label="Select category"
                       >
                         <option value="general">General Inquiry</option>
                         <option value="technical">Technical Issue</option>
@@ -575,14 +634,16 @@ const HelpCenterSection1 = ({ config }) => {
                         onChange={handleInputChange}
                         placeholder="Message *"
                         rows="4"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${errors.message ? 'border-red-500' : 'border-gray-200'
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-gray-900 dark:text-white placeholder-gray-500 ${errors.message ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                           }`}
+                        aria-label="Your message"
                       />
                       {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                      aria-label="Send message"
                     >
                       Send Message
                       <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
@@ -594,27 +655,37 @@ const HelpCenterSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Ticket Modal */}
+        {/* ==================== TICKET MODAL ==================== */}
         {showTicketModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowTicketModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()} ref={modalRef}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowTicketModal(false)}
+            role="dialog"
+            aria-label="Submit Support Ticket"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              ref={modalRef}
+            >
               <div className="bg-linear-to-r from-green-600 to-teal-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Submit Support Ticket</h3>
-                  <button onClick={() => setShowTicketModal(false)} className="text-white">
+                  <button onClick={() => setShowTicketModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6">
                 {ticketSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <HiOutlineCheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Ticket Created!</h4>
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
-                      Your ticket number is: <span className="font-mono font-bold">{ticketNumber}</span>
+                      Your ticket number is: <span className="font-mono font-bold text-blue-600 dark:text-blue-400">{ticketNumber}</span>
                     </p>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       We'll email you updates on your request.
@@ -623,25 +694,33 @@ const HelpCenterSection1 = ({ config }) => {
                 ) : (
                   <form onSubmit={handleTicketSubmit} className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Full name *"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl ${errors.name ? 'border-red-500' : 'border-gray-200'}`}
-                      />
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="Email *"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl ${errors.email ? 'border-red-500' : 'border-gray-200'}`}
-                      />
+                      <div>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Full name *"
+                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                            }`}
+                          aria-label="Your full name"
+                        />
+                        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                      </div>
+                      <div>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Email *"
+                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                            }`}
+                          aria-label="Your email address"
+                        />
+                        {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                      </div>
                     </div>
-                    {errors.name && <p className="text-red-500 text-xs -mt-2">{errors.name}</p>}
-                    {errors.email && <p className="text-red-500 text-xs -mt-2">{errors.email}</p>}
                     <div>
                       <input
                         type="text"
@@ -649,7 +728,9 @@ const HelpCenterSection1 = ({ config }) => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         placeholder="Subject *"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl ${errors.subject ? 'border-red-500' : 'border-gray-200'}`}
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.subject ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
+                        aria-label="Subject"
                       />
                       {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
                     </div>
@@ -658,7 +739,8 @@ const HelpCenterSection1 = ({ config }) => {
                         name="priority"
                         value={formData.priority}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900 dark:text-white"
+                        aria-label="Select priority"
                       >
                         <option value="low">Low Priority</option>
                         <option value="normal">Normal Priority</option>
@@ -673,22 +755,26 @@ const HelpCenterSection1 = ({ config }) => {
                         onChange={handleInputChange}
                         placeholder="Describe your issue *"
                         rows="5"
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 resize-none ${errors.message ? 'border-red-500' : 'border-gray-200'}`}
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 resize-none text-gray-900 dark:text-white placeholder-gray-500 ${errors.message ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
+                        aria-label="Describe your issue"
                       />
                       {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm text-gray-500 mb-1">Attachments (optional)</label>
+                      <label className="block text-sm text-gray-500 dark:text-gray-400 mb-1">Attachments (optional)</label>
                       <input
                         type="file"
                         name="attachment"
                         onChange={handleInputChange}
-                        className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        className="w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 dark:file:bg-blue-900/30 dark:file:text-blue-400 hover:file:bg-blue-100 dark:hover:file:bg-blue-800/40 transition-colors"
+                        aria-label="Attach file"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                      aria-label="Submit ticket"
                     >
                       Submit Ticket
                       <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
@@ -701,15 +787,26 @@ const HelpCenterSection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;

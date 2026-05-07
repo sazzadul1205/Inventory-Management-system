@@ -81,10 +81,6 @@ const DocumentationSection3 = ({ config }) => {
   const [translatedContent, setTranslatedContent] = useState(null);
   const [smartTOC, setSmartTOC] = useState([]);
   const [activeHeading, setActiveHeading] = useState(null);
-  const [showAIAssistant, setShowAIAssistant] = useState(false);
-  const [aiAssistantMessage, setAiAssistantMessage] = useState('');
-  const [aiAssistantResponse, setAiAssistantResponse] = useState('');
-  const [aiAssistantTyping, setAiAssistantTyping] = useState(false);
   const [, setVersionHistory] = useState({});
   const [showVersionModal, setShowVersionModal] = useState(false);
   const [userPreferences, setUserPreferences] = useState({
@@ -205,32 +201,6 @@ const DocumentationSection3 = ({ config }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // AI Assistant
-  const askAIAssistant = () => {
-    if (!aiAssistantMessage.trim()) return;
-
-    setAiAssistantTyping(true);
-    setTimeout(() => {
-      let response = '';
-      const msg = aiAssistantMessage.toLowerCase();
-
-      if (msg.includes('api') || msg.includes('endpoint')) {
-        response = "I can help you with API documentation! Based on your query, you might be looking for information about authentication, rate limits, or specific endpoints. Check out our API Reference section for detailed information. Would you like me to show you an example?";
-      } else if (msg.includes('code') || msg.includes('example')) {
-        response = "Here's a code example in JavaScript:\n\n```javascript\nconst response = await fetch('/api/v1/endpoint', {\n  method: 'GET',\n  headers: {\n    'Authorization': 'Bearer YOUR_TOKEN',\n    'Content-Type': 'application/json'\n  }\n});\nconst data = await response.json();\nconsole.log(data);\n```\n\nWould you like an example in another language?";
-      } else if (msg.includes('error') || msg.includes('troubleshoot')) {
-        response = "I see you're troubleshooting. Common issues include: invalid API keys, incorrect endpoint URLs, missing required parameters, or rate limiting. Can you share more details about the specific error you're encountering?";
-      } else if (msg.includes('guide') || msg.includes('tutorial')) {
-        response = "We have comprehensive guides for getting started! Check out the 'Getting Started' section for setup instructions, or browse our video tutorials for visual walkthroughs. Is there a specific topic you'd like to learn about?";
-      } else {
-        response = "I'm your AI documentation assistant! I can help you find API references, code examples, troubleshooting guides, or explain concepts. What would you like to know?";
-      }
-
-      setAiAssistantResponse(response);
-      setAiAssistantTyping(false);
-    }, 1500);
-  };
 
   // AI Translation
   const translateDocument = () => {
@@ -442,41 +412,6 @@ const DocumentationSection3 = ({ config }) => {
           </defs>
           <rect width="100%" height="100%" fill="url(#circuit-pattern-doc)" />
         </svg>
-      </div>
-
-      {/* AI Assistant Widget */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {!showAIAssistant ? (
-          <button onClick={() => setShowAIAssistant(true)} className="bg-linear-to-r from-purple-600 to-pink-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 animate-pulse">
-            <HiOutlineRobot className="w-6 h-6" />
-          </button>
-        ) : (
-          <div className="w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-            <div className="bg-linear-to-r from-purple-600 to-pink-600 p-4 flex items-center justify-between">
-              <div className="flex items-center gap-2"><HiOutlineRobot className="w-5 h-5 text-white" /><h3 className="text-white font-semibold">AI Documentation Assistant</h3></div>
-              <button onClick={() => setShowAIAssistant(false)} className="text-white"><HiOutlineX className="w-5 h-5" /></button>
-            </div>
-            <div className="p-4 max-h-96 overflow-y-auto">
-              <div className="mb-4 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                <p className="text-sm text-gray-600 dark:text-gray-300">Ask me anything about our documentation, APIs, or code examples!</p>
-              </div>
-              {aiAssistantResponse && (
-                <div className="mb-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                  <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{aiAssistantResponse}</p>
-                </div>
-              )}
-              {aiAssistantTyping && (
-                <div className="mb-4 p-3 bg-gray-100 rounded-lg">
-                  <div className="flex gap-1"><div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} /><div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} /><div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} /></div>
-                </div>
-              )}
-              <div className="flex gap-2">
-                <input type="text" value={aiAssistantMessage} onChange={(e) => setAiAssistantMessage(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && askAIAssistant()} placeholder="Ask a question..." className="flex-1 px-3 py-2 bg-gray-50 dark:bg-gray-700 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                <button onClick={askAIAssistant} className="px-3 py-2 bg-purple-600 text-white rounded-lg text-sm">Ask</button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

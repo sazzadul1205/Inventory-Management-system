@@ -444,16 +444,6 @@ const EventCalendarSection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* ==================== AI SUGGESTIONS WIDGET ==================== */}
-      <div className="fixed bottom-4 right-4 z-40">
-        <button
-          onClick={() => { generateAISuggestions(); setShowAiModal(true); }}
-          className="bg-linear-to-r from-purple-600 to-pink-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
-          aria-label="AI Scheduling Assistant"
-        >
-          <AiOutlineRobot className="w-6 h-6" />
-        </button>
-      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ==================== HEADER ==================== */}

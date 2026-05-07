@@ -1,9 +1,28 @@
 // page/frontend/Support/VideoTutorialsSection/VideoTutorialsSection1.jsx
 
-// React
+/**
+ * Video Tutorials Section I - Learning Hub with Video Player & Playlists
+ *
+ * Unique Design Elements:
+ * - Stats Cards for Tutorial Metrics (Videos, Hours, Students, Rating)
+ * - Featured Video Banner with Gradient Background
+ * - Video Cards with Thumbnail, Duration, and Level Badges
+ * - Custom Video Player with Play/Pause, Volume, Progress, Speed Control
+ * - Bookmark System for Saving Favorite Tutorials
+ * - Watch History Tracking with Progress Save
+ * - Learning Playlists with Progress Indicators
+ * - Search and Filter System (Category, Level, Duration)
+ * - Share Modal for Easy Content Promotion
+ * - Grid/List View Toggle
+ * - Fully Responsive Design with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineSearch,
   HiOutlinePlay,
@@ -37,42 +56,45 @@ import {
 import { HiOutlineBell, HiOutlineLink, HiOutlinePlayCircle, HiOutlineQueueList } from 'react-icons/hi2';
 
 const VideoTutorialsSection1 = ({ config }) => {
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
+  // ==================== STATE MANAGEMENT ====================
   const [duration, setDuration] = useState(0);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState('all');
-  const [selectedDuration, setSelectedDuration] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [viewMode, setViewMode] = useState('grid');
-  const [bookmarkedVideos, setBookmarkedVideos] = useState([]);
-  const [watchHistory, setWatchHistory] = useState([]);
-  const [watchProgress, setWatchProgress] = useState({});
-  const [showShareModal, setShowShareModal] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [shareVideo, setShareVideo] = useState(null);
-  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [watchHistory, setWatchHistory] = useState([]);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [showFilters, setShowFilters] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [watchProgress, setWatchProgress] = useState({});
+  const [selectedLevel, setSelectedLevel] = useState('all');
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [bookmarkedVideos, setBookmarkedVideos] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+  const [selectedDuration, setSelectedDuration] = useState('all');
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+
+  // ====================== REFS =====================
   const videoRef = useRef(null);
 
-  // Get data from config
-  const categories = config?.categories || [];
-  const videos = useEffect(() => config?.videos || [], [config]);
-  const playlists = config?.playlists || [];
-  const stats = config?.stats || [];
-  const featuredVideo = config?.featuredVideo || videos[0];
+  // ==================== MEMOIZED DATA ====================
+  const categories = useMemo(() => config?.categories || [], [config?.categories]);
+  const videos = useMemo(() => config?.videos || [], [config?.videos]);
+  const playlists = useMemo(() => config?.playlists || [], [config?.playlists]);
+  const stats = useMemo(() => config?.stats || [], [config?.stats]);
+  const featuredVideo = useMemo(() => config?.featuredVideo || videos[0], [videos, config?.featuredVideo]);
 
-  // Get unique levels and duration ranges
+  // Get unique levels
   const levels = useMemo(() => {
     const lev = new Set(videos.map(v => v.level).filter(Boolean));
     return ['all', ...Array.from(lev)];
   }, [videos]);
 
-  const durationRanges = useEffect(() => [
+  const durationRanges = useMemo(() => [
     { id: 'all', label: 'All Durations' },
     { id: 'short', label: 'Short (< 5 min)', max: 5 },
     { id: 'medium', label: 'Medium (5-15 min)', min: 5, max: 15 },
@@ -121,7 +143,7 @@ const VideoTutorialsSection1 = ({ config }) => {
     return groups;
   }, [filteredVideos]);
 
-  // Load data from localStorage
+  // ==================== LOCAL STORAGE & EFFECTS ====================
   useEffect(() => {
     const savedBookmarks = localStorage.getItem('videoBookmarks');
     if (savedBookmarks) setBookmarkedVideos(JSON.parse(savedBookmarks));
@@ -145,13 +167,12 @@ const VideoTutorialsSection1 = ({ config }) => {
     localStorage.setItem('videoWatchProgress', JSON.stringify(watchProgress));
   }, [watchProgress]);
 
-  // Track video view
+  // ==================== HELPER FUNCTIONS ====================
   const trackVideoView = (video) => {
     const updatedHistory = [video, ...watchHistory.filter(v => v.id !== video.id)].slice(0, 20);
     setWatchHistory(updatedHistory);
   };
 
-  // Save watch progress
   const saveProgress = (videoId, progress) => {
     setWatchProgress(prev => ({
       ...prev,
@@ -159,7 +180,6 @@ const VideoTutorialsSection1 = ({ config }) => {
     }));
   };
 
-  // Toggle bookmark
   const toggleBookmark = (videoId, e) => {
     e?.stopPropagation();
     if (bookmarkedVideos.includes(videoId)) {
@@ -169,7 +189,6 @@ const VideoTutorialsSection1 = ({ config }) => {
     }
   };
 
-  // Share video
   const shareVideoHandler = (video, e) => {
     e?.stopPropagation();
     setShareVideo(video);
@@ -183,7 +202,14 @@ const VideoTutorialsSection1 = ({ config }) => {
     }
   };
 
-  // Video player controls
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setActiveCategory('all');
+    setSelectedLevel('all');
+    setSelectedDuration('all');
+  };
+
+  // ==================== VIDEO PLAYER CONTROLS ====================
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -207,7 +233,6 @@ const VideoTutorialsSection1 = ({ config }) => {
       const newTime = videoRef.current.currentTime;
       setCurrentTime(newTime);
 
-      // Save progress every 5 seconds
       if (currentVideo && Math.floor(newTime) % 5 === 0) {
         const progress = (newTime / duration) * 100;
         saveProgress(currentVideo.id, progress);
@@ -218,7 +243,6 @@ const VideoTutorialsSection1 = ({ config }) => {
   const handleLoadedMetadata = () => {
     if (videoRef.current) {
       setDuration(videoRef.current.duration);
-      // Restore progress
       if (currentVideo && watchProgress[currentVideo.id]?.progress) {
         const seekTime = (watchProgress[currentVideo.id].progress / 100) * videoRef.current.duration;
         videoRef.current.currentTime = seekTime;
@@ -257,10 +281,10 @@ const VideoTutorialsSection1 = ({ config }) => {
 
   const getLevelBadge = (level) => {
     switch (level?.toLowerCase()) {
-      case 'beginner': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+      case 'beginner': return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300';
       case 'intermediate': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       case 'advanced': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
-      default: return 'bg-gray-100 text-gray-700';
+      default: return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
     }
   };
 
@@ -277,13 +301,13 @@ const VideoTutorialsSection1 = ({ config }) => {
 
   const getCategoryColor = (categoryId) => {
     const colors = {
-      'getting-started': 'bg-green-100 text-green-700',
-      'features': 'bg-blue-100 text-blue-700',
-      'integrations': 'bg-purple-100 text-purple-700',
-      'api': 'bg-orange-100 text-orange-700',
-      'best-practices': 'bg-yellow-100 text-yellow-700',
+      'getting-started': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+      'features': 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+      'integrations': 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+      'api': 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
+      'best-practices': 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
     };
-    return colors[categoryId] || 'bg-gray-100 text-gray-700';
+    return colors[categoryId] || 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
   };
 
   return (
@@ -292,13 +316,13 @@ const VideoTutorialsSection1 = ({ config }) => {
       role="region"
       aria-label="Video Tutorials Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlinePlayCircle className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -316,16 +340,16 @@ const VideoTutorialsSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Row */}
+        {/* ==================== STATS ROW ==================== */}
         {stats.length > 0 && (
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  {stat.icon === 'videos' ? <HiOutlinePlayCircle className="w-5 h-5 text-blue-600" /> :
-                    stat.icon === 'hours' ? <HiOutlineClock className="w-5 h-5 text-blue-600" /> :
-                      stat.icon === 'students' ? <HiOutlineUsers className="w-5 h-5 text-blue-600" /> :
-                        <HiOutlineStar className="w-5 h-5 text-blue-600" />}
+                  {stat.icon === 'videos' ? <HiOutlinePlayCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                    stat.icon === 'hours' ? <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'students' ? <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                        <HiOutlineStar className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
@@ -336,7 +360,7 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Featured Video Banner */}
+        {/* ==================== FEATURED VIDEO BANNER ==================== */}
         {featuredVideo && (
           <div className="relative mb-12 rounded-3xl overflow-hidden bg-linear-to-r from-blue-600 to-purple-600 shadow-xl">
             <div className="absolute inset-0 opacity-10">
@@ -358,7 +382,7 @@ const VideoTutorialsSection1 = ({ config }) => {
                 {featuredVideo.duration && (
                   <div className="flex items-center gap-2">
                     <HiOutlineClock className="w-4 h-4" />
-                    <span>{formatDuration(featuredVideo.duration)}</span>
+                    <span>{formatDuration(featuredVideo.duration)} min</span>
                   </div>
                 )}
                 {featuredVideo.views && (
@@ -383,6 +407,7 @@ const VideoTutorialsSection1 = ({ config }) => {
                     trackVideoView(featuredVideo);
                   }}
                   className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  aria-label="Watch featured video"
                 >
                   <HiOutlinePlay className="w-5 h-5" />
                   Watch Now
@@ -393,7 +418,7 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Search Bar */}
+        {/* ==================== SEARCH BAR ==================== */}
         <div className="max-w-2xl mx-auto mb-8">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -404,19 +429,21 @@ const VideoTutorialsSection1 = ({ config }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search tutorials by title, topic, or instructor..."
-              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg shadow-sm"
+              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg shadow-sm text-gray-900 dark:text-white"
+              aria-label="Search tutorials"
             />
           </div>
         </div>
 
-        {/* Category Navigation */}
+        {/* ==================== CATEGORY NAVIGATION ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           <button
             onClick={() => setActiveCategory('all')}
             className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeCategory === 'all'
               ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
+            aria-label="Show all videos"
           >
             <HiOutlineCollection className="w-4 h-4" />
             All
@@ -430,8 +457,9 @@ const VideoTutorialsSection1 = ({ config }) => {
               onClick={() => setActiveCategory(category.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeCategory === category.id
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
+              aria-label={`Show ${category.name} videos`}
             >
               {getCategoryIcon(category.id)}
               {category.name}
@@ -445,25 +473,28 @@ const VideoTutorialsSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Filters Bar */}
+        {/* ==================== FILTERS BAR ==================== */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex gap-2">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`}
+              className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'grid' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`}
+              aria-label="Grid view"
             >
-              <HiOutlineViewGrid className="w-5 h-5" />
+              <HiOutlineViewGrid className="w-5 h-5 text-gray-700 dark:text-gray-300" />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`}
+              className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'list' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`}
+              aria-label="List view"
             >
-              <HiOutlineViewList className="w-5 h-5" />
+              <HiOutlineViewList className="w-5 h-5 text-gray-700 dark:text-gray-300" />
             </button>
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
+            aria-label="Toggle filters"
           >
             <HiOutlineFilter className="w-4 h-4" />
             Filters
@@ -471,16 +502,17 @@ const VideoTutorialsSection1 = ({ config }) => {
           </button>
         </div>
 
-        {/* Filter Panel */}
+        {/* ==================== FILTER PANEL ==================== */}
         {showFilters && (
-          <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+          <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 animate-fadeIn">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Level</label>
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                  aria-label="Filter by level"
                 >
                   {levels.map(level => (
                     <option key={level} value={level}>
@@ -494,7 +526,8 @@ const VideoTutorialsSection1 = ({ config }) => {
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                  aria-label="Filter by duration"
                 >
                   {durationRanges.map(range => (
                     <option key={range.id} value={range.id}>
@@ -507,34 +540,37 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Playlists Section */}
+        {/* ==================== PLAYLISTS SECTION ==================== */}
         {playlists.length > 0 && searchQuery === '' && activeCategory === 'all' && (
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-4">
-              <HiOutlineQueueList className="w-5 h-5 text-blue-600" />
+              <HiOutlineQueueList className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Learning Playlists</h3>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {playlists.map((playlist) => (
                 <div
                   key={playlist.id}
-                  onClick={() => setSelectedPlaylist(playlist)}
-                  className="group p-4 bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl cursor-pointer hover:shadow-lg transition-all"
+                  onClick={() => { setSelectedPlaylist(playlist); setShowPlaylistModal(true); }}
+                  className="group p-4 bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedPlaylist(playlist)}
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
                       <HiOutlineQueueList className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                      <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {playlist.title}
                       </h4>
-                      <p className="text-sm text-gray-500 mt-1">{playlist.videoCount} videos • {playlist.totalDuration}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{playlist.videoCount} videos • {playlist.totalDuration}</p>
                       <div className="flex items-center gap-2 mt-2">
-                        <div className="w-32 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="w-32 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                           <div className="h-full bg-blue-600 rounded-full" style={{ width: `${playlist.progress || 0}%` }} />
                         </div>
-                        <span className="text-xs text-gray-500">{playlist.progress || 0}% complete</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">{playlist.progress || 0}% complete</span>
                       </div>
                     </div>
                   </div>
@@ -544,19 +580,15 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Videos Grid/List */}
+        {/* ==================== VIDEOS GRID/LIST ==================== */}
         {filteredVideos.length === 0 ? (
           <div className="text-center py-12">
             <HiOutlinePlayCircle className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
             <p className="text-gray-500 dark:text-gray-400">No videos found matching your criteria.</p>
             <button
-              onClick={() => {
-                setSearchQuery('');
-                setActiveCategory('all');
-                setSelectedLevel('all');
-                setSelectedDuration('all');
-              }}
-              className="mt-4 text-blue-600 hover:underline"
+              onClick={clearAllFilters}
+              className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+              aria-label="Clear all filters"
             >
               Clear all filters
             </button>
@@ -574,7 +606,7 @@ const VideoTutorialsSection1 = ({ config }) => {
                       {getCategoryIcon(categoryId)}
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{category.name}</h3>
-                    <span className="text-sm text-gray-500">({categoryVideos.length} videos)</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">({categoryVideos.length} videos)</span>
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {categoryVideos.map((video) => {
@@ -584,7 +616,7 @@ const VideoTutorialsSection1 = ({ config }) => {
                       return (
                         <div
                           key={video.id}
-                          className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-200 dark:border-gray-700"
+                          className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-gray-200 dark:border-gray-700"
                         >
                           <div
                             className="relative h-48 overflow-hidden"
@@ -594,12 +626,16 @@ const VideoTutorialsSection1 = ({ config }) => {
                               setIsPlaying(true);
                               trackVideoView(video);
                             }}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(video)}
                           >
                             {video.thumbnail ? (
                               <img
                                 src={video.thumbnail}
                                 alt={video.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
                               />
                             ) : (
                               <div className="w-full h-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center">
@@ -607,13 +643,13 @@ const VideoTutorialsSection1 = ({ config }) => {
                               </div>
                             )}
                             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <HiOutlinePlay className="w-8 h-8 text-white ml-1" />
                               </div>
                             </div>
                             {video.duration && (
                               <span className="absolute bottom-4 right-4 text-xs bg-black/70 text-white px-2 py-1 rounded-lg">
-                                {formatDuration(video.duration)}
+                                {formatDuration(video.duration)} min
                               </span>
                             )}
                             {video.level && (
@@ -634,20 +670,22 @@ const VideoTutorialsSection1 = ({ config }) => {
                               </h4>
                               <button
                                 onClick={(e) => toggleBookmark(video.id, e)}
-                                className="p-1.5 rounded-lg text-gray-400 hover:text-yellow-500 transition-colors"
+                                className="p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+                                aria-label={isBookmarked ? "Remove bookmark" : "Bookmark video"}
                               >
-                                <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500' : ''}`} />
+                                <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500 dark:text-yellow-400' : ''}`} />
                               </button>
                             </div>
-                            <p className="text-sm text-gray-500 mt-2 line-clamp-2">{video.description}</p>
-                            <div className="flex items-center justify-between mt-3 text-xs text-gray-400">
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 line-clamp-2">{video.description}</p>
+                            <div className="flex items-center justify-between mt-3 text-xs text-gray-400 dark:text-gray-500">
                               <div className="flex items-center gap-2">
                                 <span>{video.views?.toLocaleString() || 0} views</span>
                                 {video.instructor && <span>• {video.instructor.name}</span>}
                               </div>
                               <button
                                 onClick={(e) => shareVideoHandler(video, e)}
-                                className="p-1 hover:text-blue-600 transition-colors"
+                                className="p-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                aria-label="Share video"
                               >
                                 <HiOutlineShare className="w-3 h-3" />
                               </button>
@@ -676,11 +714,14 @@ const VideoTutorialsSection1 = ({ config }) => {
                     setIsPlaying(true);
                     trackVideoView(video);
                   }}
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all cursor-pointer"
+                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(video)}
                 >
                   <div className="relative w-40 h-24 rounded-lg overflow-hidden shrink-0">
                     {video.thumbnail ? (
-                      <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
+                      <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                         <HiOutlinePlayCircle className="w-6 h-6 text-white/50" />
@@ -688,7 +729,7 @@ const VideoTutorialsSection1 = ({ config }) => {
                     )}
                     {video.duration && (
                       <span className="absolute bottom-1 right-1 text-xs bg-black/70 text-white px-1.5 py-0.5 rounded">
-                        {formatDuration(video.duration)}
+                        {formatDuration(video.duration)} min
                       </span>
                     )}
                     {progress > 0 && (
@@ -698,27 +739,35 @@ const VideoTutorialsSection1 = ({ config }) => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 dark:text-white">{video.title}</h4>
-                    <p className="text-sm text-gray-500 line-clamp-1">{video.description}</p>
-                    <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
-                      <span>{video.views?.toLocaleString() || 0} views</span>
-                      {video.level && <span className={`px-1.5 py-0.5 rounded-full ${getLevelBadge(video.level)}`}>{video.level}</span>}
+                    <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {video.title}
+                    </h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">{video.description}</p>
+                    <div className="flex items-center gap-3 mt-1 text-xs">
+                      <span className="text-gray-400 dark:text-gray-500">{video.views?.toLocaleString() || 0} views</span>
+                      {video.level && (
+                        <span className={`px-1.5 py-0.5 rounded-full ${getLevelBadge(video.level)}`}>
+                          {video.level}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={(e) => toggleBookmark(video.id, e)}
-                      className="p-2 rounded-lg text-gray-400 hover:text-yellow-500 transition-colors"
+                      className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+                      aria-label={isBookmarked ? "Remove bookmark" : "Bookmark video"}
                     >
-                      <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500' : ''}`} />
+                      <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-500 dark:text-yellow-400' : ''}`} />
                     </button>
                     <button
                       onClick={(e) => shareVideoHandler(video, e)}
-                      className="p-2 rounded-lg text-gray-400 hover:text-blue-600 transition-colors"
+                      className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      aria-label="Share video"
                     >
                       <HiOutlineShare className="w-4 h-4" />
                     </button>
-                    <HiOutlineArrowRight className="w-4 h-4 text-gray-400" />
+                    <HiOutlineArrowRight className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
               );
@@ -726,18 +775,27 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Player Modal */}
+        {/* ==================== VIDEO PLAYER MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-5xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-5xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4 flex items-center justify-between">
                 <div>
                   <h3 className="text-white font-bold text-lg">{currentVideo.title}</h3>
                   <p className="text-blue-100 text-xs">
-                    {currentVideo.instructor?.name} • {formatDuration(currentVideo.duration)} • {currentVideo.views?.toLocaleString()} views
+                    {currentVideo.instructor?.name} • {formatDuration(currentVideo.duration)} min • {currentVideo.views?.toLocaleString()} views
                   </p>
                 </div>
-                <button onClick={() => setShowVideoModal(false)} className="text-white hover:text-gray-200">
+                <button onClick={() => setShowVideoModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close video">
                   <HiOutlineX className="w-6 h-6" />
                 </button>
               </div>
@@ -757,10 +815,10 @@ const VideoTutorialsSection1 = ({ config }) => {
                 {/* Custom Controls */}
                 <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
                   <div className="flex items-center gap-4">
-                    <button onClick={handlePlayPause} className="text-white hover:text-blue-400 transition-colors">
+                    <button onClick={handlePlayPause} className="text-white hover:text-blue-400 transition-colors" aria-label={isPlaying ? "Pause" : "Play"}>
                       {isPlaying ? <HiOutlinePause className="w-6 h-6" /> : <HiOutlinePlay className="w-6 h-6" />}
                     </button>
-                    <button onClick={handleMute} className="text-white hover:text-blue-400 transition-colors">
+                    <button onClick={handleMute} className="text-white hover:text-blue-400 transition-colors" aria-label={isMuted ? "Unmute" : "Mute"}>
                       {isMuted ? <HiOutlineVolumeOff className="w-5 h-5" /> : <HiOutlineVolumeUp className="w-5 h-5" />}
                     </button>
                     <div className="flex-1 flex items-center gap-2">
@@ -772,14 +830,15 @@ const VideoTutorialsSection1 = ({ config }) => {
                         value={currentTime}
                         onChange={handleSeek}
                         className="flex-1 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                        aria-label="Video progress"
                       />
                       <span className="text-white text-xs">{formatTime(duration)}</span>
                     </div>
-                    <button onClick={handleSpeedChange} className="text-white text-sm hover:text-blue-400 transition-colors">
+                    <button onClick={handleSpeedChange} className="text-white text-sm hover:text-blue-400 transition-colors" aria-label="Playback speed">
                       {playbackSpeed}x
                     </button>
                     {currentVideo.downloadUrl && (
-                      <a href={currentVideo.downloadUrl} download className="text-white hover:text-blue-400 transition-colors">
+                      <a href={currentVideo.downloadUrl} download className="text-white hover:text-blue-400 transition-colors" aria-label="Download video">
                         <HiOutlineDownload className="w-5 h-5" />
                       </a>
                     )}
@@ -797,14 +856,16 @@ const VideoTutorialsSection1 = ({ config }) => {
                   <div className="flex gap-2">
                     <button
                       onClick={() => toggleBookmark(currentVideo.id)}
-                      className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm flex items-center gap-1"
+                      className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm flex items-center gap-1 hover:bg-gray-600 transition-colors"
+                      aria-label="Bookmark video"
                     >
                       <HiOutlineBookmark className="w-4 h-4" />
                       Bookmark
                     </button>
                     <button
                       onClick={() => shareVideoHandler(currentVideo)}
-                      className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm flex items-center gap-1"
+                      className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm flex items-center gap-1 hover:bg-gray-600 transition-colors"
+                      aria-label="Share video"
                     >
                       <HiOutlineShare className="w-4 h-4" />
                       Share
@@ -821,14 +882,23 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Share Modal */}
+        {/* ==================== SHARE MODAL ==================== */}
         {showShareModal && shareVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowShareModal(false)}>
-            <div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowShareModal(false)}
+            role="dialog"
+            aria-label="Share Video"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-gray-100 dark:bg-gray-700 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-gray-900 dark:text-white">Share Video</h3>
-                  <button onClick={() => setShowShareModal(false)} className="text-gray-500">
+                  <button onClick={() => setShowShareModal(false)} className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-5 h-5" />
                   </button>
                 </div>
@@ -836,10 +906,18 @@ const VideoTutorialsSection1 = ({ config }) => {
               <div className="p-6">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center line-clamp-2">{shareVideo.title}</p>
                 <div className="flex flex-col gap-3">
-                  <button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  <button
+                    onClick={copyLink}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    aria-label="Copy link"
+                  >
                     <HiOutlineLink className="w-4 h-4" />Copy Link
                   </button>
-                  <button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareVideo.title)}&body=${encodeURIComponent(`${shareVideo.title}\n\nWatch here: ${window.location.origin}/tutorials/${shareVideo.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200">
+                  <button
+                    onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareVideo.title)}&body=${encodeURIComponent(`${shareVideo.title}\n\nWatch here: ${window.location.origin}/tutorials/${shareVideo.id}`)}`)}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Share via email"
+                  >
                     <HiOutlineMail className="w-4 h-4" />Share via Email
                   </button>
                 </div>
@@ -848,14 +926,23 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Playlist Modal */}
+        {/* ==================== PLAYLIST MODAL ==================== */}
         {showPlaylistModal && selectedPlaylist && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPlaylistModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPlaylistModal(false)}
+            role="dialog"
+            aria-label="Playlist Details"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-blue-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">{selectedPlaylist.title}</h3>
-                  <button onClick={() => setShowPlaylistModal(false)} className="text-white">
+                  <button onClick={() => setShowPlaylistModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -870,17 +957,23 @@ const VideoTutorialsSection1 = ({ config }) => {
                         setCurrentVideo(video);
                         setShowVideoModal(true);
                         setShowPlaylistModal(false);
+                        setIsPlaying(true);
                       }}
-                      className="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-all"
+                      className="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-all duration-300 group"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCurrentVideo(video)}
                     >
                       <div className="w-12 h-12 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                        <HiOutlinePlay className="w-4 h-4 text-gray-500" />
+                        <HiOutlinePlay className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">{video.title}</p>
-                        <p className="text-xs text-gray-500">{video.duration}</p>
+                        <p className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {video.title}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{video.duration} min</p>
                       </div>
-                      <HiOutlineArrowRight className="w-4 h-4 text-gray-400" />
+                      <HiOutlineArrowRight className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   ))}
                 </div>
@@ -889,8 +982,10 @@ const VideoTutorialsSection1 = ({ config }) => {
                     setCurrentVideo(selectedPlaylist.videos?.[0]);
                     setShowVideoModal(true);
                     setShowPlaylistModal(false);
+                    setIsPlaying(true);
                   }}
-                  className="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg font-semibold"
+                  className="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  aria-label="Start playlist"
                 >
                   Start Playlist
                 </button>
@@ -899,19 +994,19 @@ const VideoTutorialsSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* CTA Section */}
-        <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl p-8 text-white text-center">
+        {/* ==================== CTA SECTION ==================== */}
+        <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-3xl p-8 text-white text-center">
           <HiOutlineAcademicCap className="w-12 h-12 mx-auto mb-4" />
           <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Master the Platform?</h3>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+          <p className="text-blue-100 dark:text-blue-200 mb-6 max-w-2xl mx-auto">
             Subscribe to our YouTube channel for regular tutorials and updates.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Subscribe on YouTube">
               <HiOutlinePlay className="w-5 h-5" />
               Subscribe on YouTube
             </button>
-            <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300">
+            <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300" aria-label="Get notifications">
               <HiOutlineBell className="w-5 h-5" />
               Get Notifications
             </button>
@@ -919,15 +1014,26 @@ const VideoTutorialsSection1 = ({ config }) => {
         </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
@@ -972,6 +1078,9 @@ const VideoTutorialsSection1 = ({ config }) => {
           background: #3B82F6;
           margin-top: -4px;
           cursor: pointer;
+        }
+        input[type="range"]:focus::-webkit-slider-runnable-track {
+          background: #4B5563;
         }
       `}</style>
     </section>
