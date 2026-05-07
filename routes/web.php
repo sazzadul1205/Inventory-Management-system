@@ -40,6 +40,7 @@ Route::controller(FrontEndController::class)->group(function () {
         'trust-signals' => 'trustSignals',
         'newsletter' => 'newsletter',
         'mobile-app' => 'mobileApp',
+        'events',
     ];
 
     foreach ($pages as $uri => $method) {

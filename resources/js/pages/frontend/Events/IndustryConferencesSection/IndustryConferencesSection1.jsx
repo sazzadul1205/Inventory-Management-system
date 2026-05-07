@@ -1,9 +1,27 @@
 // page/frontend/Events/IndustryConferencesSection/IndustryConferencesSection1.jsx
 
-// React
+/**
+ * Industry Conferences Section I - Global Events & Networking Hub
+ *
+ * Unique Design Elements:
+ * - Stats Cards for Event Metrics (Conferences, Countries, Attendees, Speakers)
+ * - Hero Section with Featured Conference Banner and Countdown Timer
+ * - Conference Cards with Interactive Bookmark, Share, and Expandable Details
+ * - Search and Filter System (by region and keywords)
+ * - Tab Navigation for Upcoming, Featured, and Past Events
+ * - Registration Modal with Form Validation
+ * - Share Modal for Easy Event Promotion
+ * - Call-to-Action for Newsletter Subscription
+ * - Animated Gradient Background Orbs (Blue/Purple Theme)
+ * - Fully Responsive Grid and Card Layouts
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineCalendar,
   HiOutlineLocationMarker,
@@ -30,35 +48,35 @@ import {
 import { HiOutlineTrophy, HiOutlineBuildingOffice } from 'react-icons/hi2';
 
 const IndustryConferencesSection1 = ({ config }) => {
-  const [selectedConference, setSelectedConference] = useState(null);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    role: '',
-    ticketType: 'standard',
-    dietary: '',
-    questions: '',
-  });
+  // ==================== STATE MANAGEMENT ====================
   const [errors, setErrors] = useState({});
-  const [activeTab, setActiveTab] = useState('upcoming');
   const [countdowns, setCountdowns] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
-  const [bookmarkedConferences, setBookmarkedConferences] = useState([]);
+  const [activeTab, setActiveTab] = useState('upcoming');
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState('all');
   const [shareConference, setShareConference] = useState(null);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [bookmarkedConferences, setBookmarkedConferences] = useState([]);
+  const [expandedConferenceId, setExpandedConferenceId] = useState(null);
+  const [selectedConferenceDetails, setSelectedConferenceDetails] = useState(null);
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', role: '', ticketType: 'standard', dietary: '', questions: '', });
+
+  // ==================== REFERENCE ====================
   const modalRef = useRef(null);
 
+  // ==================== MEMOIZED DATA ====================
   // Get data from config
   const conferences = useMemo(() => config?.conferences || [], [config?.conferences]);
   const stats = config?.stats || [];
+  const tabs = config?.tabs || [
+    { id: 'upcoming', label: 'Upcoming Conferences', icon: 'calendar' },
+    { id: 'featured', label: 'Featured', icon: 'star' },
+    { id: 'past', label: 'Past Events', icon: 'archive' },
+  ];
   const featuredConferenceId = config?.featuredConferenceId || (conferences[0]?.id);
-
-  // Featured conference
   const featuredConference = conferences.find(c => c.id === featuredConferenceId) || conferences[0];
 
   // Get unique regions from conferences
@@ -67,31 +85,24 @@ const IndustryConferencesSection1 = ({ config }) => {
     return ['all', ...Array.from(reg)];
   }, [conferences]);
 
-  const tabs = config?.tabs || [
-    { id: 'upcoming', label: 'Upcoming Conferences', icon: 'calendar' },
-    { id: 'featured', label: 'Featured', icon: 'star' },
-    { id: 'past', label: 'Past Events', icon: 'archive' },
-  ];
-
-  // Calculate countdown for each conference
+  // ==================== HELPER FUNCTIONS ====================
+  /**
+   * Calculates the countdown timer for a given event date
+   */
   const calculateCountdown = useCallback((dateStr) => {
     if (!dateStr) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-
     const eventDate = new Date(dateStr);
     const now = new Date();
     const diff = eventDate - now;
-
     if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
     return { days, hours, minutes, seconds, expired: false };
   }, []);
 
-  // Update countdowns
+  // Update countdown timers for all conferences
   useEffect(() => {
     const updateCountdowns = () => {
       const newCountdowns = {};
@@ -102,80 +113,120 @@ const IndustryConferencesSection1 = ({ config }) => {
       });
       setCountdowns(newCountdowns);
     };
-
     updateCountdowns();
     const interval = setInterval(updateCountdowns, 1000);
     return () => clearInterval(interval);
   }, [conferences, calculateCountdown]);
 
-  // Load bookmarks from localStorage
+  // Load and Save Bookmarks to localStorage
   useEffect(() => {
     const saved = localStorage.getItem('conferenceBookmarks');
-    if (saved) {
-      setBookmarkedConferences(JSON.parse(saved));
-    }
+    if (saved) setBookmarkedConferences(JSON.parse(saved));
   }, []);
-
-  // Save bookmarks to localStorage
   useEffect(() => {
     localStorage.setItem('conferenceBookmarks', JSON.stringify(bookmarkedConferences));
   }, [bookmarkedConferences]);
 
-  // Filter conferences
-  const now = new Date();
-  const upcomingConferences = conferences.filter((c) => {
-    if (!c.startDate) return false;
-    const conferenceEndDate = c.endDate ? new Date(c.endDate) : new Date(c.startDate);
-    return conferenceEndDate >= now;
-  });
+  /**
+   * Toggle bookmark status for a conference
+   */
+  const toggleBookmark = (conferenceId, e) => {
+    e.stopPropagation();
+    setBookmarkedConferences(prev =>
+      prev.includes(conferenceId) ? prev.filter(id => id !== conferenceId) : [...prev, conferenceId]
+    );
+  };
 
-  const pastConferences = conferences.filter((c) => {
-    if (!c.startDate) return false;
-    const conferenceEndDate = c.endDate ? new Date(c.endDate) : new Date(c.startDate);
-    return conferenceEndDate < now;
-  });
+  /**
+   * Open share modal for a conference
+   */
+  const openShareModal = (conference, e) => {
+    e.stopPropagation();
+    setShareConference(conference);
+    setShowShareModal(true);
+  };
 
-  const featuredConferences = conferences.filter(c => c.isFeatured || c.id === featuredConferenceId);
+  /**
+   * Copy conference link to clipboard
+   */
+  const copyLinkToClipboard = () => {
+    if (shareConference) {
+      navigator.clipboard.writeText(`${window.location.origin}/conferences/${shareConference.id}`);
+      alert('Link copied to clipboard!');
+    }
+  };
 
-  // Filter by search and region
-  const filterConferences = (conferenceList) => {
-    return conferenceList.filter((c) => {
+  /**
+   * Format date range for display
+   */
+  const formatDateRange = (startDate, endDate) => {
+    if (!startDate) return '';
+    const start = new Date(startDate);
+    if (!endDate) return start.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const end = new Date(endDate);
+    if (start.getMonth() === end.getMonth()) {
+      return `${start.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - ${end.getDate()}, ${end.getFullYear()}`;
+    }
+    return `${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+  };
+
+  /**
+   * Get ticket price display string
+   */
+  const getTicketPriceDisplay = (tickets) => {
+    if (!tickets || tickets.length === 0) return 'Free';
+    const prices = tickets.map(t => t.price).filter(p => p > 0);
+    if (prices.length === 0) return 'Free';
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    if (minPrice === maxPrice) return `$${minPrice}`;
+    return `$${minPrice} - $${maxPrice}`;
+  };
+
+  // Filter conferences based on active tab, search query, and selected region
+  const getFilteredConferences = () => {
+    const now = new Date();
+    let filtered = [...conferences];
+
+    // Tab Filtering
+    if (activeTab === 'upcoming') {
+      filtered = filtered.filter((c) => {
+        if (!c.startDate) return false;
+        const conferenceEndDate = c.endDate ? new Date(c.endDate) : new Date(c.startDate);
+        return conferenceEndDate >= now;
+      });
+    } else if (activeTab === 'past') {
+      filtered = filtered.filter((c) => {
+        if (!c.startDate) return false;
+        const conferenceEndDate = c.endDate ? new Date(c.endDate) : new Date(c.startDate);
+        return conferenceEndDate < now;
+      });
+    } else if (activeTab === 'featured') {
+      filtered = filtered.filter(c => c.isFeatured || c.id === featuredConferenceId);
+    }
+
+    // Search and Region Filtering
+    return filtered.filter((c) => {
       const matchesSearch = searchQuery === '' ||
         c.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         c.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         c.location?.city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.location?.country?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.organizer?.name?.toLowerCase().includes(searchQuery.toLowerCase());
-
+        c.location?.country?.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesRegion = selectedRegion === 'all' || c.region === selectedRegion;
-
       return matchesSearch && matchesRegion;
     });
   };
 
-  let displayedConferences = [];
-  if (activeTab === 'upcoming') {
-    displayedConferences = filterConferences(upcomingConferences);
-  } else if (activeTab === 'past') {
-    displayedConferences = filterConferences(pastConferences);
-  } else {
-    displayedConferences = filterConferences(featuredConferences);
-  }
+  const displayedConferences = getFilteredConferences();
 
-  // Handle form input change
+  // ==================== FORM HANDLERS ====================
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  // Handle registration
-  const handleRegister = (e) => {
+  const handleRegisterSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
     if (!formData.name) newErrors.name = 'Name is required';
@@ -192,59 +243,8 @@ const IndustryConferencesSection1 = ({ config }) => {
     setTimeout(() => {
       setFormSubmitted(false);
       setShowRegisterModal(false);
-      setFormData({
-        name: '', email: '', company: '', role: '', ticketType: 'standard',
-        dietary: '', questions: ''
-      });
+      setFormData({ name: '', email: '', company: '', role: '', ticketType: 'standard', dietary: '', questions: '' });
     }, 3000);
-  };
-
-  // Toggle bookmark
-  const toggleBookmark = (conferenceId, e) => {
-    e.stopPropagation();
-    if (bookmarkedConferences.includes(conferenceId)) {
-      setBookmarkedConferences(bookmarkedConferences.filter(id => id !== conferenceId));
-    } else {
-      setBookmarkedConferences([...bookmarkedConferences, conferenceId]);
-    }
-  };
-
-  // Share conference
-  const shareConferenceHandler = (conference, e) => {
-    e.stopPropagation();
-    setShareConference(conference);
-    setShowShareModal(true);
-  };
-
-  // Copy link to clipboard
-  const copyLink = () => {
-    if (shareConference) {
-      navigator.clipboard.writeText(`${window.location.origin}/conferences/${shareConference.id}`);
-      alert('Link copied to clipboard!');
-    }
-  };
-
-  // Format date range
-  const formatDateRange = (startDate, endDate) => {
-    if (!startDate) return '';
-    const start = new Date(startDate);
-    if (!endDate) return start.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    const end = new Date(endDate);
-    if (start.getMonth() === end.getMonth()) {
-      return `${start.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - ${end.getDate()}, ${end.getFullYear()}`;
-    }
-    return `${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
-  };
-
-  // Get ticket price display
-  const getTicketPrice = (tickets) => {
-    if (!tickets || tickets.length === 0) return 'Free';
-    const prices = tickets.map(t => t.price).filter(p => p > 0);
-    if (prices.length === 0) return 'Free';
-    const minPrice = Math.min(...prices);
-    const maxPrice = Math.max(...prices);
-    if (minPrice === maxPrice) return `$${minPrice}`;
-    return `$${minPrice} - $${maxPrice}`;
   };
 
   return (
@@ -253,13 +253,13 @@ const IndustryConferencesSection1 = ({ config }) => {
       role="region"
       aria-label="Industry Conferences Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineBuildingOffice className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -277,16 +277,16 @@ const IndustryConferencesSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Row */}
+        {/* ==================== STATS ROW ==================== */}
         {stats.length > 0 && (
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-6 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  {stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600" /> :
-                    stat.icon === 'calendar' ? <HiOutlineCalendar className="w-5 h-5 text-blue-600" /> :
-                      stat.icon === 'globe' ? <HiOutlineGlobe className="w-5 h-5 text-blue-600" /> :
-                        <HiOutlineBuildingOffice className="w-5 h-5 text-blue-600" />}
+                  {stat.icon === 'users' ? <HiOutlineUsers className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                    stat.icon === 'calendar' ? <HiOutlineCalendar className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'globe' ? <HiOutlineGlobe className="w-5 h-5 text-blue-600 dark:text-blue-400" /> :
+                        <HiOutlineBuildingOffice className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
@@ -297,7 +297,7 @@ const IndustryConferencesSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Featured Conference Banner */}
+        {/* ==================== FEATURED CONFERENCE BANNER ==================== */}
         {featuredConference && activeTab === 'upcoming' && (
           <div className="relative mb-12 rounded-3xl overflow-hidden bg-linear-to-r from-blue-600 to-purple-600 shadow-xl">
             <div className="absolute inset-0 opacity-10">
@@ -335,7 +335,7 @@ const IndustryConferencesSection1 = ({ config }) => {
               <div className="flex flex-wrap gap-4">
                 <button
                   onClick={() => {
-                    setSelectedConference(featuredConference);
+                    setSelectedConferenceDetails(featuredConference);
                     setShowRegisterModal(true);
                   }}
                   className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -356,7 +356,7 @@ const IndustryConferencesSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Tabs */}
+        {/* ==================== QUICK NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -364,8 +364,9 @@ const IndustryConferencesSection1 = ({ config }) => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'calendar' ? <HiOutlineCalendar className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -375,7 +376,7 @@ const IndustryConferencesSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Search and Filters */}
+        {/* ==================== SEARCH AND FILTERS ==================== */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
@@ -387,13 +388,15 @@ const IndustryConferencesSection1 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search conferences by name, location, or organizer..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                aria-label="Search conferences"
               />
             </div>
 
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+              aria-label="Toggle filters"
             >
               <HiOutlineFilter className="w-5 h-5" />
               Filters
@@ -402,14 +405,15 @@ const IndustryConferencesSection1 = ({ config }) => {
           </div>
 
           {showFilters && (
-            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 animate-fadeIn">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Region</label>
                   <select
                     value={selectedRegion}
                     onChange={(e) => setSelectedRegion(e.target.value)}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Filter by region"
                   >
                     {regions.map((region) => (
                       <option key={region} value={region}>
@@ -423,17 +427,15 @@ const IndustryConferencesSection1 = ({ config }) => {
           )}
         </div>
 
-        {/* Conferences Grid */}
+        {/* ==================== CONFERENCES GRID ==================== */}
         {displayedConferences.length === 0 ? (
           <div className="text-center py-12">
             <HiOutlineBuildingOffice className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
             <p className="text-gray-500 dark:text-gray-400">No conferences found matching your criteria.</p>
             <button
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedRegion('all');
-              }}
-              className="mt-4 text-blue-600 hover:underline"
+              onClick={() => { setSearchQuery(''); setSelectedRegion('all'); }}
+              className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+              aria-label="Clear filters"
             >
               Clear filters
             </button>
@@ -444,19 +446,21 @@ const IndustryConferencesSection1 = ({ config }) => {
               const countdown = countdowns[conference.id];
               const isUpcoming = activeTab === 'upcoming' && countdown && !countdown.expired;
               const isBookmarked = bookmarkedConferences.includes(conference.id);
+              const isExpanded = expandedConferenceId === conference.id;
 
               return (
                 <div
                   key={conference.id}
                   className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700"
                 >
-                  {/* Image */}
+                  {/* Card Image */}
                   {conference.image && (
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={conference.image}
                         alt={conference.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                       {conference.type && (
                         <span className="absolute top-4 left-4 text-xs bg-blue-600 text-white px-2 py-1 rounded-full">
@@ -469,17 +473,20 @@ const IndustryConferencesSection1 = ({ config }) => {
                         <button
                           onClick={(e) => toggleBookmark(conference.id, e)}
                           className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                          aria-label={isBookmarked ? "Remove bookmark" : "Bookmark conference"}
                         >
                           <HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-400' : ''}`} />
                         </button>
                         <button
-                          onClick={(e) => shareConferenceHandler(conference, e)}
+                          onClick={(e) => openShareModal(conference, e)}
                           className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                          aria-label="Share conference"
                         >
                           <HiOutlineShare className="w-4 h-4" />
                         </button>
                       </div>
 
+                      {/* Countdown Timer */}
                       {isUpcoming && countdown && (
                         <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-center">
                           <div className="flex gap-2 text-xs">
@@ -498,7 +505,7 @@ const IndustryConferencesSection1 = ({ config }) => {
                   )}
 
                   <div className="p-6">
-                    {/* Title */}
+                    {/* Conference Title */}
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
                       {conference.title}
                     </h3>
@@ -508,7 +515,7 @@ const IndustryConferencesSection1 = ({ config }) => {
                       {conference.description}
                     </p>
 
-                    {/* Date & Location */}
+                    {/* Date and Location */}
                     <div className="space-y-2 mb-4 text-sm text-gray-500 dark:text-gray-400">
                       {conference.startDate && (
                         <div className="flex items-center gap-2">
@@ -527,19 +534,19 @@ const IndustryConferencesSection1 = ({ config }) => {
                     {/* Key Metrics */}
                     <div className="flex flex-wrap gap-3 mb-4">
                       {conference.expectedAttendees && (
-                        <div className="flex items-center gap-1 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                           <HiOutlineUserGroup className="w-3 h-3" />
                           <span>{conference.expectedAttendees.toLocaleString()}+ Attendees</span>
                         </div>
                       )}
                       {conference.speakers && conference.speakers.length > 0 && (
-                        <div className="flex items-center gap-1 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                           <HiOutlineMicrophone className="w-3 h-3" />
                           <span>{conference.speakers.length}+ Speakers</span>
                         </div>
                       )}
                       {conference.exhibitors && conference.exhibitors > 0 && (
-                        <div className="flex items-center gap-1 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                           <HiOutlineBuildingOffice className="w-3 h-3" />
                           <span>{conference.exhibitors}+ Exhibitors</span>
                         </div>
@@ -549,7 +556,7 @@ const IndustryConferencesSection1 = ({ config }) => {
                     {/* Ticket Price */}
                     <div className="mb-4">
                       <span className="text-lg font-bold text-blue-600 dark:text-blue-400">
-                        {getTicketPrice(conference.tickets)}
+                        {getTicketPriceDisplay(conference.tickets)}
                       </span>
                       {conference.tickets && conference.tickets.length > 0 && conference.tickets[0].price > 0 && (
                         <span className="text-xs text-gray-500 ml-1">starting from</span>
@@ -560,10 +567,11 @@ const IndustryConferencesSection1 = ({ config }) => {
                     <div className="flex flex-wrap gap-3">
                       <button
                         onClick={() => {
-                          setSelectedConference(conference);
+                          setSelectedConferenceDetails(conference);
                           setShowRegisterModal(true);
                         }}
                         className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                        aria-label="Register for conference"
                       >
                         <HiOutlineTicket className="w-4 h-4" />
                         {activeTab === 'upcoming' ? 'Register' : 'View Details'}
@@ -573,36 +581,37 @@ const IndustryConferencesSection1 = ({ config }) => {
                         <button
                           onClick={() => window.open(conference.website, '_blank')}
                           className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl font-semibold transition-all duration-300 text-sm"
+                          aria-label="Visit conference website"
                         >
                           <HiOutlineExternalLink className="w-4 h-4" />
                         </button>
                       )}
 
                       <button
-                        onClick={() => setSelectedConference(selectedConference === conference.id ? null : conference.id)}
+                        onClick={() => setExpandedConferenceId(isExpanded ? null : conference.id)}
                         className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-semibold"
+                        aria-label={isExpanded ? "Show less details" : "Show more details"}
                       >
-                        {selectedConference === conference.id ? 'Less' : 'More'}
+                        {isExpanded ? 'Less' : 'More'}
                       </button>
                     </div>
 
                     {/* Expanded Details */}
-                    {selectedConference === conference.id && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                    {isExpanded && (
+                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
                         {conference.agenda && conference.agenda.length > 0 && (
                           <div className="mb-3">
                             <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Conference Highlights:</p>
                             <ul className="space-y-1">
                               {conference.agenda.slice(0, 3).map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
-                                  <HiOutlineCheckCircle className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
+                                  <HiOutlineCheckCircle className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0" />
                                   <span>{item}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
                         )}
-
                         {conference.organizer && (
                           <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
                             <p className="text-xs text-gray-500">
@@ -619,11 +628,14 @@ const IndustryConferencesSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Registration Modal */}
-        {showRegisterModal && selectedConference && (
+        {/* ==================== REGISTRATION MODAL ==================== */}
+        {showRegisterModal && selectedConferenceDetails && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
             onClick={() => setShowRegisterModal(false)}
+            role="dialog"
+            aria-label="Conference Registration"
+            aria-modal="true"
           >
             <div
               className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
@@ -634,9 +646,9 @@ const IndustryConferencesSection1 = ({ config }) => {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-white font-bold text-lg">Register for Conference</h3>
-                    <p className="text-blue-100 text-xs mt-1 line-clamp-1">{selectedConference.title}</p>
+                    <p className="text-blue-100 text-xs mt-1 line-clamp-1">{selectedConferenceDetails.title}</p>
                   </div>
-                  <button onClick={() => setShowRegisterModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowRegisterModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -644,9 +656,9 @@ const IndustryConferencesSection1 = ({ config }) => {
 
               <div className="p-6">
                 {formSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <HiOutlineCheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Registration Received!</h4>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -657,12 +669,12 @@ const IndustryConferencesSection1 = ({ config }) => {
                   <>
                     <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        <span className="font-semibold">{formatDateRange(selectedConference.startDate, selectedConference.endDate)}</span>
-                        {selectedConference.location && <> • {selectedConference.location.city}, {selectedConference.location.country}</>}
+                        <span className="font-semibold">{formatDateRange(selectedConferenceDetails.startDate, selectedConferenceDetails.endDate)}</span>
+                        {selectedConferenceDetails.location && <> • {selectedConferenceDetails.location.city}, {selectedConferenceDetails.location.country}</>}
                       </p>
                     </div>
 
-                    <form onSubmit={handleRegister} className="space-y-4">
+                    <form onSubmit={handleRegisterSubmit} className="space-y-4">
                       <div>
                         <input
                           type="text"
@@ -670,8 +682,9 @@ const IndustryConferencesSection1 = ({ config }) => {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Full name *"
-                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                             }`}
+                          aria-label="Your full name"
                         />
                         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                       </div>
@@ -683,8 +696,9 @@ const IndustryConferencesSection1 = ({ config }) => {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="Email address *"
-                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                             }`}
+                          aria-label="Your email address"
                         />
                         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                       </div>
@@ -696,8 +710,9 @@ const IndustryConferencesSection1 = ({ config }) => {
                           value={formData.company}
                           onChange={handleInputChange}
                           placeholder="Company *"
-                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.company ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.company ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                             }`}
+                          aria-label="Your company name"
                         />
                         {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}
                       </div>
@@ -709,15 +724,16 @@ const IndustryConferencesSection1 = ({ config }) => {
                           value={formData.role}
                           onChange={handleInputChange}
                           placeholder="Job title"
-                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                          aria-label="Your job title"
                         />
 
-                        {/* Ticket Type Selection */}
                         <select
                           name="ticketType"
                           value={formData.ticketType}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                          aria-label="Select ticket type"
                         >
                           <option value="standard">Standard Ticket</option>
                           <option value="vip">VIP Ticket</option>
@@ -729,7 +745,8 @@ const IndustryConferencesSection1 = ({ config }) => {
                         name="dietary"
                         value={formData.dietary}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                        aria-label="Dietary preferences"
                       >
                         <option value="">Dietary preferences (optional)</option>
                         <option value="none">None</option>
@@ -746,19 +763,21 @@ const IndustryConferencesSection1 = ({ config }) => {
                         onChange={handleInputChange}
                         placeholder="Any questions or special requests?"
                         rows="2"
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 resize-none"
+                        aria-label="Any questions or special requests"
                       />
 
                       <button
                         type="submit"
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                        aria-label="Submit registration request"
                       >
                         Request Registration
                         <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
                       </button>
                     </form>
 
-                    <p className="text-center text-xs text-gray-500 mt-4">
+                    <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
                       By registering, you agree to receive conference updates and related information.
                     </p>
                   </>
@@ -768,11 +787,14 @@ const IndustryConferencesSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Share Modal */}
+        {/* ==================== SHARE MODAL ==================== */}
         {showShareModal && shareConference && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
             onClick={() => setShowShareModal(false)}
+            role="dialog"
+            aria-label="Share Conference"
+            aria-modal="true"
           >
             <div
               className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
@@ -781,7 +803,7 @@ const IndustryConferencesSection1 = ({ config }) => {
               <div className="bg-gray-100 dark:bg-gray-700 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-gray-900 dark:text-white">Share Conference</h3>
-                  <button onClick={() => setShowShareModal(false)} className="text-gray-500 hover:text-gray-700">
+                  <button onClick={() => setShowShareModal(false)} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-5 h-5" />
                   </button>
                 </div>
@@ -792,8 +814,9 @@ const IndustryConferencesSection1 = ({ config }) => {
                 </p>
                 <div className="flex flex-col gap-3">
                   <button
-                    onClick={copyLink}
+                    onClick={copyLinkToClipboard}
                     className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    aria-label="Copy conference link"
                   >
                     <HiOutlineLink className="w-4 h-4" />
                     Copy Link
@@ -802,7 +825,8 @@ const IndustryConferencesSection1 = ({ config }) => {
                     onClick={() => {
                       window.open(`mailto:?subject=${encodeURIComponent(shareConference.title)}&body=${encodeURIComponent(`${shareConference.title}\n${shareConference.description}\n\n${shareConference.location?.city}, ${shareConference.location?.country}\n\n${window.location.origin}/conferences/${shareConference.id}`)}`);
                     }}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 transition-colors"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Share via email"
                   >
                     <HiOutlineMail className="w-4 h-4" />
                     Share via Email
@@ -813,7 +837,7 @@ const IndustryConferencesSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* ==================== CALL TO ACTION SECTION ==================== */}
         <div className="mt-12 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-3xl p-8 text-white text-center">
           <HiOutlineBell className="w-12 h-12 mx-auto mb-4" />
           <h3 className="text-2xl md:text-3xl font-bold mb-4">Don't Miss Out on Industry Events</h3>
@@ -821,7 +845,7 @@ const IndustryConferencesSection1 = ({ config }) => {
             Subscribe to our newsletter and get notified about upcoming conferences, early bird discounts, and exclusive networking opportunities.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Subscribe to updates">
               <HiOutlineMail className="w-5 h-5" />
               Subscribe to Updates
             </button>
@@ -829,15 +853,26 @@ const IndustryConferencesSection1 = ({ config }) => {
         </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;

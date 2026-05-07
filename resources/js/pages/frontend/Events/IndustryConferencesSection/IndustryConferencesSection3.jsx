@@ -1,9 +1,34 @@
 // page/frontend/Events/IndustryConferencesSection/IndustryConferencesSection3.jsx
 
-// React
+/**
+ * Industry Conferences Section III - Full Events Hub with Virtual Lobby & Multi-Step Registration
+ *
+ * Unique Design Elements:
+ * - Stats Cards for Event Metrics (Conferences, Countries, Attendees, Speakers)
+ * - Hero Section with Animated Pulse Badge
+ * - Featured Conference Banner with Virtual Event Badge
+ * - Live Stream Indicator with Floating Button
+ * - Multi-step Registration Form (Personal Info + Preferences)
+ * - Virtual Lobby Modal with Live Video Player
+ * - Networking Modal with Attendee Connections
+ * - Session Selection with Checkbox List
+ * - Certificate Download Modal
+ * - Conference Comparison Feature
+ * - Speaker Profiles Modal with Bio and Session Info
+ * - Agenda Modal with Session Timelines
+ * - Bookmark and Share Functionality
+ * - Grid/List View Toggle
+ * - Advanced Filters by Region and Type
+ * - Circuit Board Background Pattern
+ * - Fully Responsive Layout
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineCalendar,
   HiOutlineClock,
@@ -33,66 +58,54 @@ import {
   HiOutlineDocumentText,
   HiOutlineDesktopComputer,
   HiOutlineBadgeCheck,
+  HiArchive,
 } from 'react-icons/hi';
 import { HiOutlineUser, HiOutlineTrophy, HiOutlineBuildingOffice } from 'react-icons/hi2';
 
 const IndustryConferencesSection3 = ({ config }) => {
-  const [selectedConference, setSelectedConference] = useState(null);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [registrationStep, setRegistrationStep] = useState(1);
+  // ==================== STATE MANAGEMENT ====================
+  const [errors, setErrors] = useState({});
+  const [countdowns, setCountdowns] = useState({});
+  const [viewMode, setViewMode] = useState('grid');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [compareList, setCompareList] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
+  const [activeTab, setActiveTab] = useState('upcoming');
+  const [selectedType, setSelectedType] = useState('all');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [registrationId, setRegistrationId] = useState(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    role: '',
-    phone: '',
-    country: '',
-    ticketType: 'standard',
-    dietary: '',
-    questions: '',
-    newsletter: false,
-    terms: false,
-    sessions: [],
-  });
-  const [errors, setErrors] = useState({});
-  const [activeTab, setActiveTab] = useState('upcoming');
-  const [countdowns, setCountdowns] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
-  const [selectedType, setSelectedType] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
-  const [bookmarkedConferences, setBookmarkedConferences] = useState([]);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [registrationStep, setRegistrationStep] = useState(1);
   const [shareConference, setShareConference] = useState(null);
-  const [viewMode, setViewMode] = useState('grid');
+  const [selectedSpeaker, setSelectedSpeaker] = useState(null);
+  const [selectedSessions, setSelectedSessions] = useState([]);
   const [showAgendaModal, setShowAgendaModal] = useState(false);
   const [agendaConference, setAgendaConference] = useState(null);
-  const [selectedSpeaker, setSelectedSpeaker] = useState(null);
+  const [liveStreamActive, setLiveStreamActive] = useState(false);
+  const [showVirtualLobby, setShowVirtualLobby] = useState(false);
   const [showSpeakerModal, setShowSpeakerModal] = useState(false);
-  const [compareList, setCompareList] = useState([]);
+  const [virtualConference, setVirtualConference] = useState(null);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [selectedConference, setSelectedConference] = useState(null);
   const [showNetworkingModal, setShowNetworkingModal] = useState(false);
   const [networkingConference, setNetworkingConference] = useState(null);
-  const [selectedSessions, setSelectedSessions] = useState([]);
-  const [showVirtualLobby, setShowVirtualLobby] = useState(false);
-  const [virtualConference, setVirtualConference] = useState(null);
+  const [activeLiveConference, setActiveLiveConference] = useState(null);
+  const [bookmarkedConferences, setBookmarkedConferences] = useState([]);
   const [showCertificateModal, setShowCertificateModal] = useState(false);
   const [certificateConference, setCertificateConference] = useState(null);
-  const [liveStreamActive, setLiveStreamActive] = useState(false);
-  const [activeLiveConference, setActiveLiveConference] = useState(null);
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', role: '', phone: '', country: '', ticketType: 'standard', dietary: '', questions: '', newsletter: false, terms: false, sessions: [], });
+
+  // ===================== REFS ====================
   const modalRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Get data from config
+  // ==================== MEMOIZED DATA ====================
   const conferences = useMemo(() => config?.conferences || [], [config?.conferences]);
   const stats = config?.stats || [];
   const featuredConferenceId = config?.featuredConferenceId || (conferences[0]?.id);
-
-  // Featured conference
   const featuredConference = conferences.find(c => c.id === featuredConferenceId) || conferences[0];
 
-  // Get unique regions and types from conferences
   const regions = useMemo(() => {
     const reg = new Set(conferences.map(c => c.region).filter(Boolean));
     return ['all', ...Array.from(reg)];
@@ -110,21 +123,23 @@ const IndustryConferencesSection3 = ({ config }) => {
     { id: 'past', label: 'Past Events', icon: 'archive' },
   ];
 
-  // Calculate countdown for each conference
+  const countries = [
+    'United States', 'Canada', 'United Kingdom', 'Australia', 'Germany',
+    'France', 'Japan', 'China', 'India', 'Brazil', 'Mexico', 'Spain',
+    'Italy', 'Netherlands', 'Sweden', 'Norway', 'Denmark', 'Singapore'
+  ];
+
+  // ==================== HELPER FUNCTIONS ====================
   const calculateCountdown = useCallback((dateStr) => {
     if (!dateStr) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-
     const eventDate = new Date(dateStr);
     const now = new Date();
     const diff = eventDate - now;
-
     if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
     return { days, hours, minutes, seconds, expired: false };
   }, []);
 
@@ -139,7 +154,6 @@ const IndustryConferencesSection3 = ({ config }) => {
       });
       setCountdowns(newCountdowns);
     };
-
     updateCountdowns();
     const interval = setInterval(updateCountdowns, 1000);
     return () => clearInterval(interval);
@@ -163,10 +177,10 @@ const IndustryConferencesSection3 = ({ config }) => {
     return () => clearInterval(interval);
   }, [conferences]);
 
-  // Load bookmarks from localStorage
+  // Load bookmarks and compare list from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('conferenceBookmarks');
-    if (saved) setBookmarkedConferences(JSON.parse(saved));
+    const savedBookmarks = localStorage.getItem('conferenceBookmarks');
+    if (savedBookmarks) setBookmarkedConferences(JSON.parse(savedBookmarks));
     const savedCompare = localStorage.getItem('conferenceCompare');
     if (savedCompare) setCompareList(JSON.parse(savedCompare));
   }, []);
@@ -203,10 +217,8 @@ const IndustryConferencesSection3 = ({ config }) => {
         c.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         c.location?.city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         c.location?.country?.toLowerCase().includes(searchQuery.toLowerCase());
-
       const matchesRegion = selectedRegion === 'all' || c.region === selectedRegion;
       const matchesType = selectedType === 'all' || c.type === selectedType;
-
       return matchesSearch && matchesRegion && matchesType;
     });
   };
@@ -222,7 +234,7 @@ const IndustryConferencesSection3 = ({ config }) => {
     displayedConferences = filterConferences(virtualConferences);
   }
 
-  // Handle form input change
+  // ==================== FORM HANDLERS ====================
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -232,26 +244,20 @@ const IndustryConferencesSection3 = ({ config }) => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  // Handle session selection
   const handleSessionToggle = (sessionId) => {
     setSelectedSessions(prev =>
-      prev.includes(sessionId)
-        ? prev.filter(id => id !== sessionId)
-        : [...prev, sessionId]
+      prev.includes(sessionId) ? prev.filter(id => id !== sessionId) : [...prev, sessionId]
     );
   };
 
-  // Handle multi-step registration
   const handleNextStep = (e) => {
     e.preventDefault();
-
     if (registrationStep === 1) {
       const newErrors = {};
       if (!formData.name) newErrors.name = 'Name is required';
       if (!formData.email) newErrors.email = 'Email is required';
       if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid email is required';
       if (!formData.company) newErrors.company = 'Company is required';
-
       if (Object.keys(newErrors).length > 0) {
         setErrors(newErrors);
         return;
@@ -265,7 +271,6 @@ const IndustryConferencesSection3 = ({ config }) => {
       const newRegistrationId = `CONF-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
       setRegistrationId(newRegistrationId);
       setFormSubmitted(true);
-
       setTimeout(() => {
         setFormSubmitted(false);
         setShowRegisterModal(false);
@@ -284,21 +289,18 @@ const IndustryConferencesSection3 = ({ config }) => {
     setErrors({});
   };
 
-  // Toggle bookmark
+  // ==================== UI HANDLERS ====================
   const toggleBookmark = (conferenceId, e) => {
     e.stopPropagation();
-    if (bookmarkedConferences.includes(conferenceId)) {
-      setBookmarkedConferences(bookmarkedConferences.filter(id => id !== conferenceId));
-    } else {
-      setBookmarkedConferences([...bookmarkedConferences, conferenceId]);
-    }
+    setBookmarkedConferences(prev =>
+      prev.includes(conferenceId) ? prev.filter(id => id !== conferenceId) : [...prev, conferenceId]
+    );
   };
 
-  // Toggle compare
   const toggleCompare = (conferenceId, e) => {
     e.stopPropagation();
     if (compareList.includes(conferenceId)) {
-      setCompareList(compareList.filter(id => id !== conferenceId));
+      setCompareList(prev => prev.filter(id => id !== conferenceId));
     } else if (compareList.length < 4) {
       setCompareList([...compareList, conferenceId]);
     } else {
@@ -306,7 +308,6 @@ const IndustryConferencesSection3 = ({ config }) => {
     }
   };
 
-  // Share conference
   const shareConferenceHandler = (conference, e) => {
     e.stopPropagation();
     setShareConference(conference);
@@ -320,7 +321,6 @@ const IndustryConferencesSection3 = ({ config }) => {
     }
   };
 
-  // Format date range
   const formatDateRange = (startDate, endDate) => {
     if (!startDate) return '';
     const start = new Date(startDate);
@@ -348,14 +348,6 @@ const IndustryConferencesSection3 = ({ config }) => {
     return earlyBird ? earlyBird.price : null;
   };
 
-  // Countries list
-  const countries = [
-    'United States', 'Canada', 'United Kingdom', 'Australia', 'Germany',
-    'France', 'Japan', 'China', 'India', 'Brazil', 'Mexico', 'Spain',
-    'Italy', 'Netherlands', 'Sweden', 'Norway', 'Denmark', 'Singapore'
-  ];
-
-  // Download certificate
   const downloadCertificate = () => {
     alert('Certificate download started!');
     setShowCertificateModal(false);
@@ -367,8 +359,8 @@ const IndustryConferencesSection3 = ({ config }) => {
       role="region"
       aria-label="Industry Conferences Hub"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+      {/* ==================== BACKGROUND PATTERN - CIRCUIT BOARD ==================== */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="circuit-pattern-conf" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -381,12 +373,13 @@ const IndustryConferencesSection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* Live Stream Indicator */}
+      {/* ==================== LIVE STREAM INDICATOR ==================== */}
       {liveStreamActive && activeLiveConference && (
         <div className="fixed bottom-4 right-4 z-50 animate-bounce">
           <button
             onClick={() => setShowVirtualLobby(true)}
-            className="flex items-center gap-2 bg-red-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-red-700 transition-all"
+            className="flex items-center gap-2 bg-red-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-red-700 transition-all duration-300"
+            aria-label="Join live stream"
           >
             <div className="w-3 h-3 bg-red-300 rounded-full animate-pulse" />
             <HiOutlineVideoCamera className="w-5 h-5" />
@@ -396,7 +389,7 @@ const IndustryConferencesSection3 = ({ config }) => {
       )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* ==================== HERO SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineBuildingOffice className="w-4 h-4" />
@@ -417,10 +410,10 @@ const IndustryConferencesSection3 = ({ config }) => {
               {stats.map((stat, idx) => (
                 <div key={idx} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl px-5 py-2 shadow-sm border border-gray-200 dark:border-gray-700">
                   <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    {stat.icon === 'users' ? <HiOutlineUsers className="w-4 h-4 text-blue-600" /> :
-                      stat.icon === 'calendar' ? <HiOutlineCalendar className="w-4 h-4 text-blue-600" /> :
-                        stat.icon === 'globe' ? <HiOutlineGlobe className="w-4 h-4 text-blue-600" /> :
-                          <HiOutlineBuildingOffice className="w-4 h-4 text-blue-600" />}
+                    {stat.icon === 'users' ? <HiOutlineUsers className="w-4 h-4 text-blue-600 dark:text-blue-400" /> :
+                      stat.icon === 'calendar' ? <HiOutlineCalendar className="w-4 h-4 text-blue-600 dark:text-blue-400" /> :
+                        stat.icon === 'globe' ? <HiOutlineGlobe className="w-4 h-4 text-blue-600 dark:text-blue-400" /> :
+                          <HiOutlineBuildingOffice className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                   </div>
                   <div className="text-left">
                     <div className="text-xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
@@ -432,10 +425,12 @@ const IndustryConferencesSection3 = ({ config }) => {
           )}
         </div>
 
-        {/* Featured Conference Banner with Live Stream Option */}
+        {/* ==================== FEATURED CONFERENCE BANNER ==================== */}
         {featuredConference && activeTab === 'upcoming' && (
           <div className="relative mb-12 rounded-3xl overflow-hidden bg-linear-to-r from-blue-600 to-purple-600 shadow-xl">
-            <div className="absolute inset-0 opacity-10"><div className="absolute inset-0 bg-grid-white" /></div>
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-grid-white" />
+            </div>
             <div className="relative p-8 md:p-12 text-white">
               <div className="flex items-center gap-2 mb-4">
                 <HiOutlineTrophy className="w-5 h-5 text-yellow-300" />
@@ -460,15 +455,27 @@ const IndustryConferencesSection3 = ({ config }) => {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <button onClick={() => { setSelectedConference(featuredConference); setShowRegisterModal(true); setRegistrationStep(1); }} className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                <button
+                  onClick={() => { setSelectedConference(featuredConference); setShowRegisterModal(true); setRegistrationStep(1); }}
+                  className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  aria-label="Register for conference"
+                >
                   <HiOutlineTicket className="w-5 h-5" />Register Now<HiOutlineArrowRight className="w-4 h-4" />
                 </button>
                 {featuredConference.isVirtual && featuredConference.liveStreamUrl && (
-                  <button onClick={() => { setVirtualConference(featuredConference); setShowVirtualLobby(true); }} className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all">
+                  <button
+                    onClick={() => { setVirtualConference(featuredConference); setShowVirtualLobby(true); }}
+                    className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
+                    aria-label="Join virtual lobby"
+                  >
                     <HiOutlineVideoCamera className="w-5 h-5" />Join Virtual Lobby
                   </button>
                 )}
-                <button onClick={() => { setAgendaConference(featuredConference); setShowAgendaModal(true); }} className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all">
+                <button
+                  onClick={() => { setAgendaConference(featuredConference); setShowAgendaModal(true); }}
+                  className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300"
+                  aria-label="View agenda"
+                >
                   <HiOutlineDocumentText className="w-5 h-5" />View Agenda
                 </button>
               </div>
@@ -476,46 +483,80 @@ const IndustryConferencesSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Tabs */}
+        {/* ==================== QUICK NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
-            <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}>
-              {tab.icon === 'calendar' ? <HiOutlineCalendar className="w-4 h-4" /> : tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> : tab.icon === 'desktop' ? <HiOutlineDesktopComputer className="w-4 h-4" /> : <HiOutlineBuildingOffice className="w-4 h-4" />}
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              aria-label={`Switch to ${tab.label} tab`}
+            >
+              {tab.icon === 'calendar' ? <HiOutlineCalendar className="w-4 h-4" /> :
+                tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
+                  tab.icon === 'desktop' ? <HiOutlineDesktopComputer className="w-4 h-4" /> :
+                    <HiArchive className="w-4 h-4" />}
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Search and Filters */}
-        {activeTab !== 'compare' && (
-          <div className="mb-8">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="relative flex-1">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><HiOutlineSearch className="w-5 h-5 text-gray-400" /></div>
-                <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search conferences by name, location..." className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              </div>
-              <button onClick={() => setShowFilters(!showFilters)} className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition-all">
-                <HiOutlineFilter className="w-5 h-5" />Filters {showFilters ? <HiOutlineChevronUp className="w-4 h-4" /> : <HiOutlineChevronDown className="w-4 h-4" />}
-              </button>
-              <div className="flex bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-1">
-                <button onClick={() => setViewMode('grid')} className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`}><HiOutlineViewGrid className="w-5 h-5" /></button>
-                <button onClick={() => setViewMode('list')} className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`}><HiOutlineViewList className="w-5 h-5" /></button>
-              </div>
+        {/* ==================== SEARCH AND FILTERS ==================== */}
+        <div className="mb-8">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="relative flex-1">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><HiOutlineSearch className="w-5 h-5 text-gray-400" /></div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search conferences by name, location..."
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                aria-label="Search conferences"
+              />
             </div>
-            {showFilters && (
-              <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Region</label><select value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)} className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">{regions.map(r => <option key={r} value={r}>{r === 'all' ? 'All Regions' : r}</option>)}</select></div>
-                  <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Conference Type</label><select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">{conferenceTypes.map(t => <option key={t} value={t}>{t === 'all' ? 'All Types' : t}</option>)}</select></div>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+              aria-label="Toggle filters"
+            >
+              <HiOutlineFilter className="w-5 h-5" />Filters {showFilters ? <HiOutlineChevronUp className="w-4 h-4" /> : <HiOutlineChevronDown className="w-4 h-4" />}
+            </button>
+            <div className="flex bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-1">
+              <button onClick={() => setViewMode('grid')} className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'grid' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`} aria-label="Grid view"><HiOutlineViewGrid className="w-5 h-5" /></button>
+              <button onClick={() => setViewMode('list')} className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'list' ? 'bg-gray-100 dark:bg-gray-700 shadow-md' : ''}`} aria-label="List view"><HiOutlineViewList className="w-5 h-5" /></button>
+            </div>
+          </div>
+          {showFilters && (
+            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 animate-fadeIn">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Region</label>
+                  <select value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)} className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white" aria-label="Filter by region">
+                    {regions.map(r => <option key={r} value={r}>{r === 'all' ? 'All Regions' : r}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Conference Type</label>
+                  <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white" aria-label="Filter by conference type">
+                    {conferenceTypes.map(t => <option key={t} value={t}>{t === 'all' ? 'All Types' : t}</option>)}
+                  </select>
                 </div>
               </div>
-            )}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
 
-        {/* Conferences Grid/List */}
+        {/* ==================== CONFERENCES GRID/LIST ==================== */}
         {displayedConferences.length === 0 ? (
-          <div className="text-center py-12"><HiOutlineBuildingOffice className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" /><p className="text-gray-500 dark:text-gray-400">No conferences found matching your criteria.</p><button onClick={() => { setSearchQuery(''); setSelectedRegion('all'); setSelectedType('all'); }} className="mt-4 text-blue-600 hover:underline">Clear filters</button></div>
+          <div className="text-center py-12">
+            <HiOutlineBuildingOffice className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+            <p className="text-gray-500 dark:text-gray-400">No conferences found matching your criteria.</p>
+            <button onClick={() => { setSearchQuery(''); setSelectedRegion('all'); setSelectedType('all'); }} className="mt-4 text-blue-600 dark:text-blue-400 hover:underline" aria-label="Clear filters">Clear filters</button>
+          </div>
         ) : viewMode === 'grid' ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {displayedConferences.map((conference) => {
@@ -529,15 +570,19 @@ const IndustryConferencesSection3 = ({ config }) => {
                 <div key={conference.id} className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
                   {conference.image && (
                     <div className="relative h-48 overflow-hidden">
-                      <img src={conference.image} alt={conference.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <img src={conference.image} alt={conference.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                       {conference.type && <span className="absolute top-4 left-4 text-xs bg-blue-600 text-white px-2 py-1 rounded-full">{conference.type}</span>}
                       {conference.isVirtual && <span className="absolute top-4 left-20 text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Virtual</span>}
                       <div className="absolute top-4 right-4 flex gap-2">
-                        <button onClick={(e) => toggleCompare(conference.id, e)} className={`w-8 h-8 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${isCompared ? 'bg-green-600 text-white' : 'bg-black/50 text-white hover:bg-black/70'}`} title={isCompared ? 'Remove from compare' : 'Add to compare'}><HiOutlineChartBar className="w-4 h-4" /></button>
-                        <button onClick={(e) => toggleBookmark(conference.id, e)} className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70"><HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-400' : ''}`} /></button>
-                        <button onClick={(e) => shareConferenceHandler(conference, e)} className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70"><HiOutlineShare className="w-4 h-4" /></button>
+                        <button onClick={(e) => toggleCompare(conference.id, e)} className={`w-8 h-8 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${isCompared ? 'bg-emerald-600 text-white' : 'bg-black/50 text-white hover:bg-black/70'}`} title={isCompared ? 'Remove from compare' : 'Add to compare'} aria-label={isCompared ? "Remove from comparison" : "Add to comparison"}><HiOutlineChartBar className="w-4 h-4" /></button>
+                        <button onClick={(e) => toggleBookmark(conference.id, e)} className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors" aria-label={isBookmarked ? "Remove bookmark" : "Bookmark conference"}><HiOutlineBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current text-yellow-400' : ''}`} /></button>
+                        <button onClick={(e) => shareConferenceHandler(conference, e)} className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors" aria-label="Share conference"><HiOutlineShare className="w-4 h-4" /></button>
                       </div>
-                      {isUpcoming && countdown && (<div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-center"><div className="flex gap-2 text-xs"><div><span className="font-bold text-lg">{countdown.days}</span><span className="text-xs ml-0.5">d</span></div><div><span className="font-bold text-lg">{countdown.hours}</span><span className="text-xs ml-0.5">h</span></div></div></div>)}
+                      {isUpcoming && countdown && (
+                        <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-center">
+                          <div className="flex gap-2 text-xs"><div><span className="font-bold text-lg">{countdown.days}</span><span className="text-xs ml-0.5">d</span></div><div><span className="font-bold text-lg">{countdown.hours}</span><span className="text-xs ml-0.5">h</span></div></div>
+                        </div>
+                      )}
                     </div>
                   )}
                   <div className="p-6">
@@ -548,28 +593,51 @@ const IndustryConferencesSection3 = ({ config }) => {
                       {conference.location && (<div className="flex items-center gap-2"><HiOutlineLocationMarker className="w-4 h-4 shrink-0" /><span>{conference.location.city}, {conference.location.country}</span></div>)}
                     </div>
                     <div className="flex flex-wrap gap-3 mb-4">
-                      {conference.expectedAttendees && (<div className="flex items-center gap-1 text-xs text-gray-500"><HiOutlineUserGroup className="w-3 h-3" /><span>{conference.expectedAttendees.toLocaleString()}+</span></div>)}
-                      {conference.speakers && conference.speakers.length > 0 && (<div className="flex items-center gap-1 text-xs text-gray-500"><HiOutlineMicrophone className="w-3 h-3" /><span>{conference.speakers.length}+ Speakers</span></div>)}
+                      {conference.expectedAttendees && (<div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400"><HiOutlineUserGroup className="w-3 h-3" /><span>{conference.expectedAttendees.toLocaleString()}+</span></div>)}
+                      {conference.speakers && conference.speakers.length > 0 && (<div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400"><HiOutlineMicrophone className="w-3 h-3" /><span>{conference.speakers.length}+ Speakers</span></div>)}
                     </div>
                     <div className="mb-4">
                       <span className="text-lg font-bold text-blue-600 dark:text-blue-400">{getTicketPrice(conference.tickets)}</span>
-                      {earlyBirdPrice && earlyBirdPrice > 0 && (<span className="ml-2 text-xs text-green-600 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">Early Bird ${earlyBirdPrice}</span>)}
+                      {earlyBirdPrice && earlyBirdPrice > 0 && (<span className="ml-2 text-xs text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-0.5 rounded-full">Early Bird ${earlyBirdPrice}</span>)}
                     </div>
                     <div className="flex flex-wrap gap-3">
-                      <button onClick={() => { setSelectedConference(conference); setShowRegisterModal(true); setRegistrationStep(1); }} className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold text-sm"><HiOutlineTicket className="w-4 h-4" />Register</button>
-                      {conference.isVirtual && conference.liveStreamUrl && (<button onClick={() => { setVirtualConference(conference); setShowVirtualLobby(true); }} className="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-semibold text-sm"><HiOutlineVideoCamera className="w-4 h-4" />Join</button>)}
-                      <button onClick={() => { setAgendaConference(conference); setShowAgendaModal(true); }} className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl text-sm"><HiOutlineDocumentText className="w-4 h-4" /></button>
-                      <button onClick={() => setSelectedConference(selectedConference === conference.id ? null : conference.id)} className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-semibold">{selectedConference === conference.id ? 'Less' : 'More'}</button>
+                      <button onClick={() => { setSelectedConference(conference); setShowRegisterModal(true); setRegistrationStep(1); }} className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold text-sm transition-colors" aria-label="Register for conference"><HiOutlineTicket className="w-4 h-4" />Register</button>
+                      {conference.isVirtual && conference.liveStreamUrl && (<button onClick={() => { setVirtualConference(conference); setShowVirtualLobby(true); }} className="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-semibold text-sm transition-colors" aria-label="Join virtual event"><HiOutlineVideoCamera className="w-4 h-4" />Join</button>)}
+                      <button onClick={() => { setAgendaConference(conference); setShowAgendaModal(true); }} className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-xl text-sm transition-colors hover:bg-gray-200 dark:hover:bg-gray-600" aria-label="View agenda"><HiOutlineDocumentText className="w-4 h-4" /></button>
+                      <button onClick={() => setSelectedConference(prev => prev === conference.id ? null : conference.id)} className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-semibold" aria-label={selectedConference === conference.id ? "Show less details" : "Show more details"}>{selectedConference === conference.id ? 'Less' : 'More'}</button>
                     </div>
                     {selectedConference === conference.id && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
                         {conference.speakers && conference.speakers.length > 0 && (
-                          <div className="mb-3"><p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Featured Speakers:</p><div className="flex flex-wrap gap-2">{conference.speakers.slice(0, 3).map((speaker, idx) => (<button key={idx} onClick={() => { setSelectedSpeaker(speaker); setShowSpeakerModal(true); }} className="flex items-center gap-2 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200">{speaker.avatar ? <img src={speaker.avatar} alt={speaker.name} className="w-6 h-6 rounded-full" /> : <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center"><HiOutlineUser className="w-3 h-3 text-blue-600" /></div>}<span className="text-xs text-gray-700 dark:text-gray-300">{speaker.name}</span></button>))}{conference.speakers.length > 3 && <span className="text-xs text-gray-500">+{conference.speakers.length - 3} more</span>}</div></div>
+                          <div className="mb-3">
+                            <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Featured Speakers:</p>
+                            <div className="flex flex-wrap gap-2">
+                              {conference.speakers.slice(0, 3).map((speaker, idx) => (
+                                <button key={idx} onClick={() => { setSelectedSpeaker(speaker); setShowSpeakerModal(true); }} className="flex items-center gap-2 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 transition-colors" aria-label={`View speaker details for ${speaker.name}`}>
+                                  {speaker.avatar ? <img src={speaker.avatar} alt={speaker.name} className="w-6 h-6 rounded-full object-cover" /> : <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"><HiOutlineUser className="w-3 h-3 text-blue-600 dark:text-blue-400" /></div>}
+                                  <span className="text-xs text-gray-700 dark:text-gray-300">{speaker.name}</span>
+                                </button>
+                              ))}
+                              {conference.speakers.length > 3 && <span className="text-xs text-gray-500 dark:text-gray-400">+{conference.speakers.length - 3} more</span>}
+                            </div>
+                          </div>
                         )}
-                        {conference.agenda && conference.agenda.length > 0 && (<div className="mb-3"><p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Sessions:</p><ul className="space-y-1">{conference.agenda.slice(0, 2).map((item, idx) => (<li key={idx} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400"><HiOutlineCheckCircle className="w-3 h-3 text-green-500 mt-0.5 shrink-0" /><span>{typeof item === 'string' ? item : item.topic}</span></li>))}</ul></div>)}
+                        {conference.agenda && conference.agenda.length > 0 && (
+                          <div className="mb-3">
+                            <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Sessions:</p>
+                            <ul className="space-y-1">
+                              {conference.agenda.slice(0, 2).map((item, idx) => (
+                                <li key={idx} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
+                                  <HiOutlineCheckCircle className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0" />
+                                  <span>{typeof item === 'string' ? item : item.topic}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                         <div className="flex flex-wrap gap-2 mt-2">
-                          <button onClick={() => { setNetworkingConference(conference); setShowNetworkingModal(true); }} className="text-xs text-blue-600 hover:underline flex items-center gap-1"><HiOutlineUserGroup className="w-3 h-3" />Networking</button>
-                          {conference.certificateAvailable && (<button onClick={() => { setCertificateConference(conference); setShowCertificateModal(true); }} className="text-xs text-green-600 hover:underline flex items-center gap-1"><HiOutlineBadgeCheck className="w-3 h-3" />Get Certificate</button>)}
+                          <button onClick={() => { setNetworkingConference(conference); setShowNetworkingModal(true); }} className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1" aria-label="Networking"><HiOutlineUserGroup className="w-3 h-3" />Networking</button>
+                          {conference.certificateAvailable && (<button onClick={() => { setCertificateConference(conference); setShowCertificateModal(true); }} className="text-xs text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1" aria-label="Get certificate"><HiOutlineBadgeCheck className="w-3 h-3" />Get Certificate</button>)}
                         </div>
                       </div>
                     )}
@@ -584,27 +652,27 @@ const IndustryConferencesSection3 = ({ config }) => {
               const isBookmarked = bookmarkedConferences.includes(conference.id);
               const isCompared = compareList.includes(conference.id);
               return (
-                <div key={conference.id} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700">
+                <div key={conference.id} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
                   <div className="flex flex-col md:flex-row gap-6">
-                    {conference.image && (<div className="md:w-48 h-32 rounded-xl overflow-hidden shrink-0"><img src={conference.image} alt={conference.title} className="w-full h-full object-cover" /></div>)}
+                    {conference.image && (<div className="md:w-48 h-32 rounded-xl overflow-hidden shrink-0"><img src={conference.image} alt={conference.title} className="w-full h-full object-cover" loading="lazy" /></div>)}
                     <div className="flex-1">
                       <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white">{conference.title}</h3>
                         <div className="flex gap-2">
-                          <button onClick={(e) => toggleCompare(conference.id, e)} className={`p-2 rounded-lg transition-colors ${isCompared ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'}`}><HiOutlineChartBar className="w-4 h-4" /></button>
-                          <button onClick={(e) => toggleBookmark(conference.id, e)} className={`p-2 rounded-lg transition-colors ${isBookmarked ? 'bg-yellow-100 text-yellow-600' : 'bg-gray-100 text-gray-600'}`}><HiOutlineBookmark className="w-4 h-4" /></button>
-                          <button onClick={(e) => shareConferenceHandler(conference, e)} className="p-2 rounded-lg bg-gray-100 text-gray-600"><HiOutlineShare className="w-4 h-4" /></button>
+                          <button onClick={(e) => toggleCompare(conference.id, e)} className={`p-2 rounded-lg transition-colors ${isCompared ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'}`} aria-label="Add to compare"><HiOutlineChartBar className="w-4 h-4" /></button>
+                          <button onClick={(e) => toggleBookmark(conference.id, e)} className={`p-2 rounded-lg transition-colors ${isBookmarked ? 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'}`} aria-label="Bookmark"><HiOutlineBookmark className="w-4 h-4" /></button>
+                          <button onClick={(e) => shareConferenceHandler(conference, e)} className="p-2 rounded-lg bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 transition-colors" aria-label="Share"><HiOutlineShare className="w-4 h-4" /></button>
                         </div>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{conference.description}</p>
-                      <div className="flex flex-wrap gap-4 mb-3 text-sm text-gray-500">
+                      <div className="flex flex-wrap gap-4 mb-3 text-sm text-gray-500 dark:text-gray-400">
                         {conference.startDate && <div className="flex items-center gap-1"><HiOutlineCalendar className="w-4 h-4" />{formatDateRange(conference.startDate, conference.endDate)}</div>}
                         {conference.location && <div className="flex items-center gap-1"><HiOutlineLocationMarker className="w-4 h-4" />{conference.location.city}, {conference.location.country}</div>}
                       </div>
                       <div className="flex flex-wrap gap-3">
-                        <button onClick={() => { setSelectedConference(conference); setShowRegisterModal(true); setRegistrationStep(1); }} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold">Register</button>
-                        {conference.isVirtual && conference.liveStreamUrl && (<button onClick={() => { setVirtualConference(conference); setShowVirtualLobby(true); }} className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold">Join Virtual</button>)}
-                        <button onClick={() => { setAgendaConference(conference); setShowAgendaModal(true); }} className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold">View Agenda</button>
+                        <button onClick={() => { setSelectedConference(conference); setShowRegisterModal(true); setRegistrationStep(1); }} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">Register</button>
+                        {conference.isVirtual && conference.liveStreamUrl && (<button onClick={() => { setVirtualConference(conference); setShowVirtualLobby(true); }} className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700 transition-colors">Join Virtual</button>)}
+                        <button onClick={() => { setAgendaConference(conference); setShowAgendaModal(true); }} className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">View Agenda</button>
                       </div>
                     </div>
                   </div>
@@ -614,24 +682,24 @@ const IndustryConferencesSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Multi-Step Registration Modal */}
+        {/* ==================== MULTI-STEP REGISTRATION MODAL ==================== */}
         {showRegisterModal && selectedConference && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowRegisterModal(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowRegisterModal(false)} role="dialog" aria-label="Conference Registration" aria-modal="true">
             <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()} ref={modalRef}>
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4">
                 <div className="flex items-center justify-between">
                   <div><h3 className="text-white font-bold text-lg">Register for Conference</h3><p className="text-blue-100 text-xs mt-1 line-clamp-1">{selectedConference.title}</p></div>
-                  <button onClick={() => setShowRegisterModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button>
+                  <button onClick={() => setShowRegisterModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal"><HiOutlineX className="w-6 h-6" /></button>
                 </div>
                 <div className="flex items-center justify-center gap-2 mt-4">
-                  <div className={`w-2 h-2 rounded-full transition-all ${registrationStep === 1 ? 'w-6 bg-white' : 'bg-white/50'}`} />
-                  <div className={`w-2 h-2 rounded-full transition-all ${registrationStep === 2 ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                  <div className={`w-2 h-2 rounded-full transition-all duration-300 ${registrationStep === 1 ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                  <div className={`w-2 h-2 rounded-full transition-all duration-300 ${registrationStep === 2 ? 'w-6 bg-white' : 'bg-white/50'}`} />
                 </div>
               </div>
               <div className="p-6">
                 {formSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4"><HiOutlineCheckCircle className="w-8 h-8 text-green-600" /></div>
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4"><HiOutlineCheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" /></div>
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Registration Confirmed!</h4>
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">We've sent the conference details to your email address.</p>
                     <p className="text-xs text-gray-500">Registration ID: <span className="font-mono">{registrationId}</span></p>
@@ -641,32 +709,52 @@ const IndustryConferencesSection3 = ({ config }) => {
                     {registrationStep === 1 && (
                       <div className="space-y-4">
                         <div className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg"><p className="text-sm text-gray-600 dark:text-gray-400">{formatDateRange(selectedConference.startDate, selectedConference.endDate)} • {selectedConference.location?.city}, {selectedConference.location?.country}</p></div>
-                        <div><input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Full name *" className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`} />{errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}</div>
-                        <div><input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email address *" className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`} />{errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}</div>
-                        <div><input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company *" className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.company ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`} />{errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}</div>
+                        <div><input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Full name *" className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`} aria-label="Your full name" />{errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}</div>
+                        <div><input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email address *" className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`} aria-label="Your email address" />{errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}</div>
+                        <div><input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company *" className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.company ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`} aria-label="Your company name" />{errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}</div>
                         <div className="grid grid-cols-2 gap-3">
-                          <input type="text" name="role" value={formData.role} onChange={handleInputChange} placeholder="Job title" className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl" />
-                          <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone" className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl" />
+                          <input type="text" name="role" value={formData.role} onChange={handleInputChange} placeholder="Job title" className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500" aria-label="Your job title" />
+                          <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone" className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500" aria-label="Your phone number" />
                         </div>
-                        <select name="country" value={formData.country} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl"><option value="">Select country</option>{countries.map(c => <option key={c} value={c}>{c}</option>)}</select>
+                        <select name="country" value={formData.country} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white" aria-label="Select your country"><option value="">Select country</option>{countries.map(c => <option key={c} value={c}>{c}</option>)}</select>
                       </div>
                     )}
                     {registrationStep === 2 && (
                       <div className="space-y-4">
-                        <select name="ticketType" value={formData.ticketType} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl"><option value="standard">Standard Ticket - {getTicketPrice(selectedConference.tickets)}</option><option value="vip">VIP Ticket</option><option value="exhibitor">Exhibitor Pass</option></select>
-                        <select name="dietary" value={formData.dietary} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl"><option value="">Dietary preferences</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option><option value="gluten-free">Gluten-free</option><option value="halal">Halal</option></select>
+                        <select name="ticketType" value={formData.ticketType} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white" aria-label="Select ticket type">
+                          <option value="standard">Standard Ticket - {getTicketPrice(selectedConference.tickets)}</option>
+                          <option value="vip">VIP Ticket</option>
+                          <option value="exhibitor">Exhibitor Pass</option>
+                        </select>
+                        <select name="dietary" value={formData.dietary} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white" aria-label="Dietary preferences">
+                          <option value="">Dietary preferences</option>
+                          <option value="vegetarian">Vegetarian</option>
+                          <option value="vegan">Vegan</option>
+                          <option value="gluten-free">Gluten-free</option>
+                          <option value="halal">Halal</option>
+                        </select>
                         {selectedConference.sessions && selectedConference.sessions.length > 0 && (
-                          <div><p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Select Sessions to Attend:</p><div className="space-y-2 max-h-48 overflow-y-auto">{selectedConference.sessions.map(session => (<label key={session.id} className="flex items-start gap-2 cursor-pointer p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg"><input type="checkbox" checked={selectedSessions.includes(session.id)} onChange={() => handleSessionToggle(session.id)} className="w-4 h-4 mt-0.5" /><div><p className="text-sm font-medium text-gray-800 dark:text-gray-200">{session.title}</p><p className="text-xs text-gray-500">{session.time} • {session.speaker}</p></div></label>))}</div></div>
+                          <div>
+                            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Select Sessions to Attend:</p>
+                            <div className="space-y-2 max-h-48 overflow-y-auto">
+                              {selectedConference.sessions.map(session => (
+                                <label key={session.id} className="flex items-start gap-2 cursor-pointer p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                                  <input type="checkbox" checked={selectedSessions.includes(session.id)} onChange={() => handleSessionToggle(session.id)} className="w-4 h-4 mt-0.5" aria-label={`Select session: ${session.title}`} />
+                                  <div><p className="text-sm font-medium text-gray-800 dark:text-gray-200">{session.title}</p><p className="text-xs text-gray-500">{session.time} • {session.speaker}</p></div>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
                         )}
-                        <textarea name="questions" value={formData.questions} onChange={handleInputChange} placeholder="Any questions for the organizers?" rows="2" className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl resize-none" />
-                        <label className="flex items-center gap-2 cursor-pointer"><input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleInputChange} className="w-4 h-4" /><span className="text-sm text-gray-600 dark:text-gray-400">Subscribe to conference updates</span></label>
-                        <label className={`flex items-start gap-2 cursor-pointer ${errors.terms ? 'text-red-500' : ''}`}><input type="checkbox" name="terms" checked={formData.terms} onChange={handleInputChange} className="w-4 h-4 mt-0.5" /><span className="text-sm text-gray-600 dark:text-gray-400">I agree to the <a href="#" className="text-blue-600 hover:underline">Terms and Conditions</a> *</span></label>
+                        <textarea name="questions" value={formData.questions} onChange={handleInputChange} placeholder="Any questions for the organizers?" rows="2" className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 resize-none" aria-label="Any questions for organizers" />
+                        <label className="flex items-center gap-2 cursor-pointer"><input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleInputChange} className="w-4 h-4" aria-label="Subscribe to newsletter" /><span className="text-sm text-gray-600 dark:text-gray-400">Subscribe to conference updates</span></label>
+                        <label className={`flex items-start gap-2 cursor-pointer ${errors.terms ? 'text-red-500' : ''}`}><input type="checkbox" name="terms" checked={formData.terms} onChange={handleInputChange} className="w-4 h-4 mt-0.5" aria-label="Agree to terms" /><span className="text-sm text-gray-600 dark:text-gray-400">I agree to the <a href="#" className="text-blue-600 hover:underline">Terms and Conditions</a> *</span></label>
                         {errors.terms && <p className="text-red-500 text-xs">{errors.terms}</p>}
                       </div>
                     )}
                     <div className="flex gap-3 mt-6">
-                      {registrationStep === 2 && (<button type="button" onClick={handlePrevStep} className="flex-1 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50">Back</button>)}
-                      <button type="button" onClick={handleNextStep} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all">{registrationStep === 1 ? 'Next' : 'Complete Registration'}<HiOutlineArrowRight className="inline ml-2 w-4 h-4" /></button>
+                      {registrationStep === 2 && (<button type="button" onClick={handlePrevStep} className="flex-1 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" aria-label="Go back">Back</button>)}
+                      <button type="button" onClick={handleNextStep} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300" aria-label={registrationStep === 1 ? "Next step" : "Complete registration"}>{registrationStep === 1 ? 'Next' : 'Complete Registration'}<HiOutlineArrowRight className="inline ml-2 w-4 h-4" /></button>
                     </div>
                   </form>
                 )}
@@ -675,76 +763,102 @@ const IndustryConferencesSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Virtual Lobby Modal */}
+        {/* ==================== VIRTUAL LOBBY MODAL ==================== */}
         {showVirtualLobby && virtualConference && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVirtualLobby(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVirtualLobby(false)} role="dialog" aria-label="Virtual Lobby" aria-modal="true">
             <div className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4 flex items-center justify-between">
                 <div><h3 className="text-white font-bold text-lg">Virtual Lobby - {virtualConference.title}</h3><p className="text-blue-100 text-xs">Live streaming now</p></div>
-                <button onClick={() => setShowVirtualLobby(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button>
+                <button onClick={() => setShowVirtualLobby(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close virtual lobby"><HiOutlineX className="w-6 h-6" /></button>
               </div>
               <div className="relative">
                 {virtualConference.liveStreamUrl ? (
                   <video ref={videoRef} src={virtualConference.liveStreamUrl} className="w-full aspect-video" controls autoPlay playsInline />
                 ) : (
                   <div className="aspect-video bg-gray-900 flex items-center justify-center">
-                    <div className="text-center"><div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-4"><div className="w-4 h-4 bg-red-500 rounded-full animate-pulse" /></div><p className="text-white">Live stream will begin soon</p><p className="text-gray-400 text-sm mt-2">{formatDateRange(virtualConference.startDate, virtualConference.endDate)}</p></div>
+                    <div className="text-center">
+                      <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-4"><div className="w-4 h-4 bg-red-500 rounded-full animate-pulse" /></div>
+                      <p className="text-white">Live stream will begin soon</p>
+                      <p className="text-gray-400 text-sm mt-2">{formatDateRange(virtualConference.startDate, virtualConference.endDate)}</p>
+                    </div>
                   </div>
                 )}
                 <div className="absolute bottom-4 left-4 right-4 flex justify-between">
-                  <div className="flex gap-2"><button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm">Chat</button><button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm">Q&A</button><button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm">Networking</button></div>
-                  <div><button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm">Exit Lobby</button></div>
+                  <div className="flex gap-2">
+                    <button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm hover:bg-white/30 transition-colors">Chat</button>
+                    <button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm hover:bg-white/30 transition-colors">Q&A</button>
+                    <button className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm hover:bg-white/30 transition-colors">Networking</button>
+                  </div>
+                  <div><button onClick={() => setShowVirtualLobby(false)} className="px-3 py-1 bg-white/20 rounded-lg text-white text-sm hover:bg-white/30 transition-colors">Exit Lobby</button></div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Agenda Modal */}
+        {/* ==================== AGENDA MODAL ==================== */}
         {showAgendaModal && agendaConference && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowAgendaModal(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowAgendaModal(false)} role="dialog" aria-label="Conference Agenda" aria-modal="true">
             <div className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-purple-600 p-4 flex items-center justify-between"><h3 className="text-white font-bold text-lg">Agenda - {agendaConference.title}</h3><button onClick={() => setShowAgendaModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div>
+              <div className="bg-purple-600 p-4 flex items-center justify-between"><h3 className="text-white font-bold text-lg">Agenda - {agendaConference.title}</h3><button onClick={() => setShowAgendaModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal"><HiOutlineX className="w-6 h-6" /></button></div>
               <div className="p-6 max-h-96 overflow-y-auto">
                 {agendaConference.agenda && agendaConference.agenda.length > 0 ? (
-                  <div className="space-y-4">{agendaConference.agenda.map((item, idx) => (<div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">{typeof item === 'object' ? (<><div className="flex items-center gap-2 mb-1"><HiOutlineClock className="w-4 h-4 text-gray-400" /><span className="text-sm font-semibold text-gray-700 dark:text-gray-300">{item.time}</span>{item.location && <span className="text-xs text-gray-500">- {item.location}</span>}</div><p className="text-gray-800 dark:text-gray-200 font-medium">{item.topic}</p>{item.speaker && <p className="text-sm text-gray-500">Speaker: {item.speaker}</p>}{item.description && <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{item.description}</p>}</>) : (<p className="text-gray-800 dark:text-gray-200">{item}</p>)}</div>))}</div>
+                  <div className="space-y-4">
+                    {agendaConference.agenda.map((item, idx) => (
+                      <div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">
+                        {typeof item === 'object' ? (
+                          <>
+                            <div className="flex items-center gap-2 mb-1"><HiOutlineClock className="w-4 h-4 text-gray-400" /><span className="text-sm font-semibold text-gray-700 dark:text-gray-300">{item.time}</span>{item.location && <span className="text-xs text-gray-500">- {item.location}</span>}</div>
+                            <p className="text-gray-800 dark:text-gray-200 font-medium">{item.topic}</p>
+                            {item.speaker && <p className="text-sm text-gray-500">Speaker: {item.speaker}</p>}
+                            {item.description && <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{item.description}</p>}
+                          </>
+                        ) : (
+                          <p className="text-gray-800 dark:text-gray-200">{item}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 ) : (<p className="text-center text-gray-500 py-8">Full agenda will be announced soon.</p>)}
               </div>
             </div>
           </div>
         )}
 
-        {/* Networking Modal */}
+        {/* ==================== NETWORKING MODAL ==================== */}
         {showNetworkingModal && networkingConference && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowNetworkingModal(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowNetworkingModal(false)} role="dialog" aria-label="Networking" aria-modal="true">
             <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4 flex items-center justify-between"><h3 className="text-white font-bold text-lg">Networking - {networkingConference.title}</h3><button onClick={() => setShowNetworkingModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div>
+              <div className="bg-emerald-600 p-4 flex items-center justify-between"><h3 className="text-white font-bold text-lg">Networking - {networkingConference.title}</h3><button onClick={() => setShowNetworkingModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal"><HiOutlineX className="w-6 h-6" /></button></div>
               <div className="p-6">
-                <div className="text-center mb-4"><div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto"><HiOutlineUserGroup className="w-8 h-8 text-green-600" /></div><h4 className="text-lg font-bold text-gray-900 dark:text-white mt-3">Connect with Attendees</h4><p className="text-sm text-gray-500">Meet fellow professionals and expand your network</p></div>
+                <div className="text-center mb-4"><div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto"><HiOutlineUserGroup className="w-8 h-8 text-emerald-600 dark:text-emerald-400" /></div><h4 className="text-lg font-bold text-gray-900 dark:text-white mt-3">Connect with Attendees</h4><p className="text-sm text-gray-500">Meet fellow professionals and expand your network</p></div>
                 <div className="space-y-3 max-h-64 overflow-y-auto">
-                  {networkingConference.attendees?.slice(0, 5).map((attendee, idx) => (
+                  {(networkingConference.attendees || []).slice(0, 5).map((attendee, idx) => (
                     <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                      <div className="flex items-center gap-3">{attendee.avatar ? <img src={attendee.avatar} className="w-10 h-10 rounded-full" /> : <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center"><HiOutlineUser className="w-5 h-5 text-blue-600" /></div>}<div><p className="font-medium text-gray-900 dark:text-white text-sm">{attendee.name}</p><p className="text-xs text-gray-500">{attendee.title}, {attendee.company}</p></div></div>
-                      <button className="px-3 py-1 bg-blue-600 text-white rounded-lg text-xs font-semibold">Connect</button>
+                      <div className="flex items-center gap-3">
+                        {attendee.avatar ? <img src={attendee.avatar} alt={attendee.name} className="w-10 h-10 rounded-full object-cover" /> : <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"><HiOutlineUser className="w-5 h-5 text-blue-600 dark:text-blue-400" /></div>}
+                        <div><p className="font-medium text-gray-900 dark:text-white text-sm">{attendee.name}</p><p className="text-xs text-gray-500">{attendee.title}, {attendee.company}</p></div>
+                      </div>
+                      <button className="px-3 py-1 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition-colors">Connect</button>
                     </div>
                   ))}
                 </div>
-                <button className="w-full mt-4 py-2 bg-green-600 text-white rounded-lg font-semibold">Join Networking Lounge</button>
+                <button className="w-full mt-4 py-2 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors">Join Networking Lounge</button>
               </div>
             </div>
           </div>
         )}
 
-        {/* Speaker Modal */}
+        {/* ==================== SPEAKER MODAL ==================== */}
         {showSpeakerModal && selectedSpeaker && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowSpeakerModal(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowSpeakerModal(false)} role="dialog" aria-label="Speaker Details" aria-modal="true">
             <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-blue-600 p-4 flex items-center justify-between"><h3 className="text-white font-bold text-lg">Speaker Details</h3><button onClick={() => setShowSpeakerModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div>
+              <div className="bg-blue-600 p-4 flex items-center justify-between"><h3 className="text-white font-bold text-lg">Speaker Details</h3><button onClick={() => setShowSpeakerModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal"><HiOutlineX className="w-6 h-6" /></button></div>
               <div className="p-6 text-center">
-                {selectedSpeaker.avatar ? <img src={selectedSpeaker.avatar} className="w-24 h-24 rounded-full mx-auto mb-4" /> : <div className="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4"><HiOutlineUser className="w-12 h-12 text-blue-600" /></div>}
+                {selectedSpeaker.avatar ? <img src={selectedSpeaker.avatar} alt={selectedSpeaker.name} className="w-24 h-24 rounded-full object-cover mx-auto mb-4" /> : <div className="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-4"><HiOutlineUser className="w-12 h-12 text-blue-600 dark:text-blue-400" /></div>}
                 <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{selectedSpeaker.name}</h4>
                 <p className="text-sm text-gray-500 mb-2">{selectedSpeaker.title}, {selectedSpeaker.company}</p>
-                {selectedSpeaker.verified && (<div className="inline-flex items-center gap-1 text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full mb-3"><HiOutlineBadgeCheck className="w-3 h-3" />Verified Speaker</div>)}
+                {selectedSpeaker.verified && (<div className="inline-flex items-center gap-1 text-xs text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-1 rounded-full mb-3"><HiOutlineBadgeCheck className="w-3 h-3" />Verified Speaker</div>)}
                 <p className="text-gray-600 dark:text-gray-400 text-sm">{selectedSpeaker.bio}</p>
                 {selectedSpeaker.session && (<div className="mt-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg text-left"><p className="text-sm font-semibold text-gray-700 dark:text-gray-300">Session:</p><p className="text-sm text-gray-600 dark:text-gray-400">{selectedSpeaker.session}</p></div>)}
               </div>
@@ -752,36 +866,51 @@ const IndustryConferencesSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Share Modal */}
+        {/* ==================== SHARE MODAL ==================== */}
         {showShareModal && shareConference && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowShareModal(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowShareModal(false)} role="dialog" aria-label="Share Conference" aria-modal="true">
             <div className="relative max-w-sm w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-gray-100 dark:bg-gray-700 p-4"><div className="flex items-center justify-between"><h3 className="font-bold text-gray-900 dark:text-white">Share Conference</h3><button onClick={() => setShowShareModal(false)}><HiOutlineX className="w-5 h-5" /></button></div></div>
-              <div className="p-6"><p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center line-clamp-2">{shareConference.title}</p><div className="flex flex-col gap-3"><button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"><HiOutlineLink className="w-4 h-4" />Copy Link</button><button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareConference.title)}&body=${encodeURIComponent(`${shareConference.title}\n${shareConference.description}\n\n${window.location.origin}/conferences/${shareConference.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200"><HiOutlineMail className="w-4 h-4" />Share via Email</button></div></div>
+              <div className="bg-gray-100 dark:bg-gray-700 p-4"><div className="flex items-center justify-between"><h3 className="font-bold text-gray-900 dark:text-white">Share Conference</h3><button onClick={() => setShowShareModal(false)} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" aria-label="Close modal"><HiOutlineX className="w-5 h-5" /></button></div></div>
+              <div className="p-6"><p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center line-clamp-2">{shareConference.title}</p><div className="flex flex-col gap-3"><button onClick={copyLink} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" aria-label="Copy link"><HiOutlineLink className="w-4 h-4" />Copy Link</button><button onClick={() => window.open(`mailto:?subject=${encodeURIComponent(shareConference.title)}&body=${encodeURIComponent(`${shareConference.title}\n${shareConference.description}\n\n${window.location.origin}/conferences/${shareConference.id}`)}`)} className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="Share via email"><HiOutlineMail className="w-4 h-4" />Share via Email</button></div></div>
             </div>
           </div>
         )}
 
-        {/* Certificate Modal */}
+        {/* ==================== CERTIFICATE MODAL ==================== */}
         {showCertificateModal && certificateConference && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowCertificateModal(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowCertificateModal(false)} role="dialog" aria-label="Certificate of Attendance" aria-modal="true">
             <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Certificate of Attendance</h3><button onClick={() => setShowCertificateModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
-              <div className="p-6 text-center"><div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4"><HiOutlineBadgeCheck className="w-10 h-10 text-green-600" /></div><h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{certificateConference.title}</h4><p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Complete the conference survey to download your certificate of attendance.</p><button onClick={downloadCertificate} className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all"><HiOutlineDownload className="w-5 h-5" />Download Certificate</button></div>
+              <div className="bg-emerald-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Certificate of Attendance</h3><button onClick={() => setShowCertificateModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal"><HiOutlineX className="w-6 h-6" /></button></div></div>
+              <div className="p-6 text-center"><div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4"><HiOutlineBadgeCheck className="w-10 h-10 text-emerald-600 dark:text-emerald-400" /></div><h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{certificateConference.title}</h4><p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Complete the conference survey to download your certificate of attendance.</p><button onClick={downloadCertificate} className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300" aria-label="Download certificate"><HiOutlineDownload className="w-5 h-5" />Download Certificate</button></div>
             </div>
           </div>
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
-        @keyframes blob { 0%, 100% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } }
+        @keyframes blob {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
         .animate-blob { animation: blob 7s infinite; }
         .animation-delay-2000 { animation-delay: 2s; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
         .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .bg-grid-white { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='white' stroke-width='0.5'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"); }
+        .bg-grid-white {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='white' stroke-width='0.5'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+        }
       `}</style>
     </section>
   );
