@@ -1,9 +1,27 @@
-// page/frontend/PrivacyPolicySection/PrivacyPolicySection2.jsx
+// page/frontend/Legal/PrivacyPolicySection/PrivacyPolicySection2.jsx
 
-// React
+/**
+ * Privacy Policy Section II - Interactive Legal Documentation Hub
+ *
+ * Unique Design Elements:
+ * - Expandable/Collapsible Policy Sections with Search
+ * - Quick Stats Dashboard with Key Metrics
+ * - Three-View Interface (Policy, Summary, FAQ)
+ * - Search Functionality with Live Filtering
+ * - FAQ Accordion with Expandable Answers
+ * - Print/Download Modal for Policy Export
+ * - Quick Summary Cards for Each Section
+ * - Version History Timeline
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineShieldCheck,
   HiOutlineLockClosed,
@@ -37,13 +55,15 @@ import {
 import { HiOutlineShieldExclamation, HiOutlineUserGroup, HiOutlineDocumentDuplicate } from 'react-icons/hi2';
 
 const PrivacyPolicySection2 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('policy');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
+  const [expandedFaq, setExpandedFaq] = useState(null);
+  const [activeTab, setActiveTab] = useState('policy');
   const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Navigation sections with expanded content
+  // ==================== MEMOIZED DATA ====================
   const sections = useMemo(() => config?.sections || [
     {
       id: 'introduction',
@@ -279,18 +299,6 @@ const PrivacyPolicySection2 = ({ config }) => {
     }
   ], [config?.sections]);
 
-  // Filter sections based on search
-  const filteredSections = useMemo(() => {
-    if (!searchQuery) return sections;
-    const query = searchQuery.toLowerCase();
-    return sections.filter(section =>
-      section.label.toLowerCase().includes(query) ||
-      section.summary.toLowerCase().includes(query) ||
-      JSON.stringify(section.content).toLowerCase().includes(query)
-    );
-  }, [sections, searchQuery]);
-
-  // Stats / Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Data Collection Categories', value: '6', icon: 'database' },
     { label: 'User Rights', value: '6', icon: 'user' },
@@ -301,10 +309,9 @@ const PrivacyPolicySection2 = ({ config }) => {
   const tabs = [
     { id: 'policy', label: 'Privacy Policy', icon: 'document' },
     { id: 'summary', label: 'Quick Summary', icon: 'view-grid' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
   ];
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'How long do you keep my data?',
@@ -332,9 +339,18 @@ const PrivacyPolicySection2 = ({ config }) => {
     }
   ];
 
-  const [expandedFaq, setExpandedFaq] = useState(null);
+  // Filter sections based on search
+  const filteredSections = useMemo(() => {
+    if (!searchQuery) return sections;
+    const query = searchQuery.toLowerCase();
+    return sections.filter(section =>
+      section.label.toLowerCase().includes(query) ||
+      section.summary.toLowerCase().includes(query) ||
+      JSON.stringify(section.content).toLowerCase().includes(query)
+    );
+  }, [sections, searchQuery]);
 
-  // Helper function to render icons
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -348,7 +364,7 @@ const PrivacyPolicySection2 = ({ config }) => {
       'credit-card': <HiOutlineCreditCard className={className} />,
       clipboard: <HiOutlineClipboardList className={className} />,
       briefcase: <HiOutlineBriefcase className={className} />,
-      building: <HiOutlineOfficeBuilding className={className} />,
+      'office-building': <HiOutlineOfficeBuilding className={className} />,
       scale: <HiOutlineScale className={className} />,
       eye: <HiOutlineEye className={className} />,
       trash: <HiOutlineTrash className={className} />,
@@ -357,7 +373,7 @@ const PrivacyPolicySection2 = ({ config }) => {
       mail: <HiOutlineMail className={className} />,
       lock: <HiOutlineLockClosed className={className} />,
       'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
+      bell: <HiOutlineBell className={className} />,
       clock: <HiOutlineClock className={className} />,
       download: <HiOutlineDownload className={className} />,
       printer: <HiOutlinePrinter className={className} />,
@@ -365,7 +381,6 @@ const PrivacyPolicySection2 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Render policy content based on section
   const renderSectionContent = (section) => {
     const content = section.content;
 
@@ -481,7 +496,7 @@ const PrivacyPolicySection2 = ({ config }) => {
                 <div>
                   <p className="font-medium text-gray-900 dark:text-white">{measure.name}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">{measure.description}</p>
-                  <span className={`inline-block text-xs mt-1 px-2 py-0.5 rounded-full ${measure.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                  <span className={`inline-block text-xs mt-1 px-2 py-0.5 rounded-full ${measure.status === 'Active' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300'}`}>
                     {measure.status}
                   </span>
                 </div>
@@ -508,10 +523,10 @@ const PrivacyPolicySection2 = ({ config }) => {
             <table className="w-full text-sm">
               <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr>
-                  <th className="text-left p-3">Right</th>
-                  <th className="text-left p-3">Description</th>
-                  <th className="text-left p-3">Timeframe</th>
-                  <th className="text-left p-3">Method</th>
+                  <th className="text-left p-3 font-semibold">Right</th>
+                  <th className="text-left p-3 font-semibold">Description</th>
+                  <th className="text-left p-3 font-semibold">Timeframe</th>
+                  <th className="text-left p-3 font-semibold">Method</th>
                 </tr>
               </thead>
               <tbody>
@@ -539,10 +554,10 @@ const PrivacyPolicySection2 = ({ config }) => {
             <table className="w-full text-sm">
               <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr>
-                  <th className="text-left p-3">Type</th>
-                  <th className="text-left p-3">Description</th>
-                  <th className="text-left p-3">Duration</th>
-                  <th className="text-left p-3">Required</th>
+                  <th className="text-left p-3 font-semibold">Type</th>
+                  <th className="text-left p-3 font-semibold">Description</th>
+                  <th className="text-left p-3 font-semibold">Duration</th>
+                  <th className="text-left p-3 font-semibold">Required</th>
                 </tr>
               </thead>
               <tbody>
@@ -553,7 +568,7 @@ const PrivacyPolicySection2 = ({ config }) => {
                     <td className="p-3 text-gray-600 dark:text-gray-400">{cookie.duration}</td>
                     <td className="p-3">
                       {cookie.required ? (
-                        <span className="text-green-600">Always</span>
+                        <span className="text-green-600 dark:text-green-400">Always</span>
                       ) : (
                         <span className="text-gray-500">Opt-in</span>
                       )}
@@ -601,9 +616,9 @@ const PrivacyPolicySection2 = ({ config }) => {
             <p className="font-semibold text-gray-900 dark:text-white mb-2">Version History:</p>
             <div className="space-y-2">
               {content.versionHistory.map((v, idx) => (
-                <div key={idx} className="flex items-start gap-3 text-sm">
-                  <span className="font-mono text-gray-500">{v.version}</span>
-                  <span className="text-gray-400">{v.date}</span>
+                <div key={idx} className="flex items-start gap-3 text-sm flex-wrap">
+                  <span className="font-mono text-gray-500 dark:text-gray-400">{v.version}</span>
+                  <span className="text-gray-400 dark:text-gray-500">{v.date}</span>
                   <span className="text-gray-600 dark:text-gray-400">{v.changes}</span>
                 </div>
               ))}
@@ -641,15 +656,13 @@ const PrivacyPolicySection2 = ({ config }) => {
       role="region"
       aria-label="Privacy Policy Center"
     >
-      {/* Background Pattern */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
-
-      {/* Animated Gradient Orbs */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 rounded-full px-4 py-2 mb-6">
             <HiOutlineShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -668,25 +681,26 @@ const PrivacyPolicySection2 = ({ config }) => {
 
           <div className="flex flex-wrap justify-center gap-3 mt-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineCalendar className="w-4 h-4 text-gray-500" />
+              <HiOutlineCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">Last Updated: {lastUpdated}</span>
             </div>
             <button
               onClick={() => setShowPrintModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              aria-label="Print or download policy"
             >
-              <HiOutlinePrinter className="w-4 h-4 text-gray-500" />
+              <HiOutlinePrinter className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">Print / Download</span>
             </button>
           </div>
         </div>
 
-        {/* Quick Facts */}
+        {/* ==================== QUICK FACTS ==================== */}
         <div className="flex flex-wrap justify-center gap-6 mb-12">
           {quickFacts.map((fact, idx) => (
             <div key={idx} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl px-5 py-2 shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                {getIcon(fact.icon, "w-4 h-4 text-blue-600")}
+                {getIcon(fact.icon, "w-4 h-4 text-blue-600 dark:text-blue-400")}
               </div>
               <div className="text-left">
                 <div className="text-xl font-bold text-gray-900 dark:text-white">{fact.value}</div>
@@ -696,7 +710,7 @@ const PrivacyPolicySection2 = ({ config }) => {
           ))}
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -706,6 +720,7 @@ const PrivacyPolicySection2 = ({ config }) => {
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} view`}
             >
               {getIcon(tab.icon, "w-4 h-4")}
               {tab.label}
@@ -713,7 +728,7 @@ const PrivacyPolicySection2 = ({ config }) => {
           ))}
         </div>
 
-        {/* Main Content Area */}
+        {/* ==================== MAIN CONTENT AREA ==================== */}
         {activeTab === 'policy' && (
           <>
             {/* Search Bar */}
@@ -726,7 +741,8 @@ const PrivacyPolicySection2 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search policy sections..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                aria-label="Search policy sections"
               />
             </div>
 
@@ -740,14 +756,15 @@ const PrivacyPolicySection2 = ({ config }) => {
                   <button
                     onClick={() => setExpandedSection(expandedSection === section.id ? null : section.id)}
                     className="w-full p-6 text-left flex items-start justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle ${section.label} section`}
                   >
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                        {getIcon(section.icon, "w-5 h-5 text-blue-600")}
+                        {getIcon(section.icon, "w-5 h-5 text-blue-600 dark:text-blue-400")}
                       </div>
                       <div>
                         <h3 className="text-lg font-bold text-gray-900 dark:text-white">{section.label}</h3>
-                        <p className="text-sm text-gray-500 mt-1">{section.summary}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{section.summary}</p>
                       </div>
                     </div>
                     <div className="shrink-0 ml-4">
@@ -770,14 +787,14 @@ const PrivacyPolicySection2 = ({ config }) => {
               {filteredSections.length === 0 && (
                 <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                   <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                  <p className="text-gray-500">No sections match your search.</p>
+                  <p className="text-gray-500 dark:text-gray-400">No sections match your search.</p>
                 </div>
               )}
             </div>
           </>
         )}
 
-        {/* Summary Tab */}
+        {/* ==================== SUMMARY TAB ==================== */}
         {activeTab === 'summary' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Privacy Policy Quick Summary</h2>
@@ -785,7 +802,7 @@ const PrivacyPolicySection2 = ({ config }) => {
               {sections.slice(0, 8).map((section) => (
                 <div key={section.id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                   <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                    {getIcon(section.icon, "w-4 h-4 text-blue-600")}
+                    {getIcon(section.icon, "w-4 h-4 text-blue-600 dark:text-blue-400")}
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">{section.label}</h3>
@@ -796,7 +813,8 @@ const PrivacyPolicySection2 = ({ config }) => {
                         setExpandedSection(section.id);
                         setSearchQuery('');
                       }}
-                      className="text-xs text-blue-600 hover:underline mt-1"
+                      className="text-xs text-blue-600 dark:text-blue-400 hover:underline mt-1"
+                      aria-label={`Read full ${section.label} section`}
                     >
                       Read full section →
                     </button>
@@ -807,7 +825,7 @@ const PrivacyPolicySection2 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -817,6 +835,7 @@ const PrivacyPolicySection2 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     {expandedFaq === idx ? (
@@ -844,14 +863,23 @@ const PrivacyPolicySection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Print Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Privacy Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-blue-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Privacy Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -862,11 +890,11 @@ const PrivacyPolicySection2 = ({ config }) => {
                   Choose your preferred format to download the complete Privacy Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print policy">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -877,6 +905,7 @@ const PrivacyPolicySection2 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }

@@ -2854,11 +2854,11 @@ class EventsPageSectionVariantSeeder extends Seeder
             ],
         ];
 
-        // Add the new Services variants
-        DB::table('section_variants')->upsert(
-            $variants,
-            ['section_key', 'variant'],
-            ['config', 'updated_at']
-        );
+            // Add the new Services variants
+            DB::table('section_variants')->upsert(
+                $variants,
+                ['section_key', 'variant'],
+                ['config', 'updated_at']
+            );
     }
 }

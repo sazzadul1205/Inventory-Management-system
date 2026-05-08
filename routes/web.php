@@ -42,6 +42,7 @@ Route::controller(FrontEndController::class)->group(function () {
         'mobile-app' => 'mobileApp',
         'events',
         'support',
+        'legal',
     ];
 
     foreach ($pages as $uri => $method) {

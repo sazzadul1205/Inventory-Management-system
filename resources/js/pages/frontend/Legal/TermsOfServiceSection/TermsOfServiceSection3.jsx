@@ -1,9 +1,28 @@
 // page/frontend/MobileApp/Legal/TermsOfServiceSection/TermsOfServiceSection3.jsx
 
-// React
+/**
+ * Terms of Service Section III - AI-Powered Legal Documentation Hub
+ *
+ * Unique Design Elements:
+ * - Video Integration for Key Legal Concepts
+ * - Multi-Tab Interface (Terms, Highlights, Summary, FAQ, Plans)
+ * - Interactive Highlights Carousel with Video Demos
+ * - Expandable/Contractible Term Sections with Search
+ * - Subscription Plans Comparison with Video Overviews
+ * - Customer Testimonials Section
+ * - FAQ Accordion with Video Explanations
+ * - Quick Stats Dashboard with Trend Indicators
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Circuit Pattern
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -39,81 +58,62 @@ import {
 import { HiOutlineDocumentDuplicate, HiOutlineBuildingOffice, HiOutlineUserCircle } from 'react-icons/hi2';
 
 const TermsOfServiceSection3 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('terms');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
-  const [showPrintModal, setShowPrintModal] = useState(false);
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
+  const [activeTab, setActiveTab] = useState('terms');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [expandedFaq, setExpandedFaq] = useState(null);
-  const carouselRef = useRef(null);
-  const videoRef = useRef(null);
-
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
   const [effectiveDate] = useState(config?.effectiveDate || "April 8, 2026");
 
-  // Carousel navigation for highlights
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % (config?.highlights?.length || highlights.length));
-  }, [config?.highlights?.length, highlights.length]);
+  // ==================== REFS ====================
+  const videoRef = useRef(null);
+  const carouselRef = useRef(null);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + (config?.highlights?.length || highlights.length)) % (config?.highlights?.length || highlights.length));
-  }, [config?.highlights?.length, highlights.length]);
-
-  // Auto-play carousel
-  useEffect(() => {
-    if (config?.autoPlayCarousel && (config?.highlights?.length || highlights.length) > 1) {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 6000);
-      return () => clearInterval(interval);
-    }
-  }, [config?.autoPlayCarousel, config?.highlights?.length, highlights.length, nextSlide]);
-
-  // Terms highlights for carousel
+  // ==================== MEMOIZED DATA ====================
   const highlights = config?.highlights || [
     {
       title: "Fair & Transparent",
       description: "We believe in clear, straightforward terms that protect both you and us.",
       icon: "scale",
       color: "from-indigo-500 to-indigo-600",
-      videoUrl: "/videos/terms-overview.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       title: "Your Data, Your Control",
       description: "You retain ownership of your data. We only use it to provide our services.",
       icon: "database",
       color: "from-blue-500 to-blue-600",
-      videoUrl: "/videos/data-ownership.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       title: "Enterprise-Grade Security",
       description: "Bank-level encryption and security measures protect your information.",
       icon: "shield",
       color: "from-green-500 to-green-600",
-      videoUrl: "/videos/security-demo.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       title: "Fair Use Policy",
       description: "Reasonable usage limits ensure quality service for all customers.",
       icon: "user-group",
       color: "from-purple-500 to-purple-600",
-      videoUrl: "/videos/fair-use.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     }
   ];
 
-  // Tabs configuration
   const tabs = [
     { id: 'terms', label: 'Terms of Service', icon: 'document' },
     { id: 'highlights', label: 'Key Highlights', icon: 'star' },
     { id: 'summary', label: 'Quick Summary', icon: 'view-grid' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
     { id: 'subscriptions', label: 'Plans & Pricing', icon: 'credit-card' },
   ];
 
-  // Quick facts / stats
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'clock', color: 'blue', trend: 'Version 3.0' },
     { label: 'Effective Date', value: effectiveDate, icon: 'calendar', color: 'indigo', trend: 'Immediate' },
@@ -123,7 +123,6 @@ const TermsOfServiceSection3 = ({ config }) => {
     { label: 'User Satisfaction', value: '98%', icon: 'star', color: 'yellow', trend: 'Based on reviews' },
   ];
 
-  // Company information
   const company = useMemo(() => config?.company || {
     name: "SupplyChainPro Inc.",
     legalName: "SupplyChainPro Inc., a Delaware corporation",
@@ -135,7 +134,6 @@ const TermsOfServiceSection3 = ({ config }) => {
     dpaEmail: "dpa@supplychainpro.com"
   }, [config?.company]);
 
-  // Subscription plans
   const subscriptionPlans = config?.subscriptionPlans || [
     {
       id: 'starter',
@@ -149,7 +147,7 @@ const TermsOfServiceSection3 = ({ config }) => {
       color: "from-green-500 to-green-600",
       icon: "briefcase",
       popular: false,
-      videoUrl: "/videos/starter-plan.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       id: 'professional',
@@ -163,7 +161,7 @@ const TermsOfServiceSection3 = ({ config }) => {
       color: "from-blue-500 to-blue-600",
       icon: "star",
       popular: true,
-      videoUrl: "/videos/professional-plan.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       id: 'enterprise',
@@ -177,11 +175,10 @@ const TermsOfServiceSection3 = ({ config }) => {
       color: "from-purple-500 to-purple-600",
       icon: "building",
       popular: false,
-      videoUrl: "/videos/enterprise-plan.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     }
   ];
 
-  // Main sections with detailed content
   const sections = useMemo(() => config?.sections || [
     {
       id: 'introduction',
@@ -201,7 +198,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           'We may modify Terms with notice',
           'Continued use means acceptance'
         ],
-        videoUrl: "/videos/terms-intro.mp4"
+        videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
       }
     },
     {
@@ -249,7 +246,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           'Notify us immediately of any unauthorized use of your account'
         ],
         security: 'We implement industry-standard security measures, but you are responsible for maintaining the confidentiality of your login credentials.',
-        videoUrl: "/videos/account-security.mp4"
+        videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
       }
     },
     {
@@ -305,7 +302,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           'Using our Services to compete with us',
           'Harvesting user data without consent'
         ],
-        videoUrl: "/videos/prohibited-activities.mp4"
+        videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
       }
     },
     {
@@ -331,7 +328,7 @@ const TermsOfServiceSection3 = ({ config }) => {
         paymentTerms: 'Fees are billed in advance on a monthly or annual basis. Payments are non-refundable except as required by law.',
         changes: 'We may change our fees upon 30 days\' notice. Your continued use after changes constitutes acceptance.',
         taxes: 'You are responsible for all applicable taxes associated with your subscription.',
-        videoUrl: "/videos/billing-explained.mp4"
+        videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
       }
     },
     {
@@ -356,7 +353,7 @@ const TermsOfServiceSection3 = ({ config }) => {
         userTermination: 'You may terminate your account at any time by following the account deletion process in our app.',
         companyTermination: 'We may suspend or terminate your access immediately, without notice, for violation of these Terms, non-payment of fees, illegal conduct, or extended inactivity.',
         effects: 'Upon termination, your right to use our Services will immediately cease, and we may delete your data in accordance with our data retention policies.',
-        videoUrl: "/videos/account-termination.mp4"
+        videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
       }
     },
     {
@@ -397,7 +394,7 @@ const TermsOfServiceSection3 = ({ config }) => {
         law: 'These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.',
         venue: 'Any legal action arising from these Terms shall be brought exclusively in the federal or state courts located in San Francisco County, California.',
         disputeResolution: 'Before filing a claim, you agree to contact us to attempt to resolve any dispute informally. If we cannot resolve the dispute within 60 days, either party may initiate formal proceedings.',
-        videoUrl: "/videos/dispute-resolution.mp4"
+        videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
       }
     },
     {
@@ -429,67 +426,81 @@ const TermsOfServiceSection3 = ({ config }) => {
     }
   ], [company, config?.sections]);
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'Can I cancel my subscription at any time?',
       answer: 'Yes, you can cancel your subscription at any time from your account settings. Cancellation will take effect at the end of your current billing cycle. You will not receive a refund for the current period, but you will retain access until the end of your paid term.',
-      videoUrl: "/videos/cancel-subscription.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       question: 'What happens to my data if I cancel?',
       answer: 'When you cancel your subscription, your data will be retained for 90 days in case you decide to reactivate. After 90 days, your data will be permanently deleted from our active systems. You can request an export of your data before cancellation.',
-      videoUrl: "/videos/data-after-cancellation.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       question: 'Do you offer refunds?',
       answer: 'We generally do not offer refunds for unused subscription time. However, if you experience technical issues that prevent you from using our Services, please contact our support team and we will work to resolve the issue or provide a prorated refund.',
-      videoUrl: "/videos/refund-policy.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       question: 'Can I upgrade or downgrade my plan?',
       answer: 'Yes, you can change your plan at any time. Upgrades take effect immediately with a prorated charge. Downgrades take effect at the end of your current billing cycle.',
-      videoUrl: "/videos/change-plan.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
     {
       question: 'Is my data secure?',
       answer: 'Yes, we implement industry-standard security measures including 256-bit AES encryption for data at rest, TLS 1.3 for data in transit, and regular security audits. We are SOC 2 Type II certified.',
-      videoUrl: "/videos/data-security.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       question: 'Do you offer a free trial?',
       answer: 'Yes, we offer a 14-day free trial for our Professional plan. No credit card is required to start the trial. You can cancel anytime during the trial period with no charge.',
-      videoUrl: "/videos/free-trial.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     }
   ];
 
-  // Testimonials
   const testimonials = config?.testimonials || [
     {
       name: "Sarah Johnson",
       role: "Supply Chain Director",
       company: "Global Retail Corp",
       quote: "The terms are clear and fair. We appreciate the transparency and data ownership policies.",
-      rating: 5,
-      avatar: "/testimonials/sarah.jpg"
+      rating: 5
     },
     {
       name: "Michael Chen",
       role: "Operations Manager",
       quote: "Best terms of service we've seen in the supply chain space. Very customer-friendly.",
-      rating: 5,
-      avatar: "/testimonials/michael.jpg"
+      rating: 5
     },
     {
       name: "Emily Rodriguez",
       role: "Legal Counsel",
       quote: "As a legal professional, I appreciate how well-documented and fair these terms are.",
-      rating: 5,
-      avatar: "/testimonials/emily.jpg"
+      rating: 5
     }
   ];
 
-  // Filter sections based on search
+  // ==================== CAROUSEL FUNCTIONS ====================
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % highlights.length);
+  }, [highlights.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + highlights.length) % highlights.length);
+  }, [highlights.length]);
+
+  // ==================== AUTO-PLAY CAROUSEL EFFECT ====================
+  useEffect(() => {
+    if (config?.autoPlayCarousel !== false && highlights.length > 1) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [config?.autoPlayCarousel, nextSlide, highlights.length]);
+
+  // ==================== FILTER SECTIONS ====================
   const filteredSections = useMemo(() => {
     if (!searchQuery) return sections;
     const query = searchQuery.toLowerCase();
@@ -500,7 +511,7 @@ const TermsOfServiceSection3 = ({ config }) => {
     );
   }, [sections, searchQuery]);
 
-  // Helper function to render icons
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -519,7 +530,7 @@ const TermsOfServiceSection3 = ({ config }) => {
       globe: <HiOutlineGlobe className={className} />,
       x: <HiOutlineX className={className} />,
       'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
+      bell: <HiOutlineBell className={className} />,
       heart: <HiOutlineHeart className={className} />,
       star: <HiOutlineStar className={className} />,
       building: <HiOutlineBuildingOffice className={className} />,
@@ -529,7 +540,6 @@ const TermsOfServiceSection3 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Render section content based on section type
   const renderSectionContent = (section) => {
     const content = section.content;
 
@@ -544,7 +554,7 @@ const TermsOfServiceSection3 = ({ config }) => {
             <ul className="space-y-2">
               {content.keyPoints.map((point, idx) => (
                 <li key={idx} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   {point}
                 </li>
               ))}
@@ -553,7 +563,8 @@ const TermsOfServiceSection3 = ({ config }) => {
           {content.videoUrl && (
             <button
               onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
-              className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+              aria-label="Watch introduction video"
             >
               <HiOutlinePlay className="w-4 h-4" />
               Watch Introduction Video
@@ -570,7 +581,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           <ul className="space-y-2 ml-4">
             {content.requirements.map((req, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{req}</span>
               </li>
             ))}
@@ -586,7 +597,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           <ul className="space-y-2 ml-4">
             {content.responsibilities.map((resp, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{resp}</span>
               </li>
             ))}
@@ -597,7 +608,8 @@ const TermsOfServiceSection3 = ({ config }) => {
           {content.videoUrl && (
             <button
               onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
-              className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+              aria-label="Watch security video"
             >
               <HiOutlinePlay className="w-4 h-4" />
               Watch Security Video
@@ -614,7 +626,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           <ul className="space-y-2 ml-4">
             {content.permissions.map((perm, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{perm}</span>
               </li>
             ))}
@@ -624,7 +636,7 @@ const TermsOfServiceSection3 = ({ config }) => {
             <ul className="space-y-1">
               {content.restrictions.map((rest, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                  <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                   <span className="text-sm text-gray-600 dark:text-gray-400">{rest}</span>
                 </li>
               ))}
@@ -641,7 +653,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           <ul className="space-y-2 ml-4">
             {content.activities.map((activity, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{activity}</span>
               </li>
             ))}
@@ -649,7 +661,8 @@ const TermsOfServiceSection3 = ({ config }) => {
           {content.videoUrl && (
             <button
               onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
-              className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+              aria-label="Watch acceptable use video"
             >
               <HiOutlinePlay className="w-4 h-4" />
               Watch Acceptable Use Video
@@ -671,7 +684,8 @@ const TermsOfServiceSection3 = ({ config }) => {
           {content.videoUrl && (
             <button
               onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
-              className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+              aria-label="Watch billing video"
             >
               <HiOutlinePlay className="w-4 h-4" />
               Watch Billing Explained
@@ -690,7 +704,8 @@ const TermsOfServiceSection3 = ({ config }) => {
           {content.videoUrl && (
             <button
               onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
-              className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+              aria-label="Watch termination process video"
             >
               <HiOutlinePlay className="w-4 h-4" />
               Watch Termination Process
@@ -706,12 +721,13 @@ const TermsOfServiceSection3 = ({ config }) => {
           <p className="text-gray-600 dark:text-gray-400">{content.law}</p>
           <p className="text-gray-600 dark:text-gray-400">{content.venue}</p>
           <div className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-            <p className="text-sm">{content.disputeResolution}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{content.disputeResolution}</p>
           </div>
           {content.videoUrl && (
             <button
               onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
-              className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
+              aria-label="Watch dispute resolution video"
             >
               <HiOutlinePlay className="w-4 h-4" />
               Watch Dispute Resolution
@@ -728,17 +744,16 @@ const TermsOfServiceSection3 = ({ config }) => {
             <p className="font-semibold text-gray-900 dark:text-white">{content.company.name}</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">{content.company.address}</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              <strong>Email:</strong> <a href={`mailto:${content.company.email}`} className="text-indigo-600 hover:underline">{content.company.email}</a>
+              <strong>Email:</strong> <a href={`mailto:${content.company.email}`} className="text-indigo-600 dark:text-indigo-400 hover:underline">{content.company.email}</a>
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400"><strong>Phone:</strong> {content.company.phone}</p>
-            <p className="text-xs text-gray-500">{content.company.registration}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{content.company.registration}</p>
           </div>
-          <p className="text-sm text-gray-500">{content.responseTime}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{content.responseTime}</p>
         </div>
       );
     }
 
-    // Default render for other sections
     if (content.paragraphs) {
       return (
         <div className="space-y-4">
@@ -749,14 +764,14 @@ const TermsOfServiceSection3 = ({ config }) => {
       );
     }
 
-    if (content.responsibilities && !content.responsibilities[0]?.includes('Provide')) {
+    if (content.responsibilities && content.responsibilities[0] && !content.responsibilities[0].includes('Provide')) {
       return (
         <div className="space-y-4">
           <p className="text-gray-600 dark:text-gray-400">You are responsible for:</p>
           <ul className="space-y-2 ml-4">
             {content.responsibilities.map((resp, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{resp}</span>
               </li>
             ))}
@@ -771,20 +786,20 @@ const TermsOfServiceSection3 = ({ config }) => {
           <p className="text-gray-600 dark:text-gray-400">{content.ourRights}</p>
           <p className="text-gray-600 dark:text-gray-400">{content.yourRights}</p>
           <div className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-            <p className="text-sm">{content.trademarks}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{content.trademarks}</p>
           </div>
         </div>
       );
     }
 
-    if (content.description && !content.paragraphs) {
+    if (content.description && content.consent) {
       return (
         <div className="space-y-4">
           <p className="text-gray-600 dark:text-gray-400">{content.description}</p>
-          {content.consent && <p className="text-gray-600 dark:text-gray-400">{content.consent}</p>}
+          <p className="text-gray-600 dark:text-gray-400">{content.consent}</p>
           {content.security && (
             <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-              <HiOutlineLockClosed className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+              <HiOutlineLockClosed className="w-5 h-5 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
               <p className="text-sm text-green-800 dark:text-green-300">{content.security}</p>
             </div>
           )}
@@ -797,19 +812,19 @@ const TermsOfServiceSection3 = ({ config }) => {
         <div className="space-y-4">
           <p className="text-gray-600 dark:text-gray-400">{content.disclaimer}</p>
           <p className="text-gray-600 dark:text-gray-400">{content.cap}</p>
-          <p className="text-sm text-gray-500">{content.exclusions}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{content.exclusions}</p>
         </div>
       );
     }
 
-    if (content.description && content.scenarios) {
+    if (content.scenarios) {
       return (
         <div className="space-y-4">
           <p className="text-gray-600 dark:text-gray-400">{content.description}</p>
           <ul className="space-y-2 ml-4">
             {content.scenarios.map((scenario, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{scenario}</span>
               </li>
             ))}
@@ -825,7 +840,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           <ul className="space-y-2 ml-4">
             {content.notificationMethods.map((method, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                 <span className="text-gray-600 dark:text-gray-400">{method}</span>
               </li>
             ))}
@@ -844,8 +859,8 @@ const TermsOfServiceSection3 = ({ config }) => {
       role="region"
       aria-label="Terms of Service Hub"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+      {/* ==================== BACKGROUND PATTERN ==================== */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="circuit-pattern-terms" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -858,12 +873,12 @@ const TermsOfServiceSection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* ==================== HERO SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineScale className="w-4 h-4" />
@@ -878,28 +893,29 @@ const TermsOfServiceSection3 = ({ config }) => {
             {config?.description || "These Terms of Service govern your use of SupplyChainPro's mobile application, website, and related services. Please read them carefully."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-                <div className={`w-6 h-6 rounded-full bg-${fact.color}-100 dark:bg-${fact.color}-900/30 flex items-center justify-center`}>
-                  {getIcon(fact.icon, `w-3 h-3 text-${fact.color}-600`)}
+                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  {getIcon(fact.icon, "w-3 h-3 text-blue-600")}
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
                 {fact.trend && (
-                  <span className="text-xs text-green-500">{fact.trend}</span>
+                  <span className="text-xs text-green-500 dark:text-green-400">{fact.trend}</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
@@ -907,6 +923,7 @@ const TermsOfServiceSection3 = ({ config }) => {
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -914,28 +931,29 @@ const TermsOfServiceSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'document' ? <HiOutlineDocumentText className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
                   tab.icon === 'view-grid' ? <HiOutlineViewGrid className="w-4 h-4" /> :
-                    tab.icon === 'chat' ? <HiOutlineBell className="w-4 h-4" /> :
+                    tab.icon === 'bell' ? <HiOutlineBell className="w-4 h-4" /> :
                       <HiOutlineCreditCard className="w-4 h-4" />}
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Key Highlights Carousel Tab */}
+        {/* ==================== KEY HIGHLIGHTS CAROUSEL TAB ==================== */}
         {activeTab === 'highlights' && (
           <div className="relative mb-16">
             <div className="relative overflow-hidden rounded-3xl">
@@ -958,6 +976,7 @@ const TermsOfServiceSection3 = ({ config }) => {
                           <button
                             onClick={() => { setCurrentVideo(highlight.videoUrl); setShowVideoModal(true); }}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-xl font-semibold hover:bg-white/30 transition-colors"
+                            aria-label="Watch video"
                           >
                             <HiOutlinePlay className="w-5 h-5" />
                             Watch Video
@@ -971,15 +990,28 @@ const TermsOfServiceSection3 = ({ config }) => {
 
               {highlights.length > 1 && (
                 <>
-                  <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                    aria-label="Previous slide"
+                  >
                     <HiOutlineChevronLeft className="w-6 h-6" />
                   </button>
-                  <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                    aria-label="Next slide"
+                  >
                     <HiOutlineChevronRight className="w-6 h-6" />
                   </button>
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                     {highlights.map((_, idx) => (
-                      <button key={idx} onClick={() => setCurrentSlide(idx)} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
                     ))}
                   </div>
                 </>
@@ -988,7 +1020,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Terms of Service Tab */}
+        {/* ==================== TERMS OF SERVICE TAB ==================== */}
         {activeTab === 'terms' && (
           <>
             {/* Search Bar */}
@@ -1001,7 +1033,8 @@ const TermsOfServiceSection3 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search terms..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 dark:text-white"
+                aria-label="Search terms"
               />
             </div>
 
@@ -1015,6 +1048,7 @@ const TermsOfServiceSection3 = ({ config }) => {
                   <button
                     onClick={() => setExpandedSection(expandedSection === section.id ? null : section.id)}
                     className="w-full p-6 text-left flex items-start justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle ${section.label} section`}
                   >
                     <div className="flex items-start gap-4">
                       <div className={`w-10 h-10 rounded-xl bg-linear-to-r ${section.color} flex items-center justify-center shrink-0`}>
@@ -1022,7 +1056,7 @@ const TermsOfServiceSection3 = ({ config }) => {
                       </div>
                       <div>
                         <h3 className="text-lg font-bold text-gray-900 dark:text-white">{section.label}</h3>
-                        <p className="text-sm text-gray-500 mt-1">{section.summary}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{section.summary}</p>
                       </div>
                     </div>
                     <div className="shrink-0 ml-4">
@@ -1045,14 +1079,14 @@ const TermsOfServiceSection3 = ({ config }) => {
               {filteredSections.length === 0 && (
                 <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                   <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                  <p className="text-gray-500">No sections match your search.</p>
+                  <p className="text-gray-500 dark:text-gray-400">No sections match your search.</p>
                 </div>
               )}
             </div>
           </>
         )}
 
-        {/* Quick Summary Tab */}
+        {/* ==================== QUICK SUMMARY TAB ==================== */}
         {activeTab === 'summary' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Quick Summary of Terms</h2>
@@ -1062,6 +1096,9 @@ const TermsOfServiceSection3 = ({ config }) => {
                   key={section.id}
                   className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
                   onClick={() => { setActiveTab('terms'); setExpandedSection(section.id); setSearchQuery(''); }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setActiveTab('terms')}
                 >
                   <div className={`w-8 h-8 rounded-lg bg-linear-to-r ${section.color} flex items-center justify-center shrink-0`}>
                     {getIcon(section.icon, "w-4 h-4 text-white")}
@@ -1081,7 +1118,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -1091,11 +1128,12 @@ const TermsOfServiceSection3 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     <div className="flex items-center gap-2">
                       {faq.videoUrl && (
-                        <span className="text-indigo-500 text-sm flex items-center gap-1">
+                        <span className="text-indigo-500 dark:text-indigo-400 text-sm flex items-center gap-1">
                           <HiOutlinePlay className="w-4 h-4" />
                           <span className="hidden sm:inline">Video</span>
                         </span>
@@ -1113,7 +1151,8 @@ const TermsOfServiceSection3 = ({ config }) => {
                       {faq.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(faq.videoUrl); setShowVideoModal(true); }}
-                          className="inline-flex items-center gap-2 text-indigo-600 text-sm font-semibold hover:underline"
+                          className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:underline"
+                          aria-label="Watch video explanation"
                         >
                           <HiOutlinePlay className="w-4 h-4" />
                           Watch Video Explanation
@@ -1127,7 +1166,7 @@ const TermsOfServiceSection3 = ({ config }) => {
             <div className="mt-8 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-center">
               <p className="text-gray-600 dark:text-gray-400">
                 Still have questions? Contact our legal team at{' '}
-                <a href="mailto:legal@supplychainpro.com" className="text-indigo-600 font-medium hover:underline">
+                <a href="mailto:legal@supplychainpro.com" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
                   legal@supplychainpro.com
                 </a>
               </p>
@@ -1135,7 +1174,7 @@ const TermsOfServiceSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Subscriptions Tab */}
+        {/* ==================== SUBSCRIPTIONS TAB ==================== */}
         {activeTab === 'subscriptions' && (
           <div className="space-y-8">
             {/* Pricing Cards */}
@@ -1143,7 +1182,8 @@ const TermsOfServiceSection3 = ({ config }) => {
               {subscriptionPlans.map((plan) => (
                 <div
                   key={plan.id}
-                  className={`relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 border ${plan.popular ? 'border-indigo-300 dark:border-indigo-500 ring-2 ring-indigo-500/20' : 'border-gray-200 dark:border-gray-700'}`}
+                  className={`relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 border ${plan.popular ? 'border-indigo-300 dark:border-indigo-500 ring-2 ring-indigo-500/20' : 'border-gray-200 dark:border-gray-700'
+                    }`}
                 >
                   {plan.popular && (
                     <div className="absolute top-0 right-0 bg-indigo-600 text-white px-3 py-1 text-xs font-semibold rounded-bl-xl">
@@ -1158,15 +1198,15 @@ const TermsOfServiceSection3 = ({ config }) => {
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{plan.name}</h3>
                     <div className="mt-4">
                       <span className="text-3xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
-                      <span className="text-gray-500">/{plan.period}</span>
+                      <span className="text-gray-500 dark:text-gray-400">/{plan.period}</span>
                     </div>
                     {plan.annualPrice !== "Custom" && (
-                      <p className="text-sm text-green-600 mt-2">Save {plan.annualSavings} with annual billing</p>
+                      <p className="text-sm text-green-600 dark:text-green-400 mt-2">Save {plan.annualSavings} with annual billing</p>
                     )}
                     <ul className="mt-6 space-y-2 text-left">
                       {plan.features.map((feature, fIdx) => (
                         <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 shrink-0" />
                           {feature}
                         </li>
                       ))}
@@ -1174,16 +1214,17 @@ const TermsOfServiceSection3 = ({ config }) => {
                     {plan.videoUrl && (
                       <button
                         onClick={() => { setCurrentVideo(plan.videoUrl); setShowVideoModal(true); }}
-                        className="mt-4 text-indigo-600 text-sm font-semibold hover:underline flex items-center justify-center gap-1"
+                        className="mt-4 text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:underline flex items-center justify-center gap-1"
+                        aria-label="Watch plan overview"
                       >
                         <HiOutlinePlay className="w-4 h-4" />
                         Watch Plan Overview
                       </button>
                     )}
                     <button className={`mt-4 w-full py-3 rounded-xl font-semibold transition-all duration-300 ${plan.popular
-                      ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                      }`}>
+                        ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      }`} aria-label={plan.price === "Custom" ? "Contact sales" : "Start free trial"}>
                       {plan.price === "Custom" ? "Contact Sales" : "Start Free Trial"}
                       <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
                     </button>
@@ -1200,11 +1241,11 @@ const TermsOfServiceSection3 = ({ config }) => {
                   <div key={idx} className="bg-white dark:bg-gray-900 rounded-xl p-5 shadow-sm">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                        <HiOutlineUserCircle className="w-6 h-6 text-indigo-600" />
+                        <HiOutlineUserCircle className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                       </div>
                       <div>
                         <p className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
-                        <p className="text-xs text-gray-500">{testimonial.role}, {testimonial.company}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{testimonial.role}, {testimonial.company}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-1 mb-2">
@@ -1223,7 +1264,7 @@ const TermsOfServiceSection3 = ({ config }) => {
               <HiOutlineHeart className="w-10 h-10 mx-auto mb-3" />
               <h3 className="text-xl font-bold mb-2">14-Day Free Trial</h3>
               <p className="text-green-100 mb-4">No credit card required. Cancel anytime during the trial period.</p>
-              <button className="inline-flex items-center gap-2 bg-white text-green-600 px-6 py-2 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300">
+              <button className="inline-flex items-center gap-2 bg-white text-green-600 px-6 py-2 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300" aria-label="Start free trial">
                 Start Your Free Trial
                 <HiOutlineArrowRight className="w-4 h-4" />
               </button>
@@ -1231,29 +1272,38 @@ const TermsOfServiceSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Terms of Service"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-indigo-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Terms of Service</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-indigo-600 dark:text-indigo-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Terms of Service.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -1263,11 +1313,24 @@ const TermsOfServiceSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Modal */}
+        {/* ==================== VIDEO MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setShowVideoModal(false)} className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                aria-label="Close video"
+              >
                 <HiOutlineX className="w-6 h-6" />
               </button>
               <video ref={videoRef} src={currentVideo} className="w-full" controls autoPlay />
@@ -1276,6 +1339,7 @@ const TermsOfServiceSection3 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }

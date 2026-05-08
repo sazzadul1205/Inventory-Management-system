@@ -1,9 +1,30 @@
 // page/frontend/Legal/CookiePolicySection/CookiePolicySection3.jsx
 
-// React
+/**
+ * Cookie Policy Section III - AI-Powered Privacy & Compliance Hub
+ *
+ * Unique Design Elements:
+ * - Video Integration for Key Cookie Concepts
+ * - Multi-Tab Interface (Policy, Highlights, Preferences, Summary, FAQ)
+ * - Interactive Highlights Carousel with Video Demos
+ * - Interactive Cookie Preference Toggles with Save Functionality
+ * - Search Functionality for Cookie Types and Third-Party Providers
+ * - Visual Cookie Type Cards with Color-Coded Categories
+ * - Third-Party Cookie Table with Opt-Out Links
+ * - Quick Stats Dashboard with Trend Indicators
+ * - FAQ Accordion with Video Explanations
+ * - Customer Testimonials Section
+ * - Animated Background Circuit Pattern
+ * - Print/Download Modal for Legal Documents
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2, md)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons, Heroicons 2, and Material Design
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -37,89 +58,65 @@ import {
   HiOutlineStar,
 } from 'react-icons/hi';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import { MdOutlineCookie as HiOutlineCookie, } from "react-icons/md";
+import { MdOutlineCookie as HiOutlineCookie } from "react-icons/md";
 
 const CookiePolicySection3 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('policy');
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
-  const [showPrintModal, setShowPrintModal] = useState(false);
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeTab, setActiveTab] = useState('policy');
   const [expandedFaq, setExpandedFaq] = useState(null);
-  const [cookiePreferences, setCookiePreferences] = useState({
-    essential: true,
-    functional: true,
-    analytics: false,
-    marketing: false,
-  });
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showPrintModal, setShowPrintModal] = useState(false);
   const [preferencesSaved, setPreferencesSaved] = useState(false);
+  const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
+  const [cookiePreferences, setCookiePreferences] = useState({ essential: true, functional: true, analytics: false, marketing: false, });
+
+  // ==================== REFS ====================
   const carouselRef = useRef(null);
   const videoRef = useRef(null);
 
-  const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
-
-  // Carousel navigation for highlights
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % (config?.highlights?.length || highlights.length));
-  }, [config?.highlights?.length, highlights.length]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + (config?.highlights?.length || highlights.length)) % (config?.highlights?.length || highlights.length));
-  }, [config?.highlights?.length, highlights.length]);
-
-  // Auto-play carousel
-  useEffect(() => {
-    if (config?.autoPlayCarousel && (config?.highlights?.length || highlights.length) > 1) {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 6000);
-      return () => clearInterval(interval);
-    }
-  }, [config?.autoPlayCarousel, config?.highlights?.length, highlights.length, nextSlide]);
-
-  // Cookie highlights for carousel
+  // ==================== MEMOIZED DATA ====================
   const highlights = config?.highlights || [
     {
       title: "Your Privacy, Your Choice",
       description: "You have full control over which cookies you accept. Manage your preferences anytime.",
       icon: "user",
       color: "from-amber-500 to-amber-600",
-      videoUrl: "/videos/cookie-choices.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       title: "Essential Cookies Always Active",
       description: "Security and authentication cookies are always on to protect your account.",
       icon: "shield",
       color: "from-blue-500 to-blue-600",
-      videoUrl: "/videos/essential-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       title: "Transparent & Compliant",
       description: "We follow GDPR, CCPA, and ePrivacy regulations for cookie consent.",
       icon: "globe",
       color: "from-green-500 to-green-600",
-      videoUrl: "/videos/cookie-compliance.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       title: "Analytics Help Us Improve",
       description: "Anonymous data helps us make SupplyChainPro better for everyone.",
       icon: "chart",
       color: "from-purple-500 to-purple-600",
-      videoUrl: "/videos/analytics-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     }
   ];
 
-  // Tabs configuration
   const tabs = [
     { id: 'policy', label: 'Cookie Policy', icon: 'document' },
     { id: 'highlights', label: 'Key Highlights', icon: 'star' },
     { id: 'preferences', label: 'Manage Cookies', icon: 'cookie' },
     { id: 'summary', label: 'Quick Summary', icon: 'view-grid' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'amber', trend: 'Version 3.0' },
     { label: 'Cookie Categories', value: '4', icon: 'chip', color: 'blue', trend: 'Essential, Functional, Analytics, Marketing' },
@@ -127,7 +124,6 @@ const CookiePolicySection3 = ({ config }) => {
     { label: 'Opt-Out Available', value: 'Yes', icon: 'user', color: 'green', trend: 'For non-essential cookies' },
   ];
 
-  // Cookie types with detailed information
   const cookieTypes = useMemo(() => config?.cookieTypes || [
     {
       id: 'essential',
@@ -140,7 +136,7 @@ const CookiePolicySection3 = ({ config }) => {
       color: "from-blue-500 to-blue-600",
       bgColor: "bg-blue-50 dark:bg-blue-900/20",
       borderColor: "border-blue-200 dark:border-blue-800",
-      videoUrl: "/videos/essential-cookies-detail.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       id: 'functional',
@@ -153,7 +149,7 @@ const CookiePolicySection3 = ({ config }) => {
       color: "from-green-500 to-green-600",
       bgColor: "bg-green-50 dark:bg-green-900/20",
       borderColor: "border-green-200 dark:border-green-800",
-      videoUrl: "/videos/functional-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       id: 'analytics',
@@ -166,7 +162,7 @@ const CookiePolicySection3 = ({ config }) => {
       color: "from-purple-500 to-purple-600",
       bgColor: "bg-purple-50 dark:bg-purple-900/20",
       borderColor: "border-purple-200 dark:border-purple-800",
-      videoUrl: "/videos/analytics-cookies-detail.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       id: 'marketing',
@@ -179,11 +175,10 @@ const CookiePolicySection3 = ({ config }) => {
       color: "from-orange-500 to-orange-600",
       bgColor: "bg-orange-50 dark:bg-orange-900/20",
       borderColor: "border-orange-200 dark:border-orange-800",
-      videoUrl: "/videos/marketing-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
   ], [config?.cookieTypes]);
 
-  // Third-party cookies
   const thirdPartyCookies = useMemo(() => config?.thirdPartyCookies || [
     {
       name: "Google Analytics",
@@ -192,7 +187,7 @@ const CookiePolicySection3 = ({ config }) => {
       optOut: "https://tools.google.com/dlpage/gaoptout",
       policy: "https://policies.google.com/privacy",
       cookieType: "analytics",
-      videoUrl: "/videos/google-analytics.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       name: "Mixpanel",
@@ -228,7 +223,6 @@ const CookiePolicySection3 = ({ config }) => {
     },
   ], [config?.thirdPartyCookies]);
 
-  // Cookie purposes
   const cookiePurposes = config?.cookiePurposes || [
     {
       title: "Security & Authentication",
@@ -256,67 +250,81 @@ const CookiePolicySection3 = ({ config }) => {
     },
   ];
 
-  // Testimonials
   const testimonials = config?.testimonials || [
     {
       name: "Sarah Johnson",
       role: "Supply Chain Director",
       company: "Global Retail Corp",
       quote: "I appreciate how transparent SupplyChainPro is about cookie usage. The preference center is easy to use.",
-      rating: 5,
-      avatar: "/testimonials/sarah.jpg"
+      rating: 5
     },
     {
       name: "Michael Chen",
       role: "Operations Manager",
       quote: "Clear cookie policy and easy opt-out options. This is how all apps should handle privacy.",
-      rating: 5,
-      avatar: "/testimonials/michael.jpg"
+      rating: 5
     },
     {
       name: "Emily Rodriguez",
       role: "Legal Counsel",
       quote: "As a legal professional, I'm impressed with their GDPR-compliant cookie consent implementation.",
-      rating: 5,
-      avatar: "/testimonials/emily.jpg"
+      rating: 5
     }
   ];
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'How long do cookies stay on my device?',
       answer: 'The duration varies by cookie type. Session cookies are deleted when you close your browser. Persistent cookies remain for a set period (from 90 days to 2 years) unless you delete them manually. You can always clear cookies through your browser settings.',
-      videoUrl: "/videos/cookie-duration.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       question: 'Can I disable cookies completely?',
       answer: 'Yes, you can disable cookies through your browser settings. However, please note that disabling essential cookies will prevent our Services from functioning properly. You may not be able to log in or use core features.',
-      videoUrl: "/videos/disable-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       question: 'Do you use cookies for tracking across different websites?',
       answer: 'We use analytics cookies that may track your behavior across our own Services, but we do not engage in cross-site tracking for advertising purposes without your explicit consent. Third-party marketing cookies may track your activity across other sites that use the same ad networks.',
-      videoUrl: "/videos/cross-site-tracking.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       question: 'How do I clear existing cookies?',
       answer: 'You can clear cookies through your browser settings. For Chrome: Settings > Privacy and Security > Clear browsing data > Cookies. For Safari: Preferences > Privacy > Manage Website Data > Remove All. For Firefox: Options > Privacy & Security > Cookies and Site Data > Clear Data.',
-      videoUrl: "/videos/clear-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
     {
       question: 'What happens if I don\'t accept cookies?',
       answer: 'If you decline non-essential cookies, our Services will still function but with reduced functionality. You may lose personalized settings, analytics data won\'t be collected, and you may see more generic advertising.',
-      videoUrl: "/videos/decline-cookies.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       question: 'Do your third-party partners comply with privacy regulations?',
       answer: 'Yes, all our third-party partners are GDPR and CCPA compliant. They sign Data Processing Agreements and are contractually obligated to protect your data. You can review their individual privacy policies via the links provided in our third-party cookies section.',
-      videoUrl: "/videos/third-party-compliance.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     }
   ];
 
-  // Filter sections based on search
+  // ==================== CAROUSEL FUNCTIONS ====================
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % highlights.length);
+  }, [highlights.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + highlights.length) % highlights.length);
+  }, [highlights.length]);
+
+  // ==================== AUTO-PLAY CAROUSEL EFFECT ====================
+  useEffect(() => {
+    if (config?.autoPlayCarousel !== false && highlights.length > 1) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [config?.autoPlayCarousel, nextSlide, highlights.length]);
+
+  // ==================== FILTER FUNCTIONS ====================
   const filteredCookieTypes = useMemo(() => {
     if (!searchQuery) return cookieTypes;
     const query = searchQuery.toLowerCase();
@@ -337,23 +345,7 @@ const CookiePolicySection3 = ({ config }) => {
     );
   }, [thirdPartyCookies, searchQuery]);
 
-  // Handle cookie preference changes
-  const handlePreferenceChange = (type) => {
-    if (type === 'essential') return;
-    setCookiePreferences(prev => ({
-      ...prev,
-      [type]: !prev[type]
-    }));
-  };
-
-  // Save preferences
-  const savePreferences = () => {
-    localStorage.setItem('cookiePreferences', JSON.stringify(cookiePreferences));
-    setPreferencesSaved(true);
-    setTimeout(() => setPreferencesSaved(false), 3000);
-  };
-
-  // Helper function to render icons
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -374,12 +366,26 @@ const CookiePolicySection3 = ({ config }) => {
       refresh: <HiOutlineRefresh className={className} />,
       sparkles: <HiOutlineSparkles className={className} />,
       'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
+      bell: <HiOutlineBell className={className} />,
       'external-link': <HiOutlineExternalLink className={className} />,
       info: <HiOutlineInformationCircle className={className} />,
       star: <HiOutlineStar className={className} />,
     };
     return icons[iconName] || <HiOutlineCookie className={className} />;
+  };
+
+  const handlePreferenceChange = (type) => {
+    if (type === 'essential') return;
+    setCookiePreferences(prev => ({
+      ...prev,
+      [type]: !prev[type]
+    }));
+  };
+
+  const savePreferences = () => {
+    localStorage.setItem('cookiePreferences', JSON.stringify(cookiePreferences));
+    setPreferencesSaved(true);
+    setTimeout(() => setPreferencesSaved(false), 3000);
   };
 
   return (
@@ -388,8 +394,8 @@ const CookiePolicySection3 = ({ config }) => {
       role="region"
       aria-label="Cookie Policy Hub"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+      {/* ==================== BACKGROUND PATTERN ==================== */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="circuit-pattern-cookie" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -402,12 +408,12 @@ const CookiePolicySection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-amber-200 dark:bg-amber-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* ==================== HERO SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineCookie className="w-4 h-4" />
@@ -422,28 +428,29 @@ const CookiePolicySection3 = ({ config }) => {
             {config?.description || "This Cookie Policy explains how SupplyChainPro uses cookies and similar technologies to recognize you when you visit our website and use our mobile application."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-                <div className={`w-6 h-6 rounded-full bg-${fact.color}-100 dark:bg-${fact.color}-900/30 flex items-center justify-center`}>
-                  {getIcon(fact.icon, `w-3 h-3 text-${fact.color}-600`)}
+                <div className="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                  {getIcon(fact.icon, "w-3 h-3 text-amber-600")}
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
                 {fact.trend && (
-                  <span className="text-xs text-gray-400 hidden sm:inline">{fact.trend}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">{fact.trend}</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-white rounded-xl hover:bg-amber-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
@@ -451,6 +458,7 @@ const CookiePolicySection3 = ({ config }) => {
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -458,7 +466,7 @@ const CookiePolicySection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <button
@@ -468,6 +476,7 @@ const CookiePolicySection3 = ({ config }) => {
                 ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'document' ? <HiOutlineDocumentText className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -479,7 +488,7 @@ const CookiePolicySection3 = ({ config }) => {
           ))}
         </div>
 
-        {/* Key Highlights Carousel Tab */}
+        {/* ==================== KEY HIGHLIGHTS CAROUSEL TAB ==================== */}
         {activeTab === 'highlights' && (
           <div className="relative mb-16">
             <div className="relative overflow-hidden rounded-3xl">
@@ -502,6 +511,7 @@ const CookiePolicySection3 = ({ config }) => {
                           <button
                             onClick={() => { setCurrentVideo(highlight.videoUrl); setShowVideoModal(true); }}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-xl font-semibold hover:bg-white/30 transition-colors"
+                            aria-label="Watch video"
                           >
                             <HiOutlinePlay className="w-5 h-5" />
                             Watch Video
@@ -515,15 +525,28 @@ const CookiePolicySection3 = ({ config }) => {
 
               {highlights.length > 1 && (
                 <>
-                  <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                    aria-label="Previous slide"
+                  >
                     <HiOutlineChevronLeft className="w-6 h-6" />
                   </button>
-                  <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                    aria-label="Next slide"
+                  >
                     <HiOutlineChevronRight className="w-6 h-6" />
                   </button>
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                     {highlights.map((_, idx) => (
-                      <button key={idx} onClick={() => setCurrentSlide(idx)} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
                     ))}
                   </div>
                 </>
@@ -532,7 +555,7 @@ const CookiePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Cookie Policy Tab */}
+        {/* ==================== COOKIE POLICY TAB ==================== */}
         {activeTab === 'policy' && (
           <>
             {/* Search Bar */}
@@ -545,7 +568,8 @@ const CookiePolicySection3 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search cookie types or third-party providers..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900 dark:text-white"
+                aria-label="Search cookie policy"
               />
             </div>
 
@@ -553,7 +577,7 @@ const CookiePolicySection3 = ({ config }) => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                  <HiOutlineCookie className="w-5 h-5 text-amber-600" />
+                  <HiOutlineCookie className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">What Are Cookies?</h2>
               </div>
@@ -586,12 +610,12 @@ const CookiePolicySection3 = ({ config }) => {
                         <h3 className="font-semibold text-gray-900 dark:text-white">{cookie.name}</h3>
                       </div>
                       {cookie.required ? (
-                        <span className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full">
                           <HiOutlineLockClosed className="w-3 h-3" />
                           Always Active
                         </span>
                       ) : (
-                        <span className="text-xs text-gray-500">Optional</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">Optional</span>
                       )}
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{cookie.description}</p>
@@ -604,16 +628,17 @@ const CookiePolicySection3 = ({ config }) => {
                           </span>
                         ))}
                         {cookie.examples.length > 3 && (
-                          <span className="text-xs text-gray-400">+{cookie.examples.length - 3} more</span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500">+{cookie.examples.length - 3} more</span>
                         )}
                       </div>
                     </div>
                     <div className="flex items-center justify-between mt-2">
-                      <p className="text-xs text-gray-500">Duration: {cookie.duration}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Duration: {cookie.duration}</p>
                       {cookie.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(cookie.videoUrl); setShowVideoModal(true); }}
-                          className="text-amber-600 text-xs font-semibold hover:underline flex items-center gap-1"
+                          className="text-amber-600 dark:text-amber-400 text-xs font-semibold hover:underline flex items-center gap-1"
+                          aria-label="Watch demo"
                         >
                           <HiOutlinePlay className="w-3 h-3" />
                           Watch Demo
@@ -623,6 +648,12 @@ const CookiePolicySection3 = ({ config }) => {
                   </div>
                 ))}
               </div>
+              {filteredCookieTypes.length === 0 && (
+                <div className="text-center py-8 bg-white dark:bg-gray-800 rounded-xl">
+                  <HiOutlineSearch className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                  <p className="text-gray-500 dark:text-gray-400">No cookie types match your search.</p>
+                </div>
+              )}
             </div>
 
             {/* Cookie Purposes */}
@@ -632,7 +663,7 @@ const CookiePolicySection3 = ({ config }) => {
                 {cookiePurposes.map((purpose, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
                     <div className={`w-8 h-8 rounded-lg bg-${purpose.color}-100 dark:bg-${purpose.color}-900/30 flex items-center justify-center shrink-0`}>
-                      {getIcon(purpose.icon, `w-4 h-4 text-${purpose.color}-600`)}
+                      {getIcon(purpose.icon, `w-4 h-4 text-${purpose.color}-600 dark:text-${purpose.color}-400`)}
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{purpose.title}</h3>
@@ -670,18 +701,18 @@ const CookiePolicySection3 = ({ config }) => {
                               <span key={dIdx} className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs">{d}</span>
                             ))}
                             {cookie.dataCollected.length > 2 && (
-                              <span className="text-gray-400 text-xs">+{cookie.dataCollected.length - 2}</span>
+                              <span className="text-gray-400 dark:text-gray-500 text-xs">+{cookie.dataCollected.length - 2}</span>
                             )}
                           </div>
                         </td>
                         <td className="p-3">
                           {cookie.optOut !== "N/A (essential for payments)" ? (
-                            <a href={cookie.optOut} target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline text-xs flex items-center gap-1">
+                            <a href={cookie.optOut} target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline text-xs flex items-center gap-1">
                               Opt Out
                               <HiOutlineExternalLink className="w-3 h-3" />
                             </a>
                           ) : (
-                            <span className="text-xs text-gray-400">Essential</span>
+                            <span className="text-xs text-gray-400 dark:text-gray-500">Essential</span>
                           )}
                         </td>
                       </tr>
@@ -692,18 +723,18 @@ const CookiePolicySection3 = ({ config }) => {
               {filteredThirdPartyCookies.length === 0 && (
                 <div className="text-center py-8">
                   <HiOutlineSearch className="w-8 h-8 mx-auto text-gray-400 mb-2" />
-                  <p className="text-gray-500">No third-party cookies match your search.</p>
+                  <p className="text-gray-500 dark:text-gray-400">No third-party cookies match your search.</p>
                 </div>
               )}
             </div>
           </>
         )}
 
-        {/* Manage Cookies Tab */}
+        {/* ==================== MANAGE COOKIES TAB ==================== */}
         {activeTab === 'preferences' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <div className="text-center mb-8">
-              <HiOutlineCookie className="w-12 h-12 mx-auto text-amber-600 mb-4" />
+              <HiOutlineCookie className="w-12 h-12 mx-auto text-amber-600 dark:text-amber-400 mb-4" />
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Manage Your Cookie Preferences</h2>
               <p className="text-gray-600 dark:text-gray-400">
                 You can control which cookies you accept. Essential cookies cannot be disabled as they are required for our Services to function properly.
@@ -730,6 +761,7 @@ const CookiePolicySection3 = ({ config }) => {
                       onChange={() => handlePreferenceChange(cookie.id)}
                       disabled={cookie.required}
                       className="sr-only peer"
+                      aria-label={`Toggle ${cookie.name}`}
                     />
                     <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${cookie.required ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600 peer-checked:bg-amber-600'}`} />
                   </label>
@@ -742,13 +774,14 @@ const CookiePolicySection3 = ({ config }) => {
               <button
                 onClick={savePreferences}
                 className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                aria-label="Save cookie preferences"
               >
                 <HiOutlineCheckCircle className="w-5 h-5" />
                 Save My Preferences
               </button>
 
               {preferencesSaved && (
-                <div className="mt-4 p-3 bg-green-100 dark:bg-green-900/30 rounded-lg inline-block">
+                <div className="mt-4 p-3 bg-green-100 dark:bg-green-900/30 rounded-lg inline-block animate-fadeIn">
                   <p className="text-green-700 dark:text-green-300 text-sm flex items-center gap-2">
                     <HiOutlineCheckCircle className="w-4 h-4" />
                     Your preferences have been saved!
@@ -761,13 +794,13 @@ const CookiePolicySection3 = ({ config }) => {
             <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 You can also manage cookies through your browser settings.
-                <button className="text-amber-600 hover:underline ml-1">Learn how →</button>
+                <button className="text-amber-600 dark:text-amber-400 hover:underline ml-1" aria-label="Learn how">Learn how →</button>
               </p>
             </div>
           </div>
         )}
 
-        {/* Quick Summary Tab */}
+        {/* ==================== QUICK SUMMARY TAB ==================== */}
         {activeTab === 'summary' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Quick Summary of Cookie Policy</h2>
@@ -780,7 +813,7 @@ const CookiePolicySection3 = ({ config }) => {
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">{cookie.name}</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{cookie.description.substring(0, 80)}...</p>
-                    <p className="text-xs text-gray-500 mt-1">Duration: {cookie.duration}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Duration: {cookie.duration}</p>
                   </div>
                 </div>
               ))}
@@ -793,7 +826,7 @@ const CookiePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -803,11 +836,12 @@ const CookiePolicySection3 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     <div className="flex items-center gap-2">
                       {faq.videoUrl && (
-                        <span className="text-amber-500 text-sm flex items-center gap-1">
+                        <span className="text-amber-500 dark:text-amber-400 text-sm flex items-center gap-1">
                           <HiOutlinePlay className="w-4 h-4" />
                           <span className="hidden sm:inline">Video</span>
                         </span>
@@ -825,7 +859,8 @@ const CookiePolicySection3 = ({ config }) => {
                       {faq.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(faq.videoUrl); setShowVideoModal(true); }}
-                          className="inline-flex items-center gap-2 text-amber-600 text-sm font-semibold hover:underline"
+                          className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-sm font-semibold hover:underline"
+                          aria-label="Watch video explanation"
                         >
                           <HiOutlinePlay className="w-4 h-4" />
                           Watch Video Explanation
@@ -839,7 +874,7 @@ const CookiePolicySection3 = ({ config }) => {
             <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl text-center">
               <p className="text-gray-600 dark:text-gray-400">
                 Still have questions? Contact our privacy team at{' '}
-                <a href="mailto:privacy@supplychainpro.com" className="text-amber-600 font-medium hover:underline">
+                <a href="mailto:privacy@supplychainpro.com" className="text-amber-600 dark:text-amber-400 font-medium hover:underline">
                   privacy@supplychainpro.com
                 </a>
               </p>
@@ -847,7 +882,7 @@ const CookiePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Testimonials Section (shown on policy tab) */}
+        {/* ==================== TESTIMONIALS SECTION ==================== */}
         {activeTab === 'policy' && (
           <div className="mt-8 bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white text-center mb-4">What Our Users Say</h3>
@@ -856,11 +891,11 @@ const CookiePolicySection3 = ({ config }) => {
                 <div key={idx} className="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                      <HiOutlineUserCircle className="w-5 h-5 text-amber-600" />
+                      <HiOutlineUserCircle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white text-sm">{testimonial.name}</p>
-                      <p className="text-xs text-gray-500">{testimonial.role}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{testimonial.role}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mb-2">
@@ -875,39 +910,48 @@ const CookiePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Contact Info Footer */}
+        {/* ==================== CONTACT INFO FOOTER ==================== */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>SupplyChainPro Inc. | 123 Supply Chain Boulevard, Suite 400, San Francisco, CA 94105</p>
           <p className="mt-1">
-            <a href="mailto:privacy@supplychainpro.com" className="hover:text-amber-600">privacy@supplychainpro.com</a> |
+            <a href="mailto:privacy@supplychainpro.com" className="hover:text-amber-600 dark:hover:text-amber-400">privacy@supplychainpro.com</a> |
             <span className="mx-1">•</span>
-            <button onClick={() => setActiveTab('preferences')} className="hover:text-amber-600">Cookie settings</button>
+            <button onClick={() => setActiveTab('preferences')} className="hover:text-amber-600 dark:hover:text-amber-400" aria-label="Cookie settings">Cookie settings</button>
           </p>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Cookie Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-amber-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Cookie Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineCookie className="w-12 h-12 text-amber-600 mx-auto mb-4" />
+                <HiOutlineCookie className="w-12 h-12 text-amber-600 dark:text-amber-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Cookie Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-amber-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-amber-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -917,11 +961,24 @@ const CookiePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Modal */}
+        {/* ==================== VIDEO MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setShowVideoModal(false)} className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                aria-label="Close video"
+              >
                 <HiOutlineX className="w-6 h-6" />
               </button>
               <video ref={videoRef} src={currentVideo} className="w-full" controls autoPlay />
@@ -930,11 +987,20 @@ const CookiePolicySection3 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
         }
         .animate-blob {
           animation: blob 7s infinite;
@@ -942,9 +1008,8 @@ const CookiePolicySection3 = ({ config }) => {
         .animation-delay-2000 {
           animation-delay: 2s;
         }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
         }
         .animate-pulse {
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;

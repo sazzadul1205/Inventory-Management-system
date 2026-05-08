@@ -1,9 +1,26 @@
 // page/frontend/Legal/CookiePolicySection/CookiePolicySection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * Cookie Policy Section I - Legal Compliance & Privacy Hub
+ *
+ * Unique Design Elements:
+ * - Interactive Cookie Preference Toggles
+ * - Detailed Cookie Type Cards with Examples
+ * - Third-Party Cookie Table with Opt-Out Links
+ * - Quick Stats Dashboard with Key Metrics
+ * - Sticky Navigation Sidebar with Scroll Spy
+ * - Mobile-Friendly Accordion Navigation
+ * - Animated Background Blur Orbs
+ * - Print/Download Modal for Legal Documents
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2, md)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useEffect, useRef, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -27,23 +44,22 @@ import {
   HiOutlineHeart,
   HiOutlineSparkles,
 } from 'react-icons/hi';
-import { MdOutlineCookie as HiOutlineCookie, } from "react-icons/md";
+import { MdOutlineCookie as HiOutlineCookie } from "react-icons/md";
 
 const CookiePolicySection1 = ({ config }) => {
-  const [activeSection, setActiveSection] = useState('introduction');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [showPrintModal, setShowPrintModal] = useState(false);
-  const [cookiePreferences, setCookiePreferences] = useState({
-    essential: true,
-    functional: true,
-    analytics: false,
-    marketing: false,
-  });
+  const [expandedSection, setExpandedSection] = useState(null);
   const [preferencesSaved, setPreferencesSaved] = useState(false);
+  const [activeSection, setActiveSection] = useState('introduction');
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
+  const [cookiePreferences, setCookiePreferences] = useState({ essential: true, functional: true, analytics: false, marketing: false, });
 
-  // Navigation sections
-  const sections = config?.sections || [
+  // ==================== REFS ====================
+  const sectionRefs = useRef({});
+
+  // ==================== MEMOIZED DATA ====================
+  const sections = useMemo(() => config?.sections || [
     { id: 'introduction', label: 'Introduction', icon: 'document' },
     { id: 'what-are-cookies', label: 'What Are Cookies?', icon: 'cookie' },
     { id: 'types-of-cookies', label: 'Types of Cookies We Use', icon: 'chip' },
@@ -53,9 +69,8 @@ const CookiePolicySection1 = ({ config }) => {
     { id: 'consent', label: 'Your Consent', icon: 'check' },
     { id: 'policy-updates', label: 'Updates to This Policy', icon: 'clock' },
     { id: 'contact-us', label: 'Contact Us', icon: 'mail' },
-  ];
+  ], [config]);
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     address: "123 Supply Chain Boulevard, Suite 400, San Francisco, CA 94105",
@@ -63,7 +78,6 @@ const CookiePolicySection1 = ({ config }) => {
     phone: "+1 (800) 555-0123",
   };
 
-  // Cookie types
   const cookieTypes = config?.cookieTypes || [
     {
       name: "Essential Cookies",
@@ -103,7 +117,6 @@ const CookiePolicySection1 = ({ config }) => {
     },
   ];
 
-  // Third-party cookies
   const thirdPartyCookies = config?.thirdPartyCookies || [
     {
       name: "Google Analytics",
@@ -135,7 +148,6 @@ const CookiePolicySection1 = ({ config }) => {
     },
   ];
 
-  // Cookie purposes
   const cookiePurposes = config?.cookiePurposes || [
     {
       title: "Security & Authentication",
@@ -159,7 +171,6 @@ const CookiePolicySection1 = ({ config }) => {
     },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar' },
     { label: 'Cookie Categories', value: '4', icon: 'chip' },
@@ -167,7 +178,30 @@ const CookiePolicySection1 = ({ config }) => {
     { label: 'Opt-Out Available', value: 'Yes', icon: 'user' },
   ];
 
-  // Helper function to render icons
+  // ==================== SCROLL SPY EFFECT ====================
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -191,32 +225,26 @@ const CookiePolicySection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineCookie className={className} />;
   };
 
-  // Handle cookie preference changes
   const handlePreferenceChange = (type) => {
-    if (type === 'essential') return; // Essential cookies cannot be disabled
+    if (type === 'essential') return;
     setCookiePreferences(prev => ({
       ...prev,
       [type]: !prev[type]
     }));
   };
 
-  // Save preferences
   const savePreferences = () => {
     setPreferencesSaved(true);
     setTimeout(() => setPreferencesSaved(false), 3000);
-    // In a real implementation, you would save these preferences to localStorage or send to server
   };
 
-  // Scroll to section handler
   const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Toggle section expansion for mobile
   const toggleSection = (sectionId) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
@@ -227,13 +255,13 @@ const CookiePolicySection1 = ({ config }) => {
       role="region"
       aria-label="Cookie Policy Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-amber-200 dark:bg-amber-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-orange-200 dark:bg-orange-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-amber-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-amber-100 dark:border-gray-700">
             <HiOutlineCookie className="w-4 h-4 text-amber-600 dark:text-amber-400 mr-2" />
@@ -250,11 +278,11 @@ const CookiePolicySection1 = ({ config }) => {
             {config?.description || "This Cookie Policy explains how SupplyChainPro uses cookies and similar technologies to recognize you when you visit our website and use our mobile application."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-                {getIcon(fact.icon, "w-4 h-4 text-gray-500")}
+                {getIcon(fact.icon, "w-4 h-4 text-gray-500 dark:text-gray-400")}
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
@@ -262,18 +290,20 @@ const CookiePolicySection1 = ({ config }) => {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-full hover:bg-amber-700 transition-colors text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
             </button>
             <button
               onClick={() => setShowPrintModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -281,16 +311,16 @@ const CookiePolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Sidebar & Content Grid */}
+        {/* ==================== NAVIGATION SIDEBAR & CONTENT GRID ==================== */}
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sticky Navigation - Desktop */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
-                <HiOutlineCookie className="w-5 h-5 text-amber-600" />
+                <HiOutlineCookie className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">Contents</h3>
               </div>
-              <nav className="space-y-1 max-h-96 overflow-y-auto">
+              <nav className="space-y-1 max-h-96 overflow-y-auto" aria-label="Cookie policy navigation">
                 {sections.map((section) => (
                   <button
                     key={section.id}
@@ -299,6 +329,7 @@ const CookiePolicySection1 = ({ config }) => {
                       ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-medium'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Navigate to ${section.label} section`}
                   >
                     {getIcon(section.icon, "w-4 h-4")}
                     {section.label}
@@ -314,9 +345,10 @@ const CookiePolicySection1 = ({ config }) => {
               <button
                 onClick={() => toggleSection('mobile-nav')}
                 className="w-full flex items-center justify-between"
+                aria-label="Toggle mobile navigation"
               >
                 <div className="flex items-center gap-2">
-                  <HiOutlineCookie className="w-5 h-5 text-amber-600" />
+                  <HiOutlineCookie className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   <span className="font-semibold text-gray-900 dark:text-white">Jump to Section</span>
                 </div>
                 {expandedSection === 'mobile-nav' ? (
@@ -335,6 +367,7 @@ const CookiePolicySection1 = ({ config }) => {
                         setExpandedSection(null);
                       }}
                       className="w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      aria-label={`Navigate to ${section.label} section`}
                     >
                       {getIcon(section.icon, "w-4 h-4")}
                       {section.label}
@@ -345,14 +378,18 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
           </div>
 
-          {/* Main Content */}
+          {/* ==================== MAIN CONTENT ==================== */}
           <div className="lg:col-span-3 space-y-8">
             {/* Introduction Section */}
-            <div id="introduction" className="scroll-mt-24">
+            <div
+              id="introduction"
+              ref={el => sectionRefs.current['introduction'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineDocumentText className="w-5 h-5 text-amber-600" />
+                    <HiOutlineDocumentText className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Introduction</h2>
                 </div>
@@ -373,11 +410,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* What Are Cookies Section */}
-            <div id="what-are-cookies" className="scroll-mt-24">
+            <div
+              id="what-are-cookies"
+              ref={el => sectionRefs.current['what-are-cookies'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineCookie className="w-5 h-5 text-amber-600" />
+                    <HiOutlineCookie className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">What Are Cookies?</h2>
                 </div>
@@ -403,26 +444,30 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Types of Cookies Section */}
-            <div id="types-of-cookies" className="scroll-mt-24">
+            <div
+              id="types-of-cookies"
+              ref={el => sectionRefs.current['types-of-cookies'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineChip className="w-5 h-5 text-amber-600" />
+                    <HiOutlineChip className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Types of Cookies We Use</h2>
                 </div>
                 <div className="space-y-6">
                   {cookieTypes.map((cookie, idx) => (
-                    <div key={idx} className={`border-l-4 border-${cookie.color.split('-')[1]}-500 pl-4`}>
+                    <div key={idx} className="border-l-4 border-amber-500 pl-4">
                       <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{cookie.name}</h3>
                         {cookie.required ? (
-                          <span className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
+                          <span className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 px-2 py-0.5 rounded-full">
                             <HiOutlineLockClosed className="w-3 h-3" />
                             Always Active
                           </span>
                         ) : (
-                          <span className="text-xs text-gray-500">Optional</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">Optional</span>
                         )}
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{cookie.description}</p>
@@ -436,7 +481,7 @@ const CookiePolicySection1 = ({ config }) => {
                           ))}
                         </div>
                       </div>
-                      <p className="text-xs text-gray-500">Duration: {cookie.duration}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Duration: {cookie.duration}</p>
                     </div>
                   ))}
                 </div>
@@ -444,11 +489,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Why We Use Cookies Section */}
-            <div id="cookie-purposes" className="scroll-mt-24">
+            <div
+              id="cookie-purposes"
+              ref={el => sectionRefs.current['cookie-purposes'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineChartBar className="w-5 h-5 text-amber-600" />
+                    <HiOutlineChartBar className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Why We Use Cookies</h2>
                 </div>
@@ -456,7 +505,7 @@ const CookiePolicySection1 = ({ config }) => {
                   {cookiePurposes.map((purpose, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
                       <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0">
-                        {getIcon(purpose.icon, "w-4 h-4 text-amber-600")}
+                        {getIcon(purpose.icon, "w-4 h-4 text-amber-600 dark:text-amber-400")}
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white">{purpose.title}</h3>
@@ -469,11 +518,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Third-Party Cookies Section */}
-            <div id="third-party-cookies" className="scroll-mt-24">
+            <div
+              id="third-party-cookies"
+              ref={el => sectionRefs.current['third-party-cookies'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineGlobe className="w-5 h-5 text-amber-600" />
+                    <HiOutlineGlobe className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Third-Party Cookies</h2>
                 </div>
@@ -497,11 +550,11 @@ const CookiePolicySection1 = ({ config }) => {
                             <td className="p-3 text-gray-600 dark:text-gray-400">{cookie.purpose}</td>
                             <td className="p-3">
                               {cookie.optOut !== "N/A (essential for payments)" ? (
-                                <a href={cookie.optOut} target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline text-xs">
+                                <a href={cookie.optOut} target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline text-xs">
                                   Opt Out →
                                 </a>
                               ) : (
-                                <span className="text-xs text-gray-400">Essential</span>
+                                <span className="text-xs text-gray-400 dark:text-gray-500">Essential</span>
                               )}
                             </td>
                           </tr>
@@ -514,11 +567,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Cookie Preferences Section */}
-            <div id="cookie-preferences" className="scroll-mt-24">
+            <div
+              id="cookie-preferences"
+              ref={el => sectionRefs.current['cookie-preferences'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineUser className="w-5 h-5 text-amber-600" />
+                    <HiOutlineUser className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Manage Your Cookie Preferences</h2>
                 </div>
@@ -529,48 +586,49 @@ const CookiePolicySection1 = ({ config }) => {
 
                   {/* Cookie Preference Toggles */}
                   <div className="space-y-3">
-                    {cookieTypes.map((cookie, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                        <div>
-                          <p className="font-semibold text-gray-900 dark:text-white">{cookie.name}</p>
-                          <p className="text-xs text-gray-500">{cookie.description.substring(0, 100)}...</p>
+                    {cookieTypes.map((cookie, idx) => {
+                      const prefKey = cookie.name.toLowerCase().includes('essential') ? 'essential' :
+                        cookie.name.toLowerCase().includes('functional') ? 'functional' :
+                          cookie.name.toLowerCase().includes('analytics') ? 'analytics' : 'marketing';
+                      return (
+                        <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                          <div>
+                            <p className="font-semibold text-gray-900 dark:text-white">{cookie.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{cookie.description.substring(0, 100)}...</p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={cookiePreferences[prefKey]}
+                              onChange={() => handlePreferenceChange(prefKey)}
+                              disabled={cookie.required}
+                              className="sr-only peer"
+                              aria-label={`Toggle ${cookie.name}`}
+                            />
+                            <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${cookie.required ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600 peer-checked:bg-amber-600'}`} />
+                          </label>
                         </div>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={cookiePreferences[cookie.name.toLowerCase().includes('essential') ? 'essential' :
-                              cookie.name.toLowerCase().includes('functional') ? 'functional' :
-                                cookie.name.toLowerCase().includes('analytics') ? 'analytics' : 'marketing']}
-                            onChange={() => handlePreferenceChange(
-                              cookie.name.toLowerCase().includes('essential') ? 'essential' :
-                                cookie.name.toLowerCase().includes('functional') ? 'functional' :
-                                  cookie.name.toLowerCase().includes('analytics') ? 'analytics' : 'marketing'
-                            )}
-                            disabled={cookie.required}
-                            className="sr-only peer"
-                          />
-                          <div className={`w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all ${cookie.required ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600 peer-checked:bg-amber-600'}`} />
-                        </label>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   {/* Save Preferences Button */}
                   <button
                     onClick={savePreferences}
                     className="w-full mt-4 inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                    aria-label="Save cookie preferences"
                   >
                     <HiOutlineCheckCircle className="w-5 h-5" />
                     Save Cookie Preferences
                   </button>
 
                   {preferencesSaved && (
-                    <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg text-center">
+                    <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg text-center animate-fadeIn">
                       <p className="text-green-700 dark:text-green-300 text-sm">Your preferences have been saved!</p>
                     </div>
                   )}
 
-                  <p className="text-xs text-gray-500 text-center mt-4">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
                     You can also manage cookies through your browser settings. Please note that disabling certain cookies may affect the functionality of our Services.
                   </p>
                 </div>
@@ -578,11 +636,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Consent Section */}
-            <div id="consent" className="scroll-mt-24">
+            <div
+              id="consent"
+              ref={el => sectionRefs.current['consent'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineCheckCircle className="w-5 h-5 text-amber-600" />
+                    <HiOutlineCheckCircle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Your Consent</h2>
                 </div>
@@ -594,7 +656,7 @@ const CookiePolicySection1 = ({ config }) => {
                     By clicking "Accept All Cookies" or continuing to use our Services, you consent to our use of cookies as described in this policy. You can change your mind at any time by adjusting your preferences above.
                   </p>
                   <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                    <HiOutlineCheckCircle className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <HiOutlineCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
                     <p className="text-sm text-green-800 dark:text-green-300">
                       Withdrawing consent does not affect the lawfulness of processing based on consent before its withdrawal.
                     </p>
@@ -604,11 +666,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Policy Updates Section */}
-            <div id="policy-updates" className="scroll-mt-24">
+            <div
+              id="policy-updates"
+              ref={el => sectionRefs.current['policy-updates'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineClock className="w-5 h-5 text-amber-600" />
+                    <HiOutlineClock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Updates to This Policy</h2>
                 </div>
@@ -619,7 +685,7 @@ const CookiePolicySection1 = ({ config }) => {
                   <p>
                     We encourage you to review this policy periodically for any changes. Your continued use of our Services after the effective date constitutes your acceptance of the updated policy.
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                     <HiOutlineCalendar className="w-4 h-4" />
                     <span>Last Updated: {lastUpdated}</span>
                   </div>
@@ -628,11 +694,15 @@ const CookiePolicySection1 = ({ config }) => {
             </div>
 
             {/* Contact Us Section */}
-            <div id="contact-us" className="scroll-mt-24">
+            <div
+              id="contact-us"
+              ref={el => sectionRefs.current['contact-us'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-amber-600" />
+                    <HiOutlineMail className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
                 </div>
@@ -644,7 +714,7 @@ const CookiePolicySection1 = ({ config }) => {
                     <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
                     <p className="text-sm">{company.address}</p>
                     <p className="text-sm">
-                      <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-amber-600 hover:underline">{company.email}</a>
+                      <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-amber-600 dark:text-amber-400 hover:underline">{company.email}</a>
                     </p>
                     <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
                   </div>
@@ -654,29 +724,38 @@ const CookiePolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Cookie Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-amber-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Cookie Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineCookie className="w-12 h-12 text-amber-600 mx-auto mb-4" />
+                <HiOutlineCookie className="w-12 h-12 text-amber-600 dark:text-amber-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Cookie Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-amber-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-amber-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -687,15 +766,26 @@ const CookiePolicySection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

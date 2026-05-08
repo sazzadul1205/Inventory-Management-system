@@ -1,9 +1,25 @@
 // page/frontend/Legal/PrivacyPolicySection/PrivacyPolicySection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * Privacy Policy Section I - Legal & Compliance Documentation Hub
+ *
+ * Unique Design Elements:
+ * - Sticky Navigation Sidebar with Scroll Spy
+ * - Interactive Section Cards with Gradient Accents
+ * - Data Collection Categories Grid with Icons
+ * - User Rights Cards with Response Timeframes
+ * - Cookie Policy Table with Duration Tracking
+ * - Company Information Card with Certifications
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useEffect, useRef, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineShieldCheck,
   HiOutlineLockClosed,
@@ -29,11 +45,15 @@ import {
 import { HiOutlineShieldExclamation, HiOutlineUserGroup } from 'react-icons/hi2';
 
 const PrivacyPolicySection1 = ({ config }) => {
+  // ==================== STATE MANAGEMENT ====================
   const [activeSection, setActiveSection] = useState('introduction');
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Navigation sections
-  const sections = config?.sections || [
+  // ==================== REFS ====================
+  const sectionRefs = useRef({});
+
+  // ==================== MEMOIZED DATA ====================
+  const sections = useMemo(() => config?.sections || [
     { id: 'introduction', label: 'Introduction', icon: 'document' },
     { id: 'information-collection', label: 'Information We Collect', icon: 'database' },
     { id: 'usage-of-information', label: 'How We Use Your Information', icon: 'chip' },
@@ -41,13 +61,12 @@ const PrivacyPolicySection1 = ({ config }) => {
     { id: 'data-security', label: 'Data Security', icon: 'shield' },
     { id: 'user-rights', label: 'Your Rights & Choices', icon: 'user' },
     { id: 'cookies', label: 'Cookies & Tracking', icon: 'eye' },
-    { id: 'children-privacy', label: 'Children\'s Privacy', icon: 'user-group' },
+    { id: 'children-privacy', label: "Children's Privacy", icon: 'user-group' },
     { id: 'international-transfer', label: 'International Data Transfers', icon: 'location' },
     { id: 'policy-updates', label: 'Updates to This Policy', icon: 'refresh' },
     { id: 'contact-us', label: 'Contact Us', icon: 'mail' },
-  ];
+  ], [config]);
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     address: "123 Supply Chain Boulevard, Suite 400, San Francisco, CA 94105",
@@ -58,7 +77,6 @@ const PrivacyPolicySection1 = ({ config }) => {
     certifications: ["SOC 2 Type II", "ISO 27001", "GDPR Ready"]
   };
 
-  // Data collection categories
   const dataCollectionCategories = config?.dataCollectionCategories || [
     {
       title: "Personal Information",
@@ -120,7 +138,6 @@ const PrivacyPolicySection1 = ({ config }) => {
     }
   ];
 
-  // Data usage purposes
   const dataUsagePurposes = config?.dataUsagePurposes || [
     {
       title: "Service Delivery",
@@ -164,11 +181,10 @@ const PrivacyPolicySection1 = ({ config }) => {
     }
   ];
 
-  // Data sharing scenarios
   const dataSharingScenarios = config?.dataSharingScenarios || [
     {
       title: "Service Providers",
-      icon: "building",
+      icon: "office-building",
       items: [
         "Cloud hosting providers (AWS, Google Cloud)",
         "Payment processors (Stripe, PayPal)",
@@ -199,7 +215,6 @@ const PrivacyPolicySection1 = ({ config }) => {
     }
   ];
 
-  // User rights
   const userRights = config?.userRights || [
     {
       title: "Right to Access",
@@ -239,7 +254,6 @@ const PrivacyPolicySection1 = ({ config }) => {
     }
   ];
 
-  // Cookie information
   const cookieTypes = config?.cookieTypes || [
     {
       name: "Essential Cookies",
@@ -267,7 +281,30 @@ const PrivacyPolicySection1 = ({ config }) => {
     }
   ];
 
-  // Helper function to render icons
+  // ==================== SCROLL SPY EFFECT ====================
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -281,7 +318,6 @@ const PrivacyPolicySection1 = ({ config }) => {
       'credit-card': <HiOutlineCreditCard className={className} />,
       clipboard: <HiOutlineClipboardList className={className} />,
       briefcase: <HiOutlineBriefcase className={className} />,
-      building: <HiOutlineOfficeBuilding className={className} />,
       'office-building': <HiOutlineOfficeBuilding className={className} />,
       scale: <HiOutlineScale className={className} />,
       eye: <HiOutlineEye className={className} />,
@@ -294,10 +330,8 @@ const PrivacyPolicySection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Scroll to section handler
   const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -309,13 +343,13 @@ const PrivacyPolicySection1 = ({ config }) => {
       role="region"
       aria-label="Privacy Policy Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -341,16 +375,16 @@ const PrivacyPolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Sidebar & Content Grid */}
+        {/* ==================== NAVIGATION & CONTENT GRID ==================== */}
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Sticky Navigation */}
+          {/* Sticky Navigation Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
                 <HiOutlineLockClosed className="w-5 h-5 text-blue-600" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">On this page</h3>
               </div>
-              <nav className="space-y-1 max-h-96 overflow-y-auto">
+              <nav className="space-y-1 max-h-96 overflow-y-auto" aria-label="Privacy policy navigation">
                 {sections.map((section) => (
                   <button
                     key={section.id}
@@ -359,6 +393,7 @@ const PrivacyPolicySection1 = ({ config }) => {
                       ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Navigate to ${section.label} section`}
                   >
                     {getIcon(section.icon, "w-4 h-4")}
                     {section.label}
@@ -371,7 +406,11 @@ const PrivacyPolicySection1 = ({ config }) => {
           {/* Main Content */}
           <div className="lg:col-span-3 space-y-8">
             {/* Introduction Section */}
-            <div id="introduction" className="scroll-mt-24">
+            <div
+              id="introduction"
+              ref={el => sectionRefs.current['introduction'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -396,7 +435,11 @@ const PrivacyPolicySection1 = ({ config }) => {
             </div>
 
             {/* Information Collection Section */}
-            <div id="information-collection" className="scroll-mt-24">
+            <div
+              id="information-collection"
+              ref={el => sectionRefs.current['information-collection'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -426,7 +469,11 @@ const PrivacyPolicySection1 = ({ config }) => {
             </div>
 
             {/* Usage of Information Section */}
-            <div id="usage-of-information" className="scroll-mt-24">
+            <div
+              id="usage-of-information"
+              ref={el => sectionRefs.current['usage-of-information'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -454,7 +501,11 @@ const PrivacyPolicySection1 = ({ config }) => {
             </div>
 
             {/* Data Sharing Section */}
-            <div id="data-sharing" className="scroll-mt-24">
+            <div
+              id="data-sharing"
+              ref={el => sectionRefs.current['data-sharing'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -490,7 +541,11 @@ const PrivacyPolicySection1 = ({ config }) => {
             </div>
 
             {/* Data Security Section */}
-            <div id="data-security" className="scroll-mt-24">
+            <div
+              id="data-security"
+              ref={el => sectionRefs.current['data-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -545,7 +600,11 @@ const PrivacyPolicySection1 = ({ config }) => {
             </div>
 
             {/* User Rights Section */}
-            <div id="user-rights" className="scroll-mt-24">
+            <div
+              id="user-rights"
+              ref={el => sectionRefs.current['user-rights'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -576,7 +635,11 @@ const PrivacyPolicySection1 = ({ config }) => {
             </div>
 
             {/* Cookies Section */}
-            <div id="cookies" className="scroll-mt-24">
+            <div
+              id="cookies"
+              ref={el => sectionRefs.current['cookies'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -620,8 +683,12 @@ const PrivacyPolicySection1 = ({ config }) => {
               </div>
             </div>
 
-            {/* Children's Privacy */}
-            <div id="children-privacy" className="scroll-mt-24">
+            {/* Children's Privacy Section */}
+            <div
+              id="children-privacy"
+              ref={el => sectionRefs.current['children-privacy'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -635,8 +702,12 @@ const PrivacyPolicySection1 = ({ config }) => {
               </div>
             </div>
 
-            {/* International Transfers */}
-            <div id="international-transfer" className="scroll-mt-24">
+            {/* International Transfers Section */}
+            <div
+              id="international-transfer"
+              ref={el => sectionRefs.current['international-transfer'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -650,8 +721,12 @@ const PrivacyPolicySection1 = ({ config }) => {
               </div>
             </div>
 
-            {/* Policy Updates */}
-            <div id="policy-updates" className="scroll-mt-24">
+            {/* Policy Updates Section */}
+            <div
+              id="policy-updates"
+              ref={el => sectionRefs.current['policy-updates'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -669,8 +744,12 @@ const PrivacyPolicySection1 = ({ config }) => {
               </div>
             </div>
 
-            {/* Contact Us */}
-            <div id="contact-us" className="scroll-mt-24">
+            {/* Contact Us Section */}
+            <div
+              id="contact-us"
+              ref={el => sectionRefs.current['contact-us'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -709,15 +788,19 @@ const PrivacyPolicySection1 = ({ config }) => {
         </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
@@ -735,4 +818,4 @@ const PrivacyPolicySection1 = ({ config }) => {
   );
 };
 
-export default PrivacyPolicySection1;
+export default PrivacyPolicySection1; 

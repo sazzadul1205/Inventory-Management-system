@@ -1,3 +1,12 @@
+// - Update the JSX given bellow and also give me The Config JSON Please Only Do that nothing more)
+// conditions
+// 1. Use React Icons Library No Custom Emoji
+// 2. Try To follow the Format Oh JSX given above(the extra Files)
+// 3. Try To make it unique Per page
+// 4. use Open - Source Image
+// 5. Follow the Commenting Format like the Given page
+// 6. Double check the React Icons if its Valid no invalid icon
+// ---------
 // page/frontend/Legal/GDPRComplianceSection/GDPRComplianceSection1.jsx
 
 // React
