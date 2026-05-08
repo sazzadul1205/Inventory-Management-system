@@ -1,9 +1,31 @@
 // page/frontend/Legal/SecurityPolicySection/SecurityPolicySection2.jsx
 
-// React
+/**
+ * Security Policy Section II - Interactive Security & Compliance Hub
+ *
+ * Unique Design Elements:
+ * - Multi-Tab Interface (Overview, Controls, Certifications, Incident Response, FAQ)
+ * - Security Controls Grid with Expandable Details
+ * - Certifications Showcase with Status and Validity Dates
+ * - Third-Party Assessments Table with Report Requests
+ * - Incident Response Timeline with SLA Commitments
+ * - Key Security Metrics Dashboard
+ * - Security Leadership Profile Card
+ * - Data Center Security Information
+ * - Responsible Disclosure Program CTA
+ * - FAQ Accordion with Expandable Answers
+ * - Quick Stats Dashboard with Trend Indicators
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -39,23 +61,23 @@ import {
 import { HiOutlineUserGroup, HiOutlineDocumentDuplicate, HiOutlineBuildingOffice } from 'react-icons/hi2';
 
 const SecurityPolicySection2 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
-  const [showPrintModal, setShowPrintModal] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState(null);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Tabs configuration
+  // ==================== MEMOIZED DATA ====================
   const tabs = [
     { id: 'overview', label: 'Security Overview', icon: 'shield' },
     { id: 'controls', label: 'Security Controls', icon: 'view-grid' },
     { id: 'certifications', label: 'Certifications', icon: 'check' },
     { id: 'incidents', label: 'Incident Response', icon: 'bell' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'cyan', trend: 'Version 2.0' },
     { label: 'Security Certifications', value: 'SOC 2, ISO 27001', icon: 'shield', color: 'green', trend: 'Annual audits' },
@@ -65,7 +87,6 @@ const SecurityPolicySection2 = ({ config }) => {
     { label: 'Breach Notification', value: '24 hours', icon: 'bell', color: 'red', trend: 'Guaranteed SLA' },
   ];
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     address: "123 Supply Chain Boulevard, Suite 400, San Francisco, CA 94105",
@@ -75,7 +96,6 @@ const SecurityPolicySection2 = ({ config }) => {
     CISOName: "John Anderson",
   };
 
-  // Security certifications
   const securityCertifications = useMemo(() => config?.securityCertifications || [
     {
       name: "SOC 2 Type II",
@@ -119,7 +139,6 @@ const SecurityPolicySection2 = ({ config }) => {
     },
   ], [config?.securityCertifications]);
 
-  // Security controls by domain with metrics
   const securityControls = useMemo(() => config?.securityControls || [
     {
       domain: "Access Control",
@@ -205,7 +224,6 @@ const SecurityPolicySection2 = ({ config }) => {
     },
   ], [config?.securityControls]);
 
-  // Incident response timeline
   const incidentResponseTimeline = config?.incidentResponseTimeline || [
     { phase: "Detection", time: "Real-time", description: "Automated monitoring and alerting systems detect potential security events." },
     { phase: "Analysis", time: "< 15 minutes", description: "Security team triages and analyzes the event to determine severity." },
@@ -215,7 +233,6 @@ const SecurityPolicySection2 = ({ config }) => {
     { phase: "Notification", time: "24 hours", description: "Affected customers notified with details and remediation plan." },
   ];
 
-  // Third-party security assessments
   const thirdPartyAssessments = config?.thirdPartyAssessments || [
     {
       provider: "Ernst & Young",
@@ -251,7 +268,6 @@ const SecurityPolicySection2 = ({ config }) => {
     },
   ];
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'What security certifications does SupplyChainPro hold?',
@@ -279,7 +295,7 @@ const SecurityPolicySection2 = ({ config }) => {
     },
   ];
 
-  // Filter controls based on search
+  // ==================== FILTER FUNCTIONS ====================
   const filteredControls = useMemo(() => {
     if (!searchQuery) return securityControls;
     const query = searchQuery.toLowerCase();
@@ -299,7 +315,7 @@ const SecurityPolicySection2 = ({ config }) => {
     );
   }, [securityCertifications, searchQuery]);
 
-  // Helper function to render icons
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -323,7 +339,6 @@ const SecurityPolicySection2 = ({ config }) => {
       heart: <HiOutlineHeart className={className} />,
       sparkles: <HiOutlineSparkles className={className} />,
       'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
       server: <HiOutlineServer className={className} />,
       key: <HiOutlineKey className={className} />,
       fingerprint: <HiOutlineFingerPrint className={className} />,
@@ -338,15 +353,15 @@ const SecurityPolicySection2 = ({ config }) => {
       role="region"
       aria-label="Security Policy Center"
     >
-      {/* Background Pattern */}
+      {/* ==================== BACKGROUND PATTERN ==================== */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-cyan-200 dark:bg-cyan-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+        {/* ==================== HEADER SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-cyan-50 dark:bg-cyan-900/30 rounded-full px-4 py-2 mb-6">
             <HiOutlineShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
@@ -363,28 +378,29 @@ const SecurityPolicySection2 = ({ config }) => {
             {config?.description || "At SupplyChainPro, security is our top priority. This policy outlines the technical and organizational measures we implement to protect your data."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-                <div className={`w-6 h-6 rounded-full bg-${fact.color}-100 dark:bg-${fact.color}-900/30 flex items-center justify-center`}>
-                  {getIcon(fact.icon, `w-3 h-3 text-${  fact.color  }-600`)}
+                <div className="w-6 h-6 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
+                  {getIcon(fact.icon, "w-3 h-3 text-cyan-600")}
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
                 {fact.trend && (
-                  <span className="text-xs text-gray-400 hidden sm:inline">{fact.trend}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">{fact.trend}</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-600 text-white rounded-xl hover:bg-cyan-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
@@ -392,6 +408,7 @@ const SecurityPolicySection2 = ({ config }) => {
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -399,7 +416,7 @@ const SecurityPolicySection2 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -409,25 +426,25 @@ const SecurityPolicySection2 = ({ config }) => {
                 ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25'
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'shield' ? <HiOutlineShieldCheck className="w-4 h-4" /> :
                 tab.icon === 'view-grid' ? <HiOutlineViewGrid className="w-4 h-4" /> :
                   tab.icon === 'check' ? <HiOutlineCheckCircle className="w-4 h-4" /> :
-                    tab.icon === 'bell' ? <HiOutlineBell className="w-4 h-4" /> :
-                      <HiOutlineBell className="w-4 h-4" />}
+                    <HiOutlineBell className="w-4 h-4" />}
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Security Overview Tab */}
+        {/* ==================== SECURITY OVERVIEW TAB ==================== */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
             {/* Introduction Card */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                  <HiOutlineShieldCheck className="w-5 h-5 text-cyan-600" />
+                  <HiOutlineShieldCheck className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Our Security Commitment</h2>
               </div>
@@ -436,17 +453,17 @@ const SecurityPolicySection2 = ({ config }) => {
               </p>
               <div className="grid sm:grid-cols-3 gap-4 mt-4">
                 <div className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl text-center">
-                  <HiOutlineLockClosed className="w-6 h-6 text-cyan-600 mx-auto mb-2" />
+                  <HiOutlineLockClosed className="w-6 h-6 text-cyan-600 dark:text-cyan-400 mx-auto mb-2" />
                   <p className="font-semibold text-gray-900 dark:text-white">Confidentiality</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Data accessible only to authorized parties</p>
                 </div>
                 <div className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl text-center">
-                  <HiOutlineDatabase className="w-6 h-6 text-cyan-600 mx-auto mb-2" />
+                  <HiOutlineDatabase className="w-6 h-6 text-cyan-600 dark:text-cyan-400 mx-auto mb-2" />
                   <p className="font-semibold text-gray-900 dark:text-white">Integrity</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Data remains accurate and unaltered</p>
                 </div>
                 <div className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl text-center">
-                  <HiOutlineRefresh className="w-6 h-6 text-cyan-600 mx-auto mb-2" />
+                  <HiOutlineRefresh className="w-6 h-6 text-cyan-600 dark:text-cyan-400 mx-auto mb-2" />
                   <p className="font-semibold text-gray-900 dark:text-white">Availability</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Data accessible when needed</p>
                 </div>
@@ -458,12 +475,12 @@ const SecurityPolicySection2 = ({ config }) => {
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Security Leadership</h2>
               <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
                 <div className="w-16 h-16 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                  <HiOutlineUser className="w-8 h-8 text-cyan-600" />
+                  <HiOutlineUser className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900 dark:text-white">{company.CISOName}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Chief Information Security Officer (CISO)</p>
-                  <p className="text-xs text-gray-500 mt-1">20+ years of security experience | Former CISO at Fortune 500</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">20+ years of security experience | Former CISO at Fortune 500</p>
                 </div>
               </div>
               <p className="text-gray-600 dark:text-gray-400 mt-4 text-sm">
@@ -476,19 +493,19 @@ const SecurityPolicySection2 = ({ config }) => {
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Key Security Metrics</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
-                  <p className="text-2xl font-bold text-cyan-600">99.9%</p>
+                  <p className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">99.9%</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">MFA Adoption Rate</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
-                  <p className="text-2xl font-bold text-cyan-600">&lt;15 min</p>
+                  <p className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">&lt;15 min</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Mean Time to Detect (MTTD)</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
-                  <p className="text-2xl font-bold text-cyan-600">&lt;1 hr</p>
+                  <p className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">&lt;1 hr</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Mean Time to Respond (MTTR)</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
-                  <p className="text-2xl font-bold text-cyan-600">100%</p>
+                  <p className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">100%</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Critical Patch Compliance</p>
                 </div>
               </div>
@@ -498,7 +515,7 @@ const SecurityPolicySection2 = ({ config }) => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                  <HiOutlineServer className="w-5 h-5 text-cyan-600" />
+                  <HiOutlineServer className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Data Center Security</h2>
               </div>
@@ -507,19 +524,19 @@ const SecurityPolicySection2 = ({ config }) => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>SOC 2, ISO 27001, PCI DSS certified facilities</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>24/7 on-site security with biometric access</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>Multi-region deployment for redundancy</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>Data stored in US, EU, and APAC regions based on customer preference</span>
                 </li>
               </ul>
@@ -527,7 +544,7 @@ const SecurityPolicySection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Security Controls Tab */}
+        {/* ==================== SECURITY CONTROLS TAB ==================== */}
         {activeTab === 'controls' && (
           <>
             {/* Search Bar */}
@@ -540,7 +557,8 @@ const SecurityPolicySection2 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search security controls..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-gray-900 dark:text-white"
+                aria-label="Search security controls"
               />
             </div>
 
@@ -551,23 +569,26 @@ const SecurityPolicySection2 = ({ config }) => {
                   key={idx}
                   className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer hover:shadow-xl transition-all duration-300"
                   onClick={() => setExpandedSection(expandedSection === idx ? null : idx)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setExpandedSection(expandedSection === idx ? null : idx)}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                        {getIcon(control.icon, "w-5 h-5 text-cyan-600")}
+                        {getIcon(control.icon, "w-5 h-5 text-cyan-600 dark:text-cyan-400")}
                       </div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">{control.domain}</h3>
                     </div>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">{control.metrics}</span>
+                    <span className="text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 px-2 py-0.5 rounded-full">{control.metrics}</span>
                   </div>
 
                   {expandedSection === idx && (
-                    <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
                       <ul className="space-y-2">
                         {control.controls.map((item, iIdx) => (
                           <li key={iIdx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                            <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                            <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                             {item}
                           </li>
                         ))}
@@ -576,7 +597,7 @@ const SecurityPolicySection2 = ({ config }) => {
                   )}
 
                   <div className="mt-3 text-right">
-                    <span className="text-cyan-600 text-xs font-semibold">
+                    <span className="text-cyan-600 dark:text-cyan-400 text-xs font-semibold">
                       {expandedSection === idx ? 'Show less ↑' : 'Show details ↓'}
                     </span>
                   </div>
@@ -587,13 +608,13 @@ const SecurityPolicySection2 = ({ config }) => {
             {filteredControls.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No security controls match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No security controls match your search.</p>
               </div>
             )}
           </>
         )}
 
-        {/* Certifications Tab */}
+        {/* ==================== CERTIFICATIONS TAB ==================== */}
         {activeTab === 'certifications' && (
           <>
             {/* Search Bar */}
@@ -606,7 +627,8 @@ const SecurityPolicySection2 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search certifications..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-gray-900 dark:text-white"
+                aria-label="Search certifications"
               />
             </div>
 
@@ -617,20 +639,20 @@ const SecurityPolicySection2 = ({ config }) => {
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                        <HiOutlineCheckCircle className="w-5 h-5 text-green-600" />
+                        <HiOutlineCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white">{cert.name}</h3>
-                        <p className="text-xs text-gray-500">Issuer: {cert.issuer}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Issuer: {cert.issuer}</p>
                       </div>
                     </div>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">{cert.status}</span>
+                    <span className="text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 px-2 py-0.5 rounded-full">{cert.status}</span>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{cert.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Valid until: {cert.validUntil}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Valid until: {cert.validUntil}</span>
                     {cert.reportUrl && (
-                      <button className="text-cyan-600 text-xs font-semibold hover:underline flex items-center gap-1">
+                      <button className="text-cyan-600 dark:text-cyan-400 text-xs font-semibold hover:underline flex items-center gap-1" aria-label="View report">
                         View Report <HiOutlineExternalLink className="w-3 h-3" />
                       </button>
                     )}
@@ -662,9 +684,9 @@ const SecurityPolicySection2 = ({ config }) => {
                         <td className="p-3 text-gray-600 dark:text-gray-400">{assessment.lastPerformed}</td>
                         <td className="p-3">
                           {assessment.reportAvailable ? (
-                            <button className="text-cyan-600 text-xs font-semibold hover:underline">Request →</button>
+                            <button className="text-cyan-600 dark:text-cyan-400 text-xs font-semibold hover:underline" aria-label="Request report">Request →</button>
                           ) : (
-                            <span className="text-xs text-gray-400">Internal</span>
+                            <span className="text-xs text-gray-400 dark:text-gray-500">Internal</span>
                           )}
                         </td>
                       </tr>
@@ -676,14 +698,14 @@ const SecurityPolicySection2 = ({ config }) => {
           </>
         )}
 
-        {/* Incident Response Tab */}
+        {/* ==================== INCIDENT RESPONSE TAB ==================== */}
         {activeTab === 'incidents' && (
           <div className="space-y-6">
             {/* Timeline Card */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                  <HiOutlineClock className="w-5 h-5 text-cyan-600" />
+                  <HiOutlineClock className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Incident Response Timeline</h2>
               </div>
@@ -715,19 +737,19 @@ const SecurityPolicySection2 = ({ config }) => {
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Security Operations Center (SOC) Analysts
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Forensic Investigators
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Legal and Compliance
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Communications Lead
                 </div>
               </div>
@@ -737,7 +759,7 @@ const SecurityPolicySection2 = ({ config }) => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                  <HiOutlineBell className="w-5 h-5 text-red-600" />
+                  <HiOutlineBell className="w-5 h-5 text-red-600 dark:text-red-400" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white">Breach Notification Commitment</h3>
               </div>
@@ -746,19 +768,19 @@ const SecurityPolicySection2 = ({ config }) => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>Notify affected customers within <strong>24 hours</strong> of confirmation</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>Provide detailed information about the breach and affected data</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>Assign a dedicated incident manager for communication</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                   <span>Provide regular updates until resolution</span>
                 </li>
               </ul>
@@ -772,11 +794,11 @@ const SecurityPolicySection2 = ({ config }) => {
                 We value the security research community. If you discover a security vulnerability, please report it to us responsibly.
               </p>
               <div className="flex flex-wrap gap-3">
-                <button className="inline-flex items-center gap-2 bg-white text-cyan-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                <button className="inline-flex items-center gap-2 bg-white text-cyan-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors" aria-label="Report vulnerability">
                   <HiOutlineMail className="w-4 h-4" />
                   Report Vulnerability
                 </button>
-                <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg font-semibold hover:bg-white/30 transition-colors">
+                <button className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg font-semibold hover:bg-white/30 transition-colors" aria-label="View policy">
                   <HiOutlineDocumentText className="w-4 h-4" />
                   View Policy
                 </button>
@@ -785,7 +807,7 @@ const SecurityPolicySection2 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -795,6 +817,7 @@ const SecurityPolicySection2 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     {expandedFaq === idx ? (
@@ -814,7 +837,7 @@ const SecurityPolicySection2 = ({ config }) => {
             <div className="mt-8 p-4 bg-cyan-50 dark:bg-cyan-900/20 rounded-xl text-center">
               <p className="text-gray-600 dark:text-gray-400">
                 Still have security questions? Contact our security team at{' '}
-                <a href="mailto:security@supplychainpro.com" className="text-cyan-600 font-medium hover:underline">
+                <a href="mailto:security@supplychainpro.com" className="text-cyan-600 dark:text-cyan-400 font-medium hover:underline">
                   security@supplychainpro.com
                 </a>
               </p>
@@ -822,37 +845,48 @@ const SecurityPolicySection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Contact Footer */}
+        {/* ==================== CONTACT FOOTER ==================== */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>For security inquiries or to report a vulnerability, contact:</p>
           <p className="mt-1">
-            <a href="mailto:security@supplychainpro.com" className="text-cyan-600 hover:underline">security@supplychainpro.com</a>
+            <a href="mailto:security@supplychainpro.com" className="text-cyan-600 dark:text-cyan-400 hover:underline">
+              security@supplychainpro.com
+            </a>
           </p>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Security Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-cyan-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Security Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-cyan-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-cyan-600 dark:text-cyan-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Security Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-cyan-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-cyan-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -863,17 +897,25 @@ const SecurityPolicySection2 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
         }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         .animate-blob {
           animation: blob 7s infinite;
         }
         .animation-delay-2000 {
           animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
         }
         .bg-grid-slate-100 {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");

@@ -1,18 +1,30 @@
-// - Update the JSX given bellow and also give me The Config JSON Please Only Do that nothing more)
-// conditions
-// 1. Use React Icons Library No Custom Emoji
-// 2. Try To follow the Format Oh JSX given above(the extra Files)
-// 3. Try To make it unique Per page
-// 4. use Open - Source Image
-// 5. Follow the Commenting Format like the Given page
-// 6. Double check the React Icons if its Valid no invalid icon
-// ---------
 // page/frontend/Legal/GDPRComplianceSection/GDPRComplianceSection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * GDPR Compliance Section I - Data Protection & Privacy Compliance Hub
+ *
+ * Unique Design Elements:
+ * - Comprehensive Data Subject Rights Cards with Timeframes
+ * - Legal Basis for Processing Table with Examples
+ * - Security Measures Grid with Implementation Status
+ * - Quick Stats Dashboard with Key Metrics
+ * - Sticky Navigation Sidebar with Scroll Spy
+ * - Mobile-Friendly Accordion Navigation
+ * - Data Controller Information Cards
+ * - DPO Contact Information Section
+ * - Supervisory Authority Details
+ * - Compliance Certifications Badges
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useEffect, useRef, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -41,12 +53,16 @@ import {
 import { HiOutlineUserGroup, HiOutlineBuildingOffice, HiOutlineDocumentDuplicate, HiOutlineBell } from 'react-icons/hi2';
 
 const GDPRComplianceSection1 = ({ config }) => {
-  const [activeSection, setActiveSection] = useState('introduction');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
+  const [activeSection, setActiveSection] = useState('introduction');
 
-  // Navigation sections
-  const sections = config?.sections || [
+  // ==================== REFS ====================
+  const sectionRefs = useRef({});
+
+  // ==================== MEMOIZED DATA ====================
+  const sections = useMemo(() => config?.sections || [
     { id: 'introduction', label: 'Introduction to GDPR', icon: 'document' },
     { id: 'data-controller', label: 'Data Controller', icon: 'building' },
     { id: 'legal-basis', label: 'Legal Basis for Processing', icon: 'scale' },
@@ -61,9 +77,8 @@ const GDPRComplianceSection1 = ({ config }) => {
     { id: 'supervisory-authority', label: 'Supervisory Authority', icon: 'scale' },
     { id: 'compliance-certifications', label: 'Compliance Certifications', icon: 'shield' },
     { id: 'contact-us', label: 'Contact Us', icon: 'mail' },
-  ];
+  ], [config]);
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     legalName: "SupplyChainPro Inc.",
@@ -75,7 +90,6 @@ const GDPRComplianceSection1 = ({ config }) => {
     representativeEU: "SupplyChainPro EU Ltd., 123 Dublin Street, Dublin, Ireland",
   };
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'GDPR Compliant', value: 'Yes', icon: 'check', color: 'green' },
     { label: 'Data Subject Rights', value: '8', icon: 'user', color: 'blue' },
@@ -83,7 +97,6 @@ const GDPRComplianceSection1 = ({ config }) => {
     { label: 'EU Representative', value: 'Appointed', icon: 'globe', color: 'amber' },
   ];
 
-  // Data subject rights
   const dataSubjectRights = config?.dataSubjectRights || [
     {
       title: "Right to Access",
@@ -143,7 +156,6 @@ const GDPRComplianceSection1 = ({ config }) => {
     },
   ];
 
-  // Legal bases for processing
   const legalBases = config?.legalBases || [
     {
       basis: "Consent",
@@ -183,7 +195,6 @@ const GDPRComplianceSection1 = ({ config }) => {
     },
   ];
 
-  // Security measures
   const securityMeasures = config?.securityMeasures || [
     { name: "Encryption", description: "256-bit AES encryption for data at rest, TLS 1.3 for data in transit", status: "Implemented" },
     { name: "Access Control", description: "Role-based access control with multi-factor authentication", status: "Implemented" },
@@ -193,7 +204,30 @@ const GDPRComplianceSection1 = ({ config }) => {
     { name: "Staff Training", description: "Regular GDPR training for all employees handling personal data", status: "Ongoing" },
   ];
 
-  // Helper function to render icons
+  // ==================== SCROLL SPY EFFECT ====================
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -222,16 +256,13 @@ const GDPRComplianceSection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Scroll to section handler
   const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Toggle section expansion for mobile
   const toggleSection = (sectionId) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
@@ -242,13 +273,13 @@ const GDPRComplianceSection1 = ({ config }) => {
       role="region"
       aria-label="GDPR Compliance Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -265,11 +296,11 @@ const GDPRComplianceSection1 = ({ config }) => {
             {config?.description || "SupplyChainPro is committed to protecting your personal data and complying with the General Data Protection Regulation (GDPR). This page outlines our GDPR compliance framework and your rights as a data subject."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-                {getIcon(fact.icon, "w-4 h-4 text-gray-500")}
+                {getIcon(fact.icon, "w-4 h-4 text-gray-500 dark:text-gray-400")}
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
@@ -277,18 +308,20 @@ const GDPRComplianceSection1 = ({ config }) => {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
             </button>
             <button
               onClick={() => setShowPrintModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -296,16 +329,16 @@ const GDPRComplianceSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Sidebar & Content Grid */}
+        {/* ==================== NAVIGATION SIDEBAR & CONTENT GRID ==================== */}
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sticky Navigation - Desktop */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
-                <HiOutlineShieldCheck className="w-5 h-5 text-blue-600" />
+                <HiOutlineShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">Contents</h3>
               </div>
-              <nav className="space-y-1 max-h-96 overflow-y-auto">
+              <nav className="space-y-1 max-h-96 overflow-y-auto" aria-label="GDPR compliance navigation">
                 {sections.map((section) => (
                   <button
                     key={section.id}
@@ -314,6 +347,7 @@ const GDPRComplianceSection1 = ({ config }) => {
                       ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Navigate to ${section.label} section`}
                   >
                     {getIcon(section.icon, "w-4 h-4")}
                     {section.label}
@@ -329,9 +363,10 @@ const GDPRComplianceSection1 = ({ config }) => {
               <button
                 onClick={() => toggleSection('mobile-nav')}
                 className="w-full flex items-center justify-between"
+                aria-label="Toggle mobile navigation"
               >
                 <div className="flex items-center gap-2">
-                  <HiOutlineShieldCheck className="w-5 h-5 text-blue-600" />
+                  <HiOutlineShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <span className="font-semibold text-gray-900 dark:text-white">Jump to Section</span>
                 </div>
                 {expandedSection === 'mobile-nav' ? (
@@ -350,6 +385,7 @@ const GDPRComplianceSection1 = ({ config }) => {
                         setExpandedSection(null);
                       }}
                       className="w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      aria-label={`Navigate to ${section.label} section`}
                     >
                       {getIcon(section.icon, "w-4 h-4")}
                       {section.label}
@@ -360,14 +396,18 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
           </div>
 
-          {/* Main Content */}
+          {/* ==================== MAIN CONTENT ==================== */}
           <div className="lg:col-span-3 space-y-8">
             {/* Introduction Section */}
-            <div id="introduction" className="scroll-mt-24">
+            <div
+              id="introduction"
+              ref={el => sectionRefs.current['introduction'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineDocumentText className="w-5 h-5 text-blue-600" />
+                    <HiOutlineDocumentText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Introduction to GDPR</h2>
                 </div>
@@ -388,11 +428,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Data Controller Section */}
-            <div id="data-controller" className="scroll-mt-24">
+            <div
+              id="data-controller"
+              ref={el => sectionRefs.current['data-controller'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineBuildingOffice className="w-5 h-5 text-blue-600" />
+                    <HiOutlineBuildingOffice className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Controller</h2>
                 </div>
@@ -402,9 +446,9 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
                     <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
-                    <p className="text-sm">{company.address}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{company.address}</p>
                     <p className="text-sm">
-                      <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-blue-600 hover:underline">{company.email}</a>
+                      <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-blue-600 dark:text-blue-400 hover:underline">{company.email}</a>
                     </p>
                     <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
                   </div>
@@ -416,11 +460,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Legal Basis for Processing Section */}
-            <div id="legal-basis" className="scroll-mt-24">
+            <div
+              id="legal-basis"
+              ref={el => sectionRefs.current['legal-basis'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineScale className="w-5 h-5 text-blue-600" />
+                    <HiOutlineScale className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Legal Basis for Processing</h2>
                 </div>
@@ -461,11 +509,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Data Subject Rights Section */}
-            <div id="data-subject-rights" className="scroll-mt-24">
+            <div
+              id="data-subject-rights"
+              ref={el => sectionRefs.current['data-subject-rights'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineUser className="w-5 h-5 text-blue-600" />
+                    <HiOutlineUser className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Subject Rights</h2>
                 </div>
@@ -477,13 +529,13 @@ const GDPRComplianceSection1 = ({ config }) => {
                     {dataSubjectRights.map((right, idx) => (
                       <div key={idx} className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-2 mb-2">
-                          {getIcon(right.icon, "w-5 h-5 text-blue-600")}
+                          {getIcon(right.icon, "w-5 h-5 text-blue-600 dark:text-blue-400")}
                           <h3 className="font-semibold text-gray-900 dark:text-white">{right.title}</h3>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{right.description.substring(0, 100)}...</p>
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-gray-500">{right.articles}</span>
-                          <span className="text-blue-600">Response: {right.timeframe}</span>
+                          <span className="text-gray-500 dark:text-gray-400">{right.articles}</span>
+                          <span className="text-blue-600 dark:text-blue-400">Response: {right.timeframe}</span>
                         </div>
                       </div>
                     ))}
@@ -498,11 +550,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Lawful Processing Conditions Section */}
-            <div id="lawful-processing" className="scroll-mt-24">
+            <div
+              id="lawful-processing"
+              ref={el => sectionRefs.current['lawful-processing'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineCheckCircle className="w-5 h-5 text-blue-600" />
+                    <HiOutlineCheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Lawful Processing Conditions</h2>
                 </div>
@@ -512,27 +568,27 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Consent:</strong> You have given clear consent for us to process your data for a specific purpose.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Contract:</strong> Processing is necessary for a contract we have with you, or because you have asked us to take specific steps before entering into a contract.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Legal Obligation:</strong> Processing is necessary for us to comply with the law (not including contractual obligations).</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Vital Interests:</strong> Processing is necessary to protect someone's life.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Public Task:</strong> Processing is necessary for us to perform a task in the public interest or for our official functions.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Legitimate Interests:</strong> Processing is necessary for our legitimate interests or the legitimate interests of a third party, unless there is a good reason to protect your personal data.</span>
                     </li>
                   </ul>
@@ -541,11 +597,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Consent Management Section */}
-            <div id="consent-management" className="scroll-mt-24">
+            <div
+              id="consent-management"
+              ref={el => sectionRefs.current['consent-management'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineHeart className="w-5 h-5 text-blue-600" />
+                    <HiOutlineHeart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Consent Management</h2>
                 </div>
@@ -555,23 +615,23 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Consent is freely given, specific, informed, and unambiguous</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>We obtain consent through a clear affirmative action (opt-in)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>We keep records of consent to demonstrate compliance</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>You can withdraw consent at any time, as easily as you gave it</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>We do not make processing based on consent a precondition of service</span>
                     </li>
                   </ul>
@@ -585,11 +645,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Data Security Measures Section */}
-            <div id="data-security" className="scroll-mt-24">
+            <div
+              id="data-security"
+              ref={el => sectionRefs.current['data-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineShieldCheck className="w-5 h-5 text-blue-600" />
+                    <HiOutlineShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Security Measures</h2>
                 </div>
@@ -600,11 +664,14 @@ const GDPRComplianceSection1 = ({ config }) => {
                   <div className="grid sm:grid-cols-2 gap-3">
                     {securityMeasures.map((measure, idx) => (
                       <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                        <HiOutlineShieldCheck className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                        <HiOutlineShieldCheck className="w-5 h-5 text-green-500 dark:text-green-400 shrink-0 mt-0.5" />
                         <div>
                           <p className="font-medium text-gray-900 dark:text-white">{measure.name}</p>
                           <p className="text-xs text-gray-600 dark:text-gray-400">{measure.description}</p>
-                          <span className={`inline-block text-xs mt-1 px-2 py-0.5 rounded-full ${measure.status === 'Implemented' ? 'bg-green-100 text-green-700' : measure.status === 'Scheduled' ? 'bg-yellow-100 text-yellow-700' : 'bg-blue-100 text-blue-700'}`}>
+                          <span className={`inline-block text-xs mt-1 px-2 py-0.5 rounded-full ${measure.status === 'Implemented' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
+                            measure.status === 'Scheduled' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                              'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                            }`}>
                             {measure.status}
                           </span>
                         </div>
@@ -616,11 +683,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Data Breach Procedures Section */}
-            <div id="data-breach" className="scroll-mt-24">
+            <div
+              id="data-breach"
+              ref={el => sectionRefs.current['data-breach'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineBell className="w-5 h-5 text-blue-600" />
+                    <HiOutlineBell className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Breach Procedures</h2>
                 </div>
@@ -630,23 +701,23 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Assess the risk to data subjects' rights and freedoms</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Notify the relevant supervisory authority within 72 hours (where required)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Communicate the breach to affected data subjects without undue delay (where required)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Document all breaches, including facts, effects, and remedial actions taken</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Implement measures to prevent future breaches</span>
                     </li>
                   </ul>
@@ -655,11 +726,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* International Transfers Section */}
-            <div id="international-transfers" className="scroll-mt-24">
+            <div
+              id="international-transfers"
+              ref={el => sectionRefs.current['international-transfers'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineGlobe className="w-5 h-5 text-blue-600" />
+                    <HiOutlineGlobe className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">International Data Transfers</h2>
                 </div>
@@ -669,19 +744,19 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Standard Contractual Clauses (SCCs) adopted by the European Commission</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Binding Corporate Rules (BCRs) for intra-group transfers</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Transfers to countries with adequacy decisions from the European Commission</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Explicit consent from data subjects for specific transfers</span>
                     </li>
                   </ul>
@@ -693,11 +768,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Data Retention Policy Section */}
-            <div id="data-retention" className="scroll-mt-24">
+            <div
+              id="data-retention"
+              ref={el => sectionRefs.current['data-retention'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineClock className="w-5 h-5 text-blue-600" />
+                    <HiOutlineClock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Retention Policy</h2>
                 </div>
@@ -707,23 +786,23 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Account Data:</strong> Retained for the duration of your account plus 30 days after deletion</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Transaction Data:</strong> Retained for 7 years to comply with tax and legal obligations</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Marketing Data:</strong> Retained until consent is withdrawn or 2 years of inactivity</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Support Communications:</strong> Retained for 3 years to maintain service quality</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Usage Analytics:</strong> Anonymized after 26 months</span>
                     </li>
                   </ul>
@@ -735,11 +814,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* DPO Information Section */}
-            <div id="dpo-information" className="scroll-mt-24">
+            <div
+              id="dpo-information"
+              ref={el => sectionRefs.current['dpo-information'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-blue-600" />
+                    <HiOutlineMail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Protection Officer (DPO)</h2>
                 </div>
@@ -749,10 +832,10 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
                     <p className="font-semibold text-gray-900 dark:text-white">{company.dpoName}</p>
-                    <p className="text-sm">
-                      <strong>Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-blue-600 hover:underline">{company.dpoEmail}</a>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <strong>Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-blue-600 dark:text-blue-400 hover:underline">{company.dpoEmail}</a>
                     </p>
-                    <p className="text-sm">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
                       <strong>Address:</strong> {company.address}
                     </p>
                   </div>
@@ -764,11 +847,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Supervisory Authority Section */}
-            <div id="supervisory-authority" className="scroll-mt-24">
+            <div
+              id="supervisory-authority"
+              ref={el => sectionRefs.current['supervisory-authority'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineScale className="w-5 h-5 text-blue-600" />
+                    <HiOutlineScale className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Supervisory Authority</h2>
                 </div>
@@ -778,11 +865,11 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4">
                     <p className="font-semibold text-gray-900 dark:text-white">Data Protection Commission (DPC) - Ireland</p>
-                    <p className="text-sm">21 Fitzwilliam Square South</p>
-                    <p className="text-sm">Dublin 2, D02 RD28</p>
-                    <p className="text-sm">Ireland</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">21 Fitzwilliam Square South</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Dublin 2, D02 RD28</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Ireland</p>
                     <p className="text-sm mt-2">
-                      <strong>Website:</strong> <a href="https://www.dataprotection.ie" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.dataprotection.ie</a>
+                      <strong>Website:</strong> <a href="https://www.dataprotection.ie" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">www.dataprotection.ie</a>
                     </p>
                   </div>
                   <p>
@@ -793,11 +880,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Compliance Certifications Section */}
-            <div id="compliance-certifications" className="scroll-mt-24">
+            <div
+              id="compliance-certifications"
+              ref={el => sectionRefs.current['compliance-certifications'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineShieldCheck className="w-5 h-5 text-blue-600" />
+                    <HiOutlineShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Compliance Certifications</h2>
                 </div>
@@ -807,23 +898,23 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <div className="inline-flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600" />
+                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                       <span className="text-sm font-medium text-green-700 dark:text-green-300">SOC 2 Type II</span>
                     </div>
                     <div className="inline-flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600" />
+                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                       <span className="text-sm font-medium text-green-700 dark:text-green-300">ISO 27001</span>
                     </div>
                     <div className="inline-flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600" />
+                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                       <span className="text-sm font-medium text-green-700 dark:text-green-300">GDPR Certified</span>
                     </div>
                     <div className="inline-flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600" />
+                      <HiOutlineCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                       <span className="text-sm font-medium text-green-700 dark:text-green-300">Privacy Shield (US-EU Data Framework)</span>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     Our compliance certifications are audited annually by independent third-party firms. Copies of our certifications are available upon request.
                   </p>
                 </div>
@@ -831,11 +922,15 @@ const GDPRComplianceSection1 = ({ config }) => {
             </div>
 
             {/* Contact Us Section */}
-            <div id="contact-us" className="scroll-mt-24">
+            <div
+              id="contact-us"
+              ref={el => sectionRefs.current['contact-us'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-blue-600" />
+                    <HiOutlineMail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
                 </div>
@@ -845,16 +940,16 @@ const GDPRComplianceSection1 = ({ config }) => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
                     <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
-                    <p className="text-sm">{company.address}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{company.address}</p>
                     <p className="text-sm">
-                      <strong>GDPR Queries Email:</strong> <a href={`mailto:${company.email}`} className="text-blue-600 hover:underline">{company.email}</a>
+                      <strong>GDPR Queries Email:</strong> <a href={`mailto:${company.email}`} className="text-blue-600 dark:text-blue-400 hover:underline">{company.email}</a>
                     </p>
                     <p className="text-sm">
-                      <strong>DPO Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-blue-600 hover:underline">{company.dpoEmail}</a>
+                      <strong>DPO Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-blue-600 dark:text-blue-400 hover:underline">{company.dpoEmail}</a>
                     </p>
                     <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     We aim to respond to all GDPR-related inquiries within 30 days.
                   </p>
                 </div>
@@ -863,29 +958,38 @@ const GDPRComplianceSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download GDPR Compliance Documentation"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-blue-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download GDPR Compliance Documentation</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download our GDPR compliance documentation.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -896,15 +1000,19 @@ const GDPRComplianceSection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

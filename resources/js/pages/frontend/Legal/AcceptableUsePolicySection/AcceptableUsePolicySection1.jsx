@@ -1,9 +1,26 @@
 // page/frontend/MobileApp/Legal/AcceptableUsePolicySection/AcceptableUsePolicySection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * Acceptable Use Policy Section I - Compliance & Usage Guidelines Hub
+ *
+ * Unique Design Elements:
+ * - Sticky Navigation Sidebar with Scroll Spy
+ * - Prohibited Activities Categorized with Color-Coded Icons
+ * - Enforcement Actions Table with Timeframe Tracking
+ * - Content Standards Checklist
+ * - Quick Stats Dashboard with Key Metrics
+ * - Mobile-Friendly Accordion Navigation
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useEffect, useRef, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -34,13 +51,17 @@ import {
 import { HiOutlineUserGroup, HiOutlineDocumentDuplicate } from 'react-icons/hi2';
 
 const AcceptableUsePolicySection1 = ({ config }) => {
-  const [activeSection, setActiveSection] = useState('introduction');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
+  const [activeSection, setActiveSection] = useState('introduction');
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Navigation sections
-  const sections = config?.sections || [
+  // ==================== REFS ====================
+  const sectionRefs = useRef({});
+
+  // ==================== MEMOIZED DATA ====================
+  const sections = useMemo(() => config?.sections || [
     { id: 'introduction', label: 'Introduction', icon: 'document' },
     { id: 'purpose-scope', label: 'Purpose & Scope', icon: 'globe' },
     { id: 'acceptable-use', label: 'Acceptable Use', icon: 'check' },
@@ -54,9 +75,8 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     { id: 'consequences', label: 'Consequences of Violation', icon: 'x' },
     { id: 'policy-updates', label: 'Policy Updates', icon: 'clock' },
     { id: 'contact-us', label: 'Contact Us', icon: 'mail' },
-  ];
+  ], [config]);
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     address: "123 Supply Chain Boulevard, Suite 400, San Francisco, CA 94105",
@@ -64,15 +84,13 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     phone: "+1 (800) 555-0123",
   };
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
-    { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'red' },
-    { label: 'Prohibited Activities', value: '15+', icon: 'ban', color: 'orange' },
-    { label: 'Content Standards', value: 'Strict', icon: 'document', color: 'blue' },
-    { label: 'Report Response', value: '24 hours', icon: 'clock', color: 'green' },
+    { label: 'Last Updated', value: lastUpdated, icon: 'calendar' },
+    { label: 'Prohibited Activities', value: '15+', icon: 'ban' },
+    { label: 'Content Standards', value: 'Strict', icon: 'document' },
+    { label: 'Report Response', value: '24 hours', icon: 'clock' },
   ];
 
-  // Acceptable use guidelines
   const acceptableUse = config?.acceptableUse || [
     "Use the Services for legitimate supply chain management purposes",
     "Provide accurate and complete information when creating accounts",
@@ -83,7 +101,6 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     "Report any security vulnerabilities or suspected abuse to our abuse team",
   ];
 
-  // Prohibited activities categories
   const prohibitedActivities = config?.prohibitedActivities || [
     {
       category: "Illegal Activities",
@@ -153,7 +170,6 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     },
   ];
 
-  // Content standards
   const contentStandards = config?.contentStandards || [
     "Content must be accurate, truthful, and not misleading",
     "Content must comply with all applicable laws and regulations",
@@ -164,7 +180,6 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     "Content must respect the privacy and confidentiality of others",
   ];
 
-  // Enforcement actions
   const enforcementActions = config?.enforcementActions || [
     { level: "Warning", description: "Written notice of violation with request for corrective action", timeframe: "Immediate" },
     { level: "Temporary Suspension", description: "Limited access to certain features pending investigation", timeframe: "24-72 hours" },
@@ -173,7 +188,30 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     { level: "Legal Action", description: "Referral to law enforcement for criminal violations", timeframe: "As appropriate" },
   ];
 
-  // Helper function to render icons
+  // ==================== SCROLL SPY EFFECT ====================
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -202,16 +240,13 @@ const AcceptableUsePolicySection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Scroll to section handler
   const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Toggle section expansion for mobile
   const toggleSection = (sectionId) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
@@ -222,13 +257,13 @@ const AcceptableUsePolicySection1 = ({ config }) => {
       role="region"
       aria-label="Acceptable Use Policy Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-red-200 dark:bg-red-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-orange-200 dark:bg-orange-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-red-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-red-100 dark:border-gray-700">
             <HiOutlineShieldCheck className="w-4 h-4 text-red-600 dark:text-red-400 mr-2" />
@@ -245,11 +280,11 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             {config?.description || "This Acceptable Use Policy (AUP) outlines the rules and guidelines for using SupplyChainPro's Services. By using our Services, you agree to comply with this policy."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-                {getIcon(fact.icon, "w-4 h-4 text-gray-500")}
+                {getIcon(fact.icon, "w-4 h-4 text-gray-500 dark:text-gray-400")}
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
@@ -257,18 +292,20 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
             </button>
             <button
               onClick={() => setShowPrintModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -276,16 +313,16 @@ const AcceptableUsePolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Sidebar & Content Grid */}
+        {/* ==================== NAVIGATION & CONTENT GRID ==================== */}
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sticky Navigation - Desktop */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
-                <HiOutlineDocumentText className="w-5 h-5 text-red-600" />
+                <HiOutlineDocumentText className="w-5 h-5 text-red-600 dark:text-red-400" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">Contents</h3>
               </div>
-              <nav className="space-y-1 max-h-96 overflow-y-auto">
+              <nav className="space-y-1 max-h-96 overflow-y-auto" aria-label="Policy navigation">
                 {sections.map((section) => (
                   <button
                     key={section.id}
@@ -294,6 +331,7 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                       ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-medium'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Navigate to ${section.label} section`}
                   >
                     {getIcon(section.icon, "w-4 h-4")}
                     {section.label}
@@ -309,9 +347,10 @@ const AcceptableUsePolicySection1 = ({ config }) => {
               <button
                 onClick={() => toggleSection('mobile-nav')}
                 className="w-full flex items-center justify-between"
+                aria-label="Toggle mobile navigation"
               >
                 <div className="flex items-center gap-2">
-                  <HiOutlineDocumentText className="w-5 h-5 text-red-600" />
+                  <HiOutlineDocumentText className="w-5 h-5 text-red-600 dark:text-red-400" />
                   <span className="font-semibold text-gray-900 dark:text-white">Jump to Section</span>
                 </div>
                 {expandedSection === 'mobile-nav' ? (
@@ -330,6 +369,7 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                         setExpandedSection(null);
                       }}
                       className="w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      aria-label={`Navigate to ${section.label} section`}
                     >
                       {getIcon(section.icon, "w-4 h-4")}
                       {section.label}
@@ -340,14 +380,18 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
           </div>
 
-          {/* Main Content */}
+          {/* ==================== MAIN CONTENT ==================== */}
           <div className="lg:col-span-3 space-y-8">
             {/* Introduction Section */}
-            <div id="introduction" className="scroll-mt-24">
+            <div
+              id="introduction"
+              ref={el => sectionRefs.current['introduction'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineDocumentText className="w-5 h-5 text-red-600" />
+                    <HiOutlineDocumentText className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Introduction</h2>
                 </div>
@@ -368,11 +412,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Purpose & Scope Section */}
-            <div id="purpose-scope" className="scroll-mt-24">
+            <div
+              id="purpose-scope"
+              ref={el => sectionRefs.current['purpose-scope'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineGlobe className="w-5 h-5 text-red-600" />
+                    <HiOutlineGlobe className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Purpose & Scope</h2>
                 </div>
@@ -382,19 +430,19 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Customers and account holders</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>End users accessing our Services</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>API users and developers</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Any other party accessing our Services</span>
                     </li>
                   </ul>
@@ -406,11 +454,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Acceptable Use Section */}
-            <div id="acceptable-use" className="scroll-mt-24">
+            <div
+              id="acceptable-use"
+              ref={el => sectionRefs.current['acceptable-use'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineCheckCircle className="w-5 h-5 text-red-600" />
+                    <HiOutlineCheckCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Acceptable Use</h2>
                 </div>
@@ -421,7 +473,7 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   <ul className="space-y-2 ml-4">
                     {acceptableUse.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400">{item}</span>
                       </li>
                     ))}
@@ -431,11 +483,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Prohibited Activities Section */}
-            <div id="prohibited-activities" className="scroll-mt-24">
+            <div
+              id="prohibited-activities"
+              ref={el => sectionRefs.current['prohibited-activities'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineBan className="w-5 h-5 text-red-600" />
+                    <HiOutlineBan className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Prohibited Activities</h2>
                 </div>
@@ -443,13 +499,13 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   {prohibitedActivities.map((category, idx) => (
                     <div key={idx} className="border-b border-gray-100 dark:border-gray-700 pb-4 last:border-0">
                       <div className="flex items-center gap-2 mb-3">
-                        {getIcon(category.icon, "w-5 h-5 text-red-600")}
+                        {getIcon(category.icon, "w-5 h-5 text-red-600 dark:text-red-400")}
                         <h3 className="font-semibold text-gray-900 dark:text-white">{category.category}</h3>
                       </div>
                       <ul className="space-y-2 ml-4">
                         {category.activities.map((activity, aIdx) => (
                           <li key={aIdx} className="flex items-start gap-2">
-                            <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                            <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                             <span className="text-gray-600 dark:text-gray-400 text-sm">{activity}</span>
                           </li>
                         ))}
@@ -461,11 +517,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Content Standards Section */}
-            <div id="content-standards" className="scroll-mt-24">
+            <div
+              id="content-standards"
+              ref={el => sectionRefs.current['content-standards'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineDocumentText className="w-5 h-5 text-red-600" />
+                    <HiOutlineDocumentText className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Content Standards</h2>
                 </div>
@@ -476,7 +536,7 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   <ul className="space-y-2 ml-4">
                     {contentStandards.map((standard, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400">{standard}</span>
                       </li>
                     ))}
@@ -491,11 +551,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* System Security Section */}
-            <div id="system-security" className="scroll-mt-24">
+            <div
+              id="system-security"
+              ref={el => sectionRefs.current['system-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineShieldCheck className="w-5 h-5 text-red-600" />
+                    <HiOutlineShieldCheck className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">System Security</h2>
                 </div>
@@ -505,23 +569,23 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Attempting to bypass or disable security features</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Probing, scanning, or testing system vulnerabilities without authorization</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Using any device, software, or routine to interfere with proper functioning</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Attempting to gain unauthorized access to other user accounts</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Introducing malware, viruses, or other harmful code</span>
                     </li>
                   </ul>
@@ -535,11 +599,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Data Protection Section */}
-            <div id="data-protection" className="scroll-mt-24">
+            <div
+              id="data-protection"
+              ref={el => sectionRefs.current['data-protection'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineDatabase className="w-5 h-5 text-red-600" />
+                    <HiOutlineDatabase className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Protection</h2>
                 </div>
@@ -549,19 +617,19 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Comply with all applicable data protection laws (GDPR, CCPA, etc.)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Implement appropriate security measures for your data</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Not process sensitive data without proper safeguards</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Obtain necessary consents for data processing activities</span>
                     </li>
                   </ul>
@@ -570,11 +638,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Intellectual Property Section */}
-            <div id="intellectual-property" className="scroll-mt-24">
+            <div
+              id="intellectual-property"
+              ref={el => sectionRefs.current['intellectual-property'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineScale className="w-5 h-5 text-red-600" />
+                    <HiOutlineScale className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Intellectual Property</h2>
                 </div>
@@ -584,19 +656,19 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Do not copy, modify, or distribute our software without permission</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Do not remove any copyright or trademark notices</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Do not use our trademarks without prior written consent</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Do not reverse engineer or decompile our software</span>
                     </li>
                   </ul>
@@ -605,11 +677,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Reporting Violations Section */}
-            <div id="reporting-violations" className="scroll-mt-24">
+            <div
+              id="reporting-violations"
+              ref={el => sectionRefs.current['reporting-violations'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineFlag className="w-5 h-5 text-red-600" />
+                    <HiOutlineFlag className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Reporting Violations</h2>
                 </div>
@@ -620,10 +696,10 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
                     <p className="font-semibold text-gray-900 dark:text-white">Report Abuse To:</p>
                     <p className="text-sm">
-                      <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-red-600 hover:underline">{company.email}</a>
+                      <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-red-600 dark:text-red-400 hover:underline">{company.email}</a>
                     </p>
                     <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
-                    <p className="text-xs text-gray-500 mt-2">Please include relevant details such as usernames, timestamps, and evidence.</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Please include relevant details such as usernames, timestamps, and evidence.</p>
                   </div>
                   <p>
                     We will investigate all reported violations and take appropriate action. We may contact you for additional information.
@@ -633,11 +709,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Enforcement Section */}
-            <div id="enforcement" className="scroll-mt-24">
+            <div
+              id="enforcement"
+              ref={el => sectionRefs.current['enforcement'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineExclamation className="w-5 h-5 text-red-600" />
+                    <HiOutlineExclamation className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Enforcement</h2>
                 </div>
@@ -670,11 +750,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Consequences Section */}
-            <div id="consequences" className="scroll-mt-24">
+            <div
+              id="consequences"
+              ref={el => sectionRefs.current['consequences'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineX className="w-5 h-5 text-red-600" />
+                    <HiOutlineX className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Consequences of Violation</h2>
                 </div>
@@ -684,23 +768,23 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Issuance of a warning</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Temporary or permanent suspension of your account</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Termination of your access to our Services</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Legal action and referral to law enforcement</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                      <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <span>Liability for damages and costs incurred</span>
                     </li>
                   </ul>
@@ -714,11 +798,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Policy Updates Section */}
-            <div id="policy-updates" className="scroll-mt-24">
+            <div
+              id="policy-updates"
+              ref={el => sectionRefs.current['policy-updates'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineClock className="w-5 h-5 text-red-600" />
+                    <HiOutlineClock className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Policy Updates</h2>
                 </div>
@@ -728,22 +816,22 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Posting the updated policy on our website</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Sending an email to registered users</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Displaying an in-app notification</span>
                     </li>
                   </ul>
                   <p>
                     Your continued use of our Services after the effective date constitutes your acceptance of the updated policy.
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     <strong>Current Version:</strong> {lastUpdated}
                   </p>
                 </div>
@@ -751,11 +839,15 @@ const AcceptableUsePolicySection1 = ({ config }) => {
             </div>
 
             {/* Contact Us Section */}
-            <div id="contact-us" className="scroll-mt-24">
+            <div
+              id="contact-us"
+              ref={el => sectionRefs.current['contact-us'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-red-600" />
+                    <HiOutlineMail className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
                 </div>
@@ -765,13 +857,13 @@ const AcceptableUsePolicySection1 = ({ config }) => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
                     <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
-                    <p className="text-sm">{company.address}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{company.address}</p>
                     <p className="text-sm">
-                      <strong>Abuse Reporting Email:</strong> <a href={`mailto:${company.email}`} className="text-red-600 hover:underline">{company.email}</a>
+                      <strong>Abuse Reporting Email:</strong> <a href={`mailto:${company.email}`} className="text-red-600 dark:text-red-400 hover:underline">{company.email}</a>
                     </p>
                     <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     We aim to respond to all abuse reports within 24 hours.
                   </p>
                 </div>
@@ -780,29 +872,38 @@ const AcceptableUsePolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Acceptable Use Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-red-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Acceptable Use Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-red-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-red-600 dark:text-red-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Acceptable Use Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -813,15 +914,19 @@ const AcceptableUsePolicySection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

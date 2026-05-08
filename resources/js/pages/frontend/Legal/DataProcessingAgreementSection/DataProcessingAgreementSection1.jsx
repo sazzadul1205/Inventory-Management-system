@@ -1,9 +1,30 @@
 // page/frontend/Legal/DataProcessingAgreementSection/DataProcessingAgreementSection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * Data Processing Agreement Section I - GDPR Compliance & Data Protection Hub
+ *
+ * Unique Design Elements:
+ * - Comprehensive Definitions Section with Term Cards
+ * - Authorized SubProcessors Table with Security Certifications
+ * - Security Measures Grid by Category
+ * - Processor & Controller Obligations Lists
+ * - Quick Stats Dashboard with Key Metrics
+ * - Sticky Navigation Sidebar with Scroll Spy
+ * - Mobile-Friendly Accordion Navigation
+ * - Data Breach Notification Procedures
+ * - International Transfer Safeguards
+ * - Audit Rights and Deletion Terms
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useEffect, useRef, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -32,13 +53,17 @@ import {
 import { HiOutlineUserGroup, HiOutlineDocumentDuplicate, HiOutlineBell } from 'react-icons/hi2';
 
 const DataProcessingAgreementSection1 = ({ config }) => {
+  // ==================== STATE MANAGEMENT ====================
   const [activeSection, setActiveSection] = useState('introduction');
   const [expandedSection, setExpandedSection] = useState(null);
   const [showPrintModal, setShowPrintModal] = useState(false);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Navigation sections
-  const sections = config?.sections || [
+  // ==================== REFS ====================
+  const sectionRefs = useRef({});
+
+  // ==================== MEMOIZED DATA ====================
+  const sections = useMemo(() => config?.sections || [
     { id: 'introduction', label: 'Introduction', icon: 'document' },
     { id: 'definitions', label: 'Definitions', icon: 'info' },
     { id: 'scope-application', label: 'Scope & Application', icon: 'globe' },
@@ -55,9 +80,8 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     { id: 'liability', label: 'Liability', icon: 'scale' },
     { id: 'governing-law', label: 'Governing Law', icon: 'scale' },
     { id: 'contact-us', label: 'Contact Us', icon: 'mail' },
-  ];
+  ], [config]);
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     legalName: "SupplyChainPro Inc.",
@@ -68,7 +92,6 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     dpoEmail: "dpo@supplychainpro.com",
   };
 
-  // Definitions
   const definitions = config?.definitions || [
     {
       term: "Agreement",
@@ -104,7 +127,6 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     },
   ];
 
-  // Processor obligations
   const processorObligations = config?.processorObligations || [
     "Process personal data only on documented instructions from the Controller",
     "Ensure that persons authorized to process personal data have committed themselves to confidentiality",
@@ -115,7 +137,6 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     "Make available to the Controller all information necessary to demonstrate compliance",
   ];
 
-  // Authorized subProcessors
   const authorizedSubProcessors = config?.authorizedSubProcessors || [
     {
       name: "Amazon Web Services (AWS)",
@@ -149,7 +170,6 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     },
   ];
 
-  // Technical and organizational security measures
   const securityMeasures = config?.securityMeasures || [
     {
       category: "Access Control",
@@ -190,7 +210,6 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'blue' },
     { label: 'SubProcessors', value: '5+', icon: 'chip', color: 'green' },
@@ -198,7 +217,30 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     { label: 'Data Locations', value: 'US, EU, APAC', icon: 'globe', color: 'amber' },
   ];
 
-  // Helper function to render icons
+  // ==================== SCROLL SPY EFFECT ====================
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -225,16 +267,13 @@ const DataProcessingAgreementSection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Scroll to section handler
   const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Toggle section expansion for mobile
   const toggleSection = (sectionId) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
@@ -245,13 +284,13 @@ const DataProcessingAgreementSection1 = ({ config }) => {
       role="region"
       aria-label="Data Processing Agreement Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-indigo-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-indigo-100 dark:border-gray-700">
             <HiOutlineShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mr-2" />
@@ -268,11 +307,11 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             {config?.description || "This Data Processing Agreement (DPA) reflects the parties' agreement with respect to the processing of personal data under the General Data Protection Regulation (GDPR)."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-                {getIcon(fact.icon, "w-4 h-4 text-gray-500")}
+                {getIcon(fact.icon, "w-4 h-4 text-gray-500 dark:text-gray-400")}
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
@@ -280,18 +319,20 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
             </button>
             <button
               onClick={() => setShowPrintModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -299,16 +340,16 @@ const DataProcessingAgreementSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Sidebar & Content Grid */}
+        {/* ==================== NAVIGATION SIDEBAR & CONTENT GRID ==================== */}
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sticky Navigation - Desktop */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
-                <HiOutlineDocumentText className="w-5 h-5 text-indigo-600" />
+                <HiOutlineDocumentText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">Contents</h3>
               </div>
-              <nav className="space-y-1 max-h-96 overflow-y-auto">
+              <nav className="space-y-1 max-h-96 overflow-y-auto" aria-label="DPA navigation">
                 {sections.map((section) => (
                   <button
                     key={section.id}
@@ -317,6 +358,7 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                       ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Navigate to ${section.label} section`}
                   >
                     {getIcon(section.icon, "w-4 h-4")}
                     {section.label}
@@ -332,9 +374,10 @@ const DataProcessingAgreementSection1 = ({ config }) => {
               <button
                 onClick={() => toggleSection('mobile-nav')}
                 className="w-full flex items-center justify-between"
+                aria-label="Toggle mobile navigation"
               >
                 <div className="flex items-center gap-2">
-                  <HiOutlineDocumentText className="w-5 h-5 text-indigo-600" />
+                  <HiOutlineDocumentText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   <span className="font-semibold text-gray-900 dark:text-white">Jump to Section</span>
                 </div>
                 {expandedSection === 'mobile-nav' ? (
@@ -353,6 +396,7 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                         setExpandedSection(null);
                       }}
                       className="w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      aria-label={`Navigate to ${section.label} section`}
                     >
                       {getIcon(section.icon, "w-4 h-4")}
                       {section.label}
@@ -363,14 +407,18 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             </div>
           </div>
 
-          {/* Main Content */}
+          {/* ==================== MAIN CONTENT ==================== */}
           <div className="lg:col-span-3 space-y-8">
             {/* Introduction Section */}
-            <div id="introduction" className="scroll-mt-24">
+            <div
+              id="introduction"
+              ref={el => sectionRefs.current['introduction'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineDocumentText className="w-5 h-5 text-indigo-600" />
+                    <HiOutlineDocumentText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Introduction</h2>
                 </div>
@@ -391,11 +439,15 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             </div>
 
             {/* Definitions Section */}
-            <div id="definitions" className="scroll-mt-24">
+            <div
+              id="definitions"
+              ref={el => sectionRefs.current['definitions'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineInformationCircle className="w-5 h-5 text-indigo-600" />
+                    <HiOutlineInformationCircle className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Definitions</h2>
                 </div>
@@ -416,11 +468,15 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             </div>
 
             {/* Scope & Application Section */}
-            <div id="scope-application" className="scroll-mt-24">
+            <div
+              id="scope-application"
+              ref={el => sectionRefs.current['scope-application'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineGlobe className="w-5 h-5 text-indigo-600" />
+                    <HiOutlineGlobe className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Scope & Application</h2>
                 </div>
@@ -446,11 +502,15 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             </div>
 
             {/* Processor Obligations Section */}
-            <div id="obligations-processor" className="scroll-mt-24">
+            <div
+              id="obligations-processor"
+              ref={el => sectionRefs.current['obligations-processor'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineShieldCheck className="w-5 h-5 text-indigo-600" />
+                    <HiOutlineShieldCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Processor Obligations</h2>
                 </div>
@@ -461,7 +521,7 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                   <ul className="space-y-2 ml-4">
                     {processorObligations.map((obligation, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400">{obligation}</span>
                       </li>
                     ))}
@@ -476,11 +536,15 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             </div>
 
             {/* Controller Obligations Section */}
-            <div id="obligations-controller" className="scroll-mt-24">
+            <div
+              id="obligations-controller"
+              ref={el => sectionRefs.current['obligations-controller'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineUser className="w-5 h-5 text-indigo-600" />
+                    <HiOutlineUser className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Controller Obligations</h2>
                 </div>
@@ -490,19 +554,19 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Have sole responsibility for the accuracy, quality, and legality of personal data processed</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Ensure it has obtained all necessary consents and provided all required notices</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Respond to data subject requests and provide necessary assistance</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Comply with all applicable data protection laws and regulations</span>
                     </li>
                   </ul>
@@ -511,11 +575,15 @@ const DataProcessingAgreementSection1 = ({ config }) => {
             </div>
 
             {/* SubProcessing Section */}
-            <div id="subProcessing" className="scroll-mt-24">
+            <div
+              id="subProcessing"
+              ref={el => sectionRefs.current['subProcessing'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineChip className="w-5 h-5 text-indigo-600" />
+                    <HiOutlineChip className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">SubProcessing</h2>
                 </div>
@@ -525,15 +593,15 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Notify the Controller of any intended changes concerning the addition or replacement of subProcessors</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Impose data protection obligations on subProcessors by written contract</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Remain fully liable to the Controller for the performance of subProcessors</span>
                     </li>
                   </ul>
@@ -543,19 +611,45 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                     <table className="w-full text-sm">
                       <thead className="bg-gray-50 dark:bg-gray-900/50">
                         <tr className="border-b border-gray-200 dark:border-gray-700">
-                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Name</th>
-                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Location</th>
-                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Services</th>
-                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Certifications</th>
+                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">
+                            Name
+                          </th>
+
+                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">
+                            Location
+                          </th>
+
+                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">
+                            Services
+                          </th>
+
+                          <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">
+                            Certifications
+                          </th>
                         </tr>
                       </thead>
+
                       <tbody>
                         {authorizedSubProcessors.map((sub, idx) => (
-                          <tr key={idx} className="border-b border-gray-100 dark:border-gray-800">
-                            <td className="p-3 font-medium text-gray-900 dark:text-white">{sub.name}</td>
-                            <td className="p-3 text-gray-600 dark:text-gray-400">{sub.location}</td>
-                            <td className="p-3 text-gray-600 dark:text-gray-400">{sub.services}</td>
-                            <td className="p-3 text-gray-600 dark:text-gray-400 text-xs">{sub.securityCertifications}</td>
+                          <tr
+                            key={idx}
+                            className="border-b border-gray-100 dark:border-gray-800"
+                          >
+                            <td className="p-3 font-medium text-gray-900 dark:text-white">
+                              {sub.name}
+                            </td>
+
+                            <td className="p-3 text-gray-600 dark:text-gray-400">
+                              {sub.location}
+                            </td>
+
+                            <td className="p-3 text-gray-600 dark:text-gray-400">
+                              {sub.services}
+                            </td>
+
+                            <td className="p-3 text-xs text-gray-600 dark:text-gray-400">
+                              {sub.securityCertifications}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -563,368 +657,421 @@ const DataProcessingAgreementSection1 = ({ config }) => {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Data Subject Rights Section */}
-            <div id="data-subject-rights" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineUserGroup className="w-5 h-5 text-indigo-600" />
+              {/* Data Subject Rights Section */}
+              <div
+                id="data-subject-rights"
+                ref={el => sectionRefs.current['data-subject-rights'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineUserGroup className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Subject Rights</h2>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Subject Rights</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    The Processor shall assist the Controller in fulfilling its obligations to respond to data subject requests under the GDPR, including:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Right to access personal data</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Right to rectification</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Right to erasure ("right to be forgotten")</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Right to restriction of processing</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Right to data portability</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Right to object to processing</span>
-                    </li>
-                  </ul>
-                  <p>
-                    The Processor shall notify the Controller immediately if it receives a request from a data subject.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Security Measures Section */}
-            <div id="security-measures" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineLockClosed className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Technical & Organizational Security Measures</h2>
-                </div>
-                <div className="space-y-4">
-                  <p className="text-gray-600 dark:text-gray-400">
-                    The Processor implements and maintains appropriate technical and organizational security measures to protect personal data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access.
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {securityMeasures.map((category, idx) => (
-                      <div key={idx} className="border border-gray-200 dark:border-gray-700 rounded-xl p-4">
-                        <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{category.category}</h3>
-                        <ul className="space-y-1">
-                          {category.measures.map((measure, mIdx) => (
-                            <li key={mIdx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                              <HiOutlineCheckCircle className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
-                              <span>{measure}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Data Breach Notification Section */}
-            <div id="data-breach" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineBell className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Breach Notification</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    In the event of a personal data breach, the Processor shall:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Notify the Controller without undue delay (within 24 hours of becoming aware)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Provide all available information about the breach, including nature, categories of data affected, and mitigation measures</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Cooperate with the Controller's investigation and remediation efforts</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Document all breaches, including facts, effects, and remedial actions taken</span>
-                    </li>
-                  </ul>
-                  <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                    <p className="text-sm text-red-800 dark:text-red-300">
-                      The Processor shall not inform any third party about a personal data breach without the Controller's prior written consent.
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      The Processor shall assist the Controller in fulfilling its obligations to respond to data subject requests under the GDPR, including:
+                    </p>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Right to access personal data</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Right to rectification</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Right to erasure ("right to be forgotten")</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Right to restriction of processing</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Right to data portability</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Right to object to processing</span>
+                      </li>
+                    </ul>
+                    <p>
+                      The Processor shall notify the Controller immediately if it receives a request from a data subject.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* International Transfers Section */}
-            <div id="international-transfers" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineGlobe className="w-5 h-5 text-indigo-600" />
+              {/* Security Measures Section */}
+              <div
+                id="security-measures"
+                ref={el => sectionRefs.current['security-measures'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineLockClosed className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Technical & Organizational Security Measures</h2>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">International Data Transfers</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    The Processor may transfer personal data to countries outside the European Economic Area (EEA) only if appropriate safeguards are in place, including:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Standard Contractual Clauses (SCCs) adopted by the European Commission</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Binding Corporate Rules (BCRs)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Adequacy decisions by the European Commission</span>
-                    </li>
-                  </ul>
-                  <p>
-                    The Processor's current subProcessors are located in the US and EU. All cross-border transfers are protected by Standard Contractual Clauses.
-                  </p>
+                  <div className="space-y-4">
+                    <p className="text-gray-600 dark:text-gray-400">
+                      The Processor implements and maintains appropriate technical and organizational security measures to protect personal data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access.
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {securityMeasures.map((category, idx) => (
+                        <div key={idx} className="border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+                          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{category.category}</h3>
+                          <ul className="space-y-1">
+                            {category.measures.map((measure, mIdx) => (
+                              <li key={mIdx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                <HiOutlineCheckCircle className="w-3 h-3 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                                <span>{measure}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Audit Rights Section */}
-            <div id="audit-rights" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineEye className="w-5 h-5 text-indigo-600" />
+              {/* Data Breach Notification Section */}
+              <div
+                id="data-breach"
+                ref={el => sectionRefs.current['data-breach'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineBell className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Breach Notification</h2>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Audit Rights</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    The Controller has the right to audit the Processor's compliance with this DPA. The Processor shall:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Provide reasonable assistance and access to relevant documentation</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Make available information necessary to demonstrate compliance</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Allow for audits conducted by the Controller or an independent auditor</span>
-                    </li>
-                  </ul>
-                  <p>
-                    Audits shall be conducted during normal business hours, with reasonable notice (at least 30 days), and not more than once per year unless required by a supervisory authority.
-                  </p>
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      In the event of a personal data breach, the Processor shall:
+                    </p>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Notify the Controller without undue delay (within 24 hours of becoming aware)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Provide all available information about the breach, including nature, categories of data affected, and mitigation measures</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Cooperate with the Controller's investigation and remediation efforts</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Document all breaches, including facts, effects, and remedial actions taken</span>
+                      </li>
+                    </ul>
+                    <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                      <p className="text-sm text-red-800 dark:text-red-300">
+                        The Processor shall not inform any third party about a personal data breach without the Controller's prior written consent.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Data Deletion & Return Section */}
-            <div id="data-deletion" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineRefresh className="w-5 h-5 text-indigo-600" />
+              {/* International Transfers Section */}
+              <div
+                id="international-transfers"
+                ref={el => sectionRefs.current['international-transfers'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineGlobe className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">International Data Transfers</h2>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Deletion & Return</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    Upon termination of the Services or at the Controller's request, the Processor shall:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Return all personal data to the Controller in a structured, commonly used format</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Delete all copies of personal data from its systems within 90 days</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                      <span>Provide written certification of deletion upon request</span>
-                    </li>
-                  </ul>
-                  <p>
-                    The Processor may retain personal data to the extent required by applicable law (e.g., for tax or fraud prevention purposes).
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Term & Termination Section */}
-            <div id="term-termination" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineClock className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Term & Termination</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    This DPA shall remain in effect for as long as the Processor processes personal data on behalf of the Controller.
-                  </p>
-                  <p>
-                    Either party may terminate this DPA upon 30 days' written notice if the other party materially breaches its obligations under this DPA and fails to cure such breach within 30 days of receiving notice.
-                  </p>
-                  <p>
-                    Upon termination, the provisions of this DPA relating to data return, deletion, confidentiality, and liability shall survive.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Liability Section */}
-            <div id="liability" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineScale className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Liability</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    Each party shall be liable for damages caused by its violation of the GDPR. The Processor's total liability under this DPA shall be limited as set forth in the Terms of Service.
-                  </p>
-                  <p>
-                    The Processor shall indemnify the Controller for any fines, penalties, or damages imposed by a supervisory authority resulting from the Processor's breach of this DPA or the GDPR.
-                  </p>
-                  <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                    <p className="text-sm text-amber-800 dark:text-amber-300">
-                      The Processor is not liable for damages caused by the Controller's instructions that violate data protection laws.
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      The Processor may transfer personal data to countries outside the European Economic Area (EEA) only if appropriate safeguards are in place, including:
+                    </p>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Standard Contractual Clauses (SCCs) adopted by the European Commission</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Binding Corporate Rules (BCRs)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Adequacy decisions by the European Commission</span>
+                      </li>
+                    </ul>
+                    <p>
+                      The Processor's current subProcessors are located in the US and EU. All cross-border transfers are protected by Standard Contractual Clauses.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Governing Law Section */}
-            <div id="governing-law" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineScale className="w-5 h-5 text-indigo-600" />
+              {/* Audit Rights Section */}
+              <div
+                id="audit-rights"
+                ref={el => sectionRefs.current['audit-rights'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineEye className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Audit Rights</h2>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Governing Law</h2>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <p>
-                    This DPA shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.
-                  </p>
-                  <p>
-                    Any disputes arising from this DPA shall be resolved in accordance with the dispute resolution provisions set forth in the Terms of Service.
-                  </p>
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      The Controller has the right to audit the Processor's compliance with this DPA. The Processor shall:
+                    </p>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Provide reasonable assistance and access to relevant documentation</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Make available information necessary to demonstrate compliance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Allow for audits conducted by the Controller or an independent auditor</span>
+                      </li>
+                    </ul>
+                    <p>
+                      Audits shall be conducted during normal business hours, with reasonable notice (at least 30 days), and not more than once per year unless required by a supervisory authority.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Contact Us Section */}
-            <div id="contact-us" className="scroll-mt-24">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-indigo-600" />
+              {/* Data Deletion & Return Section */}
+              <div
+                id="data-deletion"
+                ref={el => sectionRefs.current['data-deletion'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineRefresh className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Deletion & Return</h2>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      Upon termination of the Services or at the Controller's request, the Processor shall:
+                    </p>
+                    <ul className="space-y-2 ml-4">
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Return all personal data to the Controller in a structured, commonly used format</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Delete all copies of personal data from its systems within 90 days</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
+                        <span>Provide written certification of deletion upon request</span>
+                      </li>
+                    </ul>
+                    <p>
+                      The Processor may retain personal data to the extent required by applicable law (e.g., for tax or fraud prevention purposes).
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-3 text-gray-600 dark:text-gray-400">
-                  <p>
-                    If you have any questions about this Data Processing Agreement, please contact us:
-                  </p>
-                  <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
-                    <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
-                    <p className="text-sm">{company.address}</p>
-                    <p className="text-sm">
-                      <strong>Privacy Inquiries:</strong> <a href={`mailto:${company.email}`} className="text-indigo-600 hover:underline">{company.email}</a>
+              </div>
+
+              {/* Term & Termination Section */}
+              <div
+                id="term-termination"
+                ref={el => sectionRefs.current['term-termination'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineClock className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Term & Termination</h2>
+                  </div>
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      This DPA shall remain in effect for as long as the Processor processes personal data on behalf of the Controller.
                     </p>
-                    <p className="text-sm">
-                      <strong>DPO Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-indigo-600 hover:underline">{company.dpoEmail}</a>
+                    <p>
+                      Either party may terminate this DPA upon 30 days' written notice if the other party materially breaches its obligations under this DPA and fails to cure such breach within 30 days of receiving notice.
                     </p>
-                    <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
+                    <p>
+                      Upon termination, the provisions of this DPA relating to data return, deletion, confidentiality, and liability shall survive.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Liability Section */}
+              <div
+                id="liability"
+                ref={el => sectionRefs.current['liability'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineScale className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Liability</h2>
+                  </div>
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      Each party shall be liable for damages caused by its violation of the GDPR. The Processor's total liability under this DPA shall be limited as set forth in the Terms of Service.
+                    </p>
+                    <p>
+                      The Processor shall indemnify the Controller for any fines, penalties, or damages imposed by a supervisory authority resulting from the Processor's breach of this DPA or the GDPR.
+                    </p>
+                    <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                      <p className="text-sm text-amber-800 dark:text-amber-300">
+                        The Processor is not liable for damages caused by the Controller's instructions that violate data protection laws.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Governing Law Section */}
+              <div
+                id="governing-law"
+                ref={el => sectionRefs.current['governing-law'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineScale className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Governing Law</h2>
+                  </div>
+                  <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                    <p>
+                      This DPA shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.
+                    </p>
+                    <p>
+                      Any disputes arising from this DPA shall be resolved in accordance with the dispute resolution provisions set forth in the Terms of Service.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Us Section */}
+              <div
+                id="contact-us"
+                ref={el => sectionRefs.current['contact-us'] = el}
+                className="scroll-mt-24"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                      <HiOutlineMail className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
+                  </div>
+                  <div className="space-y-3 text-gray-600 dark:text-gray-400">
+                    <p>
+                      If you have any questions about this Data Processing Agreement, please contact us:
+                    </p>
+                    <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
+                      <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{company.address}</p>
+                      <p className="text-sm">
+                        <strong>Privacy Inquiries:</strong> <a href={`mailto:${company.email}`} className="text-indigo-600 dark:text-indigo-400 hover:underline">{company.email}</a>
+                      </p>
+                      <p className="text-sm">
+                        <strong>DPO Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-indigo-600 dark:text-indigo-400 hover:underline">{company.dpoEmail}</a>
+                      </p>
+                      <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* ==================== PRINT MODAL ==================== */}
+          {showPrintModal && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+              onClick={() => setShowPrintModal(false)}
+              role="dialog"
+              aria-label="Download Data Processing Agreement"
+              aria-modal="true"
+            >
+              <div
+                className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="bg-indigo-600 p-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white font-bold text-lg">Download Data Processing Agreement</h3>
+                    <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                      <HiOutlineX className="w-6 h-6" />
+                    </button>
+                  </div>
+                </div>
+                <div className="p-6 text-center">
+                  <HiOutlineDocumentDuplicate className="w-12 h-12 text-indigo-600 dark:text-indigo-400 mx-auto mb-4" />
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    Choose your preferred format to download the complete Data Processing Agreement.
+                  </p>
+                  <div className="flex gap-3">
+                    <button className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors" aria-label="Download as PDF">
+                      <HiOutlineDownload className="w-4 h-4" />
+                      PDF
+                    </button>
+                    <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
+                      <HiOutlinePrinter className="w-4 h-4" />
+                      Print
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-
-        {/* Print/Download Modal */}
-        {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-indigo-600 p-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white font-bold text-lg">Download Data Processing Agreement</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
-                    <HiOutlineX className="w-6 h-6" />
-                  </button>
-                </div>
-              </div>
-              <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Choose your preferred format to download the complete Data Processing Agreement.
-                </p>
-                <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
-                    <HiOutlineDownload className="w-4 h-4" />
-                    PDF
-                  </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
-                    <HiOutlinePrinter className="w-4 h-4" />
-                    Print
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

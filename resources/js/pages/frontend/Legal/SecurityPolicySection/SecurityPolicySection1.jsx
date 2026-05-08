@@ -1,9 +1,30 @@
 // page/frontend/Legal/SecurityPolicySection/SecurityPolicySection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * Security Policy Section I - Enterprise Security & Compliance Hub
+ *
+ * Unique Design Elements:
+ * - Security Certifications Showcase with Validity Dates
+ * - Third-Party Assessment Table with Audit Details
+ * - Multi-layer Security Controls Grid
+ * - Quick Stats Dashboard with Key Metrics
+ * - Incident Response Timeline Commitments
+ * - Business Continuity RTO/RPO Metrics
+ * - Vulnerability Management Program Details
+ * - Physical Security Controls Overview
+ * - Sticky Navigation Sidebar with Scroll Spy
+ * - Mobile-Friendly Accordion Navigation
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useEffect, useRef, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -34,18 +55,22 @@ import {
 import { HiOutlineUserGroup, HiOutlineDocumentDuplicate, HiOutlineBuildingOffice, HiOutlineFingerPrint, HiOutlineBell } from 'react-icons/hi2';
 
 const SecurityPolicySection1 = ({ config }) => {
-  const [activeSection, setActiveSection] = useState('introduction');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
+  const [activeSection, setActiveSection] = useState('introduction');
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Navigation sections
-  const sections = config?.sections || [
+  // ==================== REFS ====================
+  const sectionRefs = useRef({});
+
+  // ==================== MEMOIZED DATA ====================
+  const sections = useMemo(() => config?.sections || [
     { id: 'introduction', label: 'Introduction', icon: 'document' },
     { id: 'security-governance', label: 'Security Governance', icon: 'office-building' },
     { id: 'access-control', label: 'Access Control', icon: 'lock' },
-    { id: 'data-encryption', label: 'Data Encryption', icon: 'lock' },
-    { id: 'network-security', label: 'Network Security', icon: 'globe' },
+    { id: 'data-encryption', label: 'Data Encryption', icon: 'key' },
+    { id: 'network-security', label: 'Network Security', icon: 'server' },
     { id: 'application-security', label: 'Application Security', icon: 'chip' },
     { id: 'incident-response', label: 'Incident Response', icon: 'bell' },
     { id: 'business-continuity', label: 'Business Continuity', icon: 'refresh' },
@@ -55,9 +80,8 @@ const SecurityPolicySection1 = ({ config }) => {
     { id: 'vulnerability-management', label: 'Vulnerability Management', icon: 'search' },
     { id: 'physical-security', label: 'Physical Security', icon: 'building' },
     { id: 'contact-us', label: 'Contact Us', icon: 'mail' },
-  ];
+  ], [config]);
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     address: "123 Supply Chain Boulevard, Suite 400, San Francisco, CA 94105",
@@ -66,7 +90,6 @@ const SecurityPolicySection1 = ({ config }) => {
     securityTeam: "security@supplychainpro.com",
   };
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'blue' },
     { label: 'Security Certifications', value: 'SOC 2, ISO 27001', icon: 'shield', color: 'green' },
@@ -76,7 +99,6 @@ const SecurityPolicySection1 = ({ config }) => {
     { label: 'Data Centers', value: 'US, EU, APAC', icon: 'globe', color: 'teal' },
   ];
 
-  // Security certifications
   const securityCertifications = config?.securityCertifications || [
     {
       name: "SOC 2 Type II",
@@ -104,7 +126,6 @@ const SecurityPolicySection1 = ({ config }) => {
     },
   ];
 
-  // Third-party security assessments
   const thirdPartyAssessments = config?.thirdPartyAssessments || [
     {
       provider: "Ernst & Young",
@@ -132,13 +153,37 @@ const SecurityPolicySection1 = ({ config }) => {
     },
   ];
 
-  // Helper function to render icons
+  // ==================== SCROLL SPY EFFECT ====================
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
       'office-building': <HiOutlineOfficeBuilding className={className} />,
       lock: <HiOutlineLockClosed className={className} />,
-      globe: <HiOutlineGlobe className={className} />,
+      key: <HiOutlineKey className={className} />,
+      server: <HiOutlineServer className={className} />,
       chip: <HiOutlineChip className={className} />,
       bell: <HiOutlineBell className={className} />,
       refresh: <HiOutlineRefresh className={className} />,
@@ -151,28 +196,24 @@ const SecurityPolicySection1 = ({ config }) => {
       shield: <HiOutlineShieldCheck className={className} />,
       calendar: <HiOutlineCalendar className={className} />,
       fingerprint: <HiOutlineFingerPrint className={className} />,
-      server: <HiOutlineServer className={className} />,
-      key: <HiOutlineKey className={className} />,
-      scale: <HiOutlineScale className={className} />,
-      eye: <HiOutlineEye className={className} />,
+      globe: <HiOutlineGlobe className={className} />,
       database: <HiOutlineDatabase className={className} />,
       chart: <HiOutlineChartBar className={className} />,
       heart: <HiOutlineHeart className={className} />,
       sparkles: <HiOutlineSparkles className={className} />,
+      scale: <HiOutlineScale className={className} />,
+      eye: <HiOutlineEye className={className} />,
     };
     return icons[iconName] || <HiOutlineShieldCheck className={className} />;
   };
 
-  // Scroll to section handler
   const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Toggle section expansion for mobile
   const toggleSection = (sectionId) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
@@ -183,13 +224,13 @@ const SecurityPolicySection1 = ({ config }) => {
       role="region"
       aria-label="Security Policy Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-cyan-200 dark:bg-cyan-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-cyan-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-cyan-100 dark:border-gray-700">
             <HiOutlineShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400 mr-2" />
@@ -206,11 +247,11 @@ const SecurityPolicySection1 = ({ config }) => {
             {config?.description || "At SupplyChainPro, security is our top priority. This policy outlines the technical and organizational measures we implement to protect your data from unauthorized access, disclosure, alteration, and destruction."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-                {getIcon(fact.icon, "w-4 h-4 text-gray-500")}
+                {getIcon(fact.icon, "w-4 h-4 text-gray-500 dark:text-gray-400")}
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
@@ -218,18 +259,20 @@ const SecurityPolicySection1 = ({ config }) => {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
             </button>
             <button
               onClick={() => setShowPrintModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -237,16 +280,16 @@ const SecurityPolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Sidebar & Content Grid */}
+        {/* ==================== NAVIGATION SIDEBAR & CONTENT GRID ==================== */}
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sticky Navigation - Desktop */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
-                <HiOutlineShieldCheck className="w-5 h-5 text-cyan-600" />
+                <HiOutlineShieldCheck className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">Contents</h3>
               </div>
-              <nav className="space-y-1 max-h-96 overflow-y-auto">
+              <nav className="space-y-1 max-h-96 overflow-y-auto" aria-label="Security policy navigation">
                 {sections.map((section) => (
                   <button
                     key={section.id}
@@ -255,6 +298,7 @@ const SecurityPolicySection1 = ({ config }) => {
                       ? 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 font-medium'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Navigate to ${section.label} section`}
                   >
                     {getIcon(section.icon, "w-4 h-4")}
                     {section.label}
@@ -270,9 +314,10 @@ const SecurityPolicySection1 = ({ config }) => {
               <button
                 onClick={() => toggleSection('mobile-nav')}
                 className="w-full flex items-center justify-between"
+                aria-label="Toggle mobile navigation"
               >
                 <div className="flex items-center gap-2">
-                  <HiOutlineShieldCheck className="w-5 h-5 text-cyan-600" />
+                  <HiOutlineShieldCheck className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   <span className="font-semibold text-gray-900 dark:text-white">Jump to Section</span>
                 </div>
                 {expandedSection === 'mobile-nav' ? (
@@ -291,6 +336,7 @@ const SecurityPolicySection1 = ({ config }) => {
                         setExpandedSection(null);
                       }}
                       className="w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      aria-label={`Navigate to ${section.label} section`}
                     >
                       {getIcon(section.icon, "w-4 h-4")}
                       {section.label}
@@ -301,14 +347,18 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
           </div>
 
-          {/* Main Content */}
+          {/* ==================== MAIN CONTENT ==================== */}
           <div className="lg:col-span-3 space-y-8">
             {/* Introduction Section */}
-            <div id="introduction" className="scroll-mt-24">
+            <div
+              id="introduction"
+              ref={el => sectionRefs.current['introduction'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineDocumentText className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineDocumentText className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Introduction</h2>
                 </div>
@@ -329,11 +379,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Security Governance Section */}
-            <div id="security-governance" className="scroll-mt-24">
+            <div
+              id="security-governance"
+              ref={el => sectionRefs.current['security-governance'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineOfficeBuilding className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineOfficeBuilding className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Security Governance</h2>
                 </div>
@@ -343,19 +397,19 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Dedicated security team available 24/7</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Regular security reviews by executive leadership</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Annual security strategy and roadmap planning</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Independent security audits and assessments</span>
                     </li>
                   </ul>
@@ -364,11 +418,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Access Control Section */}
-            <div id="access-control" className="scroll-mt-24">
+            <div
+              id="access-control"
+              ref={el => sectionRefs.current['access-control'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineLockClosed className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineLockClosed className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Access Control</h2>
                 </div>
@@ -378,23 +436,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Multi-Factor Authentication (MFA):</strong> Required for all users accessing our systems</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Role-Based Access Control (RBAC):</strong> Users are granted only the minimum access necessary</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Regular Access Reviews:</strong> Quarterly reviews of all user access rights</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Automated Deprovisioning:</strong> Immediate removal of access upon termination</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span><strong>Password Policy:</strong> Minimum 12 characters with complexity requirements</span>
                     </li>
                   </ul>
@@ -403,11 +461,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Data Encryption Section */}
-            <div id="data-encryption" className="scroll-mt-24">
+            <div
+              id="data-encryption"
+              ref={el => sectionRefs.current['data-encryption'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineKey className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineKey className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Data Encryption</h2>
                 </div>
@@ -418,14 +480,14 @@ const SecurityPolicySection1 = ({ config }) => {
                   <div className="grid sm:grid-cols-2 gap-4 mt-4">
                     <div className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
                       <div className="flex items-center gap-2 mb-2">
-                        <HiOutlineDatabase className="w-5 h-5 text-green-600" />
+                        <HiOutlineDatabase className="w-5 h-5 text-green-600 dark:text-green-400" />
                         <h3 className="font-semibold text-gray-900 dark:text-white">Encryption at Rest</h3>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">256-bit AES encryption for all data stored in our databases, file systems, and backups.</p>
                     </div>
                     <div className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
                       <div className="flex items-center gap-2 mb-2">
-                        <HiOutlineGlobe className="w-5 h-5 text-green-600" />
+                        <HiOutlineGlobe className="w-5 h-5 text-green-600 dark:text-green-400" />
                         <h3 className="font-semibold text-gray-900 dark:text-white">Encryption in Transit</h3>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">TLS 1.3 encryption for all data transmitted between your device and our servers.</p>
@@ -433,15 +495,15 @@ const SecurityPolicySection1 = ({ config }) => {
                   </div>
                   <ul className="space-y-2 ml-4 mt-2">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Secure key management with automatic key rotation every 90 days</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Customer-controlled encryption keys available for enterprise customers</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Backup encryption with same standards as primary data</span>
                     </li>
                   </ul>
@@ -450,11 +512,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Network Security Section */}
-            <div id="network-security" className="scroll-mt-24">
+            <div
+              id="network-security"
+              ref={el => sectionRefs.current['network-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineServer className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineServer className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Network Security</h2>
                 </div>
@@ -464,23 +530,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Next-generation firewalls with intrusion prevention systems (IPS)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>DDoS protection and mitigation at the edge</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Network segmentation and micro-segmentation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>24/7 security monitoring by our Security Operations Center (SOC)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Regular vulnerability scanning (weekly) and penetration testing (quarterly)</span>
                     </li>
                   </ul>
@@ -489,11 +555,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Application Security Section */}
-            <div id="application-security" className="scroll-mt-24">
+            <div
+              id="application-security"
+              ref={el => sectionRefs.current['application-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineChip className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineChip className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Application Security</h2>
                 </div>
@@ -503,23 +573,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Secure SDLC with security gates at each phase</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Static Application Security Testing (SAST) on all code changes</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Dynamic Application Security Testing (DAST) before production deployment</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Software Composition Analysis (SCA) for third-party dependencies</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Bug bounty program for responsible disclosure</span>
                     </li>
                   </ul>
@@ -528,11 +598,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Incident Response Section */}
-            <div id="incident-response" className="scroll-mt-24">
+            <div
+              id="incident-response"
+              ref={el => sectionRefs.current['incident-response'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineBell className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineBell className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Incident Response</h2>
                 </div>
@@ -542,23 +616,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>24/7 security incident response team on call</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Incident response plan tested quarterly through tabletop exercises</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Breach notification to affected customers within 24 hours of confirmation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Forensic investigation capabilities for root cause analysis</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Post-incident reviews with remediation tracking</span>
                     </li>
                   </ul>
@@ -572,11 +646,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Business Continuity Section */}
-            <div id="business-continuity" className="scroll-mt-24">
+            <div
+              id="business-continuity"
+              ref={el => sectionRefs.current['business-continuity'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineRefresh className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineRefresh className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Business Continuity & Disaster Recovery</h2>
                 </div>
@@ -586,23 +664,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Multi-region deployment for high availability</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Automated daily backups with 30-day retention</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Disaster recovery tested annually</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Recovery Time Objective (RTO): 4 hours</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Recovery Point Objective (RPO): 15 minutes</span>
                     </li>
                   </ul>
@@ -611,11 +689,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Third-Party Security Section */}
-            <div id="third-party-security" className="scroll-mt-24">
+            <div
+              id="third-party-security"
+              ref={el => sectionRefs.current['third-party-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineUserGroup className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineUserGroup className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Third-Party Security</h2>
                 </div>
@@ -625,19 +707,19 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Security assessments for all vendors processing customer data</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Data Processing Agreements (DPAs) with all subprocessors</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Annual review of vendor security certifications</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Right to audit contractual provisions</span>
                     </li>
                   </ul>
@@ -646,11 +728,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Compliance & Audits Section */}
-            <div id="compliance-audits" className="scroll-mt-24">
+            <div
+              id="compliance-audits"
+              ref={el => sectionRefs.current['compliance-audits'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineCheckCircle className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineCheckCircle className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Compliance & Audits</h2>
                 </div>
@@ -662,9 +748,9 @@ const SecurityPolicySection1 = ({ config }) => {
                     {securityCertifications.map((cert, idx) => (
                       <div key={idx} className="border border-gray-200 dark:border-gray-700 rounded-lg p-3">
                         <p className="font-semibold text-gray-900 dark:text-white">{cert.name}</p>
-                        <p className="text-xs text-gray-500">{cert.issuer}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{cert.issuer}</p>
                         <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{cert.description.substring(0, 80)}...</p>
-                        <p className="text-xs text-cyan-600 mt-1">Valid until: {cert.validUntil}</p>
+                        <p className="text-xs text-cyan-600 dark:text-cyan-400 mt-1">Valid until: {cert.validUntil}</p>
                       </div>
                     ))}
                   </div>
@@ -698,11 +784,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Security Training Section */}
-            <div id="security-training" className="scroll-mt-24">
+            <div
+              id="security-training"
+              ref={el => sectionRefs.current['security-training'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineUser className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineUser className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Security Training & Awareness</h2>
                 </div>
@@ -712,23 +802,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Annual security awareness training for all employees</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Role-specific training for engineers and support staff</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Phishing simulation exercises (quarterly)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Background checks for all employees</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Confidentiality agreements signed by all personnel</span>
                     </li>
                   </ul>
@@ -737,11 +827,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Vulnerability Management Section */}
-            <div id="vulnerability-management" className="scroll-mt-24">
+            <div
+              id="vulnerability-management"
+              ref={el => sectionRefs.current['vulnerability-management'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineSearch className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineSearch className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Vulnerability Management</h2>
                 </div>
@@ -751,23 +845,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Weekly automated vulnerability scans of all systems</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Quarterly third-party penetration testing</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Bug bounty program for responsible disclosure</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Patch management within defined SLAs based on severity</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Risk acceptance process for exceptions</span>
                     </li>
                   </ul>
@@ -781,11 +875,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Physical Security Section */}
-            <div id="physical-security" className="scroll-mt-24">
+            <div
+              id="physical-security"
+              ref={el => sectionRefs.current['physical-security'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineBuildingOffice className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineBuildingOffice className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Physical Security</h2>
                 </div>
@@ -795,23 +893,23 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <ul className="space-y-2 ml-4">
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>24/7 on-site security guards</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Biometric access controls for all secure areas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Comprehensive CCTV surveillance with 90-day retention</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Two-factor authentication for data center access</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       <span>Environmental controls (fire suppression, UPS, generators)</span>
                     </li>
                   </ul>
@@ -820,11 +918,15 @@ const SecurityPolicySection1 = ({ config }) => {
             </div>
 
             {/* Contact Us Section */}
-            <div id="contact-us" className="scroll-mt-24">
+            <div
+              id="contact-us"
+              ref={el => sectionRefs.current['contact-us'] = el}
+              className="scroll-mt-24"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-cyan-600" />
+                    <HiOutlineMail className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
                 </div>
@@ -834,13 +936,13 @@ const SecurityPolicySection1 = ({ config }) => {
                   </p>
                   <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 space-y-2">
                     <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
-                    <p className="text-sm">{company.address}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{company.address}</p>
                     <p className="text-sm">
-                      <strong>Security Team Email:</strong> <a href={`mailto:${company.securityTeam}`} className="text-cyan-600 hover:underline">{company.securityTeam}</a>
+                      <strong>Security Team Email:</strong> <a href={`mailto:${company.securityTeam}`} className="text-cyan-600 dark:text-cyan-400 hover:underline">{company.securityTeam}</a>
                     </p>
                     <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     For security vulnerabilities, please email security@supplychainpro.com. We will respond within 24 hours.
                   </p>
                 </div>
@@ -849,29 +951,38 @@ const SecurityPolicySection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Security Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-cyan-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Security Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-cyan-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-cyan-600 dark:text-cyan-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Security Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-cyan-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-cyan-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -882,15 +993,19 @@ const SecurityPolicySection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

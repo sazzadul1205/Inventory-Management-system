@@ -1,18 +1,29 @@
-// - Update the JSX given bellow and also give me The Config JSON Please Only Do that nothing more)
-// conditions
-// 1. Use React Icons Library No Custom Emoji
-// 2. Try To follow the Format Oh JSX given above(the extra Files)
-// 3. Try To make it unique Per page
-// 4. use Open - Source Image
-// 5. Follow the Commenting Format like the Given page
-// 6. Double check the React Icons if its Valid no invalid icon
-// ---------
 // page/frontend/Legal/GDPRComplianceSection/GDPRComplianceSection2.jsx
 
-// React
+/**
+ * GDPR Compliance Section II - Interactive Data Privacy Hub
+ *
+ * Unique Design Elements:
+ * - Multi-Tab Interface (Overview, Rights, Submit Request, FAQ, Certifications)
+ * - Interactive Data Subject Rights Cards with Expandable Details
+ * - DSAR (Data Subject Access Request) Submission Form
+ * - Legal Bases for Processing Grid
+ * - Security Measures Progress Bars
+ * - Certifications Showcase with Validity Dates
+ * - Quick Stats Dashboard with Trend Indicators
+ * - FAQ Accordion with Expandable Answers
+ * - Print/Download Modal for Legal Documents
+ * - Search Functionality for Rights
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -45,26 +56,26 @@ import {
 import { HiOutlineUserGroup, HiOutlineBuildingOffice, HiOutlineDocumentDuplicate, HiOutlineArrowRight } from 'react-icons/hi2';
 
 const GDPRComplianceSection2 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
-  const [showPrintModal, setShowPrintModal] = useState(false);
-  const [expandedFaq, setExpandedFaq] = useState(null);
-  const [selectedRight, setSelectedRight] = useState(null);
-  const [requestSubmitted, setRequestSubmitted] = useState(false);
   const [requestType, setRequestType] = useState('');
+  const [expandedFaq, setExpandedFaq] = useState(null);
   const [requestEmail, setRequestEmail] = useState('');
   const [requestErrors, setRequestErrors] = useState({});
+  const [activeTab, setActiveTab] = useState('overview');
+  const [selectedRight, setSelectedRight] = useState(null);
+  const [showPrintModal, setShowPrintModal] = useState(false);
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
 
-  // Tabs configuration
+  // ==================== MEMOIZED DATA ====================
   const tabs = [
     { id: 'overview', label: 'GDPR Overview', icon: 'shield' },
     { id: 'rights', label: 'Your Rights', icon: 'user' },
     { id: 'request', label: 'Submit Request', icon: 'mail' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
     { id: 'certifications', label: 'Certifications', icon: 'check' },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'GDPR Compliant', value: 'Yes', icon: 'check', color: 'green', trend: 'Certified' },
     { label: 'Data Subject Rights', value: '8', icon: 'user', color: 'blue', trend: 'Full compliance' },
@@ -74,7 +85,6 @@ const GDPRComplianceSection2 = ({ config }) => {
     { label: 'Security Certifications', value: 'SOC 2, ISO 27001', icon: 'shield', color: 'teal', trend: 'Annual audits' },
   ];
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     legalName: "SupplyChainPro Inc.",
@@ -87,7 +97,6 @@ const GDPRComplianceSection2 = ({ config }) => {
     registrationNumber: "IE123456",
   };
 
-  // Data subject rights with detailed information
   const dataSubjectRights = useMemo(() => config?.dataSubjectRights || [
     {
       id: 'access',
@@ -187,7 +196,6 @@ const GDPRComplianceSection2 = ({ config }) => {
     },
   ], [config?.dataSubjectRights]);
 
-  // Legal bases for processing
   const legalBases = config?.legalBases || [
     {
       basis: "Consent",
@@ -233,7 +241,6 @@ const GDPRComplianceSection2 = ({ config }) => {
     },
   ];
 
-  // Security measures
   const securityMeasures = config?.securityMeasures || [
     { name: "Encryption", description: "256-bit AES encryption for data at rest, TLS 1.3 for data in transit", status: "Implemented", percentage: 100 },
     { name: "Access Control", description: "Role-based access control with multi-factor authentication", status: "Implemented", percentage: 100 },
@@ -243,7 +250,6 @@ const GDPRComplianceSection2 = ({ config }) => {
     { name: "Staff Training", description: "Regular GDPR training for all employees handling personal data", status: "Ongoing", percentage: 100 },
   ];
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'What is GDPR and who does it apply to?',
@@ -271,7 +277,6 @@ const GDPRComplianceSection2 = ({ config }) => {
     },
   ];
 
-  // Certifications
   const certifications = config?.certifications || [
     {
       name: "SOC 2 Type II",
@@ -303,7 +308,47 @@ const GDPRComplianceSection2 = ({ config }) => {
     },
   ];
 
-  // Handle DSAR request submission
+  // ==================== FILTER FUNCTIONS ====================
+  const filteredRights = useMemo(() => {
+    if (!searchQuery) return dataSubjectRights;
+    const query = searchQuery.toLowerCase();
+    return dataSubjectRights.filter(right =>
+      right.title.toLowerCase().includes(query) ||
+      right.description.toLowerCase().includes(query)
+    );
+  }, [dataSubjectRights, searchQuery]);
+
+  // ==================== HELPERS FUNCTIONS ====================
+  const getIcon = (iconName, className = "w-5 h-5") => {
+    const icons = {
+      document: <HiOutlineDocumentText className={className} />,
+      building: <HiOutlineBuildingOffice className={className} />,
+      scale: <HiOutlineScale className={className} />,
+      user: <HiOutlineUser className={className} />,
+      'user-group': <HiOutlineUserGroup className={className} />,
+      check: <HiOutlineCheckCircle className={className} />,
+      heart: <HiOutlineHeart className={className} />,
+      shield: <HiOutlineShieldCheck className={className} />,
+      bell: <HiOutlineBell className={className} />,
+      globe: <HiOutlineGlobe className={className} />,
+      clock: <HiOutlineClock className={className} />,
+      mail: <HiOutlineMail className={className} />,
+      lock: <HiOutlineLockClosed className={className} />,
+      database: <HiOutlineDatabase className={className} />,
+      chip: <HiOutlineChip className={className} />,
+      calendar: <HiOutlineCalendar className={className} />,
+      x: <HiOutlineX className={className} />,
+      eye: <HiOutlineEye className={className} />,
+      refresh: <HiOutlineRefresh className={className} />,
+      chart: <HiOutlineChartBar className={className} />,
+      sparkles: <HiOutlineSparkles className={className} />,
+      info: <HiOutlineInformationCircle className={className} />,
+      'view-grid': <HiOutlineViewGrid className={className} />,
+      flag: <HiOutlineFlag className={className} />,
+    };
+    return icons[iconName] || <HiOutlineShieldCheck className={className} />;
+  };
+
   const handleRequestSubmit = (e) => {
     e.preventDefault();
     const errors = {};
@@ -330,63 +375,21 @@ const GDPRComplianceSection2 = ({ config }) => {
     }, 3000);
   };
 
-  // Helper function to render icons
-  const getIcon = (iconName, className = "w-5 h-5") => {
-    const icons = {
-      document: <HiOutlineDocumentText className={className} />,
-      building: <HiOutlineBuildingOffice className={className} />,
-      scale: <HiOutlineScale className={className} />,
-      user: <HiOutlineUser className={className} />,
-      'user-group': <HiOutlineUserGroup className={className} />,
-      check: <HiOutlineCheckCircle className={className} />,
-      heart: <HiOutlineHeart className={className} />,
-      shield: <HiOutlineShieldCheck className={className} />,
-      bell: <HiOutlineBell className={className} />,
-      globe: <HiOutlineGlobe className={className} />,
-      clock: <HiOutlineClock className={className} />,
-      mail: <HiOutlineMail className={className} />,
-      lock: <HiOutlineLockClosed className={className} />,
-      database: <HiOutlineDatabase className={className} />,
-      chip: <HiOutlineChip className={className} />,
-      calendar: <HiOutlineCalendar className={className} />,
-      x: <HiOutlineX className={className} />,
-      eye: <HiOutlineEye className={className} />,
-      refresh: <HiOutlineRefresh className={className} />,
-      chart: <HiOutlineChartBar className={className} />,
-      sparkles: <HiOutlineSparkles className={className} />,
-      info: <HiOutlineInformationCircle className={className} />,
-      'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
-      flag: <HiOutlineFlag className={className} />,
-    };
-    return icons[iconName] || <HiOutlineShieldCheck className={className} />;
-  };
-
-  // Filter rights based on search
-  const filteredRights = useMemo(() => {
-    if (!searchQuery) return dataSubjectRights;
-    const query = searchQuery.toLowerCase();
-    return dataSubjectRights.filter(right =>
-      right.title.toLowerCase().includes(query) ||
-      right.description.toLowerCase().includes(query)
-    );
-  }, [dataSubjectRights, searchQuery]);
-
   return (
     <section
       className="relative py-24 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden"
       role="region"
       aria-label="GDPR Compliance Center"
     >
-      {/* Background Pattern */}
+      {/* ==================== BACKGROUND PATTERN ==================== */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+        {/* ==================== HEADER SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 rounded-full px-4 py-2 mb-6">
             <HiOutlineShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -403,28 +406,29 @@ const GDPRComplianceSection2 = ({ config }) => {
             {config?.description || "SupplyChainPro is committed to protecting your personal data and complying with the General Data Protection Regulation (GDPR). This page outlines our GDPR compliance framework and your rights as a data subject."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-                <div className={`w-6 h-6 rounded-full bg-${fact.color}-100 dark:bg-${fact.color}-900/30 flex items-center justify-center`}>
-                  {getIcon(fact.icon, `w-3 h-3 text-${fact.color}-600`)}
+                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  {getIcon(fact.icon, "w-3 h-3 text-blue-600")}
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
                 {fact.trend && (
-                  <span className="text-xs text-gray-400 hidden sm:inline">{fact.trend}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">{fact.trend}</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
@@ -432,6 +436,7 @@ const GDPRComplianceSection2 = ({ config }) => {
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -439,7 +444,7 @@ const GDPRComplianceSection2 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -449,6 +454,7 @@ const GDPRComplianceSection2 = ({ config }) => {
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {getIcon(tab.icon, "w-4 h-4")}
               {tab.label}
@@ -456,14 +462,14 @@ const GDPRComplianceSection2 = ({ config }) => {
           ))}
         </div>
 
-        {/* GDPR Overview Tab */}
+        {/* ==================== GDPR OVERVIEW TAB ==================== */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
             {/* Introduction Card */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  <HiOutlineInformationCircle className="w-5 h-5 text-blue-600" />
+                  <HiOutlineInformationCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">What is GDPR?</h2>
               </div>
@@ -502,11 +508,11 @@ const GDPRComplianceSection2 = ({ config }) => {
                 {legalBases.map((basis, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
                     <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                      {getIcon(basis.icon, "w-4 h-4 text-blue-600")}
+                      {getIcon(basis.icon, "w-4 h-4 text-blue-600 dark:text-blue-400")}
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{basis.basis}</h3>
-                      <p className="text-xs text-gray-500">{basis.article}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{basis.article}</p>
                       <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{basis.description.substring(0, 80)}...</p>
                     </div>
                   </div>
@@ -525,13 +531,14 @@ const GDPRComplianceSection2 = ({ config }) => {
                       <p className="text-xs text-gray-600 dark:text-gray-400">{measure.description}</p>
                     </div>
                     <div className="text-right">
-                      <span className={`inline-block text-xs px-2 py-1 rounded-full ${measure.status === 'Implemented' ? 'bg-green-100 text-green-700' :
-                          measure.status === 'Scheduled' ? 'bg-yellow-100 text-yellow-700' : 'bg-blue-100 text-blue-700'
+                      <span className={`inline-block text-xs px-2 py-1 rounded-full ${measure.status === 'Implemented' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
+                        measure.status === 'Scheduled' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                          'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
                         }`}>
                         {measure.status}
                       </span>
-                      <div className="w-24 h-1.5 bg-gray-200 rounded-full mt-1">
-                        <div className="h-1.5 rounded-full bg-green-500" style={{ width: `${measure.percentage}%` }} />
+                      <div className="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full mt-1">
+                        <div className="h-1.5 rounded-full bg-green-500 dark:bg-green-400" style={{ width: `${measure.percentage}%` }} />
                       </div>
                     </div>
                   </div>
@@ -543,7 +550,7 @@ const GDPRComplianceSection2 = ({ config }) => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  <HiOutlineGlobe className="w-5 h-5 text-blue-600" />
+                  <HiOutlineGlobe className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">International Data Transfers</h2>
               </div>
@@ -552,15 +559,15 @@ const GDPRComplianceSection2 = ({ config }) => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Standard Contractual Clauses (SCCs) adopted by the European Commission
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   EU-US Data Privacy Framework certification
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Data Processing Agreements with all third-party processors
                 </li>
               </ul>
@@ -573,7 +580,7 @@ const GDPRComplianceSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Your Rights Tab */}
+        {/* ==================== YOUR RIGHTS TAB ==================== */}
         {activeTab === 'rights' && (
           <>
             {/* Search Bar */}
@@ -586,7 +593,8 @@ const GDPRComplianceSection2 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search rights..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                aria-label="Search rights"
               />
             </div>
 
@@ -597,6 +605,9 @@ const GDPRComplianceSection2 = ({ config }) => {
                   key={right.id}
                   className={`rounded-xl border ${right.bgColor} border-gray-200 dark:border-gray-700 p-5 transition-all duration-300 cursor-pointer hover:shadow-md`}
                   onClick={() => setSelectedRight(selectedRight === right.id ? null : right.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedRight(selectedRight === right.id ? null : right.id)}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -606,23 +617,24 @@ const GDPRComplianceSection2 = ({ config }) => {
                       <h3 className="font-semibold text-gray-900 dark:text-white">{right.title}</h3>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-500">{right.articles}</span>
-                      <span className="text-xs text-blue-600">{right.timeframe}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{right.articles}</span>
+                      <span className="text-xs text-blue-600 dark:text-blue-400">{right.timeframe}</span>
                     </div>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{right.description}</p>
 
                   {selectedRight === right.id && (
-                    <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-fadeIn">
                       <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">How to exercise this right:</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{right.howToExercise}</p>
-                      <p className="text-xs text-amber-600">{right.limitations}</p>
+                      <p className="text-xs text-amber-600 dark:text-amber-400">{right.limitations}</p>
                       <button
                         onClick={() => {
                           setActiveTab('request');
                           setRequestType(right.title);
                         }}
-                        className="mt-3 inline-flex items-center gap-2 text-blue-600 text-sm font-semibold hover:underline"
+                        className="mt-3 inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline"
+                        aria-label={`Submit ${right.title} request`}
                       >
                         Submit Request →
                       </button>
@@ -635,17 +647,17 @@ const GDPRComplianceSection2 = ({ config }) => {
             {filteredRights.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No rights match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No rights match your search.</p>
               </div>
             )}
           </>
         )}
 
-        {/* Submit Request Tab */}
+        {/* ==================== SUBMIT REQUEST TAB ==================== */}
         {activeTab === 'request' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <div className="text-center mb-8">
-              <HiOutlineMail className="w-12 h-12 mx-auto text-blue-600 mb-4" />
+              <HiOutlineMail className="w-12 h-12 mx-auto text-blue-600 dark:text-blue-400 mb-4" />
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Submit a Data Subject Request</h2>
               <p className="text-gray-600 dark:text-gray-400">
                 Use this form to exercise your GDPR rights. We will respond within 30 days.
@@ -653,9 +665,9 @@ const GDPRComplianceSection2 = ({ config }) => {
             </div>
 
             {requestSubmitted ? (
-              <div className="text-center py-8">
+              <div className="text-center py-8 animate-fadeIn">
                 <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                  <HiOutlineCheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Request Submitted!</h4>
                 <p className="text-gray-600 dark:text-gray-400">
@@ -672,7 +684,9 @@ const GDPRComplianceSection2 = ({ config }) => {
                     <select
                       value={requestType}
                       onChange={(e) => setRequestType(e.target.value)}
-                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${requestErrors.type ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white ${requestErrors.type ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        }`}
+                      aria-label="Select request type"
                     >
                       <option value="">Select a request type</option>
                       {dataSubjectRights.map((right) => (
@@ -680,7 +694,7 @@ const GDPRComplianceSection2 = ({ config }) => {
                       ))}
                       <option value="Other">Other GDPR-related inquiry</option>
                     </select>
-                    {requestErrors.type && <p className="text-red-500 text-xs mt-1">{requestErrors.type}</p>}
+                    {requestErrors.type && <p className="text-red-500 dark:text-red-400 text-xs mt-1">{requestErrors.type}</p>}
                   </div>
 
                   <div>
@@ -692,9 +706,11 @@ const GDPRComplianceSection2 = ({ config }) => {
                       value={requestEmail}
                       onChange={(e) => setRequestEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 ${requestErrors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white ${requestErrors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        }`}
+                      aria-label="Your email address"
                     />
-                    {requestErrors.email && <p className="text-red-500 text-xs mt-1">{requestErrors.email}</p>}
+                    {requestErrors.email && <p className="text-red-500 dark:text-red-400 text-xs mt-1">{requestErrors.email}</p>}
                   </div>
 
                   <div>
@@ -704,19 +720,21 @@ const GDPRComplianceSection2 = ({ config }) => {
                     <textarea
                       rows={4}
                       placeholder="Please provide any additional information that may help us process your request..."
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-gray-900 dark:text-white placeholder-gray-500"
+                      aria-label="Additional details"
                     />
                   </div>
 
                   <button
                     type="submit"
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                    aria-label="Submit request"
                   >
                     Submit Request
                     <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
                   </button>
 
-                  <p className="text-center text-xs text-gray-500 mt-4">
+                  <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
                     By submitting this request, you confirm that you are the data subject or authorized to act on their behalf.
                     We may need to verify your identity before processing your request.
                   </p>
@@ -726,7 +744,7 @@ const GDPRComplianceSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -736,6 +754,7 @@ const GDPRComplianceSection2 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     {expandedFaq === idx ? (
@@ -755,7 +774,7 @@ const GDPRComplianceSection2 = ({ config }) => {
             <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-center">
               <p className="text-gray-600 dark:text-gray-400">
                 Still have questions? Contact our DPO at{' '}
-                <a href="mailto:dpo@supplychainpro.com" className="text-blue-600 font-medium hover:underline">
+                <a href="mailto:dpo@supplychainpro.com" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">
                   dpo@supplychainpro.com
                 </a>
               </p>
@@ -763,7 +782,7 @@ const GDPRComplianceSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Certifications Tab */}
+        {/* ==================== CERTIFICATIONS TAB ==================== */}
         {activeTab === 'certifications' && (
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
@@ -771,17 +790,19 @@ const GDPRComplianceSection2 = ({ config }) => {
                 <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                      {getIcon(cert.icon, "w-6 h-6 text-green-600")}
+                      {getIcon(cert.icon, "w-6 h-6 text-green-600 dark:text-green-400")}
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white">{cert.name}</h3>
-                      <p className="text-sm text-gray-500">Issued by: {cert.issuer}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Issued by: {cert.issuer}</p>
                     </div>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{cert.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Valid until: {cert.validUntil}</span>
-                    <button className="text-blue-600 text-sm font-semibold hover:underline">View Certificate →</button>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Valid until: {cert.validUntil}</span>
+                    <button className="text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline" aria-label="View certificate">
+                      View Certificate →
+                    </button>
                   </div>
                 </div>
               ))}
@@ -795,15 +816,15 @@ const GDPRComplianceSection2 = ({ config }) => {
               </p>
               <div className="flex flex-wrap gap-3">
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Last Audit: March 2026
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Next Audit: March 2027
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                  <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                   Auditor: Ernst & Young
                 </div>
               </div>
@@ -811,29 +832,48 @@ const GDPRComplianceSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Print/Download Modal */}
+        {/* ==================== CONTACT FOOTER ==================== */}
+        <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p>For GDPR-related inquiries, contact our Data Protection Officer:</p>
+          <p className="mt-1">
+            <a href="mailto:dpo@supplychainpro.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+              dpo@supplychainpro.com
+            </a>
+          </p>
+        </div>
+
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download GDPR Documentation"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-blue-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download GDPR Documentation</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download our GDPR compliance documentation.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -842,27 +882,27 @@ const GDPRComplianceSection2 = ({ config }) => {
             </div>
           </div>
         )}
-
-        {/* Contact Footer */}
-        <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>For GDPR-related inquiries, contact our Data Protection Officer:</p>
-          <p className="mt-1">
-            <a href="mailto:dpo@supplychainpro.com" className="text-blue-600 hover:underline">dpo@supplychainpro.com</a>
-          </p>
-        </div>
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
         }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         .animate-blob {
           animation: blob 7s infinite;
         }
         .animation-delay-2000 {
           animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
         }
         .bg-grid-slate-100 {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");

@@ -1,9 +1,30 @@
 // page/frontend/Legal/DataProcessingAgreementSection/DataProcessingAgreementSection2.jsx
 
-// React
+/**
+ * Data Processing Agreement Section II - Interactive DPA & Compliance Hub
+ *
+ * Unique Design Elements:
+ * - Multi-Tab Interface (DPA, Summary, SubProcessors, Security, FAQ)
+ * - Expandable DPA Sections with Search Functionality
+ * - SubProcessors Grid with Detailed Modal Views
+ * - Security Measures Cards by Category
+ * - Quick Stats Dashboard with Trend Indicators
+ * - FAQ Accordion with Expandable Answers
+ * - Processor & Controller Obligations Lists
+ * - Data Breach Notification Timeline
+ * - International Transfer Safeguards
+ * - Audit Rights and Deletion Terms
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Blur Orbs
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -38,25 +59,25 @@ import {
 import { HiOutlineUserGroup, HiOutlineDocumentDuplicate } from 'react-icons/hi2';
 
 const DataProcessingAgreementSection2 = ({ config }) => {
+  // ==================== STATE MANAGEMENT ====================
   const [activeTab, setActiveTab] = useState('dpa');
-  const [expandedSection, setExpandedSection] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showPrintModal, setShowPrintModal] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState(null);
-  const [showSubProcessorModal, setShowSubProcessorModal] = useState(false);
-  const [selectedSubProcessor, setSelectedSubProcessor] = useState(null);
+  const [showPrintModal, setShowPrintModal] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
+  const [selectedSubProcessor, setSelectedSubProcessor] = useState(null);
+  const [showSubProcessorModal, setShowSubProcessorModal] = useState(false);
 
-  // Tabs configuration
+  // ==================== MEMOIZED DATA ====================
   const tabs = [
     { id: 'dpa', label: 'DPA', icon: 'document' },
     { id: 'summary', label: 'Quick Summary', icon: 'view-grid' },
     { id: 'subProcessors', label: 'SubProcessors', icon: 'chip' },
     { id: 'security', label: 'Security Measures', icon: 'shield' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'indigo', trend: 'Version 2.0' },
     { label: 'SubProcessors', value: '5', icon: 'chip', color: 'blue', trend: 'All GDPR compliant' },
@@ -66,7 +87,6 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     { label: 'Audit Rights', value: 'Annual', icon: 'eye', color: 'teal', trend: 'With 30 days notice' },
   ];
 
-  // Company information
   const company = config?.company || {
     name: "SupplyChainPro Inc.",
     legalName: "SupplyChainPro Inc.",
@@ -77,8 +97,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     dpoEmail: "dpo@supplychainpro.com",
   };
 
-  // Definitions
-  const definitions = config?.definitions || [
+  const definitions = useMemo(() => config?.definitions || [
     { term: "Agreement", definition: "This Data Processing Agreement including all schedules, annexes, and appendices attached hereto." },
     { term: "Controller", definition: "The natural or legal person which determines the purposes and means of the processing of personal data." },
     { term: "Processor", definition: "A natural or legal person which processes personal data on behalf of the controller." },
@@ -87,9 +106,8 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     { term: "Processing", definition: "Any operation performed on personal data, whether by automated means." },
     { term: "SubProcessor", definition: "Any processor engaged by the Processor to assist in fulfilling its obligations." },
     { term: "Security Incident", definition: "A breach of security leading to accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, personal data." },
-  ];
+  ], [config]);
 
-  // Processor obligations
   const processorObligations = config?.processorObligations || [
     "Process personal data only on documented instructions from the Controller",
     "Ensure that persons authorized to process personal data have committed themselves to confidentiality",
@@ -103,7 +121,6 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     "Conduct data protection impact assessments when required",
   ];
 
-  // Controller obligations
   const controllerObligations = config?.controllerObligations || [
     "Have sole responsibility for the accuracy, quality, and legality of personal data processed",
     "Ensure it has obtained all necessary consents and provided all required notices",
@@ -113,7 +130,6 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     "Ensure that its instructions do not violate data protection laws",
   ];
 
-  // Authorized subProcessors with detailed information
   const authorizedSubProcessors = useMemo(() => config?.authorizedSubProcessors || [
     {
       id: 1,
@@ -167,7 +183,6 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     },
   ], [config]);
 
-  // Technical and organizational security measures
   const securityMeasures = config?.securityMeasures || [
     {
       category: "Access Control",
@@ -219,7 +234,6 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     },
   ];
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'What is a Data Processing Agreement (DPA)?',
@@ -247,7 +261,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     }
   ];
 
-  // Filter subProcessors based on search
+  // ==================== FILTER FUNCTIONS ====================
   const filteredSubProcessors = useMemo(() => {
     if (!searchQuery) return authorizedSubProcessors;
     const query = searchQuery.toLowerCase();
@@ -258,7 +272,16 @@ const DataProcessingAgreementSection2 = ({ config }) => {
     );
   }, [authorizedSubProcessors, searchQuery]);
 
-  // Helper function to render icons
+  const filteredDefinitions = useMemo(() => {
+    if (!searchQuery) return definitions;
+    const query = searchQuery.toLowerCase();
+    return definitions.filter(def =>
+      def.term.toLowerCase().includes(query) ||
+      def.definition.toLowerCase().includes(query)
+    );
+  }, [definitions, searchQuery]);
+
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -282,7 +305,6 @@ const DataProcessingAgreementSection2 = ({ config }) => {
       heart: <HiOutlineHeart className={className} />,
       sparkles: <HiOutlineSparkles className={className} />,
       'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
       flag: <HiOutlineFlag className={className} />,
       'office-building': <HiOutlineOfficeBuilding className={className} />,
     };
@@ -295,15 +317,15 @@ const DataProcessingAgreementSection2 = ({ config }) => {
       role="region"
       aria-label="Data Processing Agreement Center"
     >
-      {/* Background Pattern */}
+      {/* ==================== BACKGROUND PATTERN ==================== */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+        {/* ==================== HEADER SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-indigo-50 dark:bg-indigo-900/30 rounded-full px-4 py-2 mb-6">
             <HiOutlineShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
@@ -320,28 +342,29 @@ const DataProcessingAgreementSection2 = ({ config }) => {
             {config?.description || "This Data Processing Agreement (DPA) reflects the parties' agreement with respect to the processing of personal data under the General Data Protection Regulation (GDPR)."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-                <div className={`w-6 h-6 rounded-full bg-${fact.color}-100 dark:bg-${fact.color}-900/30 flex items-center justify-center`}>
-                  {getIcon(fact.icon, `w-3 h-3 text-${fact.color}-600`)}
+                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  {getIcon(fact.icon, "w-3 h-3 text-blue-600")}
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
                 {fact.trend && (
-                  <span className="text-xs text-gray-400 hidden sm:inline">{fact.trend}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">{fact.trend}</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
@@ -349,6 +372,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -356,7 +380,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -366,6 +390,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'document' ? <HiOutlineDocumentText className="w-4 h-4" /> :
                 tab.icon === 'view-grid' ? <HiOutlineViewGrid className="w-4 h-4" /> :
@@ -377,7 +402,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
           ))}
         </div>
 
-        {/* DPA Tab */}
+        {/* ==================== DPA TAB ==================== */}
         {activeTab === 'dpa' && (
           <>
             {/* Search Bar */}
@@ -390,7 +415,8 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search DPA sections..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 dark:text-white"
+                aria-label="Search DPA sections"
               />
             </div>
 
@@ -401,10 +427,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'introduction' ? null : 'introduction')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Introduction section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineDocumentText className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineDocumentText className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Introduction & Scope</h3>
                   </div>
@@ -415,7 +442,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                   )}
                 </button>
                 {expandedSection === 'introduction' && (
-                  <div className="px-5 pb-5 pt-2 border-t border-gray-100 dark:border-gray-700">
+                  <div className="px-5 pb-5 pt-2 border-t border-gray-100 dark:border-gray-700 animate-fadeIn">
                     <p className="text-gray-600 dark:text-gray-400 mb-3">
                       This Data Processing Agreement ("DPA") is incorporated into and forms part of the Terms of Service between SupplyChainPro Inc. ("Processor") and the Customer ("Controller").
                     </p>
@@ -436,10 +463,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'definitions' ? null : 'definitions')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Definitions section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineInformationCircle className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineInformationCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Definitions</h3>
                   </div>
@@ -452,7 +480,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 {expandedSection === 'definitions' && (
                   <div className="px-5 pb-5 pt-2 border-t border-gray-100 dark:border-gray-700">
                     <div className="space-y-3">
-                      {definitions.map((def, idx) => (
+                      {filteredDefinitions.map((def, idx) => (
                         <div key={idx} className="border-b border-gray-100 dark:border-gray-700 pb-2 last:border-0">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm">{def.term}</h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400">{def.definition}</p>
@@ -468,10 +496,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'processor' ? null : 'processor')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Processor Obligations section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineShieldCheck className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Processor Obligations</h3>
                   </div>
@@ -486,7 +515,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     <ul className="space-y-2">
                       {processorObligations.map((obligation, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                           <span className="text-gray-600 dark:text-gray-400 text-sm">{obligation}</span>
                         </li>
                       ))}
@@ -500,10 +529,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'controller' ? null : 'controller')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Controller Obligations section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineUser className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineUser className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Controller Obligations</h3>
                   </div>
@@ -518,7 +548,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     <ul className="space-y-2">
                       {controllerObligations.map((obligation, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                           <span className="text-gray-600 dark:text-gray-400 text-sm">{obligation}</span>
                         </li>
                       ))}
@@ -532,10 +562,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'rights' ? null : 'rights')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Data Subject Rights section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineUserGroup className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineUserGroup className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Data Subject Rights</h3>
                   </div>
@@ -553,7 +584,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     <div className="grid sm:grid-cols-2 gap-2">
                       {['Right to Access', 'Right to Rectification', 'Right to Erasure', 'Right to Restriction', 'Right to Portability', 'Right to Object'].map((right, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                          <HiOutlineCheckCircle className="w-3 h-3 text-green-500" />
+                          <HiOutlineCheckCircle className="w-3 h-3 text-green-500 dark:text-green-400" />
                           {right}
                         </div>
                       ))}
@@ -570,10 +601,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'breach' ? null : 'breach')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Data Breach Notification section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineBell className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineBell className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Data Breach Notification</h3>
                   </div>
@@ -590,15 +622,15 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     </p>
                     <ul className="space-y-2 mb-3">
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Notify the Controller within <strong>24 hours</strong> of becoming aware</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Provide all available information about the breach</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Cooperate with the Controller's investigation</span>
                       </li>
                     </ul>
@@ -616,10 +648,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'transfers' ? null : 'transfers')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle International Transfers section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineGlobe className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineGlobe className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">International Data Transfers</h3>
                   </div>
@@ -636,15 +669,15 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                         Standard Contractual Clauses (SCCs)
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                         EU-US Data Privacy Framework
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400" />
                         Adequacy decisions by the European Commission
                       </li>
                     </ul>
@@ -660,10 +693,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'audit' ? null : 'audit')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Audit Rights section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineEye className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineEye className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Audit Rights</h3>
                   </div>
@@ -680,15 +714,15 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Provide reasonable assistance and access to documentation</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Make available information necessary to demonstrate compliance</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Allow for audits conducted by the Controller or an independent auditor</span>
                       </li>
                     </ul>
@@ -704,10 +738,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'deletion' ? null : 'deletion')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Data Deletion section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineRefresh className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineRefresh className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Data Deletion & Return</h3>
                   </div>
@@ -724,15 +759,15 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Return all personal data within <strong>30 days</strong></span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Delete all copies of personal data within <strong>90 days</strong></span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                        <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400 text-sm">Provide written certification of deletion upon request</span>
                       </li>
                     </ul>
@@ -748,10 +783,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'liability' ? null : 'liability')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Liability section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineScale className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineScale className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Liability</h3>
                   </div>
@@ -783,10 +819,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'contact' ? null : 'contact')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle Contact section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                      <HiOutlineMail className="w-4 h-4 text-indigo-600" />
+                      <HiOutlineMail className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Contact Information</h3>
                   </div>
@@ -802,21 +839,28 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                       <p className="font-semibold text-gray-900 dark:text-white">{company.name}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{company.address}</p>
                       <p className="text-sm">
-                        <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-indigo-600 hover:underline">{company.email}</a>
+                        <strong>Email:</strong> <a href={`mailto:${company.email}`} className="text-indigo-600 dark:text-indigo-400 hover:underline">{company.email}</a>
                       </p>
                       <p className="text-sm">
-                        <strong>DPO Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-indigo-600 hover:underline">{company.dpoEmail}</a>
+                        <strong>DPO Email:</strong> <a href={`mailto:${company.dpoEmail}`} className="text-indigo-600 dark:text-indigo-400 hover:underline">{company.dpoEmail}</a>
                       </p>
                       <p className="text-sm"><strong>Phone:</strong> {company.phone}</p>
                     </div>
                   </div>
                 )}
               </div>
+
+              {filteredDefinitions.length === 0 && searchQuery && (
+                <div className="text-center py-8 bg-white dark:bg-gray-800 rounded-xl">
+                  <HiOutlineSearch className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                  <p className="text-gray-500 dark:text-gray-400">No sections match your search.</p>
+                </div>
+              )}
             </div>
           </>
         )}
 
-        {/* Quick Summary Tab */}
+        {/* ==================== QUICK SUMMARY TAB ==================== */}
         {activeTab === 'summary' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">DPA Quick Summary</h2>
@@ -845,7 +889,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* SubProcessors Tab */}
+        {/* ==================== SUBPROCESSORS TAB ==================== */}
         {activeTab === 'subProcessors' && (
           <>
             {/* Search Bar */}
@@ -858,7 +902,8 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search subProcessors..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 dark:text-white"
+                aria-label="Search subProcessors"
               />
             </div>
 
@@ -869,18 +914,21 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                   key={sub.id}
                   className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer hover:shadow-xl transition-all duration-300"
                   onClick={() => { setSelectedSubProcessor(sub); setShowSubProcessorModal(true); }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedSubProcessor(sub)}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                        <HiOutlineChip className="w-5 h-5 text-indigo-600" />
+                        <HiOutlineChip className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white">{sub.name}</h3>
-                        <p className="text-xs text-gray-500">{sub.location}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{sub.location}</p>
                       </div>
                     </div>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span>
+                    <span className="text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 px-2 py-0.5 rounded-full">Active</span>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{sub.services}</p>
                   <div className="flex flex-wrap gap-1">
@@ -888,11 +936,11 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                       <span key={idx} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded-full text-gray-600 dark:text-gray-400">{cert}</span>
                     ))}
                     {sub.securityCertifications.split(', ').length > 2 && (
-                      <span className="text-xs text-gray-400">+{sub.securityCertifications.split(', ').length - 2}</span>
+                      <span className="text-xs text-gray-400 dark:text-gray-500">+{sub.securityCertifications.split(', ').length - 2}</span>
                     )}
                   </div>
                   <div className="mt-3 text-right">
-                    <span className="text-indigo-600 text-xs font-semibold">Click for details →</span>
+                    <span className="text-indigo-600 dark:text-indigo-400 text-xs font-semibold">Click for details →</span>
                   </div>
                 </div>
               ))}
@@ -901,44 +949,50 @@ const DataProcessingAgreementSection2 = ({ config }) => {
             {filteredSubProcessors.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No subProcessors match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No subProcessors match your search.</p>
               </div>
             )}
 
             {/* SubProcessor Modal */}
             {showSubProcessorModal && selectedSubProcessor && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowSubProcessorModal(false)}>
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+                onClick={() => setShowSubProcessorModal(false)}
+                role="dialog"
+                aria-label="SubProcessor Details"
+                aria-modal="true"
+              >
                 <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
                   <div className="bg-indigo-600 p-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-white font-bold text-lg">{selectedSubProcessor.name}</h3>
-                      <button onClick={() => setShowSubProcessorModal(false)} className="text-white hover:text-gray-200">
+                      <button onClick={() => setShowSubProcessorModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                         <HiOutlineX className="w-6 h-6" />
                       </button>
                     </div>
                   </div>
                   <div className="p-6 space-y-3">
                     <div>
-                      <p className="text-xs text-gray-500">Location</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Location</p>
                       <p className="text-gray-900 dark:text-white">{selectedSubProcessor.location}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">Services Provided</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Services Provided</p>
                       <p className="text-gray-900 dark:text-white">{selectedSubProcessor.services}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">Security Certifications</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Security Certifications</p>
                       <p className="text-gray-900 dark:text-white text-sm">{selectedSubProcessor.securityCertifications}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">Data Processing Terms</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Data Processing Terms</p>
                       <p className="text-gray-900 dark:text-white">{selectedSubProcessor.dataProcessingTerms}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">Breach Notification</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Breach Notification</p>
                       <p className="text-gray-900 dark:text-white">{selectedSubProcessor.breachNotification}</p>
                     </div>
-                    <a href={selectedSubProcessor.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-indigo-600 text-sm font-semibold hover:underline">
+                    <a href={selectedSubProcessor.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:underline" aria-label="View privacy policy">
                       View Privacy Policy <HiOutlineExternalLink className="w-3 h-3" />
                     </a>
                   </div>
@@ -948,21 +1002,21 @@ const DataProcessingAgreementSection2 = ({ config }) => {
           </>
         )}
 
-        {/* Security Measures Tab */}
+        {/* ==================== SECURITY MEASURES TAB ==================== */}
         {activeTab === 'security' && (
           <div className="space-y-4">
             {securityMeasures.map((category, idx) => (
               <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                    {getIcon(category.icon, "w-5 h-5 text-indigo-600")}
+                    {getIcon(category.icon, "w-5 h-5 text-indigo-600 dark:text-indigo-400")}
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white">{category.category}</h3>
                 </div>
                 <ul className="grid md:grid-cols-2 gap-2">
                   {category.measures.map((measure, mIdx) => (
                     <li key={mIdx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                       {measure}
                     </li>
                   ))}
@@ -972,7 +1026,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -982,6 +1036,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     {expandedFaq === idx ? (
@@ -1001,7 +1056,7 @@ const DataProcessingAgreementSection2 = ({ config }) => {
             <div className="mt-8 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-center">
               <p className="text-gray-600 dark:text-gray-400">
                 Still have questions? Contact our DPO at{' '}
-                <a href="mailto:dpo@supplychainpro.com" className="text-indigo-600 font-medium hover:underline">
+                <a href="mailto:dpo@supplychainpro.com" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
                   dpo@supplychainpro.com
                 </a>
               </p>
@@ -1009,29 +1064,38 @@ const DataProcessingAgreementSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Data Processing Agreement"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-indigo-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Data Processing Agreement</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-indigo-600 dark:text-indigo-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Data Processing Agreement.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -1042,17 +1106,25 @@ const DataProcessingAgreementSection2 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
         }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         .animate-blob {
           animation: blob 7s infinite;
         }
         .animation-delay-2000 {
           animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
         }
         .bg-grid-slate-100 {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");

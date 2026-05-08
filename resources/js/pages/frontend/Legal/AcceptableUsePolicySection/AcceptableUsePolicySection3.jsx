@@ -1,9 +1,29 @@
 // page/frontend/MobileApp/Legal/AcceptableUsePolicySection/AcceptableUsePolicySection3.jsx
 
-// React
+/**
+ * Acceptable Use Policy Section III - AI-Powered Compliance Hub
+ *
+ * Unique Design Elements:
+ * - Video Integration for Policy Explanations
+ * - Interactive Highlights Carousel with Video Demos
+ * - Multi-Tab Interface (AUP, Highlights, Prohibited, Report, FAQ)
+ * - Expandable Policy Sections with Video Explanations
+ * - Prohibited Activity Cards with Severity Badges
+ * - Customer Testimonials Section
+ * - Interactive Abuse Report Form with Validation
+ * - FAQ Accordion with Video Explanations
+ * - Quick Stats Dashboard with Trend Indicators
+ * - Print/Download Modal for Legal Documents
+ * - Animated Background Circuit Pattern
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2, md)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons, Heroicons 2, and Material Design
 import {
   HiOutlineDocumentText,
   HiOutlineCheckCircle,
@@ -39,95 +59,76 @@ import {
   HiOutlineStar,
 } from 'react-icons/hi';
 import { HiOutlineUserGroup, HiOutlineDocumentDuplicate, HiOutlineUserCircle, HiOutlineArrowRight } from 'react-icons/hi2';
-import { MdOutlineWarning as HiOutlineWarning, } from "react-icons/md";
+import { MdOutlineWarning as HiOutlineWarning } from "react-icons/md";
 
 const AcceptableUsePolicySection3 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('policy');
-  const [expandedSection, setExpandedSection] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
+  const [reportType, setReportType] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [reportEmail, setReportEmail] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeTab, setActiveTab] = useState('policy');
+  const [expandedFaq, setExpandedFaq] = useState(null);
+  const [reportErrors, setReportErrors] = useState({});
+  const [currentVideo, setCurrentVideo] = useState(null);
   const [showPrintModal, setShowPrintModal] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [expandedFaq, setExpandedFaq] = useState(null);
+  const [expandedSection, setExpandedSection] = useState(null);
   const [reportSubmitted, setReportSubmitted] = useState(false);
-  const [reportType, setReportType] = useState('');
   const [reportDescription, setReportDescription] = useState('');
-  const [reportEmail, setReportEmail] = useState('');
-  const [reportErrors, setReportErrors] = useState({});
-  const carouselRef = useRef(null);
-  const videoRef = useRef(null);
-
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Carousel navigation for AUP highlights
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % (config?.highlights?.length || highlights.length));
-  }, [config?.highlights?.length, highlights.length]);
+  // ==================== REFS ====================
+  const videoRef = useRef(null);
+  const carouselRef = useRef(null);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + (config?.highlights?.length || highlights.length)) % (config?.highlights?.length || highlights.length));
-  }, [config?.highlights?.length, highlights.length]);
-
-  // Auto-play carousel
-  useEffect(() => {
-    if (config?.autoPlayCarousel && (config?.highlights?.length || highlights.length) > 1) {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 6000);
-      return () => clearInterval(interval);
-    }
-  }, [config?.autoPlayCarousel, config?.highlights?.length, highlights.length, nextSlide]);
-
-  // AUP highlights for carousel
+  // ==================== MEMOIZED DATA ====================
   const highlights = config?.highlights || [
     {
       title: "Fair Use for All",
       description: "Our AUP ensures a safe, secure, and reliable environment for every user.",
       icon: "shield",
       color: "from-red-500 to-red-600",
-      videoUrl: "/videos/aup-overview.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       title: "Zero Tolerance for Abuse",
       description: "System abuse, hacking attempts, and malicious activities are strictly prohibited.",
       icon: "ban",
       color: "from-orange-500 to-orange-600",
-      videoUrl: "/videos/zero-tolerance.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       title: "Protect Your Data",
       description: "Unauthorized data access and sharing credentials violates our policy.",
       icon: "database",
       color: "from-blue-500 to-blue-600",
-      videoUrl: "/videos/data-protection-aup.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       title: "Report Violations",
       description: "Help us maintain a safe community by reporting AUP violations.",
       icon: "flag",
       color: "from-green-500 to-green-600",
-      videoUrl: "/videos/report-violations.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
     {
       title: "Enforcement Actions",
       description: "Violations result in warnings, suspension, termination, or legal action.",
       icon: "exclamation",
       color: "from-purple-500 to-purple-600",
-      videoUrl: "/videos/enforcement-actions.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
   ];
 
-  // Tabs configuration
   const tabs = [
     { id: 'policy', label: 'AUP', icon: 'document' },
     { id: 'highlights', label: 'Key Highlights', icon: 'star' },
     { id: 'prohibited', label: 'Prohibited Activities', icon: 'ban' },
     { id: 'report', label: 'Report Violation', icon: 'flag' },
-    { id: 'faq', label: 'FAQ', icon: 'chat' },
+    { id: 'faq', label: 'FAQ', icon: 'bell' },
   ];
 
-  // Quick facts
   const quickFacts = config?.quickFacts || [
     { label: 'Last Updated', value: lastUpdated, icon: 'calendar', color: 'red', trend: 'Version 3.0' },
     { label: 'Prohibited Categories', value: '6', icon: 'ban', color: 'orange', trend: '15+ activities' },
@@ -137,7 +138,6 @@ const AcceptableUsePolicySection3 = ({ config }) => {
     { label: 'User Satisfaction', value: '98%', icon: 'star', color: 'yellow', trend: 'Policy clarity' },
   ];
 
-  // Acceptable use guidelines
   const acceptableUse = config?.acceptableUse || [
     "Use the Services for legitimate supply chain management purposes",
     "Provide accurate and complete information when creating accounts",
@@ -149,33 +149,28 @@ const AcceptableUsePolicySection3 = ({ config }) => {
     "Cooperate with our investigation of any suspected violation",
   ];
 
-  // Testimonials
   const testimonials = config?.testimonials || [
     {
       name: "Sarah Johnson",
       role: "Supply Chain Director",
       company: "Global Retail Corp",
       quote: "The clear AUP guidelines help our team understand what's expected. The reporting process is straightforward.",
-      rating: 5,
-      avatar: "/testimonials/sarah.jpg"
+      rating: 5
     },
     {
       name: "Michael Chen",
       role: "Operations Manager",
       quote: "I appreciate the transparency around prohibited activities. The enforcement escalation is fair and clear.",
-      rating: 5,
-      avatar: "/testimonials/michael.jpg"
+      rating: 5
     },
     {
       name: "Emily Rodriguez",
       role: "Legal Counsel",
       quote: "As a legal professional, I find this AUP comprehensive and well-structured. It protects both parties effectively.",
-      rating: 5,
-      avatar: "/testimonials/emily.jpg"
+      rating: 5
     }
   ];
 
-  // Prohibited activities categories with detailed information
   const prohibitedCategories = useMemo(() => config?.prohibitedCategories || [
     {
       id: 'illegal',
@@ -192,7 +187,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         "Tax evasion or fraud",
       ],
       severity: "Critical",
-      videoUrl: "/videos/illegal-activities.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       id: 'security',
@@ -209,7 +204,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         "Reverse engineering our software",
       ],
       severity: "Critical",
-      videoUrl: "/videos/system-abuse.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       id: 'content',
@@ -226,7 +221,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         "Posting misleading or false information",
       ],
       severity: "High",
-      videoUrl: "/videos/content-violations.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       id: 'resources',
@@ -243,7 +238,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         "Automated account creation",
       ],
       severity: "Medium",
-      videoUrl: "/videos/resource-misuse.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
     {
       id: 'data',
@@ -260,7 +255,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         "Selling or renting access to your account",
       ],
       severity: "High",
-      videoUrl: "/videos/data-misuse.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       id: 'interference',
@@ -277,11 +272,10 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         "Using automated means to access Services",
       ],
       severity: "Medium",
-      videoUrl: "/videos/service-interference.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
   ], [config?.prohibitedCategories]);
 
-  // Enforcement actions
   const enforcementActions = config?.enforcementActions || [
     {
       level: "Warning",
@@ -320,41 +314,59 @@ const AcceptableUsePolicySection3 = ({ config }) => {
     },
   ];
 
-  // FAQ data
   const faqs = config?.faqs || [
     {
       question: 'What happens if I accidentally violate the AUP?',
       answer: 'We understand that mistakes can happen. If you accidentally violate the AUP, please contact us immediately at abuse@supplychainpro.com. We will work with you to resolve the issue and may issue a warning instead of suspension for first-time, non-malicious violations.',
-      videoUrl: "/videos/accidental-violation.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       question: 'Can I appeal an enforcement action?',
       answer: 'Yes, you can appeal enforcement actions by contacting our abuse team at abuse@supplychainpro.com. Please provide your account information, details of the action taken, and your explanation. We will review all appeals within 5 business days.',
-      videoUrl: "/videos/appeal-process.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       question: 'How do I report someone else violating the AUP?',
       answer: 'Use the Report Violation tab on this page or email abuse@supplychainpro.com with details including the violator\'s username, description of the violation, timestamps, and any supporting evidence (screenshots, logs).',
-      videoUrl: "/videos/reporting-guide.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       question: 'What is considered excessive API usage?',
       answer: 'Excessive API usage is defined as exceeding the documented rate limits for your subscription plan. Rate limits are designed to ensure fair usage across all customers. Please refer to our API documentation for specific limits.',
-      videoUrl: "/videos/api-limits.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
     {
       question: 'Can I use SupplyChainPro for competitive analysis?',
       answer: 'No, using our Services for competitive analysis, benchmarking, or building competing products is strictly prohibited. This includes scraping data, reverse engineering, or using our APIs for competitive intelligence.',
-      videoUrl: "/videos/competitive-analysis.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       question: 'What types of content are prohibited?',
       answer: 'Prohibited content includes illegal material, obscene or pornographic content, defamatory statements, hate speech, harassing content, infringing copyrighted material, and misleading or fraudulent information.',
-      videoUrl: "/videos/prohibited-content.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     }
   ];
 
-  // Filter prohibited categories based on search
+  // ==================== CAROUSEL FUNCTIONS ====================
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % highlights.length);
+  }, [highlights.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + highlights.length) % highlights.length);
+  }, [highlights.length]);
+
+  // ==================== AUTO-PLAY CAROUSEL EFFECT ====================
+  useEffect(() => {
+    if (config?.autoPlayCarousel !== false && highlights.length > 1) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [config?.autoPlayCarousel, nextSlide, highlights.length]);
+
+  // ==================== FILTER PROHIBITED CATEGORIES ====================
   const filteredCategories = useMemo(() => {
     if (!searchQuery) return prohibitedCategories;
     const query = searchQuery.toLowerCase();
@@ -364,33 +376,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
     );
   }, [prohibitedCategories, searchQuery]);
 
-  // Handle abuse report submission
-  const handleReportSubmit = (e) => {
-    e.preventDefault();
-    const errors = {};
-    if (!reportType) errors.type = 'Please select a report type';
-    if (!reportDescription) errors.description = 'Please provide a description';
-    if (!reportEmail) {
-      errors.email = 'Email address is required';
-    } else if (!/\S+@\S+\.\S+/.test(reportEmail)) {
-      errors.email = 'Please enter a valid email address';
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setReportErrors(errors);
-      return;
-    }
-
-    setReportSubmitted(true);
-    setTimeout(() => {
-      setReportSubmitted(false);
-      setReportType('');
-      setReportDescription('');
-      setReportEmail('');
-    }, 3000);
-  };
-
-  // Helper function to render icons
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -416,11 +402,36 @@ const AcceptableUsePolicySection3 = ({ config }) => {
       heart: <HiOutlineHeart className={className} />,
       sparkles: <HiOutlineSparkles className={className} />,
       'view-grid': <HiOutlineViewGrid className={className} />,
-      chat: <HiOutlineBell className={className} />,
+      bell: <HiOutlineBell className={className} />,
       warning: <HiOutlineWarning className={className} />,
       star: <HiOutlineStar className={className} />,
     };
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
+  };
+
+  const handleReportSubmit = (e) => {
+    e.preventDefault();
+    const errors = {};
+    if (!reportType) errors.type = 'Please select a report type';
+    if (!reportDescription) errors.description = 'Please provide a description';
+    if (!reportEmail) {
+      errors.email = 'Email address is required';
+    } else if (!/\S+@\S+\.\S+/.test(reportEmail)) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setReportErrors(errors);
+      return;
+    }
+
+    setReportSubmitted(true);
+    setTimeout(() => {
+      setReportSubmitted(false);
+      setReportType('');
+      setReportDescription('');
+      setReportEmail('');
+    }, 3000);
   };
 
   return (
@@ -429,8 +440,8 @@ const AcceptableUsePolicySection3 = ({ config }) => {
       role="region"
       aria-label="Acceptable Use Policy Hub"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+      {/* ==================== BACKGROUND PATTERN ==================== */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="circuit-pattern-aup" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -443,12 +454,12 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-red-200 dark:bg-red-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-orange-200 dark:bg-orange-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* ==================== HERO SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-red-600 to-orange-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineShieldCheck className="w-4 h-4" />
@@ -463,28 +474,29 @@ const AcceptableUsePolicySection3 = ({ config }) => {
             {config?.description || "This Acceptable Use Policy (AUP) outlines the rules and guidelines for using SupplyChainPro's Services. By using our Services, you agree to comply with this policy."}
           </p>
 
-          {/* Quick Facts Row */}
+          {/* ==================== QUICK FACTS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {quickFacts.map((fact, idx) => (
               <div key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-                <div className={`w-6 h-6 rounded-full bg-${fact.color}-100 dark:bg-${fact.color}-900/30 flex items-center justify-center`}>
-                  {getIcon(fact.icon, `w-3 h-3 text-${fact.color}-600`)}
+                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  {getIcon(fact.icon, "w-3 h-3 text-blue-600")}
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   <strong>{fact.label}:</strong> {fact.value}
                 </span>
                 {fact.trend && (
-                  <span className="text-xs text-gray-400 hidden sm:inline">{fact.trend}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">{fact.trend}</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm font-medium"
+              aria-label="Download PDF"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download PDF
@@ -492,6 +504,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
             <button
               onClick={() => setShowPrintModal(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -499,16 +512,17 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
-                ? 'bg-red-600 text-white shadow-lg shadow-red-600/25'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/25'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'document' ? <HiOutlineDocumentText className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -520,7 +534,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           ))}
         </div>
 
-        {/* Key Highlights Carousel Tab */}
+        {/* ==================== KEY HIGHLIGHTS CAROUSEL TAB ==================== */}
         {activeTab === 'highlights' && (
           <div className="relative mb-16">
             <div className="relative overflow-hidden rounded-3xl">
@@ -543,6 +557,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                           <button
                             onClick={() => { setCurrentVideo(highlight.videoUrl); setShowVideoModal(true); }}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-xl font-semibold hover:bg-white/30 transition-colors"
+                            aria-label="Watch video"
                           >
                             <HiOutlinePlay className="w-5 h-5" />
                             Watch Video
@@ -556,15 +571,28 @@ const AcceptableUsePolicySection3 = ({ config }) => {
 
               {highlights.length > 1 && (
                 <>
-                  <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                    aria-label="Previous slide"
+                  >
                     <HiOutlineChevronLeft className="w-6 h-6" />
                   </button>
-                  <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                    aria-label="Next slide"
+                  >
                     <HiOutlineChevronRight className="w-6 h-6" />
                   </button>
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                     {highlights.map((_, idx) => (
-                      <button key={idx} onClick={() => setCurrentSlide(idx)} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
                     ))}
                   </div>
                 </>
@@ -573,7 +601,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* AUP Tab */}
+        {/* ==================== AUP TAB ==================== */}
         {activeTab === 'policy' && (
           <>
             {/* Search Bar */}
@@ -586,7 +614,8 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search policy sections..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-900 dark:text-white"
+                aria-label="Search policy sections"
               />
             </div>
 
@@ -597,10 +626,11 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'introduction' ? null : 'introduction')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle introduction section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                      <HiOutlineDocumentText className="w-4 h-4 text-red-600" />
+                      <HiOutlineDocumentText className="w-4 h-4 text-red-600 dark:text-red-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Introduction & Scope</h3>
                   </div>
@@ -632,10 +662,11 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'acceptable' ? null : 'acceptable')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle acceptable use section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                      <HiOutlineCheckCircle className="w-4 h-4 text-green-600" />
+                      <HiOutlineCheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Acceptable Use</h3>
                   </div>
@@ -650,7 +681,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                     <ul className="space-y-2">
                       {acceptableUse.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                          <HiOutlineCheckCircle className="w-4 h-4 text-green-500 dark:text-green-400 mt-0.5 shrink-0" />
                           <span className="text-gray-600 dark:text-gray-400 text-sm">{item}</span>
                         </li>
                       ))}
@@ -665,6 +696,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                   <button
                     onClick={() => setExpandedSection(expandedSection === category.id ? null : category.id)}
                     className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle ${category.category} section`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-lg bg-linear-to-r ${category.color} flex items-center justify-center`}>
@@ -672,9 +704,9 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white">{category.category}</h3>
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${category.severity === 'Critical' ? 'bg-red-100 text-red-700' :
-                            category.severity === 'High' ? 'bg-orange-100 text-orange-700' :
-                              'bg-yellow-100 text-yellow-700'
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${category.severity === 'Critical' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300' :
+                            category.severity === 'High' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' :
+                              'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300'
                           }`}>
                           {category.severity} Severity
                         </span>
@@ -691,7 +723,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       <ul className="space-y-2">
                         {category.activities.map((activity, aIdx) => (
                           <li key={aIdx} className="flex items-start gap-2">
-                            <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                            <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                             <span className="text-gray-600 dark:text-gray-400 text-sm">{activity}</span>
                           </li>
                         ))}
@@ -699,7 +731,8 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       {category.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(category.videoUrl); setShowVideoModal(true); }}
-                          className="mt-3 inline-flex items-center gap-2 text-red-600 text-sm font-semibold hover:underline"
+                          className="mt-3 inline-flex items-center gap-2 text-red-600 dark:text-red-400 text-sm font-semibold hover:underline"
+                          aria-label="Watch explanation video"
                         >
                           <HiOutlinePlay className="w-4 h-4" />
                           Watch Explanation
@@ -713,7 +746,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
               {filteredCategories.length === 0 && (
                 <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                   <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                  <p className="text-gray-500">No prohibited activities match your search.</p>
+                  <p className="text-gray-500 dark:text-gray-400">No prohibited activities match your search.</p>
                 </div>
               )}
 
@@ -722,10 +755,11 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                 <button
                   onClick={() => setExpandedSection(expandedSection === 'enforcement' ? null : 'enforcement')}
                   className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label="Toggle enforcement section"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                      <HiOutlineExclamation className="w-4 h-4 text-purple-600" />
+                      <HiOutlineExclamation className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                     </div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Enforcement Actions</h3>
                   </div>
@@ -746,7 +780,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                           <div className="flex-1">
                             <p className="font-semibold text-gray-900 dark:text-white">{action.level}</p>
                             <p className="text-sm text-gray-600 dark:text-gray-400">{action.description}</p>
-                            <p className="text-xs text-gray-500 mt-1">Timeframe: {action.timeframe}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Timeframe: {action.timeframe}</p>
                           </div>
                         </div>
                       ))}
@@ -764,11 +798,11 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                   <div key={idx} className="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                        <HiOutlineUserCircle className="w-5 h-5 text-red-600" />
+                        <HiOutlineUserCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
                       </div>
                       <div>
                         <p className="font-semibold text-gray-900 dark:text-white text-sm">{testimonial.name}</p>
-                        <p className="text-xs text-gray-500">{testimonial.role}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{testimonial.role}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-1 mb-2">
@@ -784,7 +818,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           </>
         )}
 
-        {/* Prohibited Activities Tab */}
+        {/* ==================== PROHIBITED ACTIVITIES TAB ==================== */}
         {activeTab === 'prohibited' && (
           <>
             {/* Search Bar */}
@@ -797,7 +831,8 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search prohibited activities..."
-                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-900 dark:text-white"
+                aria-label="Search prohibited activities"
               />
             </div>
 
@@ -812,9 +847,9 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       </div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">{category.category}</h3>
                     </div>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${category.severity === 'Critical' ? 'bg-red-100 text-red-700' :
-                        category.severity === 'High' ? 'bg-orange-100 text-orange-700' :
-                          'bg-yellow-100 text-yellow-700'
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${category.severity === 'Critical' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300' :
+                        category.severity === 'High' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' :
+                          'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300'
                       }`}>
                       {category.severity}
                     </span>
@@ -822,18 +857,19 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                   <ul className="space-y-2">
                     {category.activities.slice(0, 4).map((activity, aIdx) => (
                       <li key={aIdx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <HiOutlineX className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
+                        <HiOutlineX className="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                         {activity}
                       </li>
                     ))}
                     {category.activities.length > 4 && (
-                      <li className="text-xs text-gray-500 ml-6">+{category.activities.length - 4} more</li>
+                      <li className="text-xs text-gray-500 dark:text-gray-400 ml-6">+{category.activities.length - 4} more</li>
                     )}
                   </ul>
                   {category.videoUrl && (
                     <button
                       onClick={() => { setCurrentVideo(category.videoUrl); setShowVideoModal(true); }}
-                      className="mt-3 inline-flex items-center gap-2 text-red-600 text-sm font-semibold hover:underline"
+                      className="mt-3 inline-flex items-center gap-2 text-red-600 dark:text-red-400 text-sm font-semibold hover:underline"
+                      aria-label="Watch explanation video"
                     >
                       <HiOutlinePlay className="w-4 h-4" />
                       Watch Explanation
@@ -846,17 +882,17 @@ const AcceptableUsePolicySection3 = ({ config }) => {
             {filteredCategories.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No prohibited activities match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No prohibited activities match your search.</p>
               </div>
             )}
           </>
         )}
 
-        {/* Report Violation Tab */}
+        {/* ==================== REPORT VIOLATION TAB ==================== */}
         {activeTab === 'report' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <div className="text-center mb-8">
-              <HiOutlineFlag className="w-12 h-12 mx-auto text-red-600 mb-4" />
+              <HiOutlineFlag className="w-12 h-12 mx-auto text-red-600 dark:text-red-400 mb-4" />
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Report a Violation</h2>
               <p className="text-gray-600 dark:text-gray-400">
                 Use this form to report suspected violations of our Acceptable Use Policy.
@@ -864,9 +900,9 @@ const AcceptableUsePolicySection3 = ({ config }) => {
             </div>
 
             {reportSubmitted ? (
-              <div className="text-center py-8">
+              <div className="text-center py-8 animate-fadeIn">
                 <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                  <HiOutlineCheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Report Submitted!</h4>
                 <p className="text-gray-600 dark:text-gray-400">
@@ -883,7 +919,9 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                     <select
                       value={reportType}
                       onChange={(e) => setReportType(e.target.value)}
-                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 ${reportErrors.type ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 ${reportErrors.type ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        } text-gray-900 dark:text-white`}
+                      aria-label="Select violation type"
                     >
                       <option value="">Select violation type</option>
                       <option value="Illegal Activity">Illegal Activity</option>
@@ -906,7 +944,9 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       value={reportDescription}
                       onChange={(e) => setReportDescription(e.target.value)}
                       placeholder="Please provide detailed information about the violation, including usernames, timestamps, and any relevant context..."
-                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 ${reportErrors.description ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 ${reportErrors.description ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        } text-gray-900 dark:text-white placeholder-gray-500`}
+                      aria-label="Violation description"
                     />
                     {reportErrors.description && <p className="text-red-500 text-xs mt-1">{reportErrors.description}</p>}
                   </div>
@@ -920,7 +960,9 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       value={reportEmail}
                       onChange={(e) => setReportEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 ${reportErrors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                      className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 ${reportErrors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        } text-gray-900 dark:text-white placeholder-gray-500`}
+                      aria-label="Your email address"
                     />
                     {reportErrors.email && <p className="text-red-500 text-xs mt-1">{reportErrors.email}</p>}
                   </div>
@@ -928,12 +970,13 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                   <button
                     type="submit"
                     className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                    aria-label="Submit report"
                   >
                     Submit Report
                     <HiOutlineArrowRight className="inline ml-2 w-4 h-4" />
                   </button>
 
-                  <p className="text-center text-xs text-gray-500 mt-4">
+                  <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
                     All reports are treated confidentially. We will investigate and take appropriate action.
                   </p>
                 </div>
@@ -942,7 +985,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* FAQ Tab */}
+        {/* ==================== FAQ TAB ==================== */}
         {activeTab === 'faq' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -952,11 +995,12 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                   <button
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                    aria-label={`Toggle answer for ${faq.question}`}
                   >
                     <span className="font-semibold text-gray-900 dark:text-white">{faq.question}</span>
                     <div className="flex items-center gap-2">
                       {faq.videoUrl && (
-                        <span className="text-red-500 text-sm flex items-center gap-1">
+                        <span className="text-red-500 dark:text-red-400 text-sm flex items-center gap-1">
                           <HiOutlinePlay className="w-4 h-4" />
                           <span className="hidden sm:inline">Video</span>
                         </span>
@@ -974,7 +1018,8 @@ const AcceptableUsePolicySection3 = ({ config }) => {
                       {faq.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(faq.videoUrl); setShowVideoModal(true); }}
-                          className="inline-flex items-center gap-2 text-red-600 text-sm font-semibold hover:underline"
+                          className="inline-flex items-center gap-2 text-red-600 dark:text-red-400 text-sm font-semibold hover:underline"
+                          aria-label="Watch video explanation"
                         >
                           <HiOutlinePlay className="w-4 h-4" />
                           Watch Video Explanation
@@ -988,7 +1033,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
             <div className="mt-8 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl text-center">
               <p className="text-gray-600 dark:text-gray-400">
                 Still have questions? Contact our abuse team at{' '}
-                <a href="mailto:abuse@supplychainpro.com" className="text-red-600 font-medium hover:underline">
+                <a href="mailto:abuse@supplychainpro.com" className="text-red-600 dark:text-red-400 font-medium hover:underline">
                   abuse@supplychainpro.com
                 </a>
               </p>
@@ -996,37 +1041,46 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Contact Footer */}
+        {/* ==================== CONTACT FOOTER ==================== */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>To report an AUP violation, contact:</p>
           <p className="mt-1">
-            <a href="mailto:abuse@supplychainpro.com" className="text-red-600 hover:underline">abuse@supplychainpro.com</a>
+            <a href="mailto:abuse@supplychainpro.com" className="text-red-600 dark:text-red-400 hover:underline">abuse@supplychainpro.com</a>
           </p>
         </div>
 
-        {/* Print/Download Modal */}
+        {/* ==================== PRINT MODAL ==================== */}
         {showPrintModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowPrintModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowPrintModal(false)}
+            role="dialog"
+            aria-label="Download Acceptable Use Policy"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-red-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download Acceptable Use Policy</h3>
-                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowPrintModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-red-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-red-600 dark:text-red-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Choose your preferred format to download the complete Acceptable Use Policy.
                 </p>
                 <div className="flex gap-3">
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors" aria-label="Download as PDF">
                     <HiOutlineDownload className="w-4 h-4" />
                     PDF
                   </button>
-                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                  <button className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Print">
                     <HiOutlinePrinter className="w-4 h-4" />
                     Print
                   </button>
@@ -1036,11 +1090,24 @@ const AcceptableUsePolicySection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Modal */}
+        {/* ==================== VIDEO MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setShowVideoModal(false)} className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                aria-label="Close video"
+              >
                 <HiOutlineX className="w-6 h-6" />
               </button>
               <video ref={videoRef} src={currentVideo} className="w-full" controls autoPlay />
@@ -1049,6 +1116,7 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
@@ -1067,6 +1135,13 @@ const AcceptableUsePolicySection3 = ({ config }) => {
         }
         .animate-pulse {
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
         }
       `}</style>
     </section>
