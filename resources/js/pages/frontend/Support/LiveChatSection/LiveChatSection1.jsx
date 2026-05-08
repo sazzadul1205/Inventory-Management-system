@@ -1,9 +1,31 @@
 // page/frontend/Support/LiveChatSection/LiveChatSection1.jsx
 
-// React
+/**
+ * Live Chat Section I - Real-time Customer Support Dashboard
+ *
+ * Unique Design Elements:
+ * - Stats Dashboard for Chat Metrics (Active Chats, Waiting, Resolved, Response Time, Satisfaction)
+ * - Agent Status Management (Online/Away/Offline)
+ * - Real-time Chat Interface with Message History
+ * - Typing Indicators for Live Feedback
+ * - File Attachment Support
+ * - Emoji Support in Messages
+ * - Chat List Sidebar with Search and Filter Tabs
+ * - Online Visitors List with One-Click Chat Start
+ * - Chat Transfer to Other Agents
+ * - Chat Resolution and Closing
+ * - Auto-scroll to Latest Messages
+ * - Agent Performance Dashboard
+ * - Settings Modal for Preferences
+ * - Fully Responsive with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineChat,
   HiOutlineChatAlt2,
@@ -21,68 +43,53 @@ import {
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 
 const LiveChatSection1 = ({ config }) => {
-  const [selectedChat, setSelectedChat] = useState(null);
-  const [activeTab, setActiveTab] = useState('active');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const [showTransferModal, setShowTransferModal] = useState(false);
-  const [showCloseModal, setShowCloseModal] = useState(false);
-  const [messageInput, setMessageInput] = useState('');
+  // ==================== STATE MANAGEMENT ====================
   const [chats, setChats] = useState([]);
   const [agents, setAgents] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('active');
+  const [messageInput, setMessageInput] = useState('');
+  const [typingStatus, setTypingStatus] = useState({});
+  const [selectedChat, setSelectedChat] = useState(null);
   const [onlineVisitors, setOnlineVisitors] = useState([]);
   const [agentStatus, setAgentStatus] = useState('online');
-  const [typingStatus, setTypingStatus] = useState({});
-  const [stats, setStats] = useState({
-    activeChats: 0,
-    waiting: 0,
-    resolved: 0,
-    avgResponseTime: '1.2m',
-    satisfaction: 4.9,
-  });
-  const messagesEndRef = useRef(null);
+  const [showCloseModal, setShowCloseModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showTransferModal, setShowTransferModal] = useState(false);
+  const [stats, setStats] = useState({ activeChats: 0, waiting: 0, resolved: 0, avgResponseTime: '1.2m', satisfaction: 4.9, });
+
+  // ====================== REFS =====================
   const inputRef = useRef(null);
+  const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
 
-  // Get data from config
+  // ==================== MEMOIZED DATA ====================
   const configChats = useMemo(() => config?.chats || [], [config]);
+  const configAgents = useMemo(() => config?.agents || [], [config]);
+  const configVisitors = useMemo(() => config?.visitors || [], [config]);
 
-  const configAgents = useMemo(() => config?.agents || [
-    { id: 'agent1', name: 'Sarah Johnson', avatar: null, role: 'Senior Support Agent', status: 'online', activeChats: 2, email: 'sarah@example.com' },
-    { id: 'agent2', name: 'Michael Chen', avatar: null, role: 'Support Agent', status: 'online', activeChats: 1, email: 'michael@example.com' },
-    { id: 'agent3', name: 'Emily Rodriguez', avatar: null, role: 'Support Agent', status: 'away', activeChats: 0, email: 'emily@example.com' },
-    { id: 'agent4', name: 'David Kim', avatar: null, role: 'Technical Specialist', status: 'offline', activeChats: 0, email: 'david@example.com' },
-  ], [config]);
-
-  const configVisitors = useMemo(() => config?.visitors || [
-    { id: 'visitor1', name: 'John Doe', email: 'john@example.com', page: '/pricing', timeOnSite: '2m', country: 'US' },
-    { id: 'visitor2', name: 'Jane Smith', email: 'jane@example.com', page: '/support', timeOnSite: '5m', country: 'UK' },
-    { id: 'visitor3', name: 'Bob Wilson', email: 'bob@example.com', page: '/product', timeOnSite: '1m', country: 'Canada' },
-  ], [config]);
-
-  // Initialize chats and agents
+  // ==================== LOCAL STORAGE & EFFECTS ====================
   useEffect(() => {
     const savedChats = localStorage.getItem('liveChats');
     if (savedChats && JSON.parse(savedChats).length > 0) {
       setChats(JSON.parse(savedChats));
     } else {
-      setChats(configChats);
+      setChats([...configChats]);
     }
 
     const savedAgents = localStorage.getItem('chatAgents');
     if (savedAgents) {
       setAgents(JSON.parse(savedAgents));
     } else {
-      setAgents(configAgents);
+      setAgents([...configAgents]);
     }
 
-    setOnlineVisitors(configVisitors);
+    setOnlineVisitors([...configVisitors]);
   }, [configAgents, configChats, configVisitors]);
 
   useEffect(() => {
     localStorage.setItem('liveChats', JSON.stringify(chats));
-    updateStats();
-  }, [chats, updateStats]);
+  }, [chats]);
 
   useEffect(() => {
     localStorage.setItem('chatAgents', JSON.stringify(agents));
@@ -96,7 +103,7 @@ const LiveChatSection1 = ({ config }) => {
   }, [selectedChat?.messages]);
 
   // Update statistics
-  const updateStats = useMemo(() => () => {
+  useEffect(() => {
     const activeChats = chats.filter(c => c.status === 'active').length;
     const waiting = chats.filter(c => c.status === 'waiting').length;
     const resolved = chats.filter(c => c.status === 'resolved').length;
@@ -110,7 +117,7 @@ const LiveChatSection1 = ({ config }) => {
     });
   }, [chats]);
 
-  // Send message
+  // ==================== HELPER FUNCTIONS ====================
   const sendMessage = () => {
     if (!messageInput.trim() || !selectedChat) return;
 
@@ -149,7 +156,6 @@ const LiveChatSection1 = ({ config }) => {
     setTimeout(() => {
       setTypingStatus(prev => ({ ...prev, [selectedChat.id]: false }));
 
-      // Auto-response for demo
       const autoResponse = {
         id: Date.now() + 1,
         text: "Thanks for your message. I'll help you with that right away.",
@@ -172,7 +178,6 @@ const LiveChatSection1 = ({ config }) => {
     }, 2000);
   };
 
-  // Start new chat
   const startNewChat = (visitor) => {
     const newChat = {
       id: `chat_${Date.now()}`,
@@ -192,7 +197,6 @@ const LiveChatSection1 = ({ config }) => {
     setSelectedChat(newChat);
     setOnlineVisitors(prev => prev.filter(v => v.id !== visitor.id));
 
-    // Add welcome message
     const welcomeMessage = {
       id: Date.now(),
       text: `Hello ${visitor.name}! Welcome to support. How can I help you today?`,
@@ -212,7 +216,6 @@ const LiveChatSection1 = ({ config }) => {
     }, 100);
   };
 
-  // Transfer chat to another agent
   const transferChat = (chatId, agentId) => {
     setChats(prev => prev.map(chat =>
       chat.id === chatId
@@ -226,7 +229,6 @@ const LiveChatSection1 = ({ config }) => {
 
     setShowTransferModal(false);
 
-    // Add system message
     const agent = agents.find(a => a.id === agentId);
     const transferMessage = {
       id: Date.now(),
@@ -245,7 +247,6 @@ const LiveChatSection1 = ({ config }) => {
     ));
   };
 
-  // Close chat
   const closeChat = (chatId) => {
     setChats(prev => prev.map(chat =>
       chat.id === chatId
@@ -260,7 +261,6 @@ const LiveChatSection1 = ({ config }) => {
     setShowCloseModal(false);
   };
 
-  // Update agent status
   const updateAgentStatus = (status) => {
     setAgentStatus(status);
     setAgents(prev => prev.map(agent =>
@@ -270,7 +270,6 @@ const LiveChatSection1 = ({ config }) => {
     ));
   };
 
-  // Format time
   const formatTime = (timestamp) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
@@ -309,17 +308,17 @@ const LiveChatSection1 = ({ config }) => {
     switch (status) {
       case 'online': return 'bg-green-500';
       case 'away': return 'bg-yellow-500';
-      case 'offline': return 'bg-gray-400';
-      default: return 'bg-gray-400';
+      case 'offline': return 'bg-gray-400 dark:bg-gray-500';
+      default: return 'bg-gray-400 dark:bg-gray-500';
     }
   };
 
   const getChatStatusColor = (status) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-700';
-      case 'waiting': return 'bg-yellow-100 text-yellow-700';
-      case 'resolved': return 'bg-gray-100 text-gray-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'active': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+      case 'waiting': return 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300';
+      case 'resolved': return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
+      default: return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
     }
   };
 
@@ -329,13 +328,13 @@ const LiveChatSection1 = ({ config }) => {
       role="region"
       aria-label="Live Chat Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineChatAlt2 className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -353,42 +352,60 @@ const LiveChatSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Dashboard */}
+        {/* ==================== STATS DASHBOARD ==================== */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
-            <div className="flex items-center justify-between"><HiOutlineChat className="w-8 h-8 text-blue-500" /><span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.activeChats}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Active Chats</p>
+            <div className="flex items-center justify-between">
+              <HiOutlineChat className="w-8 h-8 text-blue-500 dark:text-blue-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.activeChats}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Active Chats</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineClock className="w-8 h-8 text-yellow-500" /><span className="text-2xl font-bold text-gray-900">{stats.waiting}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Waiting</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineClock className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.waiting}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Waiting</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineCheckCircle className="w-8 h-8 text-green-500" /><span className="text-2xl font-bold text-gray-900">{stats.resolved}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Resolved Today</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineCheckCircle className="w-8 h-8 text-green-500 dark:text-green-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.resolved}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Resolved Today</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineClock className="w-8 h-8 text-purple-500" /><span className="text-2xl font-bold text-gray-900">{stats.avgResponseTime}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Avg Response</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineClock className="w-8 h-8 text-purple-500 dark:text-purple-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.avgResponseTime}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Avg Response</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineStar className="w-8 h-8 text-yellow-500" /><span className="text-2xl font-bold text-gray-900">{stats.satisfaction}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Satisfaction</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineStar className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.satisfaction}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Satisfaction</p>
           </div>
         </div>
 
-        {/* Agent Status Bar */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 mb-6">
+        {/* ==================== AGENT STATUS BAR ==================== */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 <div className={`w-3 h-3 rounded-full ${getAgentStatusColor(agentStatus)}`} />
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Status: {agentStatus.charAt(0).toUpperCase() + agentStatus.slice(1)}</span>
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Status: {agentStatus.charAt(0).toUpperCase() + agentStatus.slice(1)}
+                </span>
               </div>
               <select
                 value={agentStatus}
                 onChange={(e) => updateAgentStatus(e.target.value)}
-                className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 dark:text-gray-300"
+                aria-label="Select agent status"
               >
                 <option value="online">Online</option>
                 <option value="away">Away</option>
@@ -396,7 +413,12 @@ const LiveChatSection1 = ({ config }) => {
               </select>
             </div>
             <div className="flex gap-2">
-              <button onClick={() => setShowSettingsModal(true)} className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors" title="Settings">
+              <button
+                onClick={() => setShowSettingsModal(true)}
+                className="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                title="Settings"
+                aria-label="Open settings"
+              >
                 <HiOutlineCog className="w-5 h-5" />
               </button>
             </div>
@@ -407,22 +429,33 @@ const LiveChatSection1 = ({ config }) => {
                 <div className={`w-2 h-2 rounded-full ${getAgentStatusColor(agent.status)}`} />
                 <span className="text-sm text-gray-700 dark:text-gray-300">{agent.name}</span>
                 {agent.activeChats > 0 && (
-                  <span className="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">{agent.activeChats}</span>
+                  <span className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded-full">
+                    {agent.activeChats}
+                  </span>
                 )}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Main Chat Interface */}
+        {/* ==================== MAIN CHAT INTERFACE ==================== */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
           <div className="flex h-150">
             {/* Chat List Sidebar */}
             <div className="w-80 border-r border-gray-200 dark:border-gray-700 flex flex-col">
               <div className="p-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center"><HiOutlineSearch className="w-4 h-4 text-gray-400" /></div>
-                  <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search conversations..." className="w-full pl-9 pr-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <HiOutlineSearch className="w-4 h-4 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search conversations..."
+                    className="w-full pl-9 pr-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                    aria-label="Search conversations"
+                  />
                 </div>
               </div>
               <div className="flex gap-1 p-2 border-b border-gray-200 dark:border-gray-700">
@@ -434,6 +467,7 @@ const LiveChatSection1 = ({ config }) => {
                       ? 'bg-blue-600 text-white'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
+                    aria-label={`Show ${tab} chats`}
                   >
                     {tab === 'active' ? 'Active' : tab === 'waiting' ? 'Waiting' : 'Resolved'}
                     <span className="ml-1 text-xs">
@@ -444,8 +478,8 @@ const LiveChatSection1 = ({ config }) => {
               </div>
               <div className="flex-1 overflow-y-auto">
                 {filteredChats.length === 0 ? (
-                  <div className="p-8 text-center text-gray-500">
-                    <HiOutlineChat className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                  <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+                    <HiOutlineChat className="w-12 h-12 mx-auto mb-3 text-gray-300 dark:text-gray-600" />
                     <p className="text-sm">No conversations found</p>
                   </div>
                 ) : (
@@ -458,7 +492,7 @@ const LiveChatSection1 = ({ config }) => {
                     >
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                          <HiOutlineUserCircle className="w-6 h-6 text-blue-600" />
+                          <HiOutlineUserCircle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
@@ -469,9 +503,9 @@ const LiveChatSection1 = ({ config }) => {
                               {chat.status}
                             </span>
                           </div>
-                          <p className="text-xs text-gray-500 mt-0.5">{chat.customerEmail}</p>
-                          <p className="text-xs text-gray-400 mt-1 truncate">{chat.lastMessage || 'No messages yet'}</p>
-                          <p className="text-xs text-gray-400 mt-1">{formatTime(chat.lastMessageTime)}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{chat.customerEmail}</p>
+                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 truncate">{chat.lastMessage || 'No messages yet'}</p>
+                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{formatTime(chat.lastMessageTime)}</p>
                         </div>
                       </div>
                     </div>
@@ -481,18 +515,21 @@ const LiveChatSection1 = ({ config }) => {
               {/* Online Visitors Section */}
               {onlineVisitors.length > 0 && (
                 <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Online Visitors ({onlineVisitors.length})</p>
+                  <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">
+                    Online Visitors ({onlineVisitors.length})
+                  </p>
                   <div className="space-y-2">
                     {onlineVisitors.map((visitor) => (
                       <div key={visitor.id} className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-green-500" />
                           <span className="text-sm text-gray-700 dark:text-gray-300">{visitor.name}</span>
-                          <span className="text-xs text-gray-400">{visitor.timeOnSite}</span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500">{visitor.timeOnSite}</span>
                         </div>
                         <button
                           onClick={() => startNewChat(visitor)}
                           className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                          aria-label={`Start chat with ${visitor.name}`}
                         >
                           Start Chat
                         </button>
@@ -511,25 +548,27 @@ const LiveChatSection1 = ({ config }) => {
                   <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                        <HiOutlineUserCircle className="w-6 h-6 text-blue-600" />
+                        <HiOutlineUserCircle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-900 dark:text-white">{selectedChat.customerName}</p>
-                        <p className="text-xs text-gray-500">Agent: {getAgentName(selectedChat.assignedAgent)}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Agent: {getAgentName(selectedChat.assignedAgent)}</p>
                       </div>
                     </div>
                     <div className="flex gap-1">
                       <button
                         onClick={() => setShowTransferModal(true)}
-                        className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors"
+                        className="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
                         title="Transfer"
+                        aria-label="Transfer chat"
                       >
                         <HiOutlineUserAdd className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setShowCloseModal(true)}
-                        className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors"
+                        className="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
                         title="Close Chat"
+                        aria-label="Close chat"
                       >
                         <HiOutlineCheckCircle className="w-4 h-4" />
                       </button>
@@ -547,7 +586,7 @@ const LiveChatSection1 = ({ config }) => {
                           className={`max-w-[70%] rounded-2xl px-4 py-2 ${message.sender === 'agent'
                             ? 'bg-blue-600 text-white'
                             : message.sender === 'system'
-                              ? 'bg-gray-100 dark:bg-gray-700 text-gray-500 text-center text-sm'
+                              ? 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-center text-sm'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
                             }`}
                         >
@@ -565,9 +604,9 @@ const LiveChatSection1 = ({ config }) => {
                       <div className="flex justify-start">
                         <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-2">
                           <div className="flex gap-1">
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                            <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                            <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                            <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                           </div>
                         </div>
                       </div>
@@ -578,10 +617,16 @@ const LiveChatSection1 = ({ config }) => {
                   {/* Message Input */}
                   <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                     <div className="flex gap-2">
-                      <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">
+                      <button
+                        className="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        aria-label="Attach file"
+                      >
                         <HiOutlinePaperClip className="w-5 h-5" />
                       </button>
-                      <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">
+                      <button
+                        className="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        aria-label="Add emoji"
+                      >
                         <HiOutlineEmojiHappy className="w-5 h-5" />
                       </button>
                       <input
@@ -591,12 +636,14 @@ const LiveChatSection1 = ({ config }) => {
                         onChange={(e) => setMessageInput(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                         placeholder="Type your message..."
-                        className="flex-1 px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                        className="flex-1 px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-gray-900 dark:text-white"
+                        aria-label="Type your message"
                       />
                       <button
                         onClick={sendMessage}
                         disabled={!messageInput.trim()}
                         className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        aria-label="Send message"
                       >
                         <HiOutlinePaperAirplane className="w-5 h-5" />
                       </button>
@@ -606,8 +653,8 @@ const LiveChatSection1 = ({ config }) => {
               ) : (
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <HiOutlineChatAlt2 className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                    <p className="text-gray-500">Select a conversation to start chatting</p>
+                    <HiOutlineChatAlt2 className="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
+                    <p className="text-gray-500 dark:text-gray-400">Select a conversation to start chatting</p>
                   </div>
                 </div>
               )}
@@ -615,22 +662,39 @@ const LiveChatSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Transfer Chat Modal */}
+        {/* ==================== TRANSFER CHAT MODAL ==================== */}
         {showTransferModal && selectedChat && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowTransferModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-blue-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Transfer Chat</h3><button onClick={() => setShowTransferModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowTransferModal(false)}
+            role="dialog"
+            aria-label="Transfer Chat"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-blue-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Transfer Chat</h3>
+                  <button onClick={() => setShowTransferModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
               <div className="p-6">
-                <p className="text-sm text-gray-600 mb-4">Transfer this conversation to another agent:</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Transfer this conversation to another agent:</p>
                 <div className="space-y-2">
                   {agents.filter(a => a.id !== selectedChat.assignedAgent && a.status === 'online').map(agent => (
                     <button
                       key={agent.id}
                       onClick={() => transferChat(selectedChat.id, agent.id)}
-                      className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                      className="w-full text-left p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      aria-label={`Transfer to ${agent.name}`}
                     >
-                      <p className="font-medium">{agent.name}</p>
-                      <p className="text-xs text-gray-500">{agent.role}</p>
+                      <p className="font-medium text-gray-900 dark:text-white">{agent.name}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{agent.role}</p>
                     </button>
                   ))}
                 </div>
@@ -639,53 +703,128 @@ const LiveChatSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Close Chat Modal */}
+        {/* ==================== CLOSE CHAT MODAL ==================== */}
         {showCloseModal && selectedChat && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowCloseModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Close Chat</h3><button onClick={() => setShowCloseModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowCloseModal(false)}
+            role="dialog"
+            aria-label="Close Chat"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-green-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Close Chat</h3>
+                  <button onClick={() => setShowCloseModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
               <div className="p-6">
-                <p className="text-sm text-gray-600 mb-4">Are you sure you want to close this conversation?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Are you sure you want to close this conversation?</p>
                 <div className="flex gap-3">
-                  <button onClick={() => closeChat(selectedChat.id)} className="flex-1 py-2 bg-green-600 text-white rounded-lg font-semibold">Yes, Close</button>
-                  <button onClick={() => setShowCloseModal(false)} className="flex-1 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold">Cancel</button>
+                  <button
+                    onClick={() => closeChat(selectedChat.id)}
+                    className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors"
+                    aria-label="Yes, close chat"
+                  >
+                    Yes, Close
+                  </button>
+                  <button
+                    onClick={() => setShowCloseModal(false)}
+                    className="flex-1 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Cancel"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Settings Modal */}
+        {/* ==================== SETTINGS MODAL ==================== */}
         {showSettingsModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowSettingsModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-gray-100 dark:bg-gray-700 p-4"><div className="flex items-center justify-between"><h3 className="font-bold text-gray-900 dark:text-white">Chat Settings</h3><button onClick={() => setShowSettingsModal(false)}><HiOutlineX className="w-5 h-5" /></button></div></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowSettingsModal(false)}
+            role="dialog"
+            aria-label="Chat Settings"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-gray-100 dark:bg-gray-700 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-gray-900 dark:text-white">Chat Settings</h3>
+                  <button onClick={() => setShowSettingsModal(false)} className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
               <div className="p-6 space-y-4">
-                <div><label className="block text-sm font-medium mb-1">Auto-Response Message</label><textarea rows="3" className="w-full px-4 py-2 bg-gray-50 border rounded-lg resize-none" placeholder="Auto-response message when away..." defaultValue="Thanks for your message. I'm currently away but will respond shortly." /></div>
-                <div><label className="block text-sm font-medium mb-1">Default Greeting</label><input type="text" className="w-full px-4 py-2 bg-gray-50 border rounded-lg" defaultValue="Hello! How can I help you today?" /></div>
-                <div className="flex items-center justify-between"><label className="text-sm font-medium">Enable Typing Indicators</label><input type="checkbox" defaultChecked className="w-4 h-4" /></div>
-                <div className="flex items-center justify-between"><label className="text-sm font-medium">Enable Message Sounds</label><input type="checkbox" defaultChecked className="w-4 h-4" /></div>
-                <button className="w-full py-2 bg-blue-600 text-white rounded-lg font-semibold">Save Settings</button>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Auto-Response Message</label>
+                  <textarea
+                    rows={3}
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg resize-none text-gray-900 dark:text-white"
+                    placeholder="Auto-response message when away..."
+                    defaultValue="Thanks for your message. I'm currently away but will respond shortly."
+                    aria-label="Auto-response message"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Default Greeting</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white"
+                    defaultValue="Hello! How can I help you today?"
+                    aria-label="Default greeting"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Enable Typing Indicators</label>
+                  <input type="checkbox" defaultChecked className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" aria-label="Enable typing indicators" />
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Enable Message Sounds</label>
+                  <input type="checkbox" defaultChecked className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" aria-label="Enable message sounds" />
+                </div>
+                <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors" aria-label="Save settings">
+                  Save Settings
+                </button>
               </div>
             </div>
           </div>
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-5px); }
         }
-        .animate-bounce { animation: bounce 1s infinite; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-bounce {
+          animation: bounce 1s infinite;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

@@ -1,9 +1,29 @@
 // page/frontend/Community/CommunityForumSection/CommunityForumSection1.jsx
 
-// React
+/**
+ * Community Forum Section I - Discussion Hub & Knowledge Sharing Platform
+ *
+ * Unique Design Elements:
+ * - Stats Dashboard for Forum Metrics (Topics, Posts, Members, Online, New Today)
+ * - Category Filtering with Color-coded Badges
+ * - Topic Sorting Options (Recent, Popular, Active, Unanswered)
+ * - Search Functionality with Tag Filtering
+ * - Create Topic Modal with Tag Selection
+ * - Topic Detail View with Original Post and Replies
+ * - Like/Unlike System for Topics and Posts
+ * - Reply to Topic with Form Validation
+ * - Pinned and Locked Topic Indicators
+ * - Popular Tags Cloud with Click-to-Search
+ * - Responsive Table Layout with User Avatars
+ * - Fully Responsive with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2, md)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons, Heroicons 2, and Material Design Icons
 import {
   HiOutlineChat,
   HiOutlineChatAlt2,
@@ -21,78 +41,73 @@ import {
   HiOutlineSupport,
 } from 'react-icons/hi';
 import { HiOutlineLightBulb, HiOutlineUserCircle } from 'react-icons/hi2';
-import { MdOutlinePin as HiOutlinePin, } from "react-icons/md";
+import { MdOutlinePin as HiOutlinePin } from "react-icons/md";
 
 const CommunityForumSection1 = ({ config }) => {
+  // ==================== STATE MANAGEMENT ====================
+  const [users, setUsers] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [popularTags, setPopularTags] = useState([]);
+  const [activeSort, setActiveSort] = useState('recent');
+  const [filteredTopics, setFilteredTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [showCreateTopicModal, setShowCreateTopicModal] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [replyData, setReplyData] = useState({content: '',});
   const [showReplyModal, setShowReplyModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
-  const [activeSort, setActiveSort] = useState('recent');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [topics, setTopics] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    title: '',
-    category: 'general',
-    content: '',
-    tags: [],
-  });
-  const [replyData, setReplyData] = useState({
-    content: '',
-  });
-  const [errors, setErrors] = useState({});
-  const [stats, setStats] = useState({
-    totalTopics: 0,
-    totalPosts: 0,
-    totalUsers: 0,
-    onlineUsers: 0,
-    newToday: 0,
-  });
-  const [filteredTopics, setFilteredTopics] = useState([]);
-  const [popularTags, setPopularTags] = useState([]);
+  const [showCreateTopicModal, setShowCreateTopicModal] = useState(false);
+  const [formData, setFormData] = useState({title: '',category: 'general',content: '',tags: [],});
+  const [stats, setStats] = useState({totalTopics: 0,totalPosts: 0,totalUsers: 0,onlineUsers: 0,newToday: 0,});
 
-  // Get data from config
+  // ==================== MEMOIZED DATA ====================
   const configTopics = useMemo(() => config?.topics || [], [config]);
+  const configCategories = useMemo(() => config?.categories || [], [config]);
+  const configUsers = useMemo(() => config?.users || [], [config]);
 
-  const configCategories = useMemo(() => config?.categories || [
-    { id: 'general', name: 'General Discussion', icon: 'chat', description: 'General conversations about the platform', color: 'bg-blue-100 text-blue-700', postCount: 156 },
-    { id: 'announcements', name: 'Announcements', icon: 'megaphone', description: 'Product updates and news', color: 'bg-green-100 text-green-700', postCount: 23 },
-    { id: 'help', name: 'Help & Support', icon: 'support', description: 'Get help with technical issues', color: 'bg-purple-100 text-purple-700', postCount: 342 },
-    { id: 'feature-requests', name: 'Feature Requests', icon: 'star', description: 'Suggest and vote on new features', color: 'bg-yellow-100 text-yellow-700', postCount: 89 },
-    { id: 'tips-tricks', name: 'Tips & Tricks', icon: 'lightbulb', description: 'Share your knowledge and insights', color: 'bg-orange-100 text-orange-700', postCount: 67 },
-  ], [config]);
-
-  const configUsers = useMemo(() => config?.users || [
-    { id: 'user1', name: 'Sarah Johnson', role: 'Community Manager', avatar: null, reputation: 1245, posts: 342, joinedAt: '2023-01-15', badges: ['Expert', 'Helper'] },
-    { id: 'user2', name: 'Michael Chen', role: 'Power User', avatar: null, reputation: 892, posts: 187, joinedAt: '2023-03-20', badges: ['Contributor'] },
-    { id: 'user3', name: 'Emily Rodriguez', role: 'Member', avatar: null, reputation: 456, posts: 89, joinedAt: '2023-06-10', badges: [] },
-    { id: 'user4', name: 'David Kim', role: 'Moderator', avatar: null, reputation: 2100, posts: 567, joinedAt: '2022-11-01', badges: ['Moderator', 'Expert'] },
-  ], [config]);
-
-  // Initialize topics and categories
+  // ==================== LOCAL STORAGE & EFFECTS ====================
   useEffect(() => {
     const savedTopics = localStorage.getItem('forumTopics');
     if (savedTopics && JSON.parse(savedTopics).length > 0) {
       setTopics(JSON.parse(savedTopics));
     } else {
-      setTopics(configTopics);
+      setTopics([...configTopics]);
     }
 
-    setCategories(configCategories);
-    setUsers(configUsers);
+    if (configCategories.length > 0) {
+      setCategories([...configCategories]);
+    } else {
+      setCategories([
+        { id: 'general', name: 'General Discussion', icon: 'chat', description: 'General conversations about the platform', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300', postCount: 156 },
+        { id: 'announcements', name: 'Announcements', icon: 'megaphone', description: 'Product updates and news', color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300', postCount: 23 },
+        { id: 'help', name: 'Help & Support', icon: 'support', description: 'Get help with technical issues', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300', postCount: 342 },
+        { id: 'feature-requests', name: 'Feature Requests', icon: 'star', description: 'Suggest and vote on new features', color: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300', postCount: 89 },
+        { id: 'tips-tricks', name: 'Tips & Tricks', icon: 'lightbulb', description: 'Share your knowledge and insights', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300', postCount: 67 },
+      ]);
+    }
+
+    if (configUsers.length > 0) {
+      setUsers([...configUsers]);
+    } else {
+      setUsers([
+        { id: 'user1', name: 'Sarah Johnson', role: 'Community Manager', avatar: null, reputation: 1245, posts: 342, joinedAt: '2023-01-15', badges: ['Expert', 'Helper'] },
+        { id: 'user2', name: 'Michael Chen', role: 'Power User', avatar: null, reputation: 892, posts: 187, joinedAt: '2023-03-20', badges: ['Contributor'] },
+        { id: 'user3', name: 'Emily Rodriguez', role: 'Member', avatar: null, reputation: 456, posts: 89, joinedAt: '2023-06-10', badges: [] },
+        { id: 'user4', name: 'David Kim', role: 'Moderator', avatar: null, reputation: 2100, posts: 567, joinedAt: '2022-11-01', badges: ['Moderator', 'Expert'] },
+      ]);
+    }
+
     setPopularTags(['api', 'integration', 'dashboard', 'analytics', 'mobile', 'security']);
   }, [configCategories, configTopics, configUsers]);
 
   useEffect(() => {
     localStorage.setItem('forumTopics', JSON.stringify(topics));
-    updateStats();
-  }, [topics, updateStats]);
+  }, [topics]);
 
   // Update statistics
-  const updateStats = useMemo(() => () => {
+  useEffect(() => {
     const totalPosts = topics.reduce((sum, topic) => sum + (topic.posts?.length || 0) + 1, 0);
     const newToday = topics.filter(t => {
       const today = new Date().toDateString();
@@ -124,7 +139,6 @@ const CommunityForumSection1 = ({ config }) => {
       );
     }
 
-    // Sort topics
     if (activeSort === 'recent') {
       filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     } else if (activeSort === 'popular') {
@@ -138,7 +152,7 @@ const CommunityForumSection1 = ({ config }) => {
     setFilteredTopics(filtered);
   }, [topics, activeCategory, activeSort, searchQuery]);
 
-  // Handle form input change
+  // ==================== FORM HANDLERS ====================
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
@@ -158,8 +172,7 @@ const CommunityForumSection1 = ({ config }) => {
     setReplyData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Create new topic
-  const handleCreateTopic = (e) => {
+  const createTopic = (e) => {
     e.preventDefault();
     const newErrors = {};
     if (!formData.title) newErrors.title = 'Title is required';
@@ -201,8 +214,7 @@ const CommunityForumSection1 = ({ config }) => {
     }, 2000);
   };
 
-  // Add reply to topic
-  const handleAddReply = (e) => {
+  const addReply = (e) => {
     e.preventDefault();
     if (!replyData.content.trim()) return;
 
@@ -235,7 +247,7 @@ const CommunityForumSection1 = ({ config }) => {
     setShowReplyModal(false);
   };
 
-  // Like topic or post
+  // ==================== UI HANDLERS ====================
   const likeTopic = (topicId) => {
     setTopics(prev => prev.map(topic =>
       topic.id === topicId
@@ -251,7 +263,8 @@ const CommunityForumSection1 = ({ config }) => {
     setTopics(prev => prev.map(topic =>
       topic.id === topicId
         ? {
-          ...topic, posts: topic.posts.map(post =>
+          ...topic,
+          posts: topic.posts.map(post =>
             post.id === postId
               ? { ...post, likes: (post.likes || 0) + 1 }
               : post
@@ -271,7 +284,6 @@ const CommunityForumSection1 = ({ config }) => {
     }
   };
 
-  // Increment view count
   const incrementViews = (topicId) => {
     setTopics(prev => prev.map(topic =>
       topic.id === topicId
@@ -280,7 +292,11 @@ const CommunityForumSection1 = ({ config }) => {
     ));
   };
 
-  // Format date
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
+
+  // ==================== HELPER FUNCTIONS ====================
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
     const date = new Date(dateStr);
@@ -311,7 +327,7 @@ const CommunityForumSection1 = ({ config }) => {
 
   const getCategoryColor = (categoryId) => {
     const category = categories.find(c => c.id === categoryId);
-    return category?.color || 'bg-gray-100 text-gray-700';
+    return category?.color || 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
   };
 
   return (
@@ -320,13 +336,13 @@ const CommunityForumSection1 = ({ config }) => {
       role="region"
       aria-label="Community Forum Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineUsers className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -344,52 +360,113 @@ const CommunityForumSection1 = ({ config }) => {
           </p>
         </div>
 
-        {/* Stats Dashboard */}
+        {/* ==================== STATS DASHBOARD ==================== */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
-            <div className="flex items-center justify-between"><HiOutlineChat className="w-8 h-8 text-blue-500" /><span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalTopics}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Topics</p>
+            <div className="flex items-center justify-between">
+              <HiOutlineChat className="w-8 h-8 text-blue-500 dark:text-blue-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalTopics}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Topics</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineChatAlt2 className="w-8 h-8 text-green-500" /><span className="text-2xl font-bold text-gray-900">{stats.totalPosts}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Posts</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineChatAlt2 className="w-8 h-8 text-green-500 dark:text-green-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalPosts}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Posts</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineUsers className="w-8 h-8 text-purple-500" /><span className="text-2xl font-bold text-gray-900">{stats.totalUsers}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Members</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineUsers className="w-8 h-8 text-purple-500 dark:text-purple-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalUsers}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Members</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineUser className="w-8 h-8 text-green-500" /><span className="text-2xl font-bold text-gray-900">{stats.onlineUsers}</span></div>
-            <p className="text-sm text-gray-500 mt-1">Online</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineUser className="w-8 h-8 text-green-500 dark:text-green-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.onlineUsers}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Online</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200">
-            <div className="flex items-center justify-between"><HiOutlineFire className="w-8 h-8 text-orange-500" /><span className="text-2xl font-bold text-gray-900">{stats.newToday}</span></div>
-            <p className="text-sm text-gray-500 mt-1">New Today</p>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between">
+              <HiOutlineFire className="w-8 h-8 text-orange-500 dark:text-orange-400" />
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">{stats.newToday}</span>
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">New Today</p>
           </div>
         </div>
 
-        {/* Action Bar */}
+        {/* ==================== ACTION BAR ==================== */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center"><HiOutlineSearch className="w-4 h-4 text-gray-400" /></div>
-            <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search topics..." className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+              <HiOutlineSearch className="w-4 h-4 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search topics..."
+              className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-gray-900 dark:text-white"
+              aria-label="Search topics"
+            />
+            {searchQuery && (
+              <button
+                onClick={clearSearch}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                aria-label="Clear search"
+              >
+                <HiOutlineX className="w-4 h-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" />
+              </button>
+            )}
           </div>
           <div className="flex gap-2">
-            <select value={activeSort} onChange={(e) => setActiveSort(e.target.value)} className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm">
+            <select
+              value={activeSort}
+              onChange={(e) => setActiveSort(e.target.value)}
+              className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Sort topics"
+            >
               <option value="recent">Most Recent</option>
               <option value="popular">Most Popular</option>
               <option value="active">Most Active</option>
               <option value="unanswered">Unanswered</option>
             </select>
-            <button onClick={() => setShowCreateTopicModal(true)} className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium flex items-center gap-2"><HiOutlinePlus className="w-4 h-4" />New Topic</button>
+            <button
+              onClick={() => setShowCreateTopicModal(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-blue-700 transition-colors"
+              aria-label="Create new topic"
+            >
+              <HiOutlinePlus className="w-4 h-4" />New Topic
+            </button>
           </div>
         </div>
 
-        {/* Categories */}
+        {/* ==================== CATEGORIES ==================== */}
         <div className="flex flex-wrap gap-2 mb-6">
-          <button onClick={() => setActiveCategory('all')} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}>All Topics</button>
+          <button
+            onClick={() => setActiveCategory('all')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === 'all'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
+            aria-label="Show all topics"
+          >
+            All Topics
+          </button>
           {categories.map(category => (
-            <button key={category.id} onClick={() => setActiveCategory(category.id)} className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeCategory === category.id ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}>
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-1 ${activeCategory === category.id
+                ? 'bg-blue-600 text-white shadow-md'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              aria-label={`Show ${category.name} topics`}
+            >
               {getCategoryIcon(category.id)}
               {category.name}
               <span className="ml-1 text-xs opacity-75">({category.postCount})</span>
@@ -397,51 +474,68 @@ const CommunityForumSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* Topics List */}
+        {/* ==================== TOPICS LIST ==================== */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Topic</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Replies</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Views</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activity</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Topic</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Category</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Replies</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Views</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Activity</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {filteredTopics.length === 0 ? (
-                  <tr><td colSpan="5" className="px-6 py-12 text-center text-gray-500">No topics found</td></tr>
+                  <tr>
+                    <td colSpan="5" className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                      No topics found
+                    </td>
+                  </tr>
                 ) : (
                   filteredTopics.map((topic) => (
-                    <tr key={topic.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer" onClick={() => { setSelectedTopic(topic); incrementViews(topic.id); }}>
+                    <tr
+                      key={topic.id}
+                      onClick={() => { setSelectedTopic(topic); incrementViews(topic.id); }}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedTopic(topic)}
+                    >
                       <td className="px-6 py-4">
                         <div className="flex items-start gap-3">
                           <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                            <HiOutlineUserCircle className="w-6 h-6 text-blue-600" />
+                            <HiOutlineUserCircle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              {topic.isPinned && <HiOutlinePin className="w-4 h-4 text-yellow-500" title="Pinned" />}
-                              {topic.isLocked && <HiOutlineLockClosed className="w-4 h-4 text-red-500" title="Locked" />}
+                              {topic.isPinned && <HiOutlinePin className="w-4 h-4 text-yellow-500 dark:text-yellow-400" title="Pinned" />}
+                              {topic.isLocked && <HiOutlineLockClosed className="w-4 h-4 text-red-500 dark:text-red-400" title="Locked" />}
                               <h3 className="text-sm font-medium text-gray-900 dark:text-white">{topic.title}</h3>
                             </div>
-                            <p className="text-xs text-gray-500 mt-1">by {topic.author?.name} • {formatDate(topic.createdAt)}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">by {topic.author?.name} • {formatDate(topic.createdAt)}</p>
                             {topic.tags && topic.tags.length > 0 && (
                               <div className="flex flex-wrap gap-1 mt-1">
                                 {topic.tags.slice(0, 3).map(tag => (
-                                  <span key={tag} className="text-xs bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded-full text-gray-600">#{tag}</span>
+                                  <span key={tag} className="text-xs bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded-full text-gray-600 dark:text-gray-400">
+                                    #{tag}
+                                  </span>
                                 ))}
                               </div>
                             )}
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4"><span className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(topic.category)}`}>{categories.find(c => c.id === topic.category)?.name}</span></td>
-                      <td className="px-6 py-4 text-sm text-gray-500">{topic.posts?.length || 0}</td>
-                      <td className="px-6 py-4 text-sm text-gray-500">{topic.views || 0}</td>
-                      <td className="px-6 py-4 text-sm text-gray-500">{formatDate(topic.lastActivity)}</td>
+                      <td className="px-6 py-4">
+                        <span className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(topic.category)}`}>
+                          {categories.find(c => c.id === topic.category)?.name}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{topic.posts?.length || 0}</td>
+                      <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{topic.views || 0}</td>
+                      <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{formatDate(topic.lastActivity)}</td>
                     </tr>
                   ))
                 )}
@@ -450,35 +544,115 @@ const CommunityForumSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Popular Tags */}
-        <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+        {/* ==================== POPULAR TAGS ==================== */}
+        <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
           <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Popular Tags</p>
           <div className="flex flex-wrap gap-2">
             {popularTags.map(tag => (
-              <button key={tag} onClick={() => setSearchQuery(tag)} className="px-3 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full hover:bg-gray-100 transition-colors">
+              <button
+                key={tag}
+                onClick={() => setSearchQuery(tag)}
+                className="px-3 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300"
+                aria-label={`Search by tag: ${tag}`}
+              >
                 #{tag}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Create Topic Modal */}
+        {/* ==================== CREATE TOPIC MODAL ==================== */}
         {showCreateTopicModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto" onClick={() => setShowCreateTopicModal(false)}>
-            <div className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto"
+            onClick={() => setShowCreateTopicModal(false)}
+            role="dialog"
+            aria-label="Create New Topic"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4 sticky top-0">
-                <div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Create New Topic</h3><button onClick={() => setShowCreateTopicModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Create New Topic</h3>
+                  <button onClick={() => setShowCreateTopicModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
               </div>
               <div className="p-6 max-h-[80vh] overflow-y-auto">
                 {formSubmitted ? (
-                  <div className="text-center py-8"><div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><HiOutlineCheckCircle className="w-8 h-8 text-green-600" /></div><h4 className="text-xl font-bold mb-2">Topic Created!</h4><p className="text-gray-600">Your topic has been posted to the community.</p></div>
+                  <div className="text-center py-8 animate-fadeIn">
+                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <HiOutlineCheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Topic Created!</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Your topic has been posted to the community.</p>
+                  </div>
                 ) : (
-                  <form onSubmit={handleCreateTopic} className="space-y-4">
-                    <div><input type="text" name="title" value={formData.title} onChange={handleInputChange} placeholder="Topic title *" className={`w-full px-4 py-3 bg-gray-50 border rounded-xl ${errors.title ? 'border-red-500' : 'border-gray-200'}`} /></div>
-                    <div><select name="category" value={formData.category} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 border rounded-xl"><option value="general">General Discussion</option><option value="announcements">Announcements</option><option value="help">Help & Support</option><option value="feature-requests">Feature Requests</option><option value="tips-tricks">Tips & Tricks</option></select></div>
-                    <div><textarea name="content" value={formData.content} onChange={handleInputChange} placeholder="Topic content *" rows="6" className={`w-full px-4 py-3 bg-gray-50 border rounded-xl resize-none ${errors.content ? 'border-red-500' : 'border-gray-200'}`} /></div>
-                    <div><label className="block text-sm font-medium mb-2">Tags (select up to 5)</label><div className="flex flex-wrap gap-2">{popularTags.map(tag => (<label key={tag} className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg cursor-pointer"><input type="checkbox" name="tags" value={tag} onChange={handleInputChange} className="w-4 h-4" /><span className="text-sm">#{tag}</span></label>))}</div></div>
-                    <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold">Post Topic</button>
+                  <form onSubmit={createTopic} className="space-y-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleInputChange}
+                        placeholder="Topic title *"
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 ${errors.title ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                        aria-label="Topic title"
+                      />
+                    </div>
+                    <div>
+                      <select
+                        name="category"
+                        value={formData.category}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                        aria-label="Select category"
+                      >
+                        {categories.map(cat => (
+                          <option key={cat.id} value={cat.id}>{cat.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <textarea
+                        name="content"
+                        value={formData.content}
+                        onChange={handleInputChange}
+                        placeholder="Topic content *"
+                        rows="6"
+                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-gray-900 dark:text-white placeholder-gray-500 ${errors.content ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'}`}
+                        aria-label="Topic content"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tags (select up to 5)</label>
+                      <div className="flex flex-wrap gap-2">
+                        {popularTags.map(tag => (
+                          <label key={tag} className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                            <input
+                              type="checkbox"
+                              name="tags"
+                              value={tag}
+                              onChange={handleInputChange}
+                              className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                              aria-label={`Add tag: ${tag}`}
+                            />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">#{tag}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                      aria-label="Post topic"
+                    >
+                      Post Topic
+                    </button>
                   </form>
                 )}
               </div>
@@ -486,56 +660,186 @@ const CommunityForumSection1 = ({ config }) => {
           </div>
         )}
 
-        {/* Topic Detail Modal */}
+        {/* ==================== TOPIC DETAIL MODAL ==================== */}
         {selectedTopic && !showReplyModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto" onClick={() => setSelectedTopic(null)}>
-            <div className="relative max-w-3xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto"
+            onClick={() => setSelectedTopic(null)}
+            role="dialog"
+            aria-label="Topic Details"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-3xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-blue-600 to-purple-600 p-4 sticky top-0">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2"><span className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(selectedTopic.category)}`}>{categories.find(c => c.id === selectedTopic.category)?.name}</span>{selectedTopic.isPinned && <HiOutlinePin className="w-4 h-4 text-yellow-300" />}</div>
-                  <button onClick={() => setSelectedTopic(null)} className="text-white"><HiOutlineX className="w-6 h-6" /></button>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(selectedTopic.category)}`}>
+                      {categories.find(c => c.id === selectedTopic.category)?.name}
+                    </span>
+                    {selectedTopic.isPinned && <HiOutlinePin className="w-4 h-4 text-yellow-300" />}
+                  </div>
+                  <button onClick={() => setSelectedTopic(null)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
                 </div>
                 <h2 className="text-white font-bold text-xl mt-2">{selectedTopic.title}</h2>
               </div>
               <div className="p-6 max-h-[70vh] overflow-y-auto">
                 {/* Original Post */}
-                <div className="flex gap-4 pb-4 mb-4 border-b border-gray-200">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0"><HiOutlineUserCircle className="w-7 h-7 text-blue-600" /></div>
-                  <div className="flex-1"><div className="flex items-center justify-between flex-wrap gap-2"><div><p className="font-medium text-gray-900">{selectedTopic.author?.name}</p><p className="text-xs text-gray-500">{formatDate(selectedTopic.createdAt)}</p></div><div className="flex gap-2"><button onClick={() => likeTopic(selectedTopic.id)} className="flex items-center gap-1 text-sm text-gray-500 hover:text-red-500"><HiOutlineHeart className="w-4 h-4" />{selectedTopic.likes || 0}</button></div></div><p className="text-gray-700 mt-2 whitespace-pre-wrap">{selectedTopic.content}</p>{selectedTopic.tags && (<div className="flex flex-wrap gap-1 mt-3">{selectedTopic.tags.map(tag => (<span key={tag} className="text-xs bg-gray-100 px-2 py-1 rounded-full">#{tag}</span>))}</div>)}</div>
+                <div className="flex gap-4 pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
+                    <HiOutlineUserCircle className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-white">{selectedTopic.author?.name}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{formatDate(selectedTopic.createdAt)}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => likeTopic(selectedTopic.id)}
+                          className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                          aria-label="Like topic"
+                        >
+                          <HiOutlineHeart className="w-4 h-4" />
+                          {selectedTopic.likes || 0}
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 mt-2 whitespace-pre-wrap">{selectedTopic.content}</p>
+                    {selectedTopic.tags && selectedTopic.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        {selectedTopic.tags.map(tag => (
+                          <span key={tag} className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full text-gray-600 dark:text-gray-400">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
+
                 {/* Replies */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900 mb-3">Replies ({selectedTopic.posts?.length || 0})</h3>
-                  {selectedTopic.posts?.length === 0 ? (<p className="text-sm text-gray-500">No replies yet. Be the first to respond!</p>) : (selectedTopic.posts.map((post) => (<div key={post.id} className="flex gap-4 p-4 bg-gray-50 rounded-xl"><div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center shrink-0"><HiOutlineUserCircle className="w-6 h-6 text-gray-500" /></div><div className="flex-1"><div className="flex items-center justify-between flex-wrap gap-2"><div><p className="font-medium text-gray-900">{post.author?.name}</p><p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p></div><button onClick={() => likePost(selectedTopic.id, post.id)} className="flex items-center gap-1 text-sm text-gray-500 hover:text-red-500"><HiOutlineHeart className="w-4 h-4" />{post.likes || 0}</button></div><p className="text-gray-700 mt-2 whitespace-pre-wrap">{post.content}</p></div></div>)))}
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Replies ({selectedTopic.posts?.length || 0})</h3>
+                  {selectedTopic.posts?.length === 0 ? (
+                    <p className="text-sm text-gray-500 dark:text-gray-400">No replies yet. Be the first to respond!</p>
+                  ) : (
+                    selectedTopic.posts.map((post) => (
+                      <div key={post.id} className="flex gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
+                        <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center shrink-0">
+                          <HiOutlineUserCircle className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between flex-wrap gap-2">
+                            <div>
+                              <p className="font-medium text-gray-900 dark:text-white">{post.author?.name}</p>
+                              <p className="text-xs text-gray-500 dark:text-gray-400">{formatDate(post.createdAt)}</p>
+                            </div>
+                            <button
+                              onClick={() => likePost(selectedTopic.id, post.id)}
+                              className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                              aria-label="Like post"
+                            >
+                              <HiOutlineHeart className="w-4 h-4" />
+                              {post.likes || 0}
+                            </button>
+                          </div>
+                          <p className="text-gray-700 dark:text-gray-300 mt-2 whitespace-pre-wrap">{post.content}</p>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
-              <div className="p-4 border-t border-gray-200 bg-gray-50">
-                {selectedTopic.isLocked ? (<p className="text-center text-sm text-red-500">This topic is locked. New replies cannot be added.</p>) : (<button onClick={() => setShowReplyModal(true)} className="w-full py-2 bg-blue-600 text-white rounded-lg font-semibold">Reply to Topic</button>)}
+              <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                {selectedTopic.isLocked ? (
+                  <p className="text-center text-sm text-red-500 dark:text-red-400">This topic is locked. New replies cannot be added.</p>
+                ) : (
+                  <button
+                    onClick={() => setShowReplyModal(true)}
+                    className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+                    aria-label="Reply to topic"
+                  >
+                    Reply to Topic
+                  </button>
+                )}
               </div>
             </div>
           </div>
         )}
 
-        {/* Reply Modal */}
+        {/* ==================== REPLY MODAL ==================== */}
         {showReplyModal && selectedTopic && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowReplyModal(false)}>
-            <div className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-green-600 p-4"><div className="flex items-center justify-between"><h3 className="text-white font-bold text-lg">Reply to Topic</h3><button onClick={() => setShowReplyModal(false)} className="text-white"><HiOutlineX className="w-6 h-6" /></button></div></div>
-              <div className="p-6"><p className="text-sm text-gray-600 mb-3">Replying to: {selectedTopic.title}</p><form onSubmit={handleAddReply}><textarea name="content" value={replyData.content} onChange={handleReplyChange} placeholder="Write your reply..." rows="6" className="w-full px-4 py-3 bg-gray-50 border rounded-xl resize-none" /><button type="submit" className="w-full mt-4 py-3 bg-green-600 text-white rounded-xl font-semibold">Post Reply</button></form></div>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowReplyModal(false)}
+            role="dialog"
+            aria-label="Reply to Topic"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-2xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-green-600 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-bold text-lg">Reply to Topic</h3>
+                  <button onClick={() => setShowReplyModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
+                    <HiOutlineX className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Replying to: {selectedTopic.title}</p>
+                <form onSubmit={addReply} className="space-y-4">
+                  <textarea
+                    name="content"
+                    value={replyData.content}
+                    onChange={handleReplyChange}
+                    placeholder="Write your reply..."
+                    rows="6"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 resize-none text-gray-900 dark:text-white placeholder-gray-500"
+                    aria-label="Reply content"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                    aria-label="Post reply"
+                  >
+                    Post Reply
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

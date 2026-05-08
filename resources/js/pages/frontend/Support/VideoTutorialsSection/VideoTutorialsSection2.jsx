@@ -433,34 +433,6 @@ const VideoTutorialsSection2 = ({ config }) => {
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
-      {/* ==================== LEARNING ANALYTICS WIDGET ==================== */}
-      <div className="fixed top-20 right-4 z-40 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-3 min-w-48">
-        <div className="flex items-center justify-between mb-2">
-          <p className="text-xs text-gray-500 dark:text-gray-400">Your Learning Progress</p>
-          <button onClick={() => setShowAnalyticsModal(true)} className="text-blue-600 dark:text-blue-400 text-xs hover:underline" aria-label="View details">
-            Details
-          </button>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="text-center">
-            <p className="text-lg font-bold text-blue-600 dark:text-blue-400">{learningAnalytics.totalHours}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Hours</p>
-          </div>
-          <div className="text-center">
-            <p className="text-lg font-bold text-green-600 dark:text-green-400">{learningAnalytics.coursesCompleted}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Completed</p>
-          </div>
-          <div className="text-center">
-            <p className="text-lg font-bold text-purple-600 dark:text-purple-400">{learningAnalytics.quizzesPassed}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Quizzes</p>
-          </div>
-          <div className="text-center">
-            <p className="text-lg font-bold text-yellow-600 dark:text-yellow-400">{learningAnalytics.certificatesEarned}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Certificates</p>
-          </div>
-        </div>
-      </div>
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
