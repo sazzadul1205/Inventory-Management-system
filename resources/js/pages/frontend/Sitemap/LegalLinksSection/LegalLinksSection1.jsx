@@ -1,9 +1,27 @@
 // page/frontend/Sitemap/LegalLinksSection/LegalLinksSection1.jsx
 
-// React
-import { useState } from 'react';
+/**
+ * Legal Links Section I - Legal & Compliance Documentation Hub
+ *
+ * Unique Design Elements:
+ * - Expandable/Collapsible Legal Categories
+ * - Document Version Badges and Update Timestamps
+ * - Search Functionality with Live Filtering
+ * - Modal Detail Views for Legal Documents
+ * - Document Type Icons and Color-Coded Categories
+ * - Stats Dashboard with Total Documents and Categories
+ * - Print Functionality for Documentation
+ * - Animated Background Gradient Orbs
+ * - Fully Responsive Grid Layout
+ * - Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
 
-// Icons
+import { useState, useMemo } from 'react';
+
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineScale,
@@ -31,17 +49,19 @@ import {
   HiOutlineBuildingOffice,
   HiOutlineFingerPrint,
 } from 'react-icons/hi2';
-import { MdOutlineCookie as HiOutlineCookie, } from "react-icons/md";
+import { MdOutlineCookie as HiOutlineCookie } from "react-icons/md";
 
 const LegalLinksSection1 = ({ config }) => {
-  const [expandedCategory, setExpandedCategory] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
   const [showLegalModal, setShowLegalModal] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState(null);
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
+  // ==================== MEMOIZED DATA ====================
   // Legal categories and links
-  const legalCategories = config?.legalCategories || [
+  const legalCategories = useMemo(() => config?.legalCategories || [
     {
       id: 'agreements',
       name: 'Legal Agreements',
@@ -177,13 +197,17 @@ const LegalLinksSection1 = ({ config }) => {
         { name: 'Data Breach History', path: '/legal/breach-history', description: 'Security incident disclosures', updated: 'January 15, 2026', version: 'v1.0' },
       ],
     },
-  ];
+  ], [config?.legalCategories]);
 
-  // Filter categories based on search
-  const filteredCategories = legalCategories.filter(category => {
-    if (!searchQuery) return true;
+  // ==================== HELPER FUNCTIONS ====================
+  const getTotalLinks = useMemo(() => {
+    return legalCategories.reduce((acc, cat) => acc + cat.links.length, 0);
+  }, [legalCategories]);
+
+  const getFilteredCategories = useMemo(() => {
+    if (!searchQuery) return legalCategories;
     const query = searchQuery.toLowerCase();
-    return (
+    return legalCategories.filter(category =>
       category.name.toLowerCase().includes(query) ||
       category.description.toLowerCase().includes(query) ||
       category.links.some(link =>
@@ -191,12 +215,8 @@ const LegalLinksSection1 = ({ config }) => {
         link.description.toLowerCase().includes(query)
       )
     );
-  });
+  }, [legalCategories, searchQuery]);
 
-  // Get total link count
-  const totalLinks = legalCategories.reduce((acc, cat) => acc + cat.links.length, 0);
-
-  // Helper function to render icons
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -229,13 +249,13 @@ const LegalLinksSection1 = ({ config }) => {
       role="region"
       aria-label="Legal Links Section"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-indigo-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-indigo-100 dark:border-gray-700">
             <HiOutlineScale className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mr-2" />
@@ -252,33 +272,34 @@ const LegalLinksSection1 = ({ config }) => {
             {config?.description || "Access our legal documents, policies, and compliance information. Find terms of service, privacy policies, security documentation, and more."}
           </p>
 
-          {/* Stats Row */}
+          {/* ==================== STATS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineDocumentText className="w-4 h-4 text-gray-500" />
+              <HiOutlineDocumentText className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                <strong>Total Documents:</strong> {totalLinks}
+                <strong>Total Documents:</strong> {getTotalLinks}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineFolder className="w-4 h-4 text-gray-500" />
+              <HiOutlineFolder className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 <strong>Categories:</strong> {legalCategories.length}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineCalendar className="w-4 h-4 text-gray-500" />
+              <HiOutlineCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 <strong>Last Updated:</strong> {lastUpdated}
               </span>
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print legal documents"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -286,7 +307,7 @@ const LegalLinksSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* ==================== SEARCH BAR ==================== */}
         <div className="relative max-w-md mx-auto mb-8">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <HiOutlineSearch className="w-5 h-5 text-gray-400" />
@@ -296,28 +317,29 @@ const LegalLinksSection1 = ({ config }) => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search legal documents..."
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 dark:text-white"
+            aria-label="Search legal documents"
           />
         </div>
 
-        {/* Legal Categories Grid */}
+        {/* ==================== LEGAL CATEGORIES GRID ==================== */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCategories.map((category) => (
+          {getFilteredCategories.map((category) => (
             <div
               key={category.id}
-              className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl`}
+              className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
             >
               {/* Category Header */}
               <div className="p-5 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center`}>
+                  <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center shadow-md`}>
                     {getIcon(category.icon, "w-6 h-6 text-white")}
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
                       {category.name}
                     </h3>
-                    <p className="text-xs text-gray-500">{category.linkCount} documents</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{category.linkCount} documents</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
@@ -336,6 +358,7 @@ const LegalLinksSection1 = ({ config }) => {
                           setShowLegalModal(true);
                         }}
                         className="group w-full text-left flex items-center justify-between p-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                        aria-label={`View ${link.name}`}
                       >
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
@@ -343,17 +366,17 @@ const LegalLinksSection1 = ({ config }) => {
                               {link.name}
                             </p>
                             {link.version && (
-                              <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500">
+                              <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
                                 {link.version}
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
                             {link.description}
                           </p>
-                          <p className="text-xs text-gray-400 mt-1">Updated: {link.updated}</p>
+                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Updated: {link.updated}</p>
                         </div>
-                        <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-500 transition-colors ml-2 shrink-0" />
+                        <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-300 ml-2 shrink-0" />
                       </button>
                     </li>
                   ))}
@@ -361,7 +384,8 @@ const LegalLinksSection1 = ({ config }) => {
                 {category.links.length > 4 && (
                   <button
                     onClick={() => setExpandedCategory(expandedCategory === category.id ? null : category.id)}
-                    className="mt-3 w-full text-center text-sm text-indigo-600 hover:text-indigo-700 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                    className="mt-3 w-full text-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                    aria-label={expandedCategory === category.id ? `Show less in ${category.name}` : `View all ${category.linkCount} documents in ${category.name}`}
                   >
                     {expandedCategory === category.id ? 'Show less ↑' : `View all ${category.linkCount} documents →`}
                   </button>
@@ -377,6 +401,7 @@ const LegalLinksSection1 = ({ config }) => {
                               setShowLegalModal(true);
                             }}
                             className="group w-full text-left flex items-center justify-between p-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                            aria-label={`View ${link.name}`}
                           >
                             <div className="flex-1">
                               <div className="flex items-center gap-2">
@@ -384,17 +409,17 @@ const LegalLinksSection1 = ({ config }) => {
                                   {link.name}
                                 </p>
                                 {link.version && (
-                                  <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500">
+                                  <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
                                     {link.version}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
                                 {link.description}
                               </p>
-                              <p className="text-xs text-gray-400 mt-1">Updated: {link.updated}</p>
+                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Updated: {link.updated}</p>
                             </div>
-                            <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-500 transition-colors ml-2 shrink-0" />
+                            <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-300 ml-2 shrink-0" />
                           </button>
                         </li>
                       ))}
@@ -406,33 +431,47 @@ const LegalLinksSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* No Results */}
-        {filteredCategories.length === 0 && (
+        {/* ==================== NO RESULTS ==================== */}
+        {getFilteredCategories.length === 0 && (
           <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
             <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-            <p className="text-gray-500">No legal documents match your search.</p>
+            <p className="text-gray-500 dark:text-gray-400">No legal documents match your search.</p>
             <button
               onClick={() => setSearchQuery('')}
-              className="mt-3 text-indigo-600 hover:underline text-sm"
+              className="mt-3 text-indigo-600 dark:text-indigo-400 hover:underline text-sm"
+              aria-label="Clear search"
             >
               Clear search
             </button>
           </div>
         )}
 
-        {/* Footer Note */}
+        {/* ==================== FOOTER NOTE ==================== */}
         <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>For legal inquiries, contact us at <a href="mailto:legal@supplychainpro.com" className="text-indigo-600 hover:underline">legal@supplychainpro.com</a></p>
+          <p>For legal inquiries, contact us at <a href="mailto:legal@supplychainpro.com" className="text-indigo-600 dark:text-indigo-400 hover:underline">legal@supplychainpro.com</a></p>
         </div>
 
-        {/* Legal Document Modal */}
+        {/* ==================== LEGAL DOCUMENT MODAL ==================== */}
         {showLegalModal && selectedDocument && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowLegalModal(false)}>
-            <div className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowLegalModal(false)}
+            role="dialog"
+            aria-label={selectedDocument.name}
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-indigo-600 to-purple-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">{selectedDocument.name}</h3>
-                  <button onClick={() => setShowLegalModal(false)} className="text-white hover:text-gray-200">
+                  <button
+                    onClick={() => setShowLegalModal(false)}
+                    className="text-white hover:text-gray-200 transition-colors"
+                    aria-label="Close modal"
+                  >
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -441,22 +480,22 @@ const LegalLinksSection1 = ({ config }) => {
                 <p className="text-gray-600 dark:text-gray-400 mb-4">{selectedDocument.description}</p>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Category:</span>
-                    <span className="text-gray-900 dark:text-white">{selectedDocument.category}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Category:</span>
+                    <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.category}</span>
                   </div>
                   {selectedDocument.version && (
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Version:</span>
-                      <span className="text-gray-900 dark:text-white">{selectedDocument.version}</span>
+                      <span className="text-gray-500 dark:text-gray-400">Version:</span>
+                      <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.version}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Last Updated:</span>
-                    <span className="text-gray-900 dark:text-white">{selectedDocument.updated}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Last Updated:</span>
+                    <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.updated}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Effective Date:</span>
-                    <span className="text-gray-900 dark:text-white">{selectedDocument.updated}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Effective Date:</span>
+                    <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.updated}</span>
                   </div>
                 </div>
                 <div className="mt-6">
@@ -464,12 +503,13 @@ const LegalLinksSection1 = ({ config }) => {
                     href={selectedDocument.path}
                     className="w-full inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
                     onClick={() => setShowLegalModal(false)}
+                    aria-label={`View ${selectedDocument.name}`}
                   >
                     View Document
                     <HiOutlineExternalLink className="w-4 h-4" />
                   </a>
                 </div>
-                <p className="text-xs text-gray-500 text-center mt-4">
+                <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
                   This document is legally binding. Please read carefully.
                 </p>
               </div>
@@ -478,15 +518,19 @@ const LegalLinksSection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);

@@ -1,9 +1,30 @@
 // page/frontend/Sitemap/LegalLinksSection/LegalLinksSection3.jsx
 
-// React
+/**
+ * Legal Links Section III - AI-Powered Legal Documentation Hub
+ *
+ * Unique Design Elements:
+ * - Interactive Carousel for Featured Legal Topics with Video Integration
+ * - Multi-Tab Interface (All Documents, Popular, Recently Updated)
+ * - Grid/List View Toggle for Document Display
+ * - Document Type Filter with Category Dropdown
+ * - Popular Documents Table with View Counts
+ * - Recently Updated Timeline with Version Tracking
+ * - Search Functionality with Live Filtering
+ * - Modal View with Video Playback for Document Details
+ * - Video Modal for Legal Explanations
+ * - Stats Dashboard with Total Documents and Categories
+ * - Print Functionality for Documentation
+ * - Animated Background Circuit Pattern
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineScale,
@@ -39,50 +60,35 @@ import {
   HiOutlineBuildingOffice,
   HiOutlineArrowRight,
 } from 'react-icons/hi2';
-import { MdOutlineCookie as HiOutlineCookie, } from "react-icons/md";
+import { MdOutlineCookie as HiOutlineCookie } from "react-icons/md";
 
 const LegalLinksSection3 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('all');
+  // ==================== STATE MANAGEMENT ====================
   const [viewMode, setViewMode] = useState('grid');
+  const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showLegalModal, setShowLegalModal] = useState(false);
-  const [selectedDocument, setSelectedDocument] = useState(null);
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const carouselRef = useRef(null);
-  const videoRef = useRef(null);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [showLegalModal, setShowLegalModal] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [selectedDocument, setSelectedDocument] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Carousel navigation for featured legal topics
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % (config?.featuredTopics?.length || featuredTopics.length));
-  }, [config?.featuredTopics?.length, featuredTopics.length]);
+  // ====================== REFS =====================
+  const videoRef = useRef(null);
+  const carouselRef = useRef(null);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + (config?.featuredTopics?.length || featuredTopics.length)) % (config?.featuredTopics?.length || featuredTopics.length));
-  }, [config?.featuredTopics?.length, featuredTopics.length]);
-
-  // Auto-play carousel
-  useEffect(() => {
-    if (config?.autoPlayCarousel && (config?.featuredTopics?.length || featuredTopics.length) > 1) {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 6000);
-      return () => clearInterval(interval);
-    }
-  }, [config?.autoPlayCarousel, config?.featuredTopics?.length, featuredTopics.length, nextSlide]);
-
+  // ==================== MEMOIZED DATA ====================
   // Featured legal topics for carousel
-  const featuredTopics = config?.featuredTopics || [
+  const featuredTopics = useMemo(() => config?.featuredTopics || [
     {
       title: "Data Privacy Rights",
       description: "Learn about your rights under GDPR and CCPA regulations.",
       icon: "lock",
       color: "from-green-500 to-green-600",
       path: "/legal/gdpr",
-      videoUrl: "/videos/gdpr-overview.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       title: "Security Compliance",
@@ -90,7 +96,7 @@ const LegalLinksSection3 = ({ config }) => {
       icon: "shield",
       color: "from-purple-500 to-purple-600",
       path: "/legal/security",
-      videoUrl: "/videos/security-compliance.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       title: "Terms of Service",
@@ -98,7 +104,7 @@ const LegalLinksSection3 = ({ config }) => {
       icon: "scale",
       color: "from-blue-500 to-blue-600",
       path: "/legal/terms",
-      videoUrl: "/videos/terms-overview.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       title: "Data Processing",
@@ -106,19 +112,19 @@ const LegalLinksSection3 = ({ config }) => {
       icon: "database",
       color: "from-orange-500 to-orange-600",
       path: "/legal/dpa",
-      videoUrl: "/videos/dpa-overview.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
-  ];
+  ], [config?.featuredTopics]);
 
   // Tabs configuration
-  const tabs = [
+  const tabs = useMemo(() => config?.tabs || [
     { id: 'all', label: 'All Documents', icon: 'folder' },
     { id: 'popular', label: 'Popular', icon: 'star' },
     { id: 'recent', label: 'Recently Updated', icon: 'trending-up' },
-  ];
+  ], [config?.tabs]);
 
   // Category filters
-  const categoryFilters = [
+  const categoryFilters = useMemo(() => config?.categoryFilters || [
     { id: 'all', label: 'All Categories' },
     { id: 'agreements', label: 'Legal Agreements' },
     { id: 'privacy', label: 'Privacy & Data Protection' },
@@ -128,27 +134,27 @@ const LegalLinksSection3 = ({ config }) => {
     { id: 'compliance', label: 'Regulatory Compliance' },
     { id: 'disclosures', label: 'Legal Disclosures' },
     { id: 'reporting', label: 'Reporting & Transparency' },
-  ];
+  ], [config?.categoryFilters]);
 
   // Popular documents
-  const popularDocuments = config?.popularDocuments || [
-    { name: 'Terms of Service', path: '/legal/terms', category: 'Legal Agreements', views: '125K', version: 'v3.0', videoUrl: "/videos/terms-overview.mp4" },
-    { name: 'Privacy Policy', path: '/legal/privacy', category: 'Privacy & Data Protection', views: '98K', version: 'v3.0', videoUrl: "/videos/privacy-policy.mp4" },
-    { name: 'Data Processing Agreement', path: '/legal/dpa', category: 'Legal Agreements', views: '45K', version: 'v2.0', videoUrl: "/videos/dpa-overview.mp4" },
+  const popularDocuments = useMemo(() => config?.popularDocuments || [
+    { name: 'Terms of Service', path: '/legal/terms', category: 'Legal Agreements', views: '125K', version: 'v3.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+    { name: 'Privacy Policy', path: '/legal/privacy', category: 'Privacy & Data Protection', views: '98K', version: 'v3.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+    { name: 'Data Processing Agreement', path: '/legal/dpa', category: 'Legal Agreements', views: '45K', version: 'v2.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
     { name: 'Cookie Policy', path: '/legal/cookies', category: 'Privacy & Data Protection', views: '32K', version: 'v2.0' },
-    { name: 'Security Policy', path: '/legal/security', category: 'Security & Compliance', views: '28K', version: 'v2.0', videoUrl: "/videos/security-policy.mp4" },
-    { name: 'GDPR Compliance', path: '/legal/gdpr', category: 'Privacy & Data Protection', views: '25K', version: 'v2.0', videoUrl: "/videos/gdpr-overview.mp4" },
-  ];
+    { name: 'Security Policy', path: '/legal/security', category: 'Security & Compliance', views: '28K', version: 'v2.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+    { name: 'GDPR Compliance', path: '/legal/gdpr', category: 'Privacy & Data Protection', views: '25K', version: 'v2.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+  ], [config?.popularDocuments]);
 
   // Recently updated documents
-  const recentlyUpdated = config?.recentlyUpdated || [
-    { name: 'Terms of Service', path: '/legal/terms', category: 'Legal Agreements', date: 'April 8, 2026', version: 'v3.0', videoUrl: "/videos/terms-overview.mp4" },
-    { name: 'Privacy Policy', path: '/legal/privacy', category: 'Privacy & Data Protection', date: 'April 8, 2026', version: 'v3.0', videoUrl: "/videos/privacy-policy.mp4" },
+  const recentlyUpdated = useMemo(() => config?.recentlyUpdated || [
+    { name: 'Terms of Service', path: '/legal/terms', category: 'Legal Agreements', date: 'April 8, 2026', version: 'v3.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+    { name: 'Privacy Policy', path: '/legal/privacy', category: 'Privacy & Data Protection', date: 'April 8, 2026', version: 'v3.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
     { name: 'Cookie Policy', path: '/legal/cookies', category: 'Privacy & Data Protection', date: 'April 8, 2026', version: 'v2.0' },
-    { name: 'GDPR Compliance', path: '/legal/gdpr', category: 'Privacy & Data Protection', date: 'April 8, 2026', version: 'v2.0', videoUrl: "/videos/gdpr-overview.mp4" },
-    { name: 'Security Policy', path: '/legal/security', category: 'Security & Compliance', date: 'April 5, 2026', version: 'v2.0', videoUrl: "/videos/security-policy.mp4" },
-    { name: 'Data Processing Agreement', path: '/legal/dpa', category: 'Legal Agreements', date: 'April 1, 2026', version: 'v2.0', videoUrl: "/videos/dpa-overview.mp4" },
-  ];
+    { name: 'GDPR Compliance', path: '/legal/gdpr', category: 'Privacy & Data Protection', date: 'April 8, 2026', version: 'v2.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
+    { name: 'Security Policy', path: '/legal/security', category: 'Security & Compliance', date: 'April 5, 2026', version: 'v2.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+    { name: 'Data Processing Agreement', path: '/legal/dpa', category: 'Legal Agreements', date: 'April 1, 2026', version: 'v2.0', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+  ], [config?.recentlyUpdated]);
 
   // Legal categories and links
   const legalCategories = useMemo(() => config?.legalCategories || [
@@ -160,12 +166,12 @@ const LegalLinksSection3 = ({ config }) => {
       bgColor: 'bg-blue-50 dark:bg-blue-900/20',
       description: 'Binding legal agreements governing our relationship',
       linkCount: 6,
-      videoUrl: "/videos/legal-agreements.mp4",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       links: [
-        { name: 'Terms of Service', path: '/legal/terms', description: 'Terms and conditions for using our Services', updated: 'April 8, 2026', version: 'v3.0', popular: true, videoUrl: "/videos/terms-overview.mp4" },
+        { name: 'Terms of Service', path: '/legal/terms', description: 'Terms and conditions for using our Services', updated: 'April 8, 2026', version: 'v3.0', popular: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
         { name: 'End User License Agreement (EULA)', path: '/legal/eula', description: 'Software license terms', updated: 'March 15, 2026', version: 'v2.1' },
         { name: 'Master Subscription Agreement', path: '/legal/msa', description: 'Enterprise subscription terms', updated: 'March 1, 2026', version: 'v2.0' },
-        { name: 'Data Processing Agreement (DPA)', path: '/legal/dpa', description: 'GDPR-compliant data processing terms', updated: 'April 1, 2026', version: 'v2.0', popular: true, videoUrl: "/videos/dpa-overview.mp4" },
+        { name: 'Data Processing Agreement (DPA)', path: '/legal/dpa', description: 'GDPR-compliant data processing terms', updated: 'April 1, 2026', version: 'v2.0', popular: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
         { name: 'Service Level Agreement (SLA)', path: '/legal/sla', description: 'Service availability commitments', updated: 'February 15, 2026', version: 'v1.5' },
         { name: 'Business Associate Agreement (BAA)', path: '/legal/baa', description: 'HIPAA compliance agreement', updated: 'January 10, 2026', version: 'v1.0' },
       ],
@@ -178,11 +184,11 @@ const LegalLinksSection3 = ({ config }) => {
       bgColor: 'bg-green-50 dark:bg-green-900/20',
       description: 'How we collect, use, and protect your data',
       linkCount: 7,
-      videoUrl: "/videos/privacy-overview.mp4",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
       links: [
-        { name: 'Privacy Policy', path: '/legal/privacy', description: 'How we handle your personal information', updated: 'April 8, 2026', version: 'v3.0', popular: true, videoUrl: "/videos/privacy-policy.mp4" },
+        { name: 'Privacy Policy', path: '/legal/privacy', description: 'How we handle your personal information', updated: 'April 8, 2026', version: 'v3.0', popular: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
         { name: 'Cookie Policy', path: '/legal/cookies', description: 'How we use cookies and tracking technologies', updated: 'April 8, 2026', version: 'v2.0', popular: true },
-        { name: 'GDPR Compliance', path: '/legal/gdpr', description: 'EU data protection compliance', updated: 'April 8, 2026', version: 'v2.0', popular: true, videoUrl: "/videos/gdpr-overview.mp4" },
+        { name: 'GDPR Compliance', path: '/legal/gdpr', description: 'EU data protection compliance', updated: 'April 8, 2026', version: 'v2.0', popular: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
         { name: 'CCPA Compliance', path: '/legal/ccpa', description: 'California Consumer Privacy Act', updated: 'March 20, 2026', version: 'v1.5' },
         { name: 'Data Retention Policy', path: '/legal/data-retention', description: 'How long we keep your data', updated: 'March 10, 2026', version: 'v1.0' },
         { name: 'Data Subject Request Form', path: '/legal/data-request', description: 'Exercise your privacy rights', updated: 'February 28, 2026', version: 'v1.0' },
@@ -197,9 +203,9 @@ const LegalLinksSection3 = ({ config }) => {
       bgColor: 'bg-purple-50 dark:bg-purple-900/20',
       description: 'Security practices and compliance certifications',
       linkCount: 8,
-      videoUrl: "/videos/security-overview.mp4",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
       links: [
-        { name: 'Security Policy', path: '/legal/security', description: 'Our security program overview', updated: 'April 5, 2026', version: 'v2.0', popular: true, videoUrl: "/videos/security-policy.mp4" },
+        { name: 'Security Policy', path: '/legal/security', description: 'Our security program overview', updated: 'April 5, 2026', version: 'v2.0', popular: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
         { name: 'Acceptable Use Policy', path: '/legal/aup', description: 'Rules for using our Services', updated: 'March 20, 2026', version: 'v1.5' },
         { name: 'Vulnerability Disclosure Program', path: '/security/disclosure', description: 'Report security vulnerabilities', updated: 'April 3, 2026', version: 'v1.0' },
         { name: 'Bug Bounty Program', path: '/security/bug-bounty', description: 'Rewards for security researchers', updated: 'April 2, 2026', version: 'v1.0' },
@@ -292,6 +298,30 @@ const LegalLinksSection3 = ({ config }) => {
     },
   ], [config?.legalCategories]);
 
+  // ==================== CAROUSEL NAVIGATION ====================
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % featuredTopics.length);
+  }, [featuredTopics.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + featuredTopics.length) % featuredTopics.length);
+  }, [featuredTopics.length]);
+
+  // ==================== AUTO-PLAY CAROUSEL EFFECT ====================
+  useEffect(() => {
+    if (config?.autoPlayCarousel !== false && featuredTopics.length > 1) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [config?.autoPlayCarousel, featuredTopics.length, nextSlide]);
+
+  // ==================== HELPER FUNCTIONS ====================
+  const getTotalLinks = useMemo(() => {
+    return legalCategories.reduce((acc, cat) => acc + cat.links.length, 0);
+  }, [legalCategories]);
+
   // Get all documents flattened for filtering
   const allDocuments = useMemo(() => {
     const docs = [];
@@ -347,10 +377,6 @@ const LegalLinksSection3 = ({ config }) => {
       .filter(category => category.links.length > 0);
   }, [legalCategories, searchQuery, selectedCategory]);
 
-  // Get total link count
-  const totalLinks = legalCategories.reduce((acc, cat) => acc + cat.links.length, 0);
-
-  // Helper function to render icons
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -388,8 +414,8 @@ const LegalLinksSection3 = ({ config }) => {
       role="region"
       aria-label="Legal Links Hub"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+      {/* ==================== BACKGROUND PATTERN ==================== */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="circuit-pattern-legal" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -402,12 +428,12 @@ const LegalLinksSection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* ==================== HERO SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineScale className="w-4 h-4" />
@@ -422,33 +448,34 @@ const LegalLinksSection3 = ({ config }) => {
             {config?.description || "Access our legal documents, policies, and compliance information. Find terms of service, privacy policies, security documentation, and more."}
           </p>
 
-          {/* Stats Row */}
+          {/* ==================== STATS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineDocumentText className="w-4 h-4 text-gray-500" />
+              <HiOutlineDocumentText className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
-                <strong>Total Documents:</strong> {totalLinks}
+                <strong>Total Documents:</strong> {getTotalLinks}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineFolder className="w-4 h-4 text-gray-500" />
+              <HiOutlineFolder className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 <strong>Categories:</strong> {legalCategories.length}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineCalendar className="w-4 h-4 text-gray-500" />
+              <HiOutlineCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 <strong>Last Updated:</strong> {lastUpdated}
               </span>
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => window.print()}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print legal documents"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -456,7 +483,7 @@ const LegalLinksSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Featured Topics Carousel */}
+        {/* ==================== FEATURED TOPICS CAROUSEL ==================== */}
         <div className="relative mb-16">
           <div className="relative overflow-hidden rounded-3xl">
             <div
@@ -478,6 +505,7 @@ const LegalLinksSection3 = ({ config }) => {
                         <a
                           href={topic.path}
                           className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
+                          aria-label={`Learn more about ${topic.title}`}
                         >
                           Learn More
                           <HiOutlineArrowRight className="w-4 h-4" />
@@ -486,6 +514,7 @@ const LegalLinksSection3 = ({ config }) => {
                           <button
                             onClick={() => { setCurrentVideo(topic.videoUrl); setShowVideoModal(true); }}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-xl font-semibold hover:bg-white/30 transition-colors"
+                            aria-label="Watch video"
                           >
                             <HiOutlinePlay className="w-5 h-5" />
                             Watch Video
@@ -500,15 +529,28 @@ const LegalLinksSection3 = ({ config }) => {
 
             {featuredTopics.length > 1 && (
               <>
-                <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                  aria-label="Previous slide"
+                >
                   <HiOutlineChevronLeft className="w-6 h-6" />
                 </button>
-                <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                  aria-label="Next slide"
+                >
                   <HiOutlineChevronRight className="w-6 h-6" />
                 </button>
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                   {featuredTopics.map((_, idx) => (
-                    <button key={idx} onClick={() => setCurrentSlide(idx)} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
                   ))}
                 </div>
               </>
@@ -516,7 +558,7 @@ const LegalLinksSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -526,6 +568,7 @@ const LegalLinksSection3 = ({ config }) => {
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'folder' ? <HiOutlineFolder className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -535,7 +578,7 @@ const LegalLinksSection3 = ({ config }) => {
           ))}
         </div>
 
-        {/* Search and Filter Bar */}
+        {/* ==================== SEARCH AND FILTER BAR ==================== */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -546,7 +589,8 @@ const LegalLinksSection3 = ({ config }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search legal documents..."
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 dark:text-white"
+              aria-label="Search legal documents"
             />
           </div>
           <div className="relative w-full sm:w-64">
@@ -556,7 +600,8 @@ const LegalLinksSection3 = ({ config }) => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer text-gray-900 dark:text-white"
+              aria-label="Filter by category"
             >
               {categoryFilters.map(cat => (
                 <option key={cat.id} value={cat.id}>{cat.label}</option>
@@ -565,7 +610,7 @@ const LegalLinksSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* All Documents Tab */}
+        {/* ==================== ALL DOCUMENTS TAB ==================== */}
         {activeTab === 'all' && (
           <>
             {/* View Mode Toggle */}
@@ -576,14 +621,14 @@ const LegalLinksSection3 = ({ config }) => {
                   className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'grid' ? 'bg-white dark:bg-gray-700 shadow-md' : ''}`}
                   aria-label="Grid view"
                 >
-                  <HiOutlineViewGrid className="w-5 h-5" />
+                  <HiOutlineViewGrid className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'list' ? 'bg-white dark:bg-gray-700 shadow-md' : ''}`}
                   aria-label="List view"
                 >
-                  <HiOutlineViewList className="w-5 h-5" />
+                  <HiOutlineViewList className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </button>
               </div>
             </div>
@@ -594,19 +639,19 @@ const LegalLinksSection3 = ({ config }) => {
                 {filteredCategories.map((category) => (
                   <div
                     key={category.id}
-                    className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl`}
+                    className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
                   >
                     {/* Category Header */}
                     <div className="p-5 border-b border-gray-200 dark:border-gray-700">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center`}>
+                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center shadow-md`}>
                           {getIcon(category.icon, "w-6 h-6 text-white")}
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
                             {category.name}
                           </h3>
-                          <p className="text-xs text-gray-500">{category.links.length} documents</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{category.links.length} documents</p>
                         </div>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
@@ -615,7 +660,8 @@ const LegalLinksSection3 = ({ config }) => {
                       {category.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(category.videoUrl); setShowVideoModal(true); }}
-                          className="mt-2 text-xs text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+                          className="mt-2 text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 flex items-center gap-1"
+                          aria-label="Watch category overview"
                         >
                           <HiOutlinePlay className="w-3 h-3" />
                           Watch Overview
@@ -634,6 +680,7 @@ const LegalLinksSection3 = ({ config }) => {
                                 setShowLegalModal(true);
                               }}
                               className="group w-full text-left flex items-center justify-between p-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                              aria-label={`View ${link.name}`}
                             >
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 flex-wrap">
@@ -641,27 +688,27 @@ const LegalLinksSection3 = ({ config }) => {
                                     {link.name}
                                   </p>
                                   {link.version && (
-                                    <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500">
+                                    <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
                                       {link.version}
                                     </span>
                                   )}
                                   {link.popular && (
-                                    <span className="text-xs px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700">
+                                    <span className="text-xs px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300">
                                       Popular
                                     </span>
                                   )}
                                 </div>
-                                <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
                                   {link.description}
                                 </p>
                                 {link.videoUrl && (
-                                  <span className="text-blue-500 text-xs flex items-center gap-1 mt-1">
+                                  <span className="text-blue-500 dark:text-blue-400 text-xs flex items-center gap-1 mt-1">
                                     <HiOutlinePlay className="w-3 h-3" />
                                     Video available
                                   </span>
                                 )}
                               </div>
-                              <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-500 transition-colors ml-2 shrink-0" />
+                              <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-300 ml-2 shrink-0" />
                             </button>
                           </li>
                         ))}
@@ -678,7 +725,8 @@ const LegalLinksSection3 = ({ config }) => {
                             });
                             setShowLegalModal(true);
                           }}
-                          className="mt-3 w-full text-center text-sm text-indigo-600 hover:text-indigo-700 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          className="mt-3 w-full text-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          aria-label={`View all ${category.links.length} documents in ${category.name}`}
                         >
                           View all {category.links.length} documents →
                         </button>
@@ -698,26 +746,27 @@ const LegalLinksSection3 = ({ config }) => {
                       setShowLegalModal(true);
                     }}
                     className="w-full text-left bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-300"
+                    aria-label={`View ${doc.name}`}
                   >
                     <div className="flex items-start justify-between flex-wrap gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h3 className="font-semibold text-gray-900 dark:text-white">{doc.name}</h3>
                           {doc.version && (
-                            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400">
                               {doc.version}
                             </span>
                           )}
-                          <span className="text-xs text-gray-400">{doc.categoryName}</span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500">{doc.categoryName}</span>
                           {doc.videoUrl && (
-                            <span className="text-blue-500 text-xs flex items-center gap-1">
+                            <span className="text-blue-500 dark:text-blue-400 text-xs flex items-center gap-1">
                               <HiOutlinePlay className="w-3 h-3" />
                               Video
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">{doc.description}</p>
-                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{doc.description}</p>
+                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400 dark:text-gray-500">
                           <span>Updated: {doc.updated}</span>
                         </div>
                       </div>
@@ -732,13 +781,14 @@ const LegalLinksSection3 = ({ config }) => {
             {filteredCategories.length === 0 && filteredDocuments.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No legal documents match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No legal documents match your search.</p>
                 <button
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategory('all');
                   }}
-                  className="mt-3 text-indigo-600 hover:underline text-sm"
+                  className="mt-3 text-indigo-600 dark:text-indigo-400 hover:underline text-sm"
+                  aria-label="Clear filters"
                 >
                   Clear filters
                 </button>
@@ -747,11 +797,11 @@ const LegalLinksSection3 = ({ config }) => {
           </>
         )}
 
-        {/* Popular Tab */}
+        {/* ==================== POPULAR TAB ==================== */}
         {activeTab === 'popular' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineStar className="w-5 h-5 text-yellow-500" />
+              <HiOutlineStar className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
               Most Popular Legal Documents
             </h2>
             <div className="overflow-x-auto">
@@ -774,14 +824,15 @@ const LegalLinksSection3 = ({ config }) => {
                             setShowLegalModal(true);
                           }}
                           className="font-medium text-gray-900 dark:text-white hover:text-indigo-600 transition-colors flex items-center gap-2"
+                          aria-label={`View ${doc.name}`}
                         >
                           {doc.name}
-                          {doc.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500" />}
+                          {doc.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500 dark:text-blue-400" />}
                         </button>
                       </td>
                       <td className="p-3 text-gray-600 dark:text-gray-400">{doc.category}</td>
                       <td className="p-3">
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
                           {doc.version}
                         </span>
                       </td>
@@ -794,11 +845,11 @@ const LegalLinksSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Recent Tab */}
+        {/* ==================== RECENT TAB ==================== */}
         {activeTab === 'recent' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineTrendingUp className="w-5 h-5 text-green-500" />
+              <HiOutlineTrendingUp className="w-5 h-5 text-green-500 dark:text-green-400" />
               Recently Updated Documents
             </h2>
             <div className="space-y-3">
@@ -810,17 +861,18 @@ const LegalLinksSection3 = ({ config }) => {
                     setShowLegalModal(true);
                   }}
                   className="w-full text-left block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300 hover:shadow-md"
+                  aria-label={`View ${doc.name}`}
                 >
                   <div className="flex items-start justify-between flex-wrap gap-2">
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="font-semibold text-gray-900 dark:text-white">{doc.name}</p>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-blue-100 text-blue-700">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
                           {doc.version}
                         </span>
-                        {doc.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500" />}
+                        {doc.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500 dark:text-blue-400" />}
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">Category: {doc.category}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Category: {doc.category}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm text-gray-600 dark:text-gray-400">{doc.date}</p>
@@ -832,19 +884,32 @@ const LegalLinksSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Footer Note */}
+        {/* ==================== FOOTER NOTE ==================== */}
         <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>For legal inquiries, contact us at <a href="mailto:legal@supplychainpro.com" className="text-indigo-600 hover:underline">legal@supplychainpro.com</a></p>
+          <p>For legal inquiries, contact us at <a href="mailto:legal@supplychainpro.com" className="text-indigo-600 dark:text-indigo-400 hover:underline">legal@supplychainpro.com</a></p>
         </div>
 
-        {/* Legal Document Modal */}
+        {/* ==================== LEGAL DOCUMENT MODAL ==================== */}
         {showLegalModal && selectedDocument && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowLegalModal(false)}>
-            <div className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowLegalModal(false)}
+            role="dialog"
+            aria-label={selectedDocument.isCategoryView ? selectedDocument.name : selectedDocument.name}
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-indigo-600 to-purple-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">{selectedDocument.name}</h3>
-                  <button onClick={() => setShowLegalModal(false)} className="text-white hover:text-gray-200">
+                  <button
+                    onClick={() => setShowLegalModal(false)}
+                    className="text-white hover:text-gray-200 transition-colors"
+                    aria-label="Close modal"
+                  >
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -860,18 +925,19 @@ const LegalLinksSection3 = ({ config }) => {
                             href={doc.path}
                             className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                             onClick={() => setShowLegalModal(false)}
+                            aria-label={`View ${doc.name}`}
                           >
                             <div className="flex items-center gap-2 flex-wrap">
                               <p className="font-medium text-gray-900 dark:text-white">{doc.name}</p>
                               {doc.version && (
-                                <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500">
+                                <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400">
                                   {doc.version}
                                 </span>
                               )}
-                              {doc.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500" />}
+                              {doc.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500 dark:text-blue-400" />}
                             </div>
-                            <p className="text-sm text-gray-500 mt-0.5">{doc.description}</p>
-                            <p className="text-xs text-gray-400 mt-1">Updated: {doc.updated}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{doc.description}</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Updated: {doc.updated}</p>
                           </a>
                         </li>
                       ))}
@@ -882,22 +948,22 @@ const LegalLinksSection3 = ({ config }) => {
                     <p className="text-gray-600 dark:text-gray-400 mb-4">{selectedDocument.description}</p>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Category:</span>
-                        <span className="text-gray-900 dark:text-white">{selectedDocument.category}</span>
+                        <span className="text-gray-500 dark:text-gray-400">Category:</span>
+                        <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.category}</span>
                       </div>
                       {selectedDocument.version && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Version:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedDocument.version}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Version:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.version}</span>
                         </div>
                       )}
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Last Updated:</span>
-                        <span className="text-gray-900 dark:text-white">{selectedDocument.updated}</span>
+                        <span className="text-gray-500 dark:text-gray-400">Last Updated:</span>
+                        <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.updated}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Effective Date:</span>
-                        <span className="text-gray-900 dark:text-white">{selectedDocument.updated}</span>
+                        <span className="text-gray-500 dark:text-gray-400">Effective Date:</span>
+                        <span className="text-gray-900 dark:text-white font-medium">{selectedDocument.updated}</span>
                       </div>
                     </div>
                     <div className="mt-6 flex gap-3">
@@ -905,6 +971,7 @@ const LegalLinksSection3 = ({ config }) => {
                         href={selectedDocument.path}
                         className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
                         onClick={() => setShowLegalModal(false)}
+                        aria-label={`View ${selectedDocument.name}`}
                       >
                         View Document
                         <HiOutlineExternalLink className="w-4 h-4" />
@@ -913,13 +980,14 @@ const LegalLinksSection3 = ({ config }) => {
                         <button
                           onClick={() => { setCurrentVideo(selectedDocument.videoUrl); setShowVideoModal(true); setShowLegalModal(false); }}
                           className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors"
+                          aria-label="Watch video"
                         >
                           <HiOutlinePlay className="w-4 h-4" />
                           Watch
                         </button>
                       )}
                     </div>
-                    <p className="text-xs text-gray-500 text-center mt-4">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
                       This document is legally binding. Please read carefully.
                     </p>
                   </>
@@ -929,11 +997,24 @@ const LegalLinksSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Modal */}
+        {/* ==================== VIDEO MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setShowVideoModal(false)} className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                aria-label="Close video"
+              >
                 <HiOutlineX className="w-6 h-6" />
               </button>
               <video ref={videoRef} src={currentVideo} className="w-full" controls autoPlay />
@@ -942,32 +1023,33 @@ const LegalLinksSection3 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
-          @keyframes blob {
-            0%, 100% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-          }
-          .animate-blob {
-            animation: blob 7s infinite;
-          }
-          .animation-delay-2000 {
-            animation-delay: 2s;
-          }
-          @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-          }
-          .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          }
-          .line-clamp-1 {
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
-        `}</style>
+        @keyframes blob {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        .animate-pulse {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .line-clamp-1 {
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </section>
   );
 };

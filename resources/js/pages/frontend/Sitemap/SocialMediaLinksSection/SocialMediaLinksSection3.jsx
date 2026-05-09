@@ -1,9 +1,30 @@
 // page/frontend/Sitemap/SocialMediaLinksSection/SocialMediaLinksSection3.jsx
 
-// React
+/**
+ * Social Media Links Section III - AI-Powered Community Hub
+ *
+ * Unique Design Elements:
+ * - Interactive Carousel for Featured Social Content with Video Integration
+ * - Multi-Tab Interface (All Platforms, Most Active, Recent Posts)
+ * - Grid/List View Toggle for Platform Display
+ * - Category Filter with Dropdown Selection
+ * - Most Active Platforms Table with Engagement Metrics
+ * - Recent Posts Timeline with Like/Share Counts
+ * - Search Functionality with Live Filtering
+ * - Modal View with Video Playback for Platform Details
+ * - Video Modal for Social Content Previews
+ * - Stats Dashboard with Total Platforms and Categories
+ * - Print Functionality for Documentation
+ * - Animated Background Circuit Pattern
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (fa, hi, si)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
-// Icons
+// React Icons - Font Awesome, Heroicons, Simple Icons
 import {
   FaTwitter,
   FaLinkedin,
@@ -40,50 +61,39 @@ import {
   HiOutlineChevronRight,
   HiOutlinePlay,
 } from 'react-icons/hi';
-import { SiHashnode, SiProducthunt, SiIndiehackers } from 'react-icons/si';
+import {
+  SiHashnode,
+  SiProducthunt,
+  SiIndiehackers,
+} from 'react-icons/si';
 
 const SocialMediaLinksSection3 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('all');
+  // ==================== STATE MANAGEMENT ====================
   const [viewMode, setViewMode] = useState('grid');
+  const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [showSocialModal, setShowSocialModal] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState(null);
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const carouselRef = useRef(null);
-  const videoRef = useRef(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Carousel navigation for featured social content
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % (config?.featuredContent?.length || featuredContent.length));
-  }, [config?.featuredContent?.length, featuredContent.length]);
+  // ====================== REFS =====================
+  const videoRef = useRef(null);
+  const carouselRef = useRef(null);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + (config?.featuredContent?.length || featuredContent.length)) % (config?.featuredContent?.length || featuredContent.length));
-  }, [config?.featuredContent?.length, featuredContent.length]);
-
-  // Auto-play carousel
-  useEffect(() => {
-    if (config?.autoPlayCarousel && (config?.featuredContent?.length || featuredContent.length) > 1) {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 6000);
-      return () => clearInterval(interval);
-    }
-  }, [config?.autoPlayCarousel, config?.featuredContent?.length, featuredContent.length, nextSlide]);
-
+  // ==================== MEMOIZED DATA ====================
   // Featured social content for carousel
-  const featuredContent = config?.featuredContent || [
+  const featuredContent = useMemo(() => config?.featuredContent || [
     {
       title: "Join Our Discord Community",
       description: "Connect with developers and supply chain professionals in real-time.",
       icon: "discord",
       color: "from-indigo-500 to-indigo-600",
       path: "https://discord.gg/supplychainpro",
-      videoUrl: "/videos/discord-community.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     },
     {
       title: "Follow on Twitter",
@@ -91,7 +101,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
       icon: "twitter",
       color: "from-blue-500 to-blue-600",
       path: "https://twitter.com/supplychainpro",
-      videoUrl: "/videos/twitter-updates.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     },
     {
       title: "Subscribe on YouTube",
@@ -99,7 +109,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
       icon: "youtube",
       color: "from-red-500 to-red-600",
       path: "https://youtube.com/@supplychainpro",
-      videoUrl: "/videos/youtube-channel.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
     },
     {
       title: "Connect on LinkedIn",
@@ -107,46 +117,46 @@ const SocialMediaLinksSection3 = ({ config }) => {
       icon: "linkedin",
       color: "from-blue-700 to-blue-800",
       path: "https://linkedin.com/company/supplychainpro",
-      videoUrl: "/videos/linkedin-company.mp4"
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     },
-  ];
+  ], [config?.featuredContent]);
 
   // Tabs configuration
-  const tabs = [
+  const tabs = useMemo(() => config?.tabs || [
     { id: 'all', label: 'All Platforms', icon: 'globe' },
     { id: 'popular', label: 'Most Active', icon: 'star' },
     { id: 'recent', label: 'Recent Posts', icon: 'trending-up' },
-  ];
+  ], [config?.tabs]);
 
   // Category filters
-  const categoryFilters = [
+  const categoryFilters = useMemo(() => config?.categoryFilters || [
     { id: 'all', label: 'All Categories' },
     { id: 'main', label: 'Main Social Platforms' },
     { id: 'developer', label: 'Developer Communities' },
     { id: 'community', label: 'Community & Chat' },
     { id: 'messaging', label: 'Messaging Apps' },
     { id: 'content', label: 'Content Platforms' },
-  ];
+  ], [config?.categoryFilters]);
 
   // Popular/Active platforms (based on engagement)
-  const activePlatforms = config?.activePlatforms || [
-    { name: 'Twitter', path: 'https://twitter.com/supplychainpro', username: '@supplychainpro', engagement: 'High', posts: '125/month', icon: 'twitter', color: '#1DA1F2', videoUrl: "/videos/twitter-activity.mp4" },
-    { name: 'LinkedIn', path: 'https://linkedin.com/company/supplychainpro', username: 'SupplyChainPro', engagement: 'High', posts: '45/month', icon: 'linkedin', color: '#0077B5', videoUrl: "/videos/linkedin-activity.mp4" },
+  const activePlatforms = useMemo(() => config?.activePlatforms || [
+    { name: 'Twitter', path: 'https://twitter.com/supplychainpro', username: '@supplychainpro', engagement: 'High', posts: '125/month', icon: 'twitter', color: '#1DA1F2', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+    { name: 'LinkedIn', path: 'https://linkedin.com/company/supplychainpro', username: 'SupplyChainPro', engagement: 'High', posts: '45/month', icon: 'linkedin', color: '#0077B5', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
     { name: 'GitHub', path: 'https://github.com/supplychainpro', username: 'supplychainpro', engagement: 'Medium', commits: '85/month', icon: 'github', color: '#181717' },
-    { name: 'YouTube', path: 'https://youtube.com/@supplychainpro', username: '@supplychainpro', engagement: 'High', videos: '8/month', icon: 'youtube', color: '#FF0000', videoUrl: "/videos/youtube-activity.mp4" },
-    { name: 'Discord', path: 'https://discord.gg/supplychainpro', username: 'SupplyChainPro', engagement: 'High', messages: '2.5K/day', icon: 'discord', color: '#5865F2', videoUrl: "/videos/discord-activity.mp4" },
+    { name: 'YouTube', path: 'https://youtube.com/@supplychainpro', username: '@supplychainpro', engagement: 'High', videos: '8/month', icon: 'youtube', color: '#FF0000', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
+    { name: 'Discord', path: 'https://discord.gg/supplychainpro', username: 'SupplyChainPro', engagement: 'High', messages: '2.5K/day', icon: 'discord', color: '#5865F2', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
     { name: 'Stack Overflow', path: 'https://stackoverflow.com/companies/supplychainpro', username: 'supplychainpro', engagement: 'Medium', answers: '45/month', icon: 'stackoverflow', color: '#F58025' },
-  ];
+  ], [config?.activePlatforms]);
 
   // Recent posts from social media
-  const recentPosts = config?.recentPosts || [
-    { platform: 'Twitter', content: 'Introducing SupplyChainPro v3.0 with advanced AI features!', date: 'April 8, 2026', likes: '1.2K', retweets: '345', icon: 'twitter', color: '#1DA1F2', videoUrl: "/videos/twitter-post.mp4" },
+  const recentPosts = useMemo(() => config?.recentPosts || [
+    { platform: 'Twitter', content: 'Introducing SupplyChainPro v3.0 with advanced AI features!', date: 'April 8, 2026', likes: '1.2K', retweets: '345', icon: 'twitter', color: '#1DA1F2', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
     { platform: 'LinkedIn', content: 'How we achieved SOC 2 Type II certification - read our latest blog post', date: 'April 5, 2026', likes: '856', comments: '42', icon: 'linkedin', color: '#0077B5' },
     { platform: 'GitHub', content: 'Released version 3.0 of our Android SDK', date: 'April 3, 2026', stars: '67', forks: '23', icon: 'github', color: '#181717' },
-    { platform: 'YouTube', content: 'New tutorial: Getting Started with SupplyChainPro API', date: 'April 1, 2026', views: '3.2K', likes: '234', icon: 'youtube', color: '#FF0000', videoUrl: "/videos/youtube-tutorial.mp4" },
+    { platform: 'YouTube', content: 'New tutorial: Getting Started with SupplyChainPro API', date: 'April 1, 2026', views: '3.2K', likes: '234', icon: 'youtube', color: '#FF0000', videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
     { platform: 'Discord', content: 'Community AMA with our CTO - Thursday at 2PM EST', date: 'March 30, 2026', attendees: '156', icon: 'discord', color: '#5865F2' },
     { platform: 'Dev.to', content: 'Building a Scalable Supply Chain API - Best Practices', date: 'March 28, 2026', reactions: '89', comments: '23', icon: 'dev', color: '#0A0A0A' },
-  ];
+  ], [config?.recentPosts]);
 
   // Social media categories and links
   const socialCategories = useMemo(() => config?.socialCategories || [
@@ -158,12 +168,12 @@ const SocialMediaLinksSection3 = ({ config }) => {
       bgColor: 'bg-blue-50 dark:bg-blue-900/20',
       description: 'Our primary social media presence',
       linkCount: 6,
-      videoUrl: "/videos/social-overview.mp4",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       links: [
-        { name: 'Twitter', path: 'https://twitter.com/supplychainpro', username: '@supplychainpro', followers: '25.5K', icon: 'twitter', color: '#1DA1F2', active: true, videoUrl: "/videos/twitter.mp4" },
-        { name: 'LinkedIn', path: 'https://linkedin.com/company/supplychainpro', username: 'SupplyChainPro', followers: '42.1K', icon: 'linkedin', color: '#0077B5', active: true, videoUrl: "/videos/linkedin.mp4" },
+        { name: 'Twitter', path: 'https://twitter.com/supplychainpro', username: '@supplychainpro', followers: '25.5K', icon: 'twitter', color: '#1DA1F2', active: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+        { name: 'LinkedIn', path: 'https://linkedin.com/company/supplychainpro', username: 'SupplyChainPro', followers: '42.1K', icon: 'linkedin', color: '#0077B5', active: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
         { name: 'GitHub', path: 'https://github.com/supplychainpro', username: 'supplychainpro', followers: '3.2K', icon: 'github', color: '#181717', active: true },
-        { name: 'YouTube', path: 'https://youtube.com/@supplychainpro', username: '@supplychainpro', subscribers: '12.8K', icon: 'youtube', color: '#FF0000', active: true, videoUrl: "/videos/youtube.mp4" },
+        { name: 'YouTube', path: 'https://youtube.com/@supplychainpro', username: '@supplychainpro', subscribers: '12.8K', icon: 'youtube', color: '#FF0000', active: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
         { name: 'Instagram', path: 'https://instagram.com/supplychainpro', username: '@supplychainpro', followers: '8.5K', icon: 'instagram', color: '#E4405F' },
         { name: 'Facebook', path: 'https://facebook.com/supplychainpro', username: '@supplychainpro', followers: '15.2K', icon: 'facebook', color: '#1877F2' },
       ],
@@ -176,10 +186,10 @@ const SocialMediaLinksSection3 = ({ config }) => {
       bgColor: 'bg-purple-50 dark:bg-purple-900/20',
       description: 'Where our developers engage with the community',
       linkCount: 6,
-      videoUrl: "/videos/dev-communities.mp4",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
       links: [
         { name: 'Stack Overflow', path: 'https://stackoverflow.com/companies/supplychainpro', username: 'supplychainpro', reputation: '2.5K', icon: 'stackoverflow', color: '#F58025', active: true },
-        { name: 'Dev.to', path: 'https://dev.to/supplychainpro', username: '@supplychainpro', followers: '1.8K', icon: 'dev', color: '#0A0A0A', active: true, videoUrl: "/videos/devto.mp4" },
+        { name: 'Dev.to', path: 'https://dev.to/supplychainpro', username: '@supplychainpro', followers: '1.8K', icon: 'dev', color: '#0A0A0A', active: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
         { name: 'Hashnode', path: 'https://hashnode.com/@supplychainpro', username: '@supplychainpro', followers: '950', icon: 'hashnode', color: '#2962FF' },
         { name: 'Medium', path: 'https://medium.com/@supplychainpro', username: '@supplychainpro', followers: '3.2K', icon: 'medium', color: '#000000' },
         { name: 'Product Hunt', path: 'https://www.producthunt.com/@supplychainpro', username: '@supplychainpro', followers: '1.2K', icon: 'producthunt', color: '#DA552F' },
@@ -194,9 +204,9 @@ const SocialMediaLinksSection3 = ({ config }) => {
       bgColor: 'bg-green-50 dark:bg-green-900/20',
       description: 'Join our community discussions',
       linkCount: 4,
-      videoUrl: "/videos/community-chat.mp4",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
       links: [
-        { name: 'Discord', path: 'https://discord.gg/supplychainpro', username: 'SupplyChainPro', members: '4.5K', icon: 'discord', color: '#5865F2', active: true, videoUrl: "/videos/discord.mp4" },
+        { name: 'Discord', path: 'https://discord.gg/supplychainpro', username: 'SupplyChainPro', members: '4.5K', icon: 'discord', color: '#5865F2', active: true, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
         { name: 'Slack', path: 'https://slack.supplychainpro.com', username: 'supplychainpro.slack.com', members: '2.8K', icon: 'slack', color: '#4A154B' },
         { name: 'Reddit', path: 'https://reddit.com/r/supplychainpro', username: 'r/supplychainpro', members: '3.1K', icon: 'reddit', color: '#FF4500', active: true },
         { name: 'Telegram', path: 'https://t.me/supplychainpro', username: '@supplychainpro', members: '1.5K', icon: 'telegram', color: '#26A5E4' },
@@ -230,6 +240,30 @@ const SocialMediaLinksSection3 = ({ config }) => {
       ],
     },
   ], [config?.socialCategories]);
+
+  // ==================== CAROUSEL NAVIGATION ====================
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % featuredContent.length);
+  }, [featuredContent.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + featuredContent.length) % featuredContent.length);
+  }, [featuredContent.length]);
+
+  // ==================== AUTO-PLAY CAROUSEL EFFECT ====================
+  useEffect(() => {
+    if (config?.autoPlayCarousel !== false && featuredContent.length > 1) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [config?.autoPlayCarousel, featuredContent.length, nextSlide]);
+
+  // ==================== HELPER FUNCTIONS ====================
+  const getTotalLinks = useMemo(() => {
+    return socialCategories.reduce((acc, cat) => acc + cat.links.length, 0);
+  }, [socialCategories]);
 
   // Get all links flattened for filtering
   const allLinks = useMemo(() => {
@@ -284,10 +318,6 @@ const SocialMediaLinksSection3 = ({ config }) => {
       .filter(category => category.links.length > 0);
   }, [socialCategories, searchQuery, selectedCategory]);
 
-  // Get total link count
-  const totalLinks = socialCategories.reduce((acc, cat) => acc + cat.links.length, 0);
-
-  // Helper function to render social media icons
   const getSocialIcon = (iconName, className = "w-6 h-6") => {
     const icons = {
       twitter: <FaTwitter className={className} />,
@@ -314,14 +344,25 @@ const SocialMediaLinksSection3 = ({ config }) => {
     return icons[iconName] || <FaTwitter className={className} />;
   };
 
+  const getCategoryIcon = (iconName, className = "w-6 h-6 text-white") => {
+    const icons = {
+      globe: <HiOutlineGlobe className={className} />,
+      code: <FaGithub className={className} />,
+      chat: <FaDiscord className={className} />,
+      message: <FaWhatsapp className={className} />,
+      video: <FaYoutube className={className} />,
+    };
+    return icons[iconName] || <HiOutlineGlobe className={className} />;
+  };
+
   return (
     <section
       className="relative py-24 bg-white dark:bg-gray-900 overflow-hidden"
       role="region"
       aria-label="Social Media Links Hub"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+      {/* ==================== BACKGROUND PATTERN ==================== */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="circuit-pattern-social" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -334,12 +375,12 @@ const SocialMediaLinksSection3 = ({ config }) => {
         </svg>
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+        {/* ==================== HERO SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-linear-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full mb-6 shadow-lg animate-pulse">
             <HiOutlineShare className="w-4 h-4" />
@@ -354,33 +395,34 @@ const SocialMediaLinksSection3 = ({ config }) => {
             {config?.description || "Follow us on social media to stay updated with the latest news, product updates, and community discussions."}
           </p>
 
-          {/* Stats Row */}
+          {/* ==================== STATS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineGlobe className="w-4 h-4 text-gray-500" />
+              <HiOutlineGlobe className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
-                <strong>Platforms:</strong> {totalLinks}
+                <strong>Platforms:</strong> {getTotalLinks}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineShare className="w-4 h-4 text-gray-500" />
+              <HiOutlineShare className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 <strong>Categories:</strong> {socialCategories.length}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineCalendar className="w-4 h-4 text-gray-500" />
+              <HiOutlineCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 <strong>Last Updated:</strong> {lastUpdated}
               </span>
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => window.print()}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print social media links"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -388,7 +430,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Featured Social Content Carousel */}
+        {/* ==================== FEATURED SOCIAL CONTENT CAROUSEL ==================== */}
         <div className="relative mb-16">
           <div className="relative overflow-hidden rounded-3xl">
             <div
@@ -412,6 +454,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
+                          aria-label={`Join ${content.title}`}
                         >
                           Join Now
                           <HiOutlineExternalLink className="w-4 h-4" />
@@ -420,6 +463,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
                           <button
                             onClick={() => { setCurrentVideo(content.videoUrl); setShowVideoModal(true); }}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-xl font-semibold hover:bg-white/30 transition-colors"
+                            aria-label="Watch video"
                           >
                             <HiOutlinePlay className="w-5 h-5" />
                             Watch Video
@@ -434,15 +478,28 @@ const SocialMediaLinksSection3 = ({ config }) => {
 
             {featuredContent.length > 1 && (
               <>
-                <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                  aria-label="Previous slide"
+                >
                   <HiOutlineChevronLeft className="w-6 h-6" />
                 </button>
-                <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors">
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                  aria-label="Next slide"
+                >
                   <HiOutlineChevronRight className="w-6 h-6" />
                 </button>
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                   {featuredContent.map((_, idx) => (
-                    <button key={idx} onClick={() => setCurrentSlide(idx)} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`} />
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === idx ? 'w-6 bg-white' : 'bg-white/50'}`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
                   ))}
                 </div>
               </>
@@ -450,7 +507,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -460,6 +517,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'globe' ? <HiOutlineGlobe className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -469,7 +527,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
           ))}
         </div>
 
-        {/* Search and Filter Bar */}
+        {/* ==================== SEARCH AND FILTER BAR ==================== */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -480,7 +538,8 @@ const SocialMediaLinksSection3 = ({ config }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search social platforms..."
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+              aria-label="Search social platforms"
             />
           </div>
           <div className="relative w-full sm:w-64">
@@ -490,7 +549,8 @@ const SocialMediaLinksSection3 = ({ config }) => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer text-gray-900 dark:text-white"
+              aria-label="Filter by category"
             >
               {categoryFilters.map(cat => (
                 <option key={cat.id} value={cat.id}>{cat.label}</option>
@@ -499,7 +559,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </div>
         </div>
 
-        {/* All Platforms Tab */}
+        {/* ==================== ALL PLATFORMS TAB ==================== */}
         {activeTab === 'all' && (
           <>
             {/* View Mode Toggle */}
@@ -510,14 +570,14 @@ const SocialMediaLinksSection3 = ({ config }) => {
                   className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'grid' ? 'bg-white dark:bg-gray-700 shadow-md' : ''}`}
                   aria-label="Grid view"
                 >
-                  <HiOutlineViewGrid className="w-5 h-5" />
+                  <HiOutlineViewGrid className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'list' ? 'bg-white dark:bg-gray-700 shadow-md' : ''}`}
                   aria-label="List view"
                 >
-                  <HiOutlineViewList className="w-5 h-5" />
+                  <HiOutlineViewList className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </button>
               </div>
             </div>
@@ -528,23 +588,19 @@ const SocialMediaLinksSection3 = ({ config }) => {
                 {filteredCategories.map((category) => (
                   <div
                     key={category.id}
-                    className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl`}
+                    className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
                   >
                     {/* Category Header */}
                     <div className="p-5 border-b border-gray-200 dark:border-gray-700">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center`}>
-                          {category.icon === 'globe' ? <HiOutlineGlobe className="w-6 h-6 text-white" /> :
-                            category.icon === 'code' ? <FaGithub className="w-6 h-6 text-white" /> :
-                              category.icon === 'chat' ? <FaDiscord className="w-6 h-6 text-white" /> :
-                                category.icon === 'message' ? <FaWhatsapp className="w-6 h-6 text-white" /> :
-                                  <FaYoutube className="w-6 h-6 text-white" />}
+                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center shadow-md`}>
+                          {getCategoryIcon(category.icon, "w-6 h-6 text-white")}
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
                             {category.name}
                           </h3>
-                          <p className="text-xs text-gray-500">{category.links.length} platforms</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{category.links.length} platforms</p>
                         </div>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
@@ -553,7 +609,8 @@ const SocialMediaLinksSection3 = ({ config }) => {
                       {category.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(category.videoUrl); setShowVideoModal(true); }}
-                          className="mt-2 text-xs text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                          className="mt-2 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 flex items-center gap-1"
+                          aria-label="Watch category overview"
                         >
                           <HiOutlinePlay className="w-3 h-3" />
                           Watch Overview
@@ -571,10 +628,11 @@ const SocialMediaLinksSection3 = ({ config }) => {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="group flex items-center justify-between p-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                              aria-label={`Follow us on ${link.name}`}
                             >
                               <div className="flex items-center gap-3">
                                 <div
-                                  className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                                  className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-sm"
                                   style={{ backgroundColor: link.color, color: 'white' }}
                                 >
                                   {getSocialIcon(link.icon, "w-5 h-5")}
@@ -583,24 +641,24 @@ const SocialMediaLinksSection3 = ({ config }) => {
                                   <p className="font-medium text-gray-900 dark:text-white text-sm">
                                     {link.name}
                                   </p>
-                                  <p className="text-xs text-gray-500">{link.username}</p>
+                                  <p className="text-xs text-gray-500 dark:text-gray-400">{link.username}</p>
                                   {link.followers && (
-                                    <p className="text-xs text-gray-400 mt-0.5">{link.followers} followers</p>
+                                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{link.followers} followers</p>
                                   )}
                                   {link.active && (
-                                    <span className="inline-block text-xs px-1.5 py-0.5 rounded-full bg-green-100 text-green-700 mt-1">
+                                    <span className="inline-block text-xs px-1.5 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 mt-1">
                                       Active
                                     </span>
                                   )}
                                   {link.videoUrl && (
-                                    <span className="text-blue-500 text-xs flex items-center gap-1 mt-1">
+                                    <span className="text-blue-500 dark:text-blue-400 text-xs flex items-center gap-1 mt-1">
                                       <HiOutlinePlay className="w-3 h-3" />
                                       Video
                                     </span>
                                   )}
                                 </div>
                               </div>
-                              <HiOutlineExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors shrink-0" />
+                              <HiOutlineExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                             </a>
                           </li>
                         ))}
@@ -611,7 +669,8 @@ const SocialMediaLinksSection3 = ({ config }) => {
                             setSelectedPlatform({ ...category, allLinks: category.links, isCategoryView: true });
                             setShowSocialModal(true);
                           }}
-                          className="mt-3 w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          className="mt-3 w-full text-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          aria-label={`View all ${category.links.length} platforms in ${category.name}`}
                         >
                           View all {category.links.length} platforms →
                         </button>
@@ -630,11 +689,12 @@ const SocialMediaLinksSection3 = ({ config }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-300"
+                    aria-label={`Follow us on ${link.name}`}
                   >
                     <div className="flex items-center justify-between flex-wrap gap-4">
                       <div className="flex items-center gap-4">
                         <div
-                          className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
+                          className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm"
                           style={{ backgroundColor: link.color, color: 'white' }}
                         >
                           {getSocialIcon(link.icon, "w-6 h-6")}
@@ -642,15 +702,15 @@ const SocialMediaLinksSection3 = ({ config }) => {
                         <div>
                           <div className="flex items-center gap-2 flex-wrap">
                             <h3 className="font-semibold text-gray-900 dark:text-white">{link.name}</h3>
-                            <span className="text-xs text-gray-400">{link.categoryName}</span>
+                            <span className="text-xs text-gray-400 dark:text-gray-500">{link.categoryName}</span>
                             {link.active && (
-                              <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">
+                              <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">
                                 Active
                               </span>
                             )}
                           </div>
-                          <p className="text-sm text-gray-500 mt-1">{link.username}</p>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{link.username}</p>
+                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-400 dark:text-gray-500">
                             {link.followers && <span>👥 {link.followers} followers</span>}
                             {link.subscribers && <span>📺 {link.subscribers} subscribers</span>}
                             {link.members && <span>👥 {link.members} members</span>}
@@ -658,7 +718,8 @@ const SocialMediaLinksSection3 = ({ config }) => {
                           {link.videoUrl && (
                             <button
                               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentVideo(link.videoUrl); setShowVideoModal(true); }}
-                              className="text-blue-500 text-xs flex items-center gap-1 mt-1 hover:underline"
+                              className="text-blue-500 dark:text-blue-400 text-xs flex items-center gap-1 mt-1 hover:underline"
+                              aria-label="Watch video"
                             >
                               <HiOutlinePlay className="w-3 h-3" />
                               Watch Video
@@ -677,13 +738,14 @@ const SocialMediaLinksSection3 = ({ config }) => {
             {filteredCategories.length === 0 && filteredLinks.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No social platforms match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No social platforms match your search.</p>
                 <button
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategory('all');
                   }}
-                  className="mt-3 text-blue-600 hover:underline text-sm"
+                  className="mt-3 text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  aria-label="Clear filters"
                 >
                   Clear filters
                 </button>
@@ -692,11 +754,11 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </>
         )}
 
-        {/* Most Active Tab */}
+        {/* ==================== MOST ACTIVE TAB ==================== */}
         {activeTab === 'popular' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineStar className="w-5 h-5 text-yellow-500" />
+              <HiOutlineStar className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
               Most Active Platforms
             </h2>
             <div className="overflow-x-auto">
@@ -715,14 +777,14 @@ const SocialMediaLinksSection3 = ({ config }) => {
                       <td className="p-3">
                         <div className="flex items-center gap-2">
                           <div
-                            className="w-8 h-8 rounded-full flex items-center justify-center"
+                            className="w-8 h-8 rounded-full flex items-center justify-center shadow-sm"
                             style={{ backgroundColor: platform.color, color: 'white' }}
                           >
                             {getSocialIcon(platform.icon, "w-4 h-4")}
                           </div>
                           <a href={platform.path} target="_blank" rel="noopener noreferrer" className="font-medium text-gray-900 dark:text-white hover:text-blue-600 transition-colors flex items-center gap-1">
                             {platform.name}
-                            {platform.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500" />}
+                            {platform.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500 dark:text-blue-400" />}
                           </a>
                         </div>
                       </td>
@@ -731,9 +793,9 @@ const SocialMediaLinksSection3 = ({ config }) => {
                         {platform.posts || platform.commits || platform.videos || platform.messages || platform.answers}
                       </td>
                       <td className="p-3">
-                        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${platform.engagement === 'High' ? 'bg-green-100 text-green-700' :
-                          platform.engagement === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
-                            'bg-gray-100 text-gray-700'
+                        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${platform.engagement === 'High' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
+                          platform.engagement === 'Medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                            'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
                           }`}>
                           {platform.engagement}
                         </span>
@@ -746,11 +808,11 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Recent Posts Tab */}
+        {/* ==================== RECENT POSTS TAB ==================== */}
         {activeTab === 'recent' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineTrendingUp className="w-5 h-5 text-green-500" />
+              <HiOutlineTrendingUp className="w-5 h-5 text-green-500 dark:text-green-400" />
               Recent Social Posts
             </h2>
             <div className="space-y-3">
@@ -758,7 +820,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
                 <div key={idx} className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-md">
                   <div className="flex items-start gap-3">
                     <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                      className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-sm"
                       style={{ backgroundColor: post.color, color: 'white' }}
                     >
                       {getSocialIcon(post.icon, "w-5 h-5")}
@@ -767,12 +829,12 @@ const SocialMediaLinksSection3 = ({ config }) => {
                       <div className="flex items-center justify-between flex-wrap gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">{post.platform}</p>
-                          {post.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500" />}
+                          {post.videoUrl && <HiOutlinePlay className="w-3 h-3 text-blue-500 dark:text-blue-400" />}
                         </div>
-                        <p className="text-xs text-gray-400">{post.date}</p>
+                        <p className="text-xs text-gray-400 dark:text-gray-500">{post.date}</p>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 mt-1">{post.content}</p>
-                      <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
+                      <div className="flex items-center gap-3 mt-2 text-xs text-gray-400 dark:text-gray-500">
                         {post.likes && <span>❤️ {post.likes} likes</span>}
                         {post.retweets && <span>🔄 {post.retweets} retweets</span>}
                         {post.comments && <span>💬 {post.comments} comments</span>}
@@ -783,7 +845,8 @@ const SocialMediaLinksSection3 = ({ config }) => {
                       {post.videoUrl && (
                         <button
                           onClick={() => { setCurrentVideo(post.videoUrl); setShowVideoModal(true); }}
-                          className="mt-2 text-blue-500 text-xs flex items-center gap-1 hover:underline"
+                          className="mt-2 text-blue-500 dark:text-blue-400 text-xs flex items-center gap-1 hover:underline"
+                          aria-label="Watch video"
                         >
                           <HiOutlinePlay className="w-3 h-3" />
                           Watch Video
@@ -797,27 +860,37 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Footer Note */}
+        {/* ==================== FOOTER NOTE ==================== */}
         <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>Follow us for the latest updates, tips, and community news!</p>
         </div>
 
-        {/* Social Platform Modal */}
+        {/* ==================== SOCIAL PLATFORM MODAL ==================== */}
         {showSocialModal && selectedPlatform && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowSocialModal(false)}>
-            <div className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowSocialModal(false)}
+            role="dialog"
+            aria-label={selectedPlatform.name}
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className={`bg-linear-to-r ${selectedPlatform.color} p-4`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-                      {selectedPlatform.icon === 'globe' ? <HiOutlineGlobe className="w-5 h-5 text-white" /> :
-                        selectedPlatform.icon === 'code' ? <FaGithub className="w-5 h-5 text-white" /> :
-                          selectedPlatform.icon === 'chat' ? <FaDiscord className="w-5 h-5 text-white" /> :
-                            <FaYoutube className="w-5 h-5 text-white" />}
+                      {getCategoryIcon(selectedPlatform.icon, "w-5 h-5 text-white")}
                     </div>
                     <h3 className="text-white font-bold text-lg">{selectedPlatform.name}</h3>
                   </div>
-                  <button onClick={() => setShowSocialModal(false)} className="text-white hover:text-gray-200">
+                  <button
+                    onClick={() => setShowSocialModal(false)}
+                    className="text-white hover:text-gray-200 transition-colors"
+                    aria-label="Close modal"
+                  >
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -833,17 +906,18 @@ const SocialMediaLinksSection3 = ({ config }) => {
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                         onClick={() => setShowSocialModal(false)}
+                        aria-label={`Follow us on ${link.name}`}
                       >
                         <div className="flex items-center gap-3">
                           <div
-                            className="w-10 h-10 rounded-full flex items-center justify-center"
+                            className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
                             style={{ backgroundColor: link.color, color: 'white' }}
                           >
                             {getSocialIcon(link.icon, "w-5 h-5")}
                           </div>
                           <div>
                             <p className="font-medium text-gray-900 dark:text-white">{link.name}</p>
-                            <p className="text-sm text-gray-500">{link.username}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">{link.username}</p>
                           </div>
                         </div>
                         <HiOutlineExternalLink className="w-4 h-4 text-gray-400" />
@@ -856,11 +930,24 @@ const SocialMediaLinksSection3 = ({ config }) => {
           </div>
         )}
 
-        {/* Video Modal */}
+        {/* ==================== VIDEO MODAL ==================== */}
         {showVideoModal && currentVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={() => setShowVideoModal(false)}>
-            <div className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setShowVideoModal(false)} className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+            onClick={() => setShowVideoModal(false)}
+            role="dialog"
+            aria-label="Video Player"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                aria-label="Close video"
+              >
                 <HiOutlineX className="w-6 h-6" />
               </button>
               <video ref={videoRef} src={currentVideo} className="w-full" controls autoPlay />
@@ -869,6 +956,7 @@ const SocialMediaLinksSection3 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }

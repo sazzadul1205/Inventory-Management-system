@@ -1,9 +1,28 @@
 // page/frontend/Sitemap/ResourceLinksSection/ResourceLinksSection2.jsx
 
-// React
+/**
+ * Resource Links Section II - Interactive Learning Hub
+ *
+ * Unique Design Elements:
+ * - Multi-Tab Interface (All Resources, Popular, Recently Added)
+ * - Grid/List View Toggle for Resource Display
+ * - Resource Type Filter with Dropdown Selection
+ * - Popular Resources Table with Download/View Counts
+ * - Recently Added Timeline with Date Attribution
+ * - Search Functionality with Live Filtering
+ * - Modal View for Complete Resource Details
+ * - Stats Dashboard with Total Resources and Categories
+ * - Print Functionality for Documentation
+ * - Animated Background Grid Pattern
+ * - Fully Responsive Layout with Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2)
+ * Fully responsive with dark mode support
+ */
+
 import { useState, useMemo } from 'react';
 
-// Icons
+// React Icons - Heroicons and Heroicons 2
 import {
   HiOutlineDocumentText,
   HiOutlineBookOpen,
@@ -36,23 +55,25 @@ import {
 } from 'react-icons/hi2';
 
 const ResourceLinksSection2 = ({ config }) => {
-  const [activeTab, setActiveTab] = useState('all');
+  // ==================== STATE MANAGEMENT ====================
   const [viewMode, setViewMode] = useState('grid');
+  const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('all');
-  const [showResourceModal, setShowResourceModal] = useState(false);
   const [selectedResource, setSelectedResource] = useState(null);
+  const [showResourceModal, setShowResourceModal] = useState(false);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
+  // ==================== MEMOIZED DATA ====================
   // Tabs configuration
-  const tabs = [
+  const tabs = useMemo(() => config?.tabs || [
     { id: 'all', label: 'All Resources', icon: 'folder' },
     { id: 'popular', label: 'Popular', icon: 'star' },
     { id: 'recent', label: 'Recently Added', icon: 'trending-up' },
-  ];
+  ], [config?.tabs]);
 
   // Resource types for filtering
-  const resourceTypes = [
+  const resourceTypes = useMemo(() => config?.resourceTypes || [
     { id: 'all', label: 'All Types' },
     { id: 'Guide', label: 'Guides' },
     { id: 'Video', label: 'Videos' },
@@ -61,27 +82,27 @@ const ResourceLinksSection2 = ({ config }) => {
     { id: 'Case Study', label: 'Case Studies' },
     { id: 'White Paper', label: 'White Papers' },
     { id: 'E-book', label: 'E-books' },
-  ];
+  ], [config?.resourceTypes]);
 
   // Popular resources
-  const popularResources = config?.popularResources || [
+  const popularResources = useMemo(() => config?.popularResources || [
     { name: 'Getting Started Guide', path: '/docs/getting-started', category: 'Documentation', type: 'Guide', downloads: '15.2K' },
     { name: 'API Reference', path: '/api/docs', category: 'Documentation', type: 'Technical', downloads: '12.8K' },
     { name: 'Video: Getting Started', path: '/tutorials/getting-started', category: 'Tutorials', type: 'Video', views: '8.5K' },
     { name: 'Supply Chain Management Guide', path: '/ebooks/scm-guide', category: 'E-books', type: 'E-book', downloads: '7.2K' },
     { name: 'Global Retail Corp Case Study', path: '/case-studies/global-retail', category: 'Case Studies', type: 'Case Study', downloads: '5.6K' },
     { name: 'Inventory Optimization Workbook', path: '/ebooks/inventory-workbook', category: 'E-books', type: 'E-book', downloads: '4.9K' },
-  ];
+  ], [config?.popularResources]);
 
   // Recently added resources
-  const recentlyAdded = config?.recentlyAdded || [
+  const recentlyAdded = useMemo(() => config?.recentlyAdded || [
     { name: 'Introducing SupplyChainPro v3.0', path: '/blog/v3-launch', category: 'Blog', type: 'Article', date: 'April 8, 2026' },
     { name: 'Security Policy Update', path: '/legal/security', category: 'Legal', type: 'Policy', date: 'April 5, 2026' },
     { name: 'Data Processing Agreement v2', path: '/legal/dpa', category: 'Legal', type: 'Agreement', date: 'April 1, 2026' },
     { name: 'Android App v3.0 Guide', path: '/docs/android-v3', category: 'Documentation', type: 'Guide', date: 'March 28, 2026' },
     { name: 'iOS App v3.0 Guide', path: '/docs/ios-v3', category: 'Documentation', type: 'Guide', date: 'March 28, 2026' },
     { name: 'Cookie Policy Update', path: '/legal/cookies', category: 'Legal', type: 'Policy', date: 'March 25, 2026' },
-  ];
+  ], [config?.recentlyAdded]);
 
   // Resource categories and links
   const resourceCategories = useMemo(() => config?.resourceCategories || [
@@ -219,6 +240,11 @@ const ResourceLinksSection2 = ({ config }) => {
     },
   ], [config?.resourceCategories]);
 
+  // ==================== HELPER FUNCTIONS ====================
+  const getTotalResources = useMemo(() => {
+    return resourceCategories.reduce((acc, cat) => acc + cat.resources.length, 0);
+  }, [resourceCategories]);
+
   // Get all resources flattened for filtering
   const allResources = useMemo(() => {
     const resources = [];
@@ -277,10 +303,6 @@ const ResourceLinksSection2 = ({ config }) => {
       .filter(category => category.resources.length > 0);
   }, [resourceCategories, searchQuery, selectedType]);
 
-  // Get total resource count
-  const totalResources = resourceCategories.reduce((acc, cat) => acc + cat.resources.length, 0);
-
-  // Helper function to render icons
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       document: <HiOutlineDocumentText className={className} />,
@@ -316,15 +338,15 @@ const ResourceLinksSection2 = ({ config }) => {
       role="region"
       aria-label="Resource Links Center"
     >
-      {/* Background Pattern */}
+      {/* ==================== BACKGROUND PATTERN ==================== */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 mask-[radial-gradient(ellipse_at_center,white,transparent)]" aria-hidden="true" />
 
-      {/* Animated Gradient Orbs */}
+      {/* ==================== ANIMATED GRADIENT ORBS ==================== */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-green-200 dark:bg-green-900/20 rounded-full blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-teal-200 dark:bg-teal-900/20 rounded-full blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+        {/* ==================== HEADER SECTION ==================== */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-green-50 dark:bg-green-900/30 rounded-full px-4 py-2 mb-6">
             <HiOutlineBookOpen className="w-4 h-4 text-green-600 dark:text-green-400" />
@@ -341,33 +363,34 @@ const ResourceLinksSection2 = ({ config }) => {
             {config?.description || "Access our library of documentation, tutorials, case studies, and other resources to help you succeed with SupplyChainPro."}
           </p>
 
-          {/* Stats Row */}
+          {/* ==================== STATS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineDocumentText className="w-4 h-4 text-gray-500" />
+              <HiOutlineDocumentText className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
-                <strong>Total Resources:</strong> {totalResources}
+                <strong>Total Resources:</strong> {getTotalResources}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineFolder className="w-4 h-4 text-gray-500" />
+              <HiOutlineFolder className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 <strong>Categories:</strong> {resourceCategories.length}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700">
-              <HiOutlineCalendar className="w-4 h-4 text-gray-500" />
+              <HiOutlineCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
                 <strong>Last Updated:</strong> {lastUpdated}
               </span>
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => window.print()}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200 dark:border-gray-700 text-sm font-medium"
+              aria-label="Print resources"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -375,7 +398,7 @@ const ResourceLinksSection2 = ({ config }) => {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* ==================== NAVIGATION TABS ==================== */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {tabs.map((tab) => (
             <button
@@ -385,6 +408,7 @@ const ResourceLinksSection2 = ({ config }) => {
                 ? 'bg-green-600 text-white shadow-lg shadow-green-600/25'
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
                 }`}
+              aria-label={`Switch to ${tab.label} tab`}
             >
               {tab.icon === 'folder' ? <HiOutlineFolder className="w-4 h-4" /> :
                 tab.icon === 'star' ? <HiOutlineStar className="w-4 h-4" /> :
@@ -394,7 +418,7 @@ const ResourceLinksSection2 = ({ config }) => {
           ))}
         </div>
 
-        {/* Search and Filter Bar */}
+        {/* ==================== SEARCH AND FILTER BAR ==================== */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -405,7 +429,8 @@ const ResourceLinksSection2 = ({ config }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search resources..."
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900 dark:text-white"
+              aria-label="Search resources"
             />
           </div>
           <div className="relative w-full sm:w-64">
@@ -415,7 +440,8 @@ const ResourceLinksSection2 = ({ config }) => {
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none cursor-pointer"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none cursor-pointer text-gray-900 dark:text-white"
+              aria-label="Filter by resource type"
             >
               {resourceTypes.map(type => (
                 <option key={type.id} value={type.id}>{type.label}</option>
@@ -424,7 +450,7 @@ const ResourceLinksSection2 = ({ config }) => {
           </div>
         </div>
 
-        {/* All Resources Tab */}
+        {/* ==================== ALL RESOURCES TAB ==================== */}
         {activeTab === 'all' && (
           <>
             {/* View Mode Toggle */}
@@ -435,14 +461,14 @@ const ResourceLinksSection2 = ({ config }) => {
                   className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'grid' ? 'bg-white dark:bg-gray-700 shadow-md' : ''}`}
                   aria-label="Grid view"
                 >
-                  <HiOutlineViewGrid className="w-5 h-5" />
+                  <HiOutlineViewGrid className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition-all duration-300 ${viewMode === 'list' ? 'bg-white dark:bg-gray-700 shadow-md' : ''}`}
                   aria-label="List view"
                 >
-                  <HiOutlineViewList className="w-5 h-5" />
+                  <HiOutlineViewList className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </button>
               </div>
             </div>
@@ -453,19 +479,19 @@ const ResourceLinksSection2 = ({ config }) => {
                 {filteredCategories.map((category) => (
                   <div
                     key={category.id}
-                    className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl`}
+                    className={`${category.bgColor} rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
                   >
                     {/* Category Header */}
                     <div className="p-5 border-b border-gray-200 dark:border-gray-700">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center`}>
+                        <div className={`w-12 h-12 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center shadow-md`}>
                           {getIcon(category.icon, "w-6 h-6 text-white")}
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
                             {category.name}
                           </h3>
-                          <p className="text-xs text-gray-500">{category.resources.length} resources</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{category.resources.length} resources</p>
                         </div>
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
@@ -484,12 +510,13 @@ const ResourceLinksSection2 = ({ config }) => {
                                 setShowResourceModal(true);
                               }}
                               className="group w-full text-left flex items-center justify-between p-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                              aria-label={`View ${resource.name}`}
                             >
                               <div className="flex-1">
                                 <p className="font-medium text-gray-900 dark:text-white text-sm">
                                   {resource.name}
                                 </p>
-                                <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
                                   {resource.description}
                                 </p>
                                 <div className="flex items-center gap-2 mt-1">
@@ -498,7 +525,7 @@ const ResourceLinksSection2 = ({ config }) => {
                                   </span>
                                 </div>
                               </div>
-                              <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-colors ml-2 shrink-0" />
+                              <HiOutlineChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-500 group-hover:translate-x-1 transition-all duration-300 ml-2 shrink-0" />
                             </button>
                           </li>
                         ))}
@@ -506,7 +533,6 @@ const ResourceLinksSection2 = ({ config }) => {
                       {category.resources.length > 3 && (
                         <button
                           onClick={() => {
-                            // Show all resources in modal or expand
                             setSelectedResource({
                               name: category.name,
                               description: category.description,
@@ -516,7 +542,8 @@ const ResourceLinksSection2 = ({ config }) => {
                             });
                             setShowResourceModal(true);
                           }}
-                          className="mt-3 w-full text-center text-sm text-green-600 hover:text-green-700 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          className="mt-3 w-full text-center text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium py-2 rounded-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          aria-label={`View all ${category.resources.length} resources in ${category.name}`}
                         >
                           View all {category.resources.length} resources →
                         </button>
@@ -536,6 +563,7 @@ const ResourceLinksSection2 = ({ config }) => {
                       setShowResourceModal(true);
                     }}
                     className="w-full text-left bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-300"
+                    aria-label={`View ${resource.name}`}
                   >
                     <div className="flex items-start justify-between flex-wrap gap-4">
                       <div className="flex-1">
@@ -544,10 +572,10 @@ const ResourceLinksSection2 = ({ config }) => {
                           <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">
                             {resource.type}
                           </span>
-                          <span className="text-xs text-gray-400">{resource.categoryName}</span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500">{resource.categoryName}</span>
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">{resource.description}</p>
-                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{resource.description}</p>
+                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400 dark:text-gray-500">
                           {resource.updated && <span>Updated: {resource.updated}</span>}
                           {resource.date && <span>Date: {resource.date}</span>}
                           {resource.duration && <span>Duration: {resource.duration}</span>}
@@ -565,13 +593,14 @@ const ResourceLinksSection2 = ({ config }) => {
             {filteredCategories.length === 0 && filteredResources.length === 0 && (
               <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
                 <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-500">No resources match your search.</p>
+                <p className="text-gray-500 dark:text-gray-400">No resources match your search.</p>
                 <button
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedType('all');
                   }}
-                  className="mt-3 text-green-600 hover:underline text-sm"
+                  className="mt-3 text-green-600 dark:text-green-400 hover:underline text-sm"
+                  aria-label="Clear filters"
                 >
                   Clear filters
                 </button>
@@ -580,11 +609,11 @@ const ResourceLinksSection2 = ({ config }) => {
           </>
         )}
 
-        {/* Popular Tab */}
+        {/* ==================== POPULAR TAB ==================== */}
         {activeTab === 'popular' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineStar className="w-5 h-5 text-yellow-500" />
+              <HiOutlineStar className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
               Most Popular Resources
             </h2>
             <div className="overflow-x-auto">
@@ -622,11 +651,11 @@ const ResourceLinksSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Recent Tab */}
+        {/* ==================== RECENT TAB ==================== */}
         {activeTab === 'recent' && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <HiOutlineTrendingUp className="w-5 h-5 text-green-500" />
+              <HiOutlineTrendingUp className="w-5 h-5 text-green-500 dark:text-green-400" />
               Recently Added Resources
             </h2>
             <div className="space-y-3">
@@ -635,6 +664,7 @@ const ResourceLinksSection2 = ({ config }) => {
                   key={idx}
                   href={resource.path}
                   className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 transition-all duration-300 hover:shadow-md"
+                  aria-label={`Navigate to ${resource.name}`}
                 >
                   <div className="flex items-start justify-between flex-wrap gap-2">
                     <div>
@@ -644,7 +674,7 @@ const ResourceLinksSection2 = ({ config }) => {
                           {resource.type}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">Category: {resource.category}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Category: {resource.category}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm text-gray-600 dark:text-gray-400">{resource.date}</p>
@@ -656,19 +686,32 @@ const ResourceLinksSection2 = ({ config }) => {
           </div>
         )}
 
-        {/* Footer Note */}
+        {/* ==================== FOOTER NOTE ==================== */}
         <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>Can't find what you're looking for? <a href="/contact" className="text-green-600 hover:underline">Contact our support team</a></p>
+          <p>Can't find what you're looking for? <a href="/contact" className="text-green-600 dark:text-green-400 hover:underline">Contact our support team</a></p>
         </div>
 
-        {/* Resource Detail Modal */}
+        {/* ==================== RESOURCE DETAIL MODAL ==================== */}
         {showResourceModal && selectedResource && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowResourceModal(false)}>
-            <div className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowResourceModal(false)}
+            role="dialog"
+            aria-label={selectedResource.isCategoryView ? selectedResource.name : selectedResource.name}
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-lg w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-linear-to-r from-green-600 to-teal-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">{selectedResource.name}</h3>
-                  <button onClick={() => setShowResourceModal(false)} className="text-white hover:text-gray-200">
+                  <button
+                    onClick={() => setShowResourceModal(false)}
+                    className="text-white hover:text-gray-200 transition-colors"
+                    aria-label="Close modal"
+                  >
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
@@ -684,9 +727,10 @@ const ResourceLinksSection2 = ({ config }) => {
                             href={resource.path}
                             className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                             onClick={() => setShowResourceModal(false)}
+                            aria-label={`Navigate to ${resource.name}`}
                           >
                             <p className="font-medium text-gray-900 dark:text-white">{resource.name}</p>
-                            <p className="text-sm text-gray-500 mt-0.5">{resource.description}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{resource.description}</p>
                             <div className="flex items-center gap-2 mt-1">
                               <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
                                 {resource.type}
@@ -702,47 +746,47 @@ const ResourceLinksSection2 = ({ config }) => {
                     <p className="text-gray-600 dark:text-gray-400 mb-4">{selectedResource.description}</p>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Category:</span>
-                        <span className="text-gray-900 dark:text-white">{selectedResource.category}</span>
+                        <span className="text-gray-500 dark:text-gray-400">Category:</span>
+                        <span className="text-gray-900 dark:text-white font-medium">{selectedResource.category}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Type:</span>
-                        <span className="text-gray-900 dark:text-white">{selectedResource.type}</span>
+                        <span className="text-gray-500 dark:text-gray-400">Type:</span>
+                        <span className="text-gray-900 dark:text-white font-medium">{selectedResource.type}</span>
                       </div>
                       {selectedResource.duration && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Duration:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedResource.duration}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Duration:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedResource.duration}</span>
                         </div>
                       )}
                       {selectedResource.pages && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Pages:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedResource.pages}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Pages:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedResource.pages}</span>
                         </div>
                       )}
                       {selectedResource.date && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Date:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedResource.date}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Date:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedResource.date}</span>
                         </div>
                       )}
                       {selectedResource.updated && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Updated:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedResource.updated}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Updated:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedResource.updated}</span>
                         </div>
                       )}
                       {selectedResource.author && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Author:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedResource.author}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Author:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedResource.author}</span>
                         </div>
                       )}
                       {selectedResource.industry && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Industry:</span>
-                          <span className="text-gray-900 dark:text-white">{selectedResource.industry}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Industry:</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{selectedResource.industry}</span>
                         </div>
                       )}
                     </div>
@@ -751,6 +795,7 @@ const ResourceLinksSection2 = ({ config }) => {
                         href={selectedResource.path}
                         className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
                         onClick={() => setShowResourceModal(false)}
+                        aria-label={`Open ${selectedResource.name}`}
                       >
                         {selectedResource.type === 'Video' ? (
                           <>Watch Video <HiOutlineExternalLink className="w-4 h-4" /></>
@@ -771,6 +816,7 @@ const ResourceLinksSection2 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }
