@@ -38,11 +38,12 @@ Route::controller(FrontEndController::class)->group(function () {
         'global-presence' => 'globalPresence',
         'careers',
         'trust-signals' => 'trustSignals',
-        'newsletter' => 'newsletter',
+        'newsletter',
         'mobile-app' => 'mobileApp',
         'events',
         'support',
         'legal',
+        'sitemap',
     ];
 
     foreach ($pages as $uri => $method) {

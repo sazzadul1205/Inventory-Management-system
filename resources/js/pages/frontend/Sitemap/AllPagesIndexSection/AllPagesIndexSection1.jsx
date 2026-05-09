@@ -1,9 +1,26 @@
 // page/frontend/Sitemap/AllPagesIndexSection/AllPagesIndexSection1.jsx
 
-// React
+/**
+ * Sitemap Index Section I - Complete Website Navigation Hub
+ *
+ * Unique Design Elements:
+ * - Expandable/Collapsible Category Cards with Page Lists
+ * - Search Functionality with Live Filtering
+ * - Stats Dashboard with Total Pages and Categories
+ * - Print and XML Sitemap Download Functionality
+ * - Color-Coded Category Headers with Gradient Accents
+ * - Hover Effects with External Link Indicators
+ * - Fully Responsive Grid Layout
+ * - Animated Background Blur Orbs
+ * - Dark Mode Support
+ *
+ * All icons from react-icons (hi, hi2, md)
+ * Fully responsive with dark mode support
+ */
+
 import { useState } from 'react';
 
-// Icons
+// React Icons - Heroicons, Heroicons 2, and Material Design
 import {
   HiOutlineHome,
   HiOutlineDocumentText,
@@ -42,15 +59,16 @@ import {
   HiOutlineDocumentDuplicate,
   HiOutlineFingerPrint,
 } from 'react-icons/hi2';
-import { MdOutlineCookie as HiOutlineCookie, } from "react-icons/md";
+import { MdOutlineCookie as HiOutlineCookie } from "react-icons/md";
 
 const AllPagesIndexSection1 = ({ config }) => {
-  const [expandedCategory, setExpandedCategory] = useState(null);
+  // ==================== STATE MANAGEMENT ====================
   const [searchQuery, setSearchQuery] = useState('');
+  const [expandedCategory, setExpandedCategory] = useState(null);
   const [showSitemapModal, setShowSitemapModal] = useState(false);
   const [lastUpdated] = useState(config?.lastUpdated || "April 8, 2026");
 
-  // Sitemap categories and pages
+  // ==================== MEMOIZED DATA ====================
   const sitemapCategories = config?.sitemapCategories || [
     {
       id: 'home',
@@ -140,7 +158,7 @@ const AllPagesIndexSection1 = ({ config }) => {
         { name: 'Case Studies', path: '/case-studies', description: 'Customer success stories' },
         { name: 'White Papers', path: '/white-papers', description: 'In-depth research papers' },
         { name: 'E-books', path: '/ebooks', description: 'Free e-books and guides' },
-        { name: 'InfoGraphics', path: '/infoGraphics', description: 'Visual data insights' },
+        { name: 'Infographics', path: '/infographics', description: 'Visual data insights' },
         { name: 'Glossary', path: '/glossary', description: 'Supply chain terminology' },
       ],
     },
@@ -172,7 +190,7 @@ const AllPagesIndexSection1 = ({ config }) => {
         { name: 'Data Processing Agreement', path: '/legal/dpa', description: 'DPA for customers' },
         { name: 'Security Policy', path: '/legal/security', description: 'Security practices' },
         { name: 'Acceptable Use Policy', path: '/legal/aup', description: 'AUP guidelines' },
-        { name: 'SubProcessors', path: '/legal/subProcessors', description: 'List of subProcessors' },
+        { name: 'SubProcessors', path: '/legal/subprocessors', description: 'List of subprocessors' },
         { name: 'Compliance Reports', path: '/legal/compliance', description: 'SOC 2, ISO reports' },
         { name: 'Data Request Form', path: '/legal/data-request', description: 'Submit DSAR' },
       ],
@@ -222,7 +240,7 @@ const AllPagesIndexSection1 = ({ config }) => {
     );
   });
 
-  // Helper function to render icons
+  // ==================== HELPER FUNCTIONS ====================
   const getIcon = (iconName, className = "w-5 h-5") => {
     const icons = {
       home: <HiOutlineHome className={className} />,
@@ -259,7 +277,6 @@ const AllPagesIndexSection1 = ({ config }) => {
     return icons[iconName] || <HiOutlineDocumentText className={className} />;
   };
 
-  // Get total page count
   const totalPages = sitemapCategories.reduce((acc, cat) => acc + cat.pages.length, 0);
 
   return (
@@ -268,13 +285,13 @@ const AllPagesIndexSection1 = ({ config }) => {
       role="region"
       aria-label="Sitemap Index"
     >
-      {/* Background decorative elements */}
+      {/* ==================== BACKGROUND DECORATIONS ==================== */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" aria-hidden="true" />
       <div className="absolute bottom-40 right-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* ==================== SECTION HEADER ==================== */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center bg-blue-50 dark:bg-gray-800 rounded-full px-4 py-2 mb-6 border border-blue-100 dark:border-gray-700">
             <HiOutlineGlobe className="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2" />
@@ -291,40 +308,42 @@ const AllPagesIndexSection1 = ({ config }) => {
             {config?.description || "Find your way around SupplyChainPro. This sitemap provides an overview of all pages available on our website."}
           </p>
 
-          {/* Stats Row */}
+          {/* ==================== STATS ROW ==================== */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineDocumentText className="w-4 h-4 text-gray-500" />
+              <HiOutlineDocumentText className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 <strong>Total Pages:</strong> {totalPages}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineCalendar className="w-4 h-4 text-gray-500" />
+              <HiOutlineCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 <strong>Last Updated:</strong> {lastUpdated}
               </span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-              <HiOutlineBuildingOffice className="w-4 h-4 text-gray-500" />
+              <HiOutlineBuildingOffice className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 <strong>Categories:</strong> {sitemapCategories.length}
               </span>
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* ==================== ACTION BUTTONS ==================== */}
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <button
               onClick={() => setShowSitemapModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors text-sm font-medium"
+              aria-label="Download XML sitemap"
             >
               <HiOutlineDownload className="w-4 h-4" />
               Download XML Sitemap
             </button>
             <button
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+              aria-label="Print sitemap"
             >
               <HiOutlinePrinter className="w-4 h-4" />
               Print
@@ -332,7 +351,7 @@ const AllPagesIndexSection1 = ({ config }) => {
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* ==================== SEARCH BAR ==================== */}
         <div className="relative max-w-md mx-auto mb-8">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <HiOutlineSearch className="w-5 h-5 text-gray-400" />
@@ -342,11 +361,12 @@ const AllPagesIndexSection1 = ({ config }) => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for a page..."
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+            aria-label="Search for a page"
           />
         </div>
 
-        {/* Sitemap Grid */}
+        {/* ==================== SITEMAP GRID ==================== */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCategories.map((category) => (
             <div
@@ -357,6 +377,7 @@ const AllPagesIndexSection1 = ({ config }) => {
               <button
                 onClick={() => setExpandedCategory(expandedCategory === category.id ? null : category.id)}
                 className="w-full p-5 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                aria-label={`Toggle ${category.name} category`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-xl bg-linear-to-r ${category.color} flex items-center justify-center`}>
@@ -364,7 +385,7 @@ const AllPagesIndexSection1 = ({ config }) => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">{category.name}</h3>
-                    <p className="text-xs text-gray-500">{category.pages.length} pages</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{category.pages.length} pages</p>
                   </div>
                 </div>
                 {expandedCategory === category.id ? (
@@ -383,13 +404,14 @@ const AllPagesIndexSection1 = ({ config }) => {
                         <a
                           href={page.path}
                           className="block p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                          aria-label={`Navigate to ${page.name}`}
                         >
                           <div className="flex items-start justify-between">
                             <div>
                               <p className="font-medium text-gray-900 dark:text-white text-sm">
                                 {page.name}
                               </p>
-                              <p className="text-xs text-gray-500 mt-0.5">{page.description}</p>
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{page.description}</p>
                               <p className="text-xs text-blue-600 dark:text-blue-400 mt-1 font-mono">
                                 {page.path}
                               </p>
@@ -406,39 +428,49 @@ const AllPagesIndexSection1 = ({ config }) => {
           ))}
         </div>
 
-        {/* No Results */}
+        {/* ==================== NO RESULTS ==================== */}
         {filteredCategories.length === 0 && (
           <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl">
-            <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-            <p className="text-gray-500">No pages match your search.</p>
+            <HiOutlineSearch className="w-12 h-12 mx-auto text-gray-400 dark:text-gray-500 mb-3" />
+            <p className="text-gray-500 dark:text-gray-400">No pages match your search.</p>
             <button
               onClick={() => setSearchQuery('')}
-              className="mt-3 text-blue-600 hover:underline text-sm"
+              className="mt-3 text-blue-600 dark:text-blue-400 hover:underline text-sm"
+              aria-label="Clear search"
             >
               Clear search
             </button>
           </div>
         )}
 
-        {/* Footer Note */}
+        {/* ==================== FOOTER NOTE ==================== */}
         <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>Need help finding something? <a href="/contact" className="text-blue-600 hover:underline">Contact our support team</a></p>
+          <p>Need help finding something? <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact our support team</a></p>
         </div>
 
-        {/* XML Sitemap Modal */}
+        {/* ==================== XML SITEMAP MODAL ==================== */}
         {showSitemapModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setShowSitemapModal(false)}>
-            <div className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+            onClick={() => setShowSitemapModal(false)}
+            role="dialog"
+            aria-label="Download XML Sitemap"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="bg-blue-600 p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-bold text-lg">Download XML Sitemap</h3>
-                  <button onClick={() => setShowSitemapModal(false)} className="text-white hover:text-gray-200">
+                  <button onClick={() => setShowSitemapModal(false)} className="text-white hover:text-gray-200 transition-colors" aria-label="Close modal">
                     <HiOutlineX className="w-6 h-6" />
                   </button>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <HiOutlineDocumentDuplicate className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <HiOutlineDocumentDuplicate className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   The XML sitemap is available for search engines to crawl your site structure.
                 </p>
@@ -447,13 +479,15 @@ const AllPagesIndexSection1 = ({ config }) => {
                     href="/sitemap.xml"
                     download
                     className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    aria-label="Download sitemap.xml"
                   >
                     <HiOutlineDownload className="w-4 h-4" />
                     Download sitemap.xml
                   </a>
                   <button
                     onClick={() => setShowSitemapModal(false)}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Close modal"
                   >
                     Close
                   </button>
@@ -464,15 +498,19 @@ const AllPagesIndexSection1 = ({ config }) => {
         )}
       </div>
 
+      {/* ==================== STYLES ==================== */}
       <style>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
         .bg-grid-pattern {
           background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
                             linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
